@@ -1,0 +1,94 @@
+// vector: the part of std::vector that Notepad++ 3.3 uses, for targets with no STL.
+#ifndef NPP_MINI_VECTOR
+#define NPP_MINI_VECTOR
+#include <stdlib.h>
+#include <string.h>
+#include <new.h>
+
+namespace std {
+
+template <class T> class vector {
+	T *_p;
+	size_t _n, _cap;
+	static void construct(T *at, const T &v) { new ((void *)at) T(v); }
+	static void destroy(T *at) { at->~T(); }
+	void grow(size_t need) {
+		if (need > _cap) {
+			size_t c = _cap * 2, i;
+			if (c < need) c = need;
+			if (c < 4) c = 4;
+			T *q = (T *)malloc(c * sizeof(T));
+			if (q == 0) abort();
+			for (i = 0; i < _n; i++) { construct(q + i, _p[i]); destroy(_p + i); }
+			free(_p);
+			_p = q; _cap = c;
+		}
+	}
+public:
+	typedef T value_type;
+	typedef size_t size_type;
+	typedef T *iterator;
+	typedef const T *const_iterator;
+
+	vector(): _p(0), _n(0), _cap(0) {}
+	vector(size_t n, const T &v): _p(0), _n(0), _cap(0) { resize(n, v); }
+	vector(const vector &o): _p(0), _n(0), _cap(0) { *this = o; }
+	~vector() { clear(); free(_p); }
+	vector &operator=(const vector &o) {
+		size_t i;
+		if (this == &o) return *this;
+		clear();
+		grow(o._n);
+		for (i = 0; i < o._n; i++) construct(_p + i, o._p[i]);
+		_n = o._n;
+		return *this;
+	}
+	size_t size() const { return _n; }
+	size_t capacity() const { return _cap; }
+	bool empty() const { return _n == 0; }
+	iterator begin() { return _p; }
+	iterator end() { return _p + _n; }
+	const_iterator begin() const { return _p; }
+	const_iterator end() const { return _p + _n; }
+	T &operator[](size_t i) { return _p[i]; }
+	/* T &, not const T &: for pointer T, VC++ 4 binds const T & to a temporary. */
+	T &operator[](size_t i) const { return _p[i]; }
+	T &at(size_t i) { return _p[i]; }
+	T &at(size_t i) const { return _p[i]; }
+	T &front() { return _p[0]; }
+	T &front() const { return _p[0]; }
+	T &back() { return _p[_n - 1]; }
+	T &back() const { return _p[_n - 1]; }
+	void reserve(size_t n) { grow(n); }
+	void clear() { size_t i; for (i = 0; i < _n; i++) destroy(_p + i); _n = 0; }
+	void push_back(const T &v) {
+		T copy(v); // v may be an element of this vector
+		grow(_n + 1);
+		construct(_p + _n, copy);
+		_n++;
+	}
+	void pop_back() { destroy(_p + --_n); }
+	void resize(size_t n, const T &v) {
+		while (_n > n) pop_back();
+		grow(n);
+		while (_n < n) { construct(_p + _n, v); _n++; }
+	}
+	iterator erase(iterator it) { return erase(it, it + 1); }
+	iterator erase(iterator b, iterator e) {
+		size_t i = (size_t)(b - _p), m = (size_t)(e - b), k;
+		for (k = i; k + m < _n; k++) _p[k] = _p[k + m];
+		for (k = 0; k < m; k++) pop_back();
+		return _p + i;
+	}
+	iterator insert(iterator it, const T &v) {
+		size_t i = (size_t)(it - _p), k;
+		T copy(v);
+		push_back(copy);
+		for (k = _n - 1; k > i; k--) _p[k] = _p[k - 1];
+		_p[i] = copy;
+		return _p + i;
+	}
+};
+
+}
+#endif

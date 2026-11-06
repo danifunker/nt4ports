@@ -1,0 +1,35 @@
+# UnixBench portable harness - POSIX build, for checking the harness's
+# scores against the regular UnixBench binaries on the same machine.
+#
+#   make -f Makefile.posix
+#
+# -std=c89 -pedantic catches anything Visual C++ 4.x would reject.
+# OPTON matches the UnixBench Makefile's default so scores are comparable.
+
+CC     ?= cc
+OPTON  ?= -O3 -ffast-math
+CFLAGS ?= -std=c89 -pedantic -Wall -Wdeclaration-after-statement $(OPTON)
+DHRYFLAGS = -DTIME -DREG=register
+SRC    = ../src
+
+OBJS = ubench.o plat_psx.o t_dhry.o dhry_2.o t_whets.o t_arith.o t_hanoi.o
+
+ubench: $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -lm
+
+ubench.o: ubench.c ubench.h plat.h
+plat_psx.o: plat_psx.c plat.h
+t_whets.o: t_whets.c $(SRC)/whets.c ubench.h plat.h
+t_arith.o: t_arith.c t_arith.h ubench.h
+t_hanoi.o: t_hanoi.c ubench.h
+
+t_dhry.o: t_dhry.c $(SRC)/dhry.h ubench.h
+	$(CC) $(CFLAGS) $(DHRYFLAGS) -c t_dhry.c
+
+dhry_2.o: $(SRC)/dhry_2.c $(SRC)/dhry.h
+	$(CC) $(CFLAGS) $(DHRYFLAGS) -c $(SRC)/dhry_2.c -o $@
+
+clean:
+	rm -f $(OBJS) ubench
+
+.PHONY: clean

@@ -1,0 +1,11 @@
+// exception: what winmain.cpp catches.
+#ifndef NPP_MINI_EXCEPTION
+#define NPP_MINI_EXCEPTION
+namespace std {
+class exception {
+public:
+	virtual ~exception() {}
+	virtual const char *what() const { return "exception"; }
+};
+}
+#endif

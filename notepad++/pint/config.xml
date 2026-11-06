@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<NotepadPlus>
+    <GUIConfigs>
+        <!-- 3 status : "large", "small" or "hide"-->
+        <GUIConfig name="ToolBar">small</GUIConfig>
+        <!-- 2 status : "show" or "hide"-->
+        <GUIConfig name="StatusBar">show</GUIConfig>
+        <!-- For all attributs, 2 status : "yes" or "no"-->
+        <GUIConfig name="TabBar" dragAndDrop="yes" drawTopBar="yes" drawInactiveTab="yes" reduce="yes" />
+        <!-- 2 positions : "horizontal" or "vertical"-->
+        <GUIConfig name="ScintillaViewsSplitter">vertical</GUIConfig>
+        <!-- For the attribut of position, 2 status : docked or undocked ; 2 status : "show" or "hide" -->
+        <GUIConfig name="UserDefineDlg" position="undocked">hide</GUIConfig>
+        <GUIConfig name="TabSetting" size="4" replaceBySpace="no" />
+        <!--App position-->
+        <GUIConfig name="AppPosition" x="195" y="104" width="1033" height="780" isMaximized="yes" />
+        <GUIConfig name="EdgeLine" nbColumn="200" />
+        <!-- For the primary scintilla view, 
+             2 status for Attribut lineNumberMargin, bookMarkMargin, indentGuideLine and currentLineHilitingShow: "show" or "hide" 
+             4 status for Attribut folderMarkStyle : "simple", "arrow", "circle" and "box"  -->
+        <GUIConfig name="ScintillaPrimaryView" lineNumberMargin="show" bookMarkMargin="show" folderMarkStyle="box" indentGuideLine="show" currentLineHilitingShow="show" Wrap="no" edge="no" edgeNbColumn="100" />
+        <!-- For the secodary scintilla view, 
+             2 status for Attribut lineNumberMargin, bookMarkMargin, indentGuideLine and currentLineHilitingShow: "show" or "hide" 
+             4 status for Attribut folderMarkStyle : "simple", "arrow", "circle" and "box" -->
+        <GUIConfig name="ScintillaSecondaryView" lineNumberMargin="show" bookMarkMargin="show" folderMarkStyle="box" indentGuideLine="show" currentLineHilitingShow="show" Wrap="yes" edge="no" edgeNbColumn="25" />
+        <GUIConfig name="Auto-detection">yes</GUIConfig>
+        <GUIConfig name="CheckHistoryFiles">yes</GUIConfig>
+        <GUIConfig name="TrayIcon">no</GUIConfig>
+        <GUIConfig name="RememberLastSession">yes</GUIConfig>
+    </GUIConfigs>
+    <!-- The History of opened files list -->
+    <History nbMaxFile="15">
+        <File>C:\TMP\Parameters.h</File>
+    </History>
+</NotepadPlus>

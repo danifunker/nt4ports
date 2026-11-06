@@ -1,0 +1,678 @@
+diff -ruN --text a/7z920/CPP/7zip/Aes.mak b/7z920/CPP/7zip/Aes.mak
+--- a/7z920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.894848099 -0500
++++ b/7z920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.896721482 -0500
+@@ -1,7 +1,7 @@
+ C_OBJS = $(C_OBJS) \
+   $O\Aes.obj
+ 
+-!IF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS" && "$(CPU)" != "ARM"
++!IF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS" && "$(CPU)" != "ARM" && "$(CPU)" != "ALPHA" && "$(CPU)" != "PPC"
+ ASM_OBJS = $(ASM_OBJS) \
+   $O\AesOpt.obj
+ !ENDIF
+diff -ruN --text a/7z920/CPP/7zip/Asm.mak b/7z920/CPP/7zip/Asm.mak
+--- a/7z920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.903356009 -0500
++++ b/7z920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.905134516 -0500
+@@ -1,7 +1,7 @@
+-!IF "$(CPU)" == "ARM"
++!IF "$(CPU)" == "ARM" && defined(UNDER_CE)
+ $(ASM_OBJS): ../../../../Asm/Arm/$(*B).asm
+ 	$(COMPL_ASM)
+-!ELSEIF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS"
++!ELSEIF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS" && "$(CPU)" != "ARM" && "$(CPU)" != "ALPHA" && "$(CPU)" != "PPC"
+ $(ASM_OBJS): ../../../../Asm/x86/$(*B).asm
+ 	$(COMPL_ASM)
+ !ENDIF
+diff -ruN --text a/7z920/CPP/7zip/Bundles/Fm/makefile b/7z920/CPP/7zip/Bundles/Fm/makefile
+--- a/7z920/CPP/7zip/Bundles/Fm/makefile	2026-11-06 12:55:18.099390226 -0500
++++ b/7z920/CPP/7zip/Bundles/Fm/makefile	2026-11-06 12:55:18.101002149 -0500
+@@ -7,7 +7,7 @@
+ !IFDEF UNDER_CE
+ LIBS = $(LIBS) ceshell.lib Commctrl.lib
+ !ELSE
+-LIBS = $(LIBS) comctl32.lib htmlhelp.lib comdlg32.lib Mpr.lib Gdi32.lib
++LIBS = $(LIBS) comctl32.lib comdlg32.lib Mpr.lib Gdi32.lib
+ CFLAGS = $(CFLAGS) -DWIN_LONG_PATH -DSUPPORT_DEVICE_FILE
+ !ENDIF
+ 
+diff -ruN --text a/7z920/CPP/7zip/Crc.mak b/7z920/CPP/7zip/Crc.mak
+--- a/7z920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.886391148 -0500
++++ b/7z920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.888098571 -0500
+@@ -1,6 +1,6 @@
+ C_OBJS = $(C_OBJS) \
+   $O\7zCrc.obj
+-!IF "$(CPU)" == "IA64" || "$(CPU)" == "MIPS"
++!IF "$(CPU)" == "IA64" || "$(CPU)" == "MIPS" || "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC" || ("$(CPU)" == "ARM" && !defined(UNDER_CE))
+ C_OBJS = $(C_OBJS) \
+ !ELSE
+ ASM_OBJS = $(ASM_OBJS) \
+diff -ruN --text a/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp b/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp
+--- a/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp	2026-11-06 12:55:18.011065907 -0500
++++ b/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp	2026-11-06 12:55:18.012686705 -0500
+@@ -337,7 +337,7 @@
+ }
+ #endif
+ 
+-#ifdef _7ZIP_LARGE_PAGES
++#if defined(_7ZIP_LARGE_PAGES) && !defined(_7ZIP_NT4_HEADERS)
+ extern "C"
+ {
+   extern SIZE_T g_LargePageSize;
+@@ -365,7 +365,7 @@
+     lib.LoadIcons();
+     #endif
+ 
+-    #ifdef _7ZIP_LARGE_PAGES
++    #if defined(_7ZIP_LARGE_PAGES) && !defined(_7ZIP_NT4_HEADERS)
+     if (g_LargePageSize != 0)
+     {
+       SetLargePageModeFunc setLargePageMode = (SetLargePageModeFunc)lib.Lib.GetProc("SetLargePageMode");
+diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp b/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp
+--- a/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp	2026-11-06 12:55:18.002382288 -0500
++++ b/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp	2026-11-06 12:55:18.004380796 -0500
+@@ -776,7 +776,11 @@
+     MyStringCopy((char *)dest, (const char *)GetAnsiString(src));
+ }
+ 
++#ifdef _7ZIP_NT4_HEADERS
++STDMETHODIMP CZipContextMenu::GetCommandString(UINT commandOffset, UINT uType,
++#else
+ STDMETHODIMP CZipContextMenu::GetCommandString(UINT_PTR commandOffset, UINT uType,
++#endif
+     UINT * /* pwReserved */ , LPSTR pszName, UINT /* cchMax */)
+ {
+   int cmdOffset = (int)commandOffset;
+diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/ContextMenu.h b/7z920/CPP/7zip/UI/Explorer/ContextMenu.h
+--- a/7z920/CPP/7zip/UI/Explorer/ContextMenu.h	2026-11-06 12:55:17.994502297 -0500
++++ b/7z920/CPP/7zip/UI/Explorer/ContextMenu.h	2026-11-06 12:55:17.996113179 -0500
+@@ -38,7 +38,11 @@
+   // IContextMenu
+   STDMETHOD(QueryContextMenu)(HMENU hmenu, UINT indexMenu, UINT idCmdFirst, UINT idCmdLast, UINT uFlags);
+   STDMETHOD(InvokeCommand)(LPCMINVOKECOMMANDINFO lpici);
++  #ifdef _7ZIP_NT4_HEADERS
++  STDMETHOD(GetCommandString)(UINT idCmd, UINT uType, UINT *pwReserved, LPSTR pszName, UINT cchMax);
++  #else
+   STDMETHOD(GetCommandString)(UINT_PTR idCmd, UINT uType, UINT *pwReserved, LPSTR pszName, UINT cchMax);
++  #endif
+ 
+   HRESULT InitContextMenu(const wchar_t *folder, const wchar_t **names, UINT32 numFiles);
+ 
+diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/makefile b/7z920/CPP/7zip/UI/Explorer/makefile
+--- a/7z920/CPP/7zip/UI/Explorer/makefile	2026-11-06 12:55:17.986722974 -0500
++++ b/7z920/CPP/7zip/UI/Explorer/makefile	2026-11-06 12:55:17.988405147 -0500
+@@ -6,7 +6,7 @@
+ !IFDEF UNDER_CE
+ LIBS = $(LIBS) Commctrl.lib
+ !ELSE
+-LIBS = $(LIBS) comctl32.lib htmlhelp.lib comdlg32.lib Mpr.lib Gdi32.lib
++LIBS = $(LIBS) comctl32.lib comdlg32.lib Mpr.lib Gdi32.lib
+ CFLAGS = $(CFLAGS) -DWIN_LONG_PATH
+ !ENDIF
+ 
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/App.cpp b/7z920/CPP/7zip/UI/FileManager/App.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/App.cpp	2026-11-06 12:55:18.083730620 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/App.cpp	2026-11-06 12:55:18.085423669 -0500
+@@ -154,7 +154,11 @@
+   imageList.Create(
+       largeButtons ? 48: 24,
+       largeButtons ? 36: 24,
++      #ifdef _7ZIP_OLD_COMMCTRL
++      ILC_MASK | ILC_COLOR16, 0, 0); // NT 4.0's comctl32 can't fill 32-bit lists
++      #else
+       ILC_MASK | ILC_COLOR32, 0, 0);
++      #endif
+   toolBar.SetImageList(0, imageList);
+ }
+ 
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp b/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp	2026-11-06 12:55:18.019281857 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp	2026-11-06 12:55:18.020875405 -0500
+@@ -2,8 +2,6 @@
+ 
+ #include "StdAfx.h"
+ 
+-#include <HtmlHelp.h>
+-
+ #include "Common/StringConvert.h"
+ #include "HelpUtils.h"
+ #include "ProgramLocation.h"
+@@ -22,6 +20,18 @@
+     return;
+   path += kHelpFileName;
+   path += topicFile;
+-  HtmlHelp(hwnd, GetSystemString(path), HH_DISPLAY_TOPIC, NULL);
++  // Loaded at run time: no HtmlHelp SDK at build time, and help simply does
++  // nothing where HTML Help isn't installed.
++  typedef HWND (WINAPI *HtmlHelpFunc)(HWND, LPCTSTR, UINT, DWORD);
++  HMODULE lib = ::LoadLibrary(TEXT("hhctrl.ocx"));
++  if (lib == NULL)
++    return;
++  #ifdef UNICODE
++  HtmlHelpFunc func = (HtmlHelpFunc)::GetProcAddress(lib, "HtmlHelpW");
++  #else
++  HtmlHelpFunc func = (HtmlHelpFunc)::GetProcAddress(lib, "HtmlHelpA");
++  #endif
++  if (func != NULL)
++    func(hwnd, GetSystemString(path), 0 /* HH_DISPLAY_TOPIC */, 0);
+ }
+ #endif
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/Panel.cpp b/7z920/CPP/7zip/UI/FileManager/Panel.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/Panel.cpp	2026-11-06 12:55:18.034853129 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/Panel.cpp	2026-11-06 12:55:18.036637053 -0500
+@@ -37,6 +37,10 @@
+ extern bool g_IsNT;
+ #endif
+ 
++#ifndef BTNS_BUTTON
++#define BTNS_BUTTON TBSTYLE_BUTTON
++#endif
++
+ static const UINT_PTR kTimerID = 1;
+ static const UINT kTimerElapse = 1000;
+ 
+@@ -520,7 +524,9 @@
+     rbBand.fStyle = RBBS_NOGRIPPER;
+     rbBand.cxMinChild = size.cx;
+     rbBand.cyMinChild = size.cy;
++    #ifndef _7ZIP_OLD_COMMCTRL
+     rbBand.cyChild = size.cy;
++    #endif
+     rbBand.cx = size.cx;
+     rbBand.hwndChild  = _headerToolBar;
+     _headerReBar.InsertBand(-1, &rbBand);
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/Panel.h b/7z920/CPP/7zip/UI/FileManager/Panel.h
+--- a/7z920/CPP/7zip/UI/FileManager/Panel.h	2026-11-06 12:55:18.058888394 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/Panel.h	2026-11-06 12:55:18.060631776 -0500
+@@ -176,8 +176,12 @@
+ #ifdef UNDER_CE
+ #define MY_NMLISTVIEW_NMITEMACTIVATE NMLISTVIEW
+ #else
++#ifdef _7ZIP_OLD_COMMCTRL
++#define MY_NMLISTVIEW_NMITEMACTIVATE NMLISTVIEW
++#else
+ #define MY_NMLISTVIEW_NMITEMACTIVATE NMITEMACTIVATE
+ #endif
++#endif
+ 
+ class CPanel: public NWindows::NControl::CWindow2
+ {
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp b/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp	2026-11-06 12:55:18.075653671 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp	2026-11-06 12:55:18.077350678 -0500
+@@ -277,7 +277,7 @@
+       break;
+ 
+     /*
+-      return OnRightClick((LPNMITEMACTIVATE)header, result);
++      return OnRightClick((MY_NMLISTVIEW_NMITEMACTIVATE *)header, result);
+     */
+       /*
+       case NM_CLICK:
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp b/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp	2026-11-06 12:55:18.043242163 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp	2026-11-06 12:55:18.044980629 -0500
+@@ -585,9 +585,11 @@
+   commandInfo.lpTitleW = L"";
+   // commandInfo.ptInvoke.x = xPos;
+   // commandInfo.ptInvoke.y = yPos;
++  #ifndef _7ZIP_OLD_COMMCTRL
+   commandInfo.ptInvoke.x = 0;
+   commandInfo.ptInvoke.y = 0;
+   #endif
++  #endif
+   HRESULT result;
+   if (isSystemMenu)
+     result = systemContextMenu->InvokeCommand(LPCMINVOKECOMMANDINFO(&commandInfo));
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp b/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp	2026-11-06 12:55:18.067229386 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp	2026-11-06 12:55:18.069017644 -0500
+@@ -451,7 +451,7 @@
+   comboDialog.Static = LangString(IDS_COMMENT2, 0x03020291);
+   if (comboDialog.Create(GetParent()) == IDCANCEL)
+     return;
+-  NCOM::CPropVariant propVariant = comboDialog.Value;
++  NCOM::CPropVariant propVariant = (LPCWSTR)comboDialog.Value;
+ 
+   HRESULT result = folderOperations->SetProperty(realIndex, kpidComment, &propVariant, NULL);
+   if (result != S_OK)
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp b/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp	2026-11-06 12:55:18.051240237 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp	2026-11-06 12:55:18.052900786 -0500
+@@ -264,7 +264,7 @@
+   int indexInList = itemActivate->iItem;
+   if (indexInList < 0)
+     return;
+-  #ifndef UNDER_CE
++  #if !defined(UNDER_CE) && !defined(_7ZIP_OLD_COMMCTRL)
+   if ((itemActivate->uKeyFlags & LVKF_SHIFT) != 0)
+   {
+     // int focusedIndex = _listView.GetFocusedItem();
+@@ -290,7 +290,7 @@
+   #endif
+   {
+     _startGroupSelect = indexInList;
+-    #ifndef UNDER_CE
++    #if !defined(UNDER_CE) && !defined(_7ZIP_OLD_COMMCTRL)
+     if ((itemActivate->uKeyFlags & LVKF_CONTROL) != 0)
+     {
+       int realIndex = GetRealItemIndex(indexInList);
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/makefile b/7z920/CPP/7zip/UI/FileManager/makefile
+--- a/7z920/CPP/7zip/UI/FileManager/makefile	2026-11-06 12:55:18.027271431 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/makefile	2026-11-06 12:55:18.028678062 -0500
+@@ -7,7 +7,7 @@
+ !IFDEF UNDER_CE
+ LIBS = $(LIBS) ceshell.lib Commctrl.lib
+ !ELSE
+-LIBS = $(LIBS) comctl32.lib htmlhelp.lib comdlg32.lib Mpr.lib Gdi32.lib
++LIBS = $(LIBS) comctl32.lib comdlg32.lib Mpr.lib Gdi32.lib
+ CFLAGS = $(CFLAGS) -DWIN_LONG_PATH -DSUPPORT_DEVICE_FILE
+ !ENDIF
+ 
+diff -ruN --text a/7z920/CPP/7zip/UI/GUI/makefile b/7z920/CPP/7zip/UI/GUI/makefile
+--- a/7z920/CPP/7zip/UI/GUI/makefile	2026-11-06 12:55:18.091532611 -0500
++++ b/7z920/CPP/7zip/UI/GUI/makefile	2026-11-06 12:55:18.093052658 -0500
+@@ -6,7 +6,7 @@
+ !IFDEF UNDER_CE
+ LIBS = $(LIBS) ceshell.lib Commctrl.lib
+ !ELSE
+-LIBS = $(LIBS) comctl32.lib htmlhelp.lib comdlg32.lib
++LIBS = $(LIBS) comctl32.lib comdlg32.lib
+ CFLAGS = $(CFLAGS) -DWIN_LONG_PATH -DSUPPORT_DEVICE_FILE -D_7ZIP_LARGE_PAGES
+ !ENDIF
+ 
+diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
+--- a/7z920/CPP/Build.mak	2026-11-06 12:55:17.822894638 -0500
++++ b/7z920/CPP/Build.mak	2026-11-06 12:55:17.824742812 -0500
+@@ -1,4 +1,16 @@
++# NT 4.0 targets: only the NT4 headers and libraries are needed, no later SDK.
++!IF "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC" || ("$(CPU)" == "ARM" && !defined(UNDER_CE))
++NT4_TARGET = 1
++NO_BUFFEROVERFLOWU = 1
++CFLAGS = $(CFLAGS) -D_7ZIP_NT4_HEADERS
++!ENDIF
++
+ LIBS = $(LIBS) oleaut32.lib ole32.lib
++!IF "$(CPU)" == "ARM" && !defined(UNDER_CE)
++# PINT: what MSVC 14 expects of a runtime older than it (pint_rt.cpp)
++LIBS = $(LIBS) uuid.lib Z:\src\pint_rt.obj
++CFLAGS = $(CFLAGS) -D_7ZIP_OLD_COMMCTRL
++!ENDIF
+ 
+ !IFDEF CPU
+ !IFNDEF NO_BUFFEROVERFLOWU
+@@ -30,10 +42,12 @@
+ LFLAGS = $(LFLAGS) /ENTRY:mainACRTStartup
+ !ENDIF
+ !ELSE
+-!IFNDEF NEW_COMPILER
++!IF !defined(NEW_COMPILER) && "$(CPU)" != "ARM"
+ LFLAGS = $(LFLAGS) -OPT:NOWIN98
+ !ENDIF
++!IFNDEF NT4_TARGET
+ CFLAGS = $(CFLAGS) -Gr
++!ENDIF
+ LIBS = $(LIBS) user32.lib advapi32.lib shell32.lib
+ !ENDIF
+ 
+@@ -43,7 +57,18 @@
+ COMPL_ASM = $(MY_ML) -c -Fo$O/ $**
+ !ENDIF
+ 
+-CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -WX -EHsc -Gy -GR-
++# -EHsc is unknown to the VC++ 6.0-era RISC compilers
++!IF "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC"
++CFLAGS = $(CFLAGS) -GX
++!ELSE
++CFLAGS = $(CFLAGS) -EHsc
++!ENDIF
++!IF "$(CPU)" == "ARM" && !defined(UNDER_CE)
++# PINT: a modern compiler's warnings are not errors; the old runtime has no cookies.
++CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -Gy -GR- -GS- -DWIN32=100 -D_WIN32_WINNT=0x0400
++!ELSE
++CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -WX -Gy -GR-
++!ENDIF
+ 
+ !IFDEF MY_STATIC_LINK
+ !IFNDEF MY_SINGLE_THREAD
+diff -ruN --text a/7z920/CPP/Common/MyInitGuid.h b/7z920/CPP/Common/MyInitGuid.h
+--- a/7z920/CPP/Common/MyInitGuid.h	2026-11-06 12:55:17.878023072 -0500
++++ b/7z920/CPP/Common/MyInitGuid.h	2026-11-06 12:55:17.879882954 -0500
+@@ -4,9 +4,8 @@
+ #define __COMMON_MY_INITGUID_H
+ 
+ #ifdef _WIN32
+-#ifdef UNDER_CE
++// basetyps.h first: older versions redefine DEFINE_GUID if it comes after initguid.h
+ #include <basetyps.h>
+-#endif
+ #include <initguid.h>
+ #ifdef UNDER_CE
+ DEFINE_GUID(IID_IUnknown,
+diff -ruN --text a/7z920/CPP/Common/MyString.h b/7z920/CPP/Common/MyString.h
+--- a/7z920/CPP/Common/MyString.h	2026-11-06 12:55:17.868370699 -0500
++++ b/7z920/CPP/Common/MyString.h	2026-11-06 12:55:17.870484416 -0500
+@@ -5,6 +5,10 @@
+ 
+ #include <string.h>
+ 
++#ifdef _WIN32
++#include "MyWindows.h"
++#endif
++
+ #include "MyVector.h"
+ 
+ template <class T>
+diff -ruN --text a/7z920/CPP/Common/MyWindows.h b/7z920/CPP/Common/MyWindows.h
+--- a/7z920/CPP/Common/MyWindows.h	2026-11-06 12:55:17.858587951 -0500
++++ b/7z920/CPP/Common/MyWindows.h	2026-11-06 12:55:17.860749584 -0500
+@@ -7,6 +7,82 @@
+ 
+ #include <windows.h>
+ 
++// The NT 4.0 headers lack the Win64-era pointer-sized types
++#if defined(_7ZIP_NT4_HEADERS) && !defined(_WIN64)
++#ifndef _BASETSD_H_ // VC6 has basetsd.h; the NT4 SDK headers do not
++typedef long INT_PTR;
++typedef unsigned long UINT_PTR;
++typedef unsigned long SIZE_T;
++typedef unsigned int UINT32;
++typedef unsigned __int64 UINT64;
++#endif
++typedef unsigned long ULONG_PTR;
++typedef long LONG_PTR;
++typedef unsigned long DWORD_PTR;
++
++#ifndef GWLP_USERDATA
++#define GWLP_WNDPROC GWL_WNDPROC
++#define GWLP_USERDATA GWL_USERDATA
++#define DWLP_MSGRESULT DWL_MSGRESULT
++#define DWLP_DLGPROC DWL_DLGPROC
++#define DWLP_USER DWL_USER
++#define GetWindowLongPtr GetWindowLong
++#define GetWindowLongPtrA GetWindowLongA
++#define GetWindowLongPtrW GetWindowLongW
++#define SetWindowLongPtr SetWindowLong
++#define SetWindowLongPtrA SetWindowLongA
++#define SetWindowLongPtrW SetWindowLongW
++#endif
++
++#ifndef FILE_ATTRIBUTE_ENCRYPTED
++#define FILE_ATTRIBUTE_ENCRYPTED 0x00004000
++#endif
++#ifndef FILE_ATTRIBUTE_SPARSE_FILE
++#define FILE_ATTRIBUTE_SPARSE_FILE 0x00000200
++#endif
++#ifndef FILE_ATTRIBUTE_REPARSE_POINT
++#define FILE_ATTRIBUTE_REPARSE_POINT 0x00000400
++#endif
++
++#ifdef _7ZIP_OLD_COMMCTRL
++// commctrl.h of NT 4.0 predates these. Their messages are simply ignored by a
++// comctl32 that doesn't know them.
++#define NPP_CCM_FIRST 0x2000
++#ifndef ListView_SetUnicodeFormat
++#define ListView_SetUnicodeFormat(h, u) ::SendMessage((h), NPP_CCM_FIRST + 5, (u), 0)
++#define ListView_SetExtendedListViewStyleEx(h, m, s) ::SendMessage((h), LVM_FIRST + 54, (m), (s))
++#define ListView_GetSelectionMark(h) ((int)::SendMessage((h), LVM_FIRST + 66, 0, 0))
++#endif
++#ifndef PBM_SETBARCOLOR
++#define PBM_SETBARCOLOR (WM_USER + 9)
++#define PBM_SETBKCOLOR (NPP_CCM_FIRST + 1)
++#endif
++#ifndef CBEM_SETEXTENDEDSTYLE
++#define CBEM_SETEXTENDEDSTYLE (WM_USER + 14)
++#define CBEM_SETUNICODEFORMAT (NPP_CCM_FIRST + 5)
++#endif
++#ifndef TB_GETMAXSIZE
++#define TB_GETMAXSIZE (WM_USER + 83)
++#define TB_ADDBUTTONSW (WM_USER + 20) /* TB_ADDBUTTONS: the only one NT 4.0 knows */
++#endif
++#ifndef RB_SIZETORECT
++#define RB_SIZETORECT (WM_USER + 23)
++#define RB_GETBARHEIGHT (WM_USER + 27)
++#define RB_MAXIMIZEBAND (WM_USER + 31)
++#define RBBS_NOGRIPPER 0x00000100
++#endif
++#ifndef LVKF_SHIFT
++#define LVKF_ALT 0x0001
++#define LVKF_CONTROL 0x0002
++#define LVKF_SHIFT 0x0004
++#endif
++#endif
++
++#ifndef IS_INTRESOURCE
++#define IS_INTRESOURCE(_r) ((((ULONG_PTR)(_r)) >> 16) == 0)
++#endif
++#endif
++
+ #else
+ 
+ #include <stddef.h> // for wchar_t
+diff -ruN --text a/7z920/CPP/Windows/Control/Dialog.cpp b/7z920/CPP/Windows/Control/Dialog.cpp
+--- a/7z920/CPP/Windows/Control/Dialog.cpp	2026-11-06 12:55:17.970355948 -0500
++++ b/7z920/CPP/Windows/Control/Dialog.cpp	2026-11-06 12:55:17.972359290 -0500
+@@ -143,7 +143,7 @@
+ 
+ bool CModelessDialog::Create(LPCTSTR templateName, HWND parentWindow)
+ {
+-  HWND aHWND = CreateDialogParam(g_hInstance, templateName, parentWindow, DialogProcedure, (LPARAM)this);
++  HWND aHWND = CreateDialogParam(g_hInstance, templateName, parentWindow, (DLGPROC)DialogProcedure, (LPARAM)this);
+   if (aHWND == 0)
+     return false;
+   Attach(aHWND);
+@@ -152,7 +152,7 @@
+ 
+ INT_PTR CModalDialog::Create(LPCTSTR templateName, HWND parentWindow)
+ {
+-  return DialogBoxParam(g_hInstance, templateName, parentWindow, DialogProcedure, (LPARAM)this);
++  return DialogBoxParam(g_hInstance, templateName, parentWindow, (DLGPROC)DialogProcedure, (LPARAM)this);
+ }
+ 
+ #ifndef _UNICODE
+@@ -161,7 +161,7 @@
+ {
+   HWND aHWND;
+   if (g_IsNT)
+-    aHWND = CreateDialogParamW(g_hInstance, templateName, parentWindow, DialogProcedure, (LPARAM)this);
++    aHWND = CreateDialogParamW(g_hInstance, templateName, parentWindow, (DLGPROC)DialogProcedure, (LPARAM)this);
+   else
+   {
+     AString name;
+@@ -173,7 +173,7 @@
+       name = GetSystemString(templateName);
+       templateNameA = name;
+     }
+-    aHWND = CreateDialogParamA(g_hInstance, templateNameA, parentWindow, DialogProcedure, (LPARAM)this);
++    aHWND = CreateDialogParamA(g_hInstance, templateNameA, parentWindow, (DLGPROC)DialogProcedure, (LPARAM)this);
+   }
+   if (aHWND == 0)
+     return false;
+@@ -184,7 +184,7 @@
+ INT_PTR CModalDialog::Create(LPCWSTR templateName, HWND parentWindow)
+ {
+   if (g_IsNT)
+-    return DialogBoxParamW(g_hInstance, templateName, parentWindow, DialogProcedure, (LPARAM)this);
++    return DialogBoxParamW(g_hInstance, templateName, parentWindow, (DLGPROC)DialogProcedure, (LPARAM)this);
+   AString name;
+   LPCSTR templateNameA;
+   if (IS_INTRESOURCE(templateName))
+@@ -194,7 +194,7 @@
+     name = GetSystemString(templateName);
+     templateNameA = name;
+   }
+-  return DialogBoxParamA(g_hInstance, templateNameA, parentWindow, DialogProcedure, (LPARAM)this);
++  return DialogBoxParamA(g_hInstance, templateNameA, parentWindow, (DLGPROC)DialogProcedure, (LPARAM)this);
+ }
+ #endif
+ 
+diff -ruN --text a/7z920/CPP/Windows/Control/ListView.h b/7z920/CPP/Windows/Control/ListView.h
+--- a/7z920/CPP/Windows/Control/ListView.h	2026-11-06 12:55:17.978481482 -0500
++++ b/7z920/CPP/Windows/Control/ListView.h	2026-11-06 12:55:17.980005238 -0500
+@@ -7,6 +7,15 @@
+ 
+ #include <commctrl.h>
+ 
++#ifndef ListView_SetCheckState
++#define ListView_SetCheckState(hwnd, i, check) \
++  ListView_SetItemState(hwnd, i, INDEXTOSTATEIMAGEMASK((check) ? 2 : 1), LVIS_STATEIMAGEMASK)
++#endif
++#ifndef ListView_GetCheckState
++#define ListView_GetCheckState(hwnd, i) \
++  ((((UINT)(SNDMSG((hwnd), LVM_GETITEMSTATE, (WPARAM)(i), LVIS_STATEIMAGEMASK))) >> 12) - 1)
++#endif
++
+ namespace NWindows {
+ namespace NControl {
+ 
+diff -ruN --text a/7z920/CPP/Windows/Control/PropertyPage.cpp b/7z920/CPP/Windows/Control/PropertyPage.cpp
+--- a/7z920/CPP/Windows/Control/PropertyPage.cpp	2026-11-06 12:55:17.962182248 -0500
++++ b/7z920/CPP/Windows/Control/PropertyPage.cpp	2026-11-06 12:55:17.963933005 -0500
+@@ -90,7 +90,7 @@
+       page.hInstance = g_hInstance;
+       page.pszTemplate = MAKEINTRESOURCE(pageInfo.ID);
+       page.pszIcon = NULL;
+-      page.pfnDlgProc = NWindows::NControl::ProperyPageProcedure;
++      page.pfnDlgProc = (DLGPROC)NWindows::NControl::ProperyPageProcedure;
+       
+       if (titles[i].IsEmpty())
+         page.pszTitle = NULL;
+@@ -111,7 +111,7 @@
+       page.hInstance = g_hInstance;
+       page.pszTemplate = MAKEINTRESOURCEW(pageInfo.ID);
+       page.pszIcon = NULL;
+-      page.pfnDlgProc = NWindows::NControl::ProperyPageProcedure;
++      page.pfnDlgProc = (DLGPROC)NWindows::NControl::ProperyPageProcedure;
+       
+       if (pageInfo.Title.IsEmpty())
+         page.pszTitle = NULL;
+diff -ruN --text a/7z920/CPP/Windows/FileIO.h b/7z920/CPP/Windows/FileIO.h
+--- a/7z920/CPP/Windows/FileIO.h	2026-11-06 12:55:17.927964442 -0500
++++ b/7z920/CPP/Windows/FileIO.h	2026-11-06 12:55:17.929701574 -0500
+@@ -7,6 +7,10 @@
+ 
+ #include "Defs.h"
+ 
++#if defined(_WIN32) && !defined(UNDER_CE)
++#include <winioctl.h>
++#endif
++
+ namespace NWindows {
+ namespace NFile {
+ namespace NIO {
+diff -ruN --text a/7z920/CPP/Windows/Memory.h b/7z920/CPP/Windows/Memory.h
+--- a/7z920/CPP/Windows/Memory.h	2026-11-06 12:55:17.945104220 -0500
++++ b/7z920/CPP/Windows/Memory.h	2026-11-06 12:55:17.946792435 -0500
+@@ -3,6 +3,8 @@
+ #ifndef __WINDOWS_MEMORY_H
+ #define __WINDOWS_MEMORY_H
+ 
++#include "../Common/MyWindows.h"
++
+ namespace NWindows {
+ namespace NMemory {
+ 
+diff -ruN --text a/7z920/CPP/Windows/Net.cpp b/7z920/CPP/Windows/Net.cpp
+--- a/7z920/CPP/Windows/Net.cpp	2026-11-06 12:55:17.911827085 -0500
++++ b/7z920/CPP/Windows/Net.cpp	2026-11-06 12:55:17.913625676 -0500
+@@ -12,6 +12,17 @@
+ extern bool g_IsNT;
+ #endif
+ 
++#ifdef _7ZIP_NT4_HEADERS
++// Not in the NT 4.0 headers. Used only to walk up from a network resource;
++// callers treat a failure as "no parent / no details".
++static DWORD WNetGetResourceParent(LPNETRESOURCE, LPVOID, LPDWORD) { return ERROR_NOT_SUPPORTED; }
++static DWORD WNetGetResourceInformation(LPNETRESOURCE, LPVOID, LPDWORD, LPTSTR *) { return ERROR_NOT_SUPPORTED; }
++#ifndef _UNICODE
++static DWORD WNetGetResourceParentW(LPNETRESOURCEW, LPVOID, LPDWORD) { return ERROR_NOT_SUPPORTED; }
++static DWORD WNetGetResourceInformationW(LPNETRESOURCEW, LPVOID, LPDWORD, LPWSTR *) { return ERROR_NOT_SUPPORTED; }
++#endif
++#endif
++
+ namespace NWindows {
+ namespace NNet {
+ 
+diff -ruN --text a/7z920/CPP/Windows/Process.h b/7z920/CPP/Windows/Process.h
+--- a/7z920/CPP/Windows/Process.h	2026-11-06 12:55:17.936571810 -0500
++++ b/7z920/CPP/Windows/Process.h	2026-11-06 12:55:17.938567777 -0500
+@@ -3,7 +3,9 @@
+ #ifndef __WINDOWS_PROCESS_H
+ #define __WINDOWS_PROCESS_H
+ 
++#ifndef _7ZIP_NT4_HEADERS
+ #include <psapi.h>
++#endif
+ 
+ #include "../Common/MyString.h"
+ 
+@@ -21,7 +23,7 @@
+     return (_handle != 0);
+   }
+ 
+-  #ifndef UNDER_CE
++  #if !defined(UNDER_CE) && !defined(_7ZIP_NT4_HEADERS)
+ 
+   bool GetExitCodeProcess(LPDWORD lpExitCode) { return BOOLToBool(::GetExitCodeProcess(_handle, lpExitCode)); }
+   bool Terminate(UINT exitCode) { return BOOLToBool(::TerminateProcess(_handle, exitCode)); }
+diff -ruN --text a/7z920/CPP/Windows/Shell.cpp b/7z920/CPP/Windows/Shell.cpp
+--- a/7z920/CPP/Windows/Shell.cpp	2026-11-06 12:55:17.953718005 -0500
++++ b/7z920/CPP/Windows/Shell.cpp	2026-11-06 12:55:17.955658347 -0500
+@@ -14,6 +14,10 @@
+ extern bool g_IsNT;
+ #endif
+ 
++#ifndef BIF_NEWDIALOGSTYLE
++#define BIF_NEWDIALOGSTYLE 0
++#endif
++
+ namespace NWindows {
+ namespace NShell {
+ 
+diff -ruN --text a/7z920/CPP/Windows/System.cpp b/7z920/CPP/Windows/System.cpp
+--- a/7z920/CPP/Windows/System.cpp	2026-11-06 12:55:17.919919534 -0500
++++ b/7z920/CPP/Windows/System.cpp	2026-11-06 12:55:17.921604624 -0500
+@@ -18,7 +18,7 @@
+ 
+ #ifndef UNDER_CE
+ 
+-#if !defined(_WIN64) && defined(__GNUC__)
++#if !defined(_WIN64) && (defined(__GNUC__) || defined(_7ZIP_NT4_HEADERS))
+ 
+ typedef struct _MY_MEMORYSTATUSEX {
+   DWORD dwLength;
+diff -ruN --text a/lzma920/CPP/7zip/Aes.mak b/lzma920/CPP/7zip/Aes.mak
+--- a/lzma920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.840524627 -0500
++++ b/lzma920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.842343718 -0500
+@@ -1,7 +1,7 @@
+ C_OBJS = $(C_OBJS) \
+   $O\Aes.obj
+ 
+-!IF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS" && "$(CPU)" != "ARM"
++!IF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS" && "$(CPU)" != "ARM" && "$(CPU)" != "ALPHA" && "$(CPU)" != "PPC"
+ ASM_OBJS = $(ASM_OBJS) \
+   $O\AesOpt.obj
+ !ENDIF
+diff -ruN --text a/lzma920/CPP/7zip/Asm.mak b/lzma920/CPP/7zip/Asm.mak
+--- a/lzma920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.849007411 -0500
++++ b/lzma920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.851068420 -0500
+@@ -1,7 +1,7 @@
+-!IF "$(CPU)" == "ARM"
++!IF "$(CPU)" == "ARM" && defined(UNDER_CE)
+ $(ASM_OBJS): ../../../../Asm/Arm/$(*B).asm
+ 	$(COMPL_ASM)
+-!ELSEIF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS"
++!ELSEIF "$(CPU)" != "IA64" && "$(CPU)" != "MIPS" && "$(CPU)" != "ARM" && "$(CPU)" != "ALPHA" && "$(CPU)" != "PPC"
+ $(ASM_OBJS): ../../../../Asm/x86/$(*B).asm
+ 	$(COMPL_ASM)
+ !ENDIF
+diff -ruN --text a/lzma920/CPP/7zip/Crc.mak b/lzma920/CPP/7zip/Crc.mak
+--- a/lzma920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.831215922 -0500
++++ b/lzma920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.833222930 -0500
+@@ -1,6 +1,6 @@
+ C_OBJS = $(C_OBJS) \
+   $O\7zCrc.obj
+-!IF "$(CPU)" == "IA64" || "$(CPU)" == "MIPS"
++!IF "$(CPU)" == "IA64" || "$(CPU)" == "MIPS" || "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC" || ("$(CPU)" == "ARM" && !defined(UNDER_CE))
+ C_OBJS = $(C_OBJS) \
+ !ELSE
+ ASM_OBJS = $(ASM_OBJS) \

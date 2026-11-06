@@ -1,0 +1,30 @@
+// algorithm: find and sort, the two algorithms Notepad++ 3.3 uses.
+#ifndef NPP_MINI_ALGORITHM
+#define NPP_MINI_ALGORITHM
+namespace std {
+template <class I, class T> I find(I b, I e, const T &v) {
+	for (; b != e; ++b) if (*b == v) return b;
+	return e;
+}
+template <class I, class T> void replace(I b, I e, const T &o, const T &n) {
+	for (; b != e; ++b) if (*b == o) *b = n;
+}
+template <class T> void swap_values(T &a, T &b) { T t(a); a = b; b = t; }
+template <class I, class C> void sort(I b, I e, C less) {
+	// Insertion sort: these lists have tens of entries.
+	I i, j;
+	if (b == e) return;
+	for (i = b + 1; i != e; ++i)
+		for (j = i; j != b && less(*j, *(j - 1)); --j) {
+			swap_values(*j, *(j - 1));
+		}
+}
+template <class I> void sort(I b, I e) {
+	I i, j;
+	if (b == e) return;
+	for (i = b + 1; i != e; ++i)
+		for (j = i; j != b && *j < *(j - 1); --j)
+			swap_values(*j, *(j - 1));
+}
+}
+#endif

@@ -1,0 +1,10 @@
+// list: the recent-files list needs push_back, erase and iteration, and it never
+// holds more than a few dozen names, so a vector serves.
+#ifndef NPP_MINI_LIST
+#define NPP_MINI_LIST
+#include "vector"
+namespace std {
+template <class T> class list: public vector<T> {
+};
+}
+#endif

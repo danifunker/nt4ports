@@ -1,0 +1,120 @@
+# UnixBench portable harness - NMAKE makefile for Windows NT
+#
+#   nmake /f Makefile.nt              generic build: ubench.exe
+#   nmake /f Makefile.nt ev56         one CPU-specific build: ubench-ev56.exe
+#   nmake /f Makefile.nt alpha        all Alpha builds: ubench-ev4.exe ...
+#   nmake /f Makefile.nt clean
+#
+# Works with Visual C++ 4.x (including the PowerPC, MIPS and Alpha
+# editions for NT 4.0) through 6.0 and with current Visual Studio from a
+# Developer Command Prompt.  The architecture is whatever the cl.exe on
+# PATH builds for.
+#
+# CFLAGS can be overridden, e.g.  nmake /f Makefile.nt CFLAGS="/nologo /Od"
+# If you change optimization flags, quote them along with any results.
+
+CC     = cl
+CFLAGS = /nologo /W3 /O2 /D_CRT_SECURE_NO_WARNINGS
+
+# Code-generation options for each CPU-specific Alpha build.  These are the
+# chip options of the Alpha cl.exe 12.01.8433 (the VC++ 6.0-generation
+# compiler shipped with the Windows 2000 build 2113 tools): each sets
+# _M_ALPHA to the chip and selects its architecture (/QAarchev4 etc.).
+# Older Alpha compilers may not have them; cl then only warns "D4002:
+# ignoring unknown option" and the binary is really generic.  A variant
+# with no flags refuses to build rather than produce a mislabelled binary.
+#
+#   ev4   21064 / 21066 / 21068
+#   ev5   21164
+#   ev56  21164A / 21164PC - adds the BWX byte/word instructions
+#   ev6   21264 - adds BWX, FIX and MVI
+EV4FLAGS  = /QA21064
+EV5FLAGS  = /QA21164
+EV56FLAGS = /QA21164A
+EV6FLAGS  = /QA21264
+
+# Set by the variant targets below; empty means the generic build.
+VARIANT  =
+CPUFLAGS =
+
+!IF "$(VARIANT)" == ""
+O   = obj
+EXE = ubench.exe
+TARGETDEF =
+!ELSE
+O   = obj-$(VARIANT)
+EXE = ubench-$(VARIANT).exe
+TARGETDEF = /DUB_TARGET_$(VARIANT)
+!IF "$(CPUFLAGS)" == ""
+!ERROR No code-generation flags for $(VARIANT). Set them in Makefile.nt or pass "CPUFLAGS=..." - see "cl /?".
+!ENDIF
+!ENDIF
+
+# The CPU-specific flags apply only to the benchmark kernels.  The runner
+# and platform layer stay generic, so a binary started on a CPU too old for
+# it can still report that instead of dying with an illegal instruction.
+KFLAGS = $(CFLAGS) $(CPUFLAGS)
+
+# dumb_stuff() in the arith tests ignores its input, so a modern optimizer can
+# compute it at compile time and measure nothing. build-pint.sh sets this to
+# /Od. Quote it along with any arith results.
+ARITHFLAGS =
+
+# dhry2reg flags, as in the UnixBench Makefile.  TIME keeps dhry.h from
+# including <sys/times.h>.
+DHRYFLAGS = /DTIME /DREG=register
+
+OBJS = $(O)\ubench.obj $(O)\plat_nt.obj $(O)\t_dhry.obj $(O)\dhry_2.obj \
+       $(O)\t_whets.obj $(O)\t_arith.obj $(O)\t_hanoi.obj
+
+all: $(EXE)
+
+$(EXE): $(O) $(OBJS)
+	$(CC) $(CFLAGS) /Fe$(EXE) $(OBJS)
+
+$(O):
+	if not exist $(O) mkdir $(O)
+
+$(O)\ubench.obj: ubench.c ubench.h plat.h
+	$(CC) $(CFLAGS) /Fo$(O)\ /c ubench.c
+
+$(O)\plat_nt.obj: plat_nt.c plat.h
+	$(CC) $(CFLAGS) $(TARGETDEF) /Fo$(O)\ /c plat_nt.c
+
+$(O)\t_dhry.obj: t_dhry.c ..\src\dhry.h ubench.h
+	$(CC) $(KFLAGS) $(DHRYFLAGS) /Fo$(O)\ /c t_dhry.c
+
+$(O)\dhry_2.obj: ..\src\dhry_2.c ..\src\dhry.h
+	$(CC) $(KFLAGS) $(DHRYFLAGS) /Fo$(O)\ /c ..\src\dhry_2.c
+
+$(O)\t_whets.obj: t_whets.c ..\src\whets.c ubench.h plat.h
+	$(CC) $(KFLAGS) /Fo$(O)\ /c t_whets.c
+
+$(O)\t_arith.obj: t_arith.c t_arith.h ubench.h
+	$(CC) $(KFLAGS) $(ARITHFLAGS) /Fo$(O)\ /c t_arith.c
+
+$(O)\t_hanoi.obj: t_hanoi.c ubench.h
+	$(CC) $(KFLAGS) /Fo$(O)\ /c t_hanoi.c
+
+ev4:
+	$(MAKE) /nologo /f Makefile.nt VARIANT=ev4 "CPUFLAGS=$(EV4FLAGS)"
+
+ev5:
+	$(MAKE) /nologo /f Makefile.nt VARIANT=ev5 "CPUFLAGS=$(EV5FLAGS)"
+
+ev56:
+	$(MAKE) /nologo /f Makefile.nt VARIANT=ev56 "CPUFLAGS=$(EV56FLAGS)"
+
+ev6:
+	$(MAKE) /nologo /f Makefile.nt VARIANT=ev6 "CPUFLAGS=$(EV6FLAGS)"
+
+alpha: ev4 ev5 ev56 ev6
+
+clean:
+	-del /q obj\*.obj obj-ev4\*.obj obj-ev5\*.obj obj-ev56\*.obj obj-ev6\*.obj
+	-rmdir obj
+	-rmdir obj-ev4
+	-rmdir obj-ev5
+	-rmdir obj-ev56
+	-rmdir obj-ev6
+	-del /q ubench.exe ubench-ev4.exe ubench-ev5.exe ubench-ev56.exe ubench-ev6.exe

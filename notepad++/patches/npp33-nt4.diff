@@ -1,0 +1,733 @@
+diff -ruN --text a/PowerEditor/src/MISC/SysMsg/SysMsg.cpp b/PowerEditor/src/MISC/SysMsg/SysMsg.cpp
+--- a/PowerEditor/src/MISC/SysMsg/SysMsg.cpp	2026-11-06 13:13:19.407817896 -0500
++++ b/PowerEditor/src/MISC/SysMsg/SysMsg.cpp	2026-11-06 13:13:19.409583486 -0500
+@@ -38,7 +38,11 @@
+     char const colon = ':';
+ 
+     // Make some short aliases for basic_strings of TCHAR.
++#ifdef NPP_MINI_STRING
++    typedef std::string tstring;
++#else
+     typedef std::basic_string<TCHAR> tstring;
++#endif
+     typedef tstring::traits_type traits;
+     typedef tstring::size_type size;
+     size const npos = tstring::npos;
+diff -ruN --text a/PowerEditor/src/Notepad_plus.cpp b/PowerEditor/src/Notepad_plus.cpp
+--- a/PowerEditor/src/Notepad_plus.cpp	2026-11-06 13:13:19.378950448 -0500
++++ b/PowerEditor/src/Notepad_plus.cpp	2026-11-06 13:13:19.380693454 -0500
+@@ -277,7 +277,7 @@
+ 		}
+ 		fclose(fp);
+ 		
+-		UniMode unicodeMode = static_cast<UniMode>(UnicodeConvertor.getEncoding());
++		UniMode unicodeMode = (UniMode)(UnicodeConvertor.getEncoding());
+ 		(_pEditView->getCurrentBuffer()).setUnicodeMode(unicodeMode);
+ 
+ 		if (unicodeMode != uni8Bit)
+@@ -369,7 +369,7 @@
+ 		(_pEditView->getCurrentBuffer()).determinateFormat(isNotEmpty?UnicodeConvertor.getNewBuf():(char *)(""));
+ 		_pEditView->execute(SCI_SETEOLMODE, _pEditView->getCurrentBuffer().getFormat());
+ 
+-		UniMode unicodeMode = static_cast<UniMode>(UnicodeConvertor.getEncoding());
++		UniMode unicodeMode = (UniMode)(UnicodeConvertor.getEncoding());
+ 		(_pEditView->getCurrentBuffer()).setUnicodeMode(unicodeMode);
+ 
+ 		if (unicodeMode != uni8Bit)
+@@ -456,7 +456,8 @@
+     fDlg.setExtFilter("VB/VBS file", ".vb", ".vbs", NULL);
+     fDlg.setExtFilter("SQL file", ".sql", NULL);
+     fDlg.setExtFilter("Objective C file", ".m", ".h", NULL);
+-	if (stringVector *pfns = fDlg.doOpenMultiFilesDlg())
++	stringVector *pfns = fDlg.doOpenMultiFilesDlg();
++	if (pfns)
+ 	{
+ 		int sz = int(pfns->size());
+ 		for (int i = 0 ; i < sz ; i++)
+@@ -486,7 +487,7 @@
+ 		mode = uni8Bit;
+ 
+ 	Utf8_16_Write UnicodeConvertor;
+-	UnicodeConvertor.setEncoding(static_cast<Utf8_16::encodingType>(mode));
++	UnicodeConvertor.setEncoding((Utf8_16::encodingType)(mode));
+ 
+ 	FILE *fp = UnicodeConvertor.fopen(filename, "wb");
+ 	const int blockSize = 128 * 1024;
+@@ -773,7 +774,8 @@
+ 	fDlg.setExtFilter("bat file", ".bat", NULL);
+     fDlg.setExtFilter("Normal text file", ".txt", NULL);
+ 
+-	if (char *pfn = fDlg.doSaveDlg())
++	char *pfn = fDlg.doSaveDlg();
++	if (pfn)
+ 	{
+ 		int i = _pEditView->findDocIndexByName(pfn);
+ 		if ((i == -1) || (i == _pEditView->getCurrentDocIndex()))
+@@ -3112,7 +3114,7 @@
+ 		}
+ 		fclose(fp);
+ 
+-		UniMode unicodeMode = static_cast<UniMode>(UnicodeConvertor.getEncoding());
++		UniMode unicodeMode = (UniMode)(UnicodeConvertor.getEncoding());
+ 		(_pEditView->getCurrentBuffer()).setUnicodeMode(unicodeMode);
+ 
+ 		if (unicodeMode != uni8Bit)
+@@ -4870,7 +4872,8 @@
+     fDlg.setExtFilter("Session file", ".session", NULL);
+ 
+ 	bool shouldBeResaved = false;
+-	if (const char *sessionFileName = fDlg.doOpenSingleFileDlg())
++	const char *sessionFileName = fDlg.doOpenSingleFileDlg();
++	if (sessionFileName)
+ 	{
+ 		bool shouldBeResaved = false;
+ 		Session session2Load;
+@@ -4907,7 +4910,8 @@
+     fDlg.setExtFilter("All types", ".*", NULL);
+     fDlg.setExtFilter("Session file", ".session", NULL);
+ 
+-	if (const char *sessionFileName = fDlg.doSaveDlg())
++	const char *sessionFileName = fDlg.doSaveDlg();
++	if (sessionFileName)
+ 	{
+ 		Session currentSession;
+ 		getCurrentOpenedFiles(currentSession);
+diff -ruN --text a/PowerEditor/src/Parameters.cpp b/PowerEditor/src/Parameters.cpp
+--- a/PowerEditor/src/Parameters.cpp	2026-11-06 13:13:19.370608206 -0500
++++ b/PowerEditor/src/Parameters.cpp	2026-11-06 13:13:19.372642464 -0500
+@@ -92,15 +92,23 @@
+ 	}
+ 	else
+ 	{
+-		ITEMIDLIST *pidl;
+-		SHGetSpecialFolderLocation(NULL, CSIDL_APPDATA, &pidl);
+-		SHGetPathFromIDList(pidl, userPath);
+-
+-		PathAppend(userPath, "Notepad++");
++		// Plain NT 4.0 may have no CSIDL_APPDATA folder: fall back to the
++		// program's own folder, as doLocalConf.xml does.
++		ITEMIDLIST *pidl = NULL;
++		userPath[0] = 0;
++		if (SHGetSpecialFolderLocation(NULL, CSIDL_APPDATA, (LPITEMIDLIST *)&pidl) == NOERROR &&
++			pidl != NULL && SHGetPathFromIDList(pidl, userPath) && userPath[0])
++		{
++			PathAppend(userPath, "Notepad++");
+ 
+-		if (!PathFileExists(userPath))
++			if (!PathFileExists(userPath))
++			{
++				::CreateDirectory(userPath, NULL);
++			}
++		}
++		if (!userPath[0] || !PathFileExists(userPath))
+ 		{
+-			::CreateDirectory(userPath, NULL);
++			strcpy(userPath, _nppPath);
+ 		}
+ 	}
+ 
+@@ -1938,8 +1946,8 @@
+ 			}
+ 			else
+ 			{
+-				delete [] style._styleDesc;
+-				delete [] style._fontName;
++				delete [] (char *)style._styleDesc;
++				delete [] (char *)style._fontName;
+ 			}
+ 		}
+ 	}
+diff -ruN --text a/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h b/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h
+--- a/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h	2026-11-06 13:13:19.416905599 -0500
++++ b/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h	2026-11-06 13:13:19.418715815 -0500
+@@ -33,7 +33,7 @@
+ 	void create(HINSTANCE hInst, int iconSize) {_iconSize = iconSize;
+ 		_hInst = hInst;
+ 		InitCommonControls(); 
+-		_hImglst = ImageList_Create(iconSize, iconSize, ILC_COLOR32 | ILC_MASK, 0, nbMax);
++		_hImglst = ImageList_Create(iconSize, iconSize, NPP_ILC_COLOR | ILC_MASK, 0, nbMax);
+ 		if (!_hImglst)
+ 			throw int(25);
+ 	};
+diff -ruN --text a/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp b/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp
+--- a/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp	2026-11-06 13:13:19.424706880 -0500
++++ b/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp	2026-11-06 13:13:19.426280011 -0500
+@@ -217,7 +217,8 @@
+ 					fd.setExtFilter("Executable file : ", ".exe", ".com", ".cmd", ".bat", NULL);
+ 					fd.setExtFilter("All files : ", ".*", NULL);
+ 
+-					if (const char *fn = fd.doOpenSingleFileDlg())
++					const char *fn = fd.doOpenSingleFileDlg();
++					if (fn)
+ 						addTextToCombo(fn);
+ 					return TRUE;
+ 				}
+diff -ruN --text a/PowerEditor/src/npp_nt4.rc b/PowerEditor/src/npp_nt4.rc
+--- a/PowerEditor/src/npp_nt4.rc	1969-12-31 19:00:00.000000000 -0500
++++ b/PowerEditor/src/npp_nt4.rc	2026-11-06 13:13:19.393317713 -0500
+@@ -0,0 +1,4 @@
++// npp_nt4.rc: NT4 windows.h does not include commctrl.h, which the dialogs need.
++#include <windows.h>
++#include <commctrl.h>
++#include "Notepad_plus.rc"
+diff -ruN --text a/PowerEditor/src/npp_nt4compat.h b/PowerEditor/src/npp_nt4compat.h
+--- a/PowerEditor/src/npp_nt4compat.h	1969-12-31 19:00:00.000000000 -0500
++++ b/PowerEditor/src/npp_nt4compat.h	2026-11-06 13:13:19.387177105 -0500
+@@ -0,0 +1,46 @@
++/* npp_nt4compat.h: forced include (/FI) for building Notepad++ 3.3 with VC6
++ * and NT 4.0-era headers, no later SDK. */
++#ifndef NPP_NT4COMPAT_H
++#define NPP_NT4COMPAT_H
++#ifndef _WIN32_IE
++#define _WIN32_IE 0x0400
++#endif
++/* Some sources include shlwapi.h before anything that includes windows.h. */
++#include <windows.h>
++/* VC6 keeps a for-loop variable in the enclosing scope. */
++#if defined(_MSC_VER) && _MSC_VER < 1300
++#define for if (0) {} else for
++#endif
++#ifndef WS_EX_LAYOUTRTL
++#define WS_EX_LAYOUTRTL 0x00400000L
++#endif
++#ifndef BTNS_BUTTON
++#define BTNS_BUTTON TBSTYLE_BUTTON
++#define BTNS_SEP TBSTYLE_SEP
++#define BTNS_AUTOSIZE TBSTYLE_AUTOSIZE
++#endif
++#ifndef TBSTYLE_AUTOSIZE
++#define TBSTYLE_AUTOSIZE 0x0010
++#endif
++#ifndef TCS_EX_FLATSEPARATORS
++#define TCS_EX_FLATSEPARATORS 0x00000001
++#endif
++#ifdef NPP_NT4_HEADERS
++/* NT 4.0's own comctl32 can't add icons to a 32-bit image list: ImageList_AddIcon
++ * returns -1, leaving toolbars and tabs without images. */
++#define NPP_ILC_COLOR ILC_COLOR16
++typedef struct tagNMMOUSE {
++	NMHDR hdr;
++	DWORD dwItemSpec;
++	DWORD dwItemData;
++	POINT pt;
++	DWORD dwHitInfo;
++} NMMOUSE, *LPNMMOUSE;
++#endif
++#ifndef NPP_ILC_COLOR
++#define NPP_ILC_COLOR ILC_COLOR32
++#endif
++#ifndef INVALID_FILE_ATTRIBUTES
++#define INVALID_FILE_ATTRIBUTES ((DWORD)-1)
++#endif
++#endif
+diff -ruN --text a/PowerEditor/src/winmain.cpp b/PowerEditor/src/winmain.cpp
+--- a/PowerEditor/src/winmain.cpp	2026-11-06 13:13:19.399496988 -0500
++++ b/PowerEditor/src/winmain.cpp	2026-11-06 13:13:19.401413037 -0500
+@@ -183,8 +183,30 @@
+ 
+ const char FLAG_MULTI_INSTANCE[] = "-multiInst";
+ 
++#ifdef NPP_TRACE
++#include <eh.h>
++#include <stdio.h>
++// Records real faults, which catch(...) would otherwise hide on VC6.
++static void traceSE(unsigned int code, EXCEPTION_POINTERS *p)
++{
++	FILE *f = fopen("D:\\dump\\patches\\nppcrash.txt", "a");
++	if (f)
++	{
++		fprintf(f, "code=%08X addr=%p p0=%lX p1=%lX\n", code,
++			p->ExceptionRecord->ExceptionAddress,
++			(unsigned long)p->ExceptionRecord->ExceptionInformation[0],
++			(unsigned long)p->ExceptionRecord->ExceptionInformation[1]);
++		fclose(f);
++	}
++	throw int(code);
++}
++#endif
++
+ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpszCmdLine, int nCmdShow)
+ {
++#ifdef NPP_TRACE
++	_set_se_translator(traceSE);
++#endif
+ 	bool TheFirstOne = true;
+ 
+ 	::SetLastError(NO_ERROR);
+@@ -228,7 +250,9 @@
+ 	}
+ 
+ 	pNppParameters->load();
+-	Notepad_plus notepad_plus_plus;
++	// On the heap: VC++ 4 for PowerPC can't set up a stack frame this big.
++	Notepad_plus *pNotepad_plus = new Notepad_plus;
++	Notepad_plus &notepad_plus_plus = *pNotepad_plus;
+ 	MSG msg;
+ 	msg.wParam = 0;
+ 	
+diff -ruN --text a/scintilla/src/ContractionState.cxx b/scintilla/src/ContractionState.cxx
+--- a/scintilla/src/ContractionState.cxx	2026-11-06 13:13:19.320530881 -0500
++++ b/scintilla/src/ContractionState.cxx	2026-11-06 13:13:19.322187846 -0500
+@@ -31,7 +31,7 @@
+ 	Clear();
+ }
+ 
+-void ContractionState::MakeValid() const {
++void ContractionState::MakeValid() {
+ 	if (!valid) {
+ 		// Could be cleverer by keeping the index of the last still valid entry
+ 		// rather than invalidating all.
+@@ -84,7 +84,7 @@
+ 
+ int ContractionState::LinesDisplayed() const {
+ 	if (size != 0) {
+-		MakeValid();
++		((ContractionState *)this)->MakeValid();
+ 	}
+ 	return linesInDisplay;
+ }
+@@ -93,7 +93,7 @@
+ 	if (size == 0) {
+ 		return lineDoc;
+ 	}
+-	MakeValid();
++	((ContractionState *)this)->MakeValid();
+ 	if ((lineDoc >= 0) && (lineDoc < linesInDoc)) {
+ 		return lines[lineDoc].displayLine;
+ 	}
+@@ -107,7 +107,7 @@
+ 		return linesInDoc;
+ 	if (size == 0)
+ 		return lineDisplay;
+-	MakeValid();
++	((ContractionState *)this)->MakeValid();
+ 	if (docLines) {	// Valid allocation
+ 		return docLines[lineDisplay];
+ 	} else {
+diff -ruN --text a/scintilla/src/ContractionState.h b/scintilla/src/ContractionState.h
+--- a/scintilla/src/ContractionState.h	2026-11-06 13:13:19.337020697 -0500
++++ b/scintilla/src/ContractionState.h	2026-11-06 13:13:19.338717204 -0500
+@@ -34,7 +34,7 @@
+ 	mutable int *docLines;
+ 	mutable int sizeDocLines;
+ 	mutable bool valid;
+-	void MakeValid() const;
++	void MakeValid();
+ 
+ public:
+ 	ContractionState();
+diff -ruN --text a/scintilla/src/Editor.cxx b/scintilla/src/Editor.cxx
+--- a/scintilla/src/Editor.cxx	2026-11-06 13:13:19.328836373 -0500
++++ b/scintilla/src/Editor.cxx	2026-11-06 13:13:19.330480254 -0500
+@@ -2145,6 +2145,20 @@
+ 	              highlight ? *pixmapIndentGuideHighlight : *pixmapIndentGuide);
+ }
+ 
++struct Relative {
++	Surface *surface;
++	int xBase;
++	int xDir;
++	int yBase;
++	int yDir;
++	void MoveTo(int xRelative, int yRelative) {
++	    surface->MoveTo(xBase + xDir * xRelative, yBase + yDir * yRelative);
++	}
++	void LineTo(int xRelative, int yRelative) {
++	    surface->LineTo(xBase + xDir * xRelative, yBase + yDir * yRelative);
++	}
++};
++
+ void Editor::DrawWrapMarker(Surface *surface, PRectangle rcPlace,
+                             bool isEndMarker, ColourAllocated wrapColour) {
+ 	surface->PenColour(wrapColour);
+@@ -2162,19 +2176,6 @@
+ 	int dy = (rcPlace.bottom - rcPlace.top) / 5;
+ 	int y = (rcPlace.bottom - rcPlace.top) / 2 + dy;
+ 
+-	struct Relative {
+-		Surface *surface;
+-		int xBase;
+-		int xDir;
+-		int yBase;
+-		int yDir;
+-		void MoveTo(int xRelative, int yRelative) {
+-		    surface->MoveTo(xBase + xDir * xRelative, yBase + yDir * yRelative);
+-		}
+-		void LineTo(int xRelative, int yRelative) {
+-		    surface->LineTo(xBase + xDir * xRelative, yBase + yDir * yRelative);
+-		}
+-	};
+ 	Relative rel = {surface, x0, xStraight?1:-1, y0, yStraight?1:-1};
+ 
+ 	// arrow head
+diff -ruN --text a/scintilla/src/LexBash.cxx b/scintilla/src/LexBash.cxx
+--- a/scintilla/src/LexBash.cxx	2026-11-06 13:13:19.362298173 -0500
++++ b/scintilla/src/LexBash.cxx	2026-11-06 13:13:19.363937013 -0500
+@@ -123,6 +123,52 @@
+ 	return ch;
+ }
+ 
++class HereDocCls {
++public:
++	int State;		// 0: '<<' encountered
++	// 1: collect the delimiter
++	// 2: here doc text (lines after the delimiter)
++	char Quote;		// the char after '<<'
++	bool Quoted;		// true if Quote in ('\'','"','`')
++	bool Indent;		// indented delimiter (for <<-)
++	int DelimiterLength;	// strlen(Delimiter)
++	char *Delimiter;	// the Delimiter, 256: sizeof PL_tokenbuf
++	HereDocCls() {
++		State = 0;
++            Quote = 0;
++            Quoted = false;
++            Indent = 0;
++		DelimiterLength = 0;
++		Delimiter = new char[HERE_DELIM_MAX];
++		Delimiter[0] = '\0';
++	}
++	~HereDocCls() {
++		delete []Delimiter;
++	}
++};
++
++class QuoteCls {
++	public:
++	int  Rep;
++	int  Count;
++	char Up;
++	char Down;
++	QuoteCls() {
++		this->New(1);
++	}
++	void New(int r) {
++		Rep   = r;
++		Count = 0;
++		Up    = '\0';
++		Down  = '\0';
++	}
++	void Open(char u) {
++		Count++;
++		Up    = u;
++		Down  = opposite(Up);
++	}
++};
++
+ static void ColouriseBashDoc(unsigned int startPos, int length, int initStyle,
+                              WordList *keywordlists[], Accessor &styler) {
+ 
+@@ -132,52 +178,8 @@
+ 
+ 	WordList &keywords = *keywordlists[0];
+ 
+-	class HereDocCls {
+-	public:
+-		int State;		// 0: '<<' encountered
+-		// 1: collect the delimiter
+-		// 2: here doc text (lines after the delimiter)
+-		char Quote;		// the char after '<<'
+-		bool Quoted;		// true if Quote in ('\'','"','`')
+-		bool Indent;		// indented delimiter (for <<-)
+-		int DelimiterLength;	// strlen(Delimiter)
+-		char *Delimiter;	// the Delimiter, 256: sizeof PL_tokenbuf
+-		HereDocCls() {
+-			State = 0;
+-            Quote = 0;
+-            Quoted = false;
+-            Indent = 0;
+-			DelimiterLength = 0;
+-			Delimiter = new char[HERE_DELIM_MAX];
+-			Delimiter[0] = '\0';
+-		}
+-		~HereDocCls() {
+-			delete []Delimiter;
+-		}
+-	};
+ 	HereDocCls HereDoc;
+ 
+-	class QuoteCls {
+-		public:
+-		int  Rep;
+-		int  Count;
+-		char Up;
+-		char Down;
+-		QuoteCls() {
+-			this->New(1);
+-		}
+-		void New(int r) {
+-			Rep   = r;
+-			Count = 0;
+-			Up    = '\0';
+-			Down  = '\0';
+-		}
+-		void Open(char u) {
+-			Count++;
+-			Up    = u;
+-			Down  = opposite(Up);
+-		}
+-	};
+ 	QuoteCls Quote;
+ 
+ 	int state = initStyle;
+diff -ruN --text a/scintilla/src/LexPerl.cxx b/scintilla/src/LexPerl.cxx
+--- a/scintilla/src/LexPerl.cxx	2026-11-06 13:13:19.345022062 -0500
++++ b/scintilla/src/LexPerl.cxx	2026-11-06 13:13:19.347074779 -0500
+@@ -112,6 +112,50 @@
+ 	return ch;
+ }
+ 
++class HereDocCls {
++public:
++	int State;		// 0: '<<' encountered
++	// 1: collect the delimiter
++	// 2: here doc text (lines after the delimiter)
++	char Quote;		// the char after '<<'
++	bool Quoted;		// true if Quote in ('\'','"','`')
++	int DelimiterLength;	// strlen(Delimiter)
++	char *Delimiter;	// the Delimiter, 256: sizeof PL_tokenbuf
++	HereDocCls() {
++		State = 0;
++            Quote = 0;
++            Quoted = false;
++		DelimiterLength = 0;
++		Delimiter = new char[HERE_DELIM_MAX];
++		Delimiter[0] = '\0';
++	}
++	~HereDocCls() {
++		delete []Delimiter;
++	}
++};
++
++class QuoteCls {
++	public:
++	int  Rep;
++	int  Count;
++	char Up;
++	char Down;
++	QuoteCls() {
++		this->New(1);
++	}
++	void New(int r) {
++		Rep   = r;
++		Count = 0;
++		Up    = '\0';
++		Down  = '\0';
++	}
++	void Open(char u) {
++		Count++;
++		Up    = u;
++		Down  = opposite(Up);
++	}
++};
++
+ static void ColourisePerlDoc(unsigned int startPos, int length, int initStyle,
+                              WordList *keywordlists[], Accessor &styler) {
+ 
+@@ -121,50 +165,8 @@
+ 
+ 	WordList &keywords = *keywordlists[0];
+ 
+-	class HereDocCls {
+-	public:
+-		int State;		// 0: '<<' encountered
+-		// 1: collect the delimiter
+-		// 2: here doc text (lines after the delimiter)
+-		char Quote;		// the char after '<<'
+-		bool Quoted;		// true if Quote in ('\'','"','`')
+-		int DelimiterLength;	// strlen(Delimiter)
+-		char *Delimiter;	// the Delimiter, 256: sizeof PL_tokenbuf
+-		HereDocCls() {
+-			State = 0;
+-            Quote = 0;
+-            Quoted = false;
+-			DelimiterLength = 0;
+-			Delimiter = new char[HERE_DELIM_MAX];
+-			Delimiter[0] = '\0';
+-		}
+-		~HereDocCls() {
+-			delete []Delimiter;
+-		}
+-	};
+ 	HereDocCls HereDoc;	// TODO: FIFO for stacked here-docs
+ 
+-	class QuoteCls {
+-		public:
+-		int  Rep;
+-		int  Count;
+-		char Up;
+-		char Down;
+-		QuoteCls() {
+-			this->New(1);
+-		}
+-		void New(int r) {
+-			Rep   = r;
+-			Count = 0;
+-			Up    = '\0';
+-			Down  = '\0';
+-		}
+-		void Open(char u) {
+-			Count++;
+-			Up    = u;
+-			Down  = opposite(Up);
+-		}
+-	};
+ 	QuoteCls Quote;
+ 
+ 	int state = initStyle;
+diff -ruN --text a/scintilla/src/LexRuby.cxx b/scintilla/src/LexRuby.cxx
+--- a/scintilla/src/LexRuby.cxx	2026-11-06 13:13:19.353835139 -0500
++++ b/scintilla/src/LexRuby.cxx	2026-11-06 13:13:19.355872147 -0500
+@@ -304,6 +304,47 @@
+     initStyle = SCE_RB_DEFAULT;
+ }
+ 
++class HereDocCls {
++public:
++	int State;
++        // States
++        // 0: '<<' encountered
++	// 1: collect the delimiter
++        // 1b: text between the end of the delimiter and the EOL
++	// 2: here doc text (lines after the delimiter)
++	char Quote;		// the char after '<<'
++	bool Quoted;		// true if Quote in ('\'','"','`')
++	int DelimiterLength;	// strlen(Delimiter)
++	char Delimiter[256];	// the Delimiter, limit of 256: from Perl
++        bool CanBeIndented;
++	HereDocCls() {
++		State = 0;
++		DelimiterLength = 0;
++		Delimiter[0] = '\0';
++            CanBeIndented = false;
++	}
++};
++
++class QuoteCls {
++	public:
++	int  Count;
++	char Up;
++	char Down;
++	QuoteCls() {
++		this->New();
++	}
++	void New() {
++		Count = 0;
++		Up    = '\0';
++		Down  = '\0';
++	}
++	void Open(char u) {
++		Count++;
++		Up    = u;
++		Down  = opposite(Up);
++	}
++};
++
+ static void ColouriseRbDoc(unsigned int startPos, int length, int initStyle,
+ 						   WordList *keywordlists[], Accessor &styler) {
+ 
+@@ -313,47 +354,8 @@
+     
+ 	WordList &keywords = *keywordlists[0];
+ 
+-	class HereDocCls {
+-	public:
+-		int State;
+-        // States
+-        // 0: '<<' encountered
+-		// 1: collect the delimiter
+-        // 1b: text between the end of the delimiter and the EOL
+-		// 2: here doc text (lines after the delimiter)
+-		char Quote;		// the char after '<<'
+-		bool Quoted;		// true if Quote in ('\'','"','`')
+-		int DelimiterLength;	// strlen(Delimiter)
+-		char Delimiter[256];	// the Delimiter, limit of 256: from Perl
+-        bool CanBeIndented;
+-		HereDocCls() {
+-			State = 0;
+-			DelimiterLength = 0;
+-			Delimiter[0] = '\0';
+-            CanBeIndented = false;
+-		}
+-	};
+ 	HereDocCls HereDoc;	
+ 
+-	class QuoteCls {
+-		public:
+-		int  Count;
+-		char Up;
+-		char Down;
+-		QuoteCls() {
+-			this->New();
+-		}
+-		void New() {
+-			Count = 0;
+-			Up    = '\0';
+-			Down  = '\0';
+-		}
+-		void Open(char u) {
+-			Count++;
+-			Up    = u;
+-			Down  = opposite(Up);
+-		}
+-	};
+ 	QuoteCls Quote;
+ 
+     int numDots = 0;  // For numbers --
+diff -ruN --text a/scintilla/win32/ScintillaWin.cxx b/scintilla/win32/ScintillaWin.cxx
+--- a/scintilla/win32/ScintillaWin.cxx	2026-11-06 13:13:19.302487518 -0500
++++ b/scintilla/win32/ScintillaWin.cxx	2026-11-06 13:13:19.304765360 -0500
+@@ -359,11 +359,11 @@
+ }
+ 
+ #ifndef VK_OEM_2
+-static const VK_OEM_2=0xbf;
+-static const VK_OEM_3=0xc0;
+-static const VK_OEM_4=0xdb;
+-static const VK_OEM_5=0xdc;
+-static const VK_OEM_6=0xdd;
++static const int VK_OEM_2=0xbf;
++static const int VK_OEM_3=0xc0;
++static const int VK_OEM_4=0xdb;
++static const int VK_OEM_5=0xdc;
++static const int VK_OEM_6=0xdd;
+ #endif
+ 
+ /** Map the key codes to their equivalent SCK_ form. */
+@@ -690,7 +690,7 @@
+ 			if (IsUnicodeMode()) {
+ 				// For a wide character version of the window:
+ 				//char utfval[4];
+-				//wchar_t wcs[2] = {wParam, 0};
++				//wchar_t wcs[2] = {(wchar_t)wParam, 0};
+ 				//unsigned int len = UTF8Length(wcs, 1);
+ 				//UTF8FromUCS2(wcs, 1, utfval, len);
+ 				//AddCharUTF(utfval, len);
+@@ -709,7 +709,7 @@
+ 		} else {
+ 			if (IsUnicodeMode()) {
+ 				char utfval[4];
+-				wchar_t wcs[2] = {wParam, 0};
++				wchar_t wcs[2] = {(wchar_t)wParam, 0};
+ 				unsigned int len = UTF8Length(wcs, 1);
+ 				UTF8FromUCS2(wcs, 1, utfval, len);
+ 				AddCharUTF(utfval, len);
+diff -ruN --text a/scintilla/win32/scintilla_vc6.mak b/scintilla/win32/scintilla_vc6.mak
+--- a/scintilla/win32/scintilla_vc6.mak	2026-11-06 13:13:19.311758846 -0500
++++ b/scintilla/win32/scintilla_vc6.mak	2026-11-06 13:13:19.313574229 -0500
+@@ -162,6 +162,7 @@
+ 	$(DIR_O)\LexSQL.obj \
+ 	$(DIR_O)\LexTADS3.obj \
+ 	$(DIR_O)\LexTeX.obj \
++	$(DIR_O)\LexUser.obj \
+ 	$(DIR_O)\LexVB.obj \
+ 	$(DIR_O)\LexVerilog.obj \
+ 	$(DIR_O)\LexVHDL.obj \
+@@ -377,6 +378,8 @@
+ 
+ $(DIR_O)\LexTeX.obj: ..\src\LexTeX.cxx $(LEX_HEADERS)
+ 
++$(DIR_O)\LexUser.obj: ..\src\LexUser.cxx $(LEX_HEADERS)
++
+ $(DIR_O)\LexVB.obj: ..\src\LexVB.cxx $(LEX_HEADERS)
+ 
+ $(DIR_O)\LexVerilog.obj: ..\src\LexVerilog.cxx $(LEX_HEADERS)
