@@ -1,0 +1,12 @@
+LIBRARY IMM32
+EXPORTS
+  ImmGetContext
+  ImmReleaseContext
+  ImmGetCompositionStringA
+  ImmGetCompositionStringW
+  ImmSetCompositionWindow
+  ImmSetCompositionFontA
+  ImmSetCompositionFontW
+  ImmAssociateContext
+  ImmGetOpenStatus
+  ImmNotifyIME

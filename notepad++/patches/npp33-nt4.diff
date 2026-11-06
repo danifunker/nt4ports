@@ -1,6 +1,6 @@
 diff -ruN --text a/PowerEditor/src/MISC/SysMsg/SysMsg.cpp b/PowerEditor/src/MISC/SysMsg/SysMsg.cpp
---- a/PowerEditor/src/MISC/SysMsg/SysMsg.cpp	2026-11-06 13:13:19.407817896 -0500
-+++ b/PowerEditor/src/MISC/SysMsg/SysMsg.cpp	2026-11-06 13:13:19.409583486 -0500
+--- a/PowerEditor/src/MISC/SysMsg/SysMsg.cpp	2026-11-06 14:40:02.637222188 -0500
++++ b/PowerEditor/src/MISC/SysMsg/SysMsg.cpp	2026-11-06 14:40:02.884545097 -0500
 @@ -38,7 +38,11 @@
      char const colon = ':';
  
@@ -14,8 +14,17 @@ diff -ruN --text a/PowerEditor/src/MISC/SysMsg/SysMsg.cpp b/PowerEditor/src/MISC
      typedef tstring::size_type size;
      size const npos = tstring::npos;
 diff -ruN --text a/PowerEditor/src/Notepad_plus.cpp b/PowerEditor/src/Notepad_plus.cpp
---- a/PowerEditor/src/Notepad_plus.cpp	2026-11-06 13:13:19.378950448 -0500
-+++ b/PowerEditor/src/Notepad_plus.cpp	2026-11-06 13:13:19.380693454 -0500
+--- a/PowerEditor/src/Notepad_plus.cpp	2026-11-06 14:40:02.645365310 -0500
++++ b/PowerEditor/src/Notepad_plus.cpp	2026-11-06 14:40:02.884986265 -0500
+@@ -33,7 +33,7 @@
+ 
+ const char Notepad_plus::_className[32] = NOTEPAD_PP_CLASS_NAME;
+ 
+-Notepad_plus::Notepad_plus(): Window(), _mainWindowStatus(0), _pDocTab(NULL), _pEditView(NULL),
++Notepad_plus::Notepad_plus(): Window(), _configStyleDlg(*new WordStyleDlg), _mainWindowStatus(0), _pDocTab(NULL), _pEditView(NULL),
+ 	_pMainSplitter(NULL), _isfullScreen(false),
+     _recordingMacro(false),_isSynScoll(false), _pTrayIco(NULL), _isUDDocked(false),\
+ 	_isCmdScModified(false), _isMacrosScModified(false), _isUserCmdScModified(false), _isRTL(false)
 @@ -277,7 +277,7 @@
  		}
  		fclose(fp);
@@ -92,9 +101,21 @@ diff -ruN --text a/PowerEditor/src/Notepad_plus.cpp b/PowerEditor/src/Notepad_pl
  	{
  		Session currentSession;
  		getCurrentOpenedFiles(currentSession);
+diff -ruN --text a/PowerEditor/src/Notepad_plus.h b/PowerEditor/src/Notepad_plus.h
+--- a/PowerEditor/src/Notepad_plus.h	2026-11-06 14:40:02.674334987 -0500
++++ b/PowerEditor/src/Notepad_plus.h	2026-11-06 14:40:02.885941311 -0500
+@@ -313,7 +313,7 @@
+     AboutDlg _aboutDlg;
+ 	RunDlg _runDlg;
+     GoToLineDlg _goToLineDlg;
+-	WordStyleDlg _configStyleDlg;
++	WordStyleDlg &_configStyleDlg; // on the heap: 70 KB, see Notepad_plus()
+ 
+ 	LastRecentFileList _lastRecentFileList;
+ 
 diff -ruN --text a/PowerEditor/src/Parameters.cpp b/PowerEditor/src/Parameters.cpp
---- a/PowerEditor/src/Parameters.cpp	2026-11-06 13:13:19.370608206 -0500
-+++ b/PowerEditor/src/Parameters.cpp	2026-11-06 13:13:19.372642464 -0500
+--- a/PowerEditor/src/Parameters.cpp	2026-11-06 14:40:02.632326582 -0500
++++ b/PowerEditor/src/Parameters.cpp	2026-11-06 14:40:02.884007552 -0500
 @@ -92,15 +92,23 @@
  	}
  	else
@@ -138,8 +159,8 @@ diff -ruN --text a/PowerEditor/src/Parameters.cpp b/PowerEditor/src/Parameters.c
  		}
  	}
 diff -ruN --text a/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h b/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h
---- a/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h	2026-11-06 13:13:19.416905599 -0500
-+++ b/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h	2026-11-06 13:13:19.418715815 -0500
+--- a/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h	2026-11-06 14:40:02.677325626 -0500
++++ b/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h	2026-11-06 14:40:02.886435022 -0500
 @@ -33,7 +33,7 @@
  	void create(HINSTANCE hInst, int iconSize) {_iconSize = iconSize;
  		_hInst = hInst;
@@ -150,8 +171,8 @@ diff -ruN --text a/PowerEditor/src/WinControls/ImageListSet/ImageListSet.h b/Pow
  			throw int(25);
  	};
 diff -ruN --text a/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp b/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp
---- a/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp	2026-11-06 13:13:19.424706880 -0500
-+++ b/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp	2026-11-06 13:13:19.426280011 -0500
+--- a/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp	2026-11-06 14:40:02.695091626 -0500
++++ b/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp	2026-11-06 14:40:02.887123942 -0500
 @@ -217,7 +217,8 @@
  					fd.setExtFilter("Executable file : ", ".exe", ".com", ".cmd", ".bat", NULL);
  					fd.setExtFilter("All files : ", ".*", NULL);
@@ -162,9 +183,21 @@ diff -ruN --text a/PowerEditor/src/WinControls/StaticDialog/RunDlg/RunDlg.cpp b/
  						addTextToCombo(fn);
  					return TRUE;
  				}
+diff -ruN --text a/PowerEditor/src/lastRecentFileList.h b/PowerEditor/src/lastRecentFileList.h
+--- a/PowerEditor/src/lastRecentFileList.h	2026-11-06 14:40:02.631769038 -0500
++++ b/PowerEditor/src/lastRecentFileList.h	2026-11-06 14:40:02.883642259 -0500
+@@ -18,7 +18,7 @@
+ 		_idBase = idBase;
+ 		_posBase = posBase;
+ 
+-		for (int i = 0 ; i < sizeof(_idFreeArray) ; i++)
++		for (int i = 0 ; i < NB_MAX_LRF_FILE ; i++)
+ 			_idFreeArray[i] = true;
+ 	};
+ 
 diff -ruN --text a/PowerEditor/src/npp_nt4.rc b/PowerEditor/src/npp_nt4.rc
 --- a/PowerEditor/src/npp_nt4.rc	1969-12-31 19:00:00.000000000 -0500
-+++ b/PowerEditor/src/npp_nt4.rc	2026-11-06 13:13:19.393317713 -0500
++++ b/PowerEditor/src/npp_nt4.rc	2026-11-06 14:40:02.889848121 -0500
 @@ -0,0 +1,4 @@
 +// npp_nt4.rc: NT4 windows.h does not include commctrl.h, which the dialogs need.
 +#include <windows.h>
@@ -172,7 +205,7 @@ diff -ruN --text a/PowerEditor/src/npp_nt4.rc b/PowerEditor/src/npp_nt4.rc
 +#include "Notepad_plus.rc"
 diff -ruN --text a/PowerEditor/src/npp_nt4compat.h b/PowerEditor/src/npp_nt4compat.h
 --- a/PowerEditor/src/npp_nt4compat.h	1969-12-31 19:00:00.000000000 -0500
-+++ b/PowerEditor/src/npp_nt4compat.h	2026-11-06 13:13:19.387177105 -0500
++++ b/PowerEditor/src/npp_nt4compat.h	2026-11-06 14:40:02.885326267 -0500
 @@ -0,0 +1,46 @@
 +/* npp_nt4compat.h: forced include (/FI) for building Notepad++ 3.3 with VC6
 + * and NT 4.0-era headers, no later SDK. */
@@ -221,8 +254,8 @@ diff -ruN --text a/PowerEditor/src/npp_nt4compat.h b/PowerEditor/src/npp_nt4comp
 +#endif
 +#endif
 diff -ruN --text a/PowerEditor/src/winmain.cpp b/PowerEditor/src/winmain.cpp
---- a/PowerEditor/src/winmain.cpp	2026-11-06 13:13:19.399496988 -0500
-+++ b/PowerEditor/src/winmain.cpp	2026-11-06 13:13:19.401413037 -0500
+--- a/PowerEditor/src/winmain.cpp	2026-11-06 14:40:02.648789993 -0500
++++ b/PowerEditor/src/winmain.cpp	2026-11-06 14:40:02.885617935 -0500
 @@ -183,8 +183,30 @@
  
  const char FLAG_MULTI_INSTANCE[] = "-multiInst";
@@ -266,8 +299,8 @@ diff -ruN --text a/PowerEditor/src/winmain.cpp b/PowerEditor/src/winmain.cpp
  	msg.wParam = 0;
  	
 diff -ruN --text a/scintilla/src/ContractionState.cxx b/scintilla/src/ContractionState.cxx
---- a/scintilla/src/ContractionState.cxx	2026-11-06 13:13:19.320530881 -0500
-+++ b/scintilla/src/ContractionState.cxx	2026-11-06 13:13:19.322187846 -0500
+--- a/scintilla/src/ContractionState.cxx	2026-11-06 14:40:02.580429255 -0500
++++ b/scintilla/src/ContractionState.cxx	2026-11-06 14:40:02.880940496 -0500
 @@ -31,7 +31,7 @@
  	Clear();
  }
@@ -305,8 +338,8 @@ diff -ruN --text a/scintilla/src/ContractionState.cxx b/scintilla/src/Contractio
  		return docLines[lineDisplay];
  	} else {
 diff -ruN --text a/scintilla/src/ContractionState.h b/scintilla/src/ContractionState.h
---- a/scintilla/src/ContractionState.h	2026-11-06 13:13:19.337020697 -0500
-+++ b/scintilla/src/ContractionState.h	2026-11-06 13:13:19.338717204 -0500
+--- a/scintilla/src/ContractionState.h	2026-11-06 14:40:02.594247070 -0500
++++ b/scintilla/src/ContractionState.h	2026-11-06 14:40:02.881667417 -0500
 @@ -34,7 +34,7 @@
  	mutable int *docLines;
  	mutable int sizeDocLines;
@@ -317,8 +350,8 @@ diff -ruN --text a/scintilla/src/ContractionState.h b/scintilla/src/ContractionS
  public:
  	ContractionState();
 diff -ruN --text a/scintilla/src/Editor.cxx b/scintilla/src/Editor.cxx
---- a/scintilla/src/Editor.cxx	2026-11-06 13:13:19.328836373 -0500
-+++ b/scintilla/src/Editor.cxx	2026-11-06 13:13:19.330480254 -0500
+--- a/scintilla/src/Editor.cxx	2026-11-06 14:40:02.586884744 -0500
++++ b/scintilla/src/Editor.cxx	2026-11-06 14:40:02.881380957 -0500
 @@ -2145,6 +2145,20 @@
  	              highlight ? *pixmapIndentGuideHighlight : *pixmapIndentGuide);
  }
@@ -361,8 +394,8 @@ diff -ruN --text a/scintilla/src/Editor.cxx b/scintilla/src/Editor.cxx
  
  	// arrow head
 diff -ruN --text a/scintilla/src/LexBash.cxx b/scintilla/src/LexBash.cxx
---- a/scintilla/src/LexBash.cxx	2026-11-06 13:13:19.362298173 -0500
-+++ b/scintilla/src/LexBash.cxx	2026-11-06 13:13:19.363937013 -0500
+--- a/scintilla/src/LexBash.cxx	2026-11-06 14:40:02.607065422 -0500
++++ b/scintilla/src/LexBash.cxx	2026-11-06 14:40:02.882958506 -0500
 @@ -123,6 +123,52 @@
  	return ch;
  }
@@ -470,8 +503,8 @@ diff -ruN --text a/scintilla/src/LexBash.cxx b/scintilla/src/LexBash.cxx
  
  	int state = initStyle;
 diff -ruN --text a/scintilla/src/LexPerl.cxx b/scintilla/src/LexPerl.cxx
---- a/scintilla/src/LexPerl.cxx	2026-11-06 13:13:19.345022062 -0500
-+++ b/scintilla/src/LexPerl.cxx	2026-11-06 13:13:19.347074779 -0500
+--- a/scintilla/src/LexPerl.cxx	2026-11-06 14:40:02.597442835 -0500
++++ b/scintilla/src/LexPerl.cxx	2026-11-06 14:40:02.882068460 -0500
 @@ -112,6 +112,50 @@
  	return ch;
  }
@@ -575,8 +608,8 @@ diff -ruN --text a/scintilla/src/LexPerl.cxx b/scintilla/src/LexPerl.cxx
  
  	int state = initStyle;
 diff -ruN --text a/scintilla/src/LexRuby.cxx b/scintilla/src/LexRuby.cxx
---- a/scintilla/src/LexRuby.cxx	2026-11-06 13:13:19.353835139 -0500
-+++ b/scintilla/src/LexRuby.cxx	2026-11-06 13:13:19.355872147 -0500
+--- a/scintilla/src/LexRuby.cxx	2026-11-06 14:40:02.600427766 -0500
++++ b/scintilla/src/LexRuby.cxx	2026-11-06 14:40:02.882556629 -0500
 @@ -304,6 +304,47 @@
      initStyle = SCE_RB_DEFAULT;
  }
@@ -674,8 +707,8 @@ diff -ruN --text a/scintilla/src/LexRuby.cxx b/scintilla/src/LexRuby.cxx
  
      int numDots = 0;  // For numbers --
 diff -ruN --text a/scintilla/win32/ScintillaWin.cxx b/scintilla/win32/ScintillaWin.cxx
---- a/scintilla/win32/ScintillaWin.cxx	2026-11-06 13:13:19.302487518 -0500
-+++ b/scintilla/win32/ScintillaWin.cxx	2026-11-06 13:13:19.304765360 -0500
+--- a/scintilla/win32/ScintillaWin.cxx	2026-11-06 14:40:02.564801557 -0500
++++ b/scintilla/win32/ScintillaWin.cxx	2026-11-06 14:40:02.880078867 -0500
 @@ -359,11 +359,11 @@
  }
  
@@ -712,8 +745,8 @@ diff -ruN --text a/scintilla/win32/ScintillaWin.cxx b/scintilla/win32/ScintillaW
  				UTF8FromUCS2(wcs, 1, utfval, len);
  				AddCharUTF(utfval, len);
 diff -ruN --text a/scintilla/win32/scintilla_vc6.mak b/scintilla/win32/scintilla_vc6.mak
---- a/scintilla/win32/scintilla_vc6.mak	2026-11-06 13:13:19.311758846 -0500
-+++ b/scintilla/win32/scintilla_vc6.mak	2026-11-06 13:13:19.313574229 -0500
+--- a/scintilla/win32/scintilla_vc6.mak	2026-11-06 14:40:02.566162605 -0500
++++ b/scintilla/win32/scintilla_vc6.mak	2026-11-06 14:40:02.880423702 -0500
 @@ -162,6 +162,7 @@
  	$(DIR_O)\LexSQL.obj \
  	$(DIR_O)\LexTADS3.obj \
