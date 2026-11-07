@@ -8,7 +8,7 @@ and new files, not a copy of the upstream source, under that project's own licen
 
 | App | Alpha | ARM (PINT) | PowerPC |
 |---|---|---|---|
-| [7-Zip 9.20](7zip/) | Built and tested | Built, tested in QEMU | Not started |
+| [7-Zip 9.20](7zip/) | Built and tested | Built, tested in QEMU | Built and tested |
 | [Notepad++ 3.3](notepad++/) | Built and tested | Built, tested in QEMU | Built and tested |
 | [UnixBench](unixbench/) | Built | Built, tested in QEMU | Built |
 

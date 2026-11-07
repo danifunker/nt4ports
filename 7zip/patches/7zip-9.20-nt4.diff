@@ -1,6 +1,6 @@
 diff -ruN --text a/7z920/CPP/7zip/Aes.mak b/7z920/CPP/7zip/Aes.mak
---- a/7z920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.894848099 -0500
-+++ b/7z920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.896721482 -0500
+--- a/7z920/CPP/7zip/Aes.mak	2026-11-06 21:07:54.460646994 -0500
++++ b/7z920/CPP/7zip/Aes.mak	2026-11-06 21:07:55.229538889 -0500
 @@ -1,7 +1,7 @@
  C_OBJS = $(C_OBJS) \
    $O\Aes.obj
@@ -10,9 +10,277 @@ diff -ruN --text a/7z920/CPP/7zip/Aes.mak b/7z920/CPP/7zip/Aes.mak
  ASM_OBJS = $(ASM_OBJS) \
    $O\AesOpt.obj
  !ENDIF
+diff -ruN --text a/7z920/CPP/7zip/Archive/7z/7zHandler.cpp b/7z920/CPP/7zip/Archive/7z/7zHandler.cpp
+--- a/7z920/CPP/7zip/Archive/7z/7zHandler.cpp	2026-11-06 21:07:54.428497469 -0500
++++ b/7z920/CPP/7zip/Archive/7z/7zHandler.cpp	2026-11-06 21:07:55.228622469 -0500
+@@ -95,7 +95,7 @@
+       {
+         const CFolder &f = _db.Folders[i];
+         for (int j = f.Coders.Size() - 1; j >= 0; j--)
+-          ids.AddToUniqueSorted(f.Coders[j].MethodID);
++          VecAddToUniqueSorted(ids, f.Coders[j].MethodID);
+       }
+ 
+       for (i = 0; i < ids.Size(); i++)
+diff -ruN --text a/7z920/CPP/7zip/Archive/7z/7zItem.h b/7z920/CPP/7zip/Archive/7z/7zItem.h
+--- a/7z920/CPP/7zip/Archive/7z/7zItem.h	2026-11-06 21:07:54.430148016 -0500
++++ b/7z920/CPP/7zip/Archive/7z/7zItem.h	2026-11-06 21:07:55.228898095 -0500
+@@ -53,6 +53,7 @@
+       if (FindBindPairForOutStream(i) < 0)
+         return UnpackSizes[i];
+     throw 1;
++    return 0;
+   }
+ 
+   CNum GetNumOutStreams() const
+diff -ruN --text a/7z920/CPP/7zip/Archive/7z/7zUpdate.cpp b/7z920/CPP/7zip/Archive/7z/7zUpdate.cpp
+--- a/7z920/CPP/7zip/Archive/7z/7zUpdate.cpp	2026-11-06 21:07:54.436713997 -0500
++++ b/7z920/CPP/7zip/Archive/7z/7zUpdate.cpp	2026-11-06 21:07:55.229274597 -0500
+@@ -498,7 +498,8 @@
+ 
+ void CFolderOutStream2::OpenFile()
+ {
+-  _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream : NULL);
++  ISequentialOutStream *outStream = _outStream;
++  _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? outStream : NULL);
+   _crcStreamSpec->Init(true);
+   _fileIsOpen = true;
+   _rem = _db->Files[_startIndex + _currentIndex].Size;
+diff -ruN --text a/7z920/CPP/7zip/Archive/Cab/CabHandler.cpp b/7z920/CPP/7zip/Archive/Cab/CabHandler.cpp
+--- a/7z920/CPP/7zip/Archive/Cab/CabHandler.cpp	2026-11-06 21:07:54.379809304 -0500
++++ b/7z920/CPP/7zip/Archive/Cab/CabHandler.cpp	2026-11-06 21:07:55.224759998 -0500
+@@ -94,7 +94,7 @@
+       {
+         const CDatabaseEx &de = m_Database.Volumes[v];
+         for (i = 0; i < de.Folders.Size(); i++)
+-          ids.AddToUniqueSorted(de.Folders[i].GetCompressionMethod());
++          VecAddToUniqueSorted(ids, de.Folders[i].GetCompressionMethod());
+       }
+       for (i = 0; i < ids.Size(); i++)
+       {
+diff -ruN --text a/7z920/CPP/7zip/Archive/Chm/ChmIn.cpp b/7z920/CPP/7zip/Archive/Chm/ChmIn.cpp
+--- a/7z920/CPP/7zip/Archive/Chm/ChmIn.cpp	2026-11-06 21:07:54.383272899 -0500
++++ b/7z920/CPP/7zip/Archive/Chm/ChmIn.cpp	2026-11-06 21:07:55.225454209 -0500
+@@ -197,6 +197,7 @@
+     val <<= 7;
+   }
+   throw 1;
++  return 0;
+ }
+ 
+ void CInArchive::ReadGUID(GUID &g)
+diff -ruN --text a/7z920/CPP/7zip/Archive/Common/CoderMixer2MT.cpp b/7z920/CPP/7zip/Archive/Common/CoderMixer2MT.cpp
+--- a/7z920/CPP/7zip/Archive/Common/CoderMixer2MT.cpp	2026-11-06 21:07:54.398619201 -0500
++++ b/7z920/CPP/7zip/Archive/Common/CoderMixer2MT.cpp	2026-11-06 21:07:55.225827710 -0500
+@@ -132,10 +132,10 @@
+     coderInfo.InStreams.Clear();
+     UInt32 j;
+     for (j = 0; j < coderStreamsInfo.NumInStreams; j++)
+-      coderInfo.InStreams.Add(NULL);
++      coderInfo.InStreams.Add((ISequentialInStream *)NULL);
+     coderInfo.OutStreams.Clear();
+     for (j = 0; j < coderStreamsInfo.NumOutStreams; j++)
+-      coderInfo.OutStreams.Add(NULL);
++      coderInfo.OutStreams.Add((ISequentialOutStream *)NULL);
+   }
+ 
+   for (i = 0; i < _bindInfo.BindPairs.Size(); i++)
+diff -ruN --text a/7z920/CPP/7zip/Archive/DmgHandler.cpp b/7z920/CPP/7zip/Archive/DmgHandler.cpp
+--- a/7z920/CPP/7zip/Archive/DmgHandler.cpp	2026-11-06 21:07:54.365162838 -0500
++++ b/7z920/CPP/7zip/Archive/DmgHandler.cpp	2026-11-06 21:07:55.223867828 -0500
+@@ -169,10 +169,10 @@
+   for (int i = 0; i < file.Blocks.Size(); i++)
+   {
+     const CBlock &b = file.Blocks[i];
+-    int index = Types.FindInSorted(b.Type);
++    int index = VecFindInSorted(Types, b.Type);
+     if (index < 0)
+     {
+-      index = Types.AddToUniqueSorted(b.Type);
++      index = VecAddToUniqueSorted(Types, b.Type);
+       Stats.Insert(index, CMethodStat());
+     }
+     CMethodStat &m = Stats[index];
+diff -ruN --text a/7z920/CPP/7zip/Archive/Hfs/HfsIn.cpp b/7z920/CPP/7zip/Archive/Hfs/HfsIn.cpp
+--- a/7z920/CPP/7zip/Archive/Hfs/HfsIn.cpp	2026-11-06 21:07:54.401959254 -0500
++++ b/7z920/CPP/7zip/Archive/Hfs/HfsIn.cpp	2026-11-06 21:07:55.226289295 -0500
+@@ -61,7 +61,7 @@
+     CIdIndexPair pair;
+     pair.ID = item->ParentID;
+     pair.Index = 0;
+-    int indexInMap = IdToIndexMap.FindInSorted(pair);
++    int indexInMap = VecFindInSorted(IdToIndexMap, pair);
+     if (indexInMap < 0)
+       break;
+     item = &Items[IdToIndexMap[indexInMap].Index];
+diff -ruN --text a/7z920/CPP/7zip/Archive/NtfsHandler.cpp b/7z920/CPP/7zip/Archive/NtfsHandler.cpp
+--- a/7z920/CPP/7zip/Archive/NtfsHandler.cpp	2026-11-06 21:07:54.424069620 -0500
++++ b/7z920/CPP/7zip/Archive/NtfsHandler.cpp	2026-11-06 21:07:55.227976717 -0500
+@@ -1597,7 +1597,7 @@
+       else if (item.RecIndex < kNumSysRecs)
+         prefix = MY_DIR_PREFIX(L"SYSTEM");
+       if (prefix)
+-        name = prefix + name;
++        name = UString(prefix) + name;
+       prop = name;
+       break;
+     }
+diff -ruN --text a/7z920/CPP/7zip/Archive/PeHandler.cpp b/7z920/CPP/7zip/Archive/PeHandler.cpp
+--- a/7z920/CPP/7zip/Archive/PeHandler.cpp	2026-11-06 21:07:54.411795620 -0500
++++ b/7z920/CPP/7zip/Archive/PeHandler.cpp	2026-11-06 21:07:55.226685879 -0500
+@@ -1377,7 +1377,7 @@
+ 
+   {
+     CObjectVector<CSection> sections = _sections;
+-    sections.Sort();
++    VecSort(sections);
+     UInt32 limit = (1 << 12);
+     int num = 0;
+     int numSections = sections.Size();
+diff -ruN --text a/7z920/CPP/7zip/Archive/Rar/RarHandler.cpp b/7z920/CPP/7zip/Archive/Rar/RarHandler.cpp
+--- a/7z920/CPP/7zip/Archive/Rar/RarHandler.cpp	2026-11-06 21:07:54.374933287 -0500
++++ b/7z920/CPP/7zip/Archive/Rar/RarHandler.cpp	2026-11-06 21:07:55.224296163 -0500
+@@ -421,7 +421,7 @@
+         bool decryptionError;
+         AString errorMessageLoc;
+         HRESULT result = archive.GetNextItem(item, getTextPassword, decryptionError, errorMessageLoc);
+-        if (errorMessageLoc)
++        if ((const char *)errorMessageLoc)
+           AddErrorMessage(errorMessageLoc);
+         if (result == S_FALSE)
+         {
+diff -ruN --text a/7z920/CPP/7zip/Archive/SquashfsHandler.cpp b/7z920/CPP/7zip/Archive/SquashfsHandler.cpp
+--- a/7z920/CPP/7zip/Archive/SquashfsHandler.cpp	2026-11-06 21:07:54.363583957 -0500
++++ b/7z920/CPP/7zip/Archive/SquashfsHandler.cpp	2026-11-06 21:07:55.223545869 -0500
+@@ -1238,22 +1238,22 @@
+   if (level > kNumDirLevelsMax)
+     return S_FALSE;
+ 
+-  int blockIndex = _inodesData.PackPos.FindInSorted(startBlock);
++  int blockIndex = VecFindInSorted(_inodesData.PackPos, startBlock);
+   if (blockIndex < 0)
+     return S_FALSE;
+   UInt32 unpackPos = _inodesData.UnpackPos[blockIndex] + offset;
+   if (unpackPos < offset)
+     return S_FALSE;
+ 
+-  nodeIndex = _nodesPos.FindInSorted(unpackPos, _blockToNode[blockIndex], _blockToNode[blockIndex + 1]);
+-  // nodeIndex = _nodesPos.FindInSorted(unpackPos);
++  nodeIndex = VecFindInSorted2(_nodesPos, unpackPos, (int)_blockToNode[blockIndex], (int)_blockToNode[blockIndex + 1]);
++  // nodeIndex = VecFindInSorted(_nodesPos, unpackPos);
+   if (nodeIndex < 0)
+     return S_FALSE;
+   
+   const CNode &n = _nodes[nodeIndex];
+   if (!n.IsDir())
+     return S_OK;
+-  blockIndex = _dirs.PackPos.FindInSorted((UInt32)n.StartBlock);
++  blockIndex = VecFindInSorted(_dirs.PackPos, (UInt32)n.StartBlock);
+   if (blockIndex < 0)
+     return S_FALSE;
+   unpackPos = _dirs.UnpackPos[blockIndex] + n.Offset;
+diff -ruN --text a/7z920/CPP/7zip/Archive/Wim/WimHandler.cpp b/7z920/CPP/7zip/Archive/Wim/WimHandler.cpp
+--- a/7z920/CPP/7zip/Archive/Wim/WimHandler.cpp	2026-11-06 21:07:54.417032138 -0500
++++ b/7z920/CPP/7zip/Archive/Wim/WimHandler.cpp	2026-11-06 21:07:55.227272090 -0500
+@@ -114,7 +114,7 @@
+   // IndexDefined = ParseNumber32(item.GetPropertyValue("INDEX"), Index);
+ }
+ 
+-void CXml::ToUnicode(UString &s)
++void CWimXml::ToUnicode(UString &s)
+ {
+   size_t size = Data.GetCapacity();
+   if (size < 2 || (size & 1) != 0 || size > (1 << 24))
+@@ -129,7 +129,7 @@
+   s.ReleaseBuffer();
+ }
+ 
+-void CXml::Parse()
++void CWimXml::Parse()
+ {
+   UString s;
+   ToUnicode(s);
+@@ -169,7 +169,7 @@
+   const CImageInfo *image = NULL;
+   if (_xmls.Size() == 1)
+   {
+-    const CXml &xml = _xmls[0];
++    const CWimXml &xml = _xmls[0];
+     if (xml.Images.Size() == 1)
+       image = &xml.Images[0];
+   }
+@@ -182,7 +182,7 @@
+     case kpidCTime:
+       if (_xmls.Size() == 1)
+       {
+-        const CXml &xml = _xmls[0];
++        const CWimXml &xml = _xmls[0];
+         int index = -1;
+         for (int i = 0; i < xml.Images.Size(); i++)
+         {
+@@ -199,7 +199,7 @@
+     case kpidMTime:
+       if (_xmls.Size() == 1)
+       {
+-        const CXml &xml = _xmls[0];
++        const CWimXml &xml = _xmls[0];
+         int index = -1;
+         for (int i = 0; i < xml.Images.Size(); i++)
+         {
+@@ -456,7 +456,7 @@
+           break;
+       if (_volumes.Size() > header.PartNumber && _volumes[header.PartNumber].Stream)
+         break;
+-      CXml xml;
++      CWimXml xml;
+       xml.VolIndex = header.PartNumber;
+       res = _db.Open(curStream, header, xml.Data, openArchiveCallback);
+       if (res != S_OK)
+diff -ruN --text a/7z920/CPP/7zip/Archive/Wim/WimHandler.h b/7z920/CPP/7zip/Archive/Wim/WimHandler.h
+--- a/7z920/CPP/7zip/Archive/Wim/WimHandler.h	2026-11-06 21:07:54.416801512 -0500
++++ b/7z920/CPP/7zip/Archive/Wim/WimHandler.h	2026-11-06 21:07:55.227045922 -0500
+@@ -35,7 +35,7 @@
+   void Parse(const CXmlItem &item);
+ };
+ 
+-struct CXml
++struct CWimXml
+ {
+   CByteBuffer Data;
+   UInt16 VolIndex;
+@@ -54,7 +54,7 @@
+   UInt32 _version;
+   bool _isOldVersion;
+   CObjectVector<CVolume> _volumes;
+-  CObjectVector<CXml> _xmls;
++  CObjectVector<CWimXml> _xmls;
+   int _nameLenForStreams;
+   bool _xmlInComments;
+ 
+diff -ruN --text a/7z920/CPP/7zip/Archive/Wim/WimIn.cpp b/7z920/CPP/7zip/Archive/Wim/WimIn.cpp
+--- a/7z920/CPP/7zip/Archive/Wim/WimIn.cpp	2026-11-06 21:07:54.417344056 -0500
++++ b/7z920/CPP/7zip/Archive/Wim/WimIn.cpp	2026-11-06 21:07:55.227566924 -0500
+@@ -53,7 +53,7 @@
+ 
+   while (outSize > 0)
+   {
+-    UInt32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
++    UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_MainDecoder, &m_InBitStream);
+     if (number < 256)
+     {
+       m_OutWindowStream.PutByte((Byte)number);
+@@ -278,7 +278,7 @@
+ 
+ static const wchar_t *kLongPath = L"[LongPath]";
+ 
+-UString CDatabase::GetItemPath(const int index1) const
++UString CDatabase::GetItemPath(int index1) const
+ {
+   int size = 0;
+   int index = index1;
 diff -ruN --text a/7z920/CPP/7zip/Asm.mak b/7z920/CPP/7zip/Asm.mak
---- a/7z920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.903356009 -0500
-+++ b/7z920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.905134516 -0500
+--- a/7z920/CPP/7zip/Asm.mak	2026-11-06 21:07:54.460970329 -0500
++++ b/7z920/CPP/7zip/Asm.mak	2026-11-06 21:07:55.229796223 -0500
 @@ -1,7 +1,7 @@
 -!IF "$(CPU)" == "ARM"
 +!IF "$(CPU)" == "ARM" && defined(UNDER_CE)
@@ -24,8 +292,8 @@ diff -ruN --text a/7z920/CPP/7zip/Asm.mak b/7z920/CPP/7zip/Asm.mak
  	$(COMPL_ASM)
  !ENDIF
 diff -ruN --text a/7z920/CPP/7zip/Bundles/Fm/makefile b/7z920/CPP/7zip/Bundles/Fm/makefile
---- a/7z920/CPP/7zip/Bundles/Fm/makefile	2026-11-06 12:55:18.099390226 -0500
-+++ b/7z920/CPP/7zip/Bundles/Fm/makefile	2026-11-06 12:55:18.101002149 -0500
+--- a/7z920/CPP/7zip/Bundles/Fm/makefile	2026-11-06 21:07:54.474808917 -0500
++++ b/7z920/CPP/7zip/Bundles/Fm/makefile	2026-11-06 21:07:55.230273475 -0500
 @@ -7,7 +7,7 @@
  !IFDEF UNDER_CE
  LIBS = $(LIBS) ceshell.lib Commctrl.lib
@@ -35,9 +303,335 @@ diff -ruN --text a/7z920/CPP/7zip/Bundles/Fm/makefile b/7z920/CPP/7zip/Bundles/F
  CFLAGS = $(CFLAGS) -DWIN_LONG_PATH -DSUPPORT_DEVICE_FILE
  !ENDIF
  
+diff -ruN --text a/7z920/CPP/7zip/Compress/BZip2Decoder.cpp b/7z920/CPP/7zip/Compress/BZip2Decoder.cpp
+--- a/7z920/CPP/7zip/Compress/BZip2Decoder.cpp	2026-11-06 21:07:54.333777940 -0500
++++ b/7z920/CPP/7zip/Compress/BZip2Decoder.cpp	2026-11-06 21:07:55.220722026 -0500
+@@ -221,7 +221,7 @@
+       }
+       groupSize--;
+         
+-      UInt32 nextSym = huffmanDecoder->DecodeSymbol(m_InStream);
++      UInt32 nextSym = NCompress::NHuffman::HuffDecodeSymbol(*huffmanDecoder, m_InStream);
+       
+       if (nextSym < 2)
+       {
+diff -ruN --text a/7z920/CPP/7zip/Compress/DeflateDecoder.cpp b/7z920/CPP/7zip/Compress/DeflateDecoder.cpp
+--- a/7z920/CPP/7zip/Compress/DeflateDecoder.cpp	2026-11-06 21:07:54.344675810 -0500
++++ b/7z920/CPP/7zip/Compress/DeflateDecoder.cpp	2026-11-06 21:07:55.221756696 -0500
+@@ -28,7 +28,7 @@
+   int i = 0;
+   do
+   {
+-    UInt32 number = m_LevelDecoder.DecodeSymbol(&m_InBitStream);
++    UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_LevelDecoder, &m_InBitStream);
+     if (number < kTableDirectLevels)
+       values[i++] = (Byte)number;
+     else if (number < kLevelTableSize)
+@@ -173,7 +173,7 @@
+       if (m_InBitStream.NumExtraBytes > 4)
+         return S_FALSE;
+ 
+-      UInt32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
++      UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_MainDecoder, &m_InBitStream);
+       if (number < 0x100)
+       {
+         m_OutWindowStream.PutByte((Byte)number);
+@@ -206,7 +206,7 @@
+         UInt32 locLen = len;
+         if (locLen > curSize)
+           locLen = (UInt32)curSize;
+-        number = m_DistDecoder.DecodeSymbol(&m_InBitStream);
++        number = NCompress::NHuffman::HuffDecodeSymbol(m_DistDecoder, &m_InBitStream);
+         if (number >= _numDistLevels)
+           return S_FALSE;
+         UInt32 distance = kDistStart[number] + m_InBitStream.ReadBits(kDistDirectBits[number]);
+diff -ruN --text a/7z920/CPP/7zip/Compress/HuffmanDecoder.h b/7z920/CPP/7zip/Compress/HuffmanDecoder.h
+--- a/7z920/CPP/7zip/Compress/HuffmanDecoder.h	2026-11-06 21:07:54.349118950 -0500
++++ b/7z920/CPP/7zip/Compress/HuffmanDecoder.h	2026-11-06 21:07:55.221984530 -0500
+@@ -13,12 +13,14 @@
+ template <int kNumBitsMax, UInt32 m_NumSymbols>
+ class CDecoder
+ {
++public:
+   UInt32 m_Limits[kNumBitsMax + 1];     // m_Limits[i] = value limit for symbols with length = i
+   UInt32 m_Positions[kNumBitsMax + 1];  // m_Positions[i] = index in m_Symbols[] of first symbol with length = i
+   UInt32 m_Symbols[m_NumSymbols];
++public:
+   Byte m_Lengths[1 << kNumTableBits];   // Table oh length for short codes.
++  enum { kMaxBits = kNumBitsMax, kSymbols = m_NumSymbols };
+ 
+-public:
+   
+   bool SetCodeLengths(const Byte *codeLengths)
+   {
+@@ -64,26 +66,27 @@
+     }
+     return true;
+   }
+-
+-  template <class TBitDecoder>
+-  UInt32 DecodeSymbol(TBitDecoder *bitStream)
+-  {
+-    int numBits;
+-    UInt32 value = bitStream->GetValue(kNumBitsMax);
+-    if (value < m_Limits[kNumTableBits])
+-      numBits = m_Lengths[value >> (kNumBitsMax - kNumTableBits)];
+-    else
+-      for (numBits = kNumTableBits + 1; value >= m_Limits[numBits]; numBits++);
+-    bitStream->MovePos(numBits);
+-    UInt32 index = m_Positions[numBits] +
+-      ((value - m_Limits[numBits - 1]) >> (kNumBitsMax - numBits));
+-    if (index >= m_NumSymbols)
+-      // throw CDecoderException(); // test it
+-      return 0xFFFFFFFF;
+-    return m_Symbols[index];
+-  }
+ };
+ 
++// A free function: Visual C++ 4 has no member templates.
++template <class TDecoder, class TBitDecoder>
++UInt32 HuffDecodeSymbol(TDecoder &d, TBitDecoder *bitStream)
++{
++  int numBits;
++  UInt32 value = bitStream->GetValue(d.kMaxBits);
++  if (value < d.m_Limits[kNumTableBits])
++    numBits = d.m_Lengths[value >> (d.kMaxBits - kNumTableBits)];
++  else
++    for (numBits = kNumTableBits + 1; value >= d.m_Limits[numBits]; numBits++);
++  bitStream->MovePos(numBits);
++  UInt32 index = d.m_Positions[numBits] +
++    ((value - d.m_Limits[numBits - 1]) >> (d.kMaxBits - numBits));
++  if (index >= (UInt32)d.kSymbols)
++    // throw CDecoderException(); // test it
++    return 0xFFFFFFFF;
++  return d.m_Symbols[index];
++}
++
+ }}
+ 
+ #endif
+diff -ruN --text a/7z920/CPP/7zip/Compress/LzhDecoder.cpp b/7z920/CPP/7zip/Compress/LzhDecoder.cpp
+--- a/7z920/CPP/7zip/Compress/LzhDecoder.cpp	2026-11-06 21:07:54.329450508 -0500
++++ b/7z920/CPP/7zip/Compress/LzhDecoder.cpp	2026-11-06 21:07:55.220366108 -0500
+@@ -109,7 +109,7 @@
+     int i = 0;
+     while (i < n)
+     {
+-      int c = m_LevelHuffman.Decode(&m_InBitStream);
++      int c = LzhDecodeSymbol(m_LevelHuffman, &m_InBitStream);
+       if (c < kNumSpecLevelSymbols)
+       {
+         if (c == 0)
+@@ -180,7 +180,7 @@
+       RINOK(ReadPTable(pbit));
+     }
+     blockSize--;
+-    UInt32 c = m_CHuffmanDecoder.Decode(&m_InBitStream);
++    UInt32 c = LzhDecodeSymbol(m_CHuffmanDecoder, &m_InBitStream);
+     if (c < 256)
+     {
+       m_OutWindowStream.PutByte((Byte)c);
+@@ -192,7 +192,7 @@
+     {
+       // offset = (interface->method == LARC_METHOD_NUM) ? 0x100 - 2 : 0x100 - 3;
+       UInt32 len  = c - 256 + kMinMatch;
+-      UInt32 distance = m_PHuffmanDecoder.Decode(&m_InBitStream);
++      UInt32 distance = LzhDecodeSymbol(m_PHuffmanDecoder, &m_InBitStream);
+       if (distance != 0)
+         distance = (1 << (distance - 1)) + ReadBits(distance - 1);
+       if (distance >= pos)
+diff -ruN --text a/7z920/CPP/7zip/Compress/LzhDecoder.h b/7z920/CPP/7zip/Compress/LzhDecoder.h
+--- a/7z920/CPP/7zip/Compress/LzhDecoder.h	2026-11-06 21:07:54.334352733 -0500
++++ b/7z920/CPP/7zip/Compress/LzhDecoder.h	2026-11-06 21:07:55.221118569 -0500
+@@ -34,15 +34,16 @@
+ {
+ public:
+   int Symbol;
+-  template <class TBitDecoder>
+-  UInt32 Decode(TBitDecoder *bitStream)
+-  {
+-    if (Symbol >= 0)
+-      return (UInt32)Symbol;
+-    return DecodeSymbol(bitStream);
+-  }
+ };
+ 
++template <class TDecoder, class TBitDecoder>
++UInt32 LzhDecodeSymbol(TDecoder &d, TBitDecoder *bitStream)
++{
++  if (d.Symbol >= 0)
++    return (UInt32)d.Symbol;
++  return NCompress::NHuffman::HuffDecodeSymbol(d, bitStream);
++}
++
+ class CCoder :
+   public ICompressCoder,
+   public CMyUnknownImp
+diff -ruN --text a/7z920/CPP/7zip/Compress/LzxDecoder.cpp b/7z920/CPP/7zip/Compress/LzxDecoder.cpp
+--- a/7z920/CPP/7zip/Compress/LzxDecoder.cpp	2026-11-06 21:07:54.354344384 -0500
++++ b/7z920/CPP/7zip/Compress/LzxDecoder.cpp	2026-11-06 21:07:55.222451657 -0500
+@@ -55,7 +55,7 @@
+       num--;
+       continue;
+     }
+-    UInt32 number = m_LevelDecoder.DecodeSymbol(&m_InBitStream);
++    UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_LevelDecoder, &m_InBitStream);
+     if (number == kLevelSymbolZeros)
+     {
+       num = kLevelSymbolZerosStartValue + (unsigned)ReadBits(kLevelSymbolZerosNumBits);
+@@ -73,7 +73,7 @@
+       else
+       {
+         num = kLevelSymbolSameStartValue + (unsigned)ReadBits(kLevelSymbolSameNumBits);
+-        number = m_LevelDecoder.DecodeSymbol(&m_InBitStream);
++        number = NCompress::NHuffman::HuffDecodeSymbol(m_LevelDecoder, &m_InBitStream);
+         if (number > kNumHuffmanBits)
+           return false;
+       }
+@@ -223,7 +223,7 @@
+     }
+     else while (next > 0)
+     {
+-      UInt32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
++      UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_MainDecoder, &m_InBitStream);
+       if (number < 256)
+       {
+         m_OutWindowStream.PutByte((Byte)number);
+@@ -239,7 +239,7 @@
+         UInt32 len = kMatchMinLen + lenSlot;
+         if (lenSlot == kNumLenSlots - 1)
+         {
+-          UInt32 lenTemp = m_LenDecoder.DecodeSymbol(&m_InBitStream);
++          UInt32 lenTemp = NCompress::NHuffman::HuffDecodeSymbol(m_LenDecoder, &m_InBitStream);
+           if (lenTemp >= kNumLenSymbols)
+             return S_FALSE;
+           len += lenTemp;
+@@ -269,7 +269,7 @@
+           if (m_AlignIsUsed && numDirectBits >= kNumAlignBits)
+           {
+             distance += (m_InBitStream.ReadBits(numDirectBits - kNumAlignBits) << kNumAlignBits);
+-            UInt32 alignTemp = m_AlignDecoder.DecodeSymbol(&m_InBitStream);
++            UInt32 alignTemp = NCompress::NHuffman::HuffDecodeSymbol(m_AlignDecoder, &m_InBitStream);
+             if (alignTemp >= kAlignTableSize)
+               return S_FALSE;
+             distance += alignTemp;
+diff -ruN --text a/7z920/CPP/7zip/Compress/Rar2Decoder.cpp b/7z920/CPP/7zip/Compress/Rar2Decoder.cpp
+--- a/7z920/CPP/7zip/Compress/Rar2Decoder.cpp	2026-11-06 21:07:54.357134769 -0500
++++ b/7z920/CPP/7zip/Compress/Rar2Decoder.cpp	2026-11-06 21:07:55.222703366 -0500
+@@ -122,7 +122,7 @@
+   i = 0;
+   while (i < numLevels)
+   {
+-    UInt32 number = m_LevelDecoder.DecodeSymbol(&m_InBitStream);
++    UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_LevelDecoder, &m_InBitStream);
+     if (number < kTableDirectLevels)
+     {
+       newLevels[i] = (Byte)((number + m_LastLevels[i]) & kLevelMask);
+@@ -174,7 +174,7 @@
+   // if (m_InBitStream.GetProcessedSize() + 2 <= m_PackSize) // test it: probably incorrect;
+     if (m_AudioMode)
+     {
+-      UInt32 symbol = m_MMDecoders[m_MmFilter.CurrentChannel].DecodeSymbol(&m_InBitStream);
++      UInt32 symbol = NCompress::NHuffman::HuffDecodeSymbol(m_MMDecoders[m_MmFilter.CurrentChannel], &m_InBitStream);
+       if (symbol == 256)
+         return ReadTables();
+       if (symbol >= kMMTableSize)
+@@ -182,7 +182,7 @@
+     }
+     else
+     {
+-      UInt32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
++      UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_MainDecoder, &m_InBitStream);
+       if (number == kReadTableNumber)
+         return ReadTables();
+       if (number >= kMainTableSize)
+@@ -206,7 +206,7 @@
+ {
+   while (pos-- > 0)
+   {
+-    UInt32 symbol = m_MMDecoders[m_MmFilter.CurrentChannel].DecodeSymbol(&m_InBitStream);
++    UInt32 symbol = NCompress::NHuffman::HuffDecodeSymbol(m_MMDecoders[m_MmFilter.CurrentChannel], &m_InBitStream);
+     if (symbol == 256)
+       return true;
+     if (symbol >= kMMTableSize)
+@@ -228,7 +228,7 @@
+ {
+   while (pos > 0)
+   {
+-    UInt32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
++    UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_MainDecoder, &m_InBitStream);
+     UInt32 length, distance;
+     if (number < 256)
+     {
+@@ -241,7 +241,7 @@
+       number -= kMatchNumber;
+       length = kNormalMatchMinLen + UInt32(kLenStart[number]) +
+         m_InBitStream.ReadBits(kLenDirectBits[number]);
+-      number = m_DistDecoder.DecodeSymbol(&m_InBitStream);
++      number = NCompress::NHuffman::HuffDecodeSymbol(m_DistDecoder, &m_InBitStream);
+       if (number >= kDistTableSize)
+         return false;
+       distance = kDistStart[number] + m_InBitStream.ReadBits(kDistDirectBits[number]);
+@@ -263,7 +263,7 @@
+     else if (number < kLen2Number)
+     {
+       distance = m_RepDists[(m_RepDistPtr - (number - kRepNumber + 1)) & 3];
+-      number = m_LenDecoder.DecodeSymbol(&m_InBitStream);
++      number = NCompress::NHuffman::HuffDecodeSymbol(m_LenDecoder, &m_InBitStream);
+       if (number >= kLenTableSize)
+         return false;
+       length = 2 + kLenStart[number] + m_InBitStream.ReadBits(kLenDirectBits[number]);
+diff -ruN --text a/7z920/CPP/7zip/Compress/Rar3Decoder.cpp b/7z920/CPP/7zip/Compress/Rar3Decoder.cpp
+--- a/7z920/CPP/7zip/Compress/Rar3Decoder.cpp	2026-11-06 21:07:54.339337042 -0500
++++ b/7z920/CPP/7zip/Compress/Rar3Decoder.cpp	2026-11-06 21:07:55.221490403 -0500
+@@ -571,7 +571,7 @@
+   i = 0;
+   while (i < kTablesSizesSum)
+   {
+-    UInt32 number = m_LevelDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
++    UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_LevelDecoder, &m_InBitStream.bitDecoder);
+     if (number < 16)
+     {
+       newLevels[i] = Byte((number + m_LastLevels[i]) & 15);
+@@ -680,7 +680,7 @@
+         return S_OK;
+       }
+     }
+-    UInt32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
++    UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_MainDecoder, &m_InBitStream.bitDecoder);
+     if (number < 256)
+     {
+       PutByte((Byte)number);
+@@ -724,7 +724,7 @@
+         rep0 = distance;
+       }
+ 
+-      UInt32 number = m_LenDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
++      UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_LenDecoder, &m_InBitStream.bitDecoder);
+       if (number >= kLenTableSize)
+         return S_FALSE;
+       length = 2 + kLenStart[number] + m_InBitStream.bitDecoder.ReadBits(kLenDirectBits[number]);
+@@ -744,7 +744,7 @@
+       {
+         number -= 271;
+         length = kNormalMatchMinLen + (UInt32)kLenStart[number] + m_InBitStream.bitDecoder.ReadBits(kLenDirectBits[number]);
+-        UInt32 number = m_DistDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
++        UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_DistDecoder, &m_InBitStream.bitDecoder);
+         if (number >= kDistTableSize)
+           return S_FALSE;
+         rep0 = kDistStart[number];
+@@ -760,7 +760,7 @@
+           }
+           else
+           {
+-            UInt32 number = m_AlignDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
++            UInt32 number = NCompress::NHuffman::HuffDecodeSymbol(m_AlignDecoder, &m_InBitStream.bitDecoder);
+             if (number < (1 << kNumAlignBits))
+             {
+               rep0 += number;
 diff -ruN --text a/7z920/CPP/7zip/Crc.mak b/7z920/CPP/7zip/Crc.mak
---- a/7z920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.886391148 -0500
-+++ b/7z920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.888098571 -0500
+--- a/7z920/CPP/7zip/Crc.mak	2026-11-06 21:07:54.357459145 -0500
++++ b/7z920/CPP/7zip/Crc.mak	2026-11-06 21:07:55.223076076 -0500
 @@ -1,6 +1,6 @@
  C_OBJS = $(C_OBJS) \
    $O\7zCrc.obj
@@ -46,9 +640,69 @@ diff -ruN --text a/7z920/CPP/7zip/Crc.mak b/7z920/CPP/7zip/Crc.mak
  C_OBJS = $(C_OBJS) \
  !ELSE
  ASM_OBJS = $(ASM_OBJS) \
+diff -ruN --text a/7z920/CPP/7zip/UI/Common/ArchiveCommandLine.cpp b/7z920/CPP/7zip/UI/Common/ArchiveCommandLine.cpp
+--- a/7z920/CPP/7zip/UI/Common/ArchiveCommandLine.cpp	2026-11-06 21:07:54.208788600 -0500
++++ b/7z920/CPP/7zip/UI/Common/ArchiveCommandLine.cpp	2026-11-06 21:07:55.212481081 -0500
+@@ -135,18 +135,18 @@
+     { L"M",  NSwitchType::kUnLimitedPostString, true, 1 },
+     { L"O",  NSwitchType::kUnLimitedPostString, false, 1 },
+     { L"W",  NSwitchType::kUnLimitedPostString, false, 0 },
+-    { L"I",  NSwitchType::kUnLimitedPostString, true, kSomeCludePostStringMinSize},
+-    { L"X",  NSwitchType::kUnLimitedPostString, true, kSomeCludePostStringMinSize},
+-    { L"AI", NSwitchType::kUnLimitedPostString, true, kSomeCludePostStringMinSize},
+-    { L"AX", NSwitchType::kUnLimitedPostString, true, kSomeCludePostStringMinSize},
++    { L"I",  NSwitchType::kUnLimitedPostString, true, 2},
++    { L"X",  NSwitchType::kUnLimitedPostString, true, 2},
++    { L"AI", NSwitchType::kUnLimitedPostString, true, 2},
++    { L"AX", NSwitchType::kUnLimitedPostString, true, 2},
+     { L"AN", NSwitchType::kSimple, false },
+     { L"U",  NSwitchType::kUnLimitedPostString, true, 1},
+     { L"V",  NSwitchType::kUnLimitedPostString, true, 1},
+-    { L"R",  NSwitchType::kPostChar, false, 0, 0, kRecursedPostCharSet },
++    { L"R",  NSwitchType::kPostChar, false, 0, 0, L"0-" },
+     { L"SFX", NSwitchType::kUnLimitedPostString, false, 0 },
+     { L"SI", NSwitchType::kUnLimitedPostString, false, 0 },
+     { L"SO", NSwitchType::kSimple, false, 0 },
+-    { L"AO", NSwitchType::kPostChar, false, 1, 1, kOverwritePostCharSet},
++    { L"AO", NSwitchType::kPostChar, false, 1, 1, L"asut" },
+     { L"SEML", NSwitchType::kUnLimitedPostString, false, 0},
+     { L"AD",  NSwitchType::kSimple, false },
+     { L"SLP", NSwitchType::kUnLimitedPostString, false, 0},
+@@ -488,6 +488,7 @@
+     case NUpdateArchive::NPairAction::kCompressAsAnti: return NUpdateArchive::NPairAction::kCompressAsAnti;
+   }
+   throw 98111603;
++  return NUpdateArchive::NPairAction::kIgnore;
+ }
+ 
+ const UString kUpdatePairStateIDSet = L"PQRXYZW";
+diff -ruN --text a/7z920/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp b/7z920/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp
+--- a/7z920/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp	2026-11-06 21:07:54.216776418 -0500
++++ b/7z920/CPP/7zip/UI/Common/ArchiveExtractCallback.cpp	2026-11-06 21:07:55.212729040 -0500
+@@ -360,7 +360,7 @@
+       {
+         // if (::GetLastError() != ERROR_FILE_EXISTS || !isSplit)
+         {
+-          UString message = L"can not open output file " + fullProcessedPath;
++          UString message = UString(L"can not open output file ") + fullProcessedPath;
+           RINOK(_extractCallback2->MessageError(message));
+           return S_OK;
+         }
+diff -ruN --text a/7z920/CPP/7zip/UI/Common/Extract.cpp b/7z920/CPP/7zip/UI/Common/Extract.cpp
+--- a/7z920/CPP/7zip/UI/Common/Extract.cpp	2026-11-06 21:07:54.224447028 -0500
++++ b/7z920/CPP/7zip/UI/Common/Extract.cpp	2026-11-06 21:07:55.213316584 -0500
+@@ -203,7 +203,7 @@
+     if (!options.StdInMode)
+     for (int v = 0; v < archiveLink.VolumePaths.Size(); v++)
+     {
+-      int index = arcPathsFull.FindInSorted(archiveLink.VolumePaths[v]);
++      int index = VecFindInSorted(arcPathsFull, archiveLink.VolumePaths[v]);
+       if (index >= 0 && index > i)
+       {
+         arcPaths.Delete(index);
 diff -ruN --text a/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp b/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp
---- a/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp	2026-11-06 12:55:18.011065907 -0500
-+++ b/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp	2026-11-06 12:55:18.012686705 -0500
+--- a/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp	2026-11-06 21:07:54.221487476 -0500
++++ b/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp	2026-11-06 21:07:55.213021541 -0500
 @@ -337,7 +337,7 @@
  }
  #endif
@@ -67,9 +721,41 @@ diff -ruN --text a/7z920/CPP/7zip/UI/Common/LoadCodecs.cpp b/7z920/CPP/7zip/UI/C
      if (g_LargePageSize != 0)
      {
        SetLargePageModeFunc setLargePageMode = (SetLargePageModeFunc)lib.Lib.GetProc("SetLargePageMode");
+diff -ruN --text a/7z920/CPP/7zip/UI/Common/UpdatePair.cpp b/7z920/CPP/7zip/UI/Common/UpdatePair.cpp
+--- a/7z920/CPP/7zip/UI/Common/UpdatePair.cpp	2026-11-06 21:07:54.225510240 -0500
++++ b/7z920/CPP/7zip/UI/Common/UpdatePair.cpp	2026-11-06 21:07:55.213674127 -0500
+@@ -37,6 +37,7 @@
+       }
+   }
+   throw 4191618;
++  return 0;
+ }
+ 
+ static const wchar_t *kDuplicateFileNameMessage = L"Duplicate filename:";
+diff -ruN --text a/7z920/CPP/7zip/UI/Console/List.cpp b/7z920/CPP/7zip/UI/Console/List.cpp
+--- a/7z920/CPP/7zip/UI/Console/List.cpp	2026-11-06 21:07:54.315348377 -0500
++++ b/7z920/CPP/7zip/UI/Console/List.cpp	2026-11-06 21:07:55.219583897 -0500
+@@ -486,7 +486,7 @@
+     if (!stdInMode)
+     for (int v = 0; v < archiveLink.VolumePaths.Size(); v++)
+     {
+-      int index = arcPathsFull.FindInSorted(archiveLink.VolumePaths[v]);
++      int index = VecFindInSorted(arcPathsFull, archiveLink.VolumePaths[v]);
+       if (index >= 0 && index > i)
+       {
+         arcPaths.Delete(index);
 diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp b/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp
---- a/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp	2026-11-06 12:55:18.002382288 -0500
-+++ b/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp	2026-11-06 12:55:18.004380796 -0500
+--- a/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp	2026-11-06 21:07:54.199381318 -0500
++++ b/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp	2026-11-06 21:07:55.211807329 -0500
+@@ -718,7 +718,7 @@
+       {
+         UString params;
+         params = GetQuotedString(_fileNames[0]);
+-        if (commandMapItem.ArcType)
++        if ((const wchar_t *)commandMapItem.ArcType)
+         {
+           params += L" -t";
+           params += commandMapItem.ArcType;
 @@ -776,7 +776,11 @@
      MyStringCopy((char *)dest, (const char *)GetAnsiString(src));
  }
@@ -83,8 +769,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/ContextMenu.cpp b/7z920/CPP/7zip/U
  {
    int cmdOffset = (int)commandOffset;
 diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/ContextMenu.h b/7z920/CPP/7zip/UI/Explorer/ContextMenu.h
---- a/7z920/CPP/7zip/UI/Explorer/ContextMenu.h	2026-11-06 12:55:17.994502297 -0500
-+++ b/7z920/CPP/7zip/UI/Explorer/ContextMenu.h	2026-11-06 12:55:17.996113179 -0500
+--- a/7z920/CPP/7zip/UI/Explorer/ContextMenu.h	2026-11-06 21:07:54.198974817 -0500
++++ b/7z920/CPP/7zip/UI/Explorer/ContextMenu.h	2026-11-06 21:07:55.211202785 -0500
 @@ -38,7 +38,11 @@
    // IContextMenu
    STDMETHOD(QueryContextMenu)(HMENU hmenu, UINT indexMenu, UINT idCmdFirst, UINT idCmdLast, UINT uFlags);
@@ -98,8 +784,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/ContextMenu.h b/7z920/CPP/7zip/UI/
    HRESULT InitContextMenu(const wchar_t *folder, const wchar_t **names, UINT32 numFiles);
  
 diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/makefile b/7z920/CPP/7zip/UI/Explorer/makefile
---- a/7z920/CPP/7zip/UI/Explorer/makefile	2026-11-06 12:55:17.986722974 -0500
-+++ b/7z920/CPP/7zip/UI/Explorer/makefile	2026-11-06 12:55:17.988405147 -0500
+--- a/7z920/CPP/7zip/UI/Explorer/makefile	2026-11-06 21:07:54.197479561 -0500
++++ b/7z920/CPP/7zip/UI/Explorer/makefile	2026-11-06 21:07:55.210892034 -0500
 @@ -6,7 +6,7 @@
  !IFDEF UNDER_CE
  LIBS = $(LIBS) Commctrl.lib
@@ -110,8 +796,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/Explorer/makefile b/7z920/CPP/7zip/UI/Explo
  !ENDIF
  
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/App.cpp b/7z920/CPP/7zip/UI/FileManager/App.cpp
---- a/7z920/CPP/7zip/UI/FileManager/App.cpp	2026-11-06 12:55:18.083730620 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/App.cpp	2026-11-06 12:55:18.085423669 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/App.cpp	2026-11-06 21:07:54.286194070 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/App.cpp	2026-11-06 21:07:55.218128350 -0500
 @@ -154,7 +154,11 @@
    imageList.Create(
        largeButtons ? 48: 24,
@@ -124,9 +810,20 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/App.cpp b/7z920/CPP/7zip/UI/Fil
    toolBar.SetImageList(0, imageList);
  }
  
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/FoldersPage.cpp b/7z920/CPP/7zip/UI/FileManager/FoldersPage.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/FoldersPage.cpp	2026-11-06 21:07:54.252301247 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/FoldersPage.cpp	2026-11-06 21:07:55.215323341 -0500
+@@ -55,6 +55,7 @@
+     if(IsButtonCheckedBool(kWorkModeButtons[i]))
+       return i;
+   throw 0;
++  return 0;
+ }
+ 
+ void CFoldersPage::MyEnableControls()
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp b/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp
---- a/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp	2026-11-06 12:55:18.019281857 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp	2026-11-06 12:55:18.020875405 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp	2026-11-06 21:07:54.240586916 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp	2026-11-06 21:07:55.214057337 -0500
 @@ -2,8 +2,6 @@
  
  #include "StdAfx.h"
@@ -156,10 +853,43 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/HelpUtils.cpp b/7z920/CPP/7zip/
 +    func(hwnd, GetSystemString(path), 0 /* HH_DISPLAY_TOPIC */, 0);
  }
  #endif
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/OpenCallback.cpp b/7z920/CPP/7zip/UI/FileManager/OpenCallback.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/OpenCallback.cpp	2026-11-06 21:07:54.242071546 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/OpenCallback.cpp	2026-11-06 21:07:55.214382004 -0500
+@@ -40,7 +40,7 @@
+   return S_OK;
+ }
+ 
+-STDMETHODIMP COpenArchiveCallback::SetTotal(const UInt64 total)
++STDMETHODIMP COpenArchiveCallback::SetTotal(UInt64 total)
+ {
+   RINOK(ProgressDialog.Sync.ProcessStopAndPause());
+   ProgressDialog.Sync.SetNumBytesTotal(total);
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/Panel.cpp b/7z920/CPP/7zip/UI/FileManager/Panel.cpp
---- a/7z920/CPP/7zip/UI/FileManager/Panel.cpp	2026-11-06 12:55:18.034853129 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/Panel.cpp	2026-11-06 12:55:18.036637053 -0500
-@@ -37,6 +37,10 @@
+--- a/7z920/CPP/7zip/UI/FileManager/Panel.cpp	2026-11-06 21:07:54.256703345 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/Panel.cpp	2026-11-06 21:07:55.215737467 -0500
+@@ -30,6 +30,20 @@
+ #include "RootFolder.h"
+ 
+ 
++#ifdef _7ZIP_VC4
++static BOOL InitCommonControlsAny(INITCOMMONCONTROLSEX *icex)
++{
++  typedef BOOL (WINAPI *Func)(INITCOMMONCONTROLSEX *);
++  HMODULE h = ::GetModuleHandle(TEXT("comctl32.dll"));
++  Func f = h ? (Func)::GetProcAddress(h, "InitCommonControlsEx") : NULL;
++  if (f)
++    return f(icex);
++  ::InitCommonControls();
++  return TRUE;
++}
++#define InitCommonControlsEx InitCommonControlsAny
++#endif
++
+ using namespace NWindows;
+ using namespace NControl;
+ 
+@@ -37,6 +51,10 @@
  extern bool g_IsNT;
  #endif
  
@@ -170,7 +900,7 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/Panel.cpp b/7z920/CPP/7zip/UI/F
  static const UINT_PTR kTimerID = 1;
  static const UINT kTimerElapse = 1000;
  
-@@ -520,7 +524,9 @@
+@@ -520,7 +538,9 @@
      rbBand.fStyle = RBBS_NOGRIPPER;
      rbBand.cxMinChild = size.cx;
      rbBand.cyMinChild = size.cy;
@@ -181,8 +911,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/Panel.cpp b/7z920/CPP/7zip/UI/F
      rbBand.hwndChild  = _headerToolBar;
      _headerReBar.InsertBand(-1, &rbBand);
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/Panel.h b/7z920/CPP/7zip/UI/FileManager/Panel.h
---- a/7z920/CPP/7zip/UI/FileManager/Panel.h	2026-11-06 12:55:18.058888394 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/Panel.h	2026-11-06 12:55:18.060631776 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/Panel.h	2026-11-06 21:07:54.264881081 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/Panel.h	2026-11-06 21:07:55.216632970 -0500
 @@ -176,8 +176,12 @@
  #ifdef UNDER_CE
  #define MY_NMLISTVIEW_NMITEMACTIVATE NMLISTVIEW
@@ -196,9 +926,48 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/Panel.h b/7z920/CPP/7zip/UI/Fil
  
  class CPanel: public NWindows::NControl::CWindow2
  {
+@@ -511,7 +515,7 @@
+     {
+       Restore();
+     }
+-    CDisableTimerProcessing& operator=(const CDisableTimerProcessing &) {; }
++    CDisableTimerProcessing& operator=(const CDisableTimerProcessing &) { return *this; }
+   };
+ 
+   // bool _passwordIsDefined;
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelItems.cpp b/7z920/CPP/7zip/UI/FileManager/PanelItems.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/PanelItems.cpp	2026-11-06 21:07:54.245880100 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelItems.cpp	2026-11-06 21:07:55.214695630 -0500
+@@ -208,7 +208,7 @@
+       selectedNames.Add(item.pszText);
+   }
+   */
+-  selectedNames.Sort();
++  VecSort(selectedNames);
+ }
+ 
+ void CPanel::SaveSelectedState(CSelectedState &s)
+@@ -355,7 +355,7 @@
+     if (relPath.CompareNoCase(focusedName) == 0)
+       cursorIndex = _listView.GetItemCount();
+     bool selected = false;
+-    if (selectedNames.FindInSorted(relPath) >= 0)
++    if (VecFindInSorted(selectedNames, relPath) >= 0)
+       selected = true;
+     _selectedStatusVector.Add(selected);
+ 
+@@ -681,7 +681,7 @@
+   // PROPID sortPropID = _properties[_sortIndex].ID;
+   PROPID sortPropID = _sortID;
+   
+-  _visibleProperties.Sort();
++  VecSort(_visibleProperties);
+   for (i = 0; i < _visibleProperties.Size(); i++)
+   {
+     const CItemProperty &prop = _visibleProperties[i];
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp b/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp
---- a/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp	2026-11-06 12:55:18.075653671 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp	2026-11-06 12:55:18.077350678 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp	2026-11-06 21:07:54.283505311 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp	2026-11-06 21:07:55.217593390 -0500
 @@ -277,7 +277,7 @@
        break;
  
@@ -209,8 +978,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelListNotify.cpp b/7z920/CPP
        /*
        case NM_CLICK:
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp b/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp
---- a/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp	2026-11-06 12:55:18.043242163 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp	2026-11-06 12:55:18.044980629 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp	2026-11-06 21:07:54.260225274 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp	2026-11-06 21:07:55.216111135 -0500
 @@ -585,9 +585,11 @@
    commandInfo.lpTitleW = L"";
    // commandInfo.ptInvoke.x = xPos;
@@ -224,8 +993,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelMenu.cpp b/7z920/CPP/7zip/
    if (isSystemMenu)
      result = systemContextMenu->InvokeCommand(LPCMINVOKECOMMANDINFO(&commandInfo));
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp b/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp
---- a/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp	2026-11-06 12:55:18.067229386 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp	2026-11-06 12:55:18.069017644 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp	2026-11-06 21:07:54.270442434 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp	2026-11-06 21:07:55.217318223 -0500
 @@ -451,7 +451,7 @@
    comboDialog.Static = LangString(IDS_COMMENT2, 0x03020291);
    if (comboDialog.Create(GetParent()) == IDCANCEL)
@@ -236,8 +1005,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelOperations.cpp b/7z920/CPP
    HRESULT result = folderOperations->SetProperty(realIndex, kpidComment, &propVariant, NULL);
    if (result != S_OK)
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp b/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp
---- a/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp	2026-11-06 12:55:18.051240237 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp	2026-11-06 12:55:18.052900786 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp	2026-11-06 21:07:54.263568619 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp	2026-11-06 21:07:55.216346469 -0500
 @@ -264,7 +264,7 @@
    int indexInList = itemActivate->iItem;
    if (indexInList < 0)
@@ -256,9 +1025,46 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/PanelSelect.cpp b/7z920/CPP/7zi
      if ((itemActivate->uKeyFlags & LVKF_CONTROL) != 0)
      {
        int realIndex = GetRealItemIndex(indexInList);
+diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/SysIconUtils.cpp b/7z920/CPP/7zip/UI/FileManager/SysIconUtils.cpp
+--- a/7z920/CPP/7zip/UI/FileManager/SysIconUtils.cpp	2026-11-06 21:07:54.268470844 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/SysIconUtils.cpp	2026-11-06 21:07:55.217030347 -0500
+@@ -121,7 +121,7 @@
+   {
+     CAttribIconPair pair;
+     pair.Attrib = attrib;
+-    int index = _attribMap.FindInSorted(pair);
++    int index = VecFindInSorted(_attribMap, pair);
+     if (index >= 0)
+     {
+       typeName = _attribMap[index].TypeName;
+@@ -133,21 +133,21 @@
+         #endif
+         L"__File__"
+         , attrib, pair.IconIndex, pair.TypeName);
+-    _attribMap.AddToSorted(pair);
++    VecAddToSorted(_attribMap, pair);
+     typeName = pair.TypeName;
+     return pair.IconIndex;
+   }
+ 
+   CExtIconPair pair;
+   pair.Ext = fileName.Mid(dotPos + 1);
+-  int index = _extMap.FindInSorted(pair);
++  int index = VecFindInSorted(_extMap, pair);
+   if (index >= 0)
+   {
+     typeName = _extMap[index].TypeName;
+     return _extMap[index].IconIndex;
+   }
+   GetRealIconIndex(fileName.Mid(dotPos), attrib, pair.IconIndex, pair.TypeName);
+-  _extMap.AddToSorted(pair);
++  VecAddToSorted(_extMap, pair);
+   typeName = pair.TypeName;
+   return pair.IconIndex;
+ }
 diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/makefile b/7z920/CPP/7zip/UI/FileManager/makefile
---- a/7z920/CPP/7zip/UI/FileManager/makefile	2026-11-06 12:55:18.027271431 -0500
-+++ b/7z920/CPP/7zip/UI/FileManager/makefile	2026-11-06 12:55:18.028678062 -0500
+--- a/7z920/CPP/7zip/UI/FileManager/makefile	2026-11-06 21:07:54.247069563 -0500
++++ b/7z920/CPP/7zip/UI/FileManager/makefile	2026-11-06 21:07:55.215075840 -0500
 @@ -7,7 +7,7 @@
  !IFDEF UNDER_CE
  LIBS = $(LIBS) ceshell.lib Commctrl.lib
@@ -269,8 +1075,8 @@ diff -ruN --text a/7z920/CPP/7zip/UI/FileManager/makefile b/7z920/CPP/7zip/UI/Fi
  !ENDIF
  
 diff -ruN --text a/7z920/CPP/7zip/UI/GUI/makefile b/7z920/CPP/7zip/UI/GUI/makefile
---- a/7z920/CPP/7zip/UI/GUI/makefile	2026-11-06 12:55:18.091532611 -0500
-+++ b/7z920/CPP/7zip/UI/GUI/makefile	2026-11-06 12:55:18.093052658 -0500
+--- a/7z920/CPP/7zip/UI/GUI/makefile	2026-11-06 21:07:54.289718415 -0500
++++ b/7z920/CPP/7zip/UI/GUI/makefile	2026-11-06 21:07:55.218926811 -0500
 @@ -6,7 +6,7 @@
  !IFDEF UNDER_CE
  LIBS = $(LIBS) ceshell.lib Commctrl.lib
@@ -281,9 +1087,9 @@ diff -ruN --text a/7z920/CPP/7zip/UI/GUI/makefile b/7z920/CPP/7zip/UI/GUI/makefi
  !ENDIF
  
 diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
---- a/7z920/CPP/Build.mak	2026-11-06 12:55:17.822894638 -0500
-+++ b/7z920/CPP/Build.mak	2026-11-06 12:55:17.824742812 -0500
-@@ -1,4 +1,16 @@
+--- a/7z920/CPP/Build.mak	2026-11-06 21:07:54.513728424 -0500
++++ b/7z920/CPP/Build.mak	2026-11-06 21:07:55.234307030 -0500
+@@ -1,4 +1,19 @@
 +# NT 4.0 targets: only the NT4 headers and libraries are needed, no later SDK.
 +!IF "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC" || ("$(CPU)" == "ARM" && !defined(UNDER_CE))
 +NT4_TARGET = 1
@@ -292,6 +1098,9 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
 +!ENDIF
 +
  LIBS = $(LIBS) oleaut32.lib ole32.lib
++!IF "$(CPU)" == "PPC"
++LIBS = $(LIBS) uuid.lib
++!ENDIF
 +!IF "$(CPU)" == "ARM" && !defined(UNDER_CE)
 +# PINT: what MSVC 14 expects of a runtime older than it (pint_rt.cpp)
 +LIBS = $(LIBS) uuid.lib Z:\src\pint_rt.obj
@@ -300,12 +1109,12 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
  
  !IFDEF CPU
  !IFNDEF NO_BUFFEROVERFLOWU
-@@ -30,10 +42,12 @@
+@@ -30,10 +45,12 @@
  LFLAGS = $(LFLAGS) /ENTRY:mainACRTStartup
  !ENDIF
  !ELSE
 -!IFNDEF NEW_COMPILER
-+!IF !defined(NEW_COMPILER) && "$(CPU)" != "ARM"
++!IF !defined(NEW_COMPILER) && "$(CPU)" != "ARM" && "$(CPU)" != "PPC"
  LFLAGS = $(LFLAGS) -OPT:NOWIN98
  !ENDIF
 +!IFNDEF NT4_TARGET
@@ -314,7 +1123,7 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
  LIBS = $(LIBS) user32.lib advapi32.lib shell32.lib
  !ENDIF
  
-@@ -43,7 +57,18 @@
+@@ -43,7 +60,22 @@
  COMPL_ASM = $(MY_ML) -c -Fo$O/ $**
  !ENDIF
  
@@ -329,14 +1138,79 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
 +# PINT: a modern compiler's warnings are not errors; the old runtime has no cookies.
 +CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -Gy -GR- -GS- -DWIN32=100 -D_WIN32_WINNT=0x0400
 +!ELSE
++!IF "$(CPU)" == "PPC"
++CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -FIp7_vc4.h -D_WIN32_WINNT=0x0400 -D_7ZIP_OLD_COMMCTRL
++!ELSE
 +CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -WX -Gy -GR-
++!ENDIF
 +!ENDIF
  
  !IFDEF MY_STATIC_LINK
  !IFNDEF MY_SINGLE_THREAD
+@@ -62,7 +94,11 @@
+ CFLAGS_O1 = $(CFLAGS) -O1
+ CFLAGS_O2 = $(CFLAGS) -O2
+ 
++!IF "$(CPU)" == "PPC"
++LFLAGS = $(LFLAGS) -nologo -OPT:REF
++!ELSE
+ LFLAGS = $(LFLAGS) -nologo -OPT:REF -OPT:ICF
++!ENDIF
+ 
+ !IFDEF DEF_FILE
+ LFLAGS = $(LFLAGS) -DLL -DEF:$(DEF_FILE)
+@@ -84,7 +120,13 @@
+ 	if not exist "$O" mkdir "$O"
+ 
+ $(PROGPATH): $O $(OBJS) $(DEF_FILE)
++!IF "$(CPU)" == "PPC"
++	link @<<
++$(LFLAGS) -out:$(PROGPATH) $(OBJS) $(LIBS)
++<<
++!ELSE
+ 	link $(LFLAGS) -out:$(PROGPATH) $(OBJS) $(LIBS)
++!ENDIF
+ 
+ !IFNDEF NO_DEFAULT_RES
+ $O\resource.res: $(*B).rc
+diff -ruN --text a/7z920/CPP/Common/MyCom.h b/7z920/CPP/Common/MyCom.h
+--- a/7z920/CPP/Common/MyCom.h	2026-11-06 21:07:54.192774504 -0500
++++ b/7z920/CPP/Common/MyCom.h	2026-11-06 21:07:55.210161949 -0500
+@@ -69,8 +69,12 @@
+     return hr;
+   }
+   */
++  #ifdef _7ZIP_VC4
++  HRESULT QueryInterface(REFGUID iid, void *pp) const
++  #else
+   template <class Q>
+   HRESULT QueryInterface(REFGUID iid, Q** pp) const
++  #endif
+   {
+     return _p->QueryInterface(iid, (void**)pp);
+   }
+@@ -158,10 +162,16 @@
+ #define MY_QUERYINTERFACE_BEGIN STDMETHOD(QueryInterface) \
+     (REFGUID iid, void **outObject) {
+ 
+-#define MY_QUERYINTERFACE_ENTRY(i) if (iid == IID_ ## i) \
++#ifdef _7ZIP_VC4
++#define MY_IID_EQ(a, b) IsEqualGUID(a, b)
++#else
++#define MY_IID_EQ(a, b) ((a) == (b))
++#endif
++
++#define MY_QUERYINTERFACE_ENTRY(i) if (MY_IID_EQ(iid, IID_ ## i)) \
+     { *outObject = (void *)(i *)this; AddRef(); return S_OK; }
+ 
+-#define MY_QUERYINTERFACE_ENTRY_UNKNOWN(i) if (iid == IID_IUnknown) \
++#define MY_QUERYINTERFACE_ENTRY_UNKNOWN(i) if (MY_IID_EQ(iid, IID_IUnknown)) \
+     { *outObject = (void *)(IUnknown *)(i *)this; AddRef(); return S_OK; }
+ 
+ #define MY_QUERYINTERFACE_BEGIN2(i) MY_QUERYINTERFACE_BEGIN \
 diff -ruN --text a/7z920/CPP/Common/MyInitGuid.h b/7z920/CPP/Common/MyInitGuid.h
---- a/7z920/CPP/Common/MyInitGuid.h	2026-11-06 12:55:17.878023072 -0500
-+++ b/7z920/CPP/Common/MyInitGuid.h	2026-11-06 12:55:17.879882954 -0500
+--- a/7z920/CPP/Common/MyInitGuid.h	2026-11-06 21:07:54.192333252 -0500
++++ b/7z920/CPP/Common/MyInitGuid.h	2026-11-06 21:07:55.209917906 -0500
 @@ -4,9 +4,8 @@
  #define __COMMON_MY_INITGUID_H
  
@@ -349,8 +1223,8 @@ diff -ruN --text a/7z920/CPP/Common/MyInitGuid.h b/7z920/CPP/Common/MyInitGuid.h
  #ifdef UNDER_CE
  DEFINE_GUID(IID_IUnknown,
 diff -ruN --text a/7z920/CPP/Common/MyString.h b/7z920/CPP/Common/MyString.h
---- a/7z920/CPP/Common/MyString.h	2026-11-06 12:55:17.868370699 -0500
-+++ b/7z920/CPP/Common/MyString.h	2026-11-06 12:55:17.870484416 -0500
+--- a/7z920/CPP/Common/MyString.h	2026-11-06 21:07:54.182307135 -0500
++++ b/7z920/CPP/Common/MyString.h	2026-11-06 21:07:55.209680030 -0500
 @@ -5,6 +5,10 @@
  
  #include <string.h>
@@ -362,9 +1236,155 @@ diff -ruN --text a/7z920/CPP/Common/MyString.h b/7z920/CPP/Common/MyString.h
  #include "MyVector.h"
  
  template <class T>
+@@ -104,6 +108,9 @@
+ 
+ // int MyStringCompareNoCase(const char *s1, const char  *s2);
+ int MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2);
++#ifdef _7ZIP_VC4
++inline int MyStringCompareNoCase(const char *s1, const char *s2) { return lstrcmpiA(s1, s2); }
++#endif
+ 
+ template <class T>
+ class CStringBase
+@@ -610,6 +617,12 @@
+ 
+ typedef CStringBase<char> AString;
+ typedef CStringBase<wchar_t> UString;
++#ifdef _7ZIP_VC4
++inline const char *operator+(const AString &s, int n) { return (const char *)s + n; }
++inline const wchar_t *operator+(const UString &s, int n) { return (const wchar_t *)s + n; }
++inline const char *operator+(const AString &s, unsigned n) { return (const char *)s + n; }
++inline const wchar_t *operator+(const UString &s, unsigned n) { return (const wchar_t *)s + n; }
++#endif
+ 
+ typedef CObjectVector<AString> AStringVector;
+ typedef CObjectVector<UString> UStringVector;
+diff -ruN --text a/7z920/CPP/Common/MyVector.h b/7z920/CPP/Common/MyVector.h
+--- a/7z920/CPP/Common/MyVector.h	2026-11-06 21:07:54.180239086 -0500
++++ b/7z920/CPP/Common/MyVector.h	2026-11-06 21:07:55.209281195 -0500
+@@ -78,6 +78,7 @@
+     operator[](j) = temp;
+   }
+ 
++#ifndef _7ZIP_VC4
+   int FindInSorted(const T& item, int left, int right) const
+   {
+     while (left != right)
+@@ -128,6 +129,7 @@
+     Insert(right, item);
+     return right;
+   }
++#endif
+ 
+   static void SortRefDown(T* p, int k, int size, int (*compare)(const T*, const T*, void *), void *param)
+   {
+@@ -211,6 +213,7 @@
+       delete (T *)(((void **)_items)[index + i]);
+     CPointerVector::Delete(index, num);
+   }
++#ifndef _7ZIP_VC4
+   int Find(const T& item) const
+   {
+     for (int i = 0; i < Size(); i++)
+@@ -254,13 +257,95 @@
+     Insert(right, item);
+     return right;
+   }
++#endif
+ 
+   void Sort(int (*compare)(void *const *, void *const *, void *), void *param)
+     { CPointerVector::Sort(compare, param); }
+ 
++#ifndef _7ZIP_VC4
+   static int CompareObjectItems(void *const *a1, void *const *a2, void * /* param */)
+     { return MyCompare(*(*((const T **)a1)), *(*((const T **)a2))); }
+   void Sort() { CPointerVector::Sort(CompareObjectItems, 0); }
++#endif
+ };
+ 
++// Free functions: Visual C++ 4 would compile the members for types with no == or <.
++template <class V, class T>
++int VecFind(const V &v, const T &item)
++{
++  for (int i = 0; i < v.Size(); i++)
++    if (item == v[i])
++      return i;
++  return -1;
++}
++
++template <class V, class T>
++int VecFindInSorted2(const V &v, const T &item, int left, int right)
++{
++  while (left != right)
++  {
++    int mid = (left + right) / 2;
++    if (item == v[mid])
++      return mid;
++    if (item < v[mid])
++      right = mid;
++    else
++      left = mid + 1;
++  }
++  return -1;
++}
++
++template <class V, class T>
++int VecFindInSorted(const V &v, const T &item)
++  { return VecFindInSorted2(v, item, 0, v.Size()); }
++
++template <class V, class T>
++int VecAddToUniqueSorted(V &v, const T &item)
++{
++  int left = 0, right = v.Size();
++  while (left != right)
++  {
++    int mid = (left + right) / 2;
++    if (item == v[mid])
++      return mid;
++    if (item < v[mid])
++      right = mid;
++    else
++      left = mid + 1;
++  }
++  v.Insert(right, item);
++  return right;
++}
++
++template <class V, class T>
++int VecAddToSorted(V &v, const T &item)
++{
++  int left = 0, right = v.Size();
++  while (left != right)
++  {
++    int mid = (left + right) / 2;
++    if (item == v[mid])
++    {
++      right = mid + 1;
++      break;
++    }
++    if (item < v[mid])
++      right = mid;
++    else
++      left = mid + 1;
++  }
++  v.Insert(right, item);
++  return right;
++}
++
++template <class T>
++struct CVecCompare
++{
++  static int Compare(void *const *a1, void *const *a2, void * /* param */)
++    { return MyCompare(*(*((const T **)a1)), *(*((const T **)a2))); }
++};
++
++template <class T>
++void VecSort(CObjectVector<T> &v) { v.Sort(CVecCompare<T>::Compare, 0); }
++
+ #endif
 diff -ruN --text a/7z920/CPP/Common/MyWindows.h b/7z920/CPP/Common/MyWindows.h
---- a/7z920/CPP/Common/MyWindows.h	2026-11-06 12:55:17.858587951 -0500
-+++ b/7z920/CPP/Common/MyWindows.h	2026-11-06 12:55:17.860749584 -0500
+--- a/7z920/CPP/Common/MyWindows.h	2026-11-06 21:07:54.176355323 -0500
++++ b/7z920/CPP/Common/MyWindows.h	2026-11-06 21:07:55.208900277 -0500
 @@ -7,6 +7,82 @@
  
  #include <windows.h>
@@ -449,8 +1469,8 @@ diff -ruN --text a/7z920/CPP/Common/MyWindows.h b/7z920/CPP/Common/MyWindows.h
  
  #include <stddef.h> // for wchar_t
 diff -ruN --text a/7z920/CPP/Windows/Control/Dialog.cpp b/7z920/CPP/Windows/Control/Dialog.cpp
---- a/7z920/CPP/Windows/Control/Dialog.cpp	2026-11-06 12:55:17.970355948 -0500
-+++ b/7z920/CPP/Windows/Control/Dialog.cpp	2026-11-06 12:55:17.972359290 -0500
+--- a/7z920/CPP/Windows/Control/Dialog.cpp	2026-11-06 21:07:54.510608580 -0500
++++ b/7z920/CPP/Windows/Control/Dialog.cpp	2026-11-06 21:07:55.233429361 -0500
 @@ -143,7 +143,7 @@
  
  bool CModelessDialog::Create(LPCTSTR templateName, HWND parentWindow)
@@ -506,8 +1526,8 @@ diff -ruN --text a/7z920/CPP/Windows/Control/Dialog.cpp b/7z920/CPP/Windows/Cont
  #endif
  
 diff -ruN --text a/7z920/CPP/Windows/Control/ListView.h b/7z920/CPP/Windows/Control/ListView.h
---- a/7z920/CPP/Windows/Control/ListView.h	2026-11-06 12:55:17.978481482 -0500
-+++ b/7z920/CPP/Windows/Control/ListView.h	2026-11-06 12:55:17.980005238 -0500
+--- a/7z920/CPP/Windows/Control/ListView.h	2026-11-06 21:07:54.511878918 -0500
++++ b/7z920/CPP/Windows/Control/ListView.h	2026-11-06 21:07:55.234049321 -0500
 @@ -7,6 +7,15 @@
  
  #include <commctrl.h>
@@ -525,8 +1545,8 @@ diff -ruN --text a/7z920/CPP/Windows/Control/ListView.h b/7z920/CPP/Windows/Cont
  namespace NControl {
  
 diff -ruN --text a/7z920/CPP/Windows/Control/PropertyPage.cpp b/7z920/CPP/Windows/Control/PropertyPage.cpp
---- a/7z920/CPP/Windows/Control/PropertyPage.cpp	2026-11-06 12:55:17.962182248 -0500
-+++ b/7z920/CPP/Windows/Control/PropertyPage.cpp	2026-11-06 12:55:17.963933005 -0500
+--- a/7z920/CPP/Windows/Control/PropertyPage.cpp	2026-11-06 21:07:54.507820237 -0500
++++ b/7z920/CPP/Windows/Control/PropertyPage.cpp	2026-11-06 21:07:55.233097734 -0500
 @@ -90,7 +90,7 @@
        page.hInstance = g_hInstance;
        page.pszTemplate = MAKEINTRESOURCE(pageInfo.ID);
@@ -545,9 +1565,66 @@ diff -ruN --text a/7z920/CPP/Windows/Control/PropertyPage.cpp b/7z920/CPP/Window
        
        if (pageInfo.Title.IsEmpty())
          page.pszTitle = NULL;
+diff -ruN --text a/7z920/CPP/Windows/Control/PropertyPage.h b/7z920/CPP/Windows/Control/PropertyPage.h
+--- a/7z920/CPP/Windows/Control/PropertyPage.h	2026-11-06 21:07:54.510982290 -0500
++++ b/7z920/CPP/Windows/Control/PropertyPage.h	2026-11-06 21:07:55.233744862 -0500
+@@ -5,6 +5,21 @@
+ 
+ #include "Dialog.h"
+ 
++#ifdef _7ZIP_VC4
++namespace NWindows {
++namespace NControl {
++class CPropertyPage;
++}}
++struct CPageInfo
++{
++  NWindows::NControl::CPropertyPage *Page;
++  UString Title;
++  UINT ID;
++};
++// The vector has to be first used here, outside the namespace.
++inline void ForceInstantiate_CPageInfoVector() { CObjectVector<CPageInfo> v; }
++#endif
++
+ namespace NWindows {
+ namespace NControl {
+ 
+@@ -32,12 +47,16 @@
+   virtual void OnReset(const PSHNOTIFY *) { OnReset(); }
+ };
+ 
++#ifdef _7ZIP_VC4
++typedef ::CPageInfo CPageInfo;
++#else
+ struct CPageInfo
+ {
+   CPropertyPage *Page;
+   UString Title;
+   UINT ID;
+ };
++#endif
+ 
+ INT_PTR MyPropertySheet(const CObjectVector<CPageInfo> &pagesInfo, HWND hwndParent, const UString &title);
+ 
+diff -ruN --text a/7z920/CPP/Windows/FileFind.h b/7z920/CPP/Windows/FileFind.h
+--- a/7z920/CPP/Windows/FileFind.h	2026-11-06 21:07:54.504720810 -0500
++++ b/7z920/CPP/Windows/FileFind.h	2026-11-06 21:07:55.232059773 -0500
+@@ -80,7 +80,11 @@
+ 
+ class CFindFile
+ {
++  #ifdef _7ZIP_VC4
++public:
++  #else
+   friend class CEnumerator;
++  #endif
+   HANDLE _handle;
+ public:
+   bool IsHandleAllocated() const { return _handle != INVALID_HANDLE_VALUE; }
 diff -ruN --text a/7z920/CPP/Windows/FileIO.h b/7z920/CPP/Windows/FileIO.h
---- a/7z920/CPP/Windows/FileIO.h	2026-11-06 12:55:17.927964442 -0500
-+++ b/7z920/CPP/Windows/FileIO.h	2026-11-06 12:55:17.929701574 -0500
+--- a/7z920/CPP/Windows/FileIO.h	2026-11-06 21:07:54.503728307 -0500
++++ b/7z920/CPP/Windows/FileIO.h	2026-11-06 21:07:55.231498229 -0500
 @@ -7,6 +7,10 @@
  
  #include "Defs.h"
@@ -560,8 +1637,8 @@ diff -ruN --text a/7z920/CPP/Windows/FileIO.h b/7z920/CPP/Windows/FileIO.h
  namespace NFile {
  namespace NIO {
 diff -ruN --text a/7z920/CPP/Windows/Memory.h b/7z920/CPP/Windows/Memory.h
---- a/7z920/CPP/Windows/Memory.h	2026-11-06 12:55:17.945104220 -0500
-+++ b/7z920/CPP/Windows/Memory.h	2026-11-06 12:55:17.946792435 -0500
+--- a/7z920/CPP/Windows/Memory.h	2026-11-06 21:07:54.505110936 -0500
++++ b/7z920/CPP/Windows/Memory.h	2026-11-06 21:07:55.232355815 -0500
 @@ -3,6 +3,8 @@
  #ifndef __WINDOWS_MEMORY_H
  #define __WINDOWS_MEMORY_H
@@ -572,8 +1649,8 @@ diff -ruN --text a/7z920/CPP/Windows/Memory.h b/7z920/CPP/Windows/Memory.h
  namespace NMemory {
  
 diff -ruN --text a/7z920/CPP/Windows/Net.cpp b/7z920/CPP/Windows/Net.cpp
---- a/7z920/CPP/Windows/Net.cpp	2026-11-06 12:55:17.911827085 -0500
-+++ b/7z920/CPP/Windows/Net.cpp	2026-11-06 12:55:17.913625676 -0500
+--- a/7z920/CPP/Windows/Net.cpp	2026-11-06 21:07:54.499125208 -0500
++++ b/7z920/CPP/Windows/Net.cpp	2026-11-06 21:07:55.230656184 -0500
 @@ -12,6 +12,17 @@
  extern bool g_IsNT;
  #endif
@@ -593,8 +1670,8 @@ diff -ruN --text a/7z920/CPP/Windows/Net.cpp b/7z920/CPP/Windows/Net.cpp
  namespace NNet {
  
 diff -ruN --text a/7z920/CPP/Windows/Process.h b/7z920/CPP/Windows/Process.h
---- a/7z920/CPP/Windows/Process.h	2026-11-06 12:55:17.936571810 -0500
-+++ b/7z920/CPP/Windows/Process.h	2026-11-06 12:55:17.938567777 -0500
+--- a/7z920/CPP/Windows/Process.h	2026-11-06 21:07:54.504320934 -0500
++++ b/7z920/CPP/Windows/Process.h	2026-11-06 21:07:55.231774647 -0500
 @@ -3,7 +3,9 @@
  #ifndef __WINDOWS_PROCESS_H
  #define __WINDOWS_PROCESS_H
@@ -614,9 +1691,26 @@ diff -ruN --text a/7z920/CPP/Windows/Process.h b/7z920/CPP/Windows/Process.h
  
    bool GetExitCodeProcess(LPDWORD lpExitCode) { return BOOLToBool(::GetExitCodeProcess(_handle, lpExitCode)); }
    bool Terminate(UINT exitCode) { return BOOLToBool(::TerminateProcess(_handle, exitCode)); }
+diff -ruN --text a/7z920/CPP/Windows/PropVariantConversions.cpp b/7z920/CPP/Windows/PropVariantConversions.cpp
+--- a/7z920/CPP/Windows/PropVariantConversions.cpp	2026-11-06 21:07:54.502563261 -0500
++++ b/7z920/CPP/Windows/PropVariantConversions.cpp	2026-11-06 21:07:55.231230145 -0500
+@@ -90,6 +90,7 @@
+     case VT_BOOL: return VARIANT_BOOLToBool(prop.boolVal) ? L"+" : L"-";
+     default: throw 150245;
+   }
++  return UString();
+ }
+ 
+ UInt64 ConvertPropVariantToUInt64(const PROPVARIANT &prop)
+@@ -102,4 +103,5 @@
+     case VT_UI8: return (UInt64)prop.uhVal.QuadPart;
+     default: throw 151199;
+   }
++  return 0;
+ }
 diff -ruN --text a/7z920/CPP/Windows/Shell.cpp b/7z920/CPP/Windows/Shell.cpp
---- a/7z920/CPP/Windows/Shell.cpp	2026-11-06 12:55:17.953718005 -0500
-+++ b/7z920/CPP/Windows/Shell.cpp	2026-11-06 12:55:17.955658347 -0500
+--- a/7z920/CPP/Windows/Shell.cpp	2026-11-06 21:07:54.506391274 -0500
++++ b/7z920/CPP/Windows/Shell.cpp	2026-11-06 21:07:55.232658233 -0500
 @@ -14,6 +14,10 @@
  extern bool g_IsNT;
  #endif
@@ -629,8 +1723,8 @@ diff -ruN --text a/7z920/CPP/Windows/Shell.cpp b/7z920/CPP/Windows/Shell.cpp
  namespace NShell {
  
 diff -ruN --text a/7z920/CPP/Windows/System.cpp b/7z920/CPP/Windows/System.cpp
---- a/7z920/CPP/Windows/System.cpp	2026-11-06 12:55:17.919919534 -0500
-+++ b/7z920/CPP/Windows/System.cpp	2026-11-06 12:55:17.921604624 -0500
+--- a/7z920/CPP/Windows/System.cpp	2026-11-06 21:07:54.501881550 -0500
++++ b/7z920/CPP/Windows/System.cpp	2026-11-06 21:07:55.230976227 -0500
 @@ -18,7 +18,7 @@
  
  #ifndef UNDER_CE
@@ -641,8 +1735,8 @@ diff -ruN --text a/7z920/CPP/Windows/System.cpp b/7z920/CPP/Windows/System.cpp
  typedef struct _MY_MEMORYSTATUSEX {
    DWORD dwLength;
 diff -ruN --text a/lzma920/CPP/7zip/Aes.mak b/lzma920/CPP/7zip/Aes.mak
---- a/lzma920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.840524627 -0500
-+++ b/lzma920/CPP/7zip/Aes.mak	2026-11-06 12:55:17.842343718 -0500
+--- a/lzma920/CPP/7zip/Aes.mak	2026-11-06 21:07:54.656117823 -0500
++++ b/lzma920/CPP/7zip/Aes.mak	2026-11-06 21:07:55.208044150 -0500
 @@ -1,7 +1,7 @@
  C_OBJS = $(C_OBJS) \
    $O\Aes.obj
@@ -653,8 +1747,8 @@ diff -ruN --text a/lzma920/CPP/7zip/Aes.mak b/lzma920/CPP/7zip/Aes.mak
    $O\AesOpt.obj
  !ENDIF
 diff -ruN --text a/lzma920/CPP/7zip/Asm.mak b/lzma920/CPP/7zip/Asm.mak
---- a/lzma920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.849007411 -0500
-+++ b/lzma920/CPP/7zip/Asm.mak	2026-11-06 12:55:17.851068420 -0500
+--- a/lzma920/CPP/7zip/Asm.mak	2026-11-06 21:07:54.656448240 -0500
++++ b/lzma920/CPP/7zip/Asm.mak	2026-11-06 21:07:55.208337734 -0500
 @@ -1,7 +1,7 @@
 -!IF "$(CPU)" == "ARM"
 +!IF "$(CPU)" == "ARM" && defined(UNDER_CE)
@@ -666,8 +1760,8 @@ diff -ruN --text a/lzma920/CPP/7zip/Asm.mak b/lzma920/CPP/7zip/Asm.mak
  	$(COMPL_ASM)
  !ENDIF
 diff -ruN --text a/lzma920/CPP/7zip/Crc.mak b/lzma920/CPP/7zip/Crc.mak
---- a/lzma920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.831215922 -0500
-+++ b/lzma920/CPP/7zip/Crc.mak	2026-11-06 12:55:17.833222930 -0500
+--- a/lzma920/CPP/7zip/Crc.mak	2026-11-06 21:07:54.620137201 -0500
++++ b/lzma920/CPP/7zip/Crc.mak	2026-11-06 21:07:55.207724857 -0500
 @@ -1,6 +1,6 @@
  C_OBJS = $(C_OBJS) \
    $O\7zCrc.obj
