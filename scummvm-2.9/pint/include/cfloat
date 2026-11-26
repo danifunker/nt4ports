@@ -1,0 +1,6 @@
+// <cfloat> for the PINT 4.0 SDK: <float.h> in namespace std.
+#ifndef PINT_cfloat
+#define PINT_cfloat
+#include <float.h>
+#include "pint_std.h"
+#endif

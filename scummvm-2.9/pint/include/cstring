@@ -1,0 +1,6 @@
+// <cstring> for the PINT 4.0 SDK: <string.h> in namespace std.
+#ifndef PINT_cstring
+#define PINT_cstring
+#include <string.h>
+#include "pint_std.h"
+#endif

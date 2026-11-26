@@ -1,0 +1,48 @@
+// <limits> for the PINT 4.0 SDK: the numeric_limits members ScummVM uses. The names are in
+// parentheses so that windows.h's min and max macros leave them alone.
+#ifndef PINT_LIMITS
+#define PINT_LIMITS
+#include <float.h>
+#include <limits.h>
+namespace std {
+template<class T> struct numeric_limits {
+	static constexpr bool is_specialized = true;
+	static constexpr bool is_signed = T(-1) < T(0);
+	static constexpr bool is_integer = true;
+	static constexpr bool has_infinity = false;
+	static constexpr int digits = int(sizeof(T) * CHAR_BIT) - (is_signed ? 1 : 0);
+	static constexpr T (min)() noexcept { return is_signed ? T(T(1) << digits) : T(0); }
+	static constexpr T (max)() noexcept { return is_signed ? T(~(T(1) << digits)) : T(~T(0)); }
+	static constexpr T (lowest)() noexcept { return (min)(); }
+	static constexpr T (epsilon)() noexcept { return T(0); }
+};
+template<> struct numeric_limits<bool> {
+	static constexpr bool is_specialized = true, is_signed = false, is_integer = true, has_infinity = false;
+	static constexpr int digits = 1;
+	static constexpr bool (min)() noexcept { return false; }
+	static constexpr bool (max)() noexcept { return true; }
+	static constexpr bool (lowest)() noexcept { return false; }
+};
+template<> struct numeric_limits<float> {
+	static constexpr bool is_specialized = true, is_signed = true, is_integer = false, has_infinity = true;
+	static constexpr int digits = FLT_MANT_DIG;
+	static constexpr float (min)() noexcept { return FLT_MIN; }
+	static constexpr float (max)() noexcept { return FLT_MAX; }
+	static constexpr float (lowest)() noexcept { return -FLT_MAX; }
+	static constexpr float (epsilon)() noexcept { return FLT_EPSILON; }
+	static constexpr float (infinity)() noexcept { return __builtin_huge_valf(); }
+	static constexpr float (quiet_NaN)() noexcept { return __builtin_nanf("0"); }
+};
+template<> struct numeric_limits<double> {
+	static constexpr bool is_specialized = true, is_signed = true, is_integer = false, has_infinity = true;
+	static constexpr int digits = DBL_MANT_DIG;
+	static constexpr double (min)() noexcept { return DBL_MIN; }
+	static constexpr double (max)() noexcept { return DBL_MAX; }
+	static constexpr double (lowest)() noexcept { return -DBL_MAX; }
+	static constexpr double (epsilon)() noexcept { return DBL_EPSILON; }
+	static constexpr double (infinity)() noexcept { return __builtin_huge_val(); }
+	static constexpr double (quiet_NaN)() noexcept { return __builtin_nan("0"); }
+};
+template<class T> struct numeric_limits<const T> : numeric_limits<T> {};
+}
+#endif

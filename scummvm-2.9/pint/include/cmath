@@ -1,0 +1,6 @@
+// <cmath> for the PINT 4.0 SDK: <math.h> in namespace std.
+#ifndef PINT_cmath
+#define PINT_cmath
+#include <math.h>
+#include "pint_std.h"
+#endif

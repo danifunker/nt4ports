@@ -1,0 +1,6 @@
+// <cstdarg> for the PINT 4.0 SDK: <stdarg.h> in namespace std.
+#ifndef PINT_cstdarg
+#define PINT_cstdarg
+#include <stdarg.h>
+#include "pint_std.h"
+#endif

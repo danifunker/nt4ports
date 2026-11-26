@@ -1,0 +1,24 @@
+diff --git a/backends/audiocd/win32/win32-audiocd.cpp b/backends/audiocd/win32/win32-audiocd.cpp
+index da03391b..78a90303 100644
+--- a/backends/audiocd/win32/win32-audiocd.cpp
++++ b/backends/audiocd/win32/win32-audiocd.cpp
+@@ -329,6 +329,19 @@ bool Win32AudioCDManager::loadTOC() {
+ 	                  sizeof(tocData),
+ 	                  &bytesReturned,
+ 	                  nullptr);
++	if (!result) {
++		// Windows NT 4.0 has no IOCTL_CDROM_READ_TOC_EX. Its IOCTL_CDROM_READ_TOC returns
++		// the same table, in the same MSF form.
++		result = DeviceIoControl(
++		             _driveHandle,
++		             IOCTL_CDROM_READ_TOC,
++		             nullptr,
++		             0,
++		             &tocData,
++		             sizeof(tocData),
++		             &bytesReturned,
++		             nullptr);
++	}
+ 	if (!result) {
+ 		debug("Failed to query the CD TOC: %d", (int)GetLastError());
+ 		return false;

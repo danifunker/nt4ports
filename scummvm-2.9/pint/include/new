@@ -1,0 +1,12 @@
+// <new> for the PINT 4.0 SDK: placement new from its new.h, and std::nothrow.
+#ifndef PINT_NEW
+#define PINT_NEW
+#include <new.h>
+namespace std {
+struct nothrow_t { explicit nothrow_t() = default; };
+extern const nothrow_t nothrow;
+typedef decltype(nullptr) nullptr_t;
+}
+void *operator new(size_t, const std::nothrow_t &) noexcept;
+void *operator new[](size_t, const std::nothrow_t &) noexcept;
+#endif

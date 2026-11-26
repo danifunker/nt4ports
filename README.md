@@ -15,10 +15,14 @@ project's own licence. Most hold patches and new files, not a copy of the upstre
 | [FileZilla 2.2.32](filezilla/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
 | [Neko Project II (np2_gdi)](np2_gdi/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
 | [ScummVM 0.6.1](scummvm/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
+| [ScummVM 2.9.1](scummvm-2.9/) | — | Built, tested in QEMU | — | — |
 
-Every app builds for Alpha, MIPS and PowerPC on Linux with
+Every app but ScummVM 2.9.1 builds for Alpha, MIPS and PowerPC on Linux with
 [tenox7/ntsdk](https://github.com/tenox7/ntsdk), with no NT machine: `7zip/ntsdk`,
 `notepad++/ntsdk`, `unixbench/portable/build-ntsdk.sh`, `filezilla/nt4/build.sh`,
 `np2_gdi/ntsdk` and `scummvm/ntsdk`. ARM
 uses the PINT SDK, as ntsdk has no ARM target; notes for building on PINT are in
 [pint/](pint/).
+
+ScummVM comes twice: 0.6.1 for all four CPUs, patched for Visual C++ 4.1, and 2.9.1 for
+ARM only, which needs the modern compiler of the PINT SDK.

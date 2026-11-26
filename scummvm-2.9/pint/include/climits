@@ -1,0 +1,6 @@
+// <climits> for the PINT 4.0 SDK: <limits.h> in namespace std.
+#ifndef PINT_climits
+#define PINT_climits
+#include <limits.h>
+#include "pint_std.h"
+#endif

@@ -1,0 +1,6 @@
+// <cstddef> for the PINT 4.0 SDK: <stddef.h> in namespace std.
+#ifndef PINT_cstddef
+#define PINT_cstddef
+#include <stddef.h>
+#include "pint_std.h"
+#endif

@@ -1,0 +1,6 @@
+// <cctype> for the PINT 4.0 SDK: <ctype.h> in namespace std.
+#ifndef PINT_cctype
+#define PINT_cctype
+#include <ctype.h>
+#include "pint_std.h"
+#endif

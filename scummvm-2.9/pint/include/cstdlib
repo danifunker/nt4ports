@@ -1,0 +1,6 @@
+// <cstdlib> for the PINT 4.0 SDK: <stdlib.h> in namespace std.
+#ifndef PINT_cstdlib
+#define PINT_cstdlib
+#include <stdlib.h>
+#include "pint_std.h"
+#endif

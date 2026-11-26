@@ -1,0 +1,6 @@
+// <cassert> for the PINT 4.0 SDK: <assert.h> in namespace std.
+#ifndef PINT_cassert
+#define PINT_cassert
+#include <assert.h>
+#include "pint_std.h"
+#endif

@@ -1,0 +1,6 @@
+// <cerrno> for the PINT 4.0 SDK: <errno.h> in namespace std.
+#ifndef PINT_cerrno
+#define PINT_cerrno
+#include <errno.h>
+#include "pint_std.h"
+#endif

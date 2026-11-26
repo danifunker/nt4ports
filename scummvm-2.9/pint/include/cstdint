@@ -1,0 +1,6 @@
+// <cstdint> for the PINT 4.0 SDK: <stdint.h> in namespace std.
+#ifndef PINT_cstdint
+#define PINT_cstdint
+#include <stdint.h>
+#include "pint_std.h"
+#endif

@@ -1,0 +1,6 @@
+// <ctime> for the PINT 4.0 SDK: <time.h> in namespace std.
+#ifndef PINT_ctime
+#define PINT_ctime
+#include <time.h>
+#include "pint_std.h"
+#endif
