@@ -6,6 +6,7 @@ Notepad++ is by Don Ho; this port is unofficial.
 - `patches/npp33-nt4.diff`: every change, against the Notepad++ 3.3 source package
 - `compat/`: for targets with no STL or `shlwapi.dll`: a small `string`, `vector`, `list`
   and `algorithm`, local path functions, and a forced header for Visual C++ 4
+- `ntsdk/`: Alpha, MIPS and PowerPC build on Linux, with [tenox7/ntsdk](https://github.com/tenox7/ntsdk)
 - `pint/`: ARM build
 - `ppc/`: PowerPC build, run on the NT machine
 
@@ -37,7 +38,19 @@ Printing, plugins and the other dialogs have not been tested on any of them.
 - On PowerPC, a fault in a window procedure ended the process with no message at all. To
   find one, wrap the `runProc` call in `__try`/`__except` and log the exception address.
 
-## Building for PowerPC
+## Building on Linux with ntsdk
+
+Alpha, MIPS and PowerPC build in Docker with tenox7/ntsdk's Visual C++ 4.1, the same
+compiles as `ppc/build.bat`, with no NT machine and nothing to install:
+
+    notepad++/ntsdk/build.sh alpha|mips|ppc /path/to/npp.3.3.src    (patch applied)
+
+That makes `so-CPU/SciLexer.dll` and `no-CPU/notepad++.exe` in the source folder. ntsdk's
+NT 4.0 SDK headers predate the common controls of Internet Explorer 3 (`TCITEM` and the
+rest), so the script puts the x86 SDK's `commctrl.h` and `prsht.h`, from the same image,
+before them; the RISC SDKs have no `rc`, so the x86 SDK's makes the resources.
+
+## Building for PowerPC on the NT machine
 
 Needs Visual C++ 4.x for PowerPC on NT 4.0, and NT 4.0 headers. The compiler's own headers are
 too old, and `/opt/pint40sdk/include` from the PINT SDK image works. Those aren't included here

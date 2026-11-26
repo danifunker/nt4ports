@@ -9,10 +9,13 @@ project's own licence. Most hold patches and new files, not a copy of the upstre
 
 | App | Alpha | ARM (PINT) | MIPS | PowerPC |
 |---|---|---|---|---|
-| [7-Zip 9.20](7zip/) | Built and tested | Built, tested in QEMU | | Built and tested |
-| [Notepad++ 3.3](notepad++/) | Built and tested | Built, tested in QEMU | | Built and tested |
-| [UnixBench](unixbench/) | Built | Built, tested in QEMU | | Built |
+| [7-Zip 9.20](7zip/) | Built and tested | Built, tested in QEMU | Built | Built and tested |
+| [Notepad++ 3.3](notepad++/) | Built and tested | Built, tested in QEMU | Built | Built and tested |
+| [UnixBench](unixbench/) | Built | Built, tested in QEMU | Built, run with ntrun | Built |
 | [FileZilla 2.2.32](filezilla/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
 
-Notes for building on PINT are in [pint/](pint/). FileZilla builds for all four on Linux
-with [tenox7/ntsdk](https://github.com/tenox7/ntsdk) and the PINT SDK: see its README.
+Every app builds for Alpha, MIPS and PowerPC on Linux with
+[tenox7/ntsdk](https://github.com/tenox7/ntsdk), with no NT machine: `7zip/ntsdk`,
+`notepad++/ntsdk`, `unixbench/portable/build-ntsdk.sh` and `filezilla/nt4/build.sh`. ARM
+uses the PINT SDK, as ntsdk has no ARM target; notes for building on PINT are in
+[pint/](pint/).

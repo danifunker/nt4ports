@@ -5,6 +5,7 @@ Licence: GNU LGPL, with the unRAR restriction on RAR code. See `LICENSE` and `li
 
 - `patches/7zip-9.20-nt4.diff`: every change, against the 7-Zip 9.20 and LZMA SDK 9.20 sources
 - `rar5/`: `Formats\Rar5.dll`, RAR5 extraction for 9.20. See below.
+- `ntsdk/`: Alpha, MIPS and PowerPC build on Linux, with [tenox7/ntsdk](https://github.com/tenox7/ntsdk)
 - `pint/`: ARM build
 - `ppc/`: PowerPC build, run on the NT machine
 
@@ -13,6 +14,23 @@ Apply the patch from a folder holding `7z920/` and `lzma920/`:
     patch -p1 --binary < 7zip/patches/7zip-9.20-nt4.diff
 
 ## Building
+
+On Linux, Alpha, MIPS and PowerPC build in Docker with tenox7/ntsdk's Visual C++ 4.1, with
+no NT machine and nothing to install. Each component's result is in its `ALPHA`, `MIPS`
+or `PPC` folder:
+
+    7zip/ntsdk/build.sh alpha|mips|ppc /path/to/7z920 [component...]   (patch applied)
+
+`VC4=1` gives Alpha the Visual C++ 4 settings that PowerPC and MIPS always have. The
+headers in `ntsdk/include` go ahead of the NT 4.0 SDK's: a stub `shlwapi.h` with the
+`DllGetVersion` types, the x86 SDK's `commctrl.h` (Internet Explorer 3's, from the same
+image) plus one rebar style, and the Windows 2000 SDK's `NTSecAPI.h`, also from the image.
+`STRICT` is defined, as in later SDKs. The script makes the resources with the x86 SDK's
+`rc`, as the RISC SDKs have none.
+
+ntsdk's `ntrun` can't run these builds: it has no `OLEAUT32.DLL`.
+
+On the NT machines:
 
 Alpha, with Visual C++ 6.0, in each component folder (`UI/FileManager`, `UI/GUI`,
 `UI/Console`, `UI/Explorer`, `Bundles/Format7zF`, `Bundles/SFXWin`, `Bundles/SFXCon`):

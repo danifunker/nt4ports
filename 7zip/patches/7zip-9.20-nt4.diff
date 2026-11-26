@@ -1087,18 +1087,23 @@ diff -ruN --text a/7z920/CPP/7zip/UI/GUI/makefile b/7z920/CPP/7zip/UI/GUI/makefi
  !ENDIF
  
 diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
---- a/7z920/CPP/Build.mak	2026-11-06 21:07:54.513728424 -0500
-+++ b/7z920/CPP/Build.mak	2026-11-06 21:07:55.234307030 -0500
-@@ -1,4 +1,19 @@
+--- a/7z920/CPP/Build.mak	2026-11-26 07:56:31.530159277 -0500
++++ b/7z920/CPP/Build.mak	2026-11-26 07:56:31.534249634 -0500
+@@ -1,4 +1,24 @@
 +# NT 4.0 targets: only the NT4 headers and libraries are needed, no later SDK.
-+!IF "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC" || ("$(CPU)" == "ARM" && !defined(UNDER_CE))
++!IF "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC" || "$(CPU)" == "MIPS" || ("$(CPU)" == "ARM" && !defined(UNDER_CE))
 +NT4_TARGET = 1
 +NO_BUFFEROVERFLOWU = 1
 +CFLAGS = $(CFLAGS) -D_7ZIP_NT4_HEADERS
 +!ENDIF
 +
++# Visual C++ 4.x: the only compiler for PowerPC and MIPS, and ntsdk's for Alpha (VC4=1).
++!IF "$(CPU)" == "PPC" || "$(CPU)" == "MIPS"
++VC4 = 1
++!ENDIF
++
  LIBS = $(LIBS) oleaut32.lib ole32.lib
-+!IF "$(CPU)" == "PPC"
++!IFDEF VC4
 +LIBS = $(LIBS) uuid.lib
 +!ENDIF
 +!IF "$(CPU)" == "ARM" && !defined(UNDER_CE)
@@ -1109,12 +1114,12 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
  
  !IFDEF CPU
  !IFNDEF NO_BUFFEROVERFLOWU
-@@ -30,10 +45,12 @@
+@@ -30,10 +50,12 @@
  LFLAGS = $(LFLAGS) /ENTRY:mainACRTStartup
  !ENDIF
  !ELSE
 -!IFNDEF NEW_COMPILER
-+!IF !defined(NEW_COMPILER) && "$(CPU)" != "ARM" && "$(CPU)" != "PPC"
++!IF !defined(NEW_COMPILER) && "$(CPU)" != "ARM" && !defined(VC4)
  LFLAGS = $(LFLAGS) -OPT:NOWIN98
  !ENDIF
 +!IFNDEF NT4_TARGET
@@ -1123,13 +1128,13 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
  LIBS = $(LIBS) user32.lib advapi32.lib shell32.lib
  !ENDIF
  
-@@ -43,7 +60,22 @@
+@@ -43,7 +65,22 @@
  COMPL_ASM = $(MY_ML) -c -Fo$O/ $**
  !ENDIF
  
 -CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -WX -EHsc -Gy -GR-
 +# -EHsc is unknown to the VC++ 6.0-era RISC compilers
-+!IF "$(CPU)" == "ALPHA" || "$(CPU)" == "PPC"
++!IF "$(CPU)" == "ALPHA" || defined(VC4)
 +CFLAGS = $(CFLAGS) -GX
 +!ELSE
 +CFLAGS = $(CFLAGS) -EHsc
@@ -1138,7 +1143,7 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
 +# PINT: a modern compiler's warnings are not errors; the old runtime has no cookies.
 +CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -Gy -GR- -GS- -DWIN32=100 -D_WIN32_WINNT=0x0400
 +!ELSE
-+!IF "$(CPU)" == "PPC"
++!IFDEF VC4
 +CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -FIp7_vc4.h -D_WIN32_WINNT=0x0400 -D_7ZIP_OLD_COMMCTRL
 +!ELSE
 +CFLAGS = $(CFLAGS) -nologo -c -Fo$O/ -WX -Gy -GR-
@@ -1147,11 +1152,11 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
  
  !IFDEF MY_STATIC_LINK
  !IFNDEF MY_SINGLE_THREAD
-@@ -62,7 +94,11 @@
+@@ -62,7 +99,11 @@
  CFLAGS_O1 = $(CFLAGS) -O1
  CFLAGS_O2 = $(CFLAGS) -O2
  
-+!IF "$(CPU)" == "PPC"
++!IFDEF VC4
 +LFLAGS = $(LFLAGS) -nologo -OPT:REF
 +!ELSE
  LFLAGS = $(LFLAGS) -nologo -OPT:REF -OPT:ICF
@@ -1159,11 +1164,11 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
  
  !IFDEF DEF_FILE
  LFLAGS = $(LFLAGS) -DLL -DEF:$(DEF_FILE)
-@@ -84,7 +120,13 @@
+@@ -84,11 +125,17 @@
  	if not exist "$O" mkdir "$O"
  
  $(PROGPATH): $O $(OBJS) $(DEF_FILE)
-+!IF "$(CPU)" == "PPC"
++!IFDEF VC4
 +	link @<<
 +$(LFLAGS) -out:$(PROGPATH) $(OBJS) $(LIBS)
 +<<
@@ -1173,6 +1178,11 @@ diff -ruN --text a/7z920/CPP/Build.mak b/7z920/CPP/Build.mak
  
  !IFNDEF NO_DEFAULT_RES
  $O\resource.res: $(*B).rc
+-	rc $(RFLAGS) -fo$@ $**
++	$(RC) $(RFLAGS) -fo$@ $**
+ !ENDIF
+ $O\StdAfx.obj: $(*B).cpp
+ 	$(COMPL_PCH)
 diff -ruN --text a/7z920/CPP/Common/MyCom.h b/7z920/CPP/Common/MyCom.h
 --- a/7z920/CPP/Common/MyCom.h	2026-11-06 21:07:54.192774504 -0500
 +++ b/7z920/CPP/Common/MyCom.h	2026-11-06 21:07:55.210161949 -0500

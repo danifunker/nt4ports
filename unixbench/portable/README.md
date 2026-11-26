@@ -39,6 +39,19 @@ NT 3.51 already had: `QueryPerformanceCounter`, `CreateThread`, `Sleep`,
 `GetVersionEx` and `GetSystemInfo`. The source files use LF line endings.
 `cl` and `nmake` accept them, but Notepad shows them as one long line.
 
+## Building on Linux with ntsdk (Alpha, MIPS, PowerPC)
+
+[tenox7/ntsdk](https://github.com/tenox7/ntsdk) runs Visual C++ 4.1 for each in Docker:
+
+```
+./build-ntsdk.sh            # or: ./build-ntsdk.sh mips
+```
+
+That makes `ubench-alpha.exe`, `ubench-mips.exe` and `ubench-ppc.exe`, the generic builds.
+ntsdk's `ntrun` runs them (`ntrun ubench-mips.exe -q`), slowly, as it emulates the CPU. Its
+Alpha compiler (10.10) doesn't list the per-CPU options, so the Alpha CPU-specific builds
+below are still Visual C++ 6.0's.
+
 ## Building for PINT (NT 4.0 on ARM)
 
 [PINT](https://github.com/tenox7/PINT) is Windows NT 4.0 on the Raspberry
