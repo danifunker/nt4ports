@@ -1,0 +1,1026 @@
+diff --git a/backends/sdl/sdl-common.cpp b/backends/sdl/sdl-common.cpp
+index 5afa161..1d946be 100644
+--- a/backends/sdl/sdl-common.cpp
++++ b/backends/sdl/sdl-common.cpp
+@@ -1024,7 +1024,7 @@ bool OSystem_SDL_Common::set_sound_proc(SoundProc proc, void *param, SoundFormat
+ 	desired.format = AUDIO_S16SYS;
+ 	desired.channels = 2;
+ 	desired.samples = 2048;
+-	desired.callback = proc;
++	desired.callback = (void (SDLCALL *)(void *, Uint8 *, int))proc;	// Visual C++ 4: a C function pointer is another type
+ 	desired.userdata = param;
+ 	if (SDL_OpenAudio(&desired, NULL) != 0) {
+ 		return false;
+diff --git a/base/main.cpp b/base/main.cpp
+index e4e0f3e..b6a95f4 100644
+--- a/base/main.cpp
++++ b/base/main.cpp
+@@ -272,6 +272,11 @@ extern "C" int scummvm_main(GameDetector &detector, int argc, char *argv[]) {
+ 	OSystem::Property prop;
+ 	char *cfgFilename = NULL, *s=argv[1];
+ 
++#if defined(WIN32) && !defined(_WIN32_WCE) && !defined(_M_IX86)
++	// Have NT fix up any other unaligned access, rather than end the program.
++	SetErrorMode(SetErrorMode(0) | SEM_NOALIGNMENTFAULTEXCEPT);
++#endif
++
+ #if defined(UNIX)
+ 	/* On Unix, do a quick endian / alignement check before starting */
+ 	do_memory_test();
+diff --git a/common/config-manager.cpp b/common/config-manager.cpp
+index 46881ec..b9cd68a 100644
+--- a/common/config-manager.cpp
++++ b/common/config-manager.cpp
+@@ -347,9 +347,11 @@ void ConfigManager::set(const String &key, int value, const String &dom) {
+ 	set(key, String(tmp), dom);
+ }
+ 
++#ifndef SVM_NO_BOOL
+ void ConfigManager::set(const String &key, bool value, const String &dom) {
+ 	set(key, value ? trueStr : falseStr, dom);
+ }
++#endif
+ 
+ 
+ #pragma mark -
+@@ -369,9 +371,11 @@ void ConfigManager::registerDefault(const String &key, int value) {
+ 	registerDefault(key, tmp);
+ }
+ 
++#ifndef SVM_NO_BOOL
+ void ConfigManager::registerDefault(const String &key, bool value) {
+ 	registerDefault(key, value ? trueStr : falseStr);
+ }
++#endif
+ 
+ 
+ #pragma mark -
+diff --git a/common/config-manager.h b/common/config-manager.h
+index ee3159f..a7ba84a 100644
+--- a/common/config-manager.h
++++ b/common/config-manager.h
+@@ -75,12 +75,16 @@ public:
+ 	void				set(const String &key, const String &value, const String &dom = String::emptyString);
+ 	void				set(const String &key, const char *value, const String &dom = String::emptyString);
+ 	void				set(const String &key, int value, const String &dom = String::emptyString);
++#ifndef SVM_NO_BOOL
+ 	void				set(const String &key, bool value, const String &dom = String::emptyString);
++#endif
+ 
+ 	void				registerDefault(const String &key, const String &value);
+ 	void				registerDefault(const String &key, const char *value);
+ 	void				registerDefault(const String &key, int value);
++#ifndef SVM_NO_BOOL
+ 	void				registerDefault(const String &key, bool value);
++#endif
+ //	...
+ 
+ 	void				flushToDisk();
+diff --git a/common/map.h b/common/map.h
+index 8f08b79..60ce047 100644
+--- a/common/map.h
++++ b/common/map.h
+@@ -48,7 +48,8 @@ struct DefaultComparator {
+  * @todo Having unit tests for this class would be very desirable. There are a 
+  *       big number of things which can go wrong in this code.
+  */
+-template <class Key, class Value, class Comparator = DefaultComparator<Key> >
++// Visual C++ 4 has no default template argument that uses an earlier parameter.
++template <class Key, class Value, class Comparator>
+ class Map {
+ protected:
+ 	struct Node {
+@@ -64,8 +65,18 @@ protected:
+ 	Node *_header;
+ 
+ private:
+-	Map<Key, Value, Comparator>(const Map<Key, Value, Comparator> &map);
+-	Map<Key, Value, Comparator> &operator =(const Map<Key, Value, Comparator> &map);
++	Map(const Map<Key, Value, Comparator> &map);
++
++public:
++	// Visual C++ 4 makes every member of a class template it uses, so merge() needs Value
++	// to have an assignment operator: ConfigManager's Domain is a Map.
++	Map<Key, Value, Comparator> &operator =(const Map<Key, Value, Comparator> &map) {
++		if (this != &map) {
++			clear();
++			merge(map);
++		}
++		return *this;
++	}
+ 
+ public:
+ 	class const_iterator {
+@@ -105,12 +116,12 @@ public:
+ 	};
+ 
+ public:
+-	Map<Key, Value, Comparator>() : _root(0) {
++	Map() : _root(0) {
+ 		_header = new Node();
+ 		_header->_right = _header->_left = _header;
+ 	}
+ 	
+-	virtual ~Map<Key, Value, Comparator>() {
++	virtual ~Map() {
+ 		clearNodes(_root);
+ 		delete _header;
+ 		_root = _header = 0;
+@@ -279,7 +290,7 @@ protected:
+ 
+ class String;
+ 
+-typedef Map<String, String> StringMap;
++typedef Map<String, String, DefaultComparator<String> > StringMap;
+ 
+ }	// End of namespace Common
+ 
+diff --git a/common/scaler.cpp b/common/scaler.cpp
+index 795c90d..fecbd12 100644
+--- a/common/scaler.cpp
++++ b/common/scaler.cpp
+@@ -233,8 +233,7 @@ void AdvMame3x(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPi
+ 	}
+ }
+ 
+-template<int bitFormat>
+-void TV2xTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, 
++static void TV2xTemplate(int bitFormat, const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, 
+ 					int width, int height) {
+ 	const uint32 nextlineSrc = srcPitch / sizeof(uint16);
+ 	const uint16 *p = (const uint16 *)srcPtr;
+diff --git a/common/scaler/2xsai.cpp b/common/scaler/2xsai.cpp
+index 391703f..440ae61 100644
+--- a/common/scaler/2xsai.cpp
++++ b/common/scaler/2xsai.cpp
+@@ -43,11 +43,10 @@ static inline int GetResult(uint32 A, uint32 B, uint32 C, uint32 D) {
+ 	return rmap[y][x];
+ }
+ 
+-#define INTERPOLATE		INTERPOLATE<bitFormat>
+-#define Q_INTERPOLATE	Q_INTERPOLATE<bitFormat>
++#define INTERPOLATE(A, B)		INTERPOLATE(bitFormat, A, B)
++#define Q_INTERPOLATE(A, B, C, D)	Q_INTERPOLATE(bitFormat, A, B, C, D)
+ 
+-template<int bitFormat>
+-void Super2xSaITemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++static void Super2xSaITemplate(int bitFormat, const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
+ 	const uint16 *bP;
+ 	uint16 *dP;
+ 	const uint32 nextlineSrc = srcPitch >> 1;
+@@ -155,8 +154,7 @@ void Super2xSaITemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uin
+ 
+ MAKE_WRAPPER(Super2xSaI)
+ 
+-template<int bitFormat>
+-void SuperEagleTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++static void SuperEagleTemplate(int bitFormat, const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
+ 	const uint16 *bP;
+ 	uint16 *dP;
+ 	const uint32 nextlineSrc = srcPitch >> 1;
+@@ -266,8 +264,7 @@ void SuperEagleTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uin
+ 
+ MAKE_WRAPPER(SuperEagle)
+ 
+-template<int bitFormat>
+-void _2xSaITemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++static void _2xSaITemplate(int bitFormat, const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
+ 	const uint16 *bP;
+ 	uint16 *dP;
+ 	const uint32 nextlineSrc = srcPitch >> 1;
+diff --git a/common/scaler/aspect.cpp b/common/scaler/aspect.cpp
+index 4470004..bbc8b62 100644
+--- a/common/scaler/aspect.cpp
++++ b/common/scaler/aspect.cpp
+@@ -33,8 +33,7 @@
+ 
+ #if ASPECT_MODE == kSlowAndPerfectAspectMode
+ 
+-template<int bitFormat, int scale>
+-static inline uint16 interpolate5(uint16 A, uint16 B) {
++static inline uint16 interpolate5(int bitFormat, int scale, uint16 A, uint16 B) {
+ 	uint16 r = (uint16)(((A & redblueMask & 0xFF00) * scale + (B & redblueMask & 0xFF00) * (5 - scale)) / 5);
+ 	uint16 g = (uint16)(((A & greenMask) * scale + (B & greenMask) * (5 - scale)) / 5);
+ 	uint16 b = (uint16)(((A & redblueMask & 0x00FF) * scale + (B & redblueMask & 0x00FF) * (5 - scale)) / 5);
+@@ -43,24 +42,21 @@ static inline uint16 interpolate5(uint16 A, uint16 B) {
+ }
+ 
+ 
+-template<int bitFormat, int scale>
+-static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width) {
++static inline void interpolate5Line(int bitFormat, int scale, uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width) {
+ 	// Accurate but slightly slower code
+ 	while (width--) {
+-		*dst++ = interpolate5<bitFormat, scale>(*srcA++, *srcB++);
++		*dst++ = interpolate5(bitFormat, scale, *srcA++, *srcB++);
+ 	}
+ }
+ #endif
+ 
+ #if ASPECT_MODE == kFastAndNiceAspectMode
+ 
+-template<int bitFormat>
+-static inline uint32 INTERPOLATE_1_1(uint32 A, uint32 B) {
++static inline uint32 INTERPOLATE_1_1(int bitFormat, uint32 A, uint32 B) {
+ 	return (((A & highBits) >> 1) + ((B & highBits) >> 1) + (A & B & lowBits));
+ }
+ 
+-template<int bitFormat>
+-static inline uint32 INTERPOLATE_1_3(uint32 A, uint32 B) {
++static inline uint32 INTERPOLATE_1_3(int bitFormat, uint32 A, uint32 B) {
+ 	register uint32 x = ((A & qhighBits) >> 2) + ((B & qhighBits) >> 2) * 3;
+ 	register uint32 y = ((A & qlowBits) + (B & qlowBits) * 3) >> 2;
+ 
+@@ -68,8 +64,7 @@ static inline uint32 INTERPOLATE_1_3(uint32 A, uint32 B) {
+ 	return x + y;
+ }
+ 
+-template<int bitFormat, int scale>
+-static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width) {
++static inline void interpolate5Line(int bitFormat, int scale, uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width) {
+ 	// For efficiency reasons we blit two pixels at a time, so it is important
+ 	// that makeRectStretchable() guarantees that the width is even and that
+ 	// the rect starts on a well-aligned address. (Even where unaligned memory
+@@ -89,11 +84,11 @@ static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint1
+ 	uint32 *d = (uint32 *)dst;
+ 	if (scale == 1) {
+ 		while (width--) {
+-			*d++ = INTERPOLATE_1_3<bitFormat>(*sA++, *sB++);
++			*d++ = INTERPOLATE_1_3(bitFormat, *sA++, *sB++);
+ 		}
+ 	} else {
+ 		while (width--) {
+-			*d++ = INTERPOLATE_1_1<bitFormat>(*sA++, *sB++);
++			*d++ = INTERPOLATE_1_1(bitFormat, *sA++, *sB++);
+ 		}
+ 	}
+ }
+@@ -144,8 +139,7 @@ void makeRectStretchable(int &x, int &y, int &w, int &h) {
+  * srcY + height - 1, and it should be stretched to Y coordinates srcY
+  * through real2Aspect(srcY + height - 1).
+  */
+-template<int bitFormat>
+-int stretch200To240(uint8 *buf, uint32 pitch, int width, int height, int srcX, int srcY, int origSrcY) {
++static int stretch200To240(int bitFormat, uint8 *buf, uint32 pitch, int width, int height, int srcX, int srcY, int origSrcY) {
+ 	int maxDstY = real2Aspect(origSrcY + height - 1);
+ 	int y;
+ 	const uint8 *startSrcPtr = buf + srcX * 2 + (srcY - origSrcY) * pitch;
+@@ -167,16 +161,16 @@ int stretch200To240(uint8 *buf, uint32 pitch, int width, int height, int srcX, i
+ 				memcpy(dstPtr, srcPtr, width * 2);
+ 			break;
+ 		case 1:
+-			interpolate5Line<bitFormat, 1>((uint16 *)dstPtr, (const uint16 *)(srcPtr - pitch), (const uint16 *)srcPtr, width);
++			interpolate5Line(bitFormat, 1, (uint16 *)dstPtr, (const uint16 *)(srcPtr - pitch), (const uint16 *)srcPtr, width);
+ 			break;
+ 		case 2:
+-			interpolate5Line<bitFormat, 2>((uint16 *)dstPtr, (const uint16 *)(srcPtr - pitch), (const uint16 *)srcPtr, width);
++			interpolate5Line(bitFormat, 2, (uint16 *)dstPtr, (const uint16 *)(srcPtr - pitch), (const uint16 *)srcPtr, width);
+ 			break;
+ 		case 3:
+-			interpolate5Line<bitFormat, 2>((uint16 *)dstPtr, (const uint16 *)srcPtr, (const uint16 *)(srcPtr - pitch), width);
++			interpolate5Line(bitFormat, 2, (uint16 *)dstPtr, (const uint16 *)srcPtr, (const uint16 *)(srcPtr - pitch), width);
+ 			break;
+ 		case 4:
+-			interpolate5Line<bitFormat, 1>((uint16 *)dstPtr, (const uint16 *)srcPtr, (const uint16 *)(srcPtr - pitch), width);
++			interpolate5Line(bitFormat, 1, (uint16 *)dstPtr, (const uint16 *)srcPtr, (const uint16 *)(srcPtr - pitch), width);
+ 			break;
+ 		}
+ #endif
+@@ -188,8 +182,8 @@ int stretch200To240(uint8 *buf, uint32 pitch, int width, int height, int srcX, i
+ 
+ int stretch200To240(uint8 *buf, uint32 pitch, int width, int height, int srcX, int srcY, int origSrcY) {
+ 	if (gBitFormat == 565)
+-		return stretch200To240<565>(buf, pitch, width, height, srcX, srcY, origSrcY);
++		return stretch200To240(565, buf, pitch, width, height, srcX, srcY, origSrcY);
+ 	else // gBitFormat == 555
+-		return stretch200To240<555>(buf, pitch, width, height, srcX, srcY, origSrcY);
++		return stretch200To240(555, buf, pitch, width, height, srcX, srcY, origSrcY);
+ }
+ 
+diff --git a/common/scaler/hq2x.cpp b/common/scaler/hq2x.cpp
+index 98790e1..b78f07e 100644
+--- a/common/scaler/hq2x.cpp
++++ b/common/scaler/hq2x.cpp
+@@ -37,56 +37,56 @@ static bool isAltiVecAvailable()  {
+ #endif
+ 
+ #define PIXEL00_0	*(q) = w5;
+-#define PIXEL00_10	*(q) = interpolate16_2<bitFormat,3,1>(w5, w1);
+-#define PIXEL00_11	*(q) = interpolate16_2<bitFormat,3,1>(w5, w4);
+-#define PIXEL00_12	*(q) = interpolate16_2<bitFormat,3,1>(w5, w2);
+-#define PIXEL00_20	*(q) = interpolate16_3<bitFormat,2,1,1>(w5, w4, w2);
+-#define PIXEL00_21	*(q) = interpolate16_3<bitFormat,2,1,1>(w5, w1, w2);
+-#define PIXEL00_22	*(q) = interpolate16_3<bitFormat,2,1,1>(w5, w1, w4);
+-#define PIXEL00_60	*(q) = interpolate16_3<bitFormat,5,2,1>(w5, w2, w4);
+-#define PIXEL00_61	*(q) = interpolate16_3<bitFormat,5,2,1>(w5, w4, w2);
+-#define PIXEL00_70	*(q) = interpolate16_3<bitFormat,6,1,1>(w5, w4, w2);
+-#define PIXEL00_90	*(q) = interpolate16_3<bitFormat,2,3,3>(w5, w4, w2);
+-#define PIXEL00_100	*(q) = interpolate16_3<bitFormat,14,1,1>(w5, w4, w2);
++#define PIXEL00_10	*(q) = interpolate16_2(bitFormat,3,1,w5, w1);
++#define PIXEL00_11	*(q) = interpolate16_2(bitFormat,3,1,w5, w4);
++#define PIXEL00_12	*(q) = interpolate16_2(bitFormat,3,1,w5, w2);
++#define PIXEL00_20	*(q) = interpolate16_3(bitFormat,2,1,1,w5, w4, w2);
++#define PIXEL00_21	*(q) = interpolate16_3(bitFormat,2,1,1,w5, w1, w2);
++#define PIXEL00_22	*(q) = interpolate16_3(bitFormat,2,1,1,w5, w1, w4);
++#define PIXEL00_60	*(q) = interpolate16_3(bitFormat,5,2,1,w5, w2, w4);
++#define PIXEL00_61	*(q) = interpolate16_3(bitFormat,5,2,1,w5, w4, w2);
++#define PIXEL00_70	*(q) = interpolate16_3(bitFormat,6,1,1,w5, w4, w2);
++#define PIXEL00_90	*(q) = interpolate16_3(bitFormat,2,3,3,w5, w4, w2);
++#define PIXEL00_100	*(q) = interpolate16_3(bitFormat,14,1,1,w5, w4, w2);
+ 
+ #define PIXEL01_0	*(q+1) = w5;
+-#define PIXEL01_10	*(q+1) = interpolate16_2<bitFormat,3,1>(w5, w3);
+-#define PIXEL01_11	*(q+1) = interpolate16_2<bitFormat,3,1>(w5, w2);
+-#define PIXEL01_12	*(q+1) = interpolate16_2<bitFormat,3,1>(w5, w6);
+-#define PIXEL01_20	*(q+1) = interpolate16_3<bitFormat,2,1,1>(w5, w2, w6);
+-#define PIXEL01_21	*(q+1) = interpolate16_3<bitFormat,2,1,1>(w5, w3, w6);
+-#define PIXEL01_22	*(q+1) = interpolate16_3<bitFormat,2,1,1>(w5, w3, w2);
+-#define PIXEL01_60	*(q+1) = interpolate16_3<bitFormat,5,2,1>(w5, w6, w2);
+-#define PIXEL01_61	*(q+1) = interpolate16_3<bitFormat,5,2,1>(w5, w2, w6);
+-#define PIXEL01_70	*(q+1) = interpolate16_3<bitFormat,6,1,1>(w5, w2, w6);
+-#define PIXEL01_90	*(q+1) = interpolate16_3<bitFormat,2,3,3>(w5, w2, w6);
+-#define PIXEL01_100	*(q+1) = interpolate16_3<bitFormat,14,1,1>(w5, w2, w6);
++#define PIXEL01_10	*(q+1) = interpolate16_2(bitFormat,3,1,w5, w3);
++#define PIXEL01_11	*(q+1) = interpolate16_2(bitFormat,3,1,w5, w2);
++#define PIXEL01_12	*(q+1) = interpolate16_2(bitFormat,3,1,w5, w6);
++#define PIXEL01_20	*(q+1) = interpolate16_3(bitFormat,2,1,1,w5, w2, w6);
++#define PIXEL01_21	*(q+1) = interpolate16_3(bitFormat,2,1,1,w5, w3, w6);
++#define PIXEL01_22	*(q+1) = interpolate16_3(bitFormat,2,1,1,w5, w3, w2);
++#define PIXEL01_60	*(q+1) = interpolate16_3(bitFormat,5,2,1,w5, w6, w2);
++#define PIXEL01_61	*(q+1) = interpolate16_3(bitFormat,5,2,1,w5, w2, w6);
++#define PIXEL01_70	*(q+1) = interpolate16_3(bitFormat,6,1,1,w5, w2, w6);
++#define PIXEL01_90	*(q+1) = interpolate16_3(bitFormat,2,3,3,w5, w2, w6);
++#define PIXEL01_100	*(q+1) = interpolate16_3(bitFormat,14,1,1,w5, w2, w6);
+ 
+ #define PIXEL10_0	*(q+nextlineDst) = w5;
+-#define PIXEL10_10	*(q+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w7);
+-#define PIXEL10_11	*(q+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w8);
+-#define PIXEL10_12	*(q+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w4);
+-#define PIXEL10_20	*(q+nextlineDst) = interpolate16_3<bitFormat,2,1,1>(w5, w8, w4);
+-#define PIXEL10_21	*(q+nextlineDst) = interpolate16_3<bitFormat,2,1,1>(w5, w7, w4);
+-#define PIXEL10_22	*(q+nextlineDst) = interpolate16_3<bitFormat,2,1,1>(w5, w7, w8);
+-#define PIXEL10_60	*(q+nextlineDst) = interpolate16_3<bitFormat,5,2,1>(w5, w4, w8);
+-#define PIXEL10_61	*(q+nextlineDst) = interpolate16_3<bitFormat,5,2,1>(w5, w8, w4);
+-#define PIXEL10_70	*(q+nextlineDst) = interpolate16_3<bitFormat,6,1,1>(w5, w8, w4);
+-#define PIXEL10_90	*(q+nextlineDst) = interpolate16_3<bitFormat,2,3,3>(w5, w8, w4);
+-#define PIXEL10_100	*(q+nextlineDst) = interpolate16_3<bitFormat,14,1,1>(w5, w8, w4);
++#define PIXEL10_10	*(q+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w7);
++#define PIXEL10_11	*(q+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w8);
++#define PIXEL10_12	*(q+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w4);
++#define PIXEL10_20	*(q+nextlineDst) = interpolate16_3(bitFormat,2,1,1,w5, w8, w4);
++#define PIXEL10_21	*(q+nextlineDst) = interpolate16_3(bitFormat,2,1,1,w5, w7, w4);
++#define PIXEL10_22	*(q+nextlineDst) = interpolate16_3(bitFormat,2,1,1,w5, w7, w8);
++#define PIXEL10_60	*(q+nextlineDst) = interpolate16_3(bitFormat,5,2,1,w5, w4, w8);
++#define PIXEL10_61	*(q+nextlineDst) = interpolate16_3(bitFormat,5,2,1,w5, w8, w4);
++#define PIXEL10_70	*(q+nextlineDst) = interpolate16_3(bitFormat,6,1,1,w5, w8, w4);
++#define PIXEL10_90	*(q+nextlineDst) = interpolate16_3(bitFormat,2,3,3,w5, w8, w4);
++#define PIXEL10_100	*(q+nextlineDst) = interpolate16_3(bitFormat,14,1,1,w5, w8, w4);
+ 
+ #define PIXEL11_0	*(q+1+nextlineDst) = w5;
+-#define PIXEL11_10	*(q+1+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w9);
+-#define PIXEL11_11	*(q+1+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w6);
+-#define PIXEL11_12	*(q+1+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w8);
+-#define PIXEL11_20	*(q+1+nextlineDst) = interpolate16_3<bitFormat,2,1,1>(w5, w6, w8);
+-#define PIXEL11_21	*(q+1+nextlineDst) = interpolate16_3<bitFormat,2,1,1>(w5, w9, w8);
+-#define PIXEL11_22	*(q+1+nextlineDst) = interpolate16_3<bitFormat,2,1,1>(w5, w9, w6);
+-#define PIXEL11_60	*(q+1+nextlineDst) = interpolate16_3<bitFormat,5,2,1>(w5, w8, w6);
+-#define PIXEL11_61	*(q+1+nextlineDst) = interpolate16_3<bitFormat,5,2,1>(w5, w6, w8);
+-#define PIXEL11_70	*(q+1+nextlineDst) = interpolate16_3<bitFormat,6,1,1>(w5, w6, w8);
+-#define PIXEL11_90	*(q+1+nextlineDst) = interpolate16_3<bitFormat,2,3,3>(w5, w6, w8);
+-#define PIXEL11_100	*(q+1+nextlineDst) = interpolate16_3<bitFormat,14,1,1>(w5, w6, w8);
++#define PIXEL11_10	*(q+1+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w9);
++#define PIXEL11_11	*(q+1+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w6);
++#define PIXEL11_12	*(q+1+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w8);
++#define PIXEL11_20	*(q+1+nextlineDst) = interpolate16_3(bitFormat,2,1,1,w5, w6, w8);
++#define PIXEL11_21	*(q+1+nextlineDst) = interpolate16_3(bitFormat,2,1,1,w5, w9, w8);
++#define PIXEL11_22	*(q+1+nextlineDst) = interpolate16_3(bitFormat,2,1,1,w5, w9, w6);
++#define PIXEL11_60	*(q+1+nextlineDst) = interpolate16_3(bitFormat,5,2,1,w5, w8, w6);
++#define PIXEL11_61	*(q+1+nextlineDst) = interpolate16_3(bitFormat,5,2,1,w5, w6, w8);
++#define PIXEL11_70	*(q+1+nextlineDst) = interpolate16_3(bitFormat,6,1,1,w5, w6, w8);
++#define PIXEL11_90	*(q+1+nextlineDst) = interpolate16_3(bitFormat,2,3,3,w5, w6, w8);
++#define PIXEL11_100	*(q+1+nextlineDst) = interpolate16_3(bitFormat,14,1,1,w5, w6, w8);
+ 
+ #define YUV(x)	RGBtoYUV[w ## x]
+ 
+diff --git a/common/scaler/hq3x.cpp b/common/scaler/hq3x.cpp
+index 3915627..f636fa1 100644
+--- a/common/scaler/hq3x.cpp
++++ b/common/scaler/hq3x.cpp
+@@ -36,58 +36,58 @@ static bool isAltiVecAvailable()  {
+ }
+ #endif
+ 
+-#define PIXEL00_1M  *(q) = interpolate16_2<bitFormat,3,1>(w5, w1);
+-#define PIXEL00_1U  *(q) = interpolate16_2<bitFormat,3,1>(w5, w2);
+-#define PIXEL00_1L  *(q) = interpolate16_2<bitFormat,3,1>(w5, w4);
+-#define PIXEL00_2   *(q) = interpolate16_3<bitFormat,2,1,1>(w5, w4, w2);
+-#define PIXEL00_4   *(q) = interpolate16_3<bitFormat,2,7,7>(w5, w4, w2);
+-#define PIXEL00_5   *(q) = interpolate16_2<bitFormat,1,1>(w4, w2);
++#define PIXEL00_1M  *(q) = interpolate16_2(bitFormat,3,1,w5, w1);
++#define PIXEL00_1U  *(q) = interpolate16_2(bitFormat,3,1,w5, w2);
++#define PIXEL00_1L  *(q) = interpolate16_2(bitFormat,3,1,w5, w4);
++#define PIXEL00_2   *(q) = interpolate16_3(bitFormat,2,1,1,w5, w4, w2);
++#define PIXEL00_4   *(q) = interpolate16_3(bitFormat,2,7,7,w5, w4, w2);
++#define PIXEL00_5   *(q) = interpolate16_2(bitFormat,1,1,w4, w2);
+ #define PIXEL00_C   *(q) = w5;
+ 
+-#define PIXEL01_1   *(q+1) = interpolate16_2<bitFormat,3,1>(w5, w2);
+-#define PIXEL01_3   *(q+1) = interpolate16_2<bitFormat,7,1>(w5, w2);
+-#define PIXEL01_6   *(q+1) = interpolate16_2<bitFormat,3,1>(w2, w5);
++#define PIXEL01_1   *(q+1) = interpolate16_2(bitFormat,3,1,w5, w2);
++#define PIXEL01_3   *(q+1) = interpolate16_2(bitFormat,7,1,w5, w2);
++#define PIXEL01_6   *(q+1) = interpolate16_2(bitFormat,3,1,w2, w5);
+ #define PIXEL01_C   *(q+1) = w5;
+ 
+-#define PIXEL02_1M  *(q+2) = interpolate16_2<bitFormat,3,1>(w5, w3);
+-#define PIXEL02_1U  *(q+2) = interpolate16_2<bitFormat,3,1>(w5, w2);
+-#define PIXEL02_1R  *(q+2) = interpolate16_2<bitFormat,3,1>(w5, w6);
+-#define PIXEL02_2   *(q+2) = interpolate16_3<bitFormat,2,1,1>(w5, w2, w6);
+-#define PIXEL02_4   *(q+2) = interpolate16_3<bitFormat,2,7,7>(w5, w2, w6);
+-#define PIXEL02_5   *(q+2) = interpolate16_2<bitFormat,1,1>(w2, w6);
++#define PIXEL02_1M  *(q+2) = interpolate16_2(bitFormat,3,1,w5, w3);
++#define PIXEL02_1U  *(q+2) = interpolate16_2(bitFormat,3,1,w5, w2);
++#define PIXEL02_1R  *(q+2) = interpolate16_2(bitFormat,3,1,w5, w6);
++#define PIXEL02_2   *(q+2) = interpolate16_3(bitFormat,2,1,1,w5, w2, w6);
++#define PIXEL02_4   *(q+2) = interpolate16_3(bitFormat,2,7,7,w5, w2, w6);
++#define PIXEL02_5   *(q+2) = interpolate16_2(bitFormat,1,1,w2, w6);
+ #define PIXEL02_C   *(q+2) = w5;
+ 
+-#define PIXEL10_1   *(q+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w4);
+-#define PIXEL10_3   *(q+nextlineDst) = interpolate16_2<bitFormat,7,1>(w5, w4);
+-#define PIXEL10_6   *(q+nextlineDst) = interpolate16_2<bitFormat,3,1>(w4, w5);
++#define PIXEL10_1   *(q+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w4);
++#define PIXEL10_3   *(q+nextlineDst) = interpolate16_2(bitFormat,7,1,w5, w4);
++#define PIXEL10_6   *(q+nextlineDst) = interpolate16_2(bitFormat,3,1,w4, w5);
+ #define PIXEL10_C   *(q+nextlineDst) = w5;
+ 
+ #define PIXEL11     *(q+1+nextlineDst) = w5;
+ 
+-#define PIXEL12_1   *(q+2+nextlineDst) = interpolate16_2<bitFormat,3,1>(w5, w6);
+-#define PIXEL12_3   *(q+2+nextlineDst) = interpolate16_2<bitFormat,7,1>(w5, w6);
+-#define PIXEL12_6   *(q+2+nextlineDst) = interpolate16_2<bitFormat,3,1>(w6, w5);
++#define PIXEL12_1   *(q+2+nextlineDst) = interpolate16_2(bitFormat,3,1,w5, w6);
++#define PIXEL12_3   *(q+2+nextlineDst) = interpolate16_2(bitFormat,7,1,w5, w6);
++#define PIXEL12_6   *(q+2+nextlineDst) = interpolate16_2(bitFormat,3,1,w6, w5);
+ #define PIXEL12_C   *(q+2+nextlineDst) = w5;
+ 
+-#define PIXEL20_1M  *(q+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w5, w7);
+-#define PIXEL20_1D  *(q+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w5, w8);
+-#define PIXEL20_1L  *(q+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w5, w4);
+-#define PIXEL20_2   *(q+nextlineDst2) = interpolate16_3<bitFormat,2,1,1>(w5, w8, w4);
+-#define PIXEL20_4   *(q+nextlineDst2) = interpolate16_3<bitFormat,2,7,7>(w5, w8, w4);
+-#define PIXEL20_5   *(q+nextlineDst2) = interpolate16_2<bitFormat,1,1>(w8, w4);
++#define PIXEL20_1M  *(q+nextlineDst2) = interpolate16_2(bitFormat,3,1,w5, w7);
++#define PIXEL20_1D  *(q+nextlineDst2) = interpolate16_2(bitFormat,3,1,w5, w8);
++#define PIXEL20_1L  *(q+nextlineDst2) = interpolate16_2(bitFormat,3,1,w5, w4);
++#define PIXEL20_2   *(q+nextlineDst2) = interpolate16_3(bitFormat,2,1,1,w5, w8, w4);
++#define PIXEL20_4   *(q+nextlineDst2) = interpolate16_3(bitFormat,2,7,7,w5, w8, w4);
++#define PIXEL20_5   *(q+nextlineDst2) = interpolate16_2(bitFormat,1,1,w8, w4);
+ #define PIXEL20_C   *(q+nextlineDst2) = w5;
+ 
+-#define PIXEL21_1   *(q+1+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w5, w8);
+-#define PIXEL21_3   *(q+1+nextlineDst2) = interpolate16_2<bitFormat,7,1>(w5, w8);
+-#define PIXEL21_6   *(q+1+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w8, w5);
++#define PIXEL21_1   *(q+1+nextlineDst2) = interpolate16_2(bitFormat,3,1,w5, w8);
++#define PIXEL21_3   *(q+1+nextlineDst2) = interpolate16_2(bitFormat,7,1,w5, w8);
++#define PIXEL21_6   *(q+1+nextlineDst2) = interpolate16_2(bitFormat,3,1,w8, w5);
+ #define PIXEL21_C   *(q+1+nextlineDst2) = w5;
+ 
+-#define PIXEL22_1M  *(q+2+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w5, w9);
+-#define PIXEL22_1D  *(q+2+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w5, w8);
+-#define PIXEL22_1R  *(q+2+nextlineDst2) = interpolate16_2<bitFormat,3,1>(w5, w6);
+-#define PIXEL22_2   *(q+2+nextlineDst2) = interpolate16_3<bitFormat,2,1,1>(w5, w6, w8);
+-#define PIXEL22_4   *(q+2+nextlineDst2) = interpolate16_3<bitFormat,2,7,7>(w5, w6, w8);
+-#define PIXEL22_5   *(q+2+nextlineDst2) = interpolate16_2<bitFormat,1,1>(w6, w8);
++#define PIXEL22_1M  *(q+2+nextlineDst2) = interpolate16_2(bitFormat,3,1,w5, w9);
++#define PIXEL22_1D  *(q+2+nextlineDst2) = interpolate16_2(bitFormat,3,1,w5, w8);
++#define PIXEL22_1R  *(q+2+nextlineDst2) = interpolate16_2(bitFormat,3,1,w5, w6);
++#define PIXEL22_2   *(q+2+nextlineDst2) = interpolate16_3(bitFormat,2,1,1,w5, w6, w8);
++#define PIXEL22_4   *(q+2+nextlineDst2) = interpolate16_3(bitFormat,2,7,7,w5, w6, w8);
++#define PIXEL22_5   *(q+2+nextlineDst2) = interpolate16_2(bitFormat,1,1,w6, w8);
+ #define PIXEL22_C   *(q+2+nextlineDst2) = w5;
+ 
+ #define YUV(x)	RGBtoYUV[w ## x]
+diff --git a/common/scaler/intern.h b/common/scaler/intern.h
+index 2b92dfb..7e3ca95 100644
+--- a/common/scaler/intern.h
++++ b/common/scaler/intern.h
+@@ -27,40 +27,17 @@
+ #include "stdafx.h"
+ #include "common/scummsys.h"
+ 
+-template<int bitFormat>
+-struct ColorMasks {
+-};
+-
+-template<>
+-struct ColorMasks<565> {
+-	enum {
+-		highBits = 0xF7DEF7DE,
+-		lowBits = 0x08210821,
+-		qhighBits = 0xE79CE79C,
+-		qlowBits = 0x18631863,
+-		redblueMask = 0xF81F,
+-		greenMask = 0x07E0
+-	};
+-};
+-
+-template<>
+-struct ColorMasks<555> {
+-	enum {
+-		highBits = 0x7BDE7BDE,
+-		lowBits = 0x04210421,
+-		qhighBits = 0x739C739C,
+-		qlowBits = 0x0C630C63,
+-		redblueMask = 0x7C1F,
+-		greenMask = 0x03E0
+-	};
+-};
+-
+-#define highBits	ColorMasks<bitFormat>::highBits
+-#define lowBits		ColorMasks<bitFormat>::lowBits
+-#define qhighBits	ColorMasks<bitFormat>::qhighBits
+-#define qlowBits	ColorMasks<bitFormat>::qlowBits
+-#define redblueMask	ColorMasks<bitFormat>::redblueMask
+-#define greenMask	ColorMasks<bitFormat>::greenMask
++/*
++ * The masks of the 16-bit pixel format bitFormat, 565 or 555. bitFormat is a function
++ * parameter or a macro rather than a template parameter, as Visual C++ 4 can't deduce one
++ * that isn't among the function's parameters. Where it's a constant, these fold.
++ */
++#define highBits	((bitFormat) == 565 ? 0xF7DEF7DEU : 0x7BDE7BDEU)
++#define lowBits		((bitFormat) == 565 ? 0x08210821U : 0x04210421U)
++#define qhighBits	((bitFormat) == 565 ? 0xE79CE79CU : 0x739C739CU)
++#define qlowBits	((bitFormat) == 565 ? 0x18631863U : 0x0C630C63U)
++#define redblueMask	((bitFormat) == 565 ? 0xF81FU : 0x7C1FU)
++#define greenMask	((bitFormat) == 565 ? 0x07E0U : 0x03E0U)
+ 
+ 
+ /**
+@@ -68,8 +45,7 @@ struct ColorMasks<555> {
+  * In particular, A and B can contain two pixels/each in the upper
+  * and lower halves.
+  */
+-template<int bitFormat>
+-static inline uint32 INTERPOLATE(uint32 A, uint32 B) {
++static inline uint32 INTERPOLATE(int bitFormat, uint32 A, uint32 B) {
+ 
+ 	return (((A & highBits) >> 1) + ((B & highBits) >> 1) + (A & B & lowBits));
+ }
+@@ -79,8 +55,7 @@ static inline uint32 INTERPOLATE(uint32 A, uint32 B) {
+  * In particular, A and B can contain two pixels/each in the upper
+  * and lower halves.
+  */
+-template<int bitFormat>
+-static inline uint32 Q_INTERPOLATE(uint32 A, uint32 B, uint32 C, uint32 D) {
++static inline uint32 Q_INTERPOLATE(int bitFormat, uint32 A, uint32 B, uint32 C, uint32 D) {
+ 	register uint32 x = ((A & qhighBits) >> 2) + ((B & qhighBits) >> 2) + ((C & qhighBits) >> 2) + ((D & qhighBits) >> 2);
+ 	register uint32 y = ((A & qlowBits) + (B & qlowBits) + (C & qlowBits) + (D & qlowBits)) >> 2;
+ 
+@@ -90,21 +65,19 @@ static inline uint32 Q_INTERPOLATE(uint32 A, uint32 B, uint32 C, uint32 D) {
+ 
+ 
+ /**
+- * Interpolate two 16 bit pixels with the weights specified in the template
+- * parameters. Used by the hq scaler family.
++ * Interpolate two 16 bit pixels with the weights w1, w2 (and w3)
++ *. Used by the hq scaler family.
+  */
+-template<int bitFormat, int w1, int w2>
+-static inline uint16 interpolate16_2(uint16 p1, uint16 p2) {
++static inline uint16 interpolate16_2(int bitFormat, int w1, int w2, uint16 p1, uint16 p2) {
+ 	return ((((p1 & redblueMask) * w1 + (p2 & redblueMask) * w2) / (w1 + w2)) & redblueMask) |
+ 	       ((((p1 & greenMask) * w1 + (p2 & greenMask) * w2) / (w1 + w2)) & greenMask);
+ }
+ 
+ /**
+- * Interpolate three 16 bit pixels with the weights specified in the template
+- * parameters. Used by the hq scaler family.
++ * Interpolate three 16 bit pixels with the weights w1, w2 (and w3)
++ *. Used by the hq scaler family.
+  */
+-template<int bitFormat, int w1, int w2, int w3>
+-static inline uint16 interpolate16_3(uint16 p1, uint16 p2, uint16 p3) {
++static inline uint16 interpolate16_3(int bitFormat, int w1, int w2, int w3, uint16 p1, uint16 p2, uint16 p3) {
+ 	return ((((p1 & redblueMask) * w1 + (p2 & redblueMask) * w2 + (p3 & redblueMask) * w3) / (w1 + w2 + w3)) & redblueMask) |
+ 		   ((((p1 & greenMask) * w1 + (p2 & greenMask) * w2 + (p3 & greenMask) * w3) / (w1 + w2 + w3)) & greenMask);
+ }
+@@ -155,13 +128,13 @@ static inline bool diffYUV(int yuv1, int yuv2) {
+  */
+ extern int   RGBtoYUV[65536];
+ 
+-/** Auxiliary macro to simplify creating those template function wrappers. */
++/** Auxiliary macro to simplify creating the wrappers of the 565 and 555 functions. */
+ #define MAKE_WRAPPER(FUNC) \
+ 	void FUNC(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) { \
+ 		if (gBitFormat == 565) \
+-			FUNC ## Template<565>(srcPtr, srcPitch, dstPtr, dstPitch, width, height); \
++			FUNC ## Template(565, srcPtr, srcPitch, dstPtr, dstPitch, width, height); \
+ 		else \
+-			FUNC ## Template<555>(srcPtr, srcPitch, dstPtr, dstPitch, width, height); \
++			FUNC ## Template(555, srcPtr, srcPitch, dstPtr, dstPitch, width, height); \
+ 	}
+ 
+ /** Specifies the currently active 16bit pixel format, 555 or 565. */
+diff --git a/common/scummsys.h b/common/scummsys.h
+index 3cf1e94..33e33d9 100644
+--- a/common/scummsys.h
++++ b/common/scummsys.h
+@@ -53,8 +53,17 @@
+ 
+ 	#define SCUMM_LITTLE_ENDIAN
+ 
++	// Windows NT on Alpha, MIPS, PowerPC and ARM: unaligned reads fault.
++	#if !defined(_M_IX86) && !defined(_WIN32_WCE)
++	#define SCUMM_NEED_ALIGNMENT
++	#endif
++
+ 	#define FORCEINLINE __forceinline
++	#if _MSC_VER >= 1200
+ 	#define NORETURN _declspec(noreturn)
++	#else
++	#define NORETURN
++	#endif
+ 
+ 	typedef unsigned char byte;
+ 	typedef unsigned char uint8;
+diff --git a/common/str.h b/common/str.h
+index 2534dab..ff0cce9 100644
+--- a/common/str.h
++++ b/common/str.h
+@@ -41,6 +41,10 @@ namespace Common {
+  ConstString ?!?
+ */
+ 
++// Before the friend declaration below: Visual C++ 4 otherwise takes that String to be a
++// global class, and names the functions that use Common::String wrongly.
++class String;
++
+ class ConstString {
+ 	friend class String;
+ protected:
+diff --git a/scumm/imuse.cpp b/scumm/imuse.cpp
+index e26078f..8df322c 100644
+--- a/scumm/imuse.cpp
++++ b/scumm/imuse.cpp
+@@ -1296,6 +1296,7 @@ int IMuseInternal::saveReference(void *me_ref, byte type, void *ref) {
+ 	default:
+ 		error("saveReference: invalid type");
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ void *IMuseInternal::loadReference(void *me_ref, byte type, int ref) {
+@@ -1308,6 +1309,7 @@ void *IMuseInternal::loadReference(void *me_ref, byte type, int ref) {
+ 	default:
+ 		error("loadReference: invalid type");
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ int IMuseInternal::save_or_load(Serializer *ser, ScummEngine *scumm) {
+diff --git a/scumm/resource.cpp b/scumm/resource.cpp
+index 1ae9b5f..51e11c2 100644
+--- a/scumm/resource.cpp
++++ b/scumm/resource.cpp
+@@ -668,6 +668,7 @@ int ScummEngine::loadResource(int type, int idx) {
+ 	nukeResource(type, idx);
+ 
+ 	error("Cannot read resource");
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ int ScummEngine::readSoundResource(int type, int idx) {
+@@ -1003,6 +1004,7 @@ static inline byte Mac0ToGMInstrument(uint32 type, int &transpose) {
+ 	default:
+ 		error("Unknown Mac0 instrument %s found", tag2str(type));
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ void ScummEngine::convertMac0Resource(int type, int idx, byte *src_ptr, int size) {
+diff --git a/scumm/script.cpp b/scumm/script.cpp
+index b8eadee..d9c5f1c 100644
+--- a/scumm/script.cpp
++++ b/scumm/script.cpp
+@@ -357,7 +357,7 @@ void ScummEngine::getScriptBaseAddress() {
+ 				break;
+ 		_scriptOrgPointer = getResourceAddress(rtInventory, idx);
+ 		assert(idx < _numInventory);
+-		_lastCodePtr = &_baseInventoryItems[idx];
++		_lastCodePtr = (const byte * const *)&_baseInventoryItems[idx];
+ 		break;
+ 
+ 	case WIO_LOCAL:
+@@ -365,25 +365,25 @@ void ScummEngine::getScriptBaseAddress() {
+ 		if (_version == 8) {
+ 			_scriptOrgPointer = getResourceAddress(rtRoomScripts, _roomResource);
+ 			assert(_roomResource < res.num[rtRoomScripts]);
+-			_lastCodePtr = &res.address[rtRoomScripts][_roomResource];
++			_lastCodePtr = (const byte * const *)&res.address[rtRoomScripts][_roomResource];
+ 		} else {
+ 			_scriptOrgPointer = getResourceAddress(rtRoom, _roomResource);
+ 			assert(_roomResource < _numRooms);
+-			_lastCodePtr = &_baseRooms[_roomResource];
++			_lastCodePtr = (const byte * const *)&_baseRooms[_roomResource];
+ 		}
+ 		break;
+ 
+ 	case WIO_GLOBAL:							/* global script */
+ 		_scriptOrgPointer = getResourceAddress(rtScript, ss->number);
+ 		assert(ss->number < _numScripts);
+-		_lastCodePtr = &_baseScripts[ss->number];
++		_lastCodePtr = (const byte * const *)&_baseScripts[ss->number];
+ 		break;
+ 
+ 	case WIO_FLOBJECT:						/* flobject script */
+ 		idx = getObjectIndex(ss->number);
+ 		_scriptOrgPointer = getResourceAddress(rtFlObject, _objs[idx].fl_object_index);
+ 		assert(idx < _numFlObject);
+-		_lastCodePtr = &_baseFLObject[idx];
++		_lastCodePtr = (const byte * const *)&_baseFLObject[idx];
+ 		break;
+ 	default:
+ 		error("Bad type while getting base address");
+diff --git a/scumm/scumm.h b/scumm/scumm.h
+index 7fb07c1..b590636 100644
+--- a/scumm/scumm.h
++++ b/scumm/scumm.h
+@@ -58,7 +58,7 @@ struct BoxCoords;
+ struct FindObjectInRoom;
+ struct ScummGameSettings;
+ 
+-typedef Common::Map<Common::String, int> ObjectIDMap;
++typedef Common::Map<Common::String, int, Common::DefaultComparator<Common::String> > ObjectIDMap;
+ 
+ // Use g_scumm from error() ONLY
+ extern ScummEngine *g_scumm;
+diff --git a/scumm/scummvm.cpp b/scumm/scummvm.cpp
+index 96a6112..44a5691 100644
+--- a/scumm/scummvm.cpp
++++ b/scumm/scummvm.cpp
+@@ -2864,7 +2864,7 @@ DetectedGameList Engine_SCUMM_detectGames(const FSList &fslist) {
+ 	char detectName[128];
+ 	char detectName2[128];
+ 	
+-	typedef Common::Map<Common::String, bool> StringSet;
++	typedef Common::Map<Common::String, bool, Common::DefaultComparator<Common::String> > StringSet;
+ 	StringSet fileSet;
+ 
+ 	for (g = scumm_settings; g->name; ++g) {
+diff --git a/simon/simon.cpp b/simon/simon.cpp
+index 38f7496..4dce002 100644
+--- a/simon/simon.cpp
++++ b/simon/simon.cpp
+@@ -1515,6 +1515,7 @@ uint SimonEngine::get_fcs_ptr_3_index(FillOrCopyStruct *fcs) {
+ 			return i;
+ 
+ 	error("get_fcs_ptr_3_index: not found");
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ void SimonEngine::lock() {
+@@ -2158,6 +2159,7 @@ ThreeValues *SimonEngine::getThreeValues(uint a) {
+ 	default:
+ 		error("text, invalid value %d", a);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ void SimonEngine::o_print_str() {
+@@ -3262,6 +3264,7 @@ uint SimonEngine::itemPtrToID(Item *id) {
+ 		if (_itemarray_ptr[i] == id)
+ 			return i;
+ 	error("itemPtrToID: not found");
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ void SimonEngine::o_pathfind(int x, int y, uint var_1, uint var_2) {
+diff --git a/sky/compact.cpp b/sky/compact.cpp
+index 0d83b95..22d506f 100644
+--- a/sky/compact.cpp
++++ b/sky/compact.cpp
+@@ -102,6 +102,7 @@ MegaSet *getMegaSet(Compact *cpt, uint16 megaSet) {
+ 	default:
+ 		error("Invalid MegaSet (%d)", megaSet);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ /**
+@@ -133,6 +134,7 @@ uint16 **getTurnTable(Compact *cpt, uint16 megaSet, uint16 dir) {
+ 	default:
+ 		error("No TurnTable (%d) in MegaSet (%d)", dir, megaSet);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ /**
+@@ -171,6 +173,7 @@ uint16 *getSub(Compact *cpt, uint16 mode) {
+ 	default:
+ 		error("Invalid Mode (%d)", mode);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ static const uint32 compactOffsets[] = {
+@@ -302,6 +305,7 @@ void *getCompactElem(Compact *cpt, uint32 off) {
+ 	off -= TURNTABLE_SIZE;
+ 
+ 	error("Offset %X out of bounds of compact", off + COMPACT_SIZE + EXTCOMPACT_SIZE + 4 * MEGASET_SIZE + 4 * TURNTABLE_SIZE);
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ // getToTables
+diff --git a/sky/control.cpp b/sky/control.cpp
+index 4debc55..01bc419 100644
+--- a/sky/control.cpp
++++ b/sky/control.cpp
+@@ -582,6 +582,7 @@ uint16 Control::handleClick(ConResource *pButton) {
+ 	default: 
+ 		error("Control::handleClick: unknown routine: %X",pButton->_onClick);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ bool Control::getYesNo(char *text) {
+diff --git a/sky/disk.cpp b/sky/disk.cpp
+index 73242da..730472c 100644
+--- a/sky/disk.cpp
++++ b/sky/disk.cpp
+@@ -460,6 +460,7 @@ uint32 Disk::determineGameVersion() {
+ 		error("Unknown game version! %d dinner table entries", _dinnerTableEntries);
+ 		break;
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ } // End of namespace Sky
+diff --git a/sky/logic.cpp b/sky/logic.cpp
+index d3c6b73..344f62e 100644
+--- a/sky/logic.cpp
++++ b/sky/logic.cpp
+@@ -102,7 +102,8 @@ bool Logic::checkProtection(void) {
+ void Logic::engine() {
+ 	uint16 *logicList = (uint16 *)SkyEngine::fetchCompact(_scriptVariables[LOGIC_LIST_NO]);
+ 
+-	while (uint16 id = *logicList++) { // 0 means end of list
++	uint16 id;
++	while ((id = *logicList++) != 0) { // 0 means end of list
+ 		if (id == 0xffff) {
+ 			// Change logic data address
+ 			logicList = (uint16 *)SkyEngine::fetchCompact(*logicList);
+@@ -222,7 +223,8 @@ void Logic::arAnim() {
+ 	uint16 *logicList = (uint16 *)SkyEngine::fetchCompact(_scriptVariables[LOGIC_LIST_NO]);
+ 	Compact *cpt = 0;
+ 
+-	while (uint16 id = *logicList++) { // get an id
++	uint16 id;
++	while ((id = *logicList++) != 0) { // get an id
+ 
+ 		if (id == 0xffff) { // address change?
+ 			logicList = (uint16 *)SkyEngine::fetchCompact(*logicList); // get new logic list
+@@ -763,6 +765,7 @@ bool Logic::collide(Compact *cpt) {
+ 	default:
+ 		error("Unknown Direction: %d", _compact->extCompact->dir);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ void Logic::runGetOff() {
+diff --git a/sky/sky.cpp b/sky/sky.cpp
+index 5556e1c..650322b 100644
+--- a/sky/sky.cpp
++++ b/sky/sky.cpp
+@@ -513,6 +513,7 @@ bool SkyEngine::isDemo(void) {
+ 	default:
+ 		error("Unknown game version %d", _systemVars.gameVersion);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ bool SkyEngine::isCDVersion(void) {
+@@ -532,6 +533,7 @@ bool SkyEngine::isCDVersion(void) {
+ 	default:
+ 		error("Unknown game version %d", _systemVars.gameVersion);
+ 	}
++	return 0;	// For Visual C++ 4, which doesn't know error() doesn't return
+ }
+ 
+ } // End of namespace Sky
+diff --git a/sky/text.h b/sky/text.h
+index 19decc6..46760bc 100644
+--- a/sky/text.h
++++ b/sky/text.h
+@@ -24,6 +24,9 @@
+ 
+ #include "stdafx.h"
+ #include "common/scummsys.h"
++// displayText_t: Visual C++ 4 makes "struct displayText_t" below a global struct if it
++// hasn't seen Sky's.
++#include "sky/struc.h"
+ 
+ namespace Sky {
+ 
+diff --git a/sound/mixer.cpp b/sound/mixer.cpp
+index 63cd439..f06ff7e 100644
+--- a/sound/mixer.cpp
++++ b/sound/mixer.cpp
+@@ -202,6 +202,13 @@ void SoundMixer::endStream(PlayingSoundHandle handle) {
+ 
+ void SoundMixer::insertChannel(PlayingSoundHandle *handle, Channel *chan) {
+ 
++	// With no sound device the mixer never runs, so a channel would never end, and an
++	// engine that waits for its sound to end (Flight of the Amazon Queen) waits for ever.
++	if (!_mixerReady) {
++		delete chan;
++		return;
++	}
++
+ 	int index = -1;
+ 	for (int i = 0; i != NUM_CHANNELS; i++) {
+ 		if (_channels[i] == 0) {
+diff --git a/sword1/resman.cpp b/sword1/resman.cpp
+index c4371d8..60792da 100644
+--- a/sword1/resman.cpp
++++ b/sword1/resman.cpp
+@@ -133,10 +133,12 @@ void ResMan::loadCluDescript(const char *fileName) {
+ 
+ void ResMan::freeCluDescript(void) {
+ 	
+-	for (uint32 clusCnt = 0; clusCnt < _prj.noClu; clusCnt++)
+-		if (Clu *cluster = _prj.clu[clusCnt]) {
+-			for (uint32 grpCnt = 0; grpCnt < cluster->noGrp; grpCnt++)
+-				if (Grp *group = cluster->grp[grpCnt]) {
++	for (uint32 clusCnt = 0; clusCnt < _prj.noClu; clusCnt++) {
++		Clu *cluster = _prj.clu[clusCnt];
++		if (cluster) {
++			for (uint32 grpCnt = 0; grpCnt < cluster->noGrp; grpCnt++) {
++				Grp *group = cluster->grp[grpCnt];
++				if (group) {
+ 					for (uint32 resCnt = 0; resCnt < group->noRes; resCnt++)
+ 						_memMan->freeNow(group->resHandle + resCnt);
+ 					delete[] group->resHandle;
+@@ -144,22 +146,30 @@ void ResMan::freeCluDescript(void) {
+ 					delete[] group->length;
+ 					delete group;
+ 				}
++			}
+ 			delete[] cluster->grp;
+ 			delete cluster;
+ 		}
++	}
+ 	delete[] _prj.clu;
+ }
+ 
+ void ResMan::flush(void) {
+-	for (uint32 clusCnt = 0; clusCnt < _prj.noClu; clusCnt++)
+-		if (Clu *cluster = _prj.clu[clusCnt])
+-			for (uint32 grpCnt = 0; grpCnt < cluster->noGrp; grpCnt++)
+-				if (Grp *group = cluster->grp[grpCnt])
+-					for (uint32 resCnt = 0; resCnt < group->noRes; resCnt++)
+-						if (group->resHandle[resCnt].cond != MEM_FREED) {
+-							_memMan->setCondition(group->resHandle + resCnt, MEM_CAN_FREE);
+-							group->resHandle[resCnt].refCount = 0;
+-						}
++	for (uint32 clusCnt = 0; clusCnt < _prj.noClu; clusCnt++) {
++		Clu *cluster = _prj.clu[clusCnt];
++		if (!cluster)
++			continue;
++		for (uint32 grpCnt = 0; grpCnt < cluster->noGrp; grpCnt++) {
++			Grp *group = cluster->grp[grpCnt];
++			if (!group)
++				continue;
++			for (uint32 resCnt = 0; resCnt < group->noRes; resCnt++)
++				if (group->resHandle[resCnt].cond != MEM_FREED) {
++					_memMan->setCondition(group->resHandle + resCnt, MEM_CAN_FREE);
++					group->resHandle[resCnt].refCount = 0;
++				}
++		}
++	}
+ }
+ 
+ void *ResMan::fetchRes(uint32 id) {
+diff --git a/sword1/screen.cpp b/sword1/screen.cpp
+index f29f9a3..7bfebba 100644
+--- a/sword1/screen.cpp
++++ b/sword1/screen.cpp
+@@ -541,14 +541,16 @@ void Screen::renderParallax(uint8 *data) {
+ 		}
+ 		while (xPos < scrnWidth) {
+ 			if (!copyFirst) {
+-				if (uint8 skip = *src++) {
++				uint8 skip = *src++;
++				if (skip) {
+ 					dest += skip;
+ 					xPos += skip;
+ 				}
+ 			} else
+ 				copyFirst = false;
+ 			if (xPos < scrnWidth) {
+-				if (uint8 doCopy = *src++) {
++				uint8 doCopy = *src++;
++				if (doCopy) {
+ 					if (xPos + doCopy > scrnWidth)
+ 						doCopy = scrnWidth - xPos;
+ 					memcpy(dest, src, doCopy);
