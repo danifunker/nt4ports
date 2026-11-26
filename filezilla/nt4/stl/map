@@ -1,0 +1,104 @@
+// map for the NT 4.0 build of FileZilla: see fzstl.h and fztree.h. Ordered by operator<.
+#ifndef FZSTL_MAP
+#define FZSTL_MAP
+#include "fztree.h"
+
+namespace std {
+
+template <class K, class V> struct _MapKey {
+	static const K &key(const pair<const K, V> &v) { return v.first; }
+};
+
+template <class K, class V> class map {
+public:
+	typedef K key_type;
+	typedef V mapped_type;
+	typedef pair<const K, V> value_type;
+	typedef size_t size_type;
+	typedef _Tree<K, value_type, _MapKey<K, V> > tree;
+
+	class iterator {
+	public:
+		_TreeLink *_x;
+		const _TreeBase *_t;
+		iterator(_TreeLink *x = 0, const _TreeBase *t = 0) : _x(x), _t(t) {}
+		value_type &operator*() const { return tree::_val(_x); }
+		value_type *operator->() const { return &tree::_val(_x); }
+		iterator &operator++() { _x = _TreeBase::_next(_x); return *this; }
+		iterator operator++(int) { iterator t = *this; _x = _TreeBase::_next(_x); return t; }
+		iterator &operator--() { _x = _t->_prev(_x); return *this; }
+		iterator operator--(int) { iterator t = *this; _x = _t->_prev(_x); return t; }
+		bool operator==(const iterator &o) const { return _x == o._x; }
+		bool operator!=(const iterator &o) const { return _x != o._x; }
+	};
+	class const_iterator {
+	public:
+		_TreeLink *_x;
+		const _TreeBase *_t;
+		const_iterator(_TreeLink *x = 0, const _TreeBase *t = 0) : _x(x), _t(t) {}
+		const_iterator(const iterator &i) : _x(i._x), _t(i._t) {}
+		const value_type &operator*() const { return tree::_val(_x); }
+		const value_type *operator->() const { return &tree::_val(_x); }
+		const_iterator &operator++() { _x = _TreeBase::_next(_x); return *this; }
+		const_iterator operator++(int) { const_iterator t = *this; _x = _TreeBase::_next(_x); return t; }
+		const_iterator &operator--() { _x = _t->_prev(_x); return *this; }
+		const_iterator operator--(int) { const_iterator t = *this; _x = _t->_prev(_x); return t; }
+		bool operator==(const const_iterator &o) const { return _x == o._x; }
+		bool operator!=(const const_iterator &o) const { return _x != o._x; }
+	};
+
+	map() {}
+
+	iterator begin() { return iterator(_t._first(), &_t); }
+	iterator end() { return iterator(0, &_t); }
+	const_iterator begin() const { return const_iterator(_t._first(), &_t); }
+	const_iterator end() const { return const_iterator(0, &_t); }
+	size_type size() const { return _t.n; }
+	bool empty() const { return _t.n == 0; }
+
+	iterator find(const K &k) { return iterator(_t._find(k), &_t); }
+	const_iterator find(const K &k) const { return const_iterator(_t._find(k), &_t); }
+	size_type count(const K &k) const { return _t._find(k) ? 1 : 0; }
+	iterator lower_bound(const K &k) { return iterator(_t._bound(k, 0), &_t); }
+	iterator upper_bound(const K &k) { return iterator(_t._bound(k, 1), &_t); }
+
+	V &operator[](const K &k)
+	{
+		_TreeLink *x = _t._find(k);
+		if (!x) {
+			int added;
+			x = _t._insert(value_type(k, V()), &added);
+		}
+		return tree::_val(x).second;
+	}
+	pair<iterator, bool> insert(const value_type &v)
+	{
+		int added;
+		_TreeLink *x = _t._insert(v, &added);
+		return pair<iterator, bool>(iterator(x, &_t), added != 0);
+	}
+	iterator insert(iterator, const value_type &v) { return insert(v).first; }
+	void erase(iterator i) { _t._erase(i._x); }
+	void erase(iterator first, iterator last)
+	{
+		while (first != last)
+			erase(first++);
+	}
+	size_type erase(const K &k)
+	{
+		_TreeLink *x = _t._find(k);
+		if (!x)
+			return 0;
+		_t._erase(x);
+		return 1;
+	}
+	void clear() { _t._clear(); }
+	void swap(map &o) { _t._swap(o._t); }
+
+private:
+	tree _t;
+};
+
+}
+
+#endif

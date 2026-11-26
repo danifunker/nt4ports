@@ -319,7 +319,11 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
+#ifdef FZ_NT4
+	afx_msg void OnActivateApp(BOOL bActive, HTASK dwThreadID); // MFC 6's
+#else
 	afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
+#endif
 };
 
 /////////////////////////////////////////////////////////////////////////////

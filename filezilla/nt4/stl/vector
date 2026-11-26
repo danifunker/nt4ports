@@ -1,0 +1,163 @@
+// vector for the NT 4.0 build of FileZilla: see fzstl.h. Iterators are pointers.
+#ifndef FZSTL_VECTOR
+#define FZSTL_VECTOR
+#include "fzstl.h"
+
+namespace std {
+
+template <class T> class vector {
+public:
+	typedef T value_type;
+	typedef T *iterator;
+	typedef const T *const_iterator;
+	typedef T &reference;
+	typedef const T &const_reference;
+	typedef size_t size_type;
+	typedef ptrdiff_t difference_type;
+
+	vector() : _b(0), _e(0), _c(0) {}
+	// No default arguments of T(): Visual C++ 4.1 reads them where they're called from.
+	explicit vector(size_type n) : _b(0), _e(0), _c(0) { resize(n, T()); }
+	vector(size_type n, const T &v) : _b(0), _e(0), _c(0) { resize(n, v); }
+	vector(const vector &o) : _b(0), _e(0), _c(0) { _assign(o); }
+	~vector() { _free(); }
+	vector &operator=(const vector &o)
+	{
+		if (this != &o) {
+			clear();
+			_assign(o);
+		}
+		return *this;
+	}
+
+	iterator begin() { return _b; }
+	iterator end() { return _e; }
+	const_iterator begin() const { return _b; }
+	const_iterator end() const { return _e; }
+	size_type size() const { return _e - _b; }
+	size_type capacity() const { return _c - _b; }
+	bool empty() const { return _b == _e; }
+	T &operator[](size_type i) { return _b[i]; }
+	const T &operator[](size_type i) const { return _b[i]; }
+	T &at(size_type i) { return _b[i]; }
+	const T &at(size_type i) const { return _b[i]; }
+	T &front() { return *_b; }
+	const T &front() const { return *_b; }
+	T &back() { return _e[-1]; }
+	const T &back() const { return _e[-1]; }
+
+	void reserve(size_type n)
+	{
+		if (n <= capacity())
+			return;
+		T *nb = (T *)::operator new(n * sizeof(T));
+		T *d = nb;
+		for (T *s = _b; s != _e; ++s, ++d) {
+			_Construct(d, *s);
+			_Destroy(s);
+		}
+		::operator delete((void *)_b);
+		_e = nb + (_e - _b);
+		_b = nb;
+		_c = nb + n;
+	}
+	void resize(size_type n) { resize(n, T()); }
+	void resize(size_type n, const T &v)
+	{
+		if (n < size()) {
+			erase(_b + n, _e);
+			return;
+		}
+		reserve(n);
+		while (size() < n) {
+			_Construct(_e, v);
+			++_e;
+		}
+	}
+	void push_back(const T &v)
+	{
+		if (_e == _c) {
+			T copy = v; // v may be in this vector
+			_grow(size() + 1);
+			_Construct(_e, copy);
+		} else
+			_Construct(_e, v);
+		++_e;
+	}
+	void pop_back()
+	{
+		--_e;
+		_Destroy(_e);
+	}
+	iterator insert(iterator pos, const T &v)
+	{
+		size_type at = pos - _b;
+		T copy = v;
+		if (_e == _c)
+			_grow(size() + 1);
+		pos = _b + at;
+		if (pos == _e)
+			_Construct(_e, copy);
+		else {
+			_Construct(_e, _e[-1]);
+			for (T *p = _e - 1; p != pos; --p)
+				*p = p[-1];
+			*pos = copy;
+		}
+		++_e;
+		return pos;
+	}
+	void insert(iterator pos, size_type n, const T &v)
+	{
+		while (n--)
+			pos = insert(pos, v) + 1;
+	}
+	iterator erase(iterator pos) { return erase(pos, pos + 1); }
+	iterator erase(iterator first, iterator last)
+	{
+		if (first == last)
+			return first;
+		T *d = first;
+		for (T *s = last; s != _e; ++s, ++d)
+			*d = *s;
+		for (T *p = d; p != _e; ++p)
+			_Destroy(p);
+		_e = d;
+		return first;
+	}
+	void clear() { erase(_b, _e); }
+	void swap(vector &o)
+	{
+		std::swap(_b, o._b);
+		std::swap(_e, o._e);
+		std::swap(_c, o._c);
+	}
+
+private:
+	T *_b, *_e, *_c;
+	void _grow(size_type need)
+	{
+		size_type n = capacity() * 2;
+		if (n < 8)
+			n = 8;
+		if (n < need)
+			n = need;
+		reserve(n);
+	}
+	void _assign(const vector &o)
+	{
+		reserve(o.size());
+		for (const T *s = o._b; s != o._e; ++s, ++_e)
+			_Construct(_e, *s);
+	}
+	void _free()
+	{
+		clear();
+		::operator delete((void *)_b);
+		_b = _e = _c = 0;
+	}
+};
+
+}
+
+#endif

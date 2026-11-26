@@ -1,0 +1,5 @@
+// functional for the NT 4.0 build of FileZilla: less (fzstl.h).
+#ifndef FZSTL_FUNCTIONAL
+#define FZSTL_FUNCTIONAL
+#include "fzstl.h"
+#endif

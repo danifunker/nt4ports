@@ -1367,18 +1367,21 @@ void CSFtpControlSocket::FileTransfer(t_transferfile *transferfile /*=0*/, BOOL 
 }
 
 
+// nt4: at file scope, as Visual C++ 4.1 has no local classes with functions
+class CSftpDeleteData : public CSFtpControlSocket::t_operation::COpData
+{
+public:
+	CSftpDeleteData() {}
+	virtual ~CSftpDeleteData() {}
+	CString m_FileName;
+	CServerPath path;
+};	
+
 void CSFtpControlSocket::Delete(CString filename, const CServerPath &path)
 {
 	LogMessage(__FILE__, __LINE__, this,FZ_LOG_DEBUG, _T("Delete(\"%s\", \"%s\")"),filename,path.GetPath());
 	
-	class CDeleteData : public CSFtpControlSocket::t_operation::COpData
-	{
-	public:
-		CDeleteData() {}
-		virtual ~CDeleteData() {}
-		CString m_FileName;
-		CServerPath path;
-	};	
+	typedef CSftpDeleteData CDeleteData;
 	
 	if (filename!="")
 	{
@@ -1482,19 +1485,22 @@ void CSFtpControlSocket::Delete(CString filename, const CServerPath &path)
 	}
 }
 
+// nt4: at file scope, as Visual C++ 4.1 has no local classes with functions
+class CSftpRenameData : public CFtpControlSocket::t_operation::COpData
+{
+public:
+	CSftpRenameData() {}
+	virtual ~CSftpRenameData() {}
+	CString oldName, newName;
+	CServerPath path;
+	CServerPath newPath;
+};
+
 void CSFtpControlSocket::Rename(CString oldName, CString newName, const CServerPath &path, const CServerPath &newPath)
 {
 	LogMessage(__FILE__, __LINE__, this, FZ_LOG_DEBUG, _T("Rename(\"%s\", \"%s\", \"%s\", \"%s\")  OpMode=%d OpState=%d"), oldName, newName, path.GetPath(),
 			   newPath.GetPath(), m_Operation.nOpMode, m_Operation.nOpState);
-	class CRenameData : public CFtpControlSocket::t_operation::COpData
-	{
-	public:
-		CRenameData() {}
-		virtual ~CRenameData() {}
-		CString oldName, newName;
-		CServerPath path;
-		CServerPath newPath;
-	};
+	typedef CSftpRenameData CRenameData;
 	if (oldName != "")
 	{
 		ASSERT(newName != "");
@@ -1698,21 +1704,24 @@ void CSFtpControlSocket::Rename(CString oldName, CString newName, const CServerP
 	}
 }
 
+// nt4: at file scope, as Visual C++ 4.1 has no local classes with functions
+class CSftpMakeDirData : public CSFtpControlSocket::t_operation::COpData
+{
+public:
+	CSftpMakeDirData() {}
+	virtual ~CSftpMakeDirData() {}
+	CServerPath path;
+	CServerPath Current;
+	std::list<CString> Segments;
+};
+
 void CSFtpControlSocket::MakeDir(const CServerPath &path)
 {
 	//Directory creation works like this:
 	//Find existing parent and create subdirs one by one
 	LogMessage(__FILE__, __LINE__, this,FZ_LOG_DEBUG, _T("MakeDir(\"%s\")"), path.GetPath());
 	
-	class CMakeDirData : public CSFtpControlSocket::t_operation::COpData
-	{
-	public:
-		CMakeDirData() {}
-		virtual ~CMakeDirData() {}
-		CServerPath path;
-		CServerPath Current;
-		std::list<CString> Segments;
-	};
+	typedef CSftpMakeDirData CMakeDirData;
 
 	if (m_Operation.nOpState==MKD_INIT)
 	{
@@ -1891,18 +1900,21 @@ void CSFtpControlSocket::MakeDir(const CServerPath &path)
 		ASSERT(FALSE);
 }
 
+// nt4: at file scope, as Visual C++ 4.1 has no local classes with functions
+class CSftpRemoveDirData : public CSFtpControlSocket::t_operation::COpData
+{
+public:
+	CSftpRemoveDirData() {}
+	virtual ~CSftpRemoveDirData() {}
+	CString m_DirName;
+	CServerPath path;
+};
+
 void CSFtpControlSocket::RemoveDir(CString dirname, const CServerPath &path)
 {
 	LogMessage(__FILE__, __LINE__, this,FZ_LOG_DEBUG, _T("RemoveDir(\"%s\", \"%s\")"),dirname, path.GetPath());
 	
-	class CRemoveDirData : public CSFtpControlSocket::t_operation::COpData
-	{
-public:
-		CRemoveDirData() {}
-		virtual ~CRemoveDirData() {}
-		CString m_DirName;
-		CServerPath path;
-	};
+	typedef CSftpRemoveDirData CRemoveDirData;
 	if (dirname!="")
 	{
 		ASSERT(!path.IsEmpty());

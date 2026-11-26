@@ -95,7 +95,15 @@ int CQueueView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	
 	m_pQueueCtrl=new CQueueCtrl;
+#ifdef FZ_NT4
+	// The comctl32 of NT 4.0 and Internet Explorer 3 crashes painting a list that is
+	// both virtual and owner-drawn. There the queue is drawn by comctl32 itself: the
+	// same columns, without the progress bars.
+	m_pQueueCtrl->Create(LVS_REPORT|WS_CHILD | WS_VISIBLE | LVS_SHOWSELALWAYS | LVS_OWNERDATA |
+		(fz_comctl32_version() >= 0x00040047 ? LVS_OWNERDRAWFIXED : 0), CRect(0,0,0,0), this, 0);
+#else
 	m_pQueueCtrl->Create(LVS_REPORT|WS_CHILD | WS_VISIBLE | LVS_SHOWSELALWAYS | LVS_OWNERDRAWFIXED | LVS_OWNERDATA, CRect(0,0,0,0), this, 0);
+#endif
 	return 0;
 }
 

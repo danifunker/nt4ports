@@ -19,7 +19,7 @@
 #include "stdafx.h"
 #include "FileZilla.h"
 #include "OptionsLoggingPage.h"
-#include ".\optionsloggingpage.h"
+#include "OptionsLoggingPage.h" // nt4: one name, for Visual C++ 4.1's #pragma once
 
 
 // COptionsLoggingPage-Dialogfeld

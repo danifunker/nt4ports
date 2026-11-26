@@ -118,7 +118,7 @@ protected:
 	static void Init();
 	static BOOL m_bInitialized;
 	static BOOL m_bUseXML;
-	typedef struct
+	typedef struct t_OptionsCache
 	{
 		BOOL bCached;
 		CTime createtime;

@@ -61,7 +61,7 @@ public:
 //View headers
 class CComboCompletion;
 
-typedef struct
+typedef struct t_LocalViewHeader
 {	SIZE m_LabelTextSize;
 	CComboCompletion *m_pEdit;
 	CStatic *m_pLabelBackground;
@@ -69,7 +69,7 @@ typedef struct
 	BOOL bTreeHidden;
 } t_LocalViewHeader;
 
-typedef struct
+typedef struct t_RemoteViewHeader
 {	SIZE m_LabelTextSize;
 	CComboCompletion *m_pEdit;
 	CStatic *m_pLabelBackground;

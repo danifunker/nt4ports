@@ -1,0 +1,20 @@
+--- a/src/dlgprop.cpp	2026-11-25 23:56:38.232320683 -0500
++++ b/src/dlgprop.cpp	2026-11-25 23:56:38.250552741 -0500
+@@ -145,6 +145,8 @@
+ 	}
+ }
+ 
++#endif // nt4: not part of the OLE control container
++
+ AFX_STATIC DLGTEMPLATE* AFXAPI
+ _AfxChangePropPageFont(const DLGTEMPLATE* pTemplate, BOOL bWizard)
+ {
+@@ -168,6 +170,8 @@
+ 	return NULL;
+ }
+ 
++#ifndef _AFX_NO_OCC_SUPPORT
++
+ const DLGTEMPLATE* CPropertyPage::InitDialogInfo(const DLGTEMPLATE* pTemplate)
+ {
+ 	// cleanup from previous run, if any

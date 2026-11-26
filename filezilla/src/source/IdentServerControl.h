@@ -12,6 +12,10 @@
 #include "AsyncSocketEx.h"
 class CControlSocket;
 class CIdentServerDataSocket;
+#ifdef FZ_NT4
+// Visual C++ 4.1's std::list destroys its elements with T::~T even for a pointer
+#include "IdentServerDataSocket.h"
+#endif
 class CMainThread;
 class CIdentServerControl : public CAsyncSocketEx, public CApiLog
 {

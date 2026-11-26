@@ -249,7 +249,7 @@ void CAsyncRequestQueue::ProcessRequest(CAsyncRequestData *pData, CFileZillaApi 
 		}
 
 		//Check if any requests can be processed without a dialog
-		std::list<t_QueueItem>::iterator last = remove_if(m_RequestList.begin(), m_RequestList.end(), TryProcess);
+		std::list<t_QueueItem>::iterator last = std::remove_if(m_RequestList.begin(), m_RequestList.end(), TryProcess);
 		m_RequestList.erase(last, m_RequestList.end());
 	}
 	m_bActive = FALSE;

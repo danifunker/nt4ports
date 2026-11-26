@@ -759,7 +759,7 @@ COverwriteRequestData::COverwriteRequestData()
 
 COverwriteRequestData::~COverwriteRequestData()
 {
-	delete pTransferFile;
+	delete (t_transferfile *)pTransferFile; // nt4: Visual C++ 4.1 won't delete a const object
 	delete time1;
 	delete time2;
 }

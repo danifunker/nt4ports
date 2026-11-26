@@ -49,7 +49,7 @@
 #define CSMODE_RENAME			0x1000
 #define CSMODE_CHMOD			0x2000
 
-typedef struct
+typedef struct t_transferdata
 {
 	BOOL bResume,bType;
 	__int64 transfersize,transferleft,nTransferStart;

@@ -82,7 +82,9 @@ CIdentServerControl::~CIdentServerControl()
 	{
 		if (this == m_InstanceList.front())
 			m_pIdentControlSocket->InitLog(m_InstanceList.back());
-		m_InstanceList.remove(this);
+		std::list<CIdentServerControl *>::iterator self = std::find(m_InstanceList.begin(), m_InstanceList.end(), this);
+		if (self != m_InstanceList.end())
+			m_InstanceList.erase(self);
 	
 		if (m_InstanceList.empty())
 		{

@@ -1,0 +1,23 @@
+// algorithm for the NT 4.0 build of FileZilla: find and swap (fzstl.h), and remove_if.
+// min and max are windows.h's macros, as FileZilla uses them.
+#ifndef FZSTL_ALGORITHM
+#define FZSTL_ALGORITHM
+#include "fzstl.h"
+
+namespace std {
+
+template <class It, class Pred> It remove_if(It first, It last, Pred pred)
+{
+	It out = first;
+	for (; first != last; ++first)
+		if (!pred(*first)) {
+			if (out != first)
+				*out = *first;
+			++out;
+		}
+	return out;
+}
+
+}
+
+#endif

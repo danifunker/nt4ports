@@ -1,0 +1,5 @@
+// utility for the NT 4.0 build of FileZilla: pair and make_pair (fzstl.h).
+#ifndef FZSTL_UTILITY
+#define FZSTL_UTILITY
+#include "fzstl.h"
+#endif

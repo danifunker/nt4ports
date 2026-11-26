@@ -1,0 +1,18 @@
+// deque for the NT 4.0 build of FileZilla: see fzstl.h. A vector that also takes
+// elements at the front; FileZilla's transfer queue is the only one, and it is short.
+#ifndef FZSTL_DEQUE
+#define FZSTL_DEQUE
+#include "vector"
+
+namespace std {
+
+template <class T> class deque : public vector<T> {
+public:
+	deque() {}
+	void push_front(const T &v) { this->insert(this->begin(), v); }
+	void pop_front() { this->erase(this->begin()); }
+};
+
+}
+
+#endif

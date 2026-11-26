@@ -65,7 +65,7 @@ protected:
 	public:
 		t_directory directory;
 		CTime createtime;
-		typedef struct
+		typedef struct t_parents
 		{
 			CServerPath parent;
 			CString dirname;

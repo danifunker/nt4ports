@@ -612,13 +612,14 @@ void CFtpControlSocket::LogOnToServer(BOOL bSkipReply /*=FALSE*/)
 				// Fall back to local charset for the case that the server might not
 				// support UTF8 and the login data contains non-ascii characters.
 				bool asciiOnly = true;
-				for (int i = 0; i < m_CurrentServer.user.GetLength(); i++)
+				int i;
+				for (i = 0; i < m_CurrentServer.user.GetLength(); i++)
 					if (m_CurrentServer.user.GetAt(i) > 127)
 						asciiOnly = false;
-				for (int i = 0; i < m_CurrentServer.pass.GetLength(); i++)
+				for (i = 0; i < m_CurrentServer.pass.GetLength(); i++)
 					if (m_CurrentServer.pass.GetAt(i) > 127)
 						asciiOnly = false;
-				for (int i = 0; i < m_CurrentServer.account.GetLength(); i++)
+				for (i = 0; i < m_CurrentServer.account.GetLength(); i++)
 					if (m_CurrentServer.account.GetAt(i) > 127)
 						asciiOnly = false;
 				if (!asciiOnly)
@@ -4146,18 +4147,21 @@ void CFtpControlSocket::ResetOperation(int nSuccessful /*=FALSE*/)
 	m_Operation.pData=0;
 }
 
+// nt4: at file scope, as Visual C++ 4.1 has no local classes with functions
+class CFtpDeleteData : public CFtpControlSocket::t_operation::COpData
+{
+public:
+	CFtpDeleteData() {}
+	virtual ~CFtpDeleteData() {}
+	CString m_FileName;
+	CServerPath path;
+};
+
 void CFtpControlSocket::Delete(CString filename, const CServerPath &path)
 {
 	LogMessage(__FILE__, __LINE__, this,FZ_LOG_DEBUG, _T("Delete(\"%s\", \"%s\")  OpMode=%d OpState=%d"), filename, path.GetPath(), m_Operation.nOpMode, m_Operation.nOpState);
 
-	class CDeleteData : public CFtpControlSocket::t_operation::COpData
-	{
-public:
-		CDeleteData() {}
-		virtual ~CDeleteData() {}
-		CString m_FileName;
-		CServerPath path;
-	};
+	typedef CFtpDeleteData CDeleteData;
 	if (filename!="")
 	{
 		ASSERT(!path.IsEmpty());
@@ -4254,18 +4258,21 @@ public:
 	}
 }
 
+// nt4: at file scope, as Visual C++ 4.1 has no local classes with functions
+class CFtpRemoveDirData : public CFtpControlSocket::t_operation::COpData
+{
+public:
+	CFtpRemoveDirData() {}
+	virtual ~CFtpRemoveDirData() {}
+	CString m_DirName;
+	CServerPath path;
+};
+
 void CFtpControlSocket::RemoveDir(CString dirname, const CServerPath &path)
 {
 	LogMessage(__FILE__, __LINE__, this,FZ_LOG_DEBUG, _T("RemoveDir(\"%s\", \"%s\")  OpMode=%d OpState=%d"), dirname, path.GetPath(), m_Operation.nOpMode, m_Operation.nOpState);
 
-	class CRemoveDirData : public CFtpControlSocket::t_operation::COpData
-	{
-public:
-		CRemoveDirData() {}
-		virtual ~CRemoveDirData() {}
-		CString m_DirName;
-		CServerPath path;
-	};
+	typedef CFtpRemoveDirData CRemoveDirData;
 	if (dirname != "")
 	{
 		ASSERT(!path.IsEmpty());
@@ -4802,19 +4809,22 @@ void CFtpControlSocket::MakeDir(const CServerPath &path)
 		ASSERT(FALSE);
 }
 
+// nt4: at file scope, as Visual C++ 4.1 has no local classes with functions
+class CFtpRenameData : public CFtpControlSocket::t_operation::COpData
+{
+public:
+	CFtpRenameData() {}
+	virtual ~CFtpRenameData() {}
+	CString oldName, newName;
+	CServerPath path;
+	CServerPath newPath;
+};
+
 void CFtpControlSocket::Rename(CString oldName, CString newName, const CServerPath &path, const CServerPath &newPath)
 {
 	LogMessage(__FILE__, __LINE__, this,FZ_LOG_DEBUG, _T("Rename(\"%s\", \"%s\", \"%s\")  OpMode=%d OpState=%d"), oldName, newName, path.GetPath(),
 			   m_Operation.nOpMode, m_Operation.nOpState);
-	class CRenameData : public CFtpControlSocket::t_operation::COpData
-	{
-	public:
-		CRenameData() {}
-		virtual ~CRenameData() {}
-		CString oldName, newName;
-		CServerPath path;
-		CServerPath newPath;
-	};
+	typedef CFtpRenameData CRenameData;
 	if (oldName != "")
 	{
 		ASSERT(newName != "");

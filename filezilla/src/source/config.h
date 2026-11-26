@@ -26,6 +26,10 @@
  * One way to guess it is over the INVALID_SET_FILE_POINTER define, it at least is not 
  * defined in the header files of VC6, but it is defined in the Platform SDK.
  */
+#ifdef FZ_NT4
+#include <fz_nt4.h>
+#endif
+
 #ifndef INVALID_SET_FILE_POINTER
 #error Please download and install the latest MS Platform SDK from http://www.microsoft.com/msdownload/platformsdk/sdkupdate/
 #endif

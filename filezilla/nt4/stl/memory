@@ -1,0 +1,40 @@
+// memory for the NT 4.0 build of FileZilla: auto_ptr. See fzstl.h.
+#ifndef FZSTL_MEMORY
+#define FZSTL_MEMORY
+#include "fzstl.h"
+
+namespace std {
+
+template <class T> class auto_ptr {
+public:
+	explicit auto_ptr(T *p = 0) : _p(p) {}
+	auto_ptr(const auto_ptr &o) : _p(((auto_ptr &)o).release()) {}
+	~auto_ptr() { delete _p; }
+	auto_ptr &operator=(const auto_ptr &o)
+	{
+		reset(((auto_ptr &)o).release());
+		return *this;
+	}
+	T &operator*() const { return *_p; }
+	T *operator->() const { return _p; }
+	T *get() const { return _p; }
+	T *release()
+	{
+		T *p = _p;
+		_p = 0;
+		return p;
+	}
+	void reset(T *p = 0)
+	{
+		if (p != _p)
+			delete _p;
+		_p = p;
+	}
+
+private:
+	T *_p;
+};
+
+}
+
+#endif

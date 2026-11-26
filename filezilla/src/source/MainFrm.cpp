@@ -50,6 +50,13 @@
 #include "AsyncRequestQueue.h"
 #include "misc\MinTrayBtn.h"
 #include "misc\VisualStylesXP.h"
+
+#ifdef FZ_NT4
+// NT 4.0's own comctl32 can't add images to a 32-bit image list
+#define FZ_ILC_COLOR ILC_COLOR16
+#else
+#define FZ_ILC_COLOR ILC_COLOR32
+#endif
 #include "ftptreectrl.h"
 
 #ifdef _DEBUG
@@ -1871,7 +1878,7 @@ CImageList* CMainFrame::CreateDragImageEx(CListCtrl *pList, LPPOINT lpPoint)
 
 	// Create drag image(list)
 	CImageList* pCompleteImageList = new CImageList;
-	pCompleteImageList->Create(rectComplete.Width(), rectComplete.Height(), ILC_COLOR32 | ILC_MASK, 0, 1);
+	pCompleteImageList->Create(rectComplete.Width(), rectComplete.Height(), FZ_ILC_COLOR | ILC_MASK, 0, 1);
 	pCompleteImageList->Add(&Bitmap, RGB(0, 255, 0)); // Green is used as mask color
 	Bitmap.DeleteObject();
 
@@ -1983,7 +1990,7 @@ CImageList* CMainFrame::CreateDragImageEx(CTreeCtrl *pTree, LPPOINT lpPoint)
 
 	// Create drag image(list)
 	CImageList* pCompleteImageList = new CImageList;
-	pCompleteImageList->Create(rectComplete.Width(), rectComplete.Height(), ILC_COLOR32 | ILC_MASK, 0, 1);
+	pCompleteImageList->Create(rectComplete.Width(), rectComplete.Height(), FZ_ILC_COLOR | ILC_MASK, 0, 1);
 	pCompleteImageList->Add(&Bitmap, RGB(0, 255, 0)); // Green is used as mask color
 	Bitmap.DeleteObject();
 
@@ -4499,7 +4506,8 @@ void CMainFrame::ProcessQuickconnect(BOOL bBypass)
 		m_pCommandQueue->Cancel();
 		m_pCommandQueue->Disconnect();
 	}
-	m_Host.Trim();
+	m_Host.TrimLeft();
+	m_Host.TrimRight();
 	server.host=m_Host;
 	server.user=m_User;
 	server.pass=m_Pass;
@@ -4673,10 +4681,22 @@ BOOL CMainFrame::CreateToolbars()
 		!m_pWndReBar->AddBar(m_pWndToolBar) ||
 		!m_pWndReBar->AddBar(m_pWndDlgBar))
 	{
+#ifdef FZ_NT4
+		// NT 4.0's own comctl32 has no rebar (Internet Explorer 3 brought it): the toolbar
+		// and the Quickconnect bar go at the top of the frame, one under the other.
+		if (::IsWindow(m_pWndReBar->m_hWnd))
+			m_pWndReBar->DestroyWindow();
+		delete m_pWndReBar;
+		m_pWndReBar = NULL;
+		m_pWndToolBar->SetBarStyle(m_pWndToolBar->GetBarStyle() | CBRS_TOP);
+		m_pWndDlgBar->SetBarStyle(m_pWndDlgBar->GetBarStyle() | CBRS_TOP);
+#else
 		TRACE0("Infoleiste konnte nicht erstellt werden\n");
 		return FALSE;      // Fehler bei Erstellung
+#endif
 	}
-	m_pWndReBar->GetReBarCtrl().MinimizeBand(0);
+	if (m_pWndReBar)
+		m_pWndReBar->GetReBarCtrl().MinimizeBand(0);
 	CWnd *pButton = m_pWndDlgBar->GetDlgItem(IDOK);
 	pButton->ShowWindow(SW_HIDE);
 
@@ -4807,7 +4827,11 @@ void CMainFrame::OnMenuViewRemoteSortby(UINT nID)
 }
 
 
+#ifdef FZ_NT4
+void CMainFrame::OnActivateApp(BOOL bActive, HTASK dwThreadID) // MFC 6's
+#else
 void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
+#endif
 {
 	if (!bActive)
 		return;

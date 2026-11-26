@@ -114,12 +114,14 @@ protected:
 		CTime *pLastActiveTime;
 		BOOL bActive;
 	};
+public: // nt4: Visual C++ 4.1 lets std:: containers of a type see it only so
 	struct t_ServerData
 	{
 		int nActiveMax;
 		int nFailedConnections;
 		int nCurrentActive;
 	};
+protected:
 	typedef std::map<t_server, t_ServerData> t_ServerDataMap;
 	typedef t_ServerDataMap::iterator t_ServerDataMapIter;
 	t_ServerDataMap m_ServerDataMap;

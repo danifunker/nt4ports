@@ -2319,7 +2319,8 @@ void CFtpListCtrl::OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult)
 				_tcsncpy(pItem->pszText, m_pDirectory->direntry[index].ownergroup, pItem->cchTextMax);
 			}
 		}
-		pItem->pszText[pItem->cchTextMax - 1] = 0;
+		if (pItem->cchTextMax > 0) // nt4: never before the buffer, even with no room
+			pItem->pszText[pItem->cchTextMax - 1] = 0;
 	}
 	
 	*pResult = 0;

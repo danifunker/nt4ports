@@ -186,7 +186,7 @@ private:
 	int m_nProxyOpID;		//Currently active operation (0 if none)
 	int m_nProxyPeerPort;	//Port of the server you are connected to, retrieve via GetPeerName
 	ULONG m_nProxyPeerIp;	//IP of the server you are connected to, retrieve via GetPeerName
-	typedef struct
+	typedef struct t_proxydata
 	{
 		int nProxyType;
 		char * pProxyHost;

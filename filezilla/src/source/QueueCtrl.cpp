@@ -2944,7 +2944,8 @@ void CQueueCtrl::OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult)
 				}
 				break;
 			}
-			pItem->pszText[pItem->cchTextMax - 1] = 0;
+			if (pItem->cchTextMax > 0) // nt4: never before the buffer, even with no room
+				pItem->pszText[pItem->cchTextMax - 1] = 0;
 		}
 		return;
 	}
@@ -2982,7 +2983,8 @@ void CQueueCtrl::OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult)
 		default:
 			_tcsncpy(pItem->pszText, _T(""), pItem->cchTextMax);
 		}
-		pItem->pszText[pItem->cchTextMax - 1] = 0;
+		if (pItem->cchTextMax > 0) // nt4: never before the buffer, even with no room
+			pItem->pszText[pItem->cchTextMax - 1] = 0;
 	}
 	if (pItem->mask & LVIF_STATE)
 	{

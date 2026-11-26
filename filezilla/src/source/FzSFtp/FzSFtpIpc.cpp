@@ -16,6 +16,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <stdlib.h>
 #include "putty.h"
 #include "assert.h"
 #include "FzSftpIpc.h"
@@ -71,7 +72,7 @@ BOOL FzSFtpIpc_Init(char *lpCmdLine)
 	return TRUE;
 }
 
-BOOL FzSFtpIpc_SendRequest(DWORD nID, DWORD nLength, const LPVOID pData)
+BOOL FzSFtpIpc_SendRequest(const DWORD nID, const DWORD nLength, const LPVOID pData)
 {
 	assert(nID);
 	if (!m_DataChannel.SendRequest(nID, nLength, pData))

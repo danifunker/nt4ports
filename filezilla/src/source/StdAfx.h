@@ -78,7 +78,7 @@ const UINT WM_THREADMSG = ::RegisterWindowMessage(FILEZILLA_THREAD_MESSAGE);
 #define TRANSFER_CRITICALERROR 4
 #define TRANSFER_ABORTED 5
 
-typedef struct
+typedef struct t_host
 {
 	unsigned int ip;
 	unsigned short port;
@@ -92,7 +92,7 @@ public:
 	BOOL post;
 };
 
-typedef struct
+typedef struct t_ffam_transferstatus
 {
 	__int64 bytes;
 	int percent;

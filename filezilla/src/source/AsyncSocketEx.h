@@ -72,6 +72,9 @@ to tim.kosse@gmx.de
 
 #include <winsock2.h>
 #include <Ws2tcpip.h>
+#ifdef FZ_NT4
+#include <fz_ipv6.h>
+#endif
 
 class CAsyncSocketExHelperWindow;
 

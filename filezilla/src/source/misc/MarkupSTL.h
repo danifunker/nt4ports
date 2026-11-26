@@ -100,6 +100,7 @@ protected:
 	CString m_csDoc;
 	CString m_csError;
 
+public: // nt4: Visual C++ 4.1 lets std:: containers of a type see it only so
 	struct ElemPos
 	{
 		ElemPos() { Clear(); };
@@ -121,6 +122,7 @@ protected:
 		int iElemChild;
 		int iElemNext;
 	};
+protected:
 
 	std::vector<ElemPos> m_aPos;
 	int m_iPosParent;
@@ -152,12 +154,14 @@ protected:
 		bool bIsString;
 	};
 
+public: // nt4: Visual C++ 4.1 lets std:: containers of a type see it only so
 	struct SavedPos
 	{
 		int iPosParent;
 		int iPos;
 		int iPosChild;
 	};
+protected:
 	std::map<CString, SavedPos> m_mapSavedPos;
 
 	void x_SetPos( int iPosParent, int iPos, int iPosChild )

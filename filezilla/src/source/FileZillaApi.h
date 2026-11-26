@@ -34,7 +34,7 @@
 //You don't have to fill this struct, you may use the command specific 
 //functions which is easier.
 //See below for a list of supported commands and their parameters.
-typedef struct
+typedef struct t_command
 {
 	int id; //Type of command, see below
 	CString param1; //Parameters for this command

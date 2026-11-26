@@ -47,7 +47,7 @@ const bool operator != (const t_server &a,const t_server &b);
 
 #include "ServerPath.h"
 
-typedef struct
+typedef struct t_transferfile
 {
 	CString localfile;
 	CString remotefile;

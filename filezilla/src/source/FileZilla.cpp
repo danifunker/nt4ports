@@ -62,8 +62,15 @@ CFileZillaApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CFileZillaApp Initialisierung
 
+#ifdef FZ_NT4
+extern "C" void fz_install_crash_log(void); // nt4/crashlog.c
+#endif
+
 BOOL CFileZillaApp::InitInstance()
 {
+#ifdef FZ_NT4
+	fz_install_crash_log();
+#endif
 	// Standardinitialisierung
 	// Wenn Sie diese Funktionen nicht nutzen und die Größe Ihrer fertigen 
 	//  ausführbaren Datei reduzieren wollen, sollten Sie die nachfolgenden
@@ -178,7 +185,13 @@ BOOL CFileZillaApp::InitInstance()
 				break;
 
 			CString var;
-			var.GetEnvironmentVariable(config.Mid(pos + 1, pos2 - pos - 1));
+			// CString::GetEnvironmentVariable is MFC 7's: ask Windows, as it does.
+			DWORD len = ::GetEnvironmentVariable(config.Mid(pos + 1, pos2 - pos - 1), NULL, 0);
+			if (len)
+			{
+				::GetEnvironmentVariable(config.Mid(pos + 1, pos2 - pos - 1), var.GetBuffer(len), len);
+				var.ReleaseBuffer();
+			}
 			config = config.Left(pos) + var + config.Mid(pos2 + 1);
 		}
 		COptions::SetConfig(config);

@@ -27,7 +27,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-typedef struct
+typedef struct t_retryserver
 {
 	t_server server;
 	CTime time;

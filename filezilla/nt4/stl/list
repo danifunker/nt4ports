@@ -1,0 +1,168 @@
+// list for the NT 4.0 build of FileZilla: see fzstl.h. A doubly linked ring through a
+// sentinel; erasing an element leaves iterators to the others valid. The sentinel is on
+// the heap, as in Microsoft's own list: a list stays whole when the object holding it is
+// copied byte for byte.
+#ifndef FZSTL_LIST
+#define FZSTL_LIST
+#include "fzstl.h"
+
+namespace std {
+
+struct _ListLink {
+	_ListLink *next, *prev;
+};
+
+template <class T> class list {
+public:
+	struct Node : _ListLink {
+		T val;
+	};
+	static T &_val(_ListLink *p) { return ((Node *)p)->val; }
+
+	typedef T value_type;
+	typedef T &reference;
+	typedef const T &const_reference;
+	typedef size_t size_type;
+
+	class iterator {
+	public:
+		_ListLink *_p;
+		iterator(_ListLink *p = 0) : _p(p) {}
+		T &operator*() const { return _val(_p); }
+		T *operator->() const { return &_val(_p); }
+		iterator &operator++() { _p = _p->next; return *this; }
+		iterator operator++(int) { iterator t = *this; _p = _p->next; return t; }
+		iterator &operator--() { _p = _p->prev; return *this; }
+		iterator operator--(int) { iterator t = *this; _p = _p->prev; return t; }
+		bool operator==(const iterator &o) const { return _p == o._p; }
+		bool operator!=(const iterator &o) const { return _p != o._p; }
+	};
+	class const_iterator {
+	public:
+		const _ListLink *_p;
+		const_iterator(const _ListLink *p = 0) : _p(p) {}
+		const_iterator(const iterator &i) : _p(i._p) {}
+		const T &operator*() const { return _val((_ListLink *)_p); }
+		const T *operator->() const { return &_val((_ListLink *)_p); }
+		const_iterator &operator++() { _p = _p->next; return *this; }
+		const_iterator operator++(int) { const_iterator t = *this; _p = _p->next; return t; }
+		const_iterator &operator--() { _p = _p->prev; return *this; }
+		const_iterator operator--(int) { const_iterator t = *this; _p = _p->prev; return t; }
+		bool operator==(const const_iterator &o) const { return _p == o._p; }
+		bool operator!=(const const_iterator &o) const { return _p != o._p; }
+	};
+	class reverse_iterator {
+	public:
+		_ListLink *_p; // the element itself, not the one after it
+		reverse_iterator(_ListLink *p = 0) : _p(p) {}
+		T &operator*() const { return _val(_p); }
+		T *operator->() const { return &_val(_p); }
+		reverse_iterator &operator++() { _p = _p->prev; return *this; }
+		reverse_iterator operator++(int) { reverse_iterator t = *this; _p = _p->prev; return t; }
+		reverse_iterator &operator--() { _p = _p->next; return *this; }
+		reverse_iterator operator--(int) { reverse_iterator t = *this; _p = _p->next; return t; }
+		bool operator==(const reverse_iterator &o) const { return _p == o._p; }
+		bool operator!=(const reverse_iterator &o) const { return _p != o._p; }
+	};
+	class const_reverse_iterator {
+	public:
+		const _ListLink *_p;
+		const_reverse_iterator(const _ListLink *p = 0) : _p(p) {}
+		const_reverse_iterator(const reverse_iterator &i) : _p(i._p) {}
+		const T &operator*() const { return _val((_ListLink *)_p); }
+		const T *operator->() const { return &_val((_ListLink *)_p); }
+		const_reverse_iterator &operator++() { _p = _p->prev; return *this; }
+		const_reverse_iterator operator++(int) { const_reverse_iterator t = *this; _p = _p->prev; return t; }
+		bool operator==(const const_reverse_iterator &o) const { return _p == o._p; }
+		bool operator!=(const const_reverse_iterator &o) const { return _p != o._p; }
+	};
+
+	list() : _s(_New()), _n(0) {}
+	list(const list &o) : _s(_New()), _n(0) { _append(o); }
+	~list()
+	{
+		clear();
+		::operator delete((void *)_s);
+	}
+	list &operator=(const list &o)
+	{
+		if (this != &o) {
+			clear();
+			_append(o);
+		}
+		return *this;
+	}
+
+	iterator begin() { return iterator(_s->next); }
+	iterator end() { return iterator(_s); }
+	const_iterator begin() const { return const_iterator(_s->next); }
+	const_iterator end() const { return const_iterator(_s); }
+	reverse_iterator rbegin() { return reverse_iterator(_s->prev); }
+	reverse_iterator rend() { return reverse_iterator(_s); }
+	const_reverse_iterator rbegin() const { return const_reverse_iterator(_s->prev); }
+	const_reverse_iterator rend() const { return const_reverse_iterator(_s); }
+	size_type size() const { return _n; }
+	bool empty() const { return _n == 0; }
+	T &front() { return _val(_s->next); }
+	const T &front() const { return _val((_ListLink *)_s->next); }
+	T &back() { return _val(_s->prev); }
+	const T &back() const { return _val((_ListLink *)_s->prev); }
+
+	iterator insert(iterator pos, const T &v)
+	{
+		Node *n = (Node *)::operator new(sizeof(Node));
+		_Construct(&n->val, v);
+		_ListLink *at = pos._p;
+		n->next = at;
+		n->prev = at->prev;
+		at->prev->next = n;
+		at->prev = n;
+		++_n;
+		return iterator(n);
+	}
+	void push_back(const T &v) { insert(end(), v); }
+	void push_front(const T &v) { insert(begin(), v); }
+	iterator erase(iterator pos)
+	{
+		_ListLink *p = pos._p, *next = p->next;
+		p->prev->next = next;
+		next->prev = p->prev;
+		_Destroy(&((Node *)p)->val);
+		::operator delete((void *)p);
+		--_n;
+		return iterator(next);
+	}
+	iterator erase(iterator first, iterator last)
+	{
+		while (first != last)
+			first = erase(first);
+		return last;
+	}
+	void pop_front() { erase(begin()); }
+	void pop_back() { erase(iterator(_s->prev)); }
+	void clear() { erase(begin(), end()); }
+	void swap(list &o)
+	{
+		std::swap(_s, o._s);
+		std::swap(_n, o._n);
+	}
+
+private:
+	_ListLink *_s;
+	size_type _n;
+	static _ListLink *_New()
+	{
+		_ListLink *s = (_ListLink *)::operator new(sizeof(_ListLink));
+		s->next = s->prev = s;
+		return s;
+	}
+	void _append(const list &o)
+	{
+		for (const_iterator i = o.begin(); i != o.end(); ++i)
+			push_back(*i);
+	}
+};
+
+}
+
+#endif
