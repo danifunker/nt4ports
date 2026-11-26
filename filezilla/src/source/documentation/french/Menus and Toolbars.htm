@@ -1,0 +1,320 @@
+<html>
+
+<head>
+<title>Menus and Toolbars</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p class="PageCaption" align="center">Menus et Barre d'Outils</p>
+<p class="MidCaption"><a name="menu"></a>1. Le menu principal</p>
+<p class="bodyText" align="left">Cette rubrique d&eacute;crit tous les &eacute;l&eacute;ments 
+  du menu principal. En utilisant ce menu, vous pouvez acc&eacute;der &agrave; 
+  un grand nombre de fonctions diff&eacute;rentes.</p>
+<blockquote>
+  <p class="bodyText" align="left"><b>Fichier</b> - Menu d&eacute;roulant pour 
+    certaines op&eacute;rations g&eacute;n&eacute;rales et fonctions du Gestionnaire 
+    de Sites</p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Gestionnaire de Sites</b> - Ouvre le <a href="sitemanager.htm">Gestionnaire 
+      de Sites</a> </p>
+    <p class="bodyText" align="left"><b>Copier la connexion dans le Gestionnaire 
+      de Sites</b> - Copie la connexion actuelle dans le Gestionnaire de Sites 
+      comme une nouvelle entr&eacute;e </p>
+    <p class="bodyText" align="left"><b>Connexion au site par d&eacute;faut</b> 
+      - Vous connecte au site par d&eacute;faut du Gestionnaire de Sites. </p>
+    <p class="bodyText" align="left"><b>Reconnecter</b> - Vous connecte au dernier 
+      serveur auquel vous &eacute;tiez connect&eacute;. Utile quand vous avez 
+      perdu la connexion. FileZilla bascule automatiquement au dernier dossier 
+      utilis&eacute; sur le serveur. Vous pouvez aussi utiliser le bouton <img border="0" src="toolbar_reconnect.png" width="20" height="20"> 
+      de la barre d'outils. </p>
+    <p class="bodyText" align="left"><b>D&eacute;connecter</b> - Vous d&eacute;connecte 
+      du serveur FTP. Vous pouvez aussi utiliser le bouton <img border="0" src="toolbar_disconnect.png" width="20" height="20"> 
+      de la barre d'outils. </p>
+    <p class="bodyText" align="left"><b>Quitter</b> - Vous d&eacute;connecte du 
+      serveur et quitte FileZilla. Tous les fichiers en file d'attente de transfert 
+      qui n'ont pas encore &eacute;t&eacute; trait&eacute;s sont m&eacute;moris&eacute;s 
+      pour la prochaine fois que FileZilla d&eacute;marrera de sorte que le transfert 
+      pourra se poursuivre. </p>
+  </blockquote>
+    
+  <p class="bodyText" align="left"><b>&Eacute;dition</b> </p>
+  <blockquote> 
+    <p class="bodyText" align="left"><b>Param&egrave;tres</b> - Ouvre la bo&icirc;te 
+      de dialogue des options de FileZilla. Vous pouvez <a href="configuration.htm">Configurer 
+      FileZilla</a> ici.</p>
+    <p class="bodyText" align="left"><b>Exporter les param&egrave;tres</b> - Exporte 
+      tous les param&egrave;tres de FileZilla dans un fichier .xml. Quand vous 
+      s&eacute;lectionnez cet &eacute;l&eacute;ment de menu, il vous est demand&eacute; 
+      un nom de fichier dans lequel les param&egrave;tres seront export&eacute;s. 
+      Cette fonction est utile si vous voulez faire une sauvegarde des param&egrave;tres 
+      ou si vous voulez copier les param&egrave;tres vers une seconde machine. 
+    </p>
+    <p class="bodyText" align="left"><b>Importer les param&egrave;tres</b> - Importe 
+      les param&egrave;tres d'un fichier .xml pr&eacute;c&eacute;demment export&eacute;.</p>
+  </blockquote>
+  <p class="bodyText" align="left"><b>Transfert</b> - Ce menu d&eacute;roulant 
+    vous permet de contr&ocirc;ler les transferts de fichiers. </p>
+  <blockquote> 
+    <p class="bodyText" align="left"><b>Type de Transfert </b> - S&eacute;lectionne 
+      le type de transfert actuel. Vous pouvez choisir entre <b>ASCII</b>, <b>Binaire</b> 
+      et <b>Auto</b>. Si vous s&eacute;lectionnez <b>ASCII</b>, tous les fichiers 
+      seront transf&eacute;r&eacute;s en mode ASCII. Si vous s&eacute;lectionnez 
+      <b>Binaire</b>, tous les fichiers seront transf&eacute;r&eacute;s en mode 
+      binaire. Si vous s&eacute;lectionnez <b>Auto</b>, FileZilla d&eacute;tecte 
+      et choisit le type de transfert en fonction de l'extension du fichier. Vous 
+      pouvez entrer quelles extensions seront consid&eacute;r&eacute;s comme fichiers 
+      ASCII dans la section <a href="asciibinary.htm">ASCII/Binaire</a> des options. 
+      Vous devriez laisser ce param&egrave;tre sur <b>Auto</b>, si vous ne voulez 
+      pas forcer un type de transfert sp&eacute;cifique. Une mauvaise option peut 
+      entra&icirc;ner une corruption des fichiers. </p>
+    <p class="bodyText" align="left"><b>&Eacute;crasement des fichiers</b> - Cet 
+      &eacute;l&eacute;ment de menu ouvre un sous-menu. Dans ce sous-menu vous 
+      pouvez r&eacute;gler le comportement du transfert des fichiers par d&eacute;faut 
+      quand le fichier cible existe d&eacute;j&agrave;. Le param&egrave;tre par 
+      d&eacute;faut est <b>Demander</b>. Quand cette option est s&eacute;lectionn&eacute;e, 
+      FileZilla vous demandera &agrave; chaque fois comment agir quand une cible 
+      existe d&eacute;j&agrave;.</p>
+    <p class="bodyText" align="left"><b>Transfert Manuel </b> - Ouvre la bo&icirc;te 
+      de dialogue de <b>Param&egrave;trage de transfert manuel</b>. Vous devrez 
+      entrer l'adresse du serveur, le chemin et le dossier du fichier local et 
+      du fichier distant et le type de transfert (Transfert ou T&eacute;l&eacute;chargement) 
+      qui devra &ecirc;tre &eacute;tabli. C'est particuli&egrave;rement utile 
+      si vous voulez transf&eacute;rer des fichiers cach&eacute;s qui n'apparaissent 
+      pas dans la liste du r&eacute;pertoire ou s'il n'est pas possible de lister 
+      le contenu du r&eacute;pertoire.</p>
+  </blockquote>
+  <p class="bodyText" align="left"><b>Affichage</b> - Contr&ocirc;le l'aspect 
+    visuel de la fen&ecirc;tre principale. </p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Rafra&icirc;chir les vues</b> - Rafra&icirc;chit 
+      l'affichage des fichiers et dossiers. Vous pouvez aussi utiliser le bouton 
+      <img border="0" src="toolbar_refresh.png" width="20" height="20"> de la 
+      barre d'outils. </p>
+    <p class="bodyText" align="left"><b>Afficher les fichiers cach&eacute;s</b> 
+      - Certains serveurs n'affichent pas les fichiers cach&eacute;s comme les 
+      fichiers dot (noms de fichiers commen&ccedil;ant par un point) par d&eacute;faut. 
+      Activez <b>Afficher les fichiers cach&eacute;s</b> si vous voulez voir de 
+      tels fichiers. Cependant, tous les serveurs ne supportent pas cette fonction 
+      et peuvent retourner une erreur ou un listage de r&eacute;pertoire rompu 
+      ou incomplet. Soyez donc prudent en activant cette fonction.</p>
+    <p class="bodyText" align="left"><b>Barre d'outils</b> - Cache ou affiche 
+      la barre d'outils </p>
+    <p class="bodyText" align="left"><b>Barre d'&eacute;tat - </b>Cache ou affiche 
+      la barre d'&eacute;tat</p>
+    <p class="bodyText" align="left"><b>Barre de Connexion rapide</b> - Cache 
+      ou affiche la barre de connexion rapide</p>
+    <p class="bodyText" align="left"><b>Arborescence Locale</b> - Cache ou affiche 
+      l'arborescence locale. Vous pouvez aussi utiliser le bouton <img border="0" src="toolbar_treeview.png" width="20" height="20"> 
+      de la barre d'outils si elle n'est pas cach&eacute;e. </p>
+    <p class="bodyText" align="left"><b>Arborescence Distante</b> - Cache ou affiche 
+      l'arborescence distante. Vous pouvez aussi utiliser le bouton <img border="0" src="toolbar_remotetreeview.png" width="20" height="20"> 
+      de la barre d'outils. </p>
+    <p class="bodyText" align="left"><b>Journal des Messages</b> - Cache ou affiche 
+      le journal des messages. Vous pouvez aussi utiliser le bouton <img border="0" src="toolbar_messagelog.png" width="20" height="20"> 
+      de la barre d'outils. </p>
+    <p class="bodyText" align="left"><b>File d'Attente de transferts</b> - Cache 
+      ou affiche la file d'attente des transferts. Vous pouvez aussi utiliser 
+      le bouton <img border="0" src="toolbar_queue.png" width="20" height="20"> 
+      de la barre d'outils. </p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Vue de la liste locale</b> - Dans ce menu 
+      d&eacute;roulant vous pouvez modifier l'agencement de la liste des fichiers 
+      locaux. Vous pouvez choisir entre les styles <b>D&eacute;tails</b>, <b>Liste</b>, 
+      <b>Petites ic&ocirc;nes</b> et <b>Grandes ic&ocirc;nes</b>. Vous pouvez 
+      aussi s&eacute;lectionner quelles colonnes seront visibles dans le style 
+      d'affichage <i>D&eacute;tails</i>. Les colonnes <b>Taille de fichier</b>,<b> 
+      Type de fichier</b> et <b>Date/heure de derni&egrave;re modification</b> 
+      peuvent &ecirc;tre affich&eacute;es/cach&eacute;es. </p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote> 
+    <p class="bodyText" align="left"><b>Vue de la liste distante</b> - Dans ce 
+      menu d&eacute;roulant vous pouvez modifier l'agencement de la liste des 
+      fichiers locaux. Vous pouvez choisir entre les styles <b>D&eacute;tails</b>, 
+      <b>Liste</b>, <b>Petites ic&ocirc;nes</b> et <b>Grandes ic&ocirc;nes</b>. 
+      Vous pouvez aussi s&eacute;lectionner quelles colonnes seront visibles dans 
+      le style d'affichage <i>D&eacute;tails</i>. Les colonnes <b>Taille de fichier</b>,<b> 
+      Date/Heure</b> et <b>Permissions</b> peuvent &ecirc;tre affich&eacute;es/cach&eacute;es. 
+    </p>
+  </blockquote>
+    
+  <p class="bodyText" align="left"><b>File d'Attente</b></p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Traitement de la File d'Attente </b>- 
+      Si cette option est coch&eacute;e, FileZilla ex&eacute;cute la file d'attente.</p>
+    <p class="bodyText" align="left"><b>Utiliser les connexions multiples</b> 
+      - FileZilla peut transf&eacute;rer jusqu'&agrave; 10 fichiers (ce nombre 
+      peut &ecirc;tre r&eacute;gl&eacute; dan la bo&icirc;te de dialogue des param&egrave;tres; 
+      il est de 2 par d&eacute;faut) simultan&eacute;ment si cette option est 
+      activ&eacute;e. Si vous ne voulez pas que FileZilla utilise les connexions 
+      multiples, d&eacute;sactivez cette fonction. Vous pouvez aussi avoir &agrave; 
+      d&eacute;sactiver cette fonction pour les serveurs qui ne supportent pas 
+      les connexions multiples. FileZilla peut d&eacute;tecter de tels serveurs 
+      automatiquement, mais certains serveurs incorrectement configur&eacute;s 
+      peuvent quand m&ecirc;me vous interdire l'acc&egrave;s pour un certain temps 
+      quand vous tentez d'&eacute;tablir des connexions multiples, et donc d&eacute;sactivez 
+      cette pr&eacute;vention de probl&egrave;me pour certains serveurs.</p>
+    <p class="bodyText" align="left"><b>Exporter</b> - Exporte tous les &eacute;l&eacute;ments 
+      de la file d'attente dans un fichier.</p>
+    <p class="bodyText" align="left"><b>Importer</b> - Importe tous les &eacute;l&eacute;ments 
+      de la file d'attente &agrave; partir d'un fichier externe.</p>
+  </blockquote>
+    
+  <p class="SmallCaption" align="left">Serveur</p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Changer le mot de passe</b> - Vous permet 
+      de modifier le mot de passe utilis&eacute; pour la connexion au serveur. 
+      A cause de probl&egrave;mes de s&eacute;curit&eacute;, tous les serveurs 
+      ne vous permettent pas de changer de mot de passe de cette fa&ccedil;on.</p>
+    <p class="bodyText" align="left"><b>Entrer une commande brute FTP </b> - Ouvre 
+      une bo&icirc;te de dialogue dans laquelle vous pouvez entrer toute commande 
+      FTP. C'est utile si vous voulez ex&eacute;cuter des actions sur le serveur 
+      qui autrement ne sont pas support&eacute;es par FileZilla.</p>
+    <p class="bodyText" align="left"><b>Copier l'URL dans le presse-papiers</b> 
+      - Copie l'adresse du serveur actuel et son chemin dans le presse-papier.</p>
+  </blockquote>
+  <p class="bodyText" align="left"><b>Aide </b>- Utilisez ce menu d&eacute;roulant 
+    si vous avez besoin d'aide. </p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Contenu </b>- Affiche la table des mati&egrave;res 
+      du Manuel d'Aide. </p>
+    <p class="bodyText" align="left"><b>Index </b>- Affiche l'index du manuel 
+      d'aide. </p>
+    <p class="bodyText" align="left"><b>Chercher </b>- Ouvre la page de recherche 
+      du manuel d'aide </p>
+    <p class="bodyText" align="left"><b>A propos de FileZilla...</b> - Ouvre la 
+      fen&ecirc;tre A propos de... de FileZilla qui contient certaines informations 
+      utiles. </p>
+  </blockquote>
+</blockquote>
+
+<p class="MidCaption" align="left"><b><a name="toolbar"></a>2. La Barre d'Outils</b> 
+</p>
+
+<p class="MidCaption" align="center">
+<img border="0" src="toolbar.png" width="292" height="27">
+    </p>
+<p class="bodyText" align="left">A partir de la Barre d'Outils, vous avez un acc&egrave;s 
+  rapide &agrave; beaucoup de fonctions importantes. Quand une fonction n'est 
+  pas disponible, l'ic&ocirc;ne correspondante appara&icirc;t en gris&eacute;. 
+</p>
+<blockquote>
+  <table border="0">
+    <tr>
+      <td><img border="0" src="toolbar_sitemanager.png" width="20" height="20"></td>
+      <td class="bodyText">Ouvre le <a href="sitemanager.htm">Gestionnaire de 
+        Sites</a></td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_treeview.png" width="20" height="20"></td>
+      <td class="bodyText">Affiche/Cache l'arborescence locale. Si cette option 
+        est coch&eacute;e, l'arborescence est visible.</td>
+    </tr>
+    <tr>
+      <td>
+      <img border="0" src="toolbar_remotetreeview.png" width="20" height="20"></td>
+      <td class="bodyText">Affiche/Cache l'arborescence distante. Si cette option 
+        est coch&eacute;e, l'arborescence est visible.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_queue.png" width="20" height="20"></td>
+      <td class="bodyText">Affiche/Cache la <a href="queue.htm">File d'Attente 
+        de Transferts</a>. Si cette option est coch&eacute;e, la file d'attente 
+        est visible.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_messagelog.png" width="20" height="20"></td>
+      <td class="bodyText">Affiche/Cache le <a href="messagelog.htm">Journal des 
+        Messages</a>. Si cette option est coch&eacute;e, le journal des messages 
+        est visible.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_refresh.png" width="20" height="20"></td>
+      <td class="bodyText">R&eacute;initialise &agrave; la fois la liste des fichiers 
+        locaux et la liste des fichiers distants.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_transfer.png" width="20" height="20"></td>
+      <td class="bodyText">D&eacute;marre le processus de transfert de file d'attente. 
+        Utilisez ce bouton pour lancer le transfert de tous les fichiers en file 
+        d'attente.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_cancel.png" width="20" height="20"></td>
+      <td class="bodyText">Annule l'op&eacute;ration en cours. Arr&ecirc;te &eacute;galement 
+        le processus de file d'attente.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_disconnect.png" width="20" height="20"></td>
+      <td class="bodyText">Vous d&eacute;connecte du serveur.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_reconnect.png" width="20" height="20"></td>
+      <td class="bodyText">Si vous n'&ecirc;tes pas actuellement connect&eacute; 
+        &agrave; un serveur, l'utilisation de ce bouton vous reconnectera au dernier 
+        serveur utilis&eacute; et au dernier r&eacute;pertoire utilis&eacute; 
+        sur ce serveur.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_help.png" width="20" height="20"></td>
+      <td class="bodyText">Affiche la table des mati&egrave;res de la documentation 
+        de FileZilla.</td>
+    </tr>
+  </table>
+</blockquote>
+<p class="MidCaption" align="left"><a name="quickconnectbar"></a>3. La Barre de 
+  Connexion Rapide </p>
+<p class="bodyText" align="center"><img border="0" src="quickconnectbar.png" width="693" height="26"> 
+</p>
+<p class="bodyText" align="left">En utilisant cette barre de Connexion Rapide 
+  vous pouvez vous connecter rapidement &agrave; un serveur FTP. Quatre champs 
+  de texte sont disponibles. <br>
+  Dans le premier champ vous devez entrer l'adresse du serveur FTP. Il peut aussi 
+  bien s'agir d'un nom d'h&ocirc;te (comme ftp.sourceforge.net) que d'un IP, mais 
+  FileZilla supporte aussi les adresses avec un nom d'utilisateur, un mot de passe 
+  et un num&eacute;ro de port dans l'adresse. La syntaxe compl&egrave;te pour 
+  l'&eacute;dition du champ d'adresse est: <b>[protocol://][User:Pass@]Host[:Port][/Path] 
+  </b>Les param&egrave;tres entre <b>[ ]</b> sont optionnels. Le premier param&egrave;tre 
+  sp&eacute;cifie le protocole qui devrait &ecirc;tre utilis&eacute; pour vous 
+  connecter au serveur. Les protocoles support&eacute;s sont <b>ftp://</b>,<b> 
+  ftps://</b> (FTP sur SSL) et <b>sftp://</b> (FTP s&eacute;curis&eacute; utilisant 
+  SSH2). Si aucun protocole n'est sp&eacute;cifi&eacute;, <b>ftp://</b> sera utilis&eacute;. 
+  Le second param&egrave;tre sp&eacute;cifie le nom d'utilisateur et le mot de 
+  passe qui devrait &ecirc;tre utilis&eacute; pour vous connecter au serveur. 
+  Le param&egrave;tre optionnel suivant sp&eacute;cifie le port sur lequel le 
+  serveur est localis&eacute;. Si le port n'est pas sp&eacute;cifi&eacute;, FileZilla 
+  utilisera le port 21. Le dernier param&egrave;tre sp&eacute;cifie le chemin 
+  distant sur lequel FileZilla devra basculer pour une connexion. </p>
+
+<p class="bodyText" align="left">Les deux champs d'&eacute;dition suivants sp&eacute;cifient 
+  le nom d'utilisateur et le mot de passe qui doivent &ecirc;tre utilis&eacute;s 
+  pour la connexion au serveur. Si vous laissez le champ de nom d'utilisateur 
+  vide, une session anonyme sera s&eacute;lectionn&eacute;e. Les deux champs seront 
+  remplac&eacute;s si vous sp&eacute;cifiez un nom d'utilisateur et/ou un mot 
+  de passe dans le champ d'adresse. </p>
+
+<p class="bodyText" align="left">Le dernier champ sp&eacute;cifie le port du serveur 
+  FTP. Par d&eacute;faut cette valeur est r&eacute;gl&eacute;e sur 21. Changez 
+  cette valeur si le serveur est localis&eacute; sur un autre port. Ce champ sera 
+  remplac&eacute; si vous sp&eacute;cifiez un nom d'utilisateur et/ou un mot de 
+  passe dans le champ d'adresse. </p>
+
+<p class="bodyText" align="left">Cliquez sur Connexion Rapide si vous &ecirc;tes 
+  pr&ecirc;t. FileZilla va alors se connecter au serveur FTP. Si vous avez entr&eacute; 
+  des information non valides, FileZilla affichera un message d'erreur. La fl&egrave;che 
+  attenante au bouton Connexion Rapide ouvre un menu d&eacute;roulant. Si vous 
+  utilisez la fonction <b>Effacer</b> du menu, vous pourrez vider les champs de 
+  la barre de connexion rapide. Dans ce menu, une liste des 10 serveurs les plus 
+  r&eacute;cemment visit&eacute;s dans la session actuelle est m&eacute;moris&eacute;e. 
+  S&eacute;lectionnez un serveur dans cette liste pour vous y connecter.</p>
+
+</body>
+
+</html>

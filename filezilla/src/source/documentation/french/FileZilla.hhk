@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Configuration">
+		<param name="Name" value="Configuration">
+		<param name="Local" value="configuration.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="GSS">
+		<param name="Name" value="GSS Support">
+		<param name="Local" value="gss.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Introduction">
+		<param name="Name" value="Introduction">
+		<param name="Local" value="introduction.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Serveur d'Identification">
+		<param name="Name" value="Ident server">
+		<param name="Local" value="ident.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Kerberos">
+		<param name="Name" value="GSS Support">
+		<param name="Local" value="gss.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Journal des Messages">
+		<param name="Name" value="Messagelog">
+		<param name="Local" value="messagelog.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Cr&eacute;dits">
+		<param name="Name" value="Untitled: x:\cvsroot\FileZilla\source\documentation\credits.htm">
+		<param name="Local" value="credits.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Getionnaire de Sites">
+		<param name="Name" value="The Sitemanager">
+		<param name="Local" value="sitemanager.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

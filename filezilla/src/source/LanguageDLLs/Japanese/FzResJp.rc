@@ -1,0 +1,2390 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Japanese resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 318, 212
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "手動ファイル転送の設定"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "カスタマイズされたファイル転送の設定をします. できるだけ情報を入力して下さい. もし空欄のままであれば, FileZillaがそれらを埋めようとします.",
+                    IDC_STATIC,7,7,304,17
+    LTEXT           "転送の種類:",IDC_STATIC,7,28,36,8
+    CONTROL         "ダウンロード(&D)",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,38,57,10
+    CONTROL         "アップロード(&U)",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,49,55,10
+    LTEXT           "ローカルファイル(&L):",IDC_STATIC,7,65,54,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "リモートファイル(&R):",IDC_STATIC,7,93,52,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "現在のサーバを使用(&c)",IDC_MANUALTRANSFER_SERVER1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,147,28,81,10
+    CONTROL         "下記のサーバを使用(&f)",IDC_MANUALTRANSFER_SERVER2,
+                    "Button",BS_AUTORADIOBUTTON,147,39,79,10,
+                    WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,141,39,170,166,WS_GROUP
+    LTEXT           "ホスト(&H):",IDC_STATIC,148,52,29,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,61,127,14,ES_AUTOHSCROLL
+    LTEXT           "ポート(&P):",IDC_STATIC,281,52,29,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,280,61,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "サーバの種類(&S):",IDC_STATIC,148,80,50,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,90,157,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "ログオンの種類",IDC_STATIC,148,108,157,38
+    CONTROL         "匿名(&y)",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,119,39,10
+    CONTROL         "通常(&o)",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,119,38,10
+    CONTROL         "プロキシの設定を無視(&B)",
+                    IDC_MANUALTRANSFER_BYPASSPROXY,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,158,132,86,10
+    LTEXT           "ユーザ(&e):",IDC_STATIC,148,149,30,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,158,157,14,ES_AUTOHSCROLL
+    LTEXT           "パスワード(&w):",IDC_STATIC,148,176,42,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,185,157,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,15,191,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,75,191,50,14
+    CONTROL         "今すぐ転送を開始(&n)",IDC_MANUALTRANSFER_STARTNOW,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,172,74,10
+END
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 82
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "FileZillaについて"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<version>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001-2004",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "Written by:",IDC_STATIC,41,40,35,8
+    LTEXT           "http://www.sourceforge.net/projects/filezilla",
+                    IDC_HOMEPAGE,82,54,146,8
+    LTEXT           "Tim Kosse",IDC_MAIL,82,40,34,8
+    LTEXT           "ホームページ:",IDC_STATIC,41,54,38,8
+    LTEXT           "翻訳:",IDC_TRANSLATEDBY,41,68,17,8,NOT WS_VISIBLE
+    LTEXT           "大須賀 怜 (osuga@users.sourceforge.net)",IDC_MAIL2,82,
+                    68,132,8,NOT WS_VISIBLE
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,182,28,15,13
+END
+
+IDR_MAINFRAME DIALOGEX 0, 0, 388, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "アドレス:",IDC_STATIC,1,4,23,8
+    EDITTEXT        IDC_HOST,34,2,71,12,ES_AUTOHSCROLL
+    LTEXT           "ユーザ:",IDC_STATIC,116,4,20,8
+    EDITTEXT        IDC_USER,138,2,40,12,ES_AUTOHSCROLL
+    LTEXT           "パスワード:",IDC_STATIC,188,4,29,8
+    EDITTEXT        IDC_PASS,226,2,40,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "ポート:",IDC_STATIC,275,4,18,8
+    EDITTEXT        IDC_PORT,295,2,25,12,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "クイック接続(&c)",IDOK,324,1,62,14,BS_NOTIFY
+END
+
+IDD_FILEEXISTS DIALOGEX 0, 0, 259, 124
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "ファイルが既に存在します"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "",IDC_FILEEXISTS_FILE1,7,16,150,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d バイト",IDC_FILEEXISTS_SIZE1,50,28,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "",IDC_FILEEXISTS_FILE2,7,64,150,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d バイト",IDC_FILEEXISTS_SIZE2,50,76,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "動作を選択して下さい:",IDC_STATIC,165,7,87,70
+    CONTROL         "上書き(&O)",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,172,18,46,10
+    CONTROL         "新しければ上書き(&i)",IDC_FILEEXISTS_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,172,29,73,10
+    CONTROL         "レジューム(&R)",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,172,40,53,10
+    CONTROL         "名前の変更(&n)",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,172,51,59,10
+    CONTROL         "スキップ(&S)",IDC_FILEEXISTS_SKIP,"Button",
+                    BS_AUTORADIOBUTTON,172,62,46,10
+    CONTROL         "ファイルが既に存在する時は常にこの動作を使用",
+                    IDC_FILEEXISTS_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    BS_VCENTER | BS_MULTILINE | WS_GROUP | WS_TABSTOP,170,83,
+                    82,30
+    DEFPUSHBUTTON   "OK",IDOK,105,103,50,14
+    LTEXT           "現在のファイル",IDC_STATIC,7,7,40,8
+    LTEXT           "を次のファイルで置き換えますか?",IDC_STATIC,7,55,88,8
+END
+
+IDD_OPTIONS_FIREWALL DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    CONTROL         "FileZillaが使用するローカルポートを制限する(&L)",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,145,10
+    LTEXT           "デフォルトではFileZillaは利用可能な全てのローカルポートを接続の確立と転送に使用します. もしFileZillaに小さな範囲のポートだけを使わせたいならば, 下にポートの範囲を入力して下さい.",
+                    IDC_STATIC,19,17,260,24
+    LTEXT           "利用可能な最低のポート(&w):",IDC_STATIC,19,45,83,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,102,42,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "利用可能な最大のポート(&H):",IDC_STATIC,19,62,82,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,102,59,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "もしftpサーバに接続はできるがファイルの転送ができない場合, パッシブモードを有効にしてみて下さい.",
+                    IDC_STATIC,7,88,272,17
+    CONTROL         "パッシブモード(&P)",IDC_OPTIONS_FIREWALL_PASV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,106,61,10
+    CONTROL         "パッシブでない転送のために下記のIPアドレスを使用(&U):",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,167,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,19,137,60,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "IPv6を使用していたらパッシブでない転送のために下記のIPアドレスを使用(&U):",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,225,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 285, 213
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "Keep Aliveの設定",IDC_STATIC,7,7,270,62
+    CONTROL         "Keep Alive機能を有効にする(&E)",IDC_CHECK1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,19,105,10
+    LTEXT           """PWD"", ""REST 0"", ""TYPE A"", ""TYPE I""等のKeep Aliveコマンドを次の時間間隔内でランダムに送信する.",
+                    IDC_STATIC,25,31,223,17
+    EDITTEXT        IDC_INTERVALLOW,28,50,24,14,ES_AUTOHSCROLL
+    LTEXT           "から",IDC_STATIC,56,52,13,8
+    EDITTEXT        IDC_INTERVALHIGH,73,50,23,14,ES_AUTOHSCROLL
+    LTEXT           "秒",IDC_STATIC,101,52,30,8
+    GROUPBOX        "タイムアウトの検出(&T)",IDC_STATIC,7,74,270,40
+    LTEXT           "全く転送の無い状態が",IDC_STATIC,15,86,63,8
+    EDITTEXT        IDC_TIMEOUT,79,82,26,14,ES_AUTOHSCROLL
+    LTEXT           "秒続いた場合,",IDC_STATIC,108,85,42,8
+    LTEXT           "接続がタイムアウトしたと判断して切断します.",IDC_STATIC,
+                    15,97,172,8
+    GROUPBOX        "リトライの設定",IDC_STATIC,7,115,270,44
+    LTEXT           "転送中にサーバから切断された場合,",IDC_STATIC,14,128,
+                    234,8
+    EDITTEXT        IDC_DELAY,15,138,17,14,ES_AUTOHSCROLL
+    LTEXT           "秒間隔で再ログインを",IDC_STATIC,39,142,60,8
+    EDITTEXT        IDC_NUMRETRY,99,138,20,14,ES_AUTOHSCROLL
+    LTEXT           "回試みる",IDC_STATIC,122,142,26,8
+    CONTROL         "IPv6のサポートを有効にする(Windows XP又は2003 Server以上でしか動作しません)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,253,10
+    LTEXT           "&Default password for anonymous logins:",IDC_STATIC,6,
+                    182,111,7
+    EDITTEXT        IDC_ANONPWD,120,180,101,11,ES_AUTOHSCROLL
+END
+
+IDD_ENTERSOMETHING DIALOGEX 0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Title"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "<text>",IDC_TEXT,7,7,172,17
+    EDITTEXT        IDC_EDIT1,7,28,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,36,47,50,14
+    PUSHBUTTON      "キャンセル(&C)",IDCANCEL,99,47,50,14
+END
+
+IDD_OPTIONS_LANGUAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "FileZillaが使用する言語を選択して下さい:",IDC_STATIC,7,
+                    7,116,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "デフォルトのフォルダ",IDC_STATIC,7,7,272,55
+    CONTROL         "最後に使用したフォルダを記憶(&R)",
+                    IDC_SELECTDEFAULTFOLDERTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,18,107,10
+    CONTROL         "このフォルダを常にデフォルトのフォルダとして使う(&A):",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,153,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "FileZillaが起動する度にサイトマネージャを開く(&O)",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,77,147,10
+    CONTROL         "サイトマネージャで最初にフォルダを整列する(&f)",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,89,141,10
+    CONTROL         "デフォルトでフォルダを展開しない(&e)",
+                    IDC_SITEMANAGEREXPANDFOLDERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,101,112,10
+    GROUPBOX        "サイトマネージャのオプション",IDC_STATIC,7,66,272,49
+END
+
+IDD_CONNECTION4 DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "プロキシの種類を選択して下さい:",IDC_STATIC,7,7,106,8
+    CONTROL         "直接接続(&d) (proxy無し)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,16,103,10
+    CONTROL         "SOCKS&4 proxy",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,7,
+                    27,63,10
+    CONTROL         "SOCKS4&A proxy",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
+                    7,38,67,10
+    CONTROL         "SOCKS&5 proxy",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,7,
+                    49,63,10
+    CONTROL         "&HTTP 1.1 proxy",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    7,60,66,10
+    GROUPBOX        "プロキシの詳細",IDC_STATIC,7,74,272,100,WS_GROUP
+    LTEXT           "ホスト(&H):",IDC_STATIC,14,88,27,8
+    EDITTEXT        IDC_PROXYHOST,53,85,178,14,ES_AUTOHSCROLL
+    LTEXT           "ポート(&P):",IDC_STATIC,14,106,27,8
+    EDITTEXT        IDC_PROXYPORT,53,103,178,14,ES_AUTOHSCROLL
+    LTEXT           "ユーザ(&U):",IDC_STATIC,14,124,28,8
+    EDITTEXT        IDC_PROXYUSER,53,121,178,14,ES_AUTOHSCROLL
+    LTEXT           "パスワード(&w):",IDC_STATIC,14,142,38,8
+    EDITTEXT        IDC_PROXYPASS,53,139,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "ユーザ/パスワードを使用する(&s) (SOCKS5 と HTTP1.1 proxyのみ)",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,159,
+                    197,10
+END
+
+IDD_CHMOD DIALOGEX 0, 0, 199, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "ファイル属性の変更"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "Text",IDC_TEXT,7,7,185,19
+    GROUPBOX        "所有者のパーミッション",IDC_STATIC,7,27,185,25
+    CONTROL         "読み込み(&R)",IDC_OWNERREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,38,51,10
+    CONTROL         "書き換え(&W)",IDC_OWNERWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,38,50,10
+    CONTROL         "実行(&E)",IDC_OWNEREXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,38,38,10
+    GROUPBOX        "グループのパーミッション",IDC_STATIC,7,58,185,25
+    CONTROL         "読み込み(&a)",IDC_GROUPREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,69,50,10
+    CONTROL         "書き換え(&r)",IDC_GROUPWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,69,47,10
+    CONTROL         "実行(&x)",IDC_GROUPEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,69,38,10
+    GROUPBOX        "Publicのパーミッション",IDC_STATIC,7,89,185,25
+    CONTROL         "読み込み(&d)",IDC_PUBLICREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,100,50,10
+    CONTROL         "書き換え(&i)",IDC_PUBLICWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,100,46,10
+    CONTROL         "実行(&u)",IDC_PUBLICEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,100,38,10
+    LTEXT           "全てのサーバがこのコマンドを理解するわけではない事に注意して下さい. このコマンドはほとんどUNIXサーバによって使用されます.",
+                    IDC_STATIC,7,144,185,20
+    DEFPUSHBUTTON   "&OK",IDOK,31,165,50,14
+    PUSHBUTTON      "キャンセル(&C)",IDCANCEL,118,165,50,14
+    LTEXT           "数値による指定:",IDC_STATIC,7,126,46,8
+    EDITTEXT        IDC_NUMERIC,58,123,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = 選択された全てのファイルに対し同じ属性ではない)",
+                    IDC_STATIC,102,121,90,18
+END
+
+IDD_TRANSFERASDLG DIALOGEX 0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Transfer as..."
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "選択したファイルとフォルダを転送するのに使用されるアカウントのユーザ名とパスワードを入力して下さい.",
+                    IDC_STATIC,7,7,194,20
+    LTEXT           "ユーザ(&U):",IDC_STATIC,57,32,31,8
+    EDITTEXT        IDC_USER,97,28,56,14,ES_AUTOHSCROLL
+    LTEXT           "パスワード(&P):",IDC_STATIC,57,52,40,8
+    EDITTEXT        IDC_PASS,97,50,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "今すぐ転送(&T)",IDC_TRANSFERNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,75,70,57,10
+    DEFPUSHBUTTON   "&OK",IDOK,46,85,50,14
+    PUSHBUTTON      "キャンセル(&C)",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "デフォルトの転送タイプ",IDC_STATIC,7,7,272,47
+    CONTROL         "自動検出(&u)",IDC_TYPEMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,16,20,53,10
+    CONTROL         "A&SCII",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,16,30,
+                    34,10
+    CONTROL         "&Binary",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,16,
+                    40,35,10
+    LTEXT           "この設定は自動検出のままにしておくべきです. FileZillaはファイルの拡張子に基づいて正しい転送タイプを選択します. この転送タイプはFileZillaの転送開始時に毎回セットされます.",
+                    IDC_STATIC,88,17,181,31
+    GROUPBOX        "ASCIIファイル",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "自動検出を選択した場合, FileZillaは下記の種類のファイルをASCIIを使用して転送します:",
+                    IDC_STATIC,14,76,244,8
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,112,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "追加(&A)",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "削除(&R)",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "もし間違ったファイルの種類を入力すると, それらのファイルは転送された時に破損するかもしれません.",
+                    IDC_STATIC,167,98,104,97
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "サイトマネージャ"
+MENU IDR_SITEMANAGER
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+    GROUPBOX        "サイトの詳細",IDC_STATIC,174,0,169,244
+    LTEXT           "ホスト(&H):",IDC_STATIC,180,11,29,8
+    EDITTEXT        IDC_HOST,180,20,127,14,ES_AUTOHSCROLL
+    LTEXT           "ポート(&P):",IDC_STATIC,312,11,29,8
+    EDITTEXT        IDC_PORT,312,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "サーバの種類(&S):",IDC_STATIC,180,38,47,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "ログオンの種類",IDC_STATIC,180,66,157,38
+    CONTROL         "匿名(&m)",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,189,77,41,10
+    CONTROL         "通常(&l)",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,246,77,
+                    38,10
+    CONTROL         "Account",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,295,78,
+                    36,9
+    CONTROL         "プロキシの設定を無視(&B)",IDC_FWBYPASS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,189,90,86,10
+    LTEXT           "ユーザ(&U):",IDC_STATIC,180,107,28,8
+    EDITTEXT        IDC_USER,180,116,110,13,ES_AUTOHSCROLL
+    LTEXT           "Account:",IDC_STATIC,294,106,26,7
+    EDITTEXT        IDC_USER2,294,116,42,13,ES_AUTOHSCROLL
+    LTEXT           "パスワード(&w):",IDC_STATIC,180,135,38,8
+    EDITTEXT        IDC_PASS,180,144,157,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "パスワードを保存しない(&t).",IDC_PASSDONTSAVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,180,162,86,
+                    10
+    LTEXT           "コメント(&o):",IDC_STATIC,180,177,32,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,180,188,157,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "デフォルトのサイト(&f)",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,226,70,10
+    PUSHBUTTON      "新規サイト(&N)",IDC_NEW,7,212,54,14,WS_GROUP
+    PUSHBUTTON      "新規フォルダ(&e)",IDC_SITEMANAGER_NEWFOLDER,62,212,54,
+                    14,WS_GROUP
+    PUSHBUTTON      "削除(&D)",IDC_DELETE,117,212,54,14
+    PUSHBUTTON      "コピー(&y)",IDC_SITEMANAGER_COPY,7,230,54,14,WS_GROUP
+    PUSHBUTTON      "名前の変更(&R)",IDC_SITEMANAGER_RENAME,62,230,54,14,
+                    WS_GROUP
+    PUSHBUTTON      "高度な設定(&v)...",IDC_SITEMANAGER_ADVANCED,117,230,54,
+                    14,WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,249,
+                    336,1
+    PUSHBUTTON      "接続(&C)",IDOK,79,253,50,14
+    PUSHBUTTON      "キャンセル(&a)",IDCANCEL,150,253,50,14
+    PUSHBUTTON      "保存して終了(&x)",IDC_EXIT,221,253,50,14
+END
+
+IDD_OPTIONS_INTERFACE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "起動時の設定",IDC_STATIC,7,7,272,100
+    LTEXT           "FileZillaの起動時にどのGUI要素を表示しますか?",
+                    IDC_STATIC,14,19,133,8
+    CONTROL         "常に下記の設定を使用する(&A)",IDC_VIEWMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,29,158,10
+    CONTROL         "最後に使用した設定を記憶する(&R)",IDC_VIEWMODE2,"Button",
+                    BS_AUTORADIOBUTTON,14,39,112,10
+    LTEXT           "現在の設定",IDC_STATIC,14,50,34,8
+    LTEXT           "これらのパーツをGUIに表示:",IDC_STATIC,27,62,39,28,NOT 
+                    WS_GROUP
+    CONTROL         "ツールバー(&T)",IDC_SHOWTOOLBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,61,53,10
+    CONTROL         "ステータスバー(&S)",IDC_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,135,61,62,10
+    CONTROL         "クイック接続バー(&Q)",IDC_SHOWQUICKCONNECTBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,208,61,69,10
+    CONTROL         "メッセージログ(&M)",IDC_SHOWMESSAGELOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,76,62,10
+    CONTROL         "ローカルツリービュー(&o)",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,135,76,75,10
+    CONTROL         "転送キュー(&f)",IDC_SHOWTRANSFERQUEUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,208,76,53,10
+    CONTROL         "リモートツリービュー(&e)",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,91,73,10
+    GROUPBOX        "その他",IDC_STATIC,7,111,272,80
+    CONTROL         "ビューラベルを表示(&v)",IDC_VIEWLABELS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,123,75,10
+    CONTROL         "FileZillaのウィンドウサイズと位置を記憶(&w)",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,134,132,10
+    CONTROL         "タスクバーに最小化(&n) (デフォルト)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,152,110,10
+    CONTROL         "タスクバーの代わりにトレイに最小化(&i)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,162,117,10
+    CONTROL         "トレイに最小化するためのボタンを表示(&z)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,127,10
+END
+
+IDD_OPTIONS_GSSPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    CONTROL         "Kerberos GSSのサポートを有効にする(&E)",IDC_USEGSS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,127,10
+    LISTBOX         IDC_SERVERLIST,15,64,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,64,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "追加(&A)",IDC_SERVERADD,128,83,50,14
+    PUSHBUTTON      "削除(&R)",IDC_SERVERREMOVE,128,101,50,14
+    LTEXT           "Kerberos for Windows (KfW)をインストールしてある必要があります. もししてなければ, この機能は動作しません. もし有効にすると, FileZillaは下の一覧に載ったサーバにGSS認証と暗号化を使います.",
+                    IDC_STATIC,7,21,272,26
+    GROUPBOX        "GSSが有効なサーバ",IDC_STATIC,7,52,272,149
+    LTEXT           "一覧にある文字列でアドレスが終わる各サーバにGSSが使用されます. GSSをサポートしているサーバのみ入力して下さい.",
+                    IDC_STATIC,184,66,88,43
+    LTEXT           "GSSが動作する前にKerberos Version 5の有効なチケットが必要です",
+                    IDC_STATIC,184,109,88,28
+END
+
+IDD_OPTIONS_DEBUG DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "これらの設定はデバッグのためだけを目的としています. 通常はこれらを変更する必要はありません.\nしかし何かFileZillaの問題に遭遇したらデバッグ機能を有効にしてもよいでしょう. 追加される出力は問題を修正する手助けとなるかもしれません.",
+                    IDC_STATIC,7,7,272,35
+    CONTROL         "ftpエンジンからのメッセージを追跡する(&T)",
+                    IDC_DEBUG_ENGINETRACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,43,128,10
+    CONTROL         "rawディレクトリ一覧を表示する(&S)",
+                    IDC_DEBUG_SHOWRAWLISTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,56,109,10
+    CONTROL         "デバッグメニューを有効にする(&E)",IDC_DEBUG_DEBUGMENU,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,69,101,10
+END
+
+IDD_OPTIONS_FTPPROXY DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "プロキシホスト(&h)",IDC_STATIC,7,7,48,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "ポート(&P)",IDC_STATIC,113,7,26,8
+    EDITTEXT        IDC_EDIT6,113,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "ユーザ(&U)",IDC_STATIC,7,36,28,8
+    EDITTEXT        IDC_EDIT7,7,47,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "パスワード(&a)",IDC_STATIC,53,36,36,8
+    EDITTEXT        IDC_EDIT8,53,47,40,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "プロキシの種類(&t)",IDC_STATIC,7,71,272,103
+    CONTROL         "無し",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,17,81,28,10
+    CONTROL         "SITE hostname",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    17,91,65,10
+    CONTROL         "USER after logon",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,71,10
+    CONTROL         "Proxy OPEN",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,17,
+                    111,55,10
+    CONTROL         "Transparent",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,17,
+                    121,54,10
+    CONTROL         "USER RemoteID@Remotehost",IDC_RADIO8,"Button",
+                    BS_AUTORADIOBUTTON,17,131,115,10
+    CONTROL         "USER FireID@Remotehost",IDC_RADIO9,"Button",
+                    BS_AUTORADIOBUTTON,17,141,102,10
+    CONTROL         "USER RemoteID@RemoteHost FireID",IDC_RADIO10,"Button",
+                    BS_AUTORADIOBUTTON,17,151,137,10
+    CONTROL         "USER RemoteID@fireID@remoteHost",IDC_RADIO11,"Button",
+                    BS_AUTORADIOBUTTON,17,161,137,10
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "このページではローカルファイルの一覧の外観を設定できます.",
+                    IDC_STATIC,7,7,163,8
+    CONTROL         "常に下記の設定を使用(A):",IDC_OPTIONS_LOCALVIEW_ALWAYS,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,7,20,93,10
+    LTEXT           "デフォルトの一覧スタイル(&D):",IDC_STATIC,19,35,79,8,
+                    NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,98,34,72,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "詳細スタイルを使用する時に表示する列:",IDC_STATIC,19,49,
+                    111,8,NOT WS_GROUP
+    CONTROL         "ファイルサイズ(&F)",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,61,10
+    CONTROL         "ファイルの種類(&t)",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,85,61,62,10
+    CONTROL         "最終更新時刻(&L)",IDC_OPTIONS_LOCALVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,145,61,65,10
+    CONTROL         "選択したファイルの情報をステータスバーに表示(&h)",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,76,150,10
+    CONTROL         "最後に使用した設定を記憶(&R)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,91,101,10
+    LTEXT           "この場合, メニュー上で外観を変更する事ができます",
+                    IDC_STATIC,19,105,140,8
+    CONTROL         "詳細スタイルで列の幅を記憶(&c)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,120,103,10
+    CONTROL         "詳細スタイルで列の整列順を記憶(&e)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,133,118,10
+    LTEXT           "詳細スタイルでのファイルサイズの書式(&s):",IDC_STATIC,7,
+                    154,113,8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,120,152,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "ファイルをダブルクリックした時の動作(&d):",IDC_STATIC,7,
+                    175,107,8
+    CONTROL         "転送",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,115,175,42,10
+    CONTROL         "開く",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,164,175,33,10
+    CONTROL         "キューに追加",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,
+                    "Button",BS_AUTORADIOBUTTON,211,175,51,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "このページではリモートファイルの一覧の外観が設定できます.",
+                    IDC_STATIC,7,7,161,8
+    CONTROL         "常に下記の設定を使用(&A):",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,20,93,10
+    LTEXT           "デフォルトの一覧スタイル(&e):",IDC_STATIC,19,35,78,8,
+                    NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,98,34,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "詳細スタイルを使用する時に表示する列 (ファイル名は常に表示):",
+                    IDC_STATIC,19,49,176,8,NOT WS_GROUP
+    CONTROL         "ファイルサイズ(&z)",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,61,10
+    CONTROL         "ファイルの種類(&y)",IDC_OPTIONS_REMOTEVIEW_FILETYPE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,89,61,64,10
+    CONTROL         "日付(&D)",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,153,61,40,10
+    CONTROL         "時刻(&T)",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,72,40,10
+    CONTROL         "パーミッション(&P)",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,89,72,53,10
+    CONTROL         "所有者 / グループ(&w)",
+                    IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,153,72,77,10
+    CONTROL         "選択したファイルの情報をステータスバーに表示(&o)",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,85,150,10
+    CONTROL         "最後に使用した設定を記憶(&R)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,98,101,10
+    LTEXT           "この場合、メニュー上で外観を変更することができます",
+                    IDC_STATIC,19,111,142,8
+    CONTROL         "詳細スタイルで列の幅を記憶(&c)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,124,103,10
+    CONTROL         "詳細スタイルで列の整列順を記憶(&m)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,136,119,10
+    LTEXT           "詳細スタイルでのファイルサイズの書式(&s):",IDC_STATIC,7,
+                    150,113,8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,120,148,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "隠しファイルを常に表示(&h)",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,164,88,10
+    LTEXT           "全てのサーバがこの機能をサポートしているわけではない事に注意して下さい. 有効にした場合FileZillaはそれらのサーバではファイルの一覧を取得できないでしょう.",
+                    IDC_STATIC,19,175,260,17
+    LTEXT           "ファイルをダブルクリックした時の動作(&i):",IDC_STATIC,7,
+                    200,104,8
+    CONTROL         "転送",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,112,200,30,10
+    CONTROL         "開く",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,157,200,26,10
+    CONTROL         "キューに追加",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK3,
+                    "Button",BS_AUTORADIOBUTTON,203,200,59,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "このページではリモートディレクトリのキャッシュについて設定できます",
+                    IDC_STATIC,7,7,174,8
+    CONTROL         "キャッシュを使用しない(&D)",IDC_OPTIONS_CACHE_USECACHE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,7,18,85,10
+    CONTROL         "キャッシュを使用する(&U)",IDC_OPTIONS_CACHE_USECACHE2,
+                    "Button",BS_AUTORADIOBUTTON,7,28,79,10
+    LTEXT           "ディレクトリがキャッシュされ続ける最大の時間:",
+                    IDC_STATIC,7,44,123,8
+    LTEXT           "時間(&h),",IDC_STATIC,27,57,27,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "分(&m),",IDC_STATIC,75,57,27,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,55,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "秒(&s)",IDC_STATIC,118,57,28,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,98,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "利用可能なディレクトリキャッシングは異なる種類があります.",
+                    IDC_STATIC,7,114,159,8,NOT WS_VISIBLE
+    CONTROL         "FileZilla終了時にキャッシュをクリア",
+                    IDC_OPTIONS_CACHE_CACHETYPE,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,124,106,10
+    CONTROL         "永続的なキャッシュを使用",IDC_OPTIONS_CACHE_CACHETYPE2,
+                    "Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,7,134,86,10
+END
+
+IDD_SERVER_CHANGEPASS DIALOGEX 0, 0, 186, 138
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "このダイアログを使用するとこのサーバでこのアカウントに要求されるパスワードを変更できます.\nこの機能は全てのサーバで利用可能ではありません.",
+                    IDC_STATIC,7,7,172,26
+    LTEXT           "パスワードの変更を許可されていることを確認するためにあなたの古いパスワードを入力し新しいパスワードとその確認を入力して下さい.",
+                    IDC_STATIC,7,33,172,24
+    LTEXT           "古いパスワード(&O):",IDC_STATIC,7,64,54,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,61,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "新しいパスワード(&N):",IDC_STATIC,7,83,58,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,80,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "新しいパスワードの確認(&C):",IDC_STATIC,7,102,77,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,99,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,35,117,50,14
+    PUSHBUTTON      "キャンセル(&C)",IDCANCEL,99,117,50,14
+END
+
+IDD_VERIFY_CERT_DLG DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "証明書を許可しますか?"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "発行者",IDC_STATIC,35,7,308,66
+    LTEXT           "組織:",IDC_STATIC,41,17,17,8
+    GROUPBOX        "有効期間",IDC_STATIC,35,151,308,34
+    PUSHBUTTON      "許可",IDOK,194,253,50,14
+    PUSHBUTTON      "拒否",IDCANCEL,110,253,50,14
+    CONTROL         "常にこの証明書を信頼する",IDC_VERIFY_CERT_ALWAYS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,35,239,99,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,100,203,237,17
+    LTEXT           "要約:",IDC_STATIC,35,203,17,8
+    LTEXT           "この証明書を信頼しますか?",IDC_STATIC,35,223,114,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,100,
+                    17,88,8
+    LTEXT           "コモンネーム:",IDC_STATIC,41,28,35,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,100,28,
+                    88,8
+    LTEXT           "E-Mail:",IDC_STATIC,194,28,38,8
+    LTEXT           "部署",IDC_STATIC,194,17,15,8
+    LTEXT           "コモンネーム:",IDC_STATIC,41,28,35,8
+    LTEXT           "国:",IDC_STATIC,41,39,27,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_ISSUER_COUNTRY,100,39,88,8
+    LTEXT           "州 / 都道府県:",IDC_STATIC,41,50,55,8
+    LTEXT           "市区郡町村:",IDC_STATIC,194,39,38,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_ISSUER_TOWN,232,39,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,
+                    100,50,237,8
+    LTEXT           "その他:",IDC_STATIC,41,61,20,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_ISSUER_OTHER,100,61,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_ISSUER_MAIL,232,28,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_ISSUER_UNIT,232,17,118,8
+    GROUPBOX        "識別情報",IDC_STATIC,35,79,308,66
+    LTEXT           "組織:",IDC_STATIC,41,89,17,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,
+                    100,89,88,8
+    LTEXT           "コモンネーム:",IDC_STATIC,41,100,35,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,100,
+                    100,88,8
+    LTEXT           "E-Mail:",IDC_STATIC,194,100,38,8
+    LTEXT           "部署",IDC_STATIC,194,89,15,8
+    LTEXT           "コモンネーム:",IDC_STATIC,41,100,35,8
+    LTEXT           "国:",IDC_STATIC,41,111,27,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,100,111,88,8
+    LTEXT           "州 / 都道府県:",IDC_STATIC,41,122,55,8
+    LTEXT           "市区郡町村:",IDC_STATIC,194,111,38,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_SUBJECT_TOWN,232,111,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,
+                    100,122,237,8
+    LTEXT           "その他:",IDC_STATIC,41,133,20,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_SUBJECT_OTHER,100,133,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,232,100,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_SUBJECT_UNIT,232,89,118,8
+    LTEXT           "開始:",IDC_STATIC,41,161,25,8
+    LTEXT           "終了:",IDC_STATIC,41,172,17,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDFROM,100,161,237,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDUNTIL,100,172,237,8
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    LTEXT           "拇印 (SHA1):",IDC_STATIC,35,188,60,8
+    LTEXT           "<certificate hash>",IDC_VERIFY_CERT_HASH,100,188,243,8
+END
+
+IDD_OPTIONS_TRANSFER DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    CONTROL         "ダウンロードしたファイルの日付/時刻を維持する(&P)",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,153,10
+    LTEXT           "ファイルサイズが(&U)",IDC_STATIC,7,34,186,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,60,31,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "バイト以下なら最初の接続を転送のために使用する",
+                    IDC_STATIC,101,34,139,8
+    CONTROL         "ファイルの転送に多重接続を使用(&m)",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,56,118,10
+    LTEXT           "最大で(&T)",IDC_STATIC,7,71,31,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,38,68,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "個のファイルを同時に転送する",IDC_STATIC,56,71,82,8
+    LTEXT           "もし転送する対象のファイルが既に存在していたら, デフォルトの動作を指定できます:",
+                    IDC_STATIC,7,97,224,8
+    CONTROL         "尋ねる(&A)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    108,45,10
+    CONTROL         "上書き(&O)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,119,46,10
+    CONTROL         "新しければ上書き(&i)",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,129,71,10
+    CONTROL         "レジューム(&R)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,
+                    "Button",BS_AUTORADIOBUTTON,7,141,53,10
+    CONTROL         "名前の変更(&n)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,
+                    "Button",BS_AUTORADIOBUTTON,7,152,59,10
+    CONTROL         "スキップ(&S)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,
+                    "Button",BS_AUTORADIOBUTTON,7,163,46,10
+    CONTROL         "VMSサーバ上で全てのファイルのリビジョンを表示(&V)",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,154,10
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "このページではファイルの閲覧/編集に使用されるプログラムを選択できます.",
+                    IDC_STATIC,7,7,272,8
+    LTEXT           "ファイルを閲覧又は編集するデフォルトのプログラム(&D):",
+                    IDC_STATIC,7,20,272,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,31,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照(&B)",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,31,50,
+                    14
+    LTEXT           "個別のファイル関連付け(&C):",IDC_STATIC,7,48,78,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,58,272,99,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "それぞれの行は1つのファイルの関連付けを示しています. 全ての行はファイルの拡張子で始まり空白が後に続きます. そしてそのファイルの閲覧又は編集に使うプログラムが後に続きます. もし拡張子自身が空白を含むなら引用符で挟んで下さい. 不正な行は取り除きます.",
+                    IDC_STATIC,7,161,272,25
+    LTEXT           "例:\ntxt c:\\windows\\notepad.exe",IDC_STATIC,7,185,272,
+                    16
+END
+
+IDD_OPTIONS_IDENT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "幾つかのFTPサーバはそれらに接続する時にIdentサーバが動作している事を要求します.",
+                    IDC_STATIC,7,7,272,17
+    CONTROL         "Identサーバを有効にする(&E)",IDC_OPTIONS_IDENT_IDENT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,26,91,10
+    LTEXT           "ユーザID(&U):",IDC_STATIC,7,41,38,8
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,45,38,123,14,ES_AUTOHSCROLL
+    LTEXT           "システム(&S):",IDC_STATIC,173,41,35,8
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,209,38,70,14,ES_AUTOHSCROLL
+    CONTROL         "接続時のみ有効にする(&c)",
+                    IDC_OPTIONS_IDENT_IDENTCONNECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,58,87,10
+    CONTROL         "同じIPからのリクエストのみ許可する(&I)",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,142,58,116,10
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "ダウンロード速度の制限",IDC_STATIC,5,5,275,95
+    CONTROL         "無制限(&N)",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,15,46,10
+    CONTROL         "一定の速度に制限(&C)",IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,25,78,10
+    CONTROL         "速度制限ルールを使用(&s):",
+                    IDC_SPEEDLIMIT_DOWNLOAD_RULES,"Button",
+                    BS_AUTORADIOBUTTON,12,35,90,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,105,24,55,14,
+                    ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,162,27,16,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,24,46,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "追加(&A)",IDC_SPEEDLIMIT_DOWNLOAD_ADD,240,46,35,11,
+                    WS_DISABLED
+    PUSHBUTTON      "削除(&R)",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,240,59,35,11,
+                    WS_DISABLED
+    PUSHBUTTON      "上へ(&U)",IDC_SPEEDLIMIT_DOWNLOAD_UP,240,72,35,11,
+                    WS_DISABLED
+    PUSHBUTTON      "下へ(&o)",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,240,85,35,11,
+                    WS_DISABLED
+    GROUPBOX        "アップロード速度の制限",IDC_STATIC,5,105,275,95
+    CONTROL         "無制限(&L)",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,45,10
+    CONTROL         "一定の速度に制限(&t)",IDC_SPEEDLIMIT_UPLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,125,77,10
+    CONTROL         "速度制限ルールを使用(&e):",IDC_SPEEDLIMIT_UPLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,135,91,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,105,122,55,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,163,125,16,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,24,146,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "追加(&d)",IDC_SPEEDLIMIT_UPLOAD_ADD,240,146,35,11,
+                    WS_DISABLED
+    PUSHBUTTON      "削除(&m)",IDC_SPEEDLIMIT_UPLOAD_REMOVE,240,159,35,11,
+                    WS_DISABLED
+    PUSHBUTTON      "上へ(&p)",IDC_SPEEDLIMIT_UPLOAD_UP,240,172,35,11,
+                    WS_DISABLED
+    PUSHBUTTON      "下へ(&w)",IDC_SPEEDLIMIT_UPLOAD_DOWN,240,185,35,11,
+                    WS_DISABLED
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOGEX 0, 0, 227, 140
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "速度制限ルール"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "基準",IDC_STATIC,7,3,213,87
+    CONTROL         "日付(&D):",IDC_DATE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,40,10
+    CONTROL         "DateTimePicker1",IDC_DATE_VALUE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_APPCANPARSE | WS_TABSTOP,50,16,125,
+                    15
+    CONTROL         "&From:",IDC_FROM_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,39,33,10
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP,50,37,55,15
+    CONTROL         "T&o:",IDC_TO_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,117,39,27,10
+    CONTROL         "DateTimePicker2",IDC_TO_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP,145,37,55,15
+    CONTROL         "月(&M)",IDC_CHECK_DAY1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,33,10
+    CONTROL         "火(&T)",IDC_CHECK_DAY2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,57,31,10
+    CONTROL         "水(&W)",IDC_CHECK_DAY3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,57,33,10
+    CONTROL         "木(&h)",IDC_CHECK_DAY4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,165,57,31,10
+    CONTROL         "金(&r)",IDC_CHECK_DAY5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,73,30,10
+    CONTROL         "土(&S)",IDC_CHECK_DAY6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,73,31,10
+    CONTROL         "日(&u)",IDC_CHECK_DAY7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,73,31,10
+    LTEXT           "速度(&p):",IDC_STATIC,7,99,24,8
+    EDITTEXT        IDC_SPEED,34,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kB/s",IDC_STATIC,88,99,16,8
+    DEFPUSHBUTTON   "OK",IDOK,110,119,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,170,119,50,14
+END
+
+IDD_OPTIONS_SSHPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "FileZillaはPuTTY(http://www.chiark.greenend.org.uk/~sgtatham/putty/)をSFTP接続のために一部使用しています.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "SFTPサーバへのSSHの接続を確立するために, FileZillaはPuTTYのデフォルトオプションを使用します. このページでは幾つかのデフォルト設定を上書きできます.",
+                    IDC_STATIC,7,23,272,19
+    LTEXT           "圧縮を使用(&C):",IDC_STATIC,7,45,46,8
+    CONTROL         "デフォルト",IDC_OPTIONS_SSHPAGE_COMPRESSION1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,55,41,10
+    CONTROL         "Yes",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,74,55,28,10
+    CONTROL         "No",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,134,55,25,10
+    LTEXT           "プロトコルの選択:",IDC_STATIC,7,68,48,8
+    LTEXT           "デフォルトでは(デフォルトの設定を変更していないなら), PuTTYはSSHサーバへの接続にSSH2を使用します.",
+                    IDC_STATIC,14,80,265,17
+    LTEXT           "PuTTYのSSH2の実装はSSH1よりもセキュアですが, 幾つかの速度的な問題を持っています. (詳細はhttp://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/sftp-slow.htmlを参照)",
+                    IDC_STATIC,14,96,265,32
+    LTEXT           "もしFileZillaでSFTPサーバに速度的な問題が有るならSSH2の追加的セキュリティを要求せずに, SSH1の使用を強制してみて下さい.",
+                    IDC_STATIC,14,128,265,17
+    CONTROL         "デフォルト",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,146,41,10
+    CONTROL         "SSH1を使用",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,74,146,51,10
+    CONTROL         "SSH2を使用",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,134,146,51,10
+    LTEXT           "全てのサーバがサポートしているわけではないという事を覚えておいて下さい",
+                    IDC_STATIC,14,156,196,8
+END
+
+IDD_SITEMANAGER_ADVANCED DIALOGEX 0, 0, 239, 191
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "サイト'%s' (%s)の高度な設定",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,225,16
+    LTEXT           "デフォルトのローカルディレクトリ(&l):",IDC_STATIC,7,28,
+                    89,8
+    EDITTEXT        IDC_LOCALDIR,7,36,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,36,12,14
+    LTEXT           "デフォルトのリモートディレクトリ(&i):",IDC_STATIC,7,58,
+                    87,8
+    EDITTEXT        IDC_REMOTEDIR,7,66,157,14,ES_AUTOHSCROLL,
+                    WS_EX_TRANSPARENT
+    LTEXT           "パッシブ転送モードの設定",IDC_STATIC,7,88,71,8
+    CONTROL         "デフォルトを使用(&d)",IDC_SITEMANAGER_ADVANCED_PASSIVE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,98,
+                    65,10
+    CONTROL         "パッシブモードを使用(&p)",
+                    IDC_SITEMANAGER_ADVANCED_PASSIVE2,"Button",
+                    BS_AUTORADIOBUTTON,73,98,76,10
+    CONTROL         "アクティブモードを使用(&a)",
+                    IDC_SITEMANAGER_ADVANCED_PASSIVE3,"Button",
+                    BS_AUTORADIOBUTTON,150,98,82,10
+    LTEXT           "サーバのタイムゾーンオフセット:",IDC_STATIC,7,117,82,8
+    LTEXT           "リモートのファイルに適用する時間",IDC_STATIC,7,131,89,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,98,128,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,111,127,11,14
+    LTEXT           "時間",IDC_STATIC,127,131,15,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,149,128,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,126,11,14
+    LTEXT           "分",IDC_STATIC,178,130,8,8
+    LTEXT           "Use UTF8 on server if available:",IDC_STATIC,6,151,89,7
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,101,149,41,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,55,170,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,135,170,50,14
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    GROUPBOX        "一般",IDC_STATIC,7,7,272,26
+    CONTROL         "リモートビューをローカルビューの左に配置する",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,134,10
+    GROUPBOX        "ツリービューの場所",IDC_STATIC,7,37,272,83
+    LTEXT           "ローカルツリービュー:",IDC_STATIC,13,48,55,8
+    CONTROL         "ファイル一覧の上に配置",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,58,81,10
+    CONTROL         "ファイル一覧の左に配置",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,69,81,10
+    LTEXT           "リモートツリービュー:",IDC_STATIC,14,84,52,8
+    CONTROL         "ファイル一覧の上に配置",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,94,81,10
+    CONTROL         "ファイル一覧の左に配置",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,105,81,10
+    LTEXT           "これらの設定の変更にはFileZillaの再起動が必要です",
+                    IDC_STATIC,7,126,144,8
+END
+
+IDD_SAPREFS DIALOGEX 0, 0, 415, 260
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "FileZillaのオプション"
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,187,113,66
+    DEFPUSHBUTTON   "OK",IDOK,12,194,97,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,12,214,97,14
+    PUSHBUTTON      "ヘルプ",IDC_PHELP,12,234,97,14
+    LTEXT           "",IDC_CAPTION_BAR,122,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,121,19,292,234
+END
+
+IDD_OPTIONS_LOGGING DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    CONTROL         "メッセージログにカスタムフォントを使用する(&U)",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,135,10
+    LTEXT           "現在のフォント:",IDC_STATIC,19,20,42,8
+    LTEXT           "Statisch",IDC_OPTIONS_LOGGING_FONTDATA,71,20,208,8
+    PUSHBUTTON      "フォントを選択(&S)...",IDC_OPTIONS_LOGGING_CHANGEFONT,
+                    19,32,59,14
+    CONTROL         "全てをファイルに記録する(&L)",
+                    IDC_OPTIONS_LOGGING_LOGTOFILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,50,91,10
+    LTEXT           "有効にすると, メッセージログから全てのメッセージがファイルに書かれます. ログファイルは.rtfの拡張子を持ちます.",
+                    IDC_STATIC,19,61,260,18
+    LTEXT           "ファイル名(&F):",IDC_STATIC,19,81,39,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,58,79,90,14,ES_AUTOHSCROLL
+    CONTROL         "ログのエントリにタイムスタンプを記録(&T)",
+                    IDC_OPTIONS_LOGGING_TIMESTAMP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,98,121,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOGEX 0, 0, 286, 200
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 9, "MS Shell Dlg", 400, 0, 0x80
+BEGIN
+    LTEXT           "ftpプロトコルの拡張であるMODE Zの使用は, それをサポートしているサーバ上で圧縮されたファイル転送の使用を可能にします.",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "圧縮を使用しない",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,28,65,10
+    CONTROL         "ディレクトリ一覧にのみ圧縮を使用する",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,40,118,10
+    CONTROL         "全ての転送に圧縮を使用する",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,52,96,10
+    LTEXT           "1(最低)から9(最高)の範囲の圧縮レベル:",IDC_STATIC,7,72,
+                    174,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,125,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "デフォルトの圧縮レベルは8です. これは圧縮後の総量とCPUの利用との丁度良い妥協点です.",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "圧縮方式の詳細については下記文書をお読み下さいhttp://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,173,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MANUALTRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        RIGHTMARGIN, 386
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_SITEMANAGER, DIALOG
+    BEGIN
+        RIGHTMARGIN, 343
+    END
+
+    IDD_OPTIONS_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_LOCALVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_VERIFY_CERT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        VERTGUIDE, 35
+        VERTGUIDE, 41
+        VERTGUIDE, 100
+        VERTGUIDE, 194
+        VERTGUIDE, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_OPTIONS_VIEWEDIT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 279
+    END
+
+    IDD_OPTIONS_IDENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        VERTGUIDE, 80
+        VERTGUIDE, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        VERTGUIDE, 143
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 39, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x542f, 0x534c, 0x2820, 
+0x6d69, 0x6c70, 0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 
+0x296e, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 16, 0
+0x4653, 0x5054, 0x7520, 0x6973, 0x676e, 0x5320, 0x4853, 0x0032, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5420, 0x534c, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    0
+END
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 5, 0
+0xda8f, 0xd78d, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 5, 0
+0xea88, 0x9797, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 15, 0
+0xe591, 0xab82, 0xa282, 0x4183, 0x4383, 0x5283, 0x9383, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 15, 0
+0xac8f, 0xb382, 0xa282, 0x4183, 0x4383, 0x5283, 0x9383, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0xa98e, 0xae93, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 7, 0
+0x6f83, 0x4383, 0x6783, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 5, 0
+0xda8f, 0xd78d, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 5, 0
+0xea88, 0x9797, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 15, 0
+0xe591, 0xab82, 0xa282, 0x4183, 0x4383, 0x5283, 0x9383, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 15, 0
+0xac8f, 0xb382, 0xa282, 0x4183, 0x4383, 0x5283, 0x9383, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0xa98e, 0xae93, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 7, 0
+0x6f83, 0x4383, 0x6783, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 39, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x542f, 0x534c, 0x2820, 
+0x6d69, 0x6c70, 0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 
+0x296e, "\000" 
+    IDC_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    IDC_SERVERTYPE, 0x403, 16, 0
+0x4653, 0x5054, 0x7520, 0x6973, 0x676e, 0x5320, 0x4853, 0x0032, 
+    IDC_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5420, 0x534c, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    0
+END
+
+IDD_SITEMANAGER_ADVANCED DLGINIT
+BEGIN
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x6f46, 0x6372, 0x0065, 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x654e, 0x6576, 0x0072, 
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "サイトマネージャ(&S)...\tCtrl+S", ID_SITEMANAGER
+        MENUITEM "接続をサイトマネージャにコピー(&C)", ID_COPYTOSITEMANAGER
+        MENUITEM "デフォルトサイトに接続(&o)",  ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "再接続(&R)\tCtrl+R",          ID_TOOLBAR_RECONNECT
+        MENUITEM "切断(&D)\tCtrl+D",            ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&x)",                    ID_APP_EXIT
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "設定(&S)...",                 ID_EDIT_SETTINGS
+        MENUITEM "設定をエクスポート(&x)...",   ID_EDIT_EXPORTSETTINGS
+        MENUITEM "設定をインポート(&I)...",     ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "転送(&T)"
+    BEGIN
+        POPUP "転送の種類(&T)"
+        BEGIN
+            MENUITEM "&ASCII",                      ID_TYPEMENU_ASCII
+            MENUITEM "&Binary",                     ID_TYPEMENU_BINARY
+            MENUITEM "自動(&u)",                    ID_TYPEMENU_DETECT
+        END
+        POPUP "ファイルの上書き設定(&F)"
+        BEGIN
+            MENUITEM "尋ねる(&A)",                  ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "上書き(&O)",                  ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "新しければ上書き(&i)",        ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "レジューム(&R)",              ID_OVERWRITEMENU_RESUME
+            MENUITEM "名前の変更(&n)",              ID_OVERWRITEMENU_RENAME
+            MENUITEM "スキップ(&S)",                ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "手動ファイル転送(&M)...",     ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "ビュー(&V)"
+    BEGIN
+        MENUITEM "ビューを更新(&R)\t     F5",   ID_TOOLBAR_REFRESH
+        MENUITEM "隠しファイルを表示する(&h)",  ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
+        MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
+        MENUITEM "クイック接続バー(&C)",        ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "ローカルツリービュー(&L)\tCtrl+T", ID_SHOWTREE
+        MENUITEM "リモートツリービュー(&o)",    ID_SHOWREMOTETREE
+        MENUITEM "メッセージログ(&M)",          ID_VIEW_MESSAGELOG
+        MENUITEM "転送キュー(&Q)",              ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "ローカルリストビュー(&a)"
+        BEGIN
+            MENUITEM "詳細(&D)",                    ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "一覧(&L)",                    ID_LOCALLISTSTYLE_LIST
+            MENUITEM "大きいアイコン(&I)",          ID_LOCALLISTSTYLE_ICON
+            MENUITEM "小さいアイコン(&c)",          ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "ファイルサイズ(&z)",          ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "ファイルタイプ(&t)",          ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "最終更新時刻(&m)",            ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "ステータスバーを表示(&S)",    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "整列(&o)..."
+            BEGIN
+                MENUITEM "ファイル名(&F)",              ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "ファイルサイズ(&s)",          ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "ファイルの種類(&t)",          ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "最終更新(&L)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "昇順(&A)",                    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "降順(&D)",                    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "リモートリストビュー(&e)"
+        BEGIN
+            MENUITEM "詳細(&D)",                    ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "一覧(&L)",                    ID_REMOTELISTSTYLE_LIST
+            MENUITEM "大きいアイコン(&I)",          ID_REMOTELISTSTYLE_ICON
+            MENUITEM "小さいアイコン(&c)",          ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "ファイルサイズ(&z)",          ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "ファイルの種類(&y)",          ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "日付(&a)",                    ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "時刻(&T)",                    ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "パーミッション(&P)",          ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "所有者 / グループ(&O)",       ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "ステータスバーを表示(&S)",    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "整列(&b)..."
+            BEGIN
+                MENUITEM "ファイル名(&F)",              ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "ファイルサイズ(&s)",          ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "ファイルの種類(&t)",          ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "日付 / 時刻(&D)",             ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "昇順(&A)",                    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "降順(&e)",                    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "キュー(&Q)"
+    BEGIN
+        MENUITEM "キューを処理(&P)",            ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "多重接続を使用(&U)",          ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "エクスポート(&E)...",         ID_MENU_QUEUE_EXPORT
+        MENUITEM "インポート(&I)...",           ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "サーバ(&S)"
+    BEGIN
+        MENUITEM "パスワードの変更(&C)...",     ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "raw FTPコマンドを入力(&E)...\tCtrl+F", 
+                                                ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "URLをクリップボードにコピー(&U)", 
+                                                ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "ヘルプ(&H)"
+    BEGIN
+        MENUITEM "目次(&C)...",                 ID_HELPMENU_CONTENTS
+        MENUITEM "検索(&S)...",                 ID_HELPMENU_SEARCH
+        MENUITEM "インデックス...",             ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "FileZillaについて(&A)...",    ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "OutputContext"
+    BEGIN
+        MENUITEM "コマンドを入力(&E)...",       ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "クリップボードにコピー(&o)",  ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "全てクリア(&C)",              ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "FtpContext"
+    BEGIN
+        MENUITEM "ダウンロード(&D)",            ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "キューに追加(&A)",            ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "別名でダウンロード(&w)...",   ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "開く(&O)",                    ID_FTPCONTEXT_OPEN
+        MENUITEM "閲覧 / 編集(&V)",             ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "ディレクトリを作成(&C)",      ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "削除(&e)",                    ID_FTPCONTEXT_DELETE
+        MENUITEM "名前の変更(&R)",              ID_FTPCONTEXT_RENAME
+        MENUITEM "ファイルの属性(&F)...",       ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalContext"
+    BEGIN
+        MENUITEM "アップロード(&U)",            ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "キューに追加(&A)",            ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "別名でアップロード(&p)...",   ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "ディレクトリを作成(&C)",      ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "開く(&O)",                    ID_LOCALCONTEXT_OPEN
+        MENUITEM "閲覧 / 編集(&V)",             ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "削除(&e)",                    ID_LOCALCONTEXT_DELETE
+        MENUITEM "名前の変更(&R)",              ID_LOCALCONTEXT_RENAME
+        MENUITEM "プロパティ(&t)",              ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "QueueContext"
+    BEGIN
+        MENUITEM "キューを処理(&P)",            ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "キューから削除(&R)",          ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "状態をリセット(&S)",          ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "一時停止(&e)",                ID_QUEUECONTEXT_PAUSE
+        MENUITEM "レジューム(&m)",              ID_QUEUECONTEXT_RESUME
+        MENUITEM "中止(&A)",                    ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "上に移動(&u)",                ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "下に移動(&d)",                ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "最上位に移動(&t)",            ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "最下位に移動(&b)",            ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "インポート(&I)",              ID_SITEMANAGER_FILE_IMPORT
+        POPUP "エクスポート(&E)..."
+        BEGIN
+            MENUITEM "as &URL list",                ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "with all &details",           ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "保存して終了(&x)",            ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalTreeContext"
+    BEGIN
+        MENUITEM "アップロード(&U)",            ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "キューに追加(&A)",            ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "別名でアップロード(&p)...",   ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&e)",                    ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "名前の変更(&R)",              ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "元に戻す(&R)",                ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&x)",                    ID_TRAY_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,12,0
+ PRODUCTVERSION 2,2,12,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Japanese"
+            VALUE "FileDescription", "Japanese language DLL for FileZilla"
+            VALUE "FileVersion", "2, 2, 12, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2003 by Tim Kosse under the GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 12, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "レディ"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "FileZillaについて"
+    ID_APP_EXIT             "FileZillaを終了します"
+    ID_HELP                 "ヘルプのコンテンツを表示します"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "ツールバーを表示又は隠す"
+    ID_VIEW_STATUS_BAR      "ステータスバーを表示又は隠す"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "FileZillaを終了します"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "ソケットの初期化に失敗しました"
+    IDS_BROWSEFORFOLDER     "ローカルフォルダを選択して下さい."
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "証明書のチェインが長過ぎます."
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "証明書の期限が切れています."
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "証明書がまだ有効ではありません."
+    IDS_CERT_ERR_CERT_REJECTED "証明書が拒否されました."
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE "証明書の署名が失敗しています."
+    IDS_CERT_ERR_CERT_UNTRUSTED "証明書が信頼されませんでした."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<Empty directory listing>"
+    IDS_SITEMANAGER_NEWFOLDER "新しいフォルダ"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "新しいフォルダ%d"
+    IDS_SITEMANAGER_NEWFTPSITE "新規FTPサイト"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "新規FTPサイト%d"
+    IDS_SITEMANAGER_TEXTFILES "テキストファイル (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "マイFTPサイト"
+    IDS_SITEMANAGER_XMLFILES 
+                            "XMLファイル (*.xml)|*.xml|全てのファイル (*.*)|*.*||"
+    IDS_SIZE_BYTES          "バイト"
+    IDS_SIZE_GB             "GB"
+    IDS_SIZE_KBS            "KB"
+    IDS_SIZE_MBS            "MB"
+    IDS_STATUSBAR_ELAPSED   "%s経過"
+    IDS_STATUSBAR_LEFT      "残り%s"
+    IDS_TITLE_CONNECTED     "%sに接続しました"
+    IDS_TITLE_CONNECTING    "%sに接続しています"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "空のフォルダ"
+    IDS_VIEWLABEL_LOCAL     "ローカルサイト:"
+    IDS_VIEWLABEL_REMOTE    "リモートサイト:"
+    IDS_DIRINFO_EMPTY       "空のディレクトリです."
+    IDS_DIRINFO_FILES       "%d個のファイル  %I64dバイトです."
+    IDS_DIRINFO_DIRSANDFILES 
+                            "%d個のフォルダと%d個のファイル  %I64dバイトです."
+    IDS_DIRINFO_FILESMIN    "%d個のファイル  %I64dバイト以上です."
+    IDS_DIRINFO_DIRSANDFILESMIN 
+                            "%d個のフォルダと%d個のファイル  %I64dバイト以上です."
+    IDS_DIRINFO_SELECTED_FILES 
+                            "%d個のファイルが選択されました  %I64dバイトです."
+    IDS_DIRINFO_SELECTED_DIRS "%d個のフォルダが選択されました."
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "%d個のフォルダと%d個のファイルが選択されました  %I64dバイトです."
+    IDS_DIRINFO_SELECTED_FILESMIN 
+                            "%d個のファイルが選択されました  %I64dバイト以上です."
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "%d個のフォルダと%d個のファイルが選択されました  %I64dバイト以上です."
+    IDS_DIRINFO_FILE        "1個のファイル  %I64dバイトです."
+    IDS_DIRINFO_DIR         "1個のフォルダです."
+    IDS_DIRINFO_DIRANDFILES "1個のフォルダと%d個のファイル  %I64dバイトです."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY 
+                            "ディレクトリ""%s""の新しい属性を選択して下さい"
+    IDS_CHANGEDIALOG_FILE   "ファイル""%s""の新しい属性を選択して下さい"
+    IDS_CHANGEDIALOG_MULTIPLEFILES 
+                            "選択されたファイルとフォルダ全ての新しい属性を入力して下さい"
+    IDS_HEADER_DATE         "日付"
+    IDS_HEADER_DIRECTION    "方向"
+    IDS_HEADER_FILENAME     "ファイル名"
+    IDS_HEADER_FILESIZE     "ファイルサイズ"
+    IDS_HEADER_FILETYPE     "ファイルの種類"
+    IDS_HEADER_HOST         "ホスト"
+    IDS_HEADER_LASTMODIFIED "最終更新"
+    IDS_HEADER_LOCALNAME    "ローカルのファイル名"
+    IDS_HEADER_OWNERGROUP   "所有者 / グループ"
+    IDS_HEADER_PERMISSIONS  "パーミッション"
+    IDS_HEADER_REMOTENAME   "リモートのファイル名"
+    IDS_HEADER_SIZE         "サイズ"
+    IDS_HEADER_STATUS       "状態"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "時刻"
+    IDS_MANUALTRANSFER_HOST "正しいホストを入力して下さい"
+    IDS_MANUALTRANSFER_LOCALFILE 
+                            "ローカルファイルのパスと名前を入力して下さい"
+    IDS_MANUALTRANSFER_PORT "サーバの正しいポートを入力して下さい"
+    IDS_MANUALTRANSFER_REMOTEFILE 
+                            "リモートファイルのパスと名前を入力して下さい"
+    IDS_MANUALTRANSFER_USER "ユーザ名を入力して下さい"
+    IDS_QUEUESTATUS_ABORTED "転送が中止されました"
+    IDS_QUEUESTATUS_CRITICALERROR "致命的な転送エラーです"
+    IDS_QUEUESTATUS_ERROR   "転送エラー#%d. 後で再度試して下さい"
+    IDS_QUEUESTATUS_TOOMANYERTREIS "再試行が多過ぎます"
+    IDS_QUEUESTATUS_TRANSFERRING "転送しています"
+    IDS_QUICKCONN_HOST      "アドレス:"
+    IDS_QUICKCONN_PASS      "パスワード:"
+    IDS_QUICKCONN_PORT      "ポート:"
+    IDS_QUICKCONN_QUICKCONN "クイック接続(&Q)"
+    IDS_QUICKCONN_USER      "ユーザ:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "ユーザによって割り込まれました!"
+    IDS_ERRORMSG_INVALIDPORT "正しいポートを指定する必要があります!"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND 
+                            "エラー! 言語""%s""のための言語DLLを発見できませんでした!"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "エラー! 言語DLLが古いバージョンのFileZilla用に書かれておりこのバージョンと互換性がありません.\nhttp://sourceforge.net/projects/filezilla からこの言語DLLの新しいバージョンをダウンロードして下さい"
+    IDS_ERRORMSG_NAMEINUSE  "異なるファイル名を入力して下さい!"
+    IDS_ERRORMSG_PATHNOTFOUND "入力されたパスを発見できませんでした!"
+    IDS_ERRORMSG_PORTNEEDED "正しいポートを入力して下さい!"
+    IDS_ERRORMSG_PREFIX     "エラー:"
+    IDS_ERRORMSG_PROXY_AUTHFAILED "認証が失敗しました"
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON "プロキシは認証を要求しています"
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "プロキシサーバから通知された認証タイプは未知のものか又はサポートされていません"
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST 
+                            "プロキシサーバのホストが解決できません"
+    IDS_ERRORMSG_PROXY_NOCONN "プロキシサーバに接続できません"
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "プロキシ要求が失敗しました, プロキシサーバを通して接続できません"
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "エラー, 'FileZilla.xml'を解析できません, ファイルが間違っているようです.\nこのセッションでは, 設定を保存するためにレジストリが使用されます."
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "CSFtpIpCを初期化できません. 十分なシステムリソースが利用可能か確認して下さい!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "SFTPプロセスを開始できません. 'FzSFtp.exe'が'FileZilla.exe'と同じフォルダにあるか確認して下さい"
+    IDS_ERRORMSG_SFTP_CLOSED 
+                            "FzSFtp.exeが閉じられました, 接続を終了しています."
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "SFtpデータチャネルの中で不正なデータが見つかりました, 接続を終了します."
+    IDS_ERRORMSG_SFTP_NORESPONSE 
+                            "FzSFtp.exeが反応しませんでした, 接続を終了しています."
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE 
+                            "その名前は既に存在します! 異なる名前を選択して下さい!"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE "ログオンの種類を選択して下さい!"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME "FTPサイトの名前を入力して下さい!"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "パスワードを入力して下さい!"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "ユーザ名を入力して下さい!"
+    IDS_ERRORMSG_TIMEOUT    "タイムアウトが検出されました!"
+    IDS_ERRORMSG_UPLOADABORTED "アップロードが中止されました"
+    IDS_ERRORMSG_UPLOADFAILED "アップロードが失敗しました"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "不正なアドレス構文です. [ftp://][User:Pass@]Host[:Port][/Path]でなければなりません\n[ ]で囲まれたパラメータはオプションです.\r\nまたsftp:// と ftps:// は正しいプロトコルです."
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE """%s""を開けません"
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            """%s""の起動ができなかったため""%s""の閲覧/編集ができません. ファイルの関連付けをチェックして下さい."
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG 
+                            "エラー, デフォルトプログラムが指定されていません"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL 
+                            "転送チャンネルを開くことができません. 理由: %s"
+    IDS_ERRORMSG_CANTPARSECMDLINE "コマンドラインを解析できません."
+    IDS_ERRORMSG_CANTRESOLVEHOST "ホスト名が解決できません"
+    IDS_ERRORMSG_CANTRESUME "レジュームコマンドがサーバによってサポートされていません, ファイルを上書きします."
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "レジュームコマンドがサーバによってサポートされていませんが, ローカルとリモートのファイルサイズが同じです."
+    IDS_ERRORMSG_CANTSENDCOMMAND 
+                            "コマンドが送信できません! サーバからログオフしています!"
+    IDS_ERRORMSG_CANTWRITETOFILE "ファイル""%s""に書き込めません. 理由: %s"
+    IDS_ERRORMSG_CERTREJECTED "ピアの証明書が拒否されました"
+    IDS_ERRORMSG_CRITICALINTERRUPTED 
+                            "ユーザによって割り込まれました! サーバからログオフしています.."
+    IDS_ERRORMSG_DOWNLOADABORTED "ダウンロードが中止されました"
+    IDS_ERRORMSG_DOWNLOADFAILED "ダウンロードが失敗しました"
+    IDS_ERRORMSG_ENTERSTRING "文字列を入力する必要があります!"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "ファイル名には次の文字を含むことはできません:\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED 
+                            "ローカルファイル%sを開くことができませんでした"
+    IDS_ERRORMSG_HOSTNEEDED "ホストを入力して下さい!"
+    IDS_ERRORMSG_IDENT_CANTSTART "Identサーバの開始にエラーが発生しました"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                             "
+    ID_INDICATOR_TIMELEFT   "                         "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "キュー: %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d個のフォルダです."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "ディレクトリ名を入力"
+    IDS_INPUTDIALOGTEXT_CREATEDIR "新しいディレクトリの名前を入力して下さい:"
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "FTPコマンドを入力"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND "サーバで実行するコマンドを入力して下さい:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "パスワードを入力"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD 
+                            "サーバへの接続に使用されるパスワードを入力して下さい:"
+    IDS_INPUTDIALOGTITLE_RENAME "新しいファイル名を入力"
+    IDS_INPUTDIALOGTEXT_RENAME "ファイルが保存される名前を入力して下さい:"
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE 
+                            "Keyboard-interactive authentication"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "ユーザ名を入力"
+    IDS_INPUTDIALOGTEXT_INPUTUSER 
+                            "サーバへの接続に使用されるパスワードを入力して下さい:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "接続"
+    IDS_OPTIONSPAGE_DEBUG   "デバッグ"
+    IDS_OPTIONSPAGE_DIRCACHE "ディレクトリのキャッシュ"
+    IDS_OPTIONSPAGE_FIREWALL "ファイアウォールの設定"
+    IDS_OPTIONSPAGE_FTPPROXY "FTPプロキシの設定"
+    IDS_OPTIONSPAGE_GSS     "GSSのサポート"
+    IDS_OPTIONSPAGE_IDENT   "Identサーバ"
+    IDS_OPTIONSPAGE_INTERFACE "インターフェイスの設定"
+    IDS_OPTIONSPAGE_LANGUAGE "言語"
+    IDS_OPTIONSPAGE_LOCALVIEW "ローカルファイルの一覧"
+    IDS_OPTIONSPAGE_MISC    "その他"
+    IDS_OPTIONSPAGE_PROXY   "プロキシの設定"
+    IDS_OPTIONSPAGE_REMOTEVIEW "リモートファイルの一覧"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "速度制限"
+    IDS_OPTIONSPAGE_TRANSFER "ファイル転送の設定"
+    IDS_OPTIONSPAGE_TYPE    "ASCII/Binary"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "ファイル閲覧 / 編集"
+    IDS_OPTIONSPAGE_SSH     "SFTPの設定"
+    IDS_OPTIONSPAGE_PANELAYOUT "ペインレイアウト"
+    IDS_OPTIONSPAGE_LOGGING "メッセージログ"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "圧縮"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "コマンド:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "応答:"
+    IDS_TRACEMSG_TRACE      "追跡:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "接続できません!"
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "指定されたポートの範囲でソケットを作成できませんでした."
+    IDS_ERRORMSG_CANTCREATEFILE "出力ファイルの作成に失敗しました!"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION "SSLの接続が確立できません"
+    IDS_ERRORMSG_CANTGETFILETYPE "ファイルの種類が取得できません!"
+    IDS_ERRORMSG_CANTGETLIST "ディレクトリ一覧を取得できませんでした"
+    IDS_ERRORMSG_CANTGETRESPONSE "応答を受け取れません!"
+    IDS_ERRORMSG_CANTIMPORTFILE "ファイルのインポートにエラーが発生しました!"
+    IDS_ERRORMSG_CANTINITSSL "SSLライブラリが初期化できません"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "SSLライブラリをロードできません. ""ssleay32.dll""と""libeay32.dll""のファイルがFileZillaと同じフォルダにあるか確認して下さい."
+    IDS_ERRORMSG_CANTOPENFILE "入力ファイルを開けません!"
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "ログファイル""%s""を開くことができません. このセッションではファイルへのログは無効になります."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "接続しました"
+    IDS_STATUSMSG_CONNECTEDWITH 
+                            "%sに接続しました. ウェルカムメッセージを待っています..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP 
+                            "%sに接続しました, SFTP接続を初期化しています..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL 
+                            "%sに接続しました, SSL接続をネゴシエートしています..."
+    IDS_STATUSMSG_CONNECTING "%sに接続しています..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "ディレクトリ一覧の作成に成功しました"
+    IDS_STATUSMSG_DISCONNECTED "サーバから切断されました"
+    IDS_STATUSMSG_DISCONNECTING "切断しています..."
+    IDS_STATUSMSG_DOWNLOADSTART "%sのダウンロードを開始しています"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "ダウンロードが成功しました"
+    IDS_STATUSMSG_FILEIMPORTED "ファイル""%s""は正常にインポートされました!"
+    IDS_STATUSMSG_FWCONNECT "ftpプロキシを通して%sへのアクセスを試行中..."
+    IDS_STATUSMSG_IDENT_REQUEST "Identが要求されました: %s"
+    IDS_STATUSMSG_IDENT_START "Identサーバを開始しました"
+    IDS_STATUSMSG_IDENT_STOP "Identサーバを停止しました"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "警告! 言語DLLが以前のバージョンのFileZilla用に書かれています. 幾らかの文字列は翻訳されないかもしれません. 新しいバージョンの言語DLLをダウンロードして下さい!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "状況:"
+    IDS_STATUSMSG_RECONNECTWAIT "再接続を待機しています..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "ディレクトリ一覧を取得しています..."
+    IDS_STATUSMSG_SSLESTABLISHED 
+                            "SSL接続が確立されました. ウェルカムメッセージを待っています..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "SSL接続が確立されました"
+    IDS_STATUSMSG_UPLOADSTART "%sのアップロードを開始しています"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "アップロードが成功しました"
+    IDS_STATUSMSG_WAITINGTORETRY "再試行を待機しています... (あと1回)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT "再試行を待機しています... (あと%d回)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "現在の接続を破棄しますか?"
+    IDS_QUESTION_CANCELOPERATION "本当に現在の動作をキャンセルしますか?"
+    IDS_QUESTION_DELETEDIRS "本当に%d個のディレクトリを削除しますか?"
+    IDS_QUESTION_DELETEFILE "本当に""%s""を削除しますか?"
+    IDS_QUESTION_DELETEFILES "本当に%d個のファイルを削除しますか?"
+    IDS_QUESTION_DELETEFILESANDDIRS 
+                            "本当に%d個のファイルとディレクトリを削除しますか?"
+    IDS_QUESTION_FILEEXISTS "ファイル""%s"" (%dバイト)は既に存在します. ""%s"" (%dバイト)で上書きしますか?"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "このバージョンのFileZillaを始めて起動したか又はあなたの設定は削除されました.\nFileZillaは設定をレジストリかXMLファイルに保存できます.\nFileZillaでレジストリを使用しますか?\nマルチユーザ環境ではレジストリの使用が推奨されます\n'No'を選択するとXMLファイルを使用します, これはほとんどのユーザに推奨されます.\nもしnoを選択して設定がレジストリにあれば, それらはXMLファイルにインポートされます.\n\nXMLファイルの代わりにレジストリを使用しますか?"
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "警告 - 潜在的なセキュリティ違反です!\nこのサーバのホストキーはレジストリにキャッシュされた以前の\nものと一致しません.\nこれはサーバ管理者がホストキーを\n変更したか, 又はサーバに成りすましている別のコンピュータに\n実際に接続したことのどちらかを意味します. \n新しいキーの拇印:\n%s\nこの変化を予想していて新しいキーを信じるのであれば,\n'Yes'を選択してキャッシュを更新し接続を続けて下さい.\nもしキャッシュを更新せずに接続をしたいのであれば,\n'No'を選択してください.\n接続を完全に放棄したいのであれば, 'キャンセル'をクリックして下さい.\n'キャンセル'を選択するのが唯一安全が保証された選択です.\nキャッシュされたキーを更新しますか?"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "サーバのホストキーはレジストリにキャッシュされていません. \nあなたはサーバがあなたが思う通りのコンピュータであるという\n保証を持っていません.\n\nサーバのキーの拇印:\n%s\nもしこのホストを信用するのであれば, 'Yes'を選択して\nキーをキャッシュに追加し接続を続けて下さい.\nキャッシュにキーを追加せずに1度だけ接続を\n続けたいのであれば, 'No'を選択して下さい.\nこのホストを信用しないのであれば, 'キャンセル'を選択して\n接続を放棄して下さい.\n\nキャッシュにキーを保存しますか?"
+    IDS_QUESTION_SITEMANAGERDELETE "本当に""%s""を削除しますか?"
+    IDS_QUESTION_TRANSFER_USEPRIMARY 
+                            "'%s'の転送中に問題が発生しました\nファイル転送のための追加接続をサーバに確立できませんでした. サーバが多重接続をサポートしていないかもしれません.\nこのサーバにすでに接続しているのでプライマリ接続を転送に使用しますか?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            """%s""は更新されています.\nサーバにアップロードし直しますか?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "ファイルが更新されています"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "設定は正常にエクスポートされました.\n生成した.xmlファイルをFileZillaと同じフォルダに'filezilla.xml'という名前で置けば, 設定を保存するためにレジストリの代わりに直接使われます."
+    IDS_OPTIONS_IDENTSYSTEM "オペレーティングシステムIDを入力して下さい!"
+    IDS_OPTIONS_IDENTUSERID "ユーザIDを入力して下さい!"
+    IDS_OPTIONS_IMPORTFAILURE 
+                            "エラー! '%s'からの設定のインポートに失敗しました"
+    IDS_OPTIONS_IMPORTOK    "設定は正常にインポートされました."
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "Keep Alive間隔の上限は下限より高い必要があります!"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "Keep Alive間隔の上限は%d秒と%d秒の間である必要があります!"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "Keep Alive間隔の下限は%d秒と%d秒の間である必要があります!"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF 
+                            "ポート範囲の上限は下限より高い必要があります!"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH 
+                            "ポート範囲の上限は%dと%dの間である必要があります!"
+    IDS_OPTIONS_LIMITPORTRANGELOW 
+                            "ポート範囲の下限は%dと%dの間である必要があります!"
+    IDS_OPTIONS_NUMRETRIES  "最大再試行回数は%dと%dの間の値を入力して下さい!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "プロキシのホストを入力して下さい!"
+    IDS_OPTIONS_PROXYPORT   "プロキシの正しいポートを入力して下さい!"
+    IDS_OPTIONS_RETRYDELAY  "再試行間隔は%dと%dの間の値を入力して下さい!"
+    IDS_OPTIONS_TIMEOUT     "タイムアウト検出時間は%dと%dの間の値を入力して下さい"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "認証に失敗しました, これは多くの場合Kerberos\nバージョン5のチケットを持っていないことを意味します.\nLeash32の起動を最初に考えて下さい.\nあなたは全てのデータを晒し, パスワードを\n何百人もの人々に潜在的に公開したいですか?"
+    IDS_GSSERROR_CANTLOADDLL "%sが見つからないか又は読み込めません"
+    IDS_GSSERROR_CANTLOADGSSAPI "1つ以上のGSS-APIが読み込まれていません!"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI 
+                            "以下のAPIをKerberos 5 DLLから読み込めませんでした!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT "自分で署名された証明書です."
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "証明書の有効期間の終了フィールドに書式エラーがあります."
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "証明書の有効期間の開始フィールドに書式エラーがあります."
+    IDS_CERT_ERR_INVALID_CA "不正なCA証明書です."
+    IDS_CERT_ERR_INVALID_PURPOSE "サポートされていない目的の証明書です."
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN "鍵の利用法は証明書の署名を含みません."
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED "パス長制限を超えました."
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "証明書のチェインに自分で署名された証明書があります."
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "発行者の公開鍵をデコードできません."
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "証明書の署名を復号化できません."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT "発行者の証明書を取得できません."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "ローカルの発行者の証明書を取得できません."
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE 
+                            "最初の証明書を証明できません."
+    IDS_CERT_ERR_UNKNOWN    "未知の証明書証明エラーです."
+    IDS_CERT_ERRDEPTH       "証明書のチェインの深さ%dでエラーが発生しました."
+    IDS_CERT_OK             "証明書は有効なようです."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS "プロキシの設定を無視して接続します(&b)"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "クリア(&C)"
+    ID_REMOTELISTSTYLE_ICON "オブジェクトと大きいアイコンを表示します"
+    ID_REMOTELISTSTYLE_LIST "オブジェクトを一覧で表示します"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT "オブジェクトと詳細を表示します"
+    ID_REMOTELISTSTYLE_SMALLICON "オブジェクトと小さいアイコンを表示します"
+    ID_SHOWQUEUE            "キューを表示又は隠す"
+    ID_SHOWREMOTETREE       "リモートツリービューを表示又は隠す"
+    ID_SHOWTREE             "ローカルツリービューを表示又は隠す"
+    ID_SITEMANAGER          "サイトマネージャを開きます"
+    ID_SITEMANAGER_FILE_EXPORT "FTPサーバの一覧をファイルにエクスポートします"
+    ID_SITEMANAGER_FILE_IMPORT "FTPサーバの一覧をファイルからインポートします"
+    ID_TOOLBAR_DISCONNECT   "サーバから切断します"
+    ID_TOOLBAR_RECONNECT    "サーバに再接続します"
+    ID_TOOLBAR_REFRESH      "全てのビューを更新します"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "ファイルサイズを表示します"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "ファイルの種類を表示します"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME 
+                            "ファイルが最後に更新された日付と時刻を表示します"
+    ID_VIEW_MESSAGELOG      "メッセージログを表示又は隠す"
+    ID_VIEW_QUICKCONNECT_BAR "クイック接続バーを表示又は隠す"
+    ID_VIEW_REMOTELISTVIEW_DATE "ファイルの日付を表示します"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "ファイルサイズを表示します"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "ファイルのパーミッションを表示します"
+    ID_VIEW_REMOTELISTVIEW_TIME "ファイルの時刻を表示します"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR 
+                            "(選択された)ファイルとフォルダについての有効な情報を表示するローカルファイルリストの下のステータスバーを切り替えます"
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR 
+                            "(選択された)ファイルとフォルダについての有効な情報を表示するリモートファイルリストの下のステータスバーを切り替えます"
+    ID_QUEUECONTEXT_ABORT   "選択された転送を中止してキューから削除します"
+    ID_QUEUECONTEXT_PAUSE   "選択された転送を一時停止します"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "オブジェクトと小さいアイコンを表示します"
+    ID_MENU_QUEUE_EXPORT    "キューの全てのアイテムをエクスポートします"
+    ID_MENU_QUEUE_IMPORT    "キューのエントリを外部ファイルからインポートします"
+    ID_MENU_QUEUE_PROCESSNOW "キューの処理を開始します"
+    ID_MENU_QUEUE_USEMULTIPLE 
+                            "有効にした場合, FileZillaは幾つかのファイルを同時に送信できます"
+    ID_MENU_SERVER_CHANGEPASS 
+                            "サイトのパスワードを変更します. わずかなftpサーバだけがこれをサポートしています."
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "パスを含む現在のサーバのURLをクリップボードにコピーします"
+    ID_MENU_SERVER_ENTERRAWCOMMAND 
+                            "サーバへのraw FTPコマンドの送信を許可します"
+    ID_MENU_TRANSFER_MANUALTRANSFER "手動転送を設定します"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "現在の動作をキャンセルします"
+    ID_COPYTOSITEMANAGER    "現在の接続をサイトマネージャの新しいエントリにコピーします"
+    ID_EDIT_EXPORTSETTINGS  "設定をファイルにエクスポートします"
+    ID_EDIT_IMPORTSETTINGS  "設定をファイルからインポートします"
+    ID_EDIT_SETTINGS        "FileZillaのオプションダイアログに入ります"
+    ID_FILE_CONNECTTODEFAULTSITE 
+                            "サイトマネージャのデフォルトサイトに接続します"
+    ID_FILE_EXPORT_ASURLLIST 
+                            "全てのFTPサイトをテキストファイルにURL一覧としてエクスポートします"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "全てのFTPサイトを全ての詳細と共にテキストファイルにエクスポートします"
+    ID_FTPCONTEXT_CREATEDIR "ftpサーバにディレクトリを作成します"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "ヘルプファイルの目次を表示します"
+    ID_HELPMENU_INDEX       "ヘルプファイルのインデックスを表示します"
+    ID_HELPMENU_SEARCH      "ヘルプファイルを検索します"
+    ID_LOCALLISTSTYLE_ICON  "オブジェクトと大きいアイコンを表示します"
+    ID_LOCALLISTSTYLE_LIST  "オブジェクトを一覧で表示します"
+    ID_LOCALLISTSTYLE_REPORT "オブジェクトと詳細を表示します"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "有効にした場合, FileZillaはサーバ上の隠しファイルを表示しようとします."
+    ID_OVERWRITEMENU_ASK    "既にファイルが存在する場合はFileZillaがどうするかを尋ねます"
+    ID_OVERWRITEMENU_OVERWRITE "ファイルを常に上書きします"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER 
+                            "ファイルが新しければ古いファイルに上書きします"
+    ID_OVERWRITEMENU_RENAME "新しいファイル名を尋ねます"
+    ID_OVERWRITEMENU_RESUME "可能なら転送をレジュームします"
+    ID_OVERWRITEMENU_SKIP   "存在するファイルをスキップします"
+    ID_PROCESS_QUEUE        "キューを処理"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1個のファイル  %I64dバイト以上です."
+    IDS_DIRINFO_DIRANDFILESMIN 
+                            "1個のフォルダと%d個のファイル  %I64dバイト以上です."
+    IDS_DIRINFO_DIRANDFILE  "1個のフォルダと1個のファイル  %I64dバイトです."
+    IDS_DIRINFO_DIRSANDFILE "%d個のフォルダと1個のファイル  %I64dバイトです."
+    IDS_DIRINFO_DIRANDFILEMIN 
+                            "1個のフォルダと1個のファイル  %I64dバイト以上です."
+    IDS_DIRINFO_DIRSANDFILEMIN 
+                            "%d個のフォルダと1個のファイル  %I64dバイト以上です."
+    IDS_DIRINFO_SELECTED_FILE 
+                            "1個のファイルが選択されました  %I64dバイトです."
+    IDS_DIRINFO_SELECTED_DIR "1個のフォルダが選択されました."
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "1個のフォルダと%d個のファイルが選択されました  %I64dバイトです."
+    IDS_DIRINFO_SELECTED_FILEMIN 
+                            "1個のファイルが選択されました  %I64dバイト以上です."
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "1個のフォルダと%d個のファイルが選択されました  %I64dバイト以上です"
+    IDS_DIRINFO_SELECTED_DIRANDFILE 
+                            "1個のフォルダと1個のファイルが選択されました  %I64dバイトです."
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "1個のフォルダと1個のファイルが選択されました  %I64dバイト以上です."
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "%d個のフォルダと1個のファイルが選択されました  %I64dバイトです."
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "%d個のフォルダと1個のファイルが選択されました  %I64dバイト以上です."
+    IDS_QUEUESTATUS_PAUSED  "一時停止中"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "一時停止した転送をレジュームします"
+    ID_VIEW_REMOTELISTVIEW_FILETYPE "ファイルの種類を表示します"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME 
+                            "リモートファイルの一覧をファイル名で整列します"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE 
+                            "リモートファイルの一覧をファイルサイズで整列します"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE 
+                            "リモートファイルの一覧をファイルの種類で整列します"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "リモートファイルの一覧を日付/時刻で整列します"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "リモートファイルの一覧を昇順で整列します"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "リモートファイルの一覧を降順で整列します"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "ファイルポインタをセットできませんでした"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "SSL層で未知のエラーが発生しました"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR "SSLの証明書を確認できません"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSCAPTION_FONTNAME "MS Shell Dlg"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME 
+                            "ローカルファイルの一覧をファイル名で整列します"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE 
+                            "ローカルファイルの一覧をファイルサイズで整列します"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE 
+                            "ローカルファイルの一覧をファイルの種類で整列します"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "ローカルファイルの一覧を最後に更新された日付/時刻で整列します"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "ローカルファイルの一覧を昇順で整列します"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "ローカルファイルの一覧を降順で整列します"
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+#endif    // Japanese resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

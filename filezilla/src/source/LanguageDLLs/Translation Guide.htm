@@ -1,0 +1,125 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Guide to translation of FileZilla</title>
+</head>
+
+<body>
+
+<p align="center"><u><b><font size="5">FileZilla translation guide</font></b></u></p>
+
+<p align="left"><b>1. Introduction:</b></p>
+
+<p align="left">Translation of FileZilla is quite simple. You only need the 
+resource files of FileZilla and MS VC++</p>
+
+<p><b>2. Prerequisites:</b></p>
+<p>Make sure the following programs are installed on your computer:</p>
+<ul>
+  <li><a href="http://tortoisecvs.sourceforge.net">TortoiseCVS</a></li>
+  <li><a href="http://www.cygwin.com">Cygwin</a> including the sed package</li>
+  <li>MS Visual C++. It is possible to translate without it, but this is <b>not</b> recommended. If you do not have VC++, 
+      you can still compiles the language files using MinGW (See Section 5 for details)</li>
+</ul>
+
+<p align="left"><b><u>3. Getting started:</u></b></p>
+<p><b>3.1 Checkout sourcecode of FileZilla</b></p>
+<p>
+  Open Explorer and go to the folder into which you want to checkout the sourcecode of FileZilla.
+  Right-click in an empty part of the file area and chose CVS checkout from the context menu.<br>
+  Enter <b>:pserver:anonymous@cvs.filezilla.sourceforge.net:/cvsroot/filezilla</b> as CVSROOT and <b>FileZilla</b> as Module.
+  (Both fields are case sensitive)
+  Next click on OK and wait until the CVS checkout operation finishes.
+</p>
+
+<p><b>3.2 Create language files for your language</b></p>
+<p>
+  Start Cygwin and change the current directory to the source/LanguageDLLs subfolder (use / instead of \ inside Cygwin).<br>
+  Now enter <b>./makelangfiles.sh</b> and follow the instructions. If you do not know the Locale ID or codepage for your language,
+  you can look them up under <a href="http://www.science.co.il/Language/Locale-Codes.asp">http://www.science.co.il/Language/Locale-Codes.asp</a><br>
+</p>
+
+<p><b><u>4. Translating the resouce files</u></b></p>
+
+<p>Open the project file (.dsp file) with VC++. A warning about a missing workspace 
+may appear, ignore it. On the left side of the VC++ window 
+you should see 3 registers: Classes, Resources and Files (may be truncated). 
+Click on resources and a list of all resource types should popup. The resources 
+you should translate are: Dialogs, menus and the string table.</p>
+<p>Please do not change anything in the version information block. FileZilla uses
+the information in it to detect the language files.</p>
+
+<p><b>4.1 Format specifications and escape characters</b></p>
+
+<p>Be cautious when you see %d, %s or something similar beginning with '%', 
+these are format specifications. FileZilla exchanges them during runtime with 
+their final values. They have to appear withing the translated 
+resources or FileZilla may crash when using the translated resources. %d is a 
+placeholder for a number, %s for a string.<br>
+It is also important to keep them in order, so don't switch them around.</p>
+<p>In some strings you will \n \r or some other characters after an backslash.
+  These are escaped characters which have a special meaning. For example \n represents 
+  the newline character used to start a new line.
+<p>If you have to enter a backslash anywhere in the translated strings, escape it with 
+  another backslash like this: <b>\\</b>
+</p>
+
+<p><b>4.2 Dialogs</b></p>
+<p>Expand the dialogs node and doubleclick the first entry. On the right the 
+dialog should be visible now. Doubleclick any english text on the dialog to open 
+the properties page where you can translate it. You don't have to translate text 
+between &lt; and &gt;. Do this for all dialogs. If some text does not fit into a 
+control, you may resize the control. If possible, try not resize the dialogs itself.</p>
+
+<p><u>4.2.1 Comboboxes</u></p>
+<p>Special treatment is required for the combo 
+boxes in the dialogs with the ID IDD_SITEMANAGER, IDD_MANUAL_TRANSFER, IDD_OPTIONS_LOCALVIEW and IDD_OPTIONS_REMOTEVIEW: Doubleclick the combo 
+boxes and go to the data tab, there are some lines for each combo box, please 
+translate them, too.</p>
+
+<p><b>4.3 Menus</b></p>
+<p>Doubleclick a menu entry to open it's properties page. Here you have to 
+translate the title and if available, the statusbar text.</p>
+
+<p><b>4.4 String table</b></p>
+<p>doubleclick each string and translate it.</p>
+
+<p><b>4.5 Dialog/menu shortcut keys</b></p>
+<p>
+  For every menu item and most dialog items, one character is underlined and acts as shortcut for keyboard navigation. To underline a letter in a string, preceed it with a single &<br>
+  If you want the menu/dialog item to contain a &, escape it with another & (Example: <b>Ant && Bear</b>)
+</p>
+<p>
+  Make sure each subemenu and dialog contains no duplicate shortcut key.
+</p>
+
+<p><b><u>5. Testing your resources</u></b></p>
+<p>You may at any time compile the resources to test them with FileZilla by 
+pressing F7. Copy the resulting dll from the release folder into the 
+same folder as FileZilla and select your language from the settings dialog of FileZilla.</p>
+
+<p><b>5.1 Compiling the language files without VC++</b></p>
+<p>If you do not have Visual C++, you can compile the language files using <a href="http://www.mingw.org">MinGW</a>.
+   Open the command line, make sure the MinGW directory is in your path and go to the language files directory.
+   Now type <b>make -f makefile.mingw clean</b> followed by <b>make -f makefile.mingw all</b>, this will compile the language files.
+</p><p>
+   If your language file does not compile, you may need to run the <b>fixmingw.sh</b> script on your language file. This script fixes all problems 
+   the VC++ IDE created in the language files so that you can use it with MinGW afterwards.
+</p>
+
+<p><b><u>6. The installer language file</u></b></p>
+The language file generation script did also create a .nsh file, please translate it as well.
+
+<p><b><u>7. What to do if you've finished the translation</u></b></p>
+<p>When you have finished translation, please send all resource files back to <a href="mailto:tim.kosse@gmx.de">me</a>. The new 
+language DLLs will be included in the next official release of FileZilla.</p>
+<p>Please tell me your SourceForge.net username as well. You'll be added as project member so that you can update the resource files for future version yourself.<br>
+  You'll be added to a mailinglist which will inform you about any changes to the language files
+</p>
+
+</body>
+
+</html>

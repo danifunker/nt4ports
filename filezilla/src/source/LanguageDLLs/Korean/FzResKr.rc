@@ -1,0 +1,2360 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 318, 222
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "수동 파일 전송 설정"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "커스터마이즈된 파일 전송을 설정하세요. 가능한 많은 정보를 넣어주세요. 만약 비어있는 부분이 있다면 FileZilla 가 그 부분을 채울 겁니다.",
+                    IDC_STATIC,7,7,304,17
+    LTEXT           "전송 유형:",IDC_STATIC,7,30,37,8
+    CONTROL         "다운로드(&D)",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,40,57,10
+    CONTROL         "업로드(&U)",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,51,49,10
+    LTEXT           "로컬 파일(&L):",IDC_STATIC,7,65,45,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "원격 파일(&R):",IDC_STATIC,7,93,46,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "현재 서버를 사용(&C)",IDC_MANUALTRANSFER_SERVER1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,147,30,85,10
+    CONTROL         "아래의 서버를 사용(&F)",IDC_MANUALTRANSFER_SERVER2,
+                    "Button",BS_AUTORADIOBUTTON,147,41,92,10,
+                    WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,141,51,170,164,WS_GROUP
+    LTEXT           "FTP 주소(&H):",IDC_STATIC,148,59,45,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,69,127,14,ES_AUTOHSCROLL
+    LTEXT           "포트(&P):",IDC_STATIC,279,59,28,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,280,69,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "서버유형(&S):",IDC_STATIC,148,87,44,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,98,157,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "로그온 유형",IDC_STATIC,148,116,157,38
+    CONTROL         "익명연결(&Y)",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,127,57,10
+    CONTROL         "일반(&O)",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,127,41,10
+    CONTROL         "우회 프락시 설정(&B)",IDC_MANUALTRANSFER_BYPASSPROXY,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,158,140,
+                    85,10
+    LTEXT           "사용자 ID(&E):",IDC_STATIC,148,157,50,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,166,157,14,ES_AUTOHSCROLL
+    LTEXT           "비밀번호(&W):",IDC_STATIC,148,184,55,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,193,157,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "확인",IDOK,15,201,50,14
+    PUSHBUTTON      "취소",IDCANCEL,75,201,50,14
+    CONTROL         "지금 전송 시작(&N)",IDC_MANUALTRANSFER_STARTNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,172,77,10
+END
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 82
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "FileZilla 는..."
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<version>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001-2005",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "확인",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "제작자 :",IDC_STATIC,41,40,29,8
+    LTEXT           "http://www.sourceforge.net/projects/filezilla",
+                    IDC_HOMEPAGE,82,54,146,8
+    LTEXT           "Tim Kosse",IDC_MAIL,82,40,34,8
+    LTEXT           "홈페이지 :",IDC_STATIC,41,54,37,8
+    LTEXT           "번역 : ",IDC_TRANSLATEDBY,41,68,23,8
+    LTEXT           "Jinwook Kim (zelon@dreamwiz.com)",IDC_MAIL2,82,68,141,8
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,182,28,15,13
+END
+
+IDR_MAINFRAME DIALOGEX 0, 0, 388, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "FTP 주소:",IDC_STATIC,1,4,36,8
+    EDITTEXT        IDC_HOST,37,2,55,12,ES_AUTOHSCROLL
+    LTEXT           "사용자 ID:",IDC_STATIC,94,4,36,8
+    EDITTEXT        IDC_USER,132,2,51,12,ES_AUTOHSCROLL
+    LTEXT           "비밀번호:",IDC_STATIC,185,4,37,8
+    EDITTEXT        IDC_PASS,222,2,41,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "포트:",IDC_STATIC,266,4,19,8
+    EDITTEXT        IDC_PORT,287,2,28,12,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "빠른 접속(&C)",IDOK,318,1,68,14,BS_NOTIFY
+END
+
+IDD_FILEEXISTS DIALOGEX 0, 0, 292, 125
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "파일이 이미 존재합니다"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "",IDC_FILEEXISTS_FILE1,7,16,150,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d bytes",IDC_FILEEXISTS_SIZE1,50,28,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "",IDC_FILEEXISTS_FILE2,7,64,150,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d bytes",IDC_FILEEXISTS_SIZE2,50,76,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "하나를 선택하세요:",IDC_STATIC,165,7,122,70
+    CONTROL         "덮어쓰기(&O)",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,172,18,57,10
+    CONTROL         "새로운 파일이면 덮어쓰기(&I)",IDC_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,172,29,114,10
+    CONTROL         "이어받기(&R)",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,172,40,58,10
+    CONTROL         "이름 바꾸기(&N)",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,172,51,67,10
+    CONTROL         "건너뛰기(&S)",IDC_FILEEXISTS_SKIP,"Button",
+                    BS_AUTORADIOBUTTON,172,62,57,10
+    CONTROL         "파일이 이미 존재할 때 항상 적용",IDC_FILEEXISTS_ALWAYS,
+                    "Button",BS_AUTOCHECKBOX | BS_VCENTER | BS_MULTILINE | 
+                    WS_GROUP | WS_TABSTOP,170,83,116,30
+    DEFPUSHBUTTON   "확인",IDOK,105,103,50,14
+    LTEXT           "아래의 파일을",IDC_STATIC,7,7,51,8
+    LTEXT           "아래의 파일로 바꾸시겠습니까?",IDC_STATIC,7,55,113,8
+END
+
+IDD_OPTIONS_FIREWALL DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "FileZilla 에 의해 쓰이는 지역 포트 제한(&L)",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,6,155,10
+    LTEXT           "기본적으로 FileZilla 는 연결, 전송이 가능한 임의적인 지역 포트를 사용합니다. 만약 FileZilla 가 단지 적은 범위의 포트를 사용하게 하고 싶다면, 아래의 포트 범위를 입력해주세요.",
+                    IDC_STATIC,19,17,260,24
+    LTEXT           "사용 가능한 가장 낮은 포트(&W):",IDC_STATIC,19,45,110,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,132,42,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "사용 가능한 가장 높은 포트(&H):",IDC_STATIC,19,62,108,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,132,59,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "만약 ftp 서버에 접속할 수 있는데, 하나의 파일도 전송이 잘 안된다면, 수동적인 모드로 설정해보는 것이 좋습니다.",
+                    IDC_STATIC,7,88,272,17
+    CONTROL         "수동적인(Passive) 모드(&P)",IDC_OPTIONS_FIREWALL_PASV,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,109,105,10
+    CONTROL         "수동 전송(Passive) 모드가 아닐 때 다음의 IP 주소 사용(&U):",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,128,231,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,20,139,60,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "IPv6를 사용하면, 아래의 IP 주소에서는 수동 전송을 사용하지 않음(&U)",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,258,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 284, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "접속 유지 설정",IDC_STATIC,7,7,270,62
+    CONTROL         "접속 유지 시스템 사용(&E)",IDC_CHECK1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,19,103,10
+    LTEXT           "아래의 시간 사이에 임의적으로 ""PWD"", ""REST 0"", ""TYPE A"", ""TYPE I"" 같은 명령을 보내 접속을 유지합니다.",
+                    IDC_STATIC,25,31,234,17
+    EDITTEXT        IDC_INTERVALLOW,28,49,24,14,ES_AUTOHSCROLL
+    LTEXT           "초 부터",IDC_STATIC,56,52,27,8
+    EDITTEXT        IDC_INTERVALHIGH,83,49,23,14,ES_AUTOHSCROLL
+    LTEXT           "초 사이",IDC_STATIC,111,52,27,8
+    GROUPBOX        "타임아웃 탐지(&T)",IDC_STATIC,7,73,270,40
+    LTEXT           "0 바이트가 다음 시간내에 전송되면: ",IDC_STATIC,14,85,
+                    129,8
+    EDITTEXT        IDC_TIMEOUT,146,81,26,14,ES_AUTOHSCROLL
+    LTEXT           "초",IDC_STATIC,176,84,9,8
+    LTEXT           "연결이 타임아웃되어 접속이 끊어졌다고 가정합니다.",
+                    IDC_STATIC,13,96,187,8
+    GROUPBOX        "재접속 설정",IDC_STATIC,7,115,270,44
+    LTEXT           "전송 중에 접속이 끊어지면",IDC_STATIC,13,128,95,8
+    EDITTEXT        IDC_NUMRETRY,13,142,20,14,ES_AUTOHSCROLL
+    LTEXT           "번 합니다.",IDC_STATIC,41,145,38,8
+    EDITTEXT        IDC_DELAY,110,125,17,14,ES_AUTOHSCROLL
+    LTEXT           "초를 기다리고 다시 접속을 시도하기를",IDC_STATIC,134,
+                    129,137,8
+    CONTROL         "IPv6 를 지원(윈도우 XP / 2003 서버 혹은 그 이상에서만 동작함)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,235,10
+    LTEXT           "Anonymous 로그인에서 기본 암호(&D) :",IDC_STATIC,7,180,
+                    131,8
+    EDITTEXT        IDC_ANONPWD,140,178,117,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERSOMETHING DIALOG  0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Title"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "<text>",IDC_TEXT,7,7,172,17
+    EDITTEXT        IDC_EDIT1,7,28,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "확인(&O)",IDOK,36,47,50,14
+    PUSHBUTTON      "취소(&C)",IDCANCEL,99,47,50,14
+END
+
+IDD_OPTIONS_LANGUAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "FileZilla 가 사용할 언어를 선택하세요 :",IDC_STATIC,7,7,
+                    132,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "기본 폴더",IDC_STATIC,7,7,272,55
+    CONTROL         "마지막 사용했던 폴더를 기억(&R)",
+                    IDC_SELECTDEFAULTFOLDERTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,18,127,10
+    CONTROL         "항상 아래의 기본 폴더를 사용(&A)",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,129,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "FileZilla 시작할 때 사이트 관리자 열기(&O)",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,77,159,10
+    CONTROL         "사이트 관리자에서 폴더로 먼저 정렬(&F)",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,89,152,10
+    CONTROL         "기본적으로 폴더들을 열지 않음(E)",
+                    IDC_SITEMANAGEREXPANDFOLDERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,101,135,10
+    GROUPBOX        "사이트관리자 설정",IDC_STATIC,7,66,272,49
+END
+
+IDD_CONNECTION4 DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "프락시 유형을 선택하세요:",IDC_STATIC,7,7,95,8
+    CONTROL         "직접 접속(&D)(프락시 없음)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,16,105,10
+    CONTROL         "SOCKS&4 프락시",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,
+                    7,27,70,10
+    CONTROL         "SOCKS4&A 프락시",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
+                    7,38,75,10
+    CONTROL         "SOCKS&5 프락시",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    7,49,70,10
+    CONTROL         "&HTTP 1.1 프락시",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,7,60,73,10
+    GROUPBOX        "프락시 세부",IDC_STATIC,7,74,272,100,WS_GROUP
+    LTEXT           "호스트 주소(&H):",IDC_STATIC,14,88,58,8
+    EDITTEXT        IDC_PROXYHOST,71,85,178,14,ES_AUTOHSCROLL
+    LTEXT           "포트(&P):",IDC_STATIC,14,106,28,8
+    EDITTEXT        IDC_PROXYPORT,71,103,178,14,ES_AUTOHSCROLL
+    LTEXT           "사용자 ID(&U):",IDC_STATIC,14,124,51,8
+    EDITTEXT        IDC_PROXYUSER,71,121,178,14,ES_AUTOHSCROLL
+    LTEXT           "비밀번호(&W):",IDC_STATIC,14,142,49,8
+    EDITTEXT        IDC_PROXYPASS,71,139,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "사용자 / 암호 사용(&S) (SOCKS5 과 HTTP1.1 프락시 전용)",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,159,
+                    209,10
+END
+
+IDD_CHMOD DIALOGEX 0, 0, 202, 201
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "파일 속성 변경"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Text",IDC_TEXT,7,7,185,19
+    GROUPBOX        "소유자 권한(Owner)",IDC_STATIC,7,27,185,25
+    CONTROL         "읽기(&R)",IDC_OWNERREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,38,41,10
+    CONTROL         "쓰기(&W)",IDC_OWNERWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,38,43,10
+    CONTROL         "실행(&E)",IDC_OWNEREXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,38,41,10
+    GROUPBOX        "그룹 권한(Group)",IDC_STATIC,7,58,185,25
+    CONTROL         "읽기(&A)",IDC_GROUPREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,69,41,10
+    CONTROL         "쓰기(&R)",IDC_GROUPWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,69,41,10
+    CONTROL         "실행(&X)",IDC_GROUPEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,69,41,10
+    GROUPBOX        "공용 권한(Public)",IDC_STATIC,7,89,185,25
+    CONTROL         "읽기(&D)",IDC_PUBLICREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,100,41,10
+    CONTROL         "쓰기(&I)",IDC_PUBLICWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,100,38,10
+    CONTROL         "실행(&U)",IDC_PUBLICEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,100,41,10
+    LTEXT           "모든 서버들이 이 명령을 지원하지는 않습니다. 이 명령은 대부분의 유닉스 서버들에 의해 쓰입니다.",
+                    IDC_STATIC,7,152,185,26
+    DEFPUSHBUTTON   "확인(&O)",IDOK,31,180,50,14
+    PUSHBUTTON      "취소(&C)",IDCANCEL,118,180,50,14
+    LTEXT           "숫자 값:",IDC_STATIC,7,126,29,8
+    EDITTEXT        IDC_NUMERIC,58,123,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = 모든 선택된 파일들이 같은 속성을 가지지 않음)",
+                    IDC_STATIC,102,121,90,26
+END
+
+IDD_TRANSFERASDLG DIALOGEX 0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "... 로 전송"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "선택된 파일들과 폴더들을 전송하는데 쓰일 계정에 대한 사용자 ID 와과 비밀번호를 넣어주세요.",
+                    IDC_STATIC,7,7,194,20
+    LTEXT           "사용자 ID(&U):",IDC_STATIC,47,32,47,8
+    EDITTEXT        IDC_USER,95,28,56,14,ES_AUTOHSCROLL
+    LTEXT           "비밀번호(&P):",IDC_STATIC,49,52,44,8
+    EDITTEXT        IDC_PASS,95,50,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "지금 전송(&T)",IDC_TRANSFERNOW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,75,70,59,10
+    DEFPUSHBUTTON   "확인(&O)",IDOK,46,85,50,14
+    PUSHBUTTON      "취소(&C)",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "기본 전송 타입",IDC_STATIC,7,7,272,48
+    CONTROL         "자동탐지(&U)",IDC_TYPEMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,16,20,57,10
+    CONTROL         "아스키(&S)",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,
+                    16,30,49,10
+    CONTROL         "바이너리(&B)",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,
+                    16,40,57,10
+    LTEXT           "자동탐지를 선택하면, FileZilla 는 파일 확장자에 기초해서 적합한 전송 타입을 선택합니다. 이 전송타입은 FileZilla 가 시작될때마다 설정됩니다.",
+                    IDC_STATIC,88,17,181,32
+    GROUPBOX        "아스키 모드 파일들",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "만약 자동탐지를 선택했다면, FileZilla 는 아래의 파일 확장자를 가진 파일들은 아스키 모드로 전송합니다.",
+                    IDC_STATIC,14,75,256,16
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,112,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "추가(&A)",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "제거(&R)",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "잘못된 파일타입을 넣으면, 전송될 때 파일이 깨어질 수 있습니다.",
+                    IDC_STATIC,167,98,104,97
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "사이트 관리자"
+MENU IDR_SITEMANAGER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+    GROUPBOX        "사이트 상세정보",IDC_STATIC,174,0,169,244
+    LTEXT           "FTP 주소(&H):",IDC_STATIC,180,11,68,8
+    EDITTEXT        IDC_HOST,180,20,127,14,ES_AUTOHSCROLL
+    LTEXT           "포트(&P):",IDC_STATIC,311,11,28,8
+    EDITTEXT        IDC_PORT,312,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "서버 유형(&S):",IDC_STATIC,180,38,46,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "로그온 유형",IDC_STATIC,180,66,157,38
+    CONTROL         "익명(Anonymous)연결(&M)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,189,77,97,10
+    CONTROL         "일반(&L)",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,292,77,
+                    40,10
+    CONTROL         "계정",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,292,90,32,
+                    10
+    CONTROL         "우회 프락시 설정(&B)",IDC_FWBYPASS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,189,90,85,10
+    LTEXT           "사용자 ID(&U):",IDC_STATIC,180,107,80,8
+    EDITTEXT        IDC_USER,180,117,103,14,ES_AUTOHSCROLL
+    LTEXT           "계정:",IDC_STATIC,287,107,20,8
+    EDITTEXT        IDC_USER2,287,117,49,14,ES_AUTOHSCROLL
+    LTEXT           "비밀번호(&W):",IDC_STATIC,180,135,58,8
+    EDITTEXT        IDC_PASS,180,144,157,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "암호 저장하지 않음(&T)",IDC_PASSDONTSAVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,180,162,157,
+                    10
+    LTEXT           "설명(&O):",IDC_STATIC,180,177,49,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,180,188,157,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "기본 사이트로 지정(&F)",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,226,93,10
+    PUSHBUTTON      "새 사이트(&N)",IDC_NEW,7,212,50,14,WS_GROUP
+    PUSHBUTTON      "새 폴더(&E)",IDC_SITEMANAGER_NEWFOLDER,62,212,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "삭제(&D)",IDC_DELETE,117,212,50,14
+    PUSHBUTTON      "복사(&Y)",IDC_SITEMANAGER_COPY,7,230,50,14,WS_GROUP
+    PUSHBUTTON      "이름변경(&R)",IDC_SITEMANAGER_RENAME,62,230,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "고급(&V)...",IDC_SITEMANAGER_ADVANCED,117,230,50,14,
+                    WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,249,
+                    336,1
+    PUSHBUTTON      "접속(&C)",IDOK,79,253,50,14
+    PUSHBUTTON      "취소(&A)",IDCANCEL,150,253,50,14
+    PUSHBUTTON      "저장 후 닫기(&X)",IDC_EXIT,221,253,62,14
+END
+
+IDD_OPTIONS_INTERFACE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "시작때 설정들",IDC_STATIC,7,7,272,100
+    LTEXT           "FileZilla 가 시작할 때, 어떤 GUI 요소들을 보일겁니까?",
+                    IDC_STATIC,14,19,185,8
+    CONTROL         "항상 아래의 설정들을 씁니다(&A)",IDC_VIEWMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,29,127,10
+    CONTROL         "마지막 설정을 기억합니다(&R)",IDC_VIEWMODE2,"Button",
+                    BS_AUTORADIOBUTTON,14,39,117,10
+    LTEXT           "현재 설정들",IDC_STATIC,14,50,43,8
+    LTEXT           "다음의 GUI 를 표시:",IDC_STATIC,17,62,49,28,NOT 
+                    WS_GROUP
+    CONTROL         "도구 모음(&T)",IDC_SHOWTOOLBAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,72,61,59,10
+    CONTROL         "상태 표시줄(&S)",IDC_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,138,61,67,10
+    CONTROL         "빠른 접속바(&Q)",IDC_SHOWQUICKCONNECTBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,207,61,67,10
+    CONTROL         "메시지로그(&M)",IDC_SHOWMESSAGELOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,76,66,10
+    CONTROL         "로컬 트리뷰(&O)",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,138,76,67,10
+    CONTROL         "전송 큐(&F)",IDC_SHOWTRANSFERQUEUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,207,76,50,10
+    CONTROL         "원격 트리뷰(&E)",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,91,67,10
+    GROUPBOX        "기타",IDC_STATIC,7,111,272,80
+    CONTROL         "뷰 레이블 보기(&V)",IDC_VIEWLABELS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,123,77,10
+    CONTROL         "FileZilla 의 윈도우 크기와 위치를 기억함(&W)",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,134,165,10
+    CONTROL         "작업표시줄에 최소화(&N) (기본설정)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,152,137,10
+    CONTROL         "작업표시줄 대신 시스템 트레이에 최소화(&I)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,162,166,10
+    CONTROL         "시스템 트레이에 최소화시키는 버튼 표시(&Z)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,169,10
+END
+
+IDD_OPTIONS_GSSPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Kerberos GSS 지원 가능(&E)",IDC_USEGSS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,105,10
+    LISTBOX         IDC_SERVERLIST,15,64,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,64,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "추가(&A)",IDC_SERVERADD,128,83,50,14
+    PUSHBUTTON      "제거(&R)",IDC_SERVERREMOVE,128,101,50,14
+    LTEXT           "Kerberos for Windows (KfW) 가 설치되어있어야합니다. 설치되어 있지 않다면 이 기능은 동작하지 않습니다. 만약 활성화되면, FileZilla 는 아래에 나열된 서버를 위해 GSS 인증과 암호화를 사용할 것입니다.",
+                    IDC_STATIC,7,21,272,26
+    GROUPBOX        "GSS 가능한 서버들",IDC_STATIC,7,52,272,149
+    LTEXT           "목록의 각 서버의 주소는 GSS 가 쓰일 문자열로 끝납니다. GSS 를 지원하는 서버들만 넣어주세요.",
+                    IDC_STATIC,184,66,88,36
+    LTEXT           "GSS 가 작동하기 전에 올바른 Kerberos 5 티켓이 필요합니다.",
+                    IDC_STATIC,184,109,88,28
+END
+
+IDD_OPTIONS_DEBUG DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "아래의 설정들은 단지 디버그를 목적으로 합니다. 일반적으로 아래의 설정들을 바꿀 필요는 없습니다.\n그러나 FileZilla 에서 어떤 문제점을 발견하면, 디버그 기능들을 켤 수 있습니다. 이런 추가적인 출력은 문제점을 고치는 데 도움을 줄 수 있습니다.",
+                    IDC_STATIC,7,7,272,35
+    CONTROL         "ftp 엔진으로부터 메시지를 추적함(&T)",
+                    IDC_DEBUG_ENGINETRACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,43,143,10
+    CONTROL         "디렉토리 목록을 그대로 보여줌(&S)",
+                    IDC_DEBUG_SHOWRAWLISTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,54,158,10
+    CONTROL         "디버그 메뉴 사용(&E)",IDC_DEBUG_DEBUGMENU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,65,85,10
+END
+
+IDD_OPTIONS_FTPPROXY DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "프락시 호스트(&H)",IDC_STATIC,7,7,60,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "포트(&P)",IDC_STATIC,113,7,26,8
+    EDITTEXT        IDC_EDIT6,113,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "사용자 ID(&U)",IDC_STATIC,7,36,44,8
+    EDITTEXT        IDC_EDIT7,7,47,49,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "비밀번호(&A)",IDC_STATIC,59,36,47,8
+    EDITTEXT        IDC_EDIT8,59,47,56,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "프락시 유형(&T)",IDC_STATIC,7,71,272,103
+    CONTROL         "None",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,17,81,33,10
+    CONTROL         "SITE hostname",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    17,91,65,10
+    CONTROL         "USER after logon",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,71,10
+    CONTROL         "Proxy OPEN",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,17,
+                    111,55,10
+    CONTROL         "Transparent",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,17,
+                    121,54,10
+    CONTROL         "USER RemoteID@Remotehost",IDC_RADIO8,"Button",
+                    BS_AUTORADIOBUTTON,17,131,115,10
+    CONTROL         "USER FireID@Remotehost",IDC_RADIO9,"Button",
+                    BS_AUTORADIOBUTTON,17,141,102,10
+    CONTROL         "USER RemoteID@RemoteHost FireID",IDC_RADIO10,"Button",
+                    BS_AUTORADIOBUTTON,17,151,137,10
+    CONTROL         "USER RemoteID@fireID@remoteHost",IDC_RADIO11,"Button",
+                    BS_AUTORADIOBUTTON,17,161,137,10
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "여기서 로컬 파일 목록에서의 외형을 설정할 수 있습니다.",
+                    IDC_STATIC,7,7,201,8
+    CONTROL         "항상 다음 설정을 사용(&A):",
+                    IDC_OPTIONS_LOCALVIEW_ALWAYS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,20,105,10
+    LTEXT           "기본 목록 형태(&D):",IDC_STATIC,19,35,67,8,NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,88,34,72,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "자세히 보기에서 보여줄 컬럼들:",IDC_STATIC,19,49,113,8,
+                    NOT WS_GROUP
+    CONTROL         "파일크기(&F)",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,56,10
+    CONTROL         "파일타입(&T)",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,93,61,57,10
+    CONTROL         "마지막 수정된 시간(&L)",IDC_OPTIONS_LOCALVIEW_TIME,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,161,61,92,10
+    CONTROL         "선택된 파일들에 대한 정보를 상태 표시줄에 표시(&H)",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,76,197,10
+    CONTROL         "마지막 사용된 설정을 기억(&R)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,91,119,10
+    LTEXT           "이 경우 메뉴에서 외형을 수정할 수 있습니다.",IDC_STATIC,
+                    19,105,159,8
+    CONTROL         "자세히 보기에서 컬럼의 길이를 기억(&C)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,120,153,10
+    LTEXT           "자세히 보기에서 파일크기의 형식(&S):",IDC_STATIC,7,154,
+                    130,8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,138,152,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "자세히 보기에서 컬럼의 정렬 방향을 기억(&E)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,133,171,10
+    LTEXT           "파일을 더블클릭 했을 때 동작(&D):",IDC_STATIC,7,175,118,8
+    CONTROL         "전송",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,127,175,32,10
+    CONTROL         "열기",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,170,175,32,10
+    CONTROL         "전송 큐에 추가",
+                    IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,211,175,68,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "여기서 원격 파일 목록에서의 외형을 설정할 수 있습니다.",
+                    IDC_STATIC,7,7,201,8
+    CONTROL         "항상 다음 설정을 사용(&A):",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,20,105,10
+    LTEXT           "기본 목록 형태(&E):",IDC_STATIC,19,35,64,8,NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,85,34,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "자세히 보기에서 보여줄 컬럼들:",IDC_STATIC,19,49,113,8,
+                    NOT WS_GROUP
+    CONTROL         "파일크기(&Z)",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,54,10
+    CONTROL         "파일타입(&Y)",IDC_OPTIONS_REMOTEVIEW_FILETYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,89,61,57,10
+    CONTROL         "날짜(&D)",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,147,61,38,10
+    CONTROL         "시간(&T)",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,72,38,10
+    CONTROL         "권한(&P)",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,89,72,38,10
+    CONTROL         "소유자 / 그룹(&W)",IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,147,72,72,10
+    CONTROL         "선택된 파일들에 대한 정보를 상태 표시줄에 표시(&O)",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,83,197,10
+    CONTROL         "마지막 사용된 설정을 기억(&R)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,99,119,10
+    LTEXT           "이 경우 메뉴에서 외형을 수정할 수 있습니다.",IDC_STATIC,
+                    19,113,159,8
+    CONTROL         "자세히 보기에서 컬럼의 길이를 기억(&C)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,127,153,10
+    CONTROL         "자세히 보기에서 컬럼의 정렬 방향을 기억(&E)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,139,171,10
+    LTEXT           "자세히 보기에서 파일크기의 형식(&S):",IDC_STATIC,7,153,
+                    130,8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,140,151,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "항상 숨겨진 파일 표시(&H)",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,164,103,10
+    LTEXT           "경고, 모든 서버가 이 기능을 지원하는 것이 아님. 이 기능이 켜졌을 때, FileZilla 가 파일목록을 못 받을 수 있음.",
+                    IDC_STATIC,19,175,252,17
+    LTEXT           "파일을 더블클릭 했을 때 동작(&D):",IDC_STATIC,7,196,99,8
+    CONTROL         "전송",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,128,196,32,10
+    CONTROL         "열기",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,169,196,32,10
+    CONTROL         "전송 큐에 추가",
+                    IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,208,196,68,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "여기서 원격 디렉토리의 캐시를 설정할 수 있습니다.",
+                    IDC_STATIC,7,7,183,8
+    CONTROL         "캐시 사용하지 않음(&D)",IDC_OPTIONS_CACHE_USECACHE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,7,18,93,10
+    CONTROL         "캐시 사용(&U)",IDC_OPTIONS_CACHE_USECACHE2,"Button",
+                    BS_AUTORADIOBUTTON,7,28,59,10
+    LTEXT           "캐시될 디렉토리의 최대시간:",IDC_STATIC,7,44,103,8
+    LTEXT           "시간(&H),",IDC_STATIC,27,57,31,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "분(&M),",IDC_STATIC,79,57,21,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,59,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "초(&S)",IDC_STATIC,128,57,18,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,108,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "디렉토리 캐시가 유지될 방법 선택:",IDC_STATIC,7,114,123,
+                    8,NOT WS_VISIBLE
+    CONTROL         "FileZilla 종료시 없앰",IDC_OPTIONS_CACHE_CACHETYPE,
+                    "Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,7,124,83,10
+    CONTROL         "영구적인 캐시 사용",IDC_OPTIONS_CACHE_CACHETYPE2,"Button",
+                    BS_AUTORADIOBUTTON | NOT WS_VISIBLE,7,134,84,10
+END
+
+IDD_SERVER_CHANGEPASS DIALOGEX 0, 0, 186, 138
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "비밀번호 바꾸기"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           " 현재 계정의 비밀번호를 바꿀 수 있습니다.\n이 기능은 모든 서버에서 가능한 것은 아닙니다.",
+                    IDC_STATIC,7,7,172,25
+    LTEXT           "이전 비밀번호(&O):",IDC_STATIC,7,64,71,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,61,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "새 비밀번호(&N):",IDC_STATIC,7,83,56,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,80,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "새 비밀번호 확인(&C):",IDC_STATIC,7,102,74,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,99,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "확인(&O)",IDOK,35,117,50,14
+    PUSHBUTTON      "취소(&C)",IDCANCEL,99,117,50,14
+    LTEXT           "비밀번호를 변경할 수 있다는 것을 확인하기 위해 이전의 비밀번호를 넣고, 새로운 비밀번호를 넣은 후 새로운 비밀번호를 확인하여 주세요.",
+                    IDC_STATIC,7,27,172,24
+END
+
+IDD_VERIFY_CERT_DLG DIALOG  0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "인증서를 수락하겠습니까?"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "발행인",IDC_STATIC,35,7,308,66
+    LTEXT           "조직:",IDC_STATIC,40,17,19,8
+    GROUPBOX        "유효기간",IDC_STATIC,35,151,308,34
+    PUSHBUTTON      "수락",IDOK,190,253,50,14
+    PUSHBUTTON      "거절",IDCANCEL,110,253,50,14
+    CONTROL         "항상 이 인증서 신뢰",IDC_VERIFY_CERT_ALWAYS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,35,239,86,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,97,208,237,17
+    LTEXT           "종합:",IDC_STATIC,35,208,19,8
+    LTEXT           "이 인증서를 신뢰합니까?",IDC_STATIC,35,225,89,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,97,
+                    17,88,8
+    LTEXT           "공통명:",IDC_STATIC,40,28,27,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,97,28,
+                    88,8
+    LTEXT           "이메일:",IDC_STATIC,190,28,27,8
+    LTEXT           "단위",IDC_STATIC,190,17,17,8
+    LTEXT           "Common Name:",IDC_STATIC,40,28,51,8
+    LTEXT           "국가:",IDC_STATIC,40,39,19,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_ISSUER_COUNTRY,97,39,88,8
+    LTEXT           "주 / 지역 :",IDC_STATIC,40,50,36,8
+    LTEXT           "마을:",IDC_STATIC,190,39,19,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_ISSUER_TOWN,216,39,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,
+                    97,50,237,8
+    LTEXT           "기타:",IDC_STATIC,40,61,19,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_ISSUER_OTHER,97,61,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_ISSUER_MAIL,216,28,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_ISSUER_UNIT,216,17,118,8
+    GROUPBOX        "주제",IDC_STATIC,35,79,308,66
+    LTEXT           "조직:",IDC_STATIC,40,89,19,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,97,
+                    89,88,8
+    LTEXT           "공통명:",IDC_STATIC,40,100,27,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,97,
+                    100,88,8
+    LTEXT           "이메일:",IDC_STATIC,190,100,27,8
+    LTEXT           "단위",IDC_STATIC,190,89,17,8
+    LTEXT           "Common Name:",IDC_STATIC,40,100,51,8
+    LTEXT           "국가:",IDC_STATIC,40,111,19,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,97,111,88,8
+    LTEXT           "주 / 지역:",IDC_STATIC,40,122,34,8
+    LTEXT           "마을:",IDC_STATIC,190,111,19,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_SUBJECT_TOWN,216,111,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,
+                    97,122,237,8
+    LTEXT           "기타:",IDC_STATIC,40,133,19,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_SUBJECT_OTHER,97,133,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,216,100,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_SUBJECT_UNIT,216,89,118,8
+    LTEXT           "시작일:",IDC_STATIC,40,161,27,8
+    LTEXT           "만기일:",IDC_STATIC,40,172,27,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDFROM,97,161,237,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDUNTIL,97,172,237,8
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    LTEXT           "Fingerprint (SHA1):",IDC_STATIC,35,189,60,8
+    LTEXT           "<certificate hash>",IDC_VERIFY_CERT_HASH,100,189,243,8
+END
+
+IDD_OPTIONS_TRANSFER DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "다운받은 파일의 날짜와 시간을 보존(&P)",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,8,153,10
+    LTEXT           "파일 크기가 다음보다 작으면 첫번째 접속만 사용(&U)",
+                    IDC_STATIC,7,28,182,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,25,38,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "bytes",IDC_STATIC,67,41,18,8
+    CONTROL         "동시에 여러개의 연결을 열어 파일을 전송(&M)",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,56,180,10
+    LTEXT           "최대한 동시에",IDC_STATIC,7,71,51,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,61,68,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "개의 파일을 동시에 전송",IDC_STATIC,80,71,87,8
+    LTEXT           "만약 이미 존재하는 파일을 전송할 때, 기본적인 동작을 정하세요:",
+                    IDC_STATIC,5,97,229,8
+    CONTROL         "물어보기(&A)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    108,57,10
+    CONTROL         "덮어쓰기(&O)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,119,57,10
+    CONTROL         "새로운 파일이면 덮어쓰기(&I)",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,129,114,10
+    CONTROL         "이어서 전송(&R)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,
+                    "Button",BS_AUTORADIOBUTTON,7,141,67,10
+    CONTROL         "파일명 바꾸기(&N)",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,7,152,75,10
+    CONTROL         "건너뛰기(&S)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,
+                    "Button",BS_AUTORADIOBUTTON,7,163,57,10
+    CONTROL         "VMS 서버에서는 모든 파일의 수정본을 보여줌(&V)",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,229,10
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "여기서 파일을 보기 / 편집 할 프로그램을 선택할 수 있습니다.",
+                    IDC_STATIC,7,7,272,8
+    LTEXT           "파일을 보거나 편집할 기본 프로그램(&D):",IDC_STATIC,7,
+                    20,272,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,31,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "찾아보기(&B)",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,
+                    31,50,14
+    LTEXT           "커스텀 파일 확장자(&C):",IDC_STATIC,7,48,80,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,58,272,87,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "각 줄은 하나의 확장자를 표현합니다. 모든 줄은 파일 확장자와 한 칸의 공백으로 시작합니다. 그 다음에 파일을 보거나 편집할 때 쓰일 프로그램이 옵니다. 만약 공백을 포함하고 있으면 따옴표로 둘러쌉니다. 잘못된 형식을 넣은 줄은 제거됩니다.",
+                    IDC_STATIC,7,150,272,33
+    LTEXT           "예제:\ntxt c:\\windows\\notepad.exe",IDC_STATIC,8,187,
+                    272,16
+END
+
+IDD_OPTIONS_IDENT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Ident Server 작동(&E)",IDC_OPTIONS_IDENT_IDENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,26,81,10
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,71,38,88,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,206,38,73,14,ES_AUTOHSCROLL
+    CONTROL         "접속시에만 가능(&C)",IDC_OPTIONS_IDENT_IDENTCONNECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,58,83,10
+    CONTROL         "같은 IP 로부터 오는 요청만 수락(&I)",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,144,58,135,10
+    LTEXT           "어떤 FTP 서버는 그 서버에 접속할 때 당신이 작동하는 Ident Server 를 가지고 있기를 요구합니다.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "사용자 아이디(&U):",IDC_STATIC,7,41,62,8
+    LTEXT           "시스템(&S):",IDC_STATIC,169,41,36,8
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "다운로드 속도 제한",IDC_STATIC,5,5,275,95
+    CONTROL         "제한 없음(&N)",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,15,59,10
+    CONTROL         "일정한 속도 제한(&C)",IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,25,85,10
+    CONTROL         "속도제한 규칙 사용(&S):",IDC_SPEEDLIMIT_DOWNLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,35,92,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,105,24,55,14,
+                    ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/초",IDC_STATIC,162,27,21,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,20,46,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "추가(&A)",IDC_SPEEDLIMIT_DOWNLOAD_ADD,234,47,41,10,
+                    WS_DISABLED
+    PUSHBUTTON      "제거(&R)",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,234,60,41,10,
+                    WS_DISABLED
+    PUSHBUTTON      "위로(&U)",IDC_SPEEDLIMIT_DOWNLOAD_UP,234,73,41,10,
+                    WS_DISABLED
+    PUSHBUTTON      "아래로(&O)",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,234,86,41,10,
+                    WS_DISABLED
+    GROUPBOX        "업로드 속도 제한",IDC_STATIC,5,105,275,95
+    CONTROL         "제한 없음(&L)",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,58,10
+    CONTROL         "일정한 속도 제한(T)",IDC_SPEEDLIMIT_UPLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,125,85,10
+    CONTROL         "속도제한 규칙 사용(&E):",IDC_SPEEDLIMIT_UPLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,135,93,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,105,122,55,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/초",IDC_STATIC,163,125,21,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,20,146,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "추가(&D)",IDC_SPEEDLIMIT_UPLOAD_ADD,234,147,41,10,
+                    WS_DISABLED
+    PUSHBUTTON      "제거(&M)",IDC_SPEEDLIMIT_UPLOAD_REMOVE,234,160,41,10,
+                    WS_DISABLED
+    PUSHBUTTON      "위로(&P)",IDC_SPEEDLIMIT_UPLOAD_UP,234,173,41,10,
+                    WS_DISABLED
+    PUSHBUTTON      "아래로(&W)",IDC_SPEEDLIMIT_UPLOAD_DOWN,234,186,41,10,
+                    WS_DISABLED
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOG  0, 0, 236, 141
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "속도 제한 규칙"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "기준",IDC_STATIC,7,3,222,87
+    CONTROL         "날짜(&D):",IDC_DATE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,43,10
+    CONTROL         "DateTimePicker1",IDC_DATE_VALUE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_APPCANPARSE | DTS_LONGDATEFORMAT | 
+                    WS_TABSTOP,59,16,125,15
+    CONTROL         "부터(&F):",IDC_FROM_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,39,42,10
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,59,37,55,15
+    CONTROL         "까지(&O):",IDC_TO_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,126,39,43,10
+    CONTROL         "DateTimePicker2",IDC_TO_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,170,37,54,15
+    CONTROL         "월요일(&M)",IDC_CHECK_DAY1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,50,10
+    CONTROL         "화요일(&T)",IDC_CHECK_DAY2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,66,57,49,10
+    CONTROL         "수요일(&W)",IDC_CHECK_DAY3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,118,57,51,10
+    CONTROL         "목요일(&H)",IDC_CHECK_DAY4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,173,57,49,10
+    CONTROL         "금요일(&R)",IDC_CHECK_DAY5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,73,49,10
+    CONTROL         "토요일(&S)",IDC_CHECK_DAY6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,66,73,49,10
+    CONTROL         "일요일(&U)",IDC_CHECK_DAY7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,118,73,49,10
+    LTEXT           "속도(&P):",IDC_STATIC,7,99,28,8
+    EDITTEXT        IDC_SPEED,37,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kB/초",IDC_STATIC,91,99,21,8
+    DEFPUSHBUTTON   "확인",IDOK,110,120,50,14
+    PUSHBUTTON      "취소",IDCANCEL,179,120,50,14
+END
+
+IDD_OPTIONS_SSHPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "FileZilla 는 SFTP 를 위해 PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/) 의 일부를 사용합니다.",
+                    IDC_STATIC,7,5,272,17
+    LTEXT           "SFTP 서버에 SSH 연결을 설정하기 위해, FileZilla 는 PuTTY 의 기본적인 옵션을 사용합니다. 여기서는 기본적인 옵션 몇가지를 변경할 수 있습니다.",
+                    IDC_STATIC,7,25,272,17
+    LTEXT           "압축 사용(&C):",IDC_STATIC,7,45,46,8
+    CONTROL         "기본",IDC_OPTIONS_SSHPAGE_COMPRESSION1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,55,32,10
+    CONTROL         "예",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,74,55,24,10
+    CONTROL         "아니오",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,134,55,40,10
+    LTEXT           "프로토콜 선택:",IDC_STATIC,7,68,53,8
+    LTEXT           "기본적으로 (만약 기본 설정을 바꾸지 않았다면), PuTTY 는 SSH 서버에 접속하기 위해 SSH2 를 사용합니다.",
+                    IDC_STATIC,14,80,265,16
+    LTEXT           "SSH2 는 SSH1 에 비해 좀 더 안정적인 반면에 PuTTY 에서의 구현은 속도에 약간의 문제가 있습니다. (http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/sftp-slow.html 를 참조하면 자세히 알 수 있습니다)",
+                    IDC_STATIC,14,96,265,32
+    LTEXT           "FileZilla 에서 SFTP 서버에 연결을 하면서 속도에 문제가 있고, 추가적인 안정성이 필요하지 않다면, SSH1 을 쓰는 것이 더 나을 것입니다.",
+                    IDC_STATIC,14,128,265,17
+    CONTROL         "기본",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,149,32,10
+    CONTROL         "SSH1 사용",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,74,149,53,10
+    CONTROL         "SSH2 사용",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,134,149,53,10
+    LTEXT           "모든 서버가 이 옵션들을 지원하지는 않습니다.",
+                    IDC_STATIC,14,166,191,8
+END
+
+IDD_SITEMANAGER_ADVANCED DIALOGEX 0, 0, 251, 188
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "'%s' (%s) 에 대한 고급 설정",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,237,16
+    LTEXT           "기본 로컬 디렉토리(&L):",IDC_STATIC,7,26,79,8
+    EDITTEXT        IDC_LOCALDIR,7,36,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,36,12,14
+    LTEXT           "기본 원격 디렉토리(&I):",IDC_STATIC,7,56,87,8
+    EDITTEXT        IDC_REMOTEDIR,7,66,157,14,ES_AUTOHSCROLL,
+                    WS_EX_TRANSPARENT
+    LTEXT           "수동 전송 모드 설정",IDC_STATIC,7,88,71,8
+    CONTROL         "기본 설정사용(&D)",IDC_SITEMANAGER_ADVANCED_PASSIVE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    100,75,10
+    CONTROL         "수동모드 사용(&P)",IDC_SITEMANAGER_ADVANCED_PASSIVE2,
+                    "Button",BS_AUTORADIOBUTTON,84,100,75,10
+    CONTROL         "액티브 모드 사용(&A)",IDC_SITEMANAGER_ADVANCED_PASSIVE3,
+                    "Button",BS_AUTORADIOBUTTON,162,100,84,10
+    LTEXT           "서버 시간대 간격 오프셋:",IDC_STATIC,7,117,89,8
+    LTEXT           "다음만큼 원격파일을 조정",IDC_STATIC,7,131,93,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,105,129,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,118,127,11,14
+    LTEXT           "시간",IDC_STATIC,134,131,17,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,156,128,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,166,126,11,14
+    LTEXT           "분",IDC_STATIC,185,130,9,8
+    LTEXT           "가능하면 서버에 UTF8 사용하기 :",IDC_STATIC,7,152,116,8
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,127,150,48,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "확인",IDOK,55,167,50,14
+    PUSHBUTTON      "취소",IDCANCEL,135,167,50,14
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "일반",IDC_STATIC,7,7,272,26
+    CONTROL         "로컬 뷰의 왼쪽에 원격 뷰를 위치",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,130,10
+    GROUPBOX        "트리뷰 위치들",IDC_STATIC,7,38,272,81
+    LTEXT           "로컬 트리뷰:",IDC_STATIC,13,49,45,8
+    CONTROL         "파일 목록의 위에 위치",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,59,94,10
+    CONTROL         "파일 목록의 왼쪽에 위치",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,70,102,10
+    LTEXT           "원격 트리뷰:",IDC_STATIC,14,85,45,8
+    CONTROL         "파일 목록의 위에 위치",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,95,94,10
+    CONTROL         "파일 목록의 왼쪽에 위치",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,106,102,10
+    LTEXT           "이 설정은 FileZilla 가 다시 시작될 때 적용됩니다.",
+                    IDC_STATIC,7,123,168,8
+END
+
+IDD_SAPREFS DIALOG  0, 0, 415, 260
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FileZilla 옵션들"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,187,113,66
+    DEFPUSHBUTTON   "확인",IDOK,12,194,97,14
+    PUSHBUTTON      "취소",IDCANCEL,12,214,97,14
+    PUSHBUTTON      "도움말",IDC_PHELP,12,234,97,14
+    LTEXT           "",IDC_CAPTION_BAR,122,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,121,19,292,234
+END
+
+IDD_OPTIONS_LOGGING DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "현재 폰트 :",IDC_STATIC,19,20,45,8
+    LTEXT           "Statisch",IDC_OPTIONS_LOGGING_FONTDATA,71,21,169,8
+    PUSHBUTTON      "폰트 선택(&S)...",IDC_OPTIONS_LOGGING_CHANGEFONT,19,32,
+                    55,14
+    CONTROL         "파일에 로그남김(&L)",IDC_OPTIONS_LOGGING_LOGTOFILE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,49,82,10
+    LTEXT           "파일명(&F):",IDC_STATIC,20,83,38,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,60,80,92,14,ES_AUTOHSCROLL
+    LTEXT           "활성화되면, 메시지 로그로부터의 모든 메시지는 파일에 기록됩니다. 로그 파일의 확장하는 .rtf 가 되어야합니다.",
+                    IDC_STATIC,19,60,260,16
+    CONTROL         "메시지 로그에 사용자 폰트 사용하기(&U)",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,162,10
+    CONTROL         "로그에 시간을 남김(&T)",IDC_OPTIONS_LOGGING_TIMESTAMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,98,93,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOGEX 0, 0, 286, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "MODE Z ftp 프로토콜 확장을 사용하면, 이 프로토콜을 지원하는 서버에서 파일을 압축해서 전송할 수 있습니다.",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "압축 사용하지 않음",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,30,84,10
+    CONTROL         "디렉토리 목록에만 압축 사용",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,42,118,10
+    CONTROL         "모든 전송에 압축 사용",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,54,94,10
+    LTEXT           "압축 레벨, 1(최저) 부터 9(최고)의 범위 :",IDC_STATIC,7,
+                    72,141,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,148,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "기본 압축 레벨은 8 입니다. 이 기본값은 압축 크기와 CPU 사용량 사이에서 적절한 값입니다.",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "압축 방법에 대해 자세한 정보를 얻기 위해서는 아래 사이트를 방문해보세요. http://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,195,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MANUALTRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        RIGHTMARGIN, 386
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_SITEMANAGER, DIALOG
+    BEGIN
+        RIGHTMARGIN, 343
+    END
+
+    IDD_OPTIONS_LOCALVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_VERIFY_CERT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        VERTGUIDE, 35
+        VERTGUIDE, 40
+        VERTGUIDE, 97
+        VERTGUIDE, 190
+        VERTGUIDE, 216
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_OPTIONS_VIEWEDIT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 279
+    END
+
+    IDD_OPTIONS_IDENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 229
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 134
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 244
+        VERTGUIDE, 80
+        VERTGUIDE, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 181
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_SAPREFS, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 413
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 253
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 39, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x542f, 0x534c, 0x2820, 
+0x6d69, 0x6c70, 0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 
+0x296e, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 16, 0
+0x4653, 0x5054, 0x7520, 0x6973, 0x676e, 0x5320, 0x4853, 0x0032, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5420, 0x534c, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    0
+END
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 7, 0
+0xdac0, 0xbcbc, 0xf7c8, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 7, 0
+0xa3b0, 0xdcb4, 0xf7c8, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 10, 0
+0xabc5, 0xbe20, 0xc0c6, 0xc4cc, 0x00dc, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 12, 0
+0xdbc0, 0xbac0, 0xbe20, 0xc0c6, 0xc4cc, 0x00dc, 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0xdac0, 0xbfb5, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 6, 0
+0x7942, 0x6574, 0x0073, 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 8, 0
+0x6544, 0x6174, 0x6c69, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 12, 0
+0x614c, 0x6772, 0x2065, 0x6349, 0x6e6f, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 12, 0
+0x6d53, 0x6c61, 0x206c, 0x6349, 0x6e6f, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0xdac0, 0xbfb5, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 6, 0
+0x7942, 0x6574, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 33, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x542f, 0x534c, 0x2820, 
+0xacb9, 0xc3bd, 0xfbc0, 0xbe20, 0xc8cf, 0xc8a3, 0x29ad, "\000" 
+    IDC_SERVERTYPE, 0x403, 29, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x2820, 0xedb8, 0xc3bd, 
+0xfbc0, 0xbe20, 0xc8cf, 0xc8a3, 0x29ad, "\000" 
+    IDC_SERVERTYPE, 0x403, 16, 0
+0x4653, 0x5054, 0x7520, 0x6973, 0x676e, 0x5320, 0x4853, 0x0032, 
+    IDC_SERVERTYPE, 0x403, 29, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5420, 0x534c, 0x2820, 0xedb8, 0xc3bd, 
+0xfbc0, 0xbe20, 0xc8cf, 0xc8a3, 0x29ad, "\000" 
+    0
+END
+
+IDD_SITEMANAGER_ADVANCED DLGINIT
+BEGIN
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x6f46, 0x6372, 0x0065, 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x654e, 0x6576, 0x0072, 
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""afxres.rc""          // Standardkomponenten\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "파일(&F)"
+    BEGIN
+        MENUITEM "사이트 관리자(&S)...\tCtrl+S", ID_SITEMANAGER
+        MENUITEM "사이트 관리자에 접속정보 복사(&C)", ID_COPYTOSITEMANAGER
+        MENUITEM "기본 사이트에 접속(&O)",      ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "다시 접속(&R)\tCtrl+R",       ID_TOOLBAR_RECONNECT
+        MENUITEM "접속 끊기(&D)\tCtrl+D",       ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "종료(&X)",                    ID_APP_EXIT
+    END
+    POPUP "편집(&E)"
+    BEGIN
+        MENUITEM "설정(&S)...",                 ID_EDIT_SETTINGS
+        MENUITEM "설정 내보내기(&X)...",        ID_EDIT_EXPORTSETTINGS
+        MENUITEM "설정 불러오기(&I)...",        ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "전송(&T)"
+    BEGIN
+        POPUP "전송 타입(&T)"
+        BEGIN
+            MENUITEM "아스키(&A)",                  ID_TYPEMENU_ASCII
+            MENUITEM "바이너리(&B)",                ID_TYPEMENU_BINARY
+            MENUITEM "자동(&U)",                    ID_TYPEMENU_DETECT
+        END
+        POPUP "파일 덮어쓰기 설정(&F)"
+        BEGIN
+            MENUITEM "물어보기(&A)",                ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "덮어쓰기(&O)",                ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "새로운 파일이면 덮어쓰기(&I)", 
+                                                    ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "이어서 전송(&R)",             ID_OVERWRITEMENU_RESUME
+            MENUITEM "이름 바꾸기(&N)",             ID_OVERWRITEMENU_RENAME
+            MENUITEM "건너뛰기(&S)",                ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "수동 전송(&M)...",            ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "보기(&V)"
+    BEGIN
+        MENUITEM "뷰 새로고침(&R)\t     F5",    ID_TOOLBAR_REFRESH
+        MENUITEM "숨은 속성 파일 보기(&H)",     ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "도구 모음(&T)",               ID_VIEW_TOOLBAR
+        MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
+        MENUITEM "빠른 접속바(&C)",             ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "로컬 트리뷰(&L)\tCtrl+T",     ID_SHOWTREE
+        MENUITEM "원격 트리뷰(&O)",             ID_SHOWREMOTETREE
+        MENUITEM "메시지 로그(&M)",             ID_VIEW_MESSAGELOG
+        MENUITEM "전송 큐(&Q)",                 ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "로컬 목록 보기(&A)"
+        BEGIN
+            MENUITEM "자세히(&D)",                  ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "간단히(&L)",                  ID_LOCALLISTSTYLE_LIST
+            MENUITEM "큰 아이콘(&I)",               ID_LOCALLISTSTYLE_ICON
+            MENUITEM "작은 아이콘(&C)",             ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "파일크기(&Z)",                ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "파일타입(&T)",                ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "마지막 수정 시간(&M)",        ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "상태 표시줄 보기(&S)",        ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "정렬하기(&O)..."
+            BEGIN
+                MENUITEM "파일명(&F)",                  ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "파일크기(&S)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "파일종류(&T)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "마지막 수정시각(&L)",         ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "오름차순(&A)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "내림차순(&D)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "원격 목록 보기(&E)"
+        BEGIN
+            MENUITEM "자세히(&D)",                  ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "간단히(&L)",                  ID_REMOTELISTSTYLE_LIST
+            MENUITEM "큰 아이콘(&I)",               ID_REMOTELISTSTYLE_ICON
+            MENUITEM "작은 아이콘(&C)",             ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "파일크기(&Z)",                ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "파일종류(&Y)",                ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "날짜(&A)",                    ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "시간(&T)",                    ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "권한(&P)",                    ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "소유자(&O) / 그룹",           ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "상태 표시줄 보기(&S)",        ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "정렬하기(&B)..."
+            BEGIN
+                MENUITEM "파일명(&F)",                  ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "파일크기(&S)",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "파일종류(&T)",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "날짜 / 시간(&D)",             ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "오름차순(&A)",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "내림차순(&E)",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "큐(&Q)"
+    BEGIN
+        MENUITEM "큐 진행하기(&P)",             ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "다중 연결 사용하기(&U)",      ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "내보내기(&E)...",             ID_MENU_QUEUE_EXPORT
+        MENUITEM "불러오기(&I)...",             ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "서버(&S)"
+    BEGIN
+        MENUITEM "비밀번호 바꾸기(&C)...",      ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "직접 FTP 명령어 넣기(&E)...\tCtrl+F", 
+                                                ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "URL 을 클립보드로 복사&U)",   ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "도움말(&H)"
+    BEGIN
+        MENUITEM "목차(&C)...",                 ID_HELPMENU_CONTENTS
+        MENUITEM "검색(&S)...",                 ID_HELPMENU_SEARCH
+        MENUITEM "색인...",                     ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "FileZilla 는(&A)...",         ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "OutputContext"
+    BEGIN
+        MENUITEM "명령 넣기(&E)...",            ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "클립보드에 복사(&O)",         ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "모두 지우기(&C)",             ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "FtpContext"
+    BEGIN
+        MENUITEM "다운로드(&D)",                ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "큐에 추가(&A)",               ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "..으로 다운로드(&W)...",      ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "열기(&O)",                    ID_FTPCONTEXT_OPEN
+        MENUITEM "보기(&V) / 편집",             ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "디렉토리 만들기(&C)",         ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "삭제하기(&E)",                ID_FTPCONTEXT_DELETE
+        MENUITEM "이름 바꾸기(&R)",             ID_FTPCONTEXT_RENAME
+        MENUITEM "파일 속성(&F)...",            ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalContext"
+    BEGIN
+        MENUITEM "업로드(&U)",                  ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "큐에 추가(&A)",               ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "...로 업로드(&P)...",         ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "디렉토리 만들기(&C)",         ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "열기(&O)",                    ID_LOCALCONTEXT_OPEN
+        MENUITEM "보기(&V) / 편집",             ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "삭제하기(&E)",                ID_LOCALCONTEXT_DELETE
+        MENUITEM "이름 바꾸기(&R)",             ID_LOCALCONTEXT_RENAME
+        MENUITEM "등록정보(&T)",                ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "QueueContext"
+    BEGIN
+        MENUITEM "큐 진행하기(&P)",             ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "큐에서 제거(&R)",             ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "상태 리셋(&S)",               ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "일시멈춤(E)",                 ID_QUEUECONTEXT_PAUSE
+        MENUITEM "다시 진행(M)",                ID_QUEUECONTEXT_RESUME
+        MENUITEM "취소(&A)",                    ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "한단계 위로(&U)",             ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "한단계 밑으로(D)",            ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "제일 위로(T)",                ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "제일 밑으로(B)",              ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "파일(&F)"
+    BEGIN
+        MENUITEM "불러오기(&I)",                ID_SITEMANAGER_FILE_IMPORT
+        POPUP "내보내기(&E)..."
+        BEGIN
+            MENUITEM "URL 리스트로(&U)",            ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "모든 세부사항 포함(&D)",      ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "저장하고 끝내기(X)",          ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalTreeContext"
+    BEGIN
+        MENUITEM "업로드(&U)",                  ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "큐에 추가(&A)",               ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "... 으로 업로드(&P)",         ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "삭제하기(&E)",                ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "이름 바꾸기(&R)",             ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "복구하기(&R)",                ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "종료(&X)",                    ID_TRAY_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,8,0
+ PRODUCTVERSION 2,2,8,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Korean"
+            VALUE "FileDescription", "Korean language DLL for FileZilla"
+            VALUE "FileVersion", "2, 2, 8, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2005 by Tim Kosse under the GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 8, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "준비"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "FileZilla 에 대해서"
+    ID_APP_EXIT             "FileZilla 종료하기"
+    ID_HELP                 "도움말의 목록 보기"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "도구 모음을 보거나 숨기기"
+    ID_VIEW_STATUS_BAR      "상태 표시줄을 보거나 숨기기"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "FileZilla 종료"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<빈 디렉토리입니다>"
+    IDS_SITEMANAGER_NEWFOLDER "새로운 폴더"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "새로운 폴더(%d)"
+    IDS_SITEMANAGER_NEWFTPSITE "새로운 FTP 사이트"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "새로운 FTP 사이트(%d)"
+    IDS_SITEMANAGER_TEXTFILES "텍스트 파일들 (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "나의 FTP 사이트들"
+    IDS_SITEMANAGER_XMLFILES "XML 파일들 (*.xml)|*.xml||"
+    IDS_SIZE_BYTES          "bytes"
+    IDS_SIZE_GB             "GB"
+    IDS_SIZE_KBS            "KB"
+    IDS_SIZE_MBS            "MB"
+    IDS_STATUSBAR_ELAPSED   "%s 경과"
+    IDS_STATUSBAR_LEFT      "%s 남음"
+    IDS_TITLE_CONNECTED     "%s 에 접속됨"
+    IDS_TITLE_CONNECTING    "%s 에 접속 중"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "빈 폴더"
+    IDS_VIEWLABEL_LOCAL     "로컬 사이트:"
+    IDS_VIEWLABEL_REMOTE    "원격 사이트:"
+    IDS_DIRINFO_EMPTY       "빈 디렉토리입니다."
+    IDS_DIRINFO_FILES       "%d 개의 파일이 %I64d bytes 입니다."
+    IDS_DIRINFO_DIRSANDFILES 
+                            "%d 개의 폴더와 %d 개의 파일들이 %I64d bytes 입니다."
+    IDS_DIRINFO_FILESMIN    "%d 개의 파일들이 최소한 %I64d bytes 입니다."
+    IDS_DIRINFO_DIRSANDFILESMIN 
+                            "%d 개의 폴더와 %d 개의 파일들이 최소 %I64d bytes 입니다."
+    IDS_DIRINFO_SELECTED_FILES 
+                            "%d 개의 파일들이 %I64d bytes 로 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRS "%d 개의 폴더들이 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "%d 개의 폴더와 %d 개의 파일들이 %I64d bytes 선택되었습니다."
+    IDS_DIRINFO_SELECTED_FILESMIN 
+                            "%d 개의 파일들이 최소 %I64d bytes 가 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "%d 개의 폴더들과 %d 개의 파일들이 최소 %I64d bytes 로 선택되었습니다."
+    IDS_DIRINFO_FILE        "%I64d bytes 의 파일이 하나 있습니다."
+    IDS_DIRINFO_DIR         "1 개의 폴더가 있습니다."
+    IDS_DIRINFO_DIRANDFILES "1개의 폴더와 %d 개의 파일들이 %I64d bytes 입니다."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY """%s"" 디렉토리의 새로운 속성을 선택해주세요"
+    IDS_CHANGEDIALOG_FILE   """%S"" 파일의 새로운 속성을 선택해주세요"
+    IDS_CHANGEDIALOG_MULTIPLEFILES 
+                            "모든 선택된 파일과 폴더의 새로운 속성을 선택해주세요"
+    IDS_HEADER_DATE         "날짜"
+    IDS_HEADER_DIRECTION    "방향"
+    IDS_HEADER_FILENAME     "파일명"
+    IDS_HEADER_FILESIZE     "파일크기"
+    IDS_HEADER_FILETYPE     "파일유형"
+    IDS_HEADER_HOST         "호스트"
+    IDS_HEADER_LASTMODIFIED "마지막 수정"
+    IDS_HEADER_LOCALNAME    "로컬 파일명"
+    IDS_HEADER_OWNERGROUP   "소유자 / 그룹"
+    IDS_HEADER_PERMISSIONS  "권한"
+    IDS_HEADER_REMOTENAME   "원격 파일명"
+    IDS_HEADER_SIZE         "크기"
+    IDS_HEADER_STATUS       "상태"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "시간"
+    IDS_MANUALTRANSFER_HOST "올바른 호스트를 넣어주세요."
+    IDS_MANUALTRANSFER_LOCALFILE 
+                            "로컬 파일의 올바른 패스와 파일명을 넣어주세요."
+    IDS_MANUALTRANSFER_PORT "올바른 서버 포트를 넣어주세요."
+    IDS_MANUALTRANSFER_REMOTEFILE "원격 파일의 패스와 파일명을 넣어주세요."
+    IDS_MANUALTRANSFER_USER "사용자명을 넣으세요."
+    IDS_QUEUESTATUS_ABORTED "전송이 취소됨"
+    IDS_QUEUESTATUS_CRITICALERROR "치명적인 전송 오류"
+    IDS_QUEUESTATUS_ERROR   "전송 오류 #%d. 나중에 다시 시도하세요."
+    IDS_QUEUESTATUS_TOOMANYERTREIS "너무 많은 재시도"
+    IDS_QUEUESTATUS_TRANSFERRING "전송 중"
+    IDS_QUICKCONN_HOST      "주소:"
+    IDS_QUICKCONN_PASS      "암호:"
+    IDS_QUICKCONN_PORT      "포트:"
+    IDS_QUICKCONN_QUICKCONN "빠른접속(&Q)"
+    IDS_QUICKCONN_USER      "사용자:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "사용자에 의해 중단됨!"
+    IDS_ERRORMSG_INVALIDPORT "올바른 포트를 지정해야합니다!"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND 
+                            "오류! ""%s"" 언어의 DLL 을 찾을 수 없습니다!"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "오류! 이전 버젼의 FilZilla 의 언어 DLL 이며, 현재 버젼과 호환되지 않습니다.\nhttp://sourceforge.net/projects/filezilla 에서 새로운 버젼을 다운받아주세요."
+    IDS_ERRORMSG_NAMEINUSE  "다른 파일명을 넣어주세요!"
+    IDS_ERRORMSG_PATHNOTFOUND "입력한 패스를 찾을 수 없습니다!"
+    IDS_ERRORMSG_PORTNEEDED "올바른 포트를 넣어주세요!"
+    IDS_ERRORMSG_PREFIX     "오류:"
+    IDS_ERRORMSG_PROXY_AUTHFAILED "인증이 실패했습니다."
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON "프락시가 인증을 요구합니다."
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "프락시 서버에 의해 요청된 인증형태가 알 수 없거나 지원되지 않습니다."
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST 
+                            "프락시 서버의 주소를 해석할 수 없습니다."
+    IDS_ERRORMSG_PROXY_NOCONN "프락시 서버에 연결할 수 없습니다."
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "프락시 요청이 실패했습니다, 프락시 서버를 통해 연결할 수 없습니다."
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "오류, 'FileZilla.xml' 파일을 인식할 수 없습니다. 파일이 아마 깨어진것 같습니다. \n현재 세션의 설정을 저장하기 위해 레지스트리를 쓰겠습니다."
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "CSFtpIpC 를 초기화할 수 없습니다. 시스템에 충분한 자원이 있는지 확인해주세요!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "SFTP 프로세스를 시작할 수 없습니다. 'FzSFtp.exe' 파일이 'FileZilla.exe' 와 같은 폴더에 있는지 확인하세요."
+    IDS_ERRORMSG_SFTP_CLOSED "FzSFtp.exe 가 닫혔습니다. 연결을 끊습니다."
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "올바르지 않은 데이터가 SFtp 채널에서 발견되었습니다. 연결을 끊습니다."
+    IDS_ERRORMSG_SFTP_NORESPONSE 
+                            "FzSFtp.exe 가 응답하지 않습니다. 연결을 끊습니다."
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE 
+                            "이미 존재하는 이름입니다! 다른 이름을 넣어주세요!"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE "로그온 유형을 선택해주세요!"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME "FTP 사이트의 이름을 넣어주세요!"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "암호를 넣어주세요!"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "사용자명을 넣어주세요!"
+    IDS_ERRORMSG_TIMEOUT    "타임아웃이 감지되었습니다!"
+    IDS_ERRORMSG_UPLOADABORTED "업로드가 중지됨"
+    IDS_ERRORMSG_UPLOADFAILED "업로드가 실패함"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "올바르지 않은 주소 문법입니다. 반드시 이렇게 되어야 합니다. [ftp://][User:Pass@]Host[:Port][/Path]\n인자들을 [] 로 둘러싸는 것은 선택 사항입니다. \r\nsftp:// 와 ftps:// 도 또한 올바른 프로토콜입니다."
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE """%s"" 를 열 수 없습니다"
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            """%s"" 프로그램을 시작할 수 없습니다. ""%s"" 파일을 보거나 편집하려 했습니다. 파일 확장자 연결을 살펴보세요."
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG 
+                            "오류, 기본적으로 지정한 프로그램이 없습니다."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL 
+                            "다음과 같은 이유로 전송 채널을 열 수 없습니다: %s"
+    IDS_ERRORMSG_CANTPARSECMDLINE "명령줄을 분석할 수 없음."
+    IDS_ERRORMSG_CANTRESOLVEHOST "호스트명을 분석할 수 없음"
+    IDS_ERRORMSG_CANTRESUME "이어받기 기능을 서버가 지원하지 않습니다. 파일을 덮어씁니다."
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "이어받기 기능을 서버가 지원하지 않습니다. 하지만 로컬파일과 원격파일의 크기가 같습니다."
+    IDS_ERRORMSG_CANTSENDCOMMAND 
+                            "명령을 보낼 수 없습니다! 서버에서 로그오프하고 있습니다!"
+    IDS_ERRORMSG_CANTWRITETOFILE 
+                            "파일 ""%s"" 에 다음과 같은 이유로 쓸 수 없습니다. 이유: %s"
+    IDS_ERRORMSG_CERTREJECTED "동등한 인증서가 거절되었습니다"
+    IDS_ERRORMSG_CRITICALINTERRUPTED 
+                            "사용자에 의해 가로채여졌습니다! 로그오프하고 있습니다.."
+    IDS_ERRORMSG_DOWNLOADABORTED "다운로드 중지됨"
+    IDS_ERRORMSG_DOWNLOADFAILED "다운로드 실패"
+    IDS_ERRORMSG_ENTERSTRING "문자열을 넣어야합니다!"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "파일명에 다음과 같은 문자가 올 수 없습니다:\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED "다음 로컬 파일을 열 수 없습니다:  %s"
+    IDS_ERRORMSG_HOSTNEEDED "호스트를 넣어주세요!"
+    IDS_ERRORMSG_IDENT_CANTSTART "Ident server 를 시작하는 데 문제 발생"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                             "
+    ID_INDICATOR_TIMELEFT   "                         "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "큐: %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d 개의 폴더가 있습니다."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "디렉토리 명을 넣으세요"
+    IDS_INPUTDIALOGTEXT_CREATEDIR "새로운 디렉토리명을 넣으세요:"
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "FTP 명령을 넣기"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND "서버에서 실행될 명령을 넣으세요:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "암호를 넣으세요"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD "서버에 접속할 때 쓰일 암호를 넣으세요:"
+    IDS_INPUTDIALOGTITLE_RENAME "새로운 파일명을 넣으세요"
+    IDS_INPUTDIALOGTEXT_RENAME "파일이 저장될 이름을 아래에 넣어주세요:"
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE "키보드-대화방식의 인증"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "사용자명을 넣으세요"
+    IDS_INPUTDIALOGTEXT_INPUTUSER "서버에 접속할 때 쓰일 사용자명을 넣으세요:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "접속"
+    IDS_OPTIONSPAGE_DEBUG   "디버그"
+    IDS_OPTIONSPAGE_DIRCACHE "디렉토리 캐시"
+    IDS_OPTIONSPAGE_FIREWALL "방화벽 설정"
+    IDS_OPTIONSPAGE_FTPPROXY "FTP 프락시 설정"
+    IDS_OPTIONSPAGE_GSS     "GSS 지원"
+    IDS_OPTIONSPAGE_IDENT   "Ident server"
+    IDS_OPTIONSPAGE_INTERFACE "화면구성 설정"
+    IDS_OPTIONSPAGE_LANGUAGE "언어"
+    IDS_OPTIONSPAGE_LOCALVIEW "로컬 파일 목록"
+    IDS_OPTIONSPAGE_MISC    "기타"
+    IDS_OPTIONSPAGE_PROXY   "프락시 설정"
+    IDS_OPTIONSPAGE_REMOTEVIEW "원격 파일 목록"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "속도 제한"
+    IDS_OPTIONSPAGE_TRANSFER "파일 전송 설정"
+    IDS_OPTIONSPAGE_TYPE    "아스키/바이너리"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "파일 보기 / 편집"
+    IDS_OPTIONSPAGE_SSH     "SFTP 설정들"
+    IDS_OPTIONSPAGE_PANELAYOUT "Pane 레이아웃"
+    IDS_OPTIONSPAGE_LOGGING "메세지 로그"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "압축"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "명령:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "응답:"
+    IDS_TRACEMSG_TRACE      "추적:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "접속할 수 없습니다!"
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "지정된 포트 범위에서 소켓을 만들 수 없습니다."
+    IDS_ERRORMSG_CANTCREATEFILE "출력 파일을 만드는 데 실패했습니다!"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION "SSL 접속을 성립할 수 없습니다."
+    IDS_ERRORMSG_CANTGETFILETYPE "파일타입을 받아올 수 없음!"
+    IDS_ERRORMSG_CANTGETLIST "디렉토리 목록을 받아올 수 없음"
+    IDS_ERRORMSG_CANTGETRESPONSE "응답을 받을 수 없음!"
+    IDS_ERRORMSG_CANTIMPORTFILE "파일을 불러오는데 오류!"
+    IDS_ERRORMSG_CANTINITSSL "SSL 라이브러리를 초기화할 수 없음"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "SSL 라이브러리를 불러올 수 없습니다. ""ssleay32.dll"" 과 ""libeay32.dll"" 파일이 FileZilla 와 같은 폴더에 있는지 확인해주세요."
+    IDS_ERRORMSG_CANTOPENFILE "입력 파일을 열 수 없습니다!"
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "로그파일 ""%s"" 을 열 수 없습니다. 현재 세션에 대한 로그 기능은 꺼집니다."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "접속되었습니다"
+    IDS_STATUSMSG_CONNECTEDWITH "%s 에 접속됨, 환영 메시지를 기다리는 중..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP "%s 에 접속됨, SFTP 접속을 초기화 중..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL "%s 에 접속됨, SSL 접속을 협상 중..."
+    IDS_STATUSMSG_CONNECTING "%s 에 접속 중..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "디렉토리 목록보기 성공"
+    IDS_STATUSMSG_DISCONNECTED "서버와의 접속 끊기"
+    IDS_STATUSMSG_DISCONNECTING "접속을 끊고 있습니다..."
+    IDS_STATUSMSG_DOWNLOADSTART "%s 다운로드 시작 중"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "다운로드 완료"
+    IDS_STATUSMSG_FILEIMPORTED """%s"" 파일이 성공적으로 불러들여졌습니다!"
+    IDS_STATUSMSG_FWCONNECT "ftp 프락시 서버를 통해 %s 에 접근을 시도 중..."
+    IDS_STATUSMSG_IDENT_REQUEST "%s 로부터 Ident 요청"
+    IDS_STATUSMSG_IDENT_START "Ident server 시작됨"
+    IDS_STATUSMSG_IDENT_STOP "Ident server 멈춤"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "경고! 언어 DLL 이 FileZilla 의 이전 버젼입니다. 몇몇 문자열은 번역되어 있지 않을 수 있습니다. 새로운 언어 DLL 을 다운받아 주세요!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "상태:"
+    IDS_STATUSMSG_RECONNECTWAIT "다시 접속하기를 기다리고 있는 중..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "디렉토리 목록을 받아오는 중..."
+    IDS_STATUSMSG_SSLESTABLISHED 
+                            "SSL 접속이 성립됨, 환영 메시지를 기다리는 중..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "SSL 접속이 성립됨"
+    IDS_STATUSMSG_UPLOADSTART "%s 업로드 시작 중"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "업로드 성공"
+    IDS_STATUSMSG_WAITINGTORETRY "재시도 중... (1회 남음)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT "재시도 중... (%d 회 남음)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "현재 연결을 끊습니까?"
+    IDS_QUESTION_CANCELOPERATION "현재 작업을 정말 취소합니까?"
+    IDS_QUESTION_DELETEDIRS "정말 %d 개의 디렉토리를 지우겠습니까?"
+    IDS_QUESTION_DELETEFILE """%s"" 을 지우겠습니까?"
+    IDS_QUESTION_DELETEFILES "%d 개의 파일을 지우겠습니까?"
+    IDS_QUESTION_DELETEFILESANDDIRS 
+                            "정말 %d 개의 파일과 디렉토리들을 지웁니까?"
+    IDS_QUESTION_FILEEXISTS """%s"" (%d bytes) 파일이 이미 존재합니다.  다음으로 덮어씁니까? ""%s"" (%d bytes)"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "FileZilla 를 처음 시작하시거나 설정이 지워졌습니다.\nFileZilla 는 레지스트리나 XML 파일로부터 설정을 복구할 수 있습니다.\nFileZilla 가 레지스트리를 쓰길 원합니까?\n다중 사용자 환경에서는 레지스트리를 쓰길 권장합니다.\n'아니오' 를 선택하면 대부분의 사용자들에게 권장되는 XML 파일을 씁니다.\n만약 '아니오' 를 선택하고 레지스트리에 설정이 있으면,  레지스트리의 설정은 XML 파일로 불러들여질겁니다.\n\nXML 파일 대신에 레지스트리를 쓰겠습니까?"
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "[경고] - 잠재적인 보안 위험!\n서버의 호스트 키가 레지스트리에 캐시된 이전의 것과 매치되지 않습니다.\n이것은 서버 관리자가 호스트키를 바꾸었거나, 실제적으로 접속한 서버가 사실은 다른 서버일 수 있습니다.\n새로운 지문:\n%s\n만약 이 변화가 예상한 것이고 새로운 키를 신뢰한다면,\n'예'를 선택해서 캐시를 업데이트 하고 연결을 계속하십시오.\n만약 업데이트를 안 하고, 접속을 계속하려면, '아니오' 를 선택하세요.\n만약 접속을 완전히 그만두고 싶다면, '취소'를 클릭하세요.\n'취소' 를 선택하는 것만이 안전을 보장하는 유일한 선택입니다.\n\n캐시된 키를 업데이트 하겠습니까?"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "레지스트리에 서버의 호스트 키가 캐시되지 않았습니다.\n이 서버가 접속할려던 서버라는 보장은 없습니다.\n\n서버의 키 지문은:\n%s\n\n만약 이 서버를 신뢰한다면, '예' 를 선택해서 캐시에 키를 추가하고 접속을 진행하세요.\n만약 키를 캐시하지 않고 단지 한번 접속해보고 싶다면 '아니오'를 선택하세요.\n만약 이 서버를 신뢰하지 않는다면 '취소' 를 선택해 연결을 끊으세요.\n\n캐시에 키를 저장할까요?"
+    IDS_QUESTION_SITEMANAGERDELETE "정말 ""%s"" 지우시겠습니까?"
+    IDS_QUESTION_TRANSFER_USEPRIMARY 
+                            "'%s' 을 전송하는 도중 문제가 발생했습니다.\n서버에 파일 전송을 위한 더 이상의 추가적인 연결을 만들 수 없습니다. 접속한 서버가 다중 연결을 지원하지 않는 것 같습니다.\nFileZilla 가 현재 접속한 후부터 전송을 위해 첫번째 연결만 사용하도록 하겠습니까?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            """%s"" 가 수정되었습니다.\n서버로 다시 업로드를 하겠습니까?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "파일이 수정되었음"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "설정이 성공적으로 내보내어 졌습니다.\n만약 만들어진 .xml 파일을 'filezilla.xml' 로 파일명을 주어, FileZilla 와 같은 폴더에 넣으면 레지스트리를 대신하여 바로 저장했던 설정들을 쓸 수 있습니다."
+    IDS_OPTIONS_IDENTSYSTEM "오퍼레이팅 시스템의 아이디를 넣어주세요!"
+    IDS_OPTIONS_IDENTUSERID "사용자 아이디를 넣어주세요!"
+    IDS_OPTIONS_IMPORTFAILURE "오류! '%s' 로부터 설정을 불러오기 실패함"
+    IDS_OPTIONS_IMPORTOK    "설정을 불러왔습니다."
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "접속 유지 간격의 큰 값은 반드시 작은 값보다 커야합니다!"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "접속 유지 간격의 큰 값은 반드시 %d 와 %d 초 사이여야합니다!"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "접속 유지 간격의 작은 값은 반드시 %d 와 %d 초 사이여야합니다!"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF 
+                            "포트 범위의 높은 값은 낮은 값보다 커야합니다!"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH 
+                            "포트 범위의 높은 값은 %d 와 %d 사이여야합니다!"
+    IDS_OPTIONS_LIMITPORTRANGELOW 
+                            "포트 범위의 낮은 값은 %d 와 %d 사이의 값이어야합니다!"
+    IDS_OPTIONS_NUMRETRIES  "재시도 간격의 값은 %d 와 %d 사이의 값을 넣어주세요!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "프락시를 위한 호스트를 넣어주세요!"
+    IDS_OPTIONS_PROXYPORT   "프락시를 위한 올바른 포트를 넣어주세요!"
+    IDS_OPTIONS_RETRYDELAY  "재시도 간격을 %d 와 %d 사이의 값을 넣어주세요!"
+    IDS_OPTIONS_TIMEOUT     "타임아웃 체크를 위해 %d 와 %d 사이의 값을 넣어주세요"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "인증이 실패되었습니다. 자주 이것은 Kerberos 5 티켓이 없다는 의미입니다.\n먼저 Leash32 를 실행하기를 고려해보세요.\n명확하게 모든 데이터를 보내고, 수 백명의 사람들에게 당신의 암호를 잠재적으로 드러내길 바랍니까?"
+    IDS_GSSERROR_CANTLOADDLL "%s 을 찾을 수 없거나 불러들일 수 없음"
+    IDS_GSSERROR_CANTLOADGSSAPI 
+                            "하나 혹은 그 이상의 GSS-API 를 불러올 수 없음!"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI 
+                            "Kerberos 5 DLL 로부터 다음의 API 들을 불러올 수 없었습니다!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "소켓 초기화 실패됨"
+    IDS_BROWSEFORFOLDER     "로컬 폴더를 선택해주세요."
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "증명서 체인이 너무 깁니다."
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "증명서가 만기되었음"
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "증명서가 아직 유효하지 않음"
+    IDS_CERT_ERR_CERT_REJECTED "증명서가 거부됨"
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE "증명서의 서명이 실패했습니다."
+    IDS_CERT_ERR_CERT_UNTRUSTED "증명서가 신뢰받지 못했습니다."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS "접속하고 프락시 설정으로 우회하기(&B)"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "지우기(&C)"
+    ID_REMOTELISTSTYLE_ICON "큰 아이콘으로 항목을 표시합니다."
+    ID_REMOTELISTSTYLE_LIST "항목을 간단하게 표시합니다."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT "창의 각 아이콘에 대한 정보를 표시합니다."
+    ID_REMOTELISTSTYLE_SMALLICON "작은 아이콘으로 항목을 표시합니다."
+    ID_SHOWQUEUE            "큐를 보거나 숨기기"
+    ID_SHOWREMOTETREE       "원격 트리뷰를 보거나 숨기기"
+    ID_SHOWTREE             "로컬 트리뷰를 보거나 숨기기"
+    ID_SITEMANAGER          "사이트 관리자 열기"
+    ID_SITEMANAGER_FILE_EXPORT "FTP 서버들의 목록을 파일로 내보내기"
+    ID_SITEMANAGER_FILE_IMPORT "FTP 서버들의 목록을 파일로부터 불러오기"
+    ID_TOOLBAR_DISCONNECT   "서버와의 연결을 끊습니다."
+    ID_TOOLBAR_RECONNECT    "서버와 다시 연결합니다."
+    ID_TOOLBAR_REFRESH      "모든 보기를 새로 고칩니다."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "파일크기 보기"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "파일타입 보기"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME 
+                            "파일이 마지막으로 수정된 날짜와 시간을 보기"
+    ID_VIEW_MESSAGELOG      "메시지 로그를 보거나 숨기기"
+    ID_VIEW_QUICKCONNECT_BAR "빠른 접속바를 보거나 숨기기"
+    ID_VIEW_REMOTELISTVIEW_DATE "파일의 날짜를 보기"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "파일크기 보기"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "파일 권한 보기"
+    ID_VIEW_REMOTELISTVIEW_TIME "파일의 시간 보기"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR 
+                            "로컬 파일 목록 아래에서 (선택된) 파일들과 폴더들에 대한 유용한 정보를 표시하는 상태표시줄을 켜고 끕니다."
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR 
+                            "원격 파일 목록 아래에서 (선택된) 파일들과 폴더들에 대한 유용한 정보를 표시하는 상태표시줄을 켜고 끕니다."
+    ID_QUEUECONTEXT_ABORT   "선택된 전송들을 중지하고 큐로부터 제거하기"
+    ID_QUEUECONTEXT_PAUSE   "선택된 전송 일시정지"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "작은 아이콘으로 항목을 표시합니다."
+    ID_MENU_QUEUE_EXPORT    "큐의 모든 항목을 내보내기"
+    ID_MENU_QUEUE_IMPORT    "외부 파일로부터 큐 항목들을 불러오기"
+    ID_MENU_QUEUE_PROCESSNOW "큐의 진행을 시작하기"
+    ID_MENU_QUEUE_USEMULTIPLE 
+                            "활성화되면, FileZilla 는 동시에 여러개의 파일을 전송할 수 있습니다."
+    ID_MENU_SERVER_CHANGEPASS 
+                            "이 사이트의 암호를 바꿉니다. 단지 매우 적은 수의 서버만 이 기능을 지원합니다."
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "패스를 포함하여 현재의 서버의 URL 을 클립보드로 복사합니다."
+    ID_MENU_SERVER_ENTERRAWCOMMAND 
+                            "FTP 명령을 직접 서버에 보낼 수 있게 합니다."
+    ID_MENU_TRANSFER_MANUALTRANSFER "수동 전송을 설정한다."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "현재 작업을 취소"
+    ID_COPYTOSITEMANAGER    "현재의 접속을 사이트 관리자의 새로운 항목으로 복사하기"
+    ID_EDIT_EXPORTSETTINGS  "파일로 설정을 저장"
+    ID_EDIT_IMPORTSETTINGS  "파일로부터 설정을 불러옴"
+    ID_EDIT_SETTINGS        "FileZilla 의 옵션 다이얼로그 열기"
+    ID_FILE_CONNECTTODEFAULTSITE "사이트 관리자의 기본 사이트로 접속하기"
+    ID_FILE_EXPORT_ASURLLIST 
+                            "모든 FTP 사이트들을 URL 리스트로 텍스트 파일로 내보내기"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "모든 FTP 사이트들을 세부사항을 포함하여 텍스트파일로 내보내기"
+    ID_FTPCONTEXT_CREATEDIR "ftp 서버에 디렉토리를 새로 생성"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "도움말 파일의 목차를 표시합니다."
+    ID_HELPMENU_INDEX       "도움말 파일의 인덱스를 표시합니다."
+    ID_HELPMENU_SEARCH      "도움말 파일에서 찾습니다."
+    ID_LOCALLISTSTYLE_ICON  "큰 아이콘으로 항목을 표시합니다."
+    ID_LOCALLISTSTYLE_LIST  "항목을 간단하게 표시합니다."
+    ID_LOCALLISTSTYLE_REPORT "창의 각 아이콘에 대한 정보를 표시합니다."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "체크되면, FileZilla 는 서버에 숨겨진 파일들을 보여주려 할 것이다."
+    ID_OVERWRITEMENU_ASK    "파일이 이미 존재할 때 FileZilla 가 당신에게 무엇을 할지 묻을 것이다"
+    ID_OVERWRITEMENU_OVERWRITE "항상 파일을 덮어씀"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER 
+                            "만약 새로운 파일이 더 새로운 파일이면 이전 파일 덮어쓰기"
+    ID_OVERWRITEMENU_RENAME "새로운 파일명을 묻기"
+    ID_OVERWRITEMENU_RESUME "가능하면 전송을 이어하기"
+    ID_OVERWRITEMENU_SKIP   "존재하는 파일들은 건너뛰기"
+    ID_PROCESS_QUEUE        "큐를 진행합니다"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1 개의 파일이 최소  %I64d bytes 있습니다."
+    IDS_DIRINFO_DIRANDFILESMIN 
+                            "1개의 폴더와 %d 개의 파일이 최소 %I64d bytes 있습니다."
+    IDS_DIRINFO_DIRANDFILE  "1개의 폴더와 1개의 파일이 %I64d bytes 입니다."
+    IDS_DIRINFO_DIRSANDFILE "%d 개의 폴더와 1개의 파일이 %I64d bytes 입니다."
+    IDS_DIRINFO_DIRANDFILEMIN 
+                            "1개의 폴더와 1개의 파일이 최소 %I64d bytes 입니다."
+    IDS_DIRINFO_DIRSANDFILEMIN 
+                            "%d 개의 폴더와 1개의 파일이 최소 %I64d bytes 입니다."
+    IDS_DIRINFO_SELECTED_FILE "1개의 %I64d bytes 파일이 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIR "1 개의 폴더가 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "1 개의 폴더와 %d 개의 파일들, %I64d bytes 가 선택되었습니다."
+    IDS_DIRINFO_SELECTED_FILEMIN 
+                            "1개의 폴더와 적어도 %I64d bytes 가 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "1개의 폴더와 %d 개의 파일들이 최소 %I64d bytes 로 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRANDFILE 
+                            "1 개의 폴더와 1 개의 파일이 %I64d bytes 로 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "1개의 폴더와 1개의 파일이 최소 %I64d bytes 로 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "%d 개의 폴더와 한 개의 파일이 %I64d bytes 로 선택되었습니다."
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "%d 개의 폴더들과 1 개의 파일이 최소 %I64d bytes 로 선택되었습니다."
+    IDS_QUEUESTATUS_PAUSED  "일시정지"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "일시정지된 전송을 다시 시작함"
+    ID_VIEW_REMOTELISTVIEW_OWNERGROUP "소유자 / 그룹 보기"
+    ID_VIEW_REMOTELISTVIEW_FILETYPE "파일타입 보기"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME 
+                            "파일명 순서로 원격 파일 목록 정렬"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE 
+                            "파일크기순서로 원격 파일 목록 정렬"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE 
+                            "파일타입 순서로 원격 파일 목록 정렬"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "날짜/시간 순서로 원격 파일 목록 정렬"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "오름차순으로 원격 파일 목록 정렬"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "내림차순으로 원격 파일 목록 정렬"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "파일 포인터를 지정할 수 없습니다"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "SSL 계층에서 알 수 없는 오류"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR "SSL 인증을 확인할 수 없음"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME 
+                            "파일명 순서로 로컬 파일 목록 정렬"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE 
+                            "파일크기 순서로 로컬 파일 목록 정렬"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE 
+                            "파일타입 순서로 로컬 파일 목록 정렬"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "파일이 마지막으로 변경된 날짜/시간 순서로 로컬 파일 목록 정렬"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "오름차순으로 로컬 파일 목록 정렬"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "내림차순으로 로컬 파일 목록 정렬"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT "자체 서명된 증명서"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "증명서의 유효기간 필드에 형식 오류가 있음"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "증명서의 유효 폼 필드에 형식 오류가 있음"
+    IDS_CERT_ERR_INVALID_CA "유효하지 않은 CA 증명서"
+    IDS_CERT_ERR_INVALID_PURPOSE "지원되지 않는 증명서 목적"
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN 
+                            "주요 사용에 증명서의 서명을 포함하고 있지 않음"
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED "경로 길이가 제한을 초가홤"
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "증명서 체인에 자체 서명된 증명서가 있음"
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "발행 고용 키를 디코드할 수 없음"
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "증명서 서명을 복호화할 수 없음"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT "발생 증명서를 얻을 수 없음"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "지역 발행 증명서를 얻을 수 없음"
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE 
+                            "첫번째 증명서를 검증할 수 없음"
+    IDS_CERT_ERR_UNKNOWN    "증명서 검증에 알 수 없는 에러"
+    IDS_CERT_ERRDEPTH       "증명서 체인의 %d 번째 깊이에 에러가 발생했습니다."
+    IDS_CERT_OK             "증명서가 유효한 것으로 보입니다."
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+#endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+#include "afxres.rc"          // Standardkomponenten
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

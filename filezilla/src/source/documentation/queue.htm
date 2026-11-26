@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<title>The Transfer Queue</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+
+<p class="PageCaption">The Transfer Queue</p>
+<p class="MidCaption">Overview</p>
+<p class="bodyText">Every time you want to transfer a file with FileZilla, the
+transfer will be put into the Transfer Queue. Whenever you want to transfer more
+than one file, a queue becomes necessary. The queue decides which file will be
+transferred next.</p>
+<p class="bodyText" align="center">
+<img border="0" src="queue.png" width="658" height="120"></p>
+<p class="bodyText" align="left">Each line in the list represents a separate
+file transfer. The column headers describe the meaning of each column. </p>
+<p class="bodyText" align="left"><b>Local Filename</b> is the local file that
+will be uploaded or the local file in which a downloaded file will be saved.</p>
+<p class="bodyText" align="left"><b>Size</b> indicates the total size of the
+transfer.</p>
+<p class="bodyText" align="left"><b>Direction</b> tells you whether the file
+will be uploaded (-&gt;) or downloaded (&lt;-)<b> </b>It also indicates the
+priority of a transfer. A single arrow (-&gt; or &lt;-) stands for transfers
+that were added to the queue for later transfers. A double arrow (-&gt;&gt; or
+&lt;&lt;-) stands for transfers that were initiated directly, the high priority
+transfers. High priority transfers get transferred first. When you add a new
+file to the queue, it gets placed below the last item of the same priority. </p>
+<p class="bodyText" align="left"><b>Remote Filename</b> indicates the remote
+file that will be downloaded or the remote file in which an uploaded file will be
+saved. </p>
+<p class="bodyText" align="left"><b>Host</b> is the address of the server
+involved in the transfer.</p>
+<p class="bodyText" align="left"><b>Status</b> displays some information about
+the transfers. Some status messages are: &quot;Transferring&quot;, &quot;Transfer
+Error #x, &quot;Trying again later&quot;, &quot;Transfer aborted&quot;,
+&quot;Critical transfer error&quot; or &quot;Too many retries&quot;. In the last
+three cases you have to reset the status of the transfer with the context menu
+if you want to retry to transfer the file later.</p>
+<p class="MidCaption" align="left">Context Menu</p>
+<p class="bodyText" align="left">Right-click the queue to open the context menu.</p>
+<table border="0">
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Process Queue</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Starts processing the queue.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Remove from Queue</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Removes an item from the queue</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Reset Status</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Resets the status of an item. Old <b>status</b>
+      has to be &quot;Transfer aborted&quot;, &quot;Critical transfer
+      error&quot; or &quot;Too many retries&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Move up</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Moves the selected items up. *</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Move down</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Moves the selected items down. *</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Move to top</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Moves the selected items to the top of the
+      queue. *</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Move to bottom</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Moves the selected items to the bottom of
+      the queue. *</td>
+  </tr>
+</table>
+<p class="bodyText">* Please note that a low priority transfer can never be
+higher than a high priority transfer and vice versa.</p>
+
+</body>
+
+</html>

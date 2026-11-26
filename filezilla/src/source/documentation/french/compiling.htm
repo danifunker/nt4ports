@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Compiling FileZilla</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+<body>
+<p align="center" class="PageCaption">Compilation de FileZilla</p>
+<p align="left" class="bodyText">Pour compiler FileZilla, vous avez besoin des 
+  programmes et outils suivants:</p>
+<ul>
+  <li> 
+    <p align="left" class="bodyText">MS Visual C++ 6
+  <li> 
+    <p align="left" class="bodyText">La derni&egrave;re version de la plate-forme 
+      MS SDK sur <a href="http://www.microsoft.com/msdownload/platformsdk/sdkupdate/">http://www.microsoft.com/msdownload/platformsdk/sdkupdate/</a> 
+  <li> 
+    <p align="left" class="bodyText">MS HTML Help Workshop 
+</ul>
+<blockquote>
+  <p align="left" class="bodyText">Vous pouvez t&eacute;l&eacute;charger la derni&egrave;re 
+    version de HTML Help Workshop sur <a target="_blank" href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp?frame=true">Microsoft 
+    Website</a>. Apr&egrave;s installation, il vous faudra pr&eacute;parer DevStudio: 
+    allez &agrave; Outils, Options, Dossiers, puis (en vous assurant d'avoir install&eacute; 
+    HTML Help Workshop sur <b>C:\Program Files\HTML Help Workshop</b>):</p>
+  <ul>
+    <li> 
+      <p class="bodyText">dans <em>Afficher les dossiers pour</em> choisissez 
+        <em>Inclure les fichiers</em>, cliquez sur <em>Nouveau</em> et tapez<br>
+        <strong>C:\Program Files\HTML Help Workshop\include</strong> 
+    <li> 
+      <p class="bodyText">dans <em>Afficher les dossiers pour</em> choisissez 
+        <em>Fichiers de librairies</em>, cliquez sur <em>Nouveau</em> et tapez<br>
+        <strong>C:\Program Files\HTML Help Workshop\lib</strong> 
+    <li> 
+      <p class="bodyText">dans <em>Afficher les dossiers pour</em> choisissez 
+        <em>Fichiers ex&eacute;cutables,</em> cliquez sur <em>Nouveau</em> et 
+        tapez<br>
+        <strong>C:\Program Files\HTML Help Workshop</strong> 
+    <li> 
+      <p class="bodyText">fermez DevStudio et red&eacute;marrez pour enregistrer 
+        les changements. 
+  </ul>
+</blockquote>
+<p align="left" class="bodyText">Pour compiler le script d'installation, vous 
+  devrez t&eacute;l&eacute;charger et installer <a target="_blank" href="http://www.firehose.net/free/nsis">NSIS</a>. 
+  Apr&egrave;s l'installation de NSIS, faites un clic droit sur le fichier FileZilla.nsi 
+  dans l'explorateur et choisissez &quot;Compiler NSI&quot;.</p>
+</body>
+</html>

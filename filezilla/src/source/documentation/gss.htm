@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>GSS Support</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p class="PageCaption">GSS Support</p>
+<p class="MidCaption">Overview:</p>
+<p class="bodyText">FileZilla is able to communicate with FTP servers using
+Kerberos with GSS.&nbsp; When this is enabled, all data sent between FileZilla
+and the FTP server will be encrypted.&nbsp; This means that other people on the
+network cannot steal your password or your data.</p>
+<p class="bodyText">In order to use this feature, you must make sure:</p>
+<ul>
+  <li>
+    <p class="bodyText">the FTP server supports GSS and Kerberos</li>
+  <li>
+    <p class="bodyText">you have Kerberos for Windows installed on your computer</li>
+  <li>
+    <p class="bodyText">you have obtained Kerberos 5 tickets</li>
+</ul>
+<p class="bodyText">If these conditions are not met, FileZilla will give you the
+option of sending all your data in the clear.&nbsp; Do not do this if your
+password or your data must be kept secret!</p>
+<p align="center"><img border="0" src="gss.png" width="597" height="405"></p>
+<p align="left" class="SmallCaption">Enabling GSS:</p>
+<p align="left" class="bodyText">Check the <u>Enable Kerberos GSS support</u>
+box to enable Kerberos GSS.</p>
+<p align="left" class="SmallCaption">GSS Enabled Servers:</p>
+<p align="left" class="bodyText">Because most FTP servers do not support GSS,
+FileZilla does not by default use it during its logon process.&nbsp; If you wish
+FileZilla to use GSS when it connects to a server or a set of servers, you must
+enter them in the box labeled <u>GSS enabled servers</u>.&nbsp; You may enter
+either the full name of the servers or their domain name.&nbsp; When you try to
+connect to a server, FileZilla will compare the full name of the server against
+the list of names in this box.&nbsp; If the server's name ends with a string in
+the list, then GSS will be used.</p>
+<p align="left" class="bodyText">For example, if the list consists of
+&quot;mit.edu&quot;, then FileZilla will use GSS when it connects to
+mint-square.mit.edu or athena.dialup.mit.edu, but it won't use GSS when it
+connects to <a href="ftp://ftp.microsoft.com">ftp.microsoft.com</a>.</p>
+<p align="left" class="bodyText">If the list consists of
+&quot;mint-square.mit.edu&quot;, then FileZilla will use GSS only when it
+connects to mint-square.mit.edu.</p>
+<ul>
+  <li>
+    <p align="left" class="bodyText">To add a server to the list, enter its name
+    in the small text box, and click Add.</li>
+  <li>
+    <p align="left" class="bodyText">To remove a server from the list, click its
+    name in the list box, and click Remove.</li>
+</ul>
+<p align="left" class="bodyText">FileZilla also supports aliases. FileZilla
+automatically resolves the alias and compares the real name of the server
+against the list. For example if athena.dialup is an alias for
+athena.dialup.mit.edu, and you connect to athena.dialup, FileZilla retrieves the
+real address, in this case athena.dialup.mit.edu and compares it against the
+list.</p>
+    <p align="left" class="bodyText">&nbsp;
+</body>
+</html>

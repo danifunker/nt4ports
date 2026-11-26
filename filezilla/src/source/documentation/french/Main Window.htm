@@ -1,0 +1,151 @@
+<html>
+
+<head>
+<title>The Main Window</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p align="center" class="PageCaption">La Fen&ecirc;tre Principale</p>
+<p align="left" class="MidCaption">Vue d'ensemble:</p>
+<p class="bodyText">Quand vous avez &eacute;tabli une connexion entre votre PC 
+  local et un site FTP, la fen&ecirc;tre principale de FileZilla affiche les fichiers 
+  et dossiers de votre PC du c&ocirc;t&eacute; gauche de la fen&ecirc;tre principale 
+  et ceux du site FTP du c&ocirc;t&eacute; droit. Au sommet de la fen&ecirc;tre 
+  se trouve un menu et une barre d'outils. A partir de l&agrave;, vous pouvez 
+  acc&eacute;der aux autres fonctions de FileZilla et vous pouvez modifier l'agencement 
+  de la fen&ecirc;tre principale. En dessous est affich&eacute; le journal des 
+  messages. Chaque effectu&eacute;e sur le serveur FTP est archiv&eacute;e ici, 
+  ainsi que tous les messages d'&eacute;tat. En bas de la fen&ecirc;tre principale 
+  est affich&eacute;e la File d'Attente des Transferts, qui vous permet de voir 
+  quels sont les fichiers programm&eacute;s pour l'envoi/la r&eacute;ception et 
+  leur progression.</p>
+
+<p class="bodyText" align="center"><IMG SRC="MainWindow.png" USEMAP="#MainWindow.png" BORDER=0 width="500" height="378">
+<MAP NAME="MainWindow.png">
+<AREA SHAPE=RECT COORDS="2,13,103,24" HREF="Menus and Toolbars.htm#menu" ALT="Find out more about the FileZilla menu.">
+<AREA SHAPE=RECT COORDS="2,24,168,41" HREF="Menus and Toolbars.htm#toolbar" ALT="En savoir plus à propos de la Barre d'Outils">
+<AREA SHAPE=RECT COORDS="2,40,341,57" HREF="Menus and Toolbars.htm#quickconnectbar" ALT="En savoir plus à propos de la Barre de Connexion Rapide">
+<AREA SHAPE=RECT COORDS="2,57,496,106" HREF="messagelog.htm" ALT="En savoir plus à propos le Journal des Messages">
+<AREA SHAPE=RECT COORDS="2,106,257,300" HREF="File Views.htm#local" ALT="En savoir plus à propos l'Affichage Local">
+<AREA SHAPE=RECT COORDS="257,106,497,300" HREF="File Views.htm#remote" ALT="En savoir plus à propos l'Affichage Distant">
+<AREA SHAPE=RECT COORDS="2,300,497,365" HREF="queue.htm" ALT="En savoir plus à propos de la File d'Attente des Transferts">
+<AREA SHAPE=RECT COORDS="2,365,497,376" HREF="Main Window.htm#statusbar" ALT="En savoir plus à propos de la Barre d'Etat">
+</MAP><br>
+  (Fen&ecirc;tre principale de FileZilla: cliquez n'importe dans la fen&ecirc;tre 
+  pour obtenir une description)</p>
+
+<ul>
+  <li> 
+    <p class="bodyText"><a name="menu"></a><b>Le Menu: </b>&agrave; partir du 
+      menu vous pouvez acc&eacute;der aux autres parties de FileZilla et &agrave; 
+      partir de l&agrave; changer le style d'affichage de la fen&ecirc;tre principale. 
+      Reportez vous &agrave; la rubrique <a href="Menus and Toolbars.htm#menu"> 
+      Menus et Barre d'Outils</a> pour en savoir plus. 
+  <li> 
+    <p class="bodyText"><a name="toolbar"></a><b>La Barre d'Outils: </b>ces boutons 
+      vous permettent un acc&egrave;s rapide &agrave; la plupart des fonctions 
+      utiles de FileZilla. Reportez vous &agrave; la rubrique <a href="Menus and Toolbars.htm#toolbar">Menus 
+      et Barre d'Outils</a> pour en savoir plus. 
+  <li> 
+    <p class="bodyText"><b><a name="quickconnectbar"></a>La Barre de Connexion 
+      Rapide:</b> vous permet de vous connecter rapidement aux sites FTP sans 
+      avoir &agrave; cr&eacute;er un profile de site pour cela. Reportez vous 
+      &agrave; la rubrique <a href="Menus and Toolbars.htm#toolbar">Menus 
+      et Barre d'Outils</a> pour en savoir plus. 
+  <li> 
+    <p class="bodyText"><b><a name="messagelog"></a>Le Journal des Messages:</b> 
+      au dessus des listes, la zone de messages qui archive tous les &eacute;v&eacute;nements 
+      de demandes de votre client FileZilla (votre PC) et de r&eacute;ponses du 
+      site FTP. Le Journal des Messages peut &ecirc;tre affich&eacute;/cach&eacute; 
+      en cliquant sur le bouton <img border="0" src="toolbar_messagelog.png" width="20" height="20"> 
+      de la barre d'outils. Consultez la rubrique <a href="messagelog.htm">Journal 
+      des Messages</a> pour en savoir plus 
+  <li> 
+    <p class="bodyText"><a name="localview"></a><b>Cadre Local: </b>le dossier 
+      actuel est affich&eacute; en haut dans le champ d'&eacute;dition et dans 
+      l'arborescence correspondante. Le cadre de liste dessous affiche tous les 
+      fichiers et dossiers appartenant au dossier actuel. Des ic&ocirc;nes sont 
+      utilis&eacute;es pour identifier les diff&eacute;rents fichiers et dossiers. 
+      Tout lecteur de disque auquel vous pouvez avoir acc&egrave;s appara&icirc;tra 
+      dans cette liste. L'arborescence peut &ecirc;tre affich&eacute;e/cach&eacute;e 
+      avec le bouton <img src="toolbar_treeview.png" align="absMiddle" width="20" height="20"> 
+      de la barre d'outils. Consultez la rubrique <a href="File Views.htm#local">Affichage 
+      des Fichiers et Dossiers</a> pour en savoir plus. 
+  <li> 
+    <p class="bodyText"><b><a name="remoteview"></a>Cadre Distant: </b>affiche 
+      tous les fichiers accessibles du r&eacute;pertoire actuel sur le serveur 
+      FTP auquel vous &ecirc;tes connect&eacute;. Notez la pr&eacute;sence du 
+      dossier &quot;<b>..</b>&quot; dans tous les cadres. Ce dossier vous permet 
+      de remonter au dossier parent du r&eacute;pertoire actuel. En haut se trouve 
+      un menu d&eacute;roulant du dossier actuel. Reportez vous &agrave; la rubrique 
+      <a href="File Views.htm#local">Affichage des Fichiers et Dossiers</a> 
+      pour en savoir plus. 
+  <li> 
+    <p class="bodyText"><b><a name="queue"></a>File d'Attente de Transfert: </b>affiche 
+      l'&eacute;tat de tout les fichiers entrant/sortant de/vers le serveur FTP. 
+      Cette liste peut &ecirc;tre affich&eacute;/cach&eacute;e &agrave; l'aide 
+      du bouton <img src="toolbar_queue.png" align="absMiddle" width="20" height="20"> 
+      de la barre d'outils. Consultez la rubrique <a href="queue.htm">File d'Attente</a> 
+      pour en savoir plus.
+  </li>
+  <li> 
+    <p class="bodyText"><a name="statusbar"></a><b>Barre d'&Eacute;tat:</b> affiche 
+      l'information concernant le transfert actuel et la taille de la file d'attente. 
+      L'information de transfert de fichier comprend (de gauche &agrave; droite): 
+      Temps &eacute;coul&eacute;, Temps restant, barre de progression, bytes transf&eacute;r&eacute;s 
+      et taux de transfert. Les deux LED &agrave; droite indiquent si les fichiers 
+      sont en cours de r&eacute;ception (vert) ou d'envoi (rouge). 
+  </li>
+</ul>
+
+    
+<p class="MidCaption">Raccourcis Clavier
+<p class="bodyText">&nbsp;<table border="0" id="AutoNumber1">
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>F5</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">R&eacute;initialise la liste des fichiers et dossiers 
+      locaux et distants</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Tab</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Bascule vers la vue suivante</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+C</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Arr&ecirc;te l'op&eacute;ration actuelle</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+D</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Vous d&eacute;connecte du serveur</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+Q</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Vous connecte au serveur entr&eacute; dans la Barre de 
+      Connexion Rapide</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+R</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Vous reconnecte au serveur</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+S</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Ouvre le <b>Gestionnaire de Site</b></td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+T</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Affiche ou cache l'arborescence</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

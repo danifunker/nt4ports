@@ -1,0 +1,2524 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Polish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
+#ifdef _WIN32
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_POLISH, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(1250)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""afxres.rc""          // Standardkomponenten\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&Plik"
+    BEGIN
+        MENUITEM "Mened¿er &stron",             ID_SITEMANAGER
+        MENUITEM "Kopiuj odsy³a&cz do Mened¿era stron", ID_COPYTOSITEMANAGER
+        MENUITEM "Po³¹cz z &domyœln¹ stron¹",   ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "&Ponów po³¹czenie",           ID_TOOLBAR_RECONNECT
+        MENUITEM "&Roz³¹cz",                    ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "Wyjœ&cie",                    ID_APP_EXIT
+    END
+    POPUP "&Edycja"
+    BEGIN
+        MENUITEM "&Ustawienia",                 ID_EDIT_SETTINGS
+        MENUITEM "E&ksport ustawieñ",           ID_EDIT_EXPORTSETTINGS
+        MENUITEM "&Import ustawieñ",            ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "&Transfer"
+    BEGIN
+        POPUP "&Rodzaj transferu"
+        BEGIN
+            MENUITEM "&ASCII",                      ID_TYPEMENU_ASCII
+            MENUITEM "&Binarny",                    ID_TYPEMENU_BINARY
+            MENUITEM "A&utodetekcja",               ID_TYPEMENU_DETECT
+        END
+        POPUP "Nadpisz &plik ustawieñ"
+        BEGIN
+            MENUITEM "Pyt&aj",                      ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "&Nadpisz",                    ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "Nadpisz, gdy &nowsze",        ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "P&rzywróæ",                   ID_OVERWRITEMENU_RESUME
+            MENUITEM "Zmieñ &nazwê",                ID_OVERWRITEMENU_RENAME
+            MENUITEM "Po&miñ",                      ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Rêczny trans&fer...",         ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "&Kolejka"
+    BEGIN
+        MENUITEM "&Wyœlij",                     ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "&U¿ywaj wielu po³¹czeñ",      ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "&Eksport...",                 ID_MENU_QUEUE_EXPORT
+        MENUITEM "&Import...",                  ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "&Serwer"
+    BEGIN
+        MENUITEM "Zmieñ &has³o",                ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "&Wpisz komendê FTP",          ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "Kopiuj adres &URL do schowka", 
+                                                ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "&Widok"
+    BEGIN
+        MENUITEM "&Odœwie¿",                    ID_TOOLBAR_REFRESH
+        MENUITEM "Poka¿ pliki &ukryte",         ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "Pasek na&rzêdzi",             ID_VIEW_TOOLBAR
+        MENUITEM "Pasek &stanu",                ID_VIEW_STATUS_BAR
+        MENUITEM "Pasek szybkiego po³¹&czenia", ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Drzewo &lokalne",             ID_SHOWTREE
+        MENUITEM "&Drzewo serwera",             ID_SHOWREMOTETREE
+        MENUITEM "Okno ko&munikatów",           ID_VIEW_MESSAGELOG
+        MENUITEM "Ko&lejka transferu",          ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "Pliki l&okalnego komputera"
+        BEGIN
+            MENUITEM "&Szczegó³y",                  ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "L&ista",                      ID_LOCALLISTSTYLE_LIST
+            MENUITEM "Du¿&e ikony",                 ID_LOCALLISTSTYLE_ICON
+            MENUITEM "M&a³e ikony",                 ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "Ro&zmiar pliku",              ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "&Typ",                        ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "Z&modyfikowany",              ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "Poka¿ pasek &stanu",          ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "S&ortuj wed³ug..."
+            BEGIN
+                MENUITEM "&Nazwy pliku",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "&Rozmiaru pliku",             ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "&Typu pliku",                 ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Ostatniej modyfikacji",      ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "Ro&sn¹co",                    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "&Malej¹co",                   ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "Pliki na ser&werze"
+        BEGIN
+            MENUITEM "&Szczegó³y",                  ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "L&ista",                      ID_REMOTELISTSTYLE_LIST
+            MENUITEM "Du¿&e ikony",                 ID_REMOTELISTSTYLE_ICON
+            MENUITEM "M&a³e ikony",                 ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "Ro&zmiar pliku",              ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "Filet&ype",                   ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "&Data",                       ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "&Godzina",                    ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "&Uprawnienia",                ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "W³aœciciel / G&rupa",         ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "Poka¿ pasek &stanu",          ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "Sortuj &wed³ug..."
+            BEGIN
+                MENUITEM "&Nazwy pliku",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "&Rozmiaru pliku",             ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "&Typu pliku",                 ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Daty / Czasu",               ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "Ro&sn¹co",                    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "&Malej¹co",                   ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "P&omoc"
+    BEGIN
+        MENUITEM "&Spis treœci...",             ID_HELPMENU_CONTENTS
+        MENUITEM "&ZnajdŸ...",                  ID_HELPMENU_SEARCH
+        MENUITEM "Indeks...",                   ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "&O programie FileZilla...",   ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "Zawartoœæ wyjœciowa"
+    BEGIN
+        MENUITEM "Wpisz kom&endê...",           ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Kopiuj do schowka",          ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "&Usuñ wszystko",              ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "Zawartoœæ Ftp"
+    BEGIN
+        MENUITEM "&Pobierz",                    ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "Dod&aj do kolejki",           ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "Pobierz ja&ko...",            ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Otwórz",                     ID_FTPCONTEXT_OPEN
+        MENUITEM "&Widok / Edycja",             ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "&Twórz katalog",              ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "&Usuñ",                       ID_FTPCONTEXT_DELETE
+        MENUITEM "Z&mieñ nazwê",                ID_FTPCONTEXT_RENAME
+        MENUITEM "A&trybuty pliku...",          ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "Zawartoœæ lokalna"
+    BEGIN
+        MENUITEM "&Wyœlij",                     ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "Dod&aj do kolejki",           ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "Wyœlij ja&ko...",             ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Twórz katalog",              ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Otwórz",                     ID_LOCALCONTEXT_OPEN
+        MENUITEM "&Widok / Edycja",             ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "&Usuñ",                       ID_LOCALCONTEXT_DELETE
+        MENUITEM "Z&mieñ nazwê",                ID_LOCALCONTEXT_RENAME
+        MENUITEM "W³aœ&ciwoœci",                ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "Zawartoœæ kolejki"
+    BEGIN
+        MENUITEM "&Wyœlij",                     ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "&Usuñ z kolejki",             ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "Odœwie¿ &status",             ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "Wstrzy&maj",                  ID_QUEUECONTEXT_PAUSE
+        MENUITEM "&Przywróæ",                   ID_QUEUECONTEXT_RESUME
+        MENUITEM "&Anuluj",                     ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "W gó&rê",                     ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "W &dó³",                      ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "Na pocz¹&tek",                ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "Na &koniec",                  ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "&Plik"
+    BEGIN
+        MENUITEM "&Import",                     ID_SITEMANAGER_FILE_IMPORT
+        POPUP "&Eksport..."
+        BEGIN
+            MENUITEM "jako lista &URL",             ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "ze szczegó³a&mi",             ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Zapisz i &WyjdŸ",             ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "Zawartoœæ drzewa lokalnego"
+    BEGIN
+        MENUITEM "&Wyœlij",                     ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "Dod&aj do kolejki",           ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "Wyœlij ja&ko...",             ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Usuñ",                       ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "Zmieñ &nazwê",                ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "&Przywróæ",                   ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "Wyjœ&cie",                    ID_TRAY_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 277, 107
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "O programie FileZilla"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<version>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001-2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,220,7,50,14,WS_GROUP
+    LTEXT           "Napisany przez:",IDC_STATIC,40,40,68,8
+    LTEXT           "http://www.sourceforge.net/projects/filezilla",
+                    IDC_HOMEPAGE,126,55,140,8
+    LTEXT           "Tim Kosse",IDC_MAIL,126,40,34,8
+    LTEXT           "Strona domowa:",IDC_STATIC,40,55,55,8
+    LTEXT           "Przet³umaczony przez:",IDC_TRANSLATEDBY,40,70,78,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Piotr Murawski, Rafa³ Lampe (info@lomsel.com.pl)",
+                    IDC_MAIL2,126,70,144,17,NOT WS_VISIBLE
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,226,28,15,13
+END
+
+IDR_MAINFRAME DIALOG  0, 0, 378, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Adres:",IDC_STATIC,1,4,28,8
+    EDITTEXT        IDC_HOST,34,2,71,12,ES_AUTOHSCROLL
+    LTEXT           "U¿ytkownik:",IDC_STATIC,109,4,40,8
+    EDITTEXT        IDC_USER,151,2,40,12,ES_AUTOHSCROLL
+    LTEXT           "Has³o:",IDC_STATIC,194,3,21,8
+    EDITTEXT        IDC_PASS,215,2,40,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,259,4,16,8
+    EDITTEXT        IDC_PORT,278,2,25,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&Szybko po³¹cz",IDOK,314,1,64,14,BS_NOTIFY
+END
+
+IDD_OPTIONS_FTPPROXY DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Nazwa &hosta Firewall",IDC_STATIC,7,7,57,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Port",IDC_STATIC,113,7,14,8
+    EDITTEXT        IDC_EDIT6,113,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&U¿ytkownik",IDC_STATIC,7,36,40,8
+    EDITTEXT        IDC_EDIT7,7,47,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "H&as³o",IDC_STATIC,53,36,31,8
+    EDITTEXT        IDC_EDIT8,53,47,40,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "Rodzaj &Firewall'a",IDC_STATIC,7,71,272,105
+    CONTROL         "Brak",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,17,81,33,10
+    CONTROL         "SITE hostname",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    17,91,169,10
+    CONTROL         "USER after logon",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,141,10
+    CONTROL         "Proxy OPEN",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,17,
+                    111,113,10
+    CONTROL         "Transparent",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,17,
+                    121,96,10
+    CONTROL         "USER RemoteID@Remotehost",IDC_RADIO8,"Button",
+                    BS_AUTORADIOBUTTON,17,131,140,10
+    CONTROL         "USER FireID@Remotehost",IDC_RADIO9,"Button",
+                    BS_AUTORADIOBUTTON,17,141,160,10
+    CONTROL         "USER RemoteID@RemoteHost FireID",IDC_RADIO10,"Button",
+                    BS_AUTORADIOBUTTON,17,151,137,10
+    CONTROL         "USER RemoteID@FireID@RemoteHost",IDC_RADIO11,"Button",
+                    BS_AUTORADIOBUTTON,17,162,143,10
+END
+
+IDD_ENTERSOMETHING DIALOG  0, 0, 186, 63
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Tytu³"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_EDIT1,7,24,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,36,42,50,14
+    PUSHBUTTON      "&Anuluj",IDCANCEL,99,42,50,14
+    LTEXT           "<text>",IDC_TEXT,7,7,172,16
+END
+
+IDD_OPTIONS_LANGUAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Proszê wybierz jêzyk jaki powinien u¿ywaæ program FileZilla:",
+                    IDC_STATIC,7,7,192,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Domyœlny folder",IDC_STATIC,7,7,272,55
+    CONTROL         "Pamiêtaj ostatnio u¿ywany folde&r",
+                    IDC_SELECTDEFAULTFOLDERTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,18,171,10
+    CONTROL         "Z&awsze u¿ywaj tego folderu jako domyœlnego folderu:",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,192,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL
+    CONTROL         "&Otwórz mened¿er strony podczas startu FileZilla",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,77,222,10
+    CONTROL         "Najpierw sortuj &foldery w mened¿erze stron",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,89,237,10
+    CONTROL         "Domyœlnie nie rozwijaj listy fold&erów",
+                    IDC_SITEMANAGEREXPANDFOLDERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,101,211,10
+    GROUPBOX        "Opcje mened¿era stron",IDC_STATIC,7,66,272,49
+END
+
+IDD_CONNECTION4 DIALOG  0, 0, 297, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Proszê wybierz typ proxy:",IDC_STATIC,7,7,80,8
+    CONTROL         "&bezpoœrednie po³¹czenie (bez proxy)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,16,131,10
+    CONTROL         "SOCKS&4 proxy",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,7,
+                    27,63,10
+    CONTROL         "SOCKS4&A proxy",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
+                    7,38,67,10
+    CONTROL         "SOCKS&5 proxy",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,7,
+                    49,63,10
+    CONTROL         "&HTTP 1.1 proxy",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    7,60,66,10
+    GROUPBOX        "Szczegó³y proxy",IDC_STATIC,7,73,283,100
+    LTEXT           "&Host:",IDC_STATIC,14,87,18,8
+    EDITTEXT        IDC_PROXYHOST,56,83,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,14,105,16,8
+    EDITTEXT        IDC_PROXYPORT,56,102,178,14,ES_AUTOHSCROLL
+    LTEXT           "&U¿ytkownik:",IDC_STATIC,14,123,39,8
+    EDITTEXT        IDC_PROXYUSER,56,120,178,14,ES_AUTOHSCROLL
+    LTEXT           "Ha&s³o:",IDC_STATIC,14,141,34,8
+    EDITTEXT        IDC_PROXYPASS,56,139,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Je¿eli jest to konieczne pytaj o u¿ytkownika/has³o dla proxy SOCKS5 / HTTP 1.1",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,158,
+                    270,10
+END
+
+IDD_CHMOD DIALOG  0, 0, 206, 195
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Zmiana atrybutów pliku"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Tekst",IDC_TEXT,7,7,192,19
+    GROUPBOX        "Uprawnienia w³aœciciela",IDC_STATIC,7,27,192,25
+    CONTROL         "Od&czyt",IDC_OWNERREAD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,38,39,10
+    CONTROL         "&Zapis",IDC_OWNERWRITE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,38,33,10
+    CONTROL         "&Uruchamianie",IDC_OWNEREXECUTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,131,39,58,10
+    GROUPBOX        "Uprawnienia grupy",IDC_STATIC,7,58,192,25
+    CONTROL         "Odczy&t",IDC_GROUPREAD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,69,41,10
+    CONTROL         "&Zap&is",IDC_GROUPWRITE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,69,33,10
+    CONTROL         "Urucha&mianie",IDC_GROUPEXECUTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,131,69,58,10
+    GROUPBOX        "Uprawnienia publiczne",IDC_STATIC,7,89,192,25
+    CONTROL         "&Odczyt",IDC_PUBLICREAD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,100,42,10
+    CONTROL         "Zapi&s",IDC_PUBLICWRITE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,100,33,10
+    CONTROL         "Uruchamia&nie",IDC_PUBLICEXECUTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,131,100,58,10
+    LTEXT           "Proszê zapamiêtaæ, ¿e nie wszystkie serwery interpretuj¹ t¹ komendê. Ta komenda jest g³ównie u¿ywana na serwerach UNIX.",
+                    IDC_STATIC,7,145,192,24
+    DEFPUSHBUTTON   "&OK",IDOK,31,174,50,14
+    PUSHBUTTON      "&Anuluj",IDCANCEL,118,174,50,14
+    CTEXT           "Wartoœæ:",IDC_STATIC,7,122,31,8
+    EDITTEXT        IDC_NUMERIC,41,118,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = nie ten sam atrybut dla wszystkich zaznaczonych plików)",
+                    IDC_STATIC,87,117,112,18
+END
+
+IDD_TRANSFERASDLG DIALOG  0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Transferuj jako..."
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Proszê podaj nazwê u¿ytkownika i has³o dla konta, które powinno zostaæ u¿yte do transferu zaznaczonych plików i folderów.",
+                    IDC_STATIC,7,7,194,23
+    LTEXT           "&U¿ytkownik:",IDC_STATIC,57,35,41,8
+    EDITTEXT        IDC_USER,103,31,56,14,ES_AUTOHSCROLL
+    LTEXT           "&Has³o:",IDC_STATIC,57,55,34,8
+    EDITTEXT        IDC_PASS,103,52,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "&Transferuj teraz",IDC_TRANSFERNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,75,70,65,10
+    DEFPUSHBUTTON   "&OK",IDOK,46,85,50,14
+    PUSHBUTTON      "&Anuluj",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Domyœlny rodzaj transferu",IDC_STATIC,7,7,272,49
+    CONTROL         "A&utodetekcja",IDC_TYPEMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,16,20,58,10
+    CONTROL         "A&SCII",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,16,30,
+                    34,10
+    CONTROL         "&Binarny",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,16,
+                    40,35,10
+    LTEXT           "Powinno siê prze³¹czyæ to ustawienie na autodetekcjê. Wówczas program FileZilla wybierze najlepszy rodzaj transferu oparty na rozszerzeniu pliku. Ten transfer bêdzie u¿ywany przy ka¿dym starcie programu.",
+                    IDC_STATIC,88,17,181,36
+    GROUPBOX        "Pliki ASCII",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "Je¿eli wybrano autodetekcjê to FileZilla u¿yje transferu ASCII dla nastêpuj¹cych rodzajów plików:",
+                    IDC_STATIC,14,76,256,16
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,111,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Dodaj",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "&Usuñ",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "Je¿eli wpisano z³e rodzaje plików to pliki te mog¹ ulec uszkodzeniu podczas transferu.",
+                    IDC_STATIC,167,98,104,97
+END
+
+IDD_OPTIONS_GSSPAGE DIALOG  0, 0, 300, 211
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "W³¹cz szyfrowanie K&erberos z GSS",IDC_USEGSS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,130,10
+    LISTBOX         IDC_SERVERLIST,14,66,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,66,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Dodaj",IDC_SERVERADD,129,84,50,14
+    PUSHBUTTON      "&Usuñ",IDC_SERVERREMOVE,129,102,50,14
+    LTEXT           "Nale¿y mieæ zainstalowany modu³ Kerberos dla Windows (KfW). Je¿eli nie ma tego modu³u to funkcja ta nie bêdzie dzia³aæ. Z chwil¹ aktywowania tej funkcji program FileZilla u¿yje uwierzytelniania GSS i szyfrowania dla serwerów wymienionych w liœcie.",
+                    IDC_STATIC,7,21,286,31
+    GROUPBOX        "Dostêpne serwery GSS",IDC_STATIC,7,55,286,149
+    LTEXT           "Dla ka¿dego serwera, którego adres koñczy siê ci¹giem znaków zostanie u¿yty GSS. Proszê wpisywaæ tylko te serwery, które obs³uguj¹ GSS.",
+                    IDC_STATIC,184,65,102,49
+    LTEXT           "Zanim zostanie u¿yty GSS wymagany jest wa¿ny certyfikat Kerberos wersja 5",
+                    IDC_STATIC,184,114,103,34
+END
+
+IDD_OPTIONS_FIREWALL DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Tryb pasyw&ny",IDC_OPTIONS_FIREWALL_PASV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,106,272,10
+    LTEXT           "Je¿eli chcesz siê po³¹czyæ z serwerem ftp ale masz trudnoœci z ustaleniem transferu pliku, to powinno siê w³¹czyæ tryb pasywny.",
+                    IDC_STATIC,7,88,272,17
+    LTEXT           "Domyœlnie FileZilla u¿ywa wszystkich dostêpnych portów, aby ustaliæ po³¹czenie i transmisjê. Je¿eli chcesz, aby program FileZilla u¿ywa³ okreœlnych portów proszê podaj poni¿ej zakres portów.",
+                    IDC_STATIC,19,17,260,24
+    CONTROL         "&Ogranicz lokalne porty u¿ywane przez FileZilla",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,272,10
+    LTEXT           "Najni¿szy &dostêpny port:",IDC_STATIC,19,45,84,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,108,42,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "Naj&wy¿szy dostêpny port:",IDC_STATIC,19,62,87,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,108,59,40,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "&U¿yj nastêpuj¹cego adresu IP dla transferu niepasywnego:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,202,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,19,138,60,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "&U¿yj nastêpuj¹cego adresu IP dla niepasywnego transferu, gdy u¿ywasz IPv6:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,266,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Na tej stronie mo¿na skonfigurowaæ wygl¹d lokalnej listy plików.",
+                    IDC_STATIC,7,7,272,8
+    CONTROL         "Z&awsze u¿ywaj nastêpuj¹cej konfiguracji:",
+                    IDC_OPTIONS_LOCALVIEW_ALWAYS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,20,272,10
+    LTEXT           "Domyœlny styl &listy:",IDC_STATIC,19,35,66,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,92,34,72,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Widoczne kolumny dla listy szczegó³owej:",IDC_STATIC,19,
+                    49,260,8,NOT WS_GROUP
+    CONTROL         "Ro&zmiar pliku",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,57,10
+    CONTROL         "&Typ pliku",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,91,61,45,10
+    CONTROL         "Czas &modyfikacji",IDC_OPTIONS_LOCALVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,145,61,80,10
+    CONTROL         "Zapamiêtaj ostatnio u¿yt¹ &konfiguracjê",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,92,272,10
+    LTEXT           "W tym przypadku mo¿na konfigurowaæ wygl¹d poprzez menu",
+                    IDC_STATIC,19,106,260,8
+    CONTROL         "Pamiêtaj szerokoœæ kolumn w stylu sz&czegó³owym",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,119,228,10
+    LTEXT           "Format rozmiaru pliku w stylu &szczegó³owym:",
+                    IDC_STATIC,7,146,153,8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,165,144,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Poka¿ pasek stanu z informacj¹ o (zaznaczonyc&h) plikach",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,76,260,10
+    CONTROL         "Pamiêtaj sortowani&e kolumn w stylu szczegó³owym",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,131,239,10
+    LTEXT           "Akcja po&dwójnego klikniêcia pliku:",IDC_STATIC,7,162,
+                    114,8
+    CONTROL         "Transferuj",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    175,49,10
+    CONTROL         "Otwórz",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,63,175,39,10
+    CONTROL         "Dodaj do kolejki",
+                    IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,105,175,68,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOG  0, 0, 298, 220
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Na tej stronie mo¿na skonfigurowaæ wygl¹d listy plików na serwerze.",
+                    IDC_STATIC,7,7,284,8
+    CONTROL         "Z&awsze u¿ywaj nastêpuj¹cej konfiguracji:",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,20,284,10
+    LTEXT           "Domyœlny styl &listy:",IDC_STATIC,19,35,69,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,93,34,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Widoczne kolumny dla listy szczegó³owej:",IDC_STATIC,19,
+                    49,184,8,NOT WS_GROUP
+    CONTROL         "Ro&zmiar pliku",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,56,10
+    CONTROL         "Ty&p pliku",IDC_OPTIONS_REMOTEVIEW_FILETYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,88,61,40,10
+    CONTROL         "&Data",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,145,61,31,10
+    CONTROL         "Cz&as",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,72,31,10
+    CONTROL         "&Uprawnienia",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,88,72,51,10
+    CONTROL         "&W³aœciciel/Grupa",IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,145,72,72,10
+    CONTROL         "Poka¿ pasek stanu z informacj¹ o (zaznaczonyc&h) plikach",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,84,255,10
+    CONTROL         "Zapamiêtaj ostatnio u¿yt¹ &konfiguracjê",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,98,255,10
+    LTEXT           "W tym przypadku mo¿na konfigurowaæ wygl¹d poprzez menu",
+                    IDC_STATIC,19,113,272,8
+    CONTROL         "Pamiêtaj szerokoœæ kolumn w stylu sz&czegó³owym",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,126,263,10
+    CONTROL         "Pamiêtaj sortowanie kolu&mn w stylu szczegó³owym",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,138,246,10
+    LTEXT           "Format rozmiaru pliku w stylu &szczegó³owym:",
+                    IDC_STATIC,7,152,152,8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,164,150,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Zawsze pokazuj pliki uk&ryte",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,236,10
+    LTEXT           "Uwaga, nie wszystkie serwery obs³uguja t¹ funkcjê. Je¿eli zostanie w³¹czona ta opcja, to FileZilla nie bêdzie móg³ wylistowaæ plików na tych serwerach.",
+                    IDC_STATIC,19,173,272,17
+    LTEXT           "Akcja po&dwójnego klikniêcia pliku:",IDC_STATIC,7,196,
+                    117,8
+    CONTROL         "Transferuj",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,129,
+                    196,50,10
+    CONTROL         "Otwórz",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,
+                    "Button",BS_AUTORADIOBUTTON,185,196,39,10
+    CONTROL         "Dodaj do kolejki",
+                    IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,226,196,65,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Na tej stronie mo¿na skonfigurowaæ bufor katalogu serwera",
+                    IDC_STATIC,7,7,186,8
+    CONTROL         "&Nie u¿ywaj bufora",IDC_OPTIONS_CACHE_USECACHE,"Button",
+                    BS_AUTORADIOBUTTON,7,18,197,10
+    CONTROL         "&U¿yj pamiêæ podrêczn¹",IDC_OPTIONS_CACHE_USECACHE2,
+                    "Button",BS_AUTORADIOBUTTON,7,28,260,10
+    LTEXT           "Maksymalny czas uruchomienia bufora katalogu:",
+                    IDC_STATIC,7,44,197,8
+    LTEXT           "&godz.,",IDC_STATIC,27,57,20,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&min.,",IDC_STATIC,69,57,27,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,49,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&sek.",IDC_STATIC,118,57,28,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,98,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "Dostêpne s¹ ró¿ne typy buforowania (cache) katalogu.",
+                    IDC_STATIC,7,114,209,8,NOT WS_VISIBLE
+    CONTROL         "Czyœæ bufor po wyjœciu z programu FileZilla",
+                    IDC_OPTIONS_CACHE_CACHETYPE,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,124,272,10
+    CONTROL         "U¿yj sta³ego bufora",IDC_OPTIONS_CACHE_CACHETYPE2,
+                    "Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,7,134,272,
+                    10
+END
+
+IDD_SERVER_CHANGEPASS DIALOG  0, 0, 186, 138
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Zmiana has³a serwera"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Przy pomocy tego okna mo¿na zmieniæ has³o wymagane dla tego konta na serwerze.\nTa opcja nie jest dostêpna na ka¿dym serwerze.",
+                    IDC_STATIC,7,7,172,26
+    LTEXT           "&Stare has³o:",IDC_STATIC,7,64,46,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,61,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Nowe has³o:",IDC_STATIC,7,83,50,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,80,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&PotwierdŸ nowe has³o:",IDC_STATIC,7,102,76,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,99,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,35,117,50,14
+    PUSHBUTTON      "&Anuluj",IDCANCEL,99,117,50,14
+    LTEXT           "Proszê podaj stare has³o na potwierdzenie, ¿e masz prawa do zmiany has³a, nastêpnie podaj nowe has³o i potwierdŸ je.",
+                    IDC_STATIC,7,33,172,24
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 284, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Aktywacja ustawieñ",IDC_STATIC,7,7,270,62
+    CONTROL         "Uruchom  kom&endy aktywacji systemu",IDC_CHECK1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,19,212,10
+    LTEXT           "Wyœlij komendy aktywacji takie jak ""PWD"", ""REST 0"", ""TYPE A"", ""TYPE I"" w losowych przerwach co",
+                    IDC_STATIC,25,31,246,17
+    EDITTEXT        IDC_INTERVALLOW,28,49,24,14,ES_AUTOHSCROLL
+    LTEXT           "i",IDC_STATIC,56,52,8,8
+    EDITTEXT        IDC_INTERVALHIGH,73,49,23,14,ES_AUTOHSCROLL
+    LTEXT           "sek.",IDC_STATIC,101,52,16,8
+    GROUPBOX        "Wykrywanie &bezczynnoœci",IDC_STATIC,7,73,270,40
+    LTEXT           "Je¿eli zero bajtów zosta³o wys³anych w przeci¹gu",
+                    IDC_STATIC,14,85,173,8
+    EDITTEXT        IDC_TIMEOUT,187,82,26,14,ES_AUTOHSCROLL
+    LTEXT           "sek.,",IDC_STATIC,217,85,16,8
+    LTEXT           "przyjmij, ¿e nie ma po³¹czenia i roz³¹cz.",IDC_STATIC,
+                    14,96,171,8
+    GROUPBOX        "Ponawianie po³¹czenia",IDC_STATIC,7,115,270,44
+    LTEXT           "Kiedy nast¹pi³o roz³¹czenie z serwerem podczas transferu, czekaj ",
+                    IDC_STATIC,13,128,224,8
+    EDITTEXT        IDC_DELAY,15,138,17,14,ES_AUTOHSCROLL
+    LTEXT           "sek. i spróbuj po³¹czyæ siê ponownie",IDC_STATIC,38,141,
+                    129,8
+    EDITTEXT        IDC_NUMRETRY,166,139,20,14,ES_AUTOHSCROLL
+    LTEXT           "raz(y).",IDC_STATIC,193,142,35,8
+    CONTROL         "W³¹cz obs³ugê IPv6 (dzia³a tylko pod Windows XP / 2003 Server lub nowszy)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,266,10
+    LTEXT           "&Default password for anonymous logins:",IDC_STATIC,7,
+                    180,130,8
+    EDITTEXT        IDC_ANONPWD,140,178,117,12,ES_AUTOHSCROLL
+END
+
+IDD_FILEEXISTS DIALOG  0, 0, 259, 124
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Plik ju¿ istnieje"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Czy chcesz zamieniæ plik",IDC_STATIC,7,7,82,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d bajt(ów)",IDC_FILEEXISTS_SIZE1,50,28,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "na plik?",IDC_STATIC,7,55,26,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d bajt(ów)",IDC_FILEEXISTS_SIZE2,50,76,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "Proszê wybierz:",IDC_STATIC,157,7,95,70
+    CONTROL         "&Nadpisaæ",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,162,18,46,10
+    CONTROL         "Nadp&isz, gdy nowszy",IDC_FILEEXISTS_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,162,28,83,10
+    CONTROL         "Przyw&róæ",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,162,39,42,10
+    CONTROL         "Z&mieñ nazwê",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,162,50,69,10
+    CONTROL         "&Pomiñ",IDC_FILEEXISTS_SKIP,"Button",BS_AUTORADIOBUTTON,
+                    162,62,56,10
+    CONTROL         "Zawsze u¿ywaj tej komendy, gdy plik ju¿ istnieje",
+                    IDC_FILEEXISTS_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    BS_VCENTER | BS_MULTILINE | WS_GROUP | WS_TABSTOP,170,83,
+                    82,30
+    DEFPUSHBUTTON   "OK",IDOK,105,103,50,14
+    LTEXT           "<filename1>",IDC_FILEEXISTS_FILE1,7,16,150,8
+    LTEXT           "<filename2>",IDC_FILEEXISTS_FILE2,7,63,150,9
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Mened¿er stron"
+MENU IDR_SITEMANAGER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Szczegó³y strony",IDC_STATIC,174,0,169,244
+    LTEXT           "&Host:",IDC_STATIC,180,12,18,8
+    EDITTEXT        IDC_HOST,180,21,127,14,ES_AUTOHSCROLL
+    LTEXT           "Po&rt:",IDC_STATIC,312,11,16,8
+    EDITTEXT        IDC_PORT,312,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Typ s&erwera:",IDC_STATIC,180,38,42,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    GROUPBOX        "Typ logowania",IDC_STATIC,180,67,157,38
+    CONTROL         "Anony&mous",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,185,78,53,10
+    CONTROL         "N&ormalny",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,242,
+                    78,46,10
+    CONTROL         "Account",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,289,78,
+                    42,10
+    CONTROL         "Pomiñ ustawienia pro&xy / firewall",IDC_FWBYPASS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,185,91,136,10
+    LTEXT           "&U¿ytkownik:",IDC_STATIC,181,107,81,8
+    EDITTEXT        IDC_USER,180,117,103,14,ES_AUTOHSCROLL
+    LTEXT           "Account:",IDC_STATIC,287,107,30,8
+    EDITTEXT        IDC_USER2,287,117,49,14,ES_AUTOHSCROLL
+    LTEXT           "Ha&s³o:",IDC_STATIC,181,134,34,8
+    EDITTEXT        IDC_PASS,181,143,96,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "N&ie zapisuj has³a. ",IDC_PASSDONTSAVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,283,137,52,
+                    26
+    LTEXT           "Komentarz:",IDC_STATIC,181,165,52,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,181,176,156,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "Strona &domyœlna",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,224,74,10
+    PUSHBUTTON      "Zaa&wansowane",IDC_SITEMANAGER_ADVANCED,274,223,61,14,
+                    WS_GROUP
+    PUSHBUTTON      "&Nowa strona",IDC_NEW,7,212,50,14,WS_GROUP
+    PUSHBUTTON      "Nowy &Folder",IDC_SITEMANAGER_NEWFOLDER,62,212,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "&Usuñ",IDC_DELETE,117,212,50,14
+    PUSHBUTTON      "&Kopiuj",IDC_SITEMANAGER_COPY,7,230,50,14,WS_GROUP
+    PUSHBUTTON      "Zmieñ &nazwê",IDC_SITEMANAGER_RENAME,62,230,50,14,
+                    WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,249,
+                    336,1
+    PUSHBUTTON      "&Po³¹cz",IDOK,79,253,52,14
+    PUSHBUTTON      "&Anuluj",IDCANCEL,150,253,52,14
+    PUSHBUTTON      "&Zapisz i WyjdŸ",IDC_EXIT,221,253,52,14
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+END
+
+IDD_OPTIONS_INTERFACE DIALOGEX 0, 0, 301, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Ustawienia startu",IDC_STATIC,7,7,287,101,0,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Kiedy uruchamia siê program FileZilla, które elementy powinny byæ widoczne?",
+                    IDC_STATIC,14,19,269,8
+    CONTROL         "Z&awsze u¿ywaj nastêpuj¹cych ustawieñ:",IDC_VIEWMODE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,29,171,10
+    CONTROL         "Pamiêtaj ostatnio u¿yte usta&wienia",IDC_VIEWMODE2,
+                    "Button",BS_AUTORADIOBUTTON,14,40,170,10
+    LTEXT           "Widoczne elementy:",IDC_STATIC,16,52,33,25,NOT WS_GROUP
+    CONTROL         "Pasek &narzêdzi",IDC_SHOWTOOLBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,55,52,64,10
+    CONTROL         "Pasek &stanu",IDC_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,168,52,55,10
+    CONTROL         "Pasek szy&bkiego po³¹czenia",IDC_SHOWQUICKCONNECTBAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,65,104,10
+    CONTROL         "Okno &komunikatów",IDC_SHOWMESSAGELOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,168,65,73,10
+    CONTROL         "Drzewo l&okalne",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,55,76,64,13
+    CONTROL         "Kolejka trans&feru",IDC_SHOWTRANSFERQUEUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,168,76,69,13
+    CONTROL         "Drz&ewo serwera",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,55,89,80,10
+    GROUPBOX        "Inne",IDC_STATIC,7,113,287,88
+    CONTROL         "Poka¿ etykiety (klient, serwer)",IDC_VIEWLABELS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,129,138,10
+    CONTROL         "Pamiêtaj rozmiar okna i pozycjê programu FileZilla",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,143,226,10
+    CONTROL         "Mi&nimalizuj do paska zadañ (domyœlnie)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,162,184,10
+    CONTROL         "Minimalizuj do zasobnika zamiast do paska zadañ",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,236,10
+    CONTROL         "Minimali&zuj do zasobnika",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,182,163,10
+END
+
+IDD_SAPREFS DIALOG  0, 0, 430, 261
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FileZilla opcje"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,188,113,66
+    DEFPUSHBUTTON   "OK",IDOK,12,193,97,14
+    PUSHBUTTON      "Anuluj",IDCANCEL,12,213,97,14
+    PUSHBUTTON      "Pomoc",IDC_PHELP,12,233,97,14
+    LTEXT           "",IDC_CAPTION_BAR,132,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,123,20,300,234
+END
+
+IDD_OPTIONS_DEBUG DIALOGEX 0, 0, 292, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Te ustawienia s¹ tylko potrzebne w procesie wykrywania b³êdów. Normalnie nie trzeba tych ustawieñ zmieniaæ. Jednak je¿eli napotkasz na jakieœ problemy w programie FileZilla to mo¿esz uruchomiæ t¹ opcjê. Mo¿e ona byæ pomocna w rozwi¹zaniu problemów.",
+                    IDC_STATIC,7,7,278,32
+    CONTROL         "Monitoruj komunikaty serwera ftp",IDC_DEBUG_ENGINETRACE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,43,129,10
+    CONTROL         "Poka¿ listê katalogów",IDC_DEBUG_SHOWRAWLISTING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,56,129,10
+    CONTROL         "W³¹cz menu &Debug",IDC_DEBUG_DEBUGMENU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,69,81,10
+END
+
+IDD_VERIFY_CERT_DLG DIALOG  0, 0, 357, 274
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Czy zaakceptowaæ certyfikat?"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Wydawca",IDC_STATIC,35,7,315,66
+    LTEXT           "Organizacja:",IDC_STATIC,41,17,40,8
+    GROUPBOX        "Wa¿noœæ",IDC_STATIC,35,151,315,34
+    PUSHBUTTON      "Akceptuj",IDOK,190,253,50,14
+    PUSHBUTTON      "Odrzuæ",IDCANCEL,110,253,50,14
+    CONTROL         "Zawsze u¿ywaj tego certyfikatu",IDC_VERIFY_CERT_ALWAYS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,35,239,170,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,111,205,223,17
+    LTEXT           "Podsumowanie:",IDC_STATIC,35,205,51,8
+    LTEXT           "Czy chcesz u¿ywaæ tego certyfikatu?",IDC_STATIC,35,222,
+                    150,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,111,
+                    17,74,8
+    LTEXT           "Nazwa:",IDC_STATIC,41,28,25,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,111,28,
+                    74,8
+    LTEXT           "E-Mail:",IDC_STATIC,190,28,22,8
+    LTEXT           "Jednostka:",IDC_STATIC,190,17,36,8
+    LTEXT           "Nazwa:",IDC_STATIC,41,28,25,8
+    LTEXT           "Kraj:",IDC_STATIC,41,39,15,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_ISSUER_COUNTRY,111,39,74,8
+    LTEXT           "Województwo:",IDC_STATIC,41,50,48,8
+    LTEXT           "Miasto:",IDC_STATIC,190,39,24,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_ISSUER_TOWN,228,39,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,
+                    111,50,223,8
+    LTEXT           "Inne:",IDC_STATIC,41,61,17,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_ISSUER_OTHER,111,61,223,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_ISSUER_MAIL,228,28,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_ISSUER_UNIT,228,17,118,8
+    GROUPBOX        "Podmiot",IDC_STATIC,35,79,315,66
+    LTEXT           "Organizacja:",IDC_STATIC,41,89,40,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,
+                    111,89,74,8
+    LTEXT           "Nazwa:",IDC_STATIC,41,100,25,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,111,
+                    100,74,8
+    LTEXT           "E-Mail:",IDC_STATIC,190,100,22,8
+    LTEXT           "Jednostka:",IDC_STATIC,190,89,36,8
+    LTEXT           "Nazwa:",IDC_STATIC,41,100,25,8
+    LTEXT           "Kraj:",IDC_STATIC,41,111,15,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,111,111,74,8
+    LTEXT           "Województwo:",IDC_STATIC,41,122,48,8
+    LTEXT           "Miasto:",IDC_STATIC,190,111,24,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_SUBJECT_TOWN,228,111,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,
+                    111,122,223,8
+    LTEXT           "Inne:",IDC_STATIC,41,133,17,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_SUBJECT_OTHER,111,133,223,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,228,100,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_SUBJECT_UNIT,228,89,118,8
+    LTEXT           "Od:",IDC_STATIC,41,161,12,8
+    LTEXT           "Do:",IDC_STATIC,41,172,12,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDFROM,111,161,223,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDUNTIL,111,172,223,8
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    LTEXT           "Podpis cyfrowy (SHA1):",IDC_STATIC,35,188,79,8
+    LTEXT           "<certificate hash>",IDC_VERIFY_CERT_HASH,115,188,226,8
+END
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 318, 212
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ustawienia rêcznego transferu pliku"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "W celu ustawienia transferu pliku proszê podaj tyle informacji ile jest to mo¿liwe. Je¿eli pozostawisz jakieœ pola puste to FileZilla spróbuje je wype³niæ.",
+                    IDC_STATIC,7,7,304,17
+    LTEXT           "Typ transferu:",IDC_STATIC,7,30,44,8
+    CONTROL         "&Pobieranie",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,40,49,10
+    CONTROL         "&Wysy³anie",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,51,49,10
+    LTEXT           "Plik &lokalny:",IDC_STATIC,7,65,38,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "Plik na se&rwerze:",IDC_STATIC,7,93,54,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "U¿yj &aktualnego serwera",IDC_MANUALTRANSFER_SERVER1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,147,30,93,10
+    CONTROL         "U¿yj &nastêpuj¹cego serwera",IDC_MANUALTRANSFER_SERVER2,
+                    "Button",BS_AUTORADIOBUTTON,147,41,105,10,
+                    WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,141,41,170,164,WS_GROUP
+    LTEXT           "&Host:",IDC_STATIC,148,52,18,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,61,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,281,52,16,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,280,61,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Typ &serwera:",IDC_STATIC,148,80,42,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,90,157,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Typ logowania",IDC_STATIC,148,108,157,38
+    CONTROL         "Anon&ymous",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,119,53,10
+    CONTROL         "N&ormalny",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,119,45,10
+    CONTROL         "Pomiñ ustawienia pro&xy / firewall",
+                    IDC_MANUALTRANSFER_BYPASSPROXY,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,158,131,118,10
+    LTEXT           "&U¿ytkownik:",IDC_STATIC,148,149,40,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,158,157,14,ES_AUTOHSCROLL
+    LTEXT           "&Has³o:",IDC_STATIC,148,176,22,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,185,157,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,15,191,50,14
+    PUSHBUTTON      "Anuluj",IDCANCEL,75,191,50,14
+    CONTROL         "Teraz uruchom tran&sfer",IDC_MANUALTRANSFER_STARTNOW,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,172,92,10
+END
+
+IDD_OPTIONS_TRANSFER DIALOG  0, 0, 300, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Przechwyæ datê/czas pobranych plików",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,231,10
+    LTEXT           "U¿yj podstawowego po³¹czenia dla transferu, gdy rozmiar pliku jest mniejszy od:",
+                    IDC_STATIC,7,20,256,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,7,30,31,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "bajtów",IDC_STATIC,41,33,21,8
+    LTEXT           "Transferuj do",IDC_STATIC,7,63,45,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,55,60,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "plików w tym samym czasie",IDC_STATIC,75,63,152,8
+    CONTROL         "U¿yj wielu po³¹czeñ do transferu plików",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,50,185,10
+    LTEXT           "Je¿eli istnieje docelowy plik transferu, to mo¿na okreœliæ domyœlne dzia³anie:",
+                    IDC_STATIC,7,97,279,8
+    CONTROL         "Pyt&aj",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,108,66,10
+    CONTROL         "&Nadpisz",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,7,119,46,10
+    CONTROL         "Nadp&isz, gdy nowszy",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,129,105,10
+    CONTROL         "&Rozpocznij ponownie",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,7,141,126,10
+    CONTROL         "Zmieñ naz&wê",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,
+                    "Button",BS_AUTORADIOBUTTON,7,152,125,10
+    CONTROL         "Po&miñ",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,"Button",
+                    BS_AUTORADIOBUTTON,7,163,101,10
+    CONTROL         "Poka¿ wszystkie korekty plików na serwerach &VMS",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,204,10
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOG  0, 0, 291, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Na tej stronie mo¿na wybraæ program, który zostanie u¿yty do podgl¹du / edycji pliku.",
+                    IDC_STATIC,7,7,281,8
+    LTEXT           "&Domyœlny program do podgl¹du lub edycji pliku:",
+                    IDC_STATIC,7,20,194,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,31,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Przegl¹daj",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,31,
+                    50,14
+    LTEXT           "&Skojarzenia pliku u¿ytkownika:",IDC_STATIC,7,48,142,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,58,273,90,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Ka¿da linia reprezentuje jedno skojarzenie pliku. Ka¿da linia rozpoczyna siê rozszerzeniem pliku a nastêpnie spacj¹. Dalej nastêpuje program, który zostanie u¿yty do podgl¹du / edycji pliku. Cudzys³owy je¿eli zawieraj¹ spacje, z³e linie zostan¹ usuniête.",
+                    IDC_STATIC,7,152,272,33
+    LTEXT           "Przyk³ad:\ntxt c:\\windows\\notepad.exe",IDC_STATIC,7,
+                    185,272,16
+END
+
+IDD_OPTIONS_IDENT DIALOG  0, 0, 302, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "W³¹cz identyfikacjê s&erwera",IDC_OPTIONS_IDENT_IDENT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,26,140,10
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,65,38,117,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,222,38,73,14,ES_AUTOHSCROLL
+    CONTROL         "W³¹cz tylko podczas ³¹czenia siê",
+                    IDC_OPTIONS_IDENT_IDENTCONNECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,58,125,10
+    CONTROL         "Akceptuj tylko zapytania z tego samego IP",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,136,58,157,10
+    LTEXT           "Niektóre serwery FTP wymagaj¹, aby podczas ³¹czenia siê z nimi by³a uruchomiona identyfikacja serwera.",
+                    IDC_STATIC,7,7,236,17
+    LTEXT           "ID u¿ytkownika:",IDC_STATIC,7,41,57,8
+    LTEXT           "System:",IDC_STATIC,186,41,26,8
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOG  0, 0, 215, 141
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Regu³y ograniczenia szybkoœci"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Krytera",IDC_STATIC,7,3,201,87
+    CONTROL         "D&ata:",1009,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,
+                    18,33,10
+    CONTROL         "DateTimePicker1",1010,"SysDateTimePick32",WS_TABSTOP,50,
+                    16,125,15
+    CONTROL         "&Od:",1041,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,39,
+                    27,10
+    CONTROL         "DateTimePicker2",1042,"SysDateTimePick32",WS_TABSTOP | 
+                    0x8,50,37,55,15
+    CONTROL         "&Do:",1198,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,117,39,
+                    27,10
+    CONTROL         "DateTimePicker2",1199,"SysDateTimePick32",WS_TABSTOP | 
+                    0x8,145,37,55,15
+    CONTROL         "&Poniedzia³ek",1002,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,57,10
+    CONTROL         "W&torek",1003,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,74,
+                    57,39,10
+    CONTROL         "Œ&roda",1004,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,
+                    57,35,10
+    CONTROL         "Cz&wartek",1005,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    152,57,45,10
+    CONTROL         "Pi¹te&k",1006,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,
+                    73,36,10
+    CONTROL         "&Sobota",1007,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,74,
+                    73,39,10
+    CONTROL         "&Niedziela",1008,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    114,73,45,10
+    LTEXT           "&Szybkoœæ:",IDC_STATIC,7,99,34,8
+    EDITTEXT        1175,45,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kB/s",IDC_STATIC,100,99,16,8
+    DEFPUSHBUTTON   "OK",IDOK,103,120,50,14
+    PUSHBUTTON      "Anuluj",IDCANCEL,158,120,50,14
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Ograniczenie szybkoœci pobierania",IDC_STATIC,5,5,275,
+                    95
+    CONTROL         "&Bez ograniczenia",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,12,15,74,10
+    CONTROL         "Sta³e &ograniczenie szybkoœci",
+                    IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,"Button",
+                    BS_AUTORADIOBUTTON,12,26,109,10
+    CONTROL         "U¿yj regu³ ogran&iczania szybkoœci",
+                    IDC_SPEEDLIMIT_DOWNLOAD_RULES,"Button",
+                    BS_AUTORADIOBUTTON,12,38,177,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,123,24,55,14,
+                    ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,181,27,16,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,24,49,200,47,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "&Dodaj",IDC_SPEEDLIMIT_DOWNLOAD_ADD,228,47,47,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Usuñ",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,228,60,47,10,
+                    WS_DISABLED
+    PUSHBUTTON      "W &górê",IDC_SPEEDLIMIT_DOWNLOAD_UP,228,73,47,10,
+                    WS_DISABLED
+    PUSHBUTTON      "W &dó³",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,228,86,47,10,
+                    WS_DISABLED
+    GROUPBOX        "Ograniczenie szybkoœci wysy³ania",IDC_STATIC,5,105,275,
+                    95
+    CONTROL         "B&ez ograniczenia",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,74,10
+    CONTROL         "S&ta³e ograniczenie szybkoœci",
+                    IDC_SPEEDLIMIT_UPLOAD_CONSTANT,"Button",
+                    BS_AUTORADIOBUTTON,12,126,109,10
+    CONTROL         "U¿yj regu³ ograniczania szyb&koœci",
+                    IDC_SPEEDLIMIT_UPLOAD_RULES,"Button",BS_AUTORADIOBUTTON,
+                    12,137,177,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,123,123,55,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,181,126,16,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,24,148,200,48,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Doda&j",IDC_SPEEDLIMIT_UPLOAD_ADD,228,147,47,10,
+                    WS_DISABLED
+    PUSHBUTTON      "U&suñ",IDC_SPEEDLIMIT_UPLOAD_REMOVE,228,160,47,10,
+                    WS_DISABLED
+    PUSHBUTTON      "W gó&rê",IDC_SPEEDLIMIT_UPLOAD_UP,228,173,47,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&W dó³",IDC_SPEEDLIMIT_UPLOAD_DOWN,228,186,47,10,
+                    WS_DISABLED
+END
+
+IDD_OPTIONS_SSHPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "FileZilla u¿ywa fragmenty pakietu PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/) dla po³¹czeñ SFTP.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "Aby nawi¹zaæ po³¹czenie SSH z serwerem SFTP, FileZilla u¿ywa domyœlne opcje PuTTY. Na tej stronie mo¿na zmieniæ niektóre domyœlne opcje.",
+                    IDC_STATIC,7,23,272,19
+    LTEXT           "U¿yj &kompresji:",IDC_STATIC,7,45,58,8
+    CONTROL         "Domyœlnie",IDC_OPTIONS_SSHPAGE_COMPRESSION1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,55,54,10
+    CONTROL         "Tak",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,74,55,28,10
+    CONTROL         "Nie",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,134,55,25,10
+    LTEXT           "Wybór protoko³u:",IDC_STATIC,7,68,59,8
+    LTEXT           "Domyœlnie (je¿eli nie zmieniono domyœlnej konfiguracji), PuTTY u¿ywa SSH2 do ³¹czenia siê z serwerami SSH.",
+                    IDC_STATIC,14,80,265,17
+    LTEXT           "Kiedy jest to bardziej bezpiecznie ni¿ SSH1, to implementacja SSH2 w PuTTY ma pewne problemy z szybkoœci¹. (Aby uzyskaæ szczegó³y zobacz http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/sftp-slow.html)",
+                    IDC_STATIC,14,96,265,27
+    LTEXT           "Je¿eli masz problemy z szybkoœci¹ z serwerami SFTP w FileZilla i je¿eli nie wymagasz dodatkowego zabezpieczenia SSH2, to mo¿esz spróbowaæ wymusiæ u¿ycie SSH1.",
+                    IDC_STATIC,14,128,265,25
+    CONTROL         "Domyœlnie",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,155,54,10
+    CONTROL         "U¿yj SSH1",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,74,155,49,10
+    CONTROL         "U¿yj SSH2",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,134,155,49,10
+    LTEXT           "Pamiêtaj, ¿e nie wszystkie serwery to obs³uguj¹.",
+                    IDC_STATIC,14,169,180,8
+END
+
+IDD_SITEMANAGER_ADVANCED DIALOGEX 0, 0, 249, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Zaawansowane ustawienia strony"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Zaawansowane ustawienia dla '%s' (%s)",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,235,16
+    LTEXT           "Domyœlny ka&talog serwera:",IDC_STATIC,7,25,106,8
+    EDITTEXT        IDC_REMOTEDIR,7,34,157,14,ES_AUTOHSCROLL
+    LTEXT           "Domyœlny katalog &lokalny:",IDC_STATIC,7,52,109,8
+    EDITTEXT        IDC_LOCALDIR,7,62,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,62,12,14
+    LTEXT           "Ustawienia trybu pasywnego transferu",IDC_STATIC,7,88,
+                    142,8
+    CONTROL         "&Domyœlnie",IDC_SITEMANAGER_ADVANCED_PASSIVE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,98,52,10
+    CONTROL         "U¿yj tryb &pasywny",IDC_SITEMANAGER_ADVANCED_PASSIVE2,
+                    "Button",BS_AUTORADIOBUTTON,80,98,74,10
+    CONTROL         "U¿yj tryb &aktywny",IDC_SITEMANAGER_ADVANCED_PASSIVE3,
+                    "Button",BS_AUTORADIOBUTTON,160,98,69,10
+    LTEXT           "Strefa czasu serwera:",IDC_STATIC,7,114,73,8
+    LTEXT           "Zmieñ czas pliku na serwerze o ",IDC_STATIC,7,131,106,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,125,127,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,117,127,8,14
+    LTEXT           "godz.",IDC_STATIC,154,131,19,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,186,127,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,178,127,8,14
+    LTEXT           "minut",IDC_STATIC,215,131,19,8
+    LTEXT           "Use UTF8 on server if available:",IDC_STATIC,8,149,103,
+                    8
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,118,147,48,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,55,165,50,14
+    PUSHBUTTON      "Anuluj",IDCANCEL,135,165,50,14
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOG  0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Ogólne",IDC_STATIC,7,7,272,26
+    CONTROL         "Ustaw podgl¹d serwera na lewo od podgl¹du lokalnego",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,235,10
+    GROUPBOX        "Lokalizacje drzewa",IDC_STATIC,7,38,272,82
+    LTEXT           "Drzewo lokalne:",IDC_STATIC,13,49,90,8
+    CONTROL         "Pozycja powy¿ej listy plików",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,59,143,10
+    CONTROL         "Pozycja na lewo od listy plików",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,70,115,10
+    LTEXT           "Drzewo na serwerze:",IDC_STATIC,14,85,109,8
+    CONTROL         "Pozycja powy¿ej listy plików",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,95,141,10
+    CONTROL         "Pozycja na lewo od listy plików",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,106,115,10
+    LTEXT           "Zmiany tych ustawieñ wymagaj¹ ponownego uruchomienia FileZilla",
+                    IDC_STATIC,7,123,227,8
+END
+
+IDD_OPTIONS_LOGGING DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Aktualna czcionka:",IDC_STATIC,19,20,61,8
+    LTEXT           "Statisch",IDC_OPTIONS_LOGGING_FONTDATA,89,20,168,8
+    PUSHBUTTON      "&Wybierz czcionkê...",IDC_OPTIONS_LOGGING_CHANGEFONT,19,
+                    32,76,14
+    CONTROL         "Zapisz raport do pliku log",
+                    IDC_OPTIONS_LOGGING_LOGTOFILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,51,114,10
+    LTEXT           "Nazwa pliku:",IDC_STATIC,19,84,47,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,69,82,83,14,ES_AUTOHSCROLL
+    LTEXT           "Kiedy funkcja jest aktywna to wszystkie komunikaty s¹ zapisane do pliku. Plik log powinien mieæ rozszerzenie .rtf",
+                    IDC_STATIC,19,63,260,18
+    CONTROL         "&U¿yj czcionki u¿ytkownika dla komunikatów raportu",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,247,10
+    CONTROL         "Raportuj da&ty wejœæ",IDC_OPTIONS_LOGGING_TIMESTAMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,98,85,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOG  0, 0, 286, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "U¿ywa MODE Z, rozszerzenia protoko³u ftp. Jest mo¿liwe u¿ycie skompresowanego transferu pliku, na serwerach, które to obs³uguj¹.",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "Nie u¿ywaj kompresji",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,28,87,10
+    CONTROL         "U¿yj kompresji tylko dla wylistowania katalogów",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,40,219,10
+    CONTROL         "U¿yj kompresji dla ca³ego transferu",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,52,215,10
+    LTEXT           "Poziom kompresji, zakres od 1 (najs³abszy) do 9 (najlepszy):",
+                    IDC_STATIC,7,72,164,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,183,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Domyœlny poziom kompresji to 8. To dobry kompromis miêdzy osi¹gan¹ iloœci¹ kompresji a zu¿yciem CPU.",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "Aby uzyskaæ szczegó³y o metodzie kompresji proszê przeczytaæ http://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,195,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,8,0
+ PRODUCTVERSION 2,2,8,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Polski"
+            VALUE "FileDescription", "Polish language DLL for FileZilla"
+            VALUE "FileVersion", "2, 2, 8, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2003 by Tim Kosse under the GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 8, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 270
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 98
+    END
+
+    IDD_OPTIONS_FTPPROXY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_ENTERSOMETHING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+
+    IDD_OPTIONS_LANGUAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_MISC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_CONNECTION4, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 290
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_CHMOD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 199
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 188
+    END
+
+    IDD_TRANSFERASDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 201
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_OPTIONS_TYPEPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_GSSPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 204
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_LOCALVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 291
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 213
+    END
+
+    IDD_OPTIONS_DIRCACHE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_CONNECTION2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_FILEEXISTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 117
+    END
+
+    IDD_SITEMANAGER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_OPTIONS_INTERFACE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 294
+        VERTGUIDE, 55
+        VERTGUIDE, 168
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 52
+        HORZGUIDE, 65
+        HORZGUIDE, 76
+        HORZGUIDE, 89
+    END
+
+    IDD_SAPREFS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 423
+        BOTTOMMARGIN, 254
+    END
+
+    IDD_OPTIONS_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 285
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_VERIFY_CERT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 350
+        VERTGUIDE, 35
+        VERTGUIDE, 41
+        VERTGUIDE, 111
+        VERTGUIDE, 185
+        VERTGUIDE, 190
+        VERTGUIDE, 216
+        VERTGUIDE, 334
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+        HORZGUIDE, 17
+        HORZGUIDE, 28
+        HORZGUIDE, 39
+        HORZGUIDE, 50
+        HORZGUIDE, 61
+        HORZGUIDE, 79
+        HORZGUIDE, 89
+        HORZGUIDE, 100
+        HORZGUIDE, 111
+        HORZGUIDE, 122
+        HORZGUIDE, 133
+        HORZGUIDE, 151
+        HORZGUIDE, 161
+        HORZGUIDE, 172
+        HORZGUIDE, 194
+        HORZGUIDE, 211
+    END
+
+    IDD_OPTIONS_TRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 296
+    END
+
+    IDD_OPTIONS_VIEWEDIT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 286
+    END
+
+    IDD_OPTIONS_IDENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 295
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 208
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 134
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 242
+        VERTGUIDE, 80
+        VERTGUIDE, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 10, 0
+0x7a53, 0x7a63, 0x6765, 0xb3f3, 0x0079, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0061, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 11, 0
+0x7544, 0x65bf, 0x6920, 0x6f6b, 0x796e, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 11, 0
+0x614d, 0x65b3, 0x6920, 0x6f6b, 0x796e, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 6, 0
+0x6142, 0x746a, 0x0079, 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 10, 0
+0x7a53, 0x7a63, 0x6765, 0xb3f3, 0x0079, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0061, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 11, 0
+0x7544, 0x65bf, 0x6920, 0x6f6b, 0x796e, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 11, 0
+0x614d, 0x65b3, 0x6920, 0x6f6b, 0x796e, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 6, 0
+0x6142, 0x746a, 0x0079, 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 39, 0
+0x5446, 0x2050, 0x7270, 0x657a, 0x207a, 0x5353, 0x2f4c, 0x4c54, 0x2053, 
+0x7528, 0x726b, 0x7479, 0x2065, 0x7a73, 0x6679, 0x6f72, 0x6177, 0x696e, 
+0x2965, "\000" 
+    IDC_SERVERTYPE, 0x403, 34, 0
+0x5446, 0x2050, 0x7270, 0x657a, 0x207a, 0x5353, 0x204c, 0x6a28, 0x7761, 
+0x656e, 0x7320, 0x797a, 0x7266, 0x776f, 0x6e61, 0x6569, 0x0029, 
+    IDC_SERVERTYPE, 0x403, 16, 0
+0x4653, 0x5054, 0x7020, 0x7a72, 0x7365, 0x5320, 0x4853, 0x0032, 
+    IDC_SERVERTYPE, 0x403, 33, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5420, 0x534c, 0x2820, 0x616a, 0x6e77, 
+0x2065, 0x7a73, 0x6679, 0x6f72, 0x6177, 0x696e, 0x2965, "\000" 
+    0
+END
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 39, 0
+0x5446, 0x2050, 0x7270, 0x657a, 0x207a, 0x5353, 0x2f4c, 0x4c54, 0x2053, 
+0x7528, 0x726b, 0x7479, 0x2065, 0x7a73, 0x6679, 0x6f72, 0x6177, 0x696e, 
+0x2965, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 34, 0
+0x5446, 0x2050, 0x7270, 0x657a, 0x207a, 0x5353, 0x204c, 0x6a28, 0x7761, 
+0x656e, 0x7320, 0x797a, 0x7266, 0x776f, 0x6e61, 0x6569, 0x0029, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 16, 0
+0x4653, 0x5054, 0x7020, 0x7a72, 0x7365, 0x5320, 0x4853, 0x0032, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 34, 0
+0x5446, 0x2050, 0x7270, 0x657a, 0x207a, 0x4c54, 0x2053, 0x6a28, 0x7761, 
+0x656e, 0x7320, 0x797a, 0x7266, 0x776f, 0x6e61, 0x6569, 0x0029, 
+    0
+END
+
+IDD_SITEMANAGER_ADVANCED DLGINIT
+BEGIN
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x6f46, 0x6372, 0x0065, 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x654e, 0x6576, 0x0072, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "Gotowy"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "O programie FileZilla"
+    ID_APP_EXIT             "Wyjœcie z programu"
+    ID_HELP                 "Pokazuje spis treœci"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Pokazuje/ukrywa pasek narzêdzi"
+    ID_VIEW_STATUS_BAR      "Pokazuje/ukrywa pasek stanu"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "Wyjœcie z programu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "Po³¹czenie"
+    IDS_OPTIONSPAGE_DEBUG   "Usuwanie b³êdów"
+    IDS_OPTIONSPAGE_DIRCACHE "Bufor katalogu"
+    IDS_OPTIONSPAGE_FIREWALL "Ustawienia Firewall'a"
+    IDS_OPTIONSPAGE_FTPPROXY "Ustawienie proxy FTP"
+    IDS_OPTIONSPAGE_GSS     "Obs³uga GSS"
+    IDS_OPTIONSPAGE_IDENT   "Identyfikacja serwera"
+    IDS_OPTIONSPAGE_INTERFACE "Ustawienia interfejsu"
+    IDS_OPTIONSPAGE_LANGUAGE "Jêzyk"
+    IDS_OPTIONSPAGE_LOCALVIEW "Lokalna lista plików"
+    IDS_OPTIONSPAGE_MISC    "Inne"
+    IDS_OPTIONSPAGE_PROXY   "Ustawienia Proxy"
+    IDS_OPTIONSPAGE_REMOTEVIEW "Lista plików serwera"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "Ograniczenie szybkoœci"
+    IDS_OPTIONSPAGE_TRANSFER "Ustawienia transferu pliku"
+    IDS_OPTIONSPAGE_TYPE    "ASCII/Binarny"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "Podgl¹d / edycja pliku"
+    IDS_OPTIONSPAGE_SSH     "Ustawienia SFTP"
+    IDS_OPTIONSPAGE_PANELAYOUT "Uk³ad panelu"
+    IDS_OPTIONSPAGE_LOGGING "Raport komunikatów"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "Kompresja"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "Czas"
+    IDS_MANUALTRANSFER_HOST "Proszê podaj poprawny host"
+    IDS_MANUALTRANSFER_LOCALFILE 
+                            "Proszê podaj œciezkê i nazwê pliku lokalnego"
+    IDS_MANUALTRANSFER_PORT "Proszê podaj poprawny port serwera"
+    IDS_MANUALTRANSFER_REMOTEFILE 
+                            "Proszê podaj œcie¿kê i nazwê pliku na serwerze"
+    IDS_MANUALTRANSFER_USER "Proszê podaj nazwê u¿ytkownika"
+    IDS_QUEUESTATUS_ABORTED "Transfer przerwany"
+    IDS_QUEUESTATUS_CRITICALERROR "Krytyczny b³¹d transferu"
+    IDS_QUEUESTATUS_ERROR   "B³¹d transferu #%d. Spróbuj ponownie póŸniej"
+    IDS_QUEUESTATUS_TOOMANYERTREIS "Zbyt wiele ponowieñ"
+    IDS_QUEUESTATUS_TRANSFERRING "Transferuje"
+    IDS_QUICKCONN_HOST      "Adres:"
+    IDS_QUICKCONN_PASS      "Has³o:"
+    IDS_QUICKCONN_PORT      "Port:"
+    IDS_QUICKCONN_QUICKCONN "Szybko po³¹&cz"
+    IDS_QUICKCONN_USER      "U¿ytkownik:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY 
+                            "Proszê wybraæ nowe atrybuty dla tego katalogu ""%s"""
+    IDS_CHANGEDIALOG_FILE   "Proszê wybraæ nowe atrybuty dla tego pliku ""%s"""
+    IDS_CHANGEDIALOG_MULTIPLEFILES 
+                            "Proszê wybraæ nowe atrybuty dla wszystkich zaznaczonych plików i folderów"
+    IDS_HEADER_DATE         "Data"
+    IDS_HEADER_DIRECTION    "Przeznaczenie"
+    IDS_HEADER_FILENAME     "Nazwa pliku"
+    IDS_HEADER_FILESIZE     "Rozmiar pliku"
+    IDS_HEADER_FILETYPE     "Typ"
+    IDS_HEADER_HOST         "Host"
+    IDS_HEADER_LASTMODIFIED "Zmodyfikowany"
+    IDS_HEADER_LOCALNAME    "Nazwa pliku lokalnego"
+    IDS_HEADER_OWNERGROUP   "W³aœciciel / Grupa"
+    IDS_HEADER_PERMISSIONS  "Uprawnienia"
+    IDS_HEADER_REMOTENAME   "Nazwa pliku na serwerze"
+    IDS_HEADER_SIZE         "Rozmiar"
+    IDS_HEADER_STATUS       "Status"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<Pusta lista katalogu>"
+    IDS_SITEMANAGER_NEWFOLDER "Nowy folder"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "Nowy folder %d"
+    IDS_SITEMANAGER_NEWFTPSITE "Nowa strona FTP"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "Nowa strona FTP %d"
+    IDS_SITEMANAGER_TEXTFILES "Typy plików (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "Moja strona FTP"
+    IDS_SITEMANAGER_XMLFILES "Pliki XML (*.xml)|*.xml||"
+    IDS_SIZE_BYTES          "bajty"
+    IDS_SIZE_GB             "GB"
+    IDS_SIZE_KBS            "KB"
+    IDS_SIZE_MBS            "MB"
+    IDS_STATUSBAR_ELAPSED   "up³ynê³o %s"
+    IDS_STATUSBAR_LEFT      "pozosta³o %s"
+    IDS_TITLE_CONNECTED     "Pod³¹czony do %s"
+    IDS_TITLE_CONNECTING    "£¹czy siê z %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "Pusty folder"
+    IDS_VIEWLABEL_LOCAL     "Klient:"
+    IDS_VIEWLABEL_REMOTE    "Serwer:"
+    IDS_DIRINFO_EMPTY       "Pusty katalog."
+    IDS_DIRINFO_FILES       "%d plików z %I64d bajtami."
+    IDS_DIRINFO_DIRSANDFILES "%d folderów i %d plików z %I64d bajtami."
+    IDS_DIRINFO_FILESMIN    "%d plików z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_DIRSANDFILESMIN 
+                            "%d folderów i %d plików z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_SELECTED_FILES "Zaznaczono %d plików z %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIRS "Zaznaczono %d folderów."
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "Zaznaczono %d folderów i %d plików z %I64d bajtami."
+    IDS_DIRINFO_SELECTED_FILESMIN 
+                            "Zaznaczono %d plików z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "Zaznaczono %d folderów i %d plików z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_FILE        "1 plik z %I64d bajtami."
+    IDS_DIRINFO_DIR         "1 folder."
+    IDS_DIRINFO_DIRANDFILES "1 folder i %d plików z %I64d bajtami."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                             "
+    ID_INDICATOR_TIMELEFT   "                         "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "Kolejka: %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d folderów."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "Wpisz nazwê katalogu"
+    IDS_INPUTDIALOGTEXT_CREATEDIR "Proszê podaj nazwê nowego katalogu"
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "Wpisz komendê FTP"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND 
+                            "Proszê wpisz komendê, która zostanie wykonana na serwerze"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "Proszê wpisz swoje has³o"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD 
+                            "Proszê podaj has³o, które zostanie u¿yte w celu po³¹czenia siê z serwerem"
+    IDS_INPUTDIALOGTITLE_RENAME "Wpisz nazwê pliku"
+    IDS_INPUTDIALOGTEXT_RENAME 
+                            "Proszê podaj nazwê, pod któr¹ zostanie zapisany plik"
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE 
+                            "Interaktywne uwierzytelnienie klawiatury"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "Podaj swoj¹ nazwê u¿ytkownika"
+    IDS_INPUTDIALOGTEXT_INPUTUSER 
+                            "Proszê podaj nazwê u¿ytkownika, która bêdzie u¿yta do po³¹czenia z serwerem:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "Komenda:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "OdpowiedŸ:"
+    IDS_TRACEMSG_TRACE      "Monitoruj:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL 
+                            "Kana³ transmisyjny nie zosta³ otwarty. Przyczyna: %s"
+    IDS_ERRORMSG_CANTPARSECMDLINE "Nie mo¿na zanalizowaæ linii komend"
+    IDS_ERRORMSG_CANTRESOLVEHOST "Nie mo¿na zanalizowaæ nazwy host "
+    IDS_ERRORMSG_CANTRESUME "Komenda ponawiania nie jest obs³ugiwana przez serwer. Czy nadpisaæ plik?"
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "Komenda ponawiania nie jest obs³ugiwana przez serwer, ale rozmiar pliku lokalnego i na serwerze jest ten sam."
+    IDS_ERRORMSG_CANTSENDCOMMAND "Nie mo¿na wys³aæ komendy! Serwer nieczynny!"
+    IDS_ERRORMSG_CANTWRITETOFILE 
+                            "Nie mo¿na zapisaæ do pliku ""%s"". B³¹d: ""%s"""
+    IDS_ERRORMSG_CERTREJECTED "Certyfikat odrzucony"
+    IDS_ERRORMSG_CRITICALINTERRUPTED 
+                            "Przerwane przez u¿ytkownika! Wylogowuje z serwera.."
+    IDS_ERRORMSG_DOWNLOADABORTED "Pobieranie anulowane"
+    IDS_ERRORMSG_DOWNLOADFAILED "Pobieranie nie powiod³o siê"
+    IDS_ERRORMSG_ENTERSTRING "Nale¿y podaæ ci¹g znaków!"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "Nazwa pliku nie mo¿e zawieraæ jednego z nastêpuj¹cych znaków:\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED "Nie mo¿na otworzyæ pliku lokalnego %s"
+    IDS_ERRORMSG_HOSTNEEDED "Proszê podaj nazwê host!"
+    IDS_ERRORMSG_IDENT_CANTSTART "B³¹d uruchomienia identyfikacji serwera"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "Przerwane przez u¿ytkownika!"
+    IDS_ERRORMSG_INVALIDPORT "Musisz podaæ poprawny port!"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND 
+                            "B³¹d! Plik DLL dla jêzyka ""%s"" nie móg³ byæ odnaleziony!"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "B³¹d! Plik jêzykowy DLL zosta³ utworzony dla wczeœniejszej wersji programu FileZilla i nie jest zgodny z t¹ wersj¹.\nProszê pobierz plik DLL dla nowszej wersji z http://sourceforge.net/projects/filezilla"
+    IDS_ERRORMSG_NAMEINUSE  "Proszê podaj inn¹ nazwê pliku!"
+    IDS_ERRORMSG_PATHNOTFOUND 
+                            "Œcie¿ka, która zosta³a podana nie zosta³a znaleziona!"
+    IDS_ERRORMSG_PORTNEEDED "Proszê podaj poprawny port!"
+    IDS_ERRORMSG_PREFIX     "B³¹d:"
+    IDS_ERRORMSG_PROXY_AUTHFAILED "B³¹d uwierzytelniania"
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON "Proxy wymaga uwierzytelnienia"
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "Wymagany przez serwer proxy raport autentycznoœci jest nieznany lub nieobs³ugiwany"
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST "Nie mo¿na wybraæ hosta serwera proxy"
+    IDS_ERRORMSG_PROXY_NOCONN "Nie mo¿na pod³¹czyæ siê do serwera proxy"
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "¯¹danie Proxy zakoñczone niepowodzeniem, nie mo¿na po³¹czyæ siê przez serwer proxy"
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "B³¹d, nie mo¿na zanalizowaæ 'FileZilla.xml', plik mo¿e byæ uszkodzony.\nDla tej sesji rejestr zostanie u¿yty do zapisania ustawieñ."
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "Nie mo¿na zainicjowaæ CSFtpIpC. Proszê upewnij siê czy jest wystarczaj¹ca iloœæ wolnych zasobów systemowych!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "Nie mo¿na uruchomiæ procesu SFTP. Proszê upewnij siê, ¿e plik 'FzSFtp.exe' jest w tym samym folderze co 'FileZilla.exe'"
+    IDS_ERRORMSG_SFTP_CLOSED 
+                            "FzSFtp.exe zosta³ zamkniêty, przerwane po³¹czenie."
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "Zosta³y znalezione z³e dane w kanale danych SFTP, przerywa po³¹czenie."
+    IDS_ERRORMSG_SFTP_NORESPONSE 
+                            "FzSFtp.exe nie odpowiedzia³, przerywa po³¹czenie."
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE 
+                            "Ta nazwa ju¿ istnieje! Proszê podaj inn¹ nazwê!"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE "Proszê wybierz rodzaj logowania!"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME "Proszê podaj nazwê dla strony FTP!"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "Proszê podaj has³o!"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "Proszê podaj nazwê u¿ytkownika!"
+    IDS_ERRORMSG_TIMEOUT    "Wykryto bezczynnoœæ!"
+    IDS_ERRORMSG_UPLOADABORTED "Wysy³anie anulowane"
+    IDS_ERRORMSG_UPLOADFAILED "Wysy³anie nie powiod³o siê"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "Z³a sk³adnia adresu. Powinno byæ [ftp://][User:Pass@]Host[:Port][/Path]\nParametry otoczone [ ] s¹ opcjonalne."
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE "Nie mo¿na otworzyæ ""%s"""
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            "Nie mo¿na uruchomiæ ""%s"" do podgl¹du / edycji ""%s"". Proszê sprawdŸ skojarzenia pliku."
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG "B³¹d, nie okreœlono domyœlnego programu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "Nie mo¿na siê po³¹czyæ!"
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "Nie mo¿na utworzyæ socket w okreœlonym zakresie portów."
+    IDS_ERRORMSG_CANTCREATEFILE "B³¹d tworzenia pliku zewnêtrznego!"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION 
+                            "Nie mo¿na nawi¹zaæ po³¹czenia SSL"
+    IDS_ERRORMSG_CANTGETFILETYPE "Nie rozpoznano typu pliku!"
+    IDS_ERRORMSG_CANTGETLIST "Nie mo¿na by³o odzyskaæ listy katalogów"
+    IDS_ERRORMSG_CANTGETRESPONSE "Nie mo¿na otrzymaæ odpowiedzi!"
+    IDS_ERRORMSG_CANTIMPORTFILE "B³¹d importowania pliku!"
+    IDS_ERRORMSG_CANTINITSSL "Nie mo¿na zainicjalizowaæ biblioteki SSL"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "Nie mo¿na wczytaæ bibliotek SSL. Proszê upewnij siê, ¿e pliki ""ssleay32.dll"" i ""libeay32.dll"" s¹ w tym samym folderze co  FileZilla."
+    IDS_ERRORMSG_CANTOPENFILE "Nie mo¿na otworzyæ pliku wejœciowego!"
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "Plik raportu (log) ""%s"" nie zosta³ otwarty. Rejestrowanie do pliku zostanie wy³¹czone w tej sesji."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "Po³¹czony"
+    IDS_STATUSMSG_CONNECTEDWITH 
+                            "Po³¹czony z %s. Czeka na komunikat powitania..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP 
+                            "Po³¹czony z %s, inicjuje po³¹czenie SFTP..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL 
+                            "Po³¹czony z %s, negocjuje po³¹czenie SSL..."
+    IDS_STATUSMSG_CONNECTING "£¹czy z %s ..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "Wylistowanie katalogu powiod³o siê"
+    IDS_STATUSMSG_DISCONNECTED "Od³¹czony od serwera"
+    IDS_STATUSMSG_DISCONNECTING "Roz³¹cza siê..."
+    IDS_STATUSMSG_DOWNLOADSTART "Rozpoczyna pobieranie %s"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "Pobieranie zakoñczone powodzeniem"
+    IDS_STATUSMSG_FILEIMPORTED 
+                            "Import pliku ""%s"" zakoñczy³ siê powodzeniem!"
+    IDS_STATUSMSG_FWCONNECT "Próbuje uzyskaæ dostêp do %s przez firewall..."
+    IDS_STATUSMSG_IDENT_REQUEST "Proœba identyfikacji z: %s"
+    IDS_STATUSMSG_IDENT_START "Uruchomiono identyfikacjê serwera"
+    IDS_STATUSMSG_IDENT_STOP "Zatrzymano identyfikacjê serwera"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "Uwaga! Plik jêzykowy DLL zosta³ utworzony dla wczeœniejszej wersji programu FileZilla i nie jest zgodny z t¹ wersj¹. Proszê œci¹gnij plik DLL dla nowszej wersji z!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "Status:"
+    IDS_STATUSMSG_RECONNECTWAIT "Czeka na roz³¹czenie..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "Odzyskuje listê katalogów..."
+    IDS_STATUSMSG_SSLESTABLISHED 
+                            "Nawi¹zano po³¹czenie SSL. Oczekuje na komunikat powitania..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "Nawi¹zano po³¹czenie SSL"
+    IDS_STATUSMSG_UPLOADSTART "Zaczyna wysy³aæ %s"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "Wysy³anie zakoñczy³o siê powodzeniem"
+    IDS_STATUSMSG_WAITINGTORETRY "Czeka, aby ponowiæ... (1 jedna próba)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT 
+                            "Czeka, aby ponowiæ... (pozosta³o %d prób)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "Czy przerwaæ aktualne po³¹czenie?"
+    IDS_QUESTION_CANCELOPERATION "Czy na pewno anulowaæ aktualne po³¹czenie?"
+    IDS_QUESTION_DELETEDIRS "Czy na pewno usun¹æ katalog %d ?"
+    IDS_QUESTION_DELETEFILE "Czy na pewno usun¹æ ""%s""?"
+    IDS_QUESTION_DELETEFILES "Czy na pewno usun¹æ plik %d ?"
+    IDS_QUESTION_DELETEFILESANDDIRS 
+                            "Czy na pewno usun¹æ pliki i katalogi %d ?"
+    IDS_QUESTION_FILEEXISTS "Plik ""%s"" (%d bajtów) ju¿ istnieje. Czy nadpisaæ plikiem ""%s"" (%d bajtów)?"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "Uruchamiasz pierwszy raz t¹ wersjê FileZilla lub twoje ustawienia zosta³y usuniête.\nFileZilla mo¿e zapisaæ te ustawienia w rejestrze lub w pliku XML.\nCzy chcesz, aby FileZilla u¿ywa³ rejestru?\nJest to zalecane je¿eli jesteœ w otoczeniu wielu u¿ytkowników\nWybierz 'Nie', aby u¿ywaæ pliku XML, który jest zalecany dla wiêkszoœci u¿ytkowników.\nJe¿eli wybierzesz 'Nie', a ustawienia znajduj¹ siê w rejestrze, to zostan¹ one zaimportowane do pliku XML."
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "UWAGA - POTENCJALNE NARUSZENIE BEZPIECZEÑSTWA!\nKlucz serwera host nie odpowiada poprzednio\nbuforowanemu (zapisanemu) w rejestrze. To oznacza, ¿e albo administrator\nserwera host zmieni³ klucz lub jesteœ\naktualnie pod³¹czony(na) do innego komputera naœladuj¹cego\nserwer.\nNowy klucz identyfikacyjny serwera to:\n%s\nJe¿eli spodziewa³eœ(³aœ) siê tej zmiany i ufasz nowemu kluczowi,\nwybierz 'Tak', aby uaktualniæ bufor i kontynuowaæ po³¹czenie.\nJe¿eli chcesz prowadziæ po³¹czenie bez uaktualniania\nbufora, wybierz 'Nie'.\nJe¿eli chcesz ca³kowicie pomin¹æ po³¹czenie, kliknij\n'Anuluj'. Tylko wybranie 'Anuluj' gwarantuje\nbezpieczny wybór.\nCzy uaktualniæ buforowany klucz?"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "Klucz serwera host nie jest buforowany w rejestrze. Nie\nmasz gwarancji, ¿e ten serwer to komputer, o którym\nmyœlisz.\nKlucz identyfikacyjny serwera to:\n%s\nJe¿eli ufasz temu komputerowi, wybierz 'Tak', aby dodaæ klucz do\\bufora i prowadziæ po³¹czenie.\nJe¿eli chcesz przeprowadziæ pod³¹czenie tylko raz, bez\ndodawania klucza do bufora, wybierz 'Nie'.\nJe¿eli nie ufasz temu komputerowi, wybierz 'Anuluj', aby zaprzestaæ\npo³¹czenia.\nCzy zapisaæ klucz w buforze?"
+    IDS_QUESTION_SITEMANAGERDELETE "Czy na pewno usun¹æ ""%s""?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            """%s"" zosta³ zmodyfikowany.\nCzy chcesz wys³aæ plik z powrotem na serwer?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "Plik zosta³ zmodyfikowany"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "Eksport ustawieñ zakoñczy³ siê powodzeniem. \nJe¿eli zapisano utworzony plik .xml do tego samego folderu co FileZilla pod nazw¹ 'filezilla.xml', to bêdzie on bezpoœrednio u¿ywany zamiast rejestru do zapisu ustawieñ."
+    IDS_OPTIONS_IDENTSYSTEM "Proszê podaj ID systemu operacyjnego!"
+    IDS_OPTIONS_IDENTUSERID "Proszê podaj ID u¿ytkownika!"
+    IDS_OPTIONS_IMPORTFAILURE "B³¹d! Nie powiód³ siê import ustawieñ z '%s'"
+    IDS_OPTIONS_IMPORTOK    "Eksport ustawieñ zakoñczy³ siê powodzeniem."
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "Najni¿szy przedzia³ przerwy dla aktywacji ustawieñ powinien byæ wiêkszy ni¿ wartoœæ przedzia³u najni¿szego!"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "Najni¿szy przedzia³ przerwy dla aktywacji ustawieñ powinien wynosiæ pomiêdzy %d i %d sek.!"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "Najni¿szy przedzia³ przerwy dla aktywacji ustawieñ powinien wynosiæ pomiêdzy %d i %d sek.!"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF 
+                            "Wy¿sza granica zakresu portów musi byæ wy¿sza ni¿ ni¿sza granica!"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH 
+                            "Najwy¿sza granica zakresu portów musi byæ pomiêdzy %d i %d!"
+    IDS_OPTIONS_LIMITPORTRANGELOW 
+                            "Najni¿sza granica zakresu portów musi byæ pomiêdzy %d i %d!"
+    IDS_OPTIONS_NUMRETRIES  "Proszê podaj wartoœæ pomiêdzy %d i %d dla maksymalnej liczby ponowieñ!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "Proszê podaj nazwê host dla proxy!"
+    IDS_OPTIONS_PROXYPORT   "Proszê podaj prawid³owy port dla proxy!"
+    IDS_OPTIONS_RETRYDELAY  "Proszê podaj wartoœæ pomiêdzy %d i %d dla opóŸnienia miêdzy ponowieniami!"
+    IDS_OPTIONS_TIMEOUT     "Prosze podaj liczbê pomiêdzy %d a %d dla wykrycia czasu bezczynnoœci"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "Uwierzytelnianie zakoñczy³o siê niepowodzeniem, czêsto oznacza to, ¿e\nnie masz Kerberos v.5.\nRozwa¿ uruchomienie Leash32.\nCzy chcesz wys³aæ wsztystkie dane bez szyfrowania,\ni potencjalnie ujawniæ swoje has³o?"
+    IDS_GSSERROR_CANTLOADDLL "Nie mo¿na znaleŸæ lub wczytaæ %s"
+    IDS_GSSERROR_CANTLOADGSSAPI 
+                            "Jeden lub wiêcej GSS-API's nie zosta³(y) za³adowany(ne)!"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI 
+                            "Nastêpuj¹ce procedury API nie mog³y byæ za³adowane z Kerberos 5 DLL!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Inicjalizacja Sockets  zakoñczy³a siê niepowodzeniem"
+    IDS_BROWSEFORFOLDER     "Proszê wybierz folder lokalny."
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "Za d³ugi ³añcuch certyfikatu"
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "Minê³a wa¿noœæ certyfikatu"
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "Certyfikat nie jest jeszcze wa¿ny"
+    IDS_CERT_ERR_CERT_REJECTED "Certyfikat zosta³ odrzucony"
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE "B³¹d podpisu certyfikatu."
+    IDS_CERT_ERR_CERT_UNTRUSTED "Certyfikat nie jest wiarygodny"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS "Po³¹cz i pomiñ ustawienia proxy"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "&Czyœæ"
+    ID_REMOTELISTSTYLE_ICON "Pokazuje elementy u¿ywaj¹c du¿ych ikon"
+    ID_REMOTELISTSTYLE_LIST "Pokazuje elementy jako listê"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT 
+                            "Pokazuje elementy ze szczegó³owymi informacjami"
+    ID_REMOTELISTSTYLE_SMALLICON "Pokazuje elementy u¿ywaj¹c ma³ych ikon"
+    ID_SHOWQUEUE            "Pokazuje/ukrywa kolejkê"
+    ID_SHOWREMOTETREE       "Pokazuje/ukrywa drzewo serwera"
+    ID_SHOWTREE             "Pokazuje/ukrywa drzewo lokalne"
+    ID_SITEMANAGER          "Otwiera mened¿era strony"
+    ID_SITEMANAGER_FILE_EXPORT "Eksportuje do pliku listê serwerów FTP"
+    ID_SITEMANAGER_FILE_IMPORT "Importuje z pliku listê serwerów FTP"
+    ID_TOOLBAR_DISCONNECT   "Od³¹czenie serwera"
+    ID_TOOLBAR_RECONNECT    "Ponowienie po³¹czenia z serwerem"
+    ID_TOOLBAR_REFRESH      "Odœwie¿"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "Pokazuje rozmiar pliku"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "Pokazuje rodzaj/typ pliku"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME 
+                            "Pokazuje datê i czas ostatniej modyfikacji pliku"
+    ID_VIEW_MESSAGELOG      "Pokazuje/ukrywa okno komunikatów"
+    ID_VIEW_QUICKCONNECT_BAR "Pokazuje/ukrywa pasek szybkiego po³¹czenia"
+    ID_VIEW_REMOTELISTVIEW_DATE "Pokazuje datê pliku"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "Pokazuje rozmiar pliku"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "Pokazuje prawa do pliku/katalogu"
+    ID_VIEW_REMOTELISTVIEW_TIME "Pokazuje czas pliku"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR 
+                            "Prze³¹cznik paska statusu listy plików lokalnych, który pokazuje u¿yteczne informacje o (zaznaczonych) plikach i folderach"
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR 
+                            "Prze³¹cznik paska statusu listy plików serwera, który pokazuje u¿yteczne informacje o (zaznaczonych) plikach i folderach"
+    ID_QUEUECONTEXT_ABORT   "Anuluje zaznaczone transfery i usuwa je z kolejki"
+    ID_QUEUECONTEXT_PAUSE   "Wstrzymuje zaznaczone transfery"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "Pokazuje elementy u¿ywaj¹c ma³ych ikon"
+    ID_MENU_QUEUE_EXPORT    "Eksportuje zawartoœæ kolejki do pliku"
+    ID_MENU_QUEUE_IMPORT    "Importuje zawartoœæ kolejki z pliku zewnêtrznego"
+    ID_MENU_QUEUE_PROCESSNOW "Uruchamia kolejkê"
+    ID_MENU_QUEUE_USEMULTIPLE 
+                            "Umo¿liwia transferowaæ kilka plików w tym samym czasie"
+    ID_MENU_SERVER_CHANGEPASS 
+                            "Zmienia has³o strony. Tylko kilka serwerów ftp obs³uguje tak¹ funkcjê."
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "Kopiuje adres URL aktualnego serwera ³¹cznie ze œcie¿k¹ do schowka"
+    ID_MENU_SERVER_ENTERRAWCOMMAND "Pozwala wys³aæ komendy FTP do serwera"
+    ID_MENU_TRANSFER_MANUALTRANSFER 
+                            "Pobiera plik z serwera do aktualnego lokalnego katalogu"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "Anuluje aktualn¹ operacjê"
+    ID_COPYTOSITEMANAGER    "Kopiuje ustawienia aktualnego po³¹czenia jako now¹ pozycjê w mened¿erze strony"
+    ID_EDIT_EXPORTSETTINGS  "Eksportuje ustawienia do pliku"
+    ID_EDIT_IMPORTSETTINGS  "Importuje ustawienia z pliku"
+    ID_EDIT_SETTINGS        "Konfiguracja programu FileZilla"
+    ID_FILE_CONNECTTODEFAULTSITE "£¹czy z domyœln¹ stron¹ z mened¿era strony"
+    ID_FILE_EXPORT_ASURLLIST 
+                            "Eksportuje do pliku tekstowego wszystkie strony FTP jako listê URL"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "Eksportuje do pliku tekstowego wszystkie strony FTP ze szczegó³ami"
+    ID_FTPCONTEXT_CREATEDIR "Tworzy katalog na serwerze ftp"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "Pokazuje spis treœci pliku pomocy"
+    ID_HELPMENU_INDEX       "Pokazuje indeks pliku pomocy"
+    ID_HELPMENU_SEARCH      "Przeszukuje plik pomocy"
+    ID_LOCALLISTSTYLE_ICON  "Pokazuje elementy u¿ywaj¹c du¿ych ikon"
+    ID_LOCALLISTSTYLE_LIST  "Pokazuje elementy jako listê"
+    ID_LOCALLISTSTYLE_REPORT "Pokazuje elementy ze szczegó³owymi informacjami"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "Gdy pole jest zaznaczone, to FileZilla próbuje pokazaæ ukryte pliki na serwerze."
+    ID_OVERWRITEMENU_ASK    "Program FileZilla zapyta co robiæ, gdy plik ju¿ istnieje"
+    ID_OVERWRITEMENU_OVERWRITE "Zawsze nadpisuje pliki"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER 
+                            "Nadpisuje stary plik, gdy plik jest nowszy"
+    ID_OVERWRITEMENU_RENAME "Pyta o now¹ nazwê pliku"
+    ID_OVERWRITEMENU_RESUME "Przywraca transfer, gdy jest to mo¿liwe"
+    ID_OVERWRITEMENU_SKIP   "Pomija istniej¹ce pliki"
+    ID_PROCESS_QUEUE        "Uruchamia kolejkê"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1 plik z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_DIRANDFILESMIN 
+                            "1 folder i %d plików z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_DIRANDFILE  "1 folder i 1 plik z %I64d bajtami."
+    IDS_DIRINFO_DIRSANDFILE "%d folderów i 1 plik z %I64d bajtami."
+    IDS_DIRINFO_DIRANDFILEMIN 
+                            "1 folder i 1 plik z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_DIRSANDFILEMIN 
+                            "%d folderów i 1 plik z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_SELECTED_FILE "Zaznaczono 1 plik z %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIR "Zaznaczono 1 folder."
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "Zaznaczono 1 folder i %d plików z %I64d bajtami."
+    IDS_DIRINFO_SELECTED_FILEMIN 
+                            "Zaznaczono 1 plik z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "Zaznaczono 1 folder i %d plików z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIRANDFILE 
+                            "Zaznaczono 1 folder i 1 plik z %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "Zaznaczono 1 folder i 1 plik z przynajmniej %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "Zaznaczono %d folderów i 1 plik z %I64d bajtami."
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "Zaznaczono %d folderów i 1 plik z przynajmniej %I64d bajtami."
+    IDS_QUEUESTATUS_PAUSED  "Wstrzymano"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "Przywróæ wstrzymane transfery"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME 
+                            "Sortuje listê plików na serwerze wed³ug nazwy pliku"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE 
+                            "Sortuje listê plików na serwerze wed³ug rozmiaru pliku"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE 
+                            "Sortuje listê plików na serwerze wed³ug typu pliku"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "Sortuje listê plików na serwerze wed³ug daty / czasu pliku"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "Sortuje listê plików na serwerze w porz¹dku rosn¹cym"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "Sortuje listê plików na serwerze w porz¹dku malej¹cym"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "Nie mo¿na by³o ustawiæ wskaŸnika pliku"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "Nieznany b³¹d w warstwie SSL"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR 
+                            "Nie mo¿na by³o zweryfikowaæ certyfikatu SSL"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME 
+                            "Sortuje listê plików na komputerze lokalnym wed³ug nazwy pliku"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE 
+                            "Sortuje listê plików na komputerze lokalnym wed³ug rozmiaru pliku"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE 
+                            "Sortuje listê plików na komputerze lokalnym wed³ug typu pliku"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "Sortuje listê plików na komputerze lokalnym wed³ug daty / czasu ostatniej modyfikacji"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "Sortuje listê plików na komputerze lokalnym w porz¹dku rosn¹cym"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "Sortuje listê plików na komputerze lokalnym w porz¹dku malej¹cym"
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT 
+                            "Automatycznie podpisany certyfikat"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "Z³y format za polem w wa¿noœci certyfikatu"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "Z³y format przed polem w wa¿noœci certyfikatu"
+    IDS_CERT_ERR_INVALID_CA "Z³y certyfikat CA"
+    IDS_CERT_ERR_INVALID_PURPOSE "Nieobs³ugiwany certyfikat"
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN 
+                            "U¿yty klucz nie zawiera podpisu certyfikatu"
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED "D³ugoœæ œcie¿ki jest przekroczona"
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "Automatycznie podpisany certyfikat w ³añcuchu certyfikatu"
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "Nie mo¿na zdekodowaæ wydawcy publicznego klucza"
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "Nie mo¿na odkodowaæ podpisu certyfikatu"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT 
+                            "Nie mo¿na pobraæ wydawcy certyfikatu"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "Nie mo¿na pobraæ lokalnego wydawcy certyfikatu"
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE 
+                            "Nie mo¿na zweryfikowaæ pierwszego certyfikatu"
+    IDS_CERT_ERR_UNKNOWN    "Nieznany b³¹d weryfikacji certyfikatu"
+    IDS_CERT_ERRDEPTH       "Pojawi³ siê b³¹d w ³añcuchu certyfikatu."
+    IDS_CERT_OK             "Certyfikat wydaje siê byæ wa¿ny."
+END
+
+#endif    // Polish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
+#ifdef _WIN32
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+#include "afxres.rc"          // Standardkomponenten
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

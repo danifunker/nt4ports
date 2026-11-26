@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>SFTP settings</title>
+  <link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+<body>
+
+<p class="PageCaption">SFTP settings</p>
+<p class="MidCaption">Overview</p>
+<p class="bodyText">On the SFTP page you can configure how FileZilla connects to SFTP servers.</p>
+<p align="center" class="bodyText"><img border="0" src="sftp.png" width="597" height="405"><br>
+</p>
+<table border="0" height="47">
+  <tr>
+    <td valign="top" class="bodyText" nowrap height="13"><b>Use compression</b></td>
+    <td valign="top" class="bodyText" nowrap height="13">-</td>
+    <td valign="top" class="bodyText" height="13">
+      To speed up SFTP transfers, all transfered data can be compressed. 
+      This feature is especially useful if you have a low bandwidth connection to the server.
+      However not all servers support compression.
+      Connection establishment may fail if connection to such servers with enabled compression.
+  </td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText" nowrap height="26"><b>Protocol selection</b></td>
+    <td valign="top" class="bodyText" nowrap height="26">-</td>
+    <td valign="top" class="bodyText" height="26">
+      For increased security, FileZilla uses the SSH2 by default for SFTP connections.
+      If your server does not support SSH2, you can try to force SSH1 connections.
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

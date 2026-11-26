@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Connection</title>
+  <link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+<body>
+
+<p align="center" class="PageCaption">Connection</p>
+<p class="MidCaption" align="left">Overview:</p>
+<p class="bodyText" align="left">The connection page and its subpages control 
+the way in which FileZilla connects to FTP servers.</p>
+<p class="bodyText" align="center"><img border="0" src="connection.png" width="597" height="405">
+<br>(Connection window of the FileZilla Options dialog box)</p>
+<p class="SmallCaption" align="left">Keep Alive Settings:</p>
+<p class="bodyText" align="left">Most FTP connections time out if you have been
+idle for too long.&nbsp; FileZilla can be configured to send Keep Alive commands
+such as &quot;PWD&quot;, &quot;REST 0&quot;, &quot;TYPE A&quot;, or &quot;TYPE
+I&quot; to simulate activity and prevent the FTP server from logging you
+out.&nbsp; To use the Keep Alive System, check the &quot;Enable the Keep Alive
+System&quot; checkbox.&nbsp; You can also configure the frequency of Keep Alive
+commands by entering the time interval at which FileZilla will send Keep Alive
+commands. Please note that enabling this setting does not prevent servers that 
+ 
+use no-transfer timeouts from logging you out if you are idle for too long.</p>
+<p class="SmallCaption" align="left">Timeout Detection:</p>
+<p class="bodyText" align="left">After FileZilla sends a command, if the FTP
+server does not respond, or starts a response but doesn't finish it, then
+FileZilla assumes the connection has timed out, and disconnects.&nbsp; Here, you
+can enter the amount of time in seconds that FileZilla should wait before
+disconnecting. If you have a very slow connection to a server and it always
+times out, try using a greater value.</p>
+<p class="SmallCaption" align="left">Retry Settings:</p>
+<p class="bodyText" align="left">If the connection is closed while a transfer is
+in progress, then FileZilla can be configured to reconnect and attempt the
+transfer again.&nbsp; Here, you can configure how long FileZilla should wait
+before reconnecting, and the maximum number of times it should try to reconnect.</p>
+<p class="MidCaption">Additional Settings</p>
+<p class="bodyText">The connection page has several subpages where you can
+configure other aspects of the connection:</p>
+<ul>
+  <li>
+    <p class="bodyText"><b><a href="firewall.htm">Firewall settings</a></b></li>
+  <li>
+    <p class="bodyText"><b><a href="ftpproxy.htm">FTP Proxy settings</a></b></li>
+  <li>
+    <p class="bodyText"><b><a href="proxy.htm">Proxy settings</a></b></li>
+  <li>
+    <p class="bodyText"><b><a href="gss.htm">GSS support</a></b></li>
+  <li>
+    <p class="bodyText"><b><a href="dircache.htm">Directory cache</a></b></li>
+  <li>
+    <p class="bodyText"><b><a href="ident.htm">Ident server</a></b></li>
+  <li>
+    <p class="bodyText"><b><a href="sftp.htm">SFTP settings</a></b></li>
+</ul>
+</body>
+</html>

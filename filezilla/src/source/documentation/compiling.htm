@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Compiling FileZilla</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+<body>
+<p align="center" class="PageCaption">Compiling FileZilla</p>
+<p align="left" class="bodyText">To compile FileZilla, you need the following 
+programs and tools:</p>
+<ul>
+  <li>
+<p align="left" class="bodyText">MS Visual C++ 6<li>
+<p align="left" class="bodyText">The latest version of the MS Platform SDK from 
+http://www.microsoft.com/msdownload/platformsdk/sdkupdate/<li>
+<p align="left" class="bodyText">MS HTML Help Workshop
+</ul>
+<blockquote>
+<p align="left" class="bodyText">You can download the latest version of HTML 
+Help Workshop from the
+<a target="_blank" href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp?frame=true">Microsoft Website</a>. After installing, you should prepare DevStudio: Go to 
+Tools, Options, Directories, then (assuming that you've installed HTML Help Workshop 
+to <b>C:\Program Files\HTML Help Workshop</b>):</p>
+<ul>
+  <li>
+  <p class="bodyText">Under <em>Show directories for</em> choose <em>Include 
+  files</em>, click on <em>New</em> and type<br>
+  <strong>C:\Program Files\HTML Help Workshop\include</strong>
+  <li>
+  <p class="bodyText">Under <em>Show directories for</em> choose <em>Library 
+  files</em>, click on <em>New</em> and type<br>
+  <strong>C:\Program Files\HTML Help Workshop\lib</strong>
+  <li>
+  <p class="bodyText">Under <em>Show directories for</em> choose <em>Executable 
+  files</em>, click on <em>New</em> and type<br>
+  <strong>C:\Program Files\HTML Help Workshop</strong>
+  <li>
+  <p class="bodyText">Close DevStudio and restart to save the changes.
+</ul>
+</blockquote>
+<p align="left" class="bodyText">To compile the install script, you have to 
+download and install <a target="_blank" href="http://www.firehose.net/free/nsis">NSIS</a>. After 
+installing NSIS, right-click the file FileZilla.nsi in the Explorer and choose &quot;Compile 
+NSI&quot;.</p>
+</body>
+</html>

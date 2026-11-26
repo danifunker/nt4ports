@@ -1,0 +1,2432 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Catalan resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CAT)
+#ifdef _WIN32
+LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 318, 212
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Configura transferència de fitxers manual"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Configura una tranferència de fitxers personalitzada. Si us plau introdueix el màxim d'informació possible. Si deixes camps en blanc, FileZilla intenta omplir-los.",
+                    IDC_STATIC,7,7,304,17
+    LTEXT           "Tipus de transferència:",IDC_STATIC,7,28,84,8
+    CONTROL         "&Descàrrega",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,40,48,10
+    CONTROL         "Pu&jar",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,51,39,10
+    LTEXT           "Fitxer &Local:",IDC_STATIC,7,65,31,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "Fitxer &Remot:",IDC_STATIC,7,93,38,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "Utilitza el servidor a&ctual",
+                    IDC_MANUALTRANSFER_SERVER1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,147,30,98,10
+    CONTROL         "Utilitza el servidor següent:",
+                    IDC_MANUALTRANSFER_SERVER2,"Button",BS_AUTORADIOBUTTON,
+                    147,41,104,10,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,141,41,170,164,WS_GROUP
+    LTEXT           "&Ordinador Principal:",IDC_STATIC,148,52,64,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,61,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,281,52,16,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,280,61,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Tipus de s&ervidor:",IDC_STATIC,148,80,63,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,90,157,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Tipus d'entrada",IDC_STATIC,148,108,157,38
+    CONTROL         "Anònim",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,119,53,10
+    CONTROL         "N&ormal",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,119,38,10
+    CONTROL         "Ignora la configuració de servidors intermediaris",
+                    IDC_MANUALTRANSFER_BYPASSPROXY,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,158,132,83,10
+    LTEXT           "Us&uari:",IDC_STATIC,148,149,37,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,158,157,14,ES_AUTOHSCROLL
+    LTEXT           "Contrasenya:",IDC_STATIC,148,176,45,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,185,157,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "D'acord",IDOK,15,191,50,14
+    PUSHBUTTON      "Cancel·lar",IDCANCEL,75,191,50,14
+    CONTROL         "Inicïa la transferè&ncia ara",
+                    IDC_MANUALTRANSFER_STARTNOW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,172,103,10
+END
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 82
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Quant a FileZilla"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<versió>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001-2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "D'acord",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "Escrit per:",IDC_STATIC,35,41,35,8
+    LTEXT           "http://www.sourceforge.net/projects/filezilla",
+                    IDC_HOMEPAGE,82,54,146,8
+    LTEXT           "Tim Kosse",IDC_MAIL,82,40,34,8
+    LTEXT           "Pàgina d'inici:",IDC_STATIC,34,54,48,8
+    LTEXT           "Traduït per:",IDC_TRANSLATEDBY,34,69,39,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Òscar Martínez (omllobet@telefonica.net)",IDC_MAIL2,82,
+                    69,138,8,NOT WS_VISIBLE
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,182,28,15,13
+END
+
+IDR_MAINFRAME DIALOGEX 0, 0, 388, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Adreça:",IDC_STATIC,1,4,28,8
+    EDITTEXT        IDC_HOST,31,2,71,12,ES_AUTOHSCROLL
+    LTEXT           "Usuari:",IDC_STATIC,108,4,24,8
+    EDITTEXT        IDC_USER,132,2,40,12,ES_AUTOHSCROLL
+    LTEXT           "Contrasenya:",IDC_STATIC,177,4,43,8
+    EDITTEXT        IDC_PASS,224,2,40,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,268,4,16,8
+    EDITTEXT        IDC_PORT,286,2,25,12,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "&Connexió Ràpida",IDOK,314,1,71,14,BS_NOTIFY
+END
+
+IDD_FILEEXISTS DIALOGEX 0, 0, 259, 124
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "El fitxer ja existeix"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "",IDC_FILEEXISTS_FILE1,5,17,134,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d octets",IDC_FILEEXISTS_SIZE1,50,28,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "",IDC_FILEEXISTS_FILE2,7,64,132,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d octets",IDC_FILEEXISTS_SIZE2,50,76,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "Si us plau selecccioni una acció:",IDC_STATIC,143,7,113,
+                    70
+    CONTROL         "S&obreescriure",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,152,17,84,10
+    CONTROL         "Sobreescriure s&i més nou",IDC_FILEEXISTS_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,152,28,94,10
+    CONTROL         "Continua&r",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,152,39,54,10
+    CONTROL         "Canvia el &nom",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,152,50,69,10
+    CONTROL         "Ometre",IDC_FILEEXISTS_SKIP,"Button",BS_AUTORADIOBUTTON,
+                    152,62,65,10
+    CONTROL         "Utilitza sempre aquesta acció quan un fitxer ja existeix",
+                    IDC_FILEEXISTS_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    BS_VCENTER | BS_MULTILINE | WS_GROUP | WS_TABSTOP,170,83,
+                    82,30
+    DEFPUSHBUTTON   "D'acord",IDOK,105,103,50,14
+    LTEXT           "Vols substituir aquest fitxer",IDC_STATIC,7,7,104,8
+    LTEXT           "amb el següent fitxer?",IDC_STATIC,7,55,70,8
+END
+
+IDD_OPTIONS_FIREWALL DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Limita els ports locals utilitzats per FileZilla",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,149,10
+    LTEXT           "Per defecte, FileZilla utilitza qualsevol port disponible per a establir connexions i transferències. Si vols que FileZilla només utilitzi un conjunt petit de ports, si us plau introdueix el conjunt de ports aquí.",
+                    IDC_STATIC,19,17,260,24
+    LTEXT           "Port més baix disponible:",IDC_STATIC,19,45,70,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,92,42,40,14,ES_AUTOHSCROLL
+    LTEXT           "Port més alt disponible:",IDC_STATIC,19,62,71,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,92,59,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "Si pots connectar amb servidors FTP però tens dificultats per configurar una transferència de fitxer, pots provar de seleccionar el mode passiu.",
+                    IDC_STATIC,7,88,272,17
+    CONTROL         "Mode &Passiu",IDC_OPTIONS_FIREWALL_PASV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,106,120,10
+    CONTROL         "&Utilitza la següent adreça IP per a transferències no passives:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,208,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,19,138,65,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "&Use the following IP address for non-passive transfers if using IPv6:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,234,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 286, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Configuració de conservació de la connexió",IDC_STATIC,
+                    7,7,270,60
+    CONTROL         "&Activa el sistema de conservació de la connexió",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,19,
+                    166,10
+    LTEXT           "Envia comandes de conservació de la connexió com ""PWD"", ""REST 0"", ""TYPE A"", ""TYPE I"" en intervals aleatoris entre ells",
+                    IDC_STATIC,25,31,225,17
+    EDITTEXT        IDC_INTERVALLOW,28,49,24,14,ES_AUTOHSCROLL
+    LTEXT           "i",IDC_STATIC,61,52,8,8
+    EDITTEXT        IDC_INTERVALHIGH,73,49,23,14,ES_AUTOHSCROLL
+    LTEXT           "segons.",IDC_STATIC,101,52,30,8
+    GROUPBOX        "Detecció de &Temps d'espera",IDC_STATIC,7,73,270,40
+    LTEXT           "Si es transfereixen zero octets en",IDC_STATIC,14,86,
+                    110,8
+    EDITTEXT        IDC_TIMEOUT,125,83,26,14,ES_AUTOHSCROLL
+    LTEXT           "segons,",IDC_STATIC,160,84,32,8
+    LTEXT           "assumeix que la connexió està desactivada i desconnecta.",
+                    IDC_STATIC,14,96,193,8
+    GROUPBOX        "Configuració de Reintents",IDC_STATIC,7,115,270,44
+    LTEXT           "Quan estigui desconnectat del servidor durant una transferència, espera ",
+                    IDC_STATIC,13,128,239,8
+    EDITTEXT        IDC_DELAY,15,139,17,14,ES_AUTOHSCROLL
+    LTEXT           "segons entre els intents d'entrada i torna-ho a intentar",
+                    IDC_STATIC,38,142,181,8
+    EDITTEXT        IDC_NUMRETRY,223,139,20,14,ES_AUTOHSCROLL
+    LTEXT           "cops.",IDC_STATIC,251,142,17,8
+    CONTROL         "Enable IPv6 support (works only under Windows XP / 2003 Server or newer)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,260,10
+    LTEXT           "&Default password for anonymous logins:",IDC_STATIC,7,
+                    180,130,8
+    EDITTEXT        IDC_ANONPWD,140,178,117,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERSOMETHING DIALOG  0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Title"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "<text>",IDC_TEXT,7,7,172,17
+    EDITTEXT        IDC_EDIT1,7,28,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&D'acord",IDOK,36,47,50,14
+    PUSHBUTTON      "&Cancel·lar",IDCANCEL,99,47,50,14
+END
+
+IDD_OPTIONS_LANGUAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Si us plau selecciona l'idioma que el FileZilla hauria d'utilitzar:",
+                    IDC_STATIC,7,7,202,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Directori predeterminat",IDC_STATIC,7,7,272,55
+    CONTROL         "&Recorda el darrer directori utilitzat",
+                    IDC_SELECTDEFAULTFOLDERTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,18,141,10
+    CONTROL         "Utilitza sempre aquest directori com a predeterminat:",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,183,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "&Obre el Gestor de llocs cada cop que s'inicïa el FileZilla",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,77,151,10
+    CONTROL         "Classifica els directoris primer Gestor de Llocs",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,89,161,10
+    CONTROL         "No expandeixis els directoris per defecte",
+                    IDC_SITEMANAGEREXPANDFOLDERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,101,148,10
+    GROUPBOX        "Opcions del Gestor de Llocs",IDC_STATIC,7,66,272,49
+END
+
+IDD_CONNECTION4 DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Si us plau selecciona el tipus de servidor intermediari:",
+                    IDC_STATIC,7,7,181,8
+    CONTROL         "&Connexió directa (sense servidor intermediari)",
+                    IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,7,16,
+                    162,10
+    CONTROL         "SOCKS&4",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,7,27,42,
+                    10
+    CONTROL         "SOCKS4&A",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,7,38,
+                    47,10
+    CONTROL         "SOCKS&5",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,7,49,42,
+                    10
+    CONTROL         "&HTTP 1.1",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,7,60,
+                    45,10
+    GROUPBOX        "Detalls dels servidor intermediari",IDC_STATIC,7,74,272,
+                    100,WS_GROUP
+    LTEXT           "&Ordinador principal:",IDC_STATIC,14,88,64,8
+    EDITTEXT        IDC_PROXYHOST,76,85,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,17,106,16,8
+    EDITTEXT        IDC_PROXYPORT,76,102,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Usuari:",IDC_STATIC,14,124,24,8
+    EDITTEXT        IDC_PROXYUSER,76,119,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Contrasenya:",IDC_STATIC,14,142,45,8
+    EDITTEXT        IDC_PROXYPASS,76,137,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "U&tilitza Usuari / Contrasenya  (només per SOCKS5 i HTTP1.1)",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,159,
+                    206,10
+END
+
+IDD_CHMOD DIALOGEX 0, 0, 199, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Canvia els atributs del fitxer"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Text",IDC_TEXT,7,7,185,19
+    GROUPBOX        "Permisos de propietari",IDC_STATIC,7,27,185,25
+    CONTROL         "&Llegir",IDC_OWNERREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,38,33,10
+    CONTROL         "E&scriure",IDC_OWNERWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,38,41,10
+    CONTROL         "&Executa",IDC_OWNEREXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,38,42,10
+    GROUPBOX        "Permisos de grup",IDC_STATIC,7,58,185,25
+    CONTROL         "Ll&egir",IDC_GROUPREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,69,33,10
+    CONTROL         "Es&criure",IDC_GROUPWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,69,41,10
+    CONTROL         "E&xecuta",IDC_GROUPEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,69,42,10
+    GROUPBOX        "Permisos públics",IDC_STATIC,7,89,185,25
+    CONTROL         "Lle&gir",IDC_PUBLICREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,100,33,10
+    CONTROL         "Esc&riure",IDC_PUBLICWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,100,41,10
+    CONTROL         "Exec&uta",IDC_PUBLICEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,100,42,10
+    LTEXT           "No tots els servidors entenen les instruccions. Aquestes instruccions són usades per servidors UNIX",
+                    IDC_STATIC,7,144,185,20
+    DEFPUSHBUTTON   "&D'acord",IDOK,31,165,50,14
+    PUSHBUTTON      "&Anul·la",IDCANCEL,118,165,50,14
+    LTEXT           "Valor numèric:",IDC_STATIC,7,126,46,8
+    EDITTEXT        IDC_NUMERIC,58,123,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = atribut diferent per tots els fitxers seleccionats",
+                    IDC_STATIC,101,121,95,16
+END
+
+IDD_TRANSFERASDLG DIALOGEX 0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Transfereix com..."
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Si us plau introdueix un nom d'usuari i contrasenya pel compte que hauria d'utilitzar-se per transferir els fitxers i directoris seleccionats.",
+                    IDC_STATIC,7,3,194,25
+    LTEXT           "&Usuari:",IDC_STATIC,45,32,24,8
+    EDITTEXT        IDC_USER,95,28,56,14,ES_AUTOHSCROLL
+    LTEXT           "&Contrasenya:",IDC_STATIC,41,54,45,8
+    EDITTEXT        IDC_PASS,95,50,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "&Transfereix ara",IDC_TRANSFERNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,75,70,66,10
+    DEFPUSHBUTTON   "&D'acord",IDOK,46,85,50,14
+    PUSHBUTTON      "&Cancel·la",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Tipus de transferència predeterminat",IDC_STATIC,7,7,
+                    272,52
+    CONTROL         "Detecció A&utomàtica",IDC_TYPEMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,16,20,78,10
+    CONTROL         "A&SCII",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,16,30,
+                    34,10
+    CONTROL         "&Binari",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,16,
+                    40,35,10
+    LTEXT           "Hauries de deixar aques paràmetre en detecció automàtica. FileZilla escollirà el tipus de transferència basat en l'extensió del fitxer. Aquest tipus de transferència serà seleccionat cada cop que s'inicïa el FileZilla.",
+                    IDC_STATIC,95,16,174,42
+    GROUPBOX        "Fitxers ASCII",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "Si has escollit detecció automàtica, FileZilla utilitzarà una transferència ASCII pels següents tipus d'extensions:",
+                    IDC_STATIC,14,76,256,16
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,112,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Afegir",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "T&reure",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "Si introdueixes el tipus de fitxer erroni, aquests tipus de fitxers es podràn corrompre quan siguin transferits.",
+                    IDC_STATIC,167,98,104,48
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Gestor de llocs"
+MENU IDR_SITEMANAGER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+    GROUPBOX        "Detalls del lloc",IDC_STATIC,174,0,169,244
+    LTEXT           "&Ordinador principal:",IDC_STATIC,180,11,64,8
+    EDITTEXT        IDC_HOST,180,20,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,312,11,16,8
+    EDITTEXT        IDC_PORT,312,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Tipus de &servidor:",IDC_STATIC,180,38,61,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Tipus d'entrada",IDC_STATIC,180,66,157,38
+    CONTROL         "Anòni&ma",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,189,77,43,10
+    CONTROL         "Norma&l",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,237,77,
+                    38,10
+    CONTROL         "Account",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,289,78,
+                    42,10
+    CONTROL         "Omet la configuració de servidor intermediari",
+                    IDC_FWBYPASS,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,181,89,154,13
+    LTEXT           "&Usuari:",IDC_STATIC,180,107,24,8
+    EDITTEXT        IDC_USER,180,117,103,14,ES_AUTOHSCROLL
+    LTEXT           "Account:",IDC_STATIC,287,107,30,8
+    EDITTEXT        IDC_USER2,287,117,49,14,ES_AUTOHSCROLL
+    LTEXT           "Contrasenya:",IDC_STATIC,180,135,45,8
+    EDITTEXT        IDC_PASS,180,144,157,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "No desis la contrasenya.",IDC_PASSDONTSAVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,180,162,108,
+                    10
+    LTEXT           "C&omentaris:",IDC_STATIC,180,177,36,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,180,188,157,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "Lloc per de&fecte",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,226,65,10
+    PUSHBUTTON      "&Nou lloc",IDC_NEW,7,212,50,14,WS_GROUP
+    PUSHBUTTON      "Nou dir&ectori",IDC_SITEMANAGER_NEWFOLDER,62,212,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "Es&borra",IDC_DELETE,117,212,50,14
+    PUSHBUTTON      "Cop&ïa",IDC_SITEMANAGER_COPY,7,230,50,14,WS_GROUP
+    PUSHBUTTON      "Can&via el nom",IDC_SITEMANAGER_RENAME,62,230,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "A&vançat...",IDC_SITEMANAGER_ADVANCED,117,230,50,14,
+                    WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,249,
+                    336,1
+    PUSHBUTTON      "&Connectar",IDOK,79,253,50,14
+    PUSHBUTTON      "C&ancel·lar",IDCANCEL,150,253,50,14
+    PUSHBUTTON      "D&esa i surt",IDC_EXIT,221,253,50,14
+END
+
+IDD_OPTIONS_INTERFACE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Paràmetres inicials",IDC_STATIC,7,9,272,100
+    LTEXT           "Quan s'inicia el FileZilla, quines parts de la finestra haurien de ser visibles?",
+                    IDC_STATIC,14,19,236,8
+    CONTROL         "&Sempre utilitza la configuració de sota.",IDC_VIEWMODE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,29,158,10
+    CONTROL         "&Recorda la darrera configuració utilitzada",
+                    IDC_VIEWMODE2,"Button",BS_AUTORADIOBUTTON,14,39,147,10
+    LTEXT           "Configuració actual",IDC_STATIC,14,50,66,8
+    LTEXT           "Mostra aquestes parts:",IDC_STATIC,15,60,32,28,NOT 
+                    WS_GROUP
+    CONTROL         "&Barra d'eines",IDC_SHOWTOOLBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,64,60,57,10
+    CONTROL         "B&arra d'estat",IDC_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,120,61,46,10
+    CONTROL         "Ba&rra de Connexió ràpida",IDC_SHOWQUICKCONNECTBAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,188,60,73,10
+    CONTROL         "Bi&tàcora",IDC_SHOWMESSAGELOG,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,64,74,59,10
+    CONTROL         "Vista d'arbre l&ocal",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,120,74,68,10
+    CONTROL         "&Cua de transferències",IDC_SHOWTRANSFERQUEUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,188,73,86,10
+    CONTROL         "Vista d'arbre r&emota",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,64,90,81,10
+    GROUPBOX        "Miscel·lània",IDC_STATIC,7,111,272,80
+    CONTROL         "Mostra les etiquetes de &vistes",IDC_VIEWLABELS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,123,123,10
+    CONTROL         "Recorda la grandària i posició de la finestra del FileZilla",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,134,256,10
+    CONTROL         "Mi&nimitza a la barra de tasques (predeterminat)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,152,195,10
+    CONTROL         "M&inimitza a la safata i no a la barra de tasques",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,162,166,10
+    CONTROL         "Mostra el botó de minimit&zar a la safata",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,154,10
+END
+
+IDD_OPTIONS_GSSPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Activa el suport de Kerberos GSS",IDC_USEGSS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,118,10
+    LISTBOX         IDC_SERVERLIST,15,64,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,64,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Afegeix",IDC_SERVERADD,128,83,50,14
+    PUSHBUTTON      "&Treu",IDC_SERVERREMOVE,128,101,50,14
+    LTEXT           "Has de tenir el Kerberos per Windows (KfW) instal·lat. Si no, aquesta característica no funcionarà. Si està activat, FileZilla utilitzarà l'autentificació GSS i encriptació pels servidor de la llista de sota.",
+                    IDC_STATIC,7,21,272,26
+    GROUPBOX        "Servidors activats GSS",IDC_STATIC,7,52,272,149
+    LTEXT           "Per cada servidor l'adreça del qual finalitza amb una cadena a la llista, GSS serà utilitzat. Si us plau només introdueix servidors que suportin GSS.",
+                    IDC_STATIC,184,66,88,49
+    LTEXT           "Un tiquet de Kerberos versió 5 és requerit abans de que comenci a funcionar el GSS",
+                    IDC_STATIC,185,124,88,35
+END
+
+IDD_OPTIONS_DEBUG DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Aquestes configuracions només són per depurar el programa. Normalment no les has de canviar.\nPerò si trobes problemes en FileZilla pot activar aquestes característiques de depuració. La informació de sortida adicional pot ajudar a solucionar el problema.",
+                    IDC_STATIC,7,7,272,35
+    CONTROL         "&Desa els misstages del FTP",IDC_DEBUG_ENGINETRACE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,43,99,10
+    CONTROL         "&Mostara el llistat de directoris ""cru""",
+                    IDC_DEBUG_SHOWRAWLISTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,56,129,10
+    CONTROL         "&Activa el menú de depuració",IDC_DEBUG_DEBUGMENU,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,69,116,10
+END
+
+IDD_OPTIONS_FTPPROXY DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Servidor intermediari",IDC_STATIC,7,7,74,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Port",IDC_STATIC,113,7,14,8
+    EDITTEXT        IDC_EDIT6,113,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Usuari",IDC_STATIC,7,36,21,8
+    EDITTEXT        IDC_EDIT7,7,47,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Contr&asenya",IDC_STATIC,53,36,42,8
+    EDITTEXT        IDC_EDIT8,53,47,40,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "&Tipus de servidor intermediari",IDC_STATIC,7,71,272,
+                    103
+    CONTROL         "Cap",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+                    WS_TABSTOP,17,81,29,10
+    CONTROL         "SITE hostname",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    17,91,65,10
+    CONTROL         "USER after logon",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,71,10
+    CONTROL         "Proxy OPEN",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,17,
+                    111,55,10
+    CONTROL         "Transparent",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,17,
+                    121,54,10
+    CONTROL         "USER RemoteID@Remotehost",IDC_RADIO8,"Button",
+                    BS_AUTORADIOBUTTON,17,131,115,10
+    CONTROL         "USER FireID@Remotehost",IDC_RADIO9,"Button",
+                    BS_AUTORADIOBUTTON,17,141,102,10
+    CONTROL         "USER RemoteID@RemoteHost FireID",IDC_RADIO10,"Button",
+                    BS_AUTORADIOBUTTON,17,151,137,10
+    CONTROL         "USER RemoteID@fireID@remoteHost",IDC_RADIO11,"Button",
+                    BS_AUTORADIOBUTTON,17,161,137,10
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "En aquesta pàgina pots configurar l'aparença de la llista de fitxers locals.",
+                    IDC_STATIC,7,7,234,8
+    CONTROL         "Utilitz&a sempre la següent configuració:",
+                    IDC_OPTIONS_LOCALVIEW_ALWAYS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,20,137,10
+    LTEXT           "&Estil de la llista per defecte:",IDC_STATIC,19,35,88,8,
+                    NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,109,33,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Columnes visibles quan s'utilitza l'estil de detalls:",
+                    IDC_STATIC,19,49,163,8,NOT WS_GROUP
+    CONTROL         "&Grandària",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,47,10
+    CONTROL         "&Tipus",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,73,61,33,10
+    CONTROL         "&Data darrera modificació",IDC_OPTIONS_LOCALVIEW_TIME,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,125,61,94,10
+    CONTROL         "Mostra la barra d'estat amb informació sobre el fitxer seleccionat",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,76,224,10
+    CONTROL         "&Recorda la darrera configuració utilitzada",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,91,152,10
+    LTEXT           "En aquest cas pots modifica l'aparença sobre el menú",
+                    IDC_STATIC,19,105,205,8
+    CONTROL         "Recorda la darrera amplada de &columna en estil Detalls",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,120,191,10
+    LTEXT           "Format de grandària de fitxer en Detall&s:",IDC_STATIC,
+                    7,154,137,8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,147,153,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "R&ecorda la direcció de la classificació de les columnes en estil Detalls",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,133,235,10
+    LTEXT           "Acció de &dobleclic a un fitxer:",IDC_STATIC,7,175,93,8
+    CONTROL         "Transferir",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,114,
+                    174,45,10
+    CONTROL         "Obrir",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,169,174,32,10
+    CONTROL         "Afegir a la cua",
+                    IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,211,175,62,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "En aquesta pàgina pots configurar l'aparença de la llista de fitxers remot.",
+                    IDC_STATIC,7,7,236,8
+    CONTROL         "Sempre utilitz&a la següent configuració:",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,20,137,10
+    LTEXT           "Estil de llista per d&efecte:",IDC_STATIC,19,35,94,8,
+                    NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,112,33,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Columnes visibles quan s'utilitza l'estil de detalls: (el nom de fitxer sempre es visible)",
+                    IDC_STATIC,7,49,272,8,NOT WS_GROUP
+    CONTROL         "&Grandària",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,47,10
+    CONTROL         "&Tipus",IDC_OPTIONS_REMOTEVIEW_FILETYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,61,33,10
+    CONTROL         "&Data",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,130,61,31,10
+    CONTROL         "&Hora",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,72,31,10
+    CONTROL         "&Permissos",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,72,47,10
+    CONTROL         "Propietari / Grup",IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,130,72,69,10
+    CONTROL         "Mostra la barra d'estat amb informació sobre el fitxer seleccionat",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,85,182,10
+    CONTROL         "&Recorda la darrera configuració utilitzada",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,98,123,10
+    LTEXT           "En aquest cas pots modifica l'aparença sobre el menú",
+                    IDC_STATIC,19,111,180,8
+    CONTROL         "Recorda la darrera amplada de &columna en estil Detalls",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,124,139,10
+    CONTROL         "R&ecorda la direcció de la classificació de les columnes en estil Detalls",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,136,261,10
+    LTEXT           "Format de grandària de fitxer en Detall&s:",IDC_STATIC,
+                    7,150,139,8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,147,148,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Sempre mostra els fitxers ocults",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,164,94,10
+    LTEXT           "No tots els servidors suporten aquesta característica. FileZilla no podrà mostrar els fitxeres en aquests servidors quan estigui activat.",
+                    IDC_STATIC,19,175,260,17
+    LTEXT           "Acció de &dobleclic a un fitxer:",IDC_STATIC,7,200,73,8
+    CONTROL         "Transferir",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,89,
+                    200,42,10
+    CONTROL         "Obrir",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,151,200,32,10
+    CONTROL         "Afegir a la cua",
+                    IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,203,200,62,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Aquí pots configurar el directori remot",IDC_STATIC,7,7,
+                    186,8
+    CONTROL         "&No utilitzis memòria cau",IDC_OPTIONS_CACHE_USECACHE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,7,18,90,10
+    CONTROL         "&Utilitza memòria cau",IDC_OPTIONS_CACHE_USECACHE2,
+                    "Button",BS_AUTORADIOBUTTON,7,28,75,10
+    LTEXT           "Temps màxim que el directori es desarà a la memòria cau:",
+                    IDC_STATIC,7,44,188,8
+    LTEXT           "&hores,",IDC_STATIC,27,57,20,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&minuts,",IDC_STATIC,69,57,27,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,49,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&segons",IDC_STATIC,118,57,28,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,98,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "Hi ha diferentes formes de tractar la memòria cau",
+                    IDC_STATIC,7,114,174,8,NOT WS_VISIBLE
+    CONTROL         "Esborra memòria cau quan es tanqui el FileZilla",
+                    IDC_OPTIONS_CACHE_CACHETYPE,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,124,163,10
+    CONTROL         "Utilitza una memòria cau persistent",
+                    IDC_OPTIONS_CACHE_CACHETYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,134,127,10
+END
+
+IDD_SERVER_CHANGEPASS DIALOGEX 0, 0, 186, 138
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Canvia la contrasenya del servidor"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Utilitzant aquest diàleg pots canviar la contrasenya requerida per aquest compte en aquest servidor.\n Aquesta característica no està disponible a tots els servidors",
+                    IDC_STATIC,3,3,172,32
+    LTEXT           "C&ontrasenya antiga:",IDC_STATIC,7,73,76,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,70,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Nova contrasenya:",IDC_STATIC,7,86,62,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,86,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Confirma la nova contrasenya:",IDC_STATIC,14,100,61,16
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,102,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&D'acord",IDOK,35,121,50,14
+    PUSHBUTTON      "C&ancel·la",IDCANCEL,99,120,50,14
+    LTEXT           "Si us plau introdueix la teva antiga contrasenya per a confirmar que tens permís per a canvia la contrasenya i introdueix la nova contrasenya per a confirmar-ho.",
+                    IDC_STATIC,2,35,172,33
+END
+
+IDD_VERIFY_CERT_DLG DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Acceptar certificat?"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Emissor",IDC_STATIC,35,7,308,66
+    LTEXT           "Organització:",IDC_STATIC,41,17,42,8
+    GROUPBOX        "Validesa",IDC_STATIC,35,151,308,34
+    PUSHBUTTON      "Accepta",IDOK,194,253,50,14
+    PUSHBUTTON      "Rebutja",IDCANCEL,110,253,50,14
+    CONTROL         "Sempre confia en aquest certificat",
+                    IDC_VERIFY_CERT_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,35,238,126,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,100,203,237,17
+    LTEXT           "Resum:",IDC_STATIC,35,203,32,8
+    LTEXT           "Vols confiar en aquest certificat?",IDC_STATIC,35,223,
+                    128,8
+    LTEXT           "<organització>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,100,
+                    17,88,8
+    LTEXT           "Nom Comú",IDC_STATIC,41,28,35,8
+    LTEXT           "<nom comú>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,100,28,88,
+                    8
+    LTEXT           "E-Mail:",IDC_STATIC,194,28,25,8
+    LTEXT           "Unitat",IDC_STATIC,194,17,20,8
+    LTEXT           "Nom Comú",IDC_STATIC,41,28,35,8
+    LTEXT           "País:",IDC_STATIC,41,39,27,8
+    LTEXT           "<país>",IDC_VERIFY_CERT_ISSUER_COUNTRY,100,39,88,8
+    LTEXT           "Estat /Província:",IDC_STATIC,41,50,54,8
+    LTEXT           "Ciutat:",IDC_STATIC,194,39,23,8
+    LTEXT           "<ciutat>",IDC_VERIFY_CERT_ISSUER_TOWN,219,39,118,8
+    LTEXT           "<estat / província>",
+                    IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,100,50,237,8
+    LTEXT           "Altres:",IDC_STATIC,41,61,20,8
+    LTEXT           "<altres>",IDC_VERIFY_CERT_ISSUER_OTHER,100,61,237,8
+    LTEXT           "<e-mail>",IDC_VERIFY_CERT_ISSUER_MAIL,219,28,118,8
+    LTEXT           "<unitat>",IDC_VERIFY_CERT_ISSUER_UNIT,219,17,118,8
+    GROUPBOX        "Subjecte",IDC_STATIC,35,79,308,66
+    LTEXT           "Organizació:",IDC_STATIC,41,89,42,8
+    LTEXT           "<organització>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,
+                    100,89,88,8
+    LTEXT           "Nom Comú:",IDC_STATIC,41,100,38,8
+    LTEXT           "<nom comú>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,100,100,
+                    88,8
+    LTEXT           "E-Mail:",IDC_STATIC,194,100,25,8
+    LTEXT           "Unitat",IDC_STATIC,194,89,20,8
+    LTEXT           "Nom Comú:",IDC_STATIC,41,100,38,8
+    LTEXT           "País:",IDC_STATIC,41,111,27,8
+    LTEXT           "<país>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,100,111,88,8
+    LTEXT           "Estat / Província:",IDC_STATIC,41,122,56,8
+    LTEXT           "Ciutat:",IDC_STATIC,194,111,23,8
+    LTEXT           "<ciutat>",IDC_VERIFY_CERT_SUBJECT_TOWN,219,111,118,8
+    LTEXT           "<estat província>",
+                    IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,100,122,237,8
+    LTEXT           "Altres:",IDC_STATIC,41,133,20,8
+    LTEXT           "<altres>",IDC_VERIFY_CERT_SUBJECT_OTHER,100,133,237,8
+    LTEXT           "<e-mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,219,100,118,8
+    LTEXT           "<unitat>",IDC_VERIFY_CERT_SUBJECT_UNIT,219,89,118,8
+    LTEXT           "Des de:",IDC_STATIC,41,161,29,8
+    LTEXT           "Fins:",IDC_STATIC,41,172,17,8
+    LTEXT           "<data/hora>",IDC_VERIFY_CERT_VALIDFROM,100,161,237,8
+    LTEXT           "<data/hora>",IDC_VERIFY_CERT_VALIDUNTIL,100,172,237,8
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    LTEXT           "Emprempta (SHA1):",IDC_STATIC,35,188,65,8
+    LTEXT           "<hash del certificat>",IDC_VERIFY_CERT_HASH,100,188,243,
+                    8
+END
+
+IDD_OPTIONS_TRANSFER DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Preserva data/hora dels fitxers descarregats",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,158,10
+    LTEXT           "&Utilitza la connexió primària per transferències si el fitxer és més petit de:",
+                    IDC_STATIC,24,28,166,17
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,196,31,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "octets",IDC_STATIC,238,34,24,8
+    CONTROL         "Utilitza connexions &múltiples per a transferir fitxers",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,56,188,10
+    LTEXT           "Transfereix fins a",IDC_STATIC,7,71,63,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,73,68,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "fitxers a la vegada",IDC_STATIC,101,70,66,8
+    LTEXT           "Si el fitxer de destinació ja existeix, pots especificar una acció predeterminada",
+                    IDC_STATIC,7,97,253,8
+    CONTROL         "&Pregunta",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    108,53,10
+    CONTROL         "S&obreescriu",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,119,60,10
+    CONTROL         "Sobreescr&iu si més nou",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,129,99,10
+    CONTROL         "&Continua",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,
+                    "Button",BS_AUTORADIOBUTTON,7,141,42,10
+    CONTROL         "Ca&nvia el nom",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,
+                    "Button",BS_AUTORADIOBUTTON,7,152,60,10
+    CONTROL         "&Omet",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,"Button",
+                    BS_AUTORADIOBUTTON,7,163,30,10
+    CONTROL         "Display all file revisions on &VMS servers",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,139,10
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "En aquesta pàgina pots canviar el programa que serà utilitzat per a veure / editar un fitxer.",
+                    IDC_STATIC,8,4,269,15
+    LTEXT           "Programa per &defecte per a veure o editar un fitxer:",
+                    IDC_STATIC,7,20,272,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,31,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Navega",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,31,50,
+                    14
+    LTEXT           "Associacions de fitxers personalitzades:",IDC_STATIC,7,
+                    48,140,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,58,272,99,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Cada línia representa una associació de fitxer. Cada línia comença amb l'extensió del fitxer seguida d'un espai. A continuació el programa que s'utilitzarà per per a veure o editar el fitxer.",
+                    IDC_STATIC,7,159,272,25
+    LTEXT           "Exemple:txt c:\\windows\\notepad.exe",IDC_STATIC,7,198,
+                    272,10
+    LTEXT           """Cita"" les extensions si contenen un espai. Les línies invàlides seràn eliminades.",
+                    IDC_STATIC,7,183,272,16
+END
+
+IDD_OPTIONS_IDENT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Activa el servidor Ident",IDC_OPTIONS_IDENT_IDENT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,26,92,10
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,51,38,117,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,204,38,73,14,ES_AUTOHSCROLL
+    CONTROL         "Només activa en el moment de la connexió",
+                    IDC_OPTIONS_IDENT_IDENTCONNECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,58,182,10
+    CONTROL         "Només accepta solicituds de la mateixa &IP",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,68,148,10
+    LTEXT           "Alguns servidors FTP requereixen que tinguis un servidor Ident quan et connectes a ells.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "&ID d'usuari:",IDC_STATIC,7,41,41,8
+    LTEXT           "&Sistema:",IDC_STATIC,175,41,26,8
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Limitació de velocitat de descàrrega",IDC_STATIC,5,5,
+                    275,95
+    CONTROL         "&Sense Limit",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,15,51,10
+    CONTROL         "Velocitat &constant de",
+                    IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,"Button",
+                    BS_AUTORADIOBUTTON,12,25,91,10
+    CONTROL         "Utilitza regles de limitació de velocitat:",
+                    IDC_SPEEDLIMIT_DOWNLOAD_RULES,"Button",
+                    BS_AUTORADIOBUTTON,12,35,138,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,105,18,55,14,
+                    ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,163,23,16,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,24,46,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "&Afegeix",IDC_SPEEDLIMIT_DOWNLOAD_ADD,240,47,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "T&reu",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,240,60,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Am&unt",IDC_SPEEDLIMIT_DOWNLOAD_UP,240,73,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "A&vall",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,240,86,35,10,
+                    WS_DISABLED
+    GROUPBOX        "Limitació de velocitat de pujada",IDC_STATIC,5,105,275,
+                    95
+    CONTROL         "Sense &Limit",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,51,10
+    CONTROL         "Velocitat cons&tant de",IDC_SPEEDLIMIT_UPLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,125,91,10
+    CONTROL         "Utilitza r&egles de limitació de velocitat:",
+                    IDC_SPEEDLIMIT_UPLOAD_RULES,"Button",BS_AUTORADIOBUTTON,
+                    12,135,137,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,105,118,55,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,163,124,16,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,24,146,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "Afe&geix",IDC_SPEEDLIMIT_UPLOAD_ADD,240,147,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Tre&u",IDC_SPEEDLIMIT_UPLOAD_REMOVE,240,160,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "A&munt",IDC_SPEEDLIMIT_UPLOAD_UP,240,173,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Aval&l",IDC_SPEEDLIMIT_UPLOAD_DOWN,240,186,35,10,
+                    WS_DISABLED
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOGEX 0, 0, 227, 140
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Norma de limitació de velocitat"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Criteri",IDC_STATIC,7,3,213,87
+    CONTROL         "&Data:",IDC_DATE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,33,10
+    CONTROL         "DateTimePicker1",IDC_DATE_VALUE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_APPCANPARSE | WS_TABSTOP,50,16,125,
+                    15
+    CONTROL         "D&es de:",IDC_FROM_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,39,36,10
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP,55,36,55,15
+    CONTROL         "F&ins:",IDC_TO_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,117,39,31,10
+    CONTROL         "DateTimePicker2",IDC_TO_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP,145,37,55,15
+    CONTROL         "&Dilluns",IDC_CHECK_DAY1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,36,10
+    CONTROL         "Di&marts",IDC_CHECK_DAY2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,57,40,10
+    CONTROL         "Dime&cres",IDC_CHECK_DAY3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,57,45,10
+    CONTROL         "Di&jous",IDC_CHECK_DAY4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,165,57,45,10
+    CONTROL         "Di&vendres",IDC_CHECK_DAY5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,73,45,10
+    CONTROL         "Dissab&te",IDC_CHECK_DAY6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,73,44,10
+    CONTROL         "Di&umenge",IDC_CHECK_DAY7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,73,47,10
+    LTEXT           "Ve&locitat:",IDC_STATIC,7,99,31,8
+    EDITTEXT        IDC_SPEED,38,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kB/s",IDC_STATIC,88,99,16,8
+    DEFPUSHBUTTON   "D'acord",IDOK,110,119,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,170,119,50,14
+END
+
+IDD_OPTIONS_SSHPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "En FileZilla utilitza parts d'en PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/) per connexions SFTP.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "Per establir connexions SSH per servidors SFTPs, FileZilla utilitza les opcions per defecte de PuTTY. Aquí pots substituir algunes de les opcions per defecte",
+                    IDC_STATIC,7,23,272,19
+    LTEXT           "Utilitza &Compressió:",IDC_STATIC,7,45,64,8
+    CONTROL         "Per Defecte",IDC_OPTIONS_SSHPAGE_COMPRESSION1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,55,54,10
+    CONTROL         "Sí",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,74,55,28,10
+    CONTROL         "No",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,134,55,25,10
+    LTEXT           "Selecció de protocol:",IDC_STATIC,7,68,75,8
+    LTEXT           "Per defecte (Si no has canviat la configuració per defecte), PuTTY utilitza SSH2 per connectar a servidors SSH.",
+                    IDC_STATIC,14,80,265,17
+    LTEXT           "Encara que és més segura que SSH1, La implemntació d'SSH2 a PuTTY té alguns problemes de velocitat. (Mira http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/sftp-slow.html per detalls)",
+                    IDC_STATIC,14,96,265,32
+    LTEXT           "Si tens problemes de velocitat amb els servidors SFTP a FileZilla i no requereixes de la seguretat adicional de SSH2, pots intentar forçar la utilització de SSH1.",
+                    IDC_STATIC,14,128,265,17
+    CONTROL         "Per Defecte",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,146,54,10
+    CONTROL         "SSH1",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,74,146,49,10
+    CONTROL         "SSH2",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,134,146,49,10
+    LTEXT           "No tots els servidor suporten això.",IDC_STATIC,14,156,
+                    141,8
+END
+
+IDD_SITEMANAGER_ADVANCED DIALOGEX 0, 0, 240, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Configuració avançada per '%s' (%s)",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,226,16
+    LTEXT           "Directori &local predeterminal:",IDC_STATIC,7,28,107,8
+    EDITTEXT        IDC_LOCALDIR,7,36,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,36,12,14
+    LTEXT           "D&irectori remot predeterminat:",IDC_STATIC,7,58,102,8
+    EDITTEXT        IDC_REMOTEDIR,7,66,157,14,ES_AUTOHSCROLL,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Configuració de mode de transferència passiva",
+                    IDC_STATIC,7,88,169,8
+    CONTROL         "&Predeterminat",IDC_SITEMANAGER_ADVANCED_PASSIVE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,98,
+                    62,10
+    CONTROL         "&Passiu",IDC_SITEMANAGER_ADVANCED_PASSIVE2,"Button",
+                    BS_AUTORADIOBUTTON,80,98,74,10
+    CONTROL         "&Actiu",IDC_SITEMANAGER_ADVANCED_PASSIVE3,"Button",
+                    BS_AUTORADIOBUTTON,160,98,32,10
+    LTEXT           "Diferència de zona horària del servidor:",IDC_STATIC,7,
+                    117,73,8
+    LTEXT           "Ajusta l'hora dels fitxers remots en",IDC_STATIC,7,131,
+                    113,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,121,129,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,134,127,11,14
+    LTEXT           "hores",IDC_STATIC,150,131,18,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,172,128,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,182,126,11,14
+    LTEXT           "minuts",IDC_STATIC,201,130,25,8
+    LTEXT           "Use UTF8 on server if available:",IDC_STATIC,7,150,103,
+                    8
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,117,148,48,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "D'acord",IDOK,55,165,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,135,165,50,14
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "General",IDC_STATIC,7,7,272,26
+    CONTROL         "Posiciona la vista remota a l'esquerra de la vista local",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,185,10
+    GROUPBOX        "Posicionament de vista d'arbre",IDC_STATIC,7,37,272,83
+    LTEXT           "Vista d'arbre local:",IDC_STATIC,13,48,73,8
+    CONTROL         "Posiciona a sobre la llista de fitxers",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,58,119,10
+    CONTROL         "Posiciona a l'esquerra de la llista de fitxers",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,69,157,10
+    LTEXT           "Vista d'arbre remota:",IDC_STATIC,14,84,94,8
+    CONTROL         "Posiciona sobre la llista de fitxers",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,94,124,10
+    CONTROL         "Posiciona a l'esquerra de la llista de fitxers",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,105,162,10
+    LTEXT           "Canvis en aquests paràmetres requereixen reiniciar FileZilla",
+                    IDC_STATIC,7,126,203,8
+END
+
+IDD_SAPREFS DIALOGEX 0, 0, 415, 260
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Opcions del FileZilla"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,187,113,66
+    DEFPUSHBUTTON   "D'acord",IDOK,12,194,97,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,12,214,97,14
+    PUSHBUTTON      "Ajuda",IDC_PHELP,12,234,97,14
+    LTEXT           "",IDC_CAPTION_BAR,122,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,121,19,292,234
+END
+
+IDD_OPTIONS_LOGGING DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Utilitza una lletra personalitzada per la bitàcora",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,166,10
+    LTEXT           "Lletra actual:",IDC_STATIC,19,20,43,8
+    LTEXT           "Statisch",IDC_OPTIONS_LOGGING_FONTDATA,71,20,208,8
+    PUSHBUTTON      "&Selecciona lletra...",IDC_OPTIONS_LOGGING_CHANGEFONT,
+                    19,32,66,14
+    CONTROL         "&Desa tota la bitàcora en un fitxer",
+                    IDC_OPTIONS_LOGGING_LOGTOFILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,50,122,10
+    LTEXT           "Quan està activat, tots els missatges de la bitàcora són desats en un fitxer. El fitxer hauria de tenir extensió .rtf",
+                    IDC_STATIC,19,61,260,18
+    LTEXT           "Nom del &fitxer:",IDC_STATIC,19,81,58,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,53,89,90,14,ES_AUTOHSCROLL
+    CONTROL         "&Timestamp log entries",IDC_OPTIONS_LOGGING_TIMESTAMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,107,85,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOGEX 0, 0, 286, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Using the MODE Z ftp protocol extension it is possible to use compressed file transfers on servers which support it.",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "Don't use compression",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,28,87,10
+    CONTROL         "Use compression only for directory listings",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,40,150,10
+    CONTROL         "Use compression for all transfers",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,52,121,10
+    LTEXT           "Compression level, ranging from 1 (worst) to 9 (best):",
+                    IDC_STATIC,7,72,174,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,183,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "The default compression level is 8. It's a good tradeoff between the amount compression achieved and CPU usage.",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "For details about the compression method, please read http://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,195,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MANUALTRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        RIGHTMARGIN, 386
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_SITEMANAGER, DIALOG
+    BEGIN
+        RIGHTMARGIN, 343
+    END
+
+    IDD_OPTIONS_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_LOCALVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_VERIFY_CERT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        VERTGUIDE, 35
+        VERTGUIDE, 41
+        VERTGUIDE, 100
+        VERTGUIDE, 194
+        VERTGUIDE, 219
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_OPTIONS_VIEWEDIT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 279
+    END
+
+    IDD_OPTIONS_IDENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        VERTGUIDE, 80
+        VERTGUIDE, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        VERTGUIDE, 143
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 42, 0
+0x5446, 0x2050, 0x6f73, 0x7262, 0x2065, 0x5353, 0x2f4c, 0x4c54, 0x2053, 
+0x6528, 0x636e, 0x6972, 0x7470, 0x6361, 0xf369, 0x6920, 0x706d, 0xed6c, 
+0x6963, 0x6174, 0x0029, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 38, 0
+0x5446, 0x2050, 0x6f73, 0x7262, 0x2065, 0x5353, 0x204c, 0x6528, 0x636e, 
+0x6972, 0x7470, 0x6361, 0xf369, 0x6520, 0x7078, 0xed6c, 0x6963, 0x6174, 
+0x0029, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 21, 0
+0x4653, 0x5054, 0x7520, 0x6974, 0x696c, 0x7a74, 0x6e61, 0x2074, 0x5353, 
+0x3248, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 38, 0
+0x5446, 0x2050, 0x6f73, 0x7262, 0x2065, 0x4c54, 0x2053, 0x6528, 0x636e, 
+0x6972, 0x7470, 0x6361, 0xf369, 0x6520, 0x7078, 0xed6c, 0x6963, 0x6174, 
+0x0029, 
+    0
+END
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 8, 0
+0x6544, 0x6174, 0x6c6c, 0x0073, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 7, 0
+0x6c4c, 0x7369, 0x6174, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 13, 0
+0x6349, 0x6e6f, 0x7365, 0x6720, 0x6172, 0x736e, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 15, 0
+0x6349, 0x6e6f, 0x7365, 0x7020, 0x7465, 0x7469, 0x7365, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 7, 0
+0x634f, 0x6574, 0x7374, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 8, 0
+0x6544, 0x6174, 0x6c69, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 12, 0
+0x614c, 0x6772, 0x2065, 0x6349, 0x6e6f, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 12, 0
+0x6d53, 0x6c61, 0x206c, 0x6349, 0x6e6f, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 6, 0
+0x7942, 0x6574, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 42, 0
+0x5446, 0x2050, 0x6f73, 0x7262, 0x2065, 0x5353, 0x2f4c, 0x4c54, 0x2053, 
+0x6528, 0x636e, 0x6972, 0x7470, 0x6361, 0xf369, 0x6920, 0x706d, 0xed6c, 
+0x6963, 0x6174, 0x0029, 
+    IDC_SERVERTYPE, 0x403, 38, 0
+0x5446, 0x2050, 0x6f73, 0x7262, 0x2065, 0x5353, 0x204c, 0x6528, 0x636e, 
+0x6972, 0x7470, 0x6361, 0xf369, 0x6520, 0x7078, 0xed6c, 0x6963, 0x6174, 
+0x0029, 
+    IDC_SERVERTYPE, 0x403, 21, 0
+0x4653, 0x5054, 0x7520, 0x6974, 0x696c, 0x7a74, 0x6e61, 0x2074, 0x5353, 
+0x3248, "\000" 
+    IDC_SERVERTYPE, 0x403, 38, 0
+0x5446, 0x2050, 0x6f73, 0x7262, 0x2065, 0x4c54, 0x2053, 0x6528, 0x636e, 
+0x6972, 0x7470, 0x6361, 0xf369, 0x6520, 0x7078, 0xed6c, 0x6963, 0x6174, 
+0x0029, 
+    0
+END
+
+IDD_SITEMANAGER_ADVANCED DLGINIT
+BEGIN
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x6f46, 0x6372, 0x0065, 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x654e, 0x6576, 0x0072, 
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&Fitxer"
+    BEGIN
+        MENUITEM "Ge&stor de llocs...\tCtrl+S", ID_SITEMANAGER
+        MENUITEM "&Copia la connexió al Gestor de llocs", 
+                                                ID_COPYTOSITEMANAGER
+        MENUITEM "C&onnecta al lloc predeterminat", 
+                                                ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "&Reconnecta\tCtrl+R",         ID_TOOLBAR_RECONNECT
+        MENUITEM "&Desconnecta\tCtrl+D",        ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "Sortir",                      ID_APP_EXIT
+    END
+    POPUP "&Edita"
+    BEGIN
+        MENUITEM "&Configuració...",            ID_EDIT_SETTINGS
+        MENUITEM "E&xportar configuració...",   ID_EDIT_EXPORTSETTINGS
+        MENUITEM "&Importar configuració...",   ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "&Transferències"
+    BEGIN
+        POPUP "&Tipus de tranferències"
+        BEGIN
+            MENUITEM "&ASCII",                      ID_TYPEMENU_ASCII
+            MENUITEM "&Binari",                     ID_TYPEMENU_BINARY
+            MENUITEM "A&uto",                       ID_TYPEMENU_DETECT
+        END
+        POPUP "Configuració de sobreescritura de &fitxers"
+        BEGIN
+            MENUITEM "Pregunt&a",                   ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "S&obreescriu",                ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "Sobreescr&iu si es més actual", 
+                                                    ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "&Continua",                   ID_OVERWRITEMENU_RESUME
+            MENUITEM "A&nomena",                    ID_OVERWRITEMENU_RENAME
+            MENUITEM "O&met",                       ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Transferència Manual...",    ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "&Visualitza"
+    BEGIN
+        MENUITEM "Actualitza Vista\t     F5",   ID_TOOLBAR_REFRESH
+        MENUITEM "Mostra fitxers ocults",       ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "Barra d'eines",               ID_VIEW_TOOLBAR
+        MENUITEM "Barra d'e&stat",              ID_VIEW_STATUS_BAR
+        MENUITEM "Barra &Connexió Ràpida",      ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Vista arbre &Local\tCtrl+T",  ID_SHOWTREE
+        MENUITEM "Vista arbre Rem&ota",         ID_SHOWREMOTETREE
+        MENUITEM "&Bitàcora",                   ID_VIEW_MESSAGELOG
+        MENUITEM "Cua de tranferències",        ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "Vista de la Llista Loc&al"
+        BEGIN
+            MENUITEM "&Detalls",                    ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "&Llista",                     ID_LOCALLISTSTYLE_LIST
+            MENUITEM "&Icones grans",               ID_LOCALLISTSTYLE_ICON
+            MENUITEM "I&cones petites",             ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "Grandària Fitzer",            ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "&Tipus de Fitxer",            ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "Data de darrera &modificació", 
+                                                    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "Mo&stra Barra d'Estat",       ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "Classifica per..."
+            BEGIN
+                MENUITEM "Nom de &Fitxer",              ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "Grandària de Fitxer",         ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "&Tipus de fitxer",            ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "Darrera modificació",         ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "&Ascendent",                  ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "&Descendent",                 ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "Vista de Llista R&emota"
+        BEGIN
+            MENUITEM "&Detalls",                    ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "&Lista",                      ID_REMOTELISTSTYLE_LIST
+            MENUITEM "&Icones grans",               ID_REMOTELISTSTYLE_ICON
+            MENUITEM "I&cones petites",             ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "Grandària de Fitxer",         ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "Tipus de fitxer",             ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "D&ata",                       ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "Hora",                        ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "&Permisos",                   ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "Pro&pietari / Grup",          ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "Mostra barra d'e&stat",       ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "Classifica per..."
+            BEGIN
+                MENUITEM "Nom de &fitxer",              ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "Grandària de Fitxer",         ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "Tipus de fitxer",             ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Data / Hora",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "&Ascendent",                  ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "D&escendent",                 ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "&Cua"
+    BEGIN
+        MENUITEM "&Processar Cua",              ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "&Utilitza connexions múltiples", ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "&Exporta...",                 ID_MENU_QUEUE_EXPORT
+        MENUITEM "&Importa...",                 ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "&Servidor"
+    BEGIN
+        MENUITEM "&Canvia contrasenya...",      ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "&Introdueix instrucció FTP...\tCtrl+F", 
+                                                ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "Copia &URL al porta-retalls", ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "&Ajuda"
+    BEGIN
+        MENUITEM "&Continguts...",              ID_HELPMENU_CONTENTS
+        MENUITEM "Bu&scar...",                  ID_HELPMENU_SEARCH
+        MENUITEM "Índex...",                    ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "&Quant a...",                 ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "OutputContext"
+    BEGIN
+        MENUITEM "&Introueix instrucció...",    ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "C&opia al porta-retalls",     ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "&Borra tots",                 ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "FtpContext"
+    BEGIN
+        MENUITEM "&Descàrrega",                 ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "&Afegir a la cua",            ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "Des&carrega com...",          ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Obrir",                      ID_FTPCONTEXT_OPEN
+        MENUITEM "&Veure / Editar",             ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "&Crear Directori",            ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "&Esborrar",                   ID_FTPCONTEXT_DELETE
+        MENUITEM "&Tornar a anomenar",          ID_FTPCONTEXT_RENAME
+        MENUITEM "Atributs del &fitxer...",     ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalContext"
+    BEGIN
+        MENUITEM "&Puja",                       ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "&Afegir a la cua",            ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "Puja com...",                 ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Creu un directoti",          ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Obrir",                      ID_LOCALCONTEXT_OPEN
+        MENUITEM "&Veure / Editar",             ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "&Esborrar",                   ID_LOCALCONTEXT_DELETE
+        MENUITEM "&Tornar a anomenar",          ID_LOCALCONTEXT_RENAME
+        MENUITEM "Propie&tats",                 ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "QueueContext"
+    BEGIN
+        MENUITEM "&Processa cua",               ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "&Treu de la cua",             ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "Reseteja l'e&stat",           ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "Paus&a",                      ID_QUEUECONTEXT_PAUSE
+        MENUITEM "Continua",                    ID_QUEUECONTEXT_RESUME
+        MENUITEM "&Anul·la",                    ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "Mou &amunt",                  ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "Mou a&vall",                  ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "Mou al principi",             ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "Mou al final",                ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "&Fitxer"
+    BEGIN
+        MENUITEM "&Importa",                    ID_SITEMANAGER_FILE_IMPORT
+        POPUP "&Exporta..."
+        BEGIN
+            MENUITEM "com llista d'&URL",           ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "amb tots els &detalls",       ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Desa i surt",                 ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalTreeContext"
+    BEGIN
+        MENUITEM "&Puja",                       ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "&Afegeix a la cua",           ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "&Puja com...",                ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Esborra",                    ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "&Tornar a anomenar",          ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "&Restaura",                   ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "&Surt",                       ID_TRAY_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,8,0
+ PRODUCTVERSION 2,2,8,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Catalan"
+            VALUE "FileDescription", "Catalan language DLL for FileZilla"
+            VALUE "FileVersion", "2, 2, 8, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2003 by Tim Kosse under the GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 8, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "Llest"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Quant a FileZilla"
+    ID_APP_EXIT             "Surt de FileZilla"
+    ID_HELP                 "Mostra els continguts de l'ajuda"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Mostra o amaga la barra d'eines"
+    ID_VIEW_STATUS_BAR      "Mostra o amaga la barra d'estat"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "Surt de FileZilla"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "La inicialització dels sòcols ha fallat"
+    IDS_BROWSEFORFOLDER     "Si us plau seleccioni directori local."
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "Cadena del certificat massa llarga."
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "El certificat ha caducat."
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "El certificat encara no es vàlid"
+    IDS_CERT_ERR_CERT_REJECTED "Certificat rebutjat."
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE "Error de la signatura del certificat"
+    IDS_CERT_ERR_CERT_UNTRUSTED "Certificat no creïble"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<Directori buit>"
+    IDS_SITEMANAGER_NEWFOLDER "Nou directori"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "Nou directori %d"
+    IDS_SITEMANAGER_NEWFTPSITE "Nou lloc FTP"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "Nou lloc FTP %d"
+    IDS_SITEMANAGER_TEXTFILES "Fitxers de text (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "Els meus llocs FTP"
+    IDS_SITEMANAGER_XMLFILES "Fitxers XML (*.xml)|*.xml||"
+    IDS_SIZE_BYTES          "octets"
+    IDS_SIZE_GB             "GB"
+    IDS_SIZE_KBS            "KB"
+    IDS_SIZE_MBS            "MB"
+    IDS_STATUSBAR_ELAPSED   "han passat %s"
+    IDS_STATUSBAR_LEFT      "queden %s"
+    IDS_TITLE_CONNECTED     "Connectant a %s"
+    IDS_TITLE_CONNECTING    "Connectant a %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "Directori buit"
+    IDS_VIEWLABEL_LOCAL     "Lloc local:"
+    IDS_VIEWLABEL_REMOTE    "Lloc remot:"
+    IDS_DIRINFO_EMPTY       "Directori buit."
+    IDS_DIRINFO_FILES       "%d fitxers amb %I64d octets."
+    IDS_DIRINFO_DIRSANDFILES "%d directoris i  %d fitxers amb %I64d octets."
+    IDS_DIRINFO_FILESMIN    "%d fitxers amb, com a mínim %I64d octets."
+    IDS_DIRINFO_DIRSANDFILESMIN 
+                            "%d directoris i %d fitxers amb, com a mínim %I64d octets."
+    IDS_DIRINFO_SELECTED_FILES "%d fitxers seleccionats amb %I64d octets."
+    IDS_DIRINFO_SELECTED_DIRS "%d directoris seleccionats."
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "%d directoris i %d fitxers seleccionats amb %I64d octets."
+    IDS_DIRINFO_SELECTED_FILESMIN 
+                            "%d fitxers seleccionats amb, com a mínim %I64d octets."
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "%d directoris i %d fitxers amb, com a mínim %I64d octets"
+    IDS_DIRINFO_FILE        "1 fitxer amb %I64d octets."
+    IDS_DIRINFO_DIR         "1 directori."
+    IDS_DIRINFO_DIRANDFILES "1 directori i %d fitxers amb %I64d octets."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY 
+                            "Si us plau seleccioni els nous atributs pel directori ""%s"""
+    IDS_CHANGEDIALOG_FILE   "Si us plau seleccioni els nous atributs pel fitxer ""%s"""
+    IDS_CHANGEDIALOG_MULTIPLEFILES 
+                            "Si us plau seleccioni els nous atributs per tots els fitxers i directoris selccionats"
+    IDS_HEADER_DATE         "Data"
+    IDS_HEADER_DIRECTION    "Direccció"
+    IDS_HEADER_FILENAME     "Nom del fitxer"
+    IDS_HEADER_FILESIZE     "Grandària del fitxer"
+    IDS_HEADER_FILETYPE     "Tipus de fitxer"
+    IDS_HEADER_HOST         "Ordinador central"
+    IDS_HEADER_LASTMODIFIED "Darrera modificació"
+    IDS_HEADER_LOCALNAME    "Nom de fitxer local"
+    IDS_HEADER_OWNERGROUP   "Propietari / Grup"
+    IDS_HEADER_PERMISSIONS  "Permisos"
+    IDS_HEADER_REMOTENAME   "Nom de fitxer remot"
+    IDS_HEADER_SIZE         "Grandària"
+    IDS_HEADER_STATUS       "Estat"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "Hora"
+    IDS_MANUALTRANSFER_HOST "Si us plau introdueix un ordinador central vàlid"
+    IDS_MANUALTRANSFER_LOCALFILE 
+                            "Si us plau introdueix l'adreça i el nom del fitxer local"
+    IDS_MANUALTRANSFER_PORT "Si us plau introdueix un port del servidor vàlid"
+    IDS_MANUALTRANSFER_REMOTEFILE 
+                            "Si us plau introdueix l'adreça i el nom del fitxer local"
+    IDS_MANUALTRANSFER_USER "Si us plau introdueixi un nom d'usuari"
+    IDS_QUEUESTATUS_ABORTED "Transferència cancel·lada"
+    IDS_QUEUESTATUS_CRITICALERROR "Error crític de transferència"
+    IDS_QUEUESTATUS_ERROR   "Error de transferència #%d. Torna-ho a provar més tard"
+    IDS_QUEUESTATUS_TOOMANYERTREIS "Masses reintents"
+    IDS_QUEUESTATUS_TRANSFERRING "Transferint"
+    IDS_QUICKCONN_HOST      "Adreça:"
+    IDS_QUICKCONN_PASS      "Contrasenya:"
+    IDS_QUICKCONN_PORT      "Port:"
+    IDS_QUICKCONN_QUICKCONN "&Connexió Ràpida"
+    IDS_QUICKCONN_USER      "Usuari:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "Parat per l'usuari!"
+    IDS_ERRORMSG_INVALIDPORT "Has d'especificar un port vàlid!"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND 
+                            "Error! La biblioteca DLL per l'idioma ""%s"" no ha estat trobat!"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "Error! La biblioteca DLL per l'idioma va ser escrita per una versió anterior de FileZilla i no es compatible amb aquesta versió.\nSi us plau descarrega una nova versió de la Dll per aquest idioma des de http://sourceforge.net/projects/filezilla"
+    IDS_ERRORMSG_NAMEINUSE  "Si us plau introdueix un nom de fitxer diferent"
+    IDS_ERRORMSG_PATHNOTFOUND 
+                            "L'adreça que has introduït no ha pogut ser trobada"
+    IDS_ERRORMSG_PORTNEEDED "Si us plau introdueix un port vàlid!"
+    IDS_ERRORMSG_PREFIX     "Error:"
+    IDS_ERRORMSG_PROXY_AUTHFAILED "Autentificació fallida"
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON 
+                            "El servidor intermediari requereix autentificació"
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "El tipus d'autentificació requerida pel servidor intermediari no es conegut o no està suportat"
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST 
+                            "No puc trobar l'ordinador principal o el servidor intermediari"
+    IDS_ERRORMSG_PROXY_NOCONN "No puc connectar al servidor intermediari"
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "La demanda del servidor intermediari ha fallat, no puc connectar a través del servidor intermediari"
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "Error, no puc analitzar 'FileZilla.xml', el fitxer pot estar corrupte.\nPer aquesta sessió, el registre serà utilitzat per desar la configuració."
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "No puc inicialitzar CSFtpIpC. Si us plau asseguris que els recursos del sistema estan disponibles!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "No puc iniciar el procés SFTP. Si us plau assegurat que el fitxer 'FzSFtp.exe' és en el mateix directori que 'FileZilla.exe'"
+    IDS_ERRORMSG_SFTP_CLOSED "FzSFtp.exe ha estat tancat, Tancant connexió."
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "Han estat trobades dades invàlides en el canal de dades SFtp, tancant connexió."
+    IDS_ERRORMSG_SFTP_NORESPONSE 
+                            "FzSFtp.exe no ha contestat, tancant connexió."
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE 
+                            "El nom ja existeix! Si us plau seleccioni un nom diferent!"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE 
+                            "Si us plau seleccioni el tipus d'entrada!"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME 
+                            "Si us plau introdueix un nom pel lloc FTP!"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "Si us plau introdueix una contrasenya!"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "Si us plau introdueix un nom d'usuari!"
+    IDS_ERRORMSG_TIMEOUT    "Temps d'espera excedit!"
+    IDS_ERRORMSG_UPLOADABORTED "Pujada cancel·lada"
+    IDS_ERRORMSG_UPLOADFAILED "Pujada fallida"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "Sintàxi d'adreça no vàlida. Hauria de ser [ftp://][Usuari:Contrasenya@]Ordinador principal[:Port][/Adreça]\nParàmetres entre [ ] són opcionals.\r\nsftp:// i ftps:// també són protocols vàlids."
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE "No s'ha pogut obrir""%s"""
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            "No s'ha pogut començar a ""%s"" per veure / editar ""%s"". Si us plau comprova les associacions de fitxers."
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG 
+                            "Error, no hi ha cap programa per defecte seleccionat"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL 
+                            "El canal de transferència no es pot obrir. Causa: %s"
+    IDS_ERRORMSG_CANTPARSECMDLINE 
+                            "No es pot analitzar la línia d'intruccions."
+    IDS_ERRORMSG_CANTRESOLVEHOST 
+                            "No es pot resoldre el nom de l'ordinador principal."
+    IDS_ERRORMSG_CANTRESUME "La instrucció Continua no es suportada pel servidor, sobreescrivint el fitxer."
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "La instrucció Continua no es suportada pel servidor, però la grandària del fitxer local i remot coincideixen."
+    IDS_ERRORMSG_CANTSENDCOMMAND 
+                            "No s'ha pogut enviar l'ordre! Sortint del servidor!"
+    IDS_ERRORMSG_CANTWRITETOFILE 
+                            "No es pot escriure en el fitxer ""%s"". Causa: %s"
+    IDS_ERRORMSG_CERTREJECTED "Certificat client rebutjat"
+    IDS_ERRORMSG_CRITICALINTERRUPTED 
+                            "Interromput per l'usuari! Sortint del servidor..."
+    IDS_ERRORMSG_DOWNLOADABORTED "Descàrrega cancel·lada"
+    IDS_ERRORMSG_DOWNLOADFAILED "Descàrrega fallida"
+    IDS_ERRORMSG_ENTERSTRING "Has d'introduir una cadena de text!"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "Un nom de fitxer no pot contenir els següents caràcters:\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED "No s'ha pogut obrir el fitxer local %s"
+    IDS_ERRORMSG_HOSTNEEDED "Si us plau introdueix un nom d'ordinador principal!!"
+    IDS_ERRORMSG_IDENT_CANTSTART "Error iniciant el servidor Ident"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                             "
+    ID_INDICATOR_TIMELEFT   "                         "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "Cua: %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d directoris."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "Introdueix el nom del directori"
+    IDS_INPUTDIALOGTEXT_CREATEDIR 
+                            "Si us plau introdueix el nom del nou directori:"
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "Introdueix una instrucció FTP"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND 
+                            "Si us plau intrudueix la intrucció que serà executada en el servidor."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "Introdueix la teva contrasenya"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD 
+                            "Si us plau introdueix la contrasenya que s'utilitzarà per connectar al servidor:"
+    IDS_INPUTDIALOGTITLE_RENAME "Introdueix el nou nom del fitxer"
+    IDS_INPUTDIALOGTEXT_RENAME 
+                            "Si us plau introdueix el nom del fitxer que es desarà:"
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE 
+                            "Autentificació teclat-interactiu"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "Introdueix el teu nom d'usuari"
+    IDS_INPUTDIALOGTEXT_INPUTUSER 
+                            "Si us plau introdueix el nom d'usuari que s'utilitzarà per connectar al servidor:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "Connexió"
+    IDS_OPTIONSPAGE_DEBUG   "Depuració"
+    IDS_OPTIONSPAGE_DIRCACHE "Directori de la memòria cau"
+    IDS_OPTIONSPAGE_FIREWALL "Configuració del talla-focs"
+    IDS_OPTIONSPAGE_FTPPROXY "Configuració del servidor intermediari FTP"
+    IDS_OPTIONSPAGE_GSS     "Suport GSS"
+    IDS_OPTIONSPAGE_IDENT   "Servidor Ident"
+    IDS_OPTIONSPAGE_INTERFACE "Configuració de l'interfície"
+    IDS_OPTIONSPAGE_LANGUAGE "Idioma"
+    IDS_OPTIONSPAGE_LOCALVIEW "Llista de fitxers locals"
+    IDS_OPTIONSPAGE_MISC    "Miscel·lània"
+    IDS_OPTIONSPAGE_PROXY   "Configuració del servidor intermediari"
+    IDS_OPTIONSPAGE_REMOTEVIEW "Llista de fitxers remota"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "Limitació de velocitat"
+    IDS_OPTIONSPAGE_TRANSFER "Configuració de transferència de fitxers"
+    IDS_OPTIONSPAGE_TYPE    "ASCII/Binari"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "Veure / editar fitxers"
+    IDS_OPTIONSPAGE_SSH     "Configuració SFTP"
+    IDS_OPTIONSPAGE_PANELAYOUT "Format de subfinestra"
+    IDS_OPTIONSPAGE_LOGGING "Bitàcora"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "Compression"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "Instrucció:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "Resposta:"
+    IDS_TRACEMSG_TRACE      "Traça:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "No s'ha pogut connectar."
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "No s'ha pogut crear un sòcol en el rang de ports escollit."
+    IDS_ERRORMSG_CANTCREATEFILE "La creació d'un fitxer de sortida ha fallat!"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION 
+                            "No es pot establir una connexió SSL"
+    IDS_ERRORMSG_CANTGETFILETYPE "No es pot saber el tipus de fitxer."
+    IDS_ERRORMSG_CANTGETLIST "No es pot recuperar el llistat de directoris"
+    IDS_ERRORMSG_CANTGETRESPONSE "No es pot rebre una resposta"
+    IDS_ERRORMSG_CANTIMPORTFILE "Error durant la importació del fitxer."
+    IDS_ERRORMSG_CANTINITSSL "No es pot inicialitzar la biblioteca SSL"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "No es poden carregar les biblioteques SSL. Assegureu-vos que els fitxers ""ssleay32.dll"" i ""libeay32.dll"" estan en el mateix directori que el FileZilla."
+    IDS_ERRORMSG_CANTOPENFILE "No es pot obrir el fitxer d'entrada."
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "El fitxer de la bitàcora ""%s"" no pot ser obert. El desament de la bitàcora estarà desactivat en aquesta sessió."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "Connectat"
+    IDS_STATUSMSG_CONNECTEDWITH 
+                            "Connectat amb %s. Esperant missatge de benvinguda..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP 
+                            "Connectat amb %s, inicialitzant connexió SFTP..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL 
+                            "Connectat amb %s, negociant una connexió SSL..."
+    IDS_STATUSMSG_CONNECTING "Connectant a %s ..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "Llistat de directoris recuperat amb èxit"
+    IDS_STATUSMSG_DISCONNECTED "Desconnectat del servidor"
+    IDS_STATUSMSG_DISCONNECTING "Desconnectant..."
+    IDS_STATUSMSG_DOWNLOADSTART "Iniciant la descàrrega de %s"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "Descàrrega finalitzada amb èxit"
+    IDS_STATUSMSG_FILEIMPORTED "El fitxer ""%s"" ha estat importat amb èxit!"
+    IDS_STATUSMSG_FWCONNECT "Intentant accedir a %s a través del servidor intermediari..."
+    IDS_STATUSMSG_IDENT_REQUEST "Demanda Ident des de: %s"
+    IDS_STATUSMSG_IDENT_START "Servidor Ident iniciat"
+    IDS_STATUSMSG_IDENT_STOP "Servidor Ident parat"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "Atenció! La biblioteca DLL d'idioma va ser escrita per a una versió anterior de FileZilla. Algunes cadenes de text poden no estar traduïdes. Si us plau descarrega una versió més nova de la biblioteca dll de l'idioma!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "Estat:"
+    IDS_STATUSMSG_RECONNECTWAIT "Esperant per a reconnectar..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "Recuperant llistat de directoris..."
+    IDS_STATUSMSG_SSLESTABLISHED 
+                            "Connexió SSL establida. Esperant missatge de benvinguda..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "Connexió SSL establida"
+    IDS_STATUSMSG_UPLOADSTART "Iniciant la pujada de %s"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "Pujada finalitzada amb èxit"
+    IDS_STATUSMSG_WAITINGTORETRY 
+                            "Esperant per reintentar... (queda 1 reintent)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT 
+                            "Esperant per reintentar... (queden %d reintents)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "Cancel·lar la connexió actual?"
+    IDS_QUESTION_CANCELOPERATION 
+                            "Esteu segur/a que voleu cancel·lar l'operació actual?"
+    IDS_QUESTION_DELETEDIRS "Voleu esborrar %d directoris?"
+    IDS_QUESTION_DELETEFILE "Esteu segur/a que voleu esborrar ""%s""?"
+    IDS_QUESTION_DELETEFILES "Esteu segur/a que voleu esborrar %d fitxers?"
+    IDS_QUESTION_DELETEFILESANDDIRS 
+                            "Esteu segur/a que voleu esborrar %d fitxers i directoris?"
+    IDS_QUESTION_FILEEXISTS "El fitxer ""%s"" (%d octets) ja existeix. Voleu sobrescriure'l amb ""%s"" (%d octets)?"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "Esteu iniciant per primer cop aquesta versió de FileZilla o les vostres preferències han estat esborrades.\nFileZilla pot desar les preferències en el registre o en un fitxer XML.\nVols que en FileZilla utilitzi el registre?\nes reomanable utilitzar el registre si estàs en un entorn multi-usuari\nSelecciona 'No' per utilitzar un fitxer XML, que és el que es recomana per la majoria dels usuaris.\nSi tries no i hi ha preferències en el registre, aquestes seran importades a un fitxer XML.\n\nVols utilitzar el registre en substitució d'un fitxer XML?"
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "ATENCIÓ - ESQUERDA DE SEGURETAT POTENCIAL!\nLa clau de l'ordinador principla no concorda amb la desada a la memòria \ncau del registre. Això significa que \nl'administrador del servidor ha canviat la clau de l'ordinador principal, o\nt'has connectat a un altre ordinador que intenta\nfer-se passar pel servidor.\nLa nova emprempta de la clau es:\n%s\nSi estaves esperant aquest canvi i confies en la nova clau,\nselecciona 'Sí' per actualitzar la memòria cau i continuar connectat.\nSi vols continuar connectat però sense actualitzar\nla memòria cau, selecciona 'No'.\nSi vols abandonar completament la connexió, clica a \n'Cancel·lar'. Seleccionar 'Cancel·lar' és la UNICA tria amb \nla seguretat garantida.\nActualitzar la clau desada a la memòria cau?"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "La clau de l'ordinador no està a la memòria cau del registre. No\ntens cap garantia que el servidor és l'ordinador que\ncreus que es.\n\nL'empremta de la clau del servidor és:\n%s\n\nSi confies en aquesta ordinador principal, seleccciona 'Sí' per afegir la clau a la \ntmemòria cau i continuar amb la connexió.\nSi vols continuar amb la connexió només aquest cop, sense\nafegir la clau a la memòria cau, seleccciona 'No'.\nSi no confies en aquest ordinador principal, selecciona 'Cancel·lar' per abandonar la\nconnexió.\n\nVols desar la clau a la memòria cau?"
+    IDS_QUESTION_SITEMANAGERDELETE "Esteu segur/a d'esborrar ""%s""?"
+    IDS_QUESTION_TRANSFER_USEPRIMARY 
+                            "Problema transferint '%s'\nNo es pot establir cap connexió adicional amb el servidor per a la transferència del fitxer. El teu servidor pot no suportar connexions múltiples.\nEn FileZilla hauria d'utilitzar la connexió primària per a la transferència ja que ja estàs connectat a aquest servidor?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            """%s"" ha estat modificat.\nVols pujar-lo al servidor?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "El fitxer ha estat modificat"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "La configuració ha estat importada amb èxit. \nSi es possa els fitxer .xml creat en el mateix directori que el FileZilla amb el nom 'filezilla.xml', serà utilitzat per desar la configuració en substitució del registre."
+    IDS_OPTIONS_IDENTSYSTEM "Si us plau introdueix un ID del sistema operatiu!"
+    IDS_OPTIONS_IDENTUSERID "Si us plau introdueix un ID d'usuari!"
+    IDS_OPTIONS_IMPORTFAILURE 
+                            "Error! La importació de la configuració des de '%s' ha fallat"
+    IDS_OPTIONS_IMPORTOK    "La configuració ha estat importada amb èxit."
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "El màxim de l'interval de Mantenir la connexió ha de ser més gran que el mínim!"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "El màxim de l'interval de Mantenir la connexió ha d'estar entre %d i %d segons!"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "El mínim de l'interval de Mantenir la connexió ha d'estar entre %d i %d segons!"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF 
+                            "El màxim de l'interval de ports ha de ser més gran que el mínim!"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH 
+                            "El màxim de l'interval de ports ha d'estar entre %d i %d!"
+    IDS_OPTIONS_LIMITPORTRANGELOW 
+                            "El mínim de l'interval de ports ha d'estar entre %d i %d!"
+    IDS_OPTIONS_NUMRETRIES  "Si us plau introdueix un valor entre %d i %d pel nombre màxim de reintents"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "Si us plau introdueix un ordinador principal pel servidor intermediari!"
+    IDS_OPTIONS_PROXYPORT   "Si us plau introdueix un port vàlid per al servidor intermediari!"
+    IDS_OPTIONS_RETRYDELAY  "Si us plau introdueix un valor entre %d i %d pel retard entre reintents!"
+    IDS_OPTIONS_TIMEOUT     "Si us plau introdueix un valor entre %d i %d per la detecció de temps d'espera excedit."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "L'autentificació ha fallat, això normalment significa \nque no tens un tiquet de Kerberos versió 5t.\nConsidera executar Leash32 primer.\nVols enviar les dades de forma clara,\ni potenciamlemnt exposar la teva contrasenya a centenars\nde persones?"
+    IDS_GSSERROR_CANTLOADDLL "No es pot trobar o carregar %s"
+    IDS_GSSERROR_CANTLOADGSSAPI 
+                            "Una o més de les GSS-API's no han estat carregades!"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI 
+                            "Les següents  API's no s'han pogut carregar de la biblioteca Kerberos 5 DLL!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT "Certificat auto-signat"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "Error de format en el camp vàlid fins."
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "Error de format en el camp vàlid des de."
+    IDS_CERT_ERR_INVALID_CA "certificat CA invàlid"
+    IDS_CERT_ERR_INVALID_PURPOSE "Propòsit del certificat invàlid"
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN 
+                            "La clau no pot ser utilitzada per signar certificas."
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED "La longitud de l'adreça és excessiva."
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "Certificat auto-signat en una cadena de certificat."
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "No ha estat possible decodificar la clau pública de l'emissor."
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "No ha estat possible desxifrar la signatura del certificat."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT 
+                            "No ha estat possible aconseguir el certificat de l'emissor."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "No ha esta possible aconseguir el certifica d'emissor local."
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE 
+                            "No ha estat possible verificar el primer certificat."
+    IDS_CERT_ERR_UNKNOWN    "Error de verificació del certificat desconegut."
+    IDS_CERT_ERRDEPTH       "L'error ha passat a una profunditat de %d en la cadena de certificat."
+    IDS_CERT_OK             "El certificat sembla vàlid."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS 
+                            "Connecta i omet la configuració del servidor intermediari"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "&Neteja"
+    ID_REMOTELISTSTYLE_ICON "Mostra els objectes com icones grans"
+    ID_REMOTELISTSTYLE_LIST "Mostra els objectes com una llista"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT "Mostra els objectes amb detalls"
+    ID_REMOTELISTSTYLE_SMALLICON "Mostra els objectes com icones petites"
+    ID_SHOWQUEUE            "Mostra o amaga la cua"
+    ID_SHOWREMOTETREE       "Mostra o amaga la vista d'arbre remota"
+    ID_SHOWTREE             "Mostra o amaga la vista d'arbre local"
+    ID_SITEMANAGER          "Obre el Gestor de llocs"
+    ID_SITEMANAGER_FILE_EXPORT "Exporta la llista de servidor FTP a un fitxer"
+    ID_SITEMANAGER_FILE_IMPORT 
+                            "Importa la llista de servidors FTP d'un fitxer"
+    ID_TOOLBAR_DISCONNECT   "Desconnecta dels servidors"
+    ID_TOOLBAR_RECONNECT    "Reconnecta al servidor"
+    ID_TOOLBAR_REFRESH      "Actualitza totes les vistes"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "Mostra la grandària del fitxer"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "Mostra el tipus de fitxer"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME 
+                            "Mostra la data/hora de la darrera modificació"
+    ID_VIEW_MESSAGELOG      "Mostra o amaga la bitàcora"
+    ID_VIEW_QUICKCONNECT_BAR "Mosta o amaga la barra de Connexió Ràpida"
+    ID_VIEW_REMOTELISTVIEW_DATE "Mostra la data del fitxer"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "Mostra la grandària del fitxer"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "Mostra els permisos"
+    ID_VIEW_REMOTELISTVIEW_TIME "Mostra l'hora del fitxer"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR 
+                            "Commuta la barra d'estat sota la llista de fitxers locals que mostra informació sobre els fitxers i directoris seleccionats"
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR 
+                            "Commuta la barra d'estat sota la llista de fitxers remota que mostra informació sobre els fitxers i directoris seleccionats"
+    ID_QUEUECONTEXT_ABORT   "Cancel·la les transferències seleccionades i les esborra de la cua"
+    ID_QUEUECONTEXT_PAUSE   "Pausa les transferències seleccionades"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "Mostra els objectes com icones petites"
+    ID_MENU_QUEUE_EXPORT    "Exporta tots els elements de la cua"
+    ID_MENU_QUEUE_IMPORT    "Importa entrades per la cua des d'un fitxer extern"
+    ID_MENU_QUEUE_PROCESSNOW "Comença a processar la cua"
+    ID_MENU_QUEUE_USEMULTIPLE 
+                            "Quan està activat, FileZilla pot transferir diversos fitxers a l'hora"
+    ID_MENU_SERVER_CHANGEPASS 
+                            "Canvia la contrasenya del lloc. Molt pocs servidor FTP ho suporten."
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "Copia la URL del servidor actual incloent l'adreça al porta-retalls"
+    ID_MENU_SERVER_ENTERRAWCOMMAND 
+                            "Et permet enviar intruccions FTP ""crues"" al servidor"
+    ID_MENU_TRANSFER_MANUALTRANSFER "Configura una transferència manual"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "Cancel·la el procés actual"
+    ID_COPYTOSITEMANAGER    "Copia la connexió actual a una nova entrada en el Gestor de Llocs"
+    ID_EDIT_EXPORTSETTINGS  "Exporta la configuració a un fitxer"
+    ID_EDIT_IMPORTSETTINGS  "Importa la configuració a un fitxer"
+    ID_EDIT_SETTINGS        "Obre el diàleg d'opcions del FileZilla"
+    ID_FILE_CONNECTTODEFAULTSITE 
+                            "Connecta al lloc predeterminat en el Gestor de Llocs"
+    ID_FILE_EXPORT_ASURLLIST 
+                            "Exporta tots els llocs FTP a un fitxer de text com una llista d'URL's"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "Exporta tots el llocs FTP a un fitxer de text amb tots els detalls"
+    ID_FTPCONTEXT_CREATEDIR "Crea un directori en el servidor FTP"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "Mostra la taula de contingut del fitxer d'ajuda"
+    ID_HELPMENU_INDEX       "Mostra l'índex del fitxer d'ajuda"
+    ID_HELPMENU_SEARCH      "Busca en el fitxer d'ajuda"
+    ID_LOCALLISTSTYLE_ICON  "Mostra els objectes com icones grans"
+    ID_LOCALLISTSTYLE_LIST  "Mostra els objectes com una llista"
+    ID_LOCALLISTSTYLE_REPORT "Mostra els objectes amb detalls"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "Quan està activat, FileZilla intenta mostrar fitxers amagats en el servidor."
+    ID_OVERWRITEMENU_ASK    "FileZilla et preguntarà què fer quan un fitxer ja existeix"
+    ID_OVERWRITEMENU_OVERWRITE "Sobreescriu sempre el fitxer"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER 
+                            "Sobreescriu el fitxer antic si el nou és més nou"
+    ID_OVERWRITEMENU_RENAME "Pregunta per un nou nom de fitxer"
+    ID_OVERWRITEMENU_RESUME "Continua la transferència si es possible"
+    ID_OVERWRITEMENU_SKIP   "Omet els fitxers existents"
+    ID_PROCESS_QUEUE        "Processa la cua"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1 fitxer amb, com a mínim %I64d octets."
+    IDS_DIRINFO_DIRANDFILESMIN 
+                            "1 directori i %d fitxers amb, com a mínim %I64d octets."
+    IDS_DIRINFO_DIRANDFILE  "1 directori 1 fitxer amb %I64d octets."
+    IDS_DIRINFO_DIRSANDFILE "%d directoris i 1 fitxer amb %I64d octets."
+    IDS_DIRINFO_DIRANDFILEMIN 
+                            "1 directori i 1 fitxer amb, com a mínim %I64d octets."
+    IDS_DIRINFO_DIRSANDFILEMIN 
+                            "%d directoris  i 1 fitxer amb, coma mínim %I64d octets."
+    IDS_DIRINFO_SELECTED_FILE "1 fitxer seleccionat amb %I64d octets."
+    IDS_DIRINFO_SELECTED_DIR "1 directori seleccionat."
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "1 directori seleccionat i %d fitxers amb %I64d octets."
+    IDS_DIRINFO_SELECTED_FILEMIN 
+                            "1 fitxer seleccionat amb, com a mínim %I64d octets."
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "1 directori seleccionat i %d fitxers amb, com a mínim %I64d octets"
+    IDS_DIRINFO_SELECTED_DIRANDFILE 
+                            "1 directori i 1 fitxer seleccionat amb %I64d octets."
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "1 directori i 1 fitxer seleccionat amb, com a mínim %I64d octets."
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "%d directoris seleccionats i 1 fitxer amb %I64d octets."
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "%d directoris i 1 fitxer selecccionats amb, com a mínim %I64d octets."
+    IDS_QUEUESTATUS_PAUSED  "Pausat"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "Continua les transferències pausades"
+    ID_VIEW_REMOTELISTVIEW_FILETYPE "Mostra el tipus de fitxer"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME 
+                            "Classifica llista de fitxers remota per nom"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE 
+                            "Classifica llista de fitxers remota per grandària"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE 
+                            "Classifica llista de fitxers remota per tipus"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "Classifica llista de fitxers remota per data/hora"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "Classifica llista de fitxers remota en ordre ascendent"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "Classifica llista de fitxers remota en ordre descendent"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "No he pogut seleccionar el cursor del fitxer"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "Error desconegut en la capa SSL"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR 
+                            "No s'ha pogut verificar el certificat SSL"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME 
+                            "Classifica llista de fitxers local per nom"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE 
+                            "Classifica llista de fitxers local per grandària"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE 
+                            "Classifica llista de fitxers local per tipus"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "Classifica llista de fitxers local per data/hora de darrera modificació"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "Classifica llista de fitxers local en ordre ascendent"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "Classifica llista de fitxers local en ordre descendent"
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+#endif    // Catalan resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

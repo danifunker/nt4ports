@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Firewall settings</title>
+  <link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+<body>
+
+<p class="PageCaption">Firewall settings</p>
+<p class="MidCaption">Overview</p>
+<p class="bodyText">Using the settings on this page, you can configure FileZilla to be compatible with your firewall.</p>
+<p align="center" class="bodyText"><img border="0" src="firewall.png" width="597" height="405"><br>
+</p>
+<table border="0" height="47">
+  <tr>
+    <td valign="top" class="bodyText" nowrap height="13"><b>Limit local ports used by FileZilla</b></td>
+    <td valign="top" class="bodyText" nowrap height="13">-</td>
+    <td valign="top" class="bodyText" height="13">Enable this if your Firewall only allows applications to use a specific port range. If all ports 
+     within the specified range are already in use or if your firewall blocks 
+    applications from using these ports, you won't be able to connect to 
+     any ftp server behind your firewall.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText" nowrap height="26"><b>Passive Mode</b></td>
+    <td valign="top" class="bodyText" nowrap height="26">-</td>
+    <td valign="top" class="bodyText" height="26">
+      Enable passive mode. Without passive mode, the FTP server establishes a connection to your computer for transfers.
+      With passive mode enabled, FileZilla establishes a connection to the server for transfers. 
+      Passive mode should be enabled when a firewall type is selected or if you can't accept inbound connections.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText" nowrap height="26"><b>Use the following IP address<br>for non-passive transfers</b></td>
+    <td valign="top" class="bodyText" nowrap height="26">-</td>
+    <td valign="top" class="bodyText" height="26">
+      If FileZilla fails to detect your ip address for active mode transfers, for example if you are behind a router,
+      you can specify the ip address which should be used for active transfers.
+    </td>
+  </tr>
+</table>
+<p class="bodyText">Contact your system administrator if you don't know the
+required information or if you have problems connecting through the firewall.</p>
+
+</body>
+</html>

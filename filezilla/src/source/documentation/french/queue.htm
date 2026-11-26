@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<title>The Transfer Queue</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p class="PageCaption">La File d'Attente de Transfert</p>
+<p class="MidCaption">Vue d'ensemble:</p>
+<p class="bodyText">Chaque fois que vous voulez transf&eacute;rer un fichier avec 
+  FileZilla, le transfert sera mis en File d'Attente de Transfert. A chaque fois 
+  que vous voulez transf&eacute;rer plus d'un fichier, une file d'attente devient 
+  n&eacute;cessaire. La file d'attente d&eacute;cide du prochain fichier qui sera 
+  transf&eacute;r&eacute;.</p>
+<p class="bodyText" align="center"> <img border="0" src="queue.png" width="665" height="104"></p>
+<p class="bodyText" align="left">Chaque ligne de la liste repr&eacute;sente un 
+  transfert de fichier diff&eacute;rent. L'en-t&ecirc;te de colonne d&eacute;crit 
+  la signification de chaque colonne. </p>
+<p class="bodyText" align="left"><b>Nom de fichier local </b> est le fichier local 
+  qui sera transf&eacute;r&eacute; ou le fichier local qui sera remplac&eacute; 
+  par un fichier re&ccedil;u.</p>
+<p class="bodyText" align="left"><b>Taille</b> indique la taille totale du transfert.</p>
+<p class="bodyText" align="left"><b>Direction</b> vous indique si le fichier sera 
+  envoy&eacute; (-&gt;) ou re&ccedil;u (&lt;-)<b> </b>Il vous indique aussi la 
+  priorit&eacute; du transfert. Une simple fl&egrave;che (-&gt; ou &lt;-) indique 
+  que le fichier attend d'&ecirc;tre pris en charge pour un transfert ult&eacute;rieur. 
+  Une double-fl&egrave;che (-&gt;&gt; ou &lt;&lt;-) attend pour des transferts 
+  qui ont &eacute;t&eacute; initialis&eacute;s directement, les transferts de 
+  haute priorit&eacute;. Les transferts de haute priorit&eacute; seront pris en 
+  charge en premier. Quand vous ajoutez un nouveau fichier &agrave; la file d'attente, 
+  il prend place sous le dernier &eacute;l&eacute;ment de m&ecirc;me priorit&eacute;. 
+</p>
+<p class="bodyText" align="left"><b>Nom de fichier distant</b> indique le fichier 
+  distant qui sera transf&eacute;r&eacute; ou le fichier distant qui sera remplac&eacute; 
+  pour une mise &agrave; jour.</p>
+<p class="bodyText" align="left"><b>H&ocirc;te</b> est l'adresse du serveur concern&eacute; 
+  par le transfert.</p>
+<p class="bodyText" align="left"><b>&Eacute;tat</b> affiche certaines informations 
+  concernant les transferts. Les messages d'&eacute;tat sont: &quot;En cours de 
+  transfert&quot;, &quot;Erreur de transfert #x, &quot;Nouvelle tentative ult&eacute;rieure&quot;, 
+  &quot;Transfert annul&eacute;&quot;, &quot;Erreur transfert critique&quot; ou 
+  &quot;Trop de tentatives&quot;. Dans les trois derni&egrave;res cas, vous devez 
+  r&eacute;initialiser l'&eacute;tat du transfert &agrave; l'aide du menu contextuel 
+  si vous voulez re-tenter le transfert du fichier ult&eacute;rieurement.</p>
+<p class="MidCaption" align="left">Menu Contextuel</p>
+<p class="bodyText" align="left">Faites un clic droit dans la file d'attente pour 
+  ouvrir le menu contextuel.</p>
+<table border="0">
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Traitement de la file d'attente</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Lance l'ex&eacute;cution de la file d'attente.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Supprimer de la file d'attente</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">Supprime un &eacute;l&eacute;ment s&eacute;lectionn&eacute; 
+      de la file d'attente</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>R&eacute;initialiser l'&eacute;tat</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">R&eacute;initialise l'&eacute;tat d'un &eacute;l&eacute;ment. 
+      Les anciens <b>&eacute;tats</b> devront &ecirc;tre catalogu&eacute;s comme 
+      &quot;Transfert annul&eacute;&quot;, &quot;Erreur critique de transfert&quot; 
+      ou &quot;Trop de tentatives&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Monter</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">D&eacute;place les &eacute;l&eacute;ments 
+      s&eacute;lectionn&eacute;s vers le haut. *</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>Descendre</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">D&eacute;place les &eacute;l&eacute;ments 
+      s&eacute;lectionn&eacute;s vers le bas. *</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>En premier</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">D&eacute;place les &eacute;l&eacute;ments 
+      s&eacute;lectionn&eacute;s vers le d&eacute;but de la file d'attente. *</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap class="bodyText"><b>En dernier</b></td>
+    <td valign="top" nowrap class="bodyText">-</td>
+    <td valign="top" class="bodyText">D&eacute;place les &eacute;l&eacute;ments 
+      s&eacute;lectionn&eacute;s vers la fin de la file d'attente. *</td>
+  </tr>
+</table>
+<p class="bodyText">* Veuillez noter qu'un transfert 'basse priorit&eacute;' ne 
+  pourra jamais se trouver avant un transfert 'haute priorit&eacute;' et vice 
+  et versa.</p>
+
+</body>
+
+</html>

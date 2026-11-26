@@ -1,0 +1,56 @@
+[OPTIONS]
+Auto Index=Yes
+Compatibility=1.1 or later
+Compiled file=FileZilla.chm
+Contents file=Topics.hhc
+Default topic=introduction.htm
+Display compile progress=Yes
+Full-text search=Yes
+Index file=Index.hhk
+Language=0x409 Englisch (USA)
+Title=FileZilla help
+
+
+[FILES]
+history.htm
+introduction.htm
+general information.htm
+version history.htm
+Using FileZilla.htm
+Main Window.htm
+quickguide.htm
+Menus and Toolbars.htm
+messagelog.htm
+File Views.htm
+queue.htm
+configuration.htm
+gss.htm
+language.htm
+sitemanager.htm
+connection.htm
+interface.htm
+miscellaneous.htm
+asciibinary.htm
+firewall.htm
+proxy.htm
+compiling.htm
+dircache.htm
+ftpproxy.htm
+debug.htm
+credits.htm
+filetransfer.htm
+ident.htm
+viewedit.htm
+localfilelist.htm
+remotefilelist.htm
+speedlimit.htm
+sftp.htm
+
+[ALIAS]
+IDH_MAINFRAME=introduction.htm
+
+[MAP]
+#include FileZilla.hm
+
+[INFOTYPES]
+

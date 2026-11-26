@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>The Site Manager</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p class="PageCaption">Le Gestionnaire de Sites</p>
+<p class="MidCaption">Vue d'ensemble:</p>
+<p class="bodyText">Le Gestionnaire de Sites prend en charge la liste des serveurs 
+  de fa&ccedil;on &agrave; ce que vous puissiez vous y connecter rapidement. Il 
+  enregistre leur adresse et leurs informations de connexion de sorte que vous 
+  n'aurez pas &agrave; vous souvenir de tous les d&eacute;tails les concernant. 
+  FileZilla le fera pour vous.</p>
+<p align="center" class="bodyText"><img border="0" src="sitemanager.png" width="531" height="489"><br>
+  (La fen&ecirc;tre du Gestionnaire de Sites)</p>
+<p align="left" class="MidCaption">Contr&ocirc;les:</p>
+<p align="left" class="bodyText">Il existe un grand nombre de contr&ocirc;les 
+  pour cette bo&icirc;te de dialogue. Chacun d'entre eux appara&icirc;t dans la 
+  liste ci-dessous, accompagn&eacute; d'une description.</p>
+<table border="0">
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Liste des sites</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Affiche tous les sites que vous avez entr&eacute; 
+      dans le Gestionnaire de Sites et les am&eacute;nage sous forme d'une arborescence. 
+      Cliquez sur une entr&eacute;e pour afficher ou modifier les d&eacute;tails 
+      la concernant. Double-cliquez sur une entr&eacute;e pour vous connectez 
+      au site correspondant.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>H&ocirc;te</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">C'est l'adresse du serveur. </td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Port</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Le port o&ugrave; est localis&eacute; le 
+      serveur.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Type de serveur</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Vous pouvez choisir ici le type du serveur. 
+      Trois types de serveurs sont habituellement support&eacute;s: 
+      <ul>
+        <li>FTP - Le protocole par d&eacute;faut de FileZilla</li>
+        <li>FTP sur SSL (cryptage explicite) - utilis&eacute; pour se connecter 
+          sur serveurs s&eacute;curis&eacute;s SSL Secure Sockets Layer), avec 
+          obtention d'un canal s&eacute;curis&eacute; &eacute;tabli au moment 
+          de la connexion</li>
+        <li>FTP sur SSL (cryptage implicite) - utilis&eacute; pour se connecter 
+          via des serveurs compatibles SSL, avec obtention d'un canal s&eacute;curis&eacute; 
+          &eacute;tabli avant la connexion.</li>
+        <li>SFTP utilisant SSH2 - utilis&eacute; pour se connecter &agrave; un 
+          serveur SFTP utilisant une connexion crypt&eacute;e.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Utilisateur</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Le nom d'utilisateur qui servira &agrave; 
+      &eacute;tablir une session avec le serveur.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Mot de passe</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Le mot de passe qui servira &agrave; &eacute;tablir 
+      une session avec le serveur. S&eacute;lectionnez <b>Ne pas enregistrer le 
+      mot de passe</b> si vous ne voulez pas que FileZilla m&eacute;morise votre 
+      mot de passe pour le sire concern&eacute;. Dans ce cas le mot de passe vous 
+      sera demand&eacute; &agrave; chaque fois que vous voudrez vous connecter 
+      &agrave; ce site. Utile si vous n'&ecirc;tes pas le seul &agrave; avoir 
+      acc&egrave;s &agrave; votre machine.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Type d'authentification</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Sp&eacute;cifie de quelle fa&ccedil;on FileZilla 
+      devra se connecter au serveur. Si vous s&eacute;lectionnez <b>anonyme</b>, 
+      vous ne pouvez entrer ni nom d'utilisateur ni mot de passe. Dans ce cas 
+      le nom d'utilisateur est toujours anonyme. Quand vous s&eacute;lectionnez 
+      <b>Normal</b>, vous devez entrer un nom d'utilisateur et si n&eacute;cessaire, 
+      un mot de passe. Quand vous cochez &quot;<b>Contourner param&egrave;tres 
+      proxy / pare-feu</b>&quot;, FileZilla &eacute;vite toute configuration proxy 
+      ou pare-feu que vous avez r&eacute;gl&eacute; dans les options. Activer 
+      cette option peut &ecirc;tre n&eacute;cessaire si vous voulez vous connecter 
+      aux serveurs par votre r&eacute;seau local LAN.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>R&eacute;pertoire distant par 
+      d&eacute;faut,<br>
+      R&eacute;pertoire local par d&eacute;faut</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Quand vous vous connectez &agrave; un site, 
+      FileZilla bascule &agrave; la fois sur le r&eacute;pertoire local et distant 
+      que vous avez entr&eacute; ici.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Site par d&eacute;faut</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Si cette option est s&eacute;lectionn&eacute;e, 
+      le site concern&eacute; dans la liste sera le site par d&eacute;faut. Ce 
+      site sera s&eacute;lectionn&eacute; chaque fois que vous ouvrez le Gestionnaire 
+      de Site. FileZilla vous connectera &eacute;galement &agrave; ce site quand 
+      vous utiliserez &quot;Connexion au Site par d&eacute;faut&quot; &agrave; 
+      partir du menu de la fen&ecirc;tre principale.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Nouveau Site</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Cr&eacute;e une nouvelle entr&eacute;e dans 
+      la liste. Remplissez les champs &eacute;ditables de droite et le nouveau 
+      site est pr&ecirc;t &agrave; &ecirc;tre utilis&eacute;.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Nouveau Dossier</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Cr&eacute;e un nouveau dossier dans l'arborescence. 
+      Utilisez des dossiers pour regrouper vos sites.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Supprimer</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Supprime les entr&eacute;es s&eacute;lectionn&eacute;es 
+      de la liste des sites apr&egrave;s vous avoir demand&eacute; confirmation.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Connexion</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Vous connecte au site s&eacute;lectionn&eacute; 
+      et enregistre tout changement.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Annuler</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Ignore tout changement et ferme le Gestionnaire 
+      de Sites.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Enregistrer et Quitter</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Enregistre tous les changements et ferme 
+      le Gestionnaire de Sites.</td>
+  </tr>
+</table>
+<p align="left" class="MidCaption">Le menu:</p>
+
+<p align="left" class="bodyText">Le Gestionnaire de Sites poss&egrave;de un petit 
+  menu &agrave; partir duquel vous pouvez importer ou exporter ses entr&eacute;es. 
+</p>
+
+<p align="left" class="bodyText">Vos sites peuvent &ecirc;tre export&eacute;s 
+  de deux fa&ccedil;ons: comme une simple liste d'URL ou avec tous les d&eacute;tails. 
+  Dans les deux cas il vous sera demand&eacute; le nom du fichier texte dans lequel 
+  vos sites seront export&eacute;s. Dans le premier cas, seule l'URL compl&egrave;te 
+  (incluant port, nom d'utilisateur, mot de passe et r&eacute;pertoire distant) 
+  du serveur seront enregistr&eacute;s. Dans le second cas, tous les param&egrave;tres 
+  seront export&eacute;s.</p>
+
+<p align="left" class="bodyText">Quand vous s&eacute;lectionnez <b>Importer</b> 
+  &agrave; partir du menu, il vous sera demand&eacute; un nom de fichier. FileZilla 
+  d&eacute;tecte automatiquement si le fichier contient des sites et s'il s'agit 
+  d'une liste d'URL ou d'une liste d&eacute;taill&eacute;e.</p>
+
+</body>
+
+</html>

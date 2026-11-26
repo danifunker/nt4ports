@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>The Site Manager</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p class="PageCaption">The Site Manager</p>
+<p class="MidCaption">Overview</p>
+<p class="bodyText">The Site Manager manages a list of servers so that you can quickly connect to
+them. It stores their addresses and their logon information so that you don't
+have to remember all server details. FileZilla will do that for you.</p>
+<p align="center" class="bodyText"><img border="0" src="sitemanager.png" width="531" height="484"><br>
+(The Site Manager window)</p>
+<p align="left" class="MidCaption">Controls</p>
+<p align="left" class="bodyText">There are a lot of controls on this dialog.
+Each of them is listed below with a description.</p>
+<table border="0">
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Site List</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Lists all sites that you've entered in the
+      Site Manager and arranges them in a tree. Click on an entry to see or change its details. Double click
+      an entry to connect to that site.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Host</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">This is the address of the server. </td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Port</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">The port at which the server is located.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Servertype</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Here you can choose the type of the 
+    server. Currently 3 server types are supported:<ul>
+      <li>FTP - The default protocol of FileZilla</li>
+      <li>FTP over SSL (explicit encryption) - used to connect through SSL 
+      secured servers, secure channel gets established upon connection.</li>
+      <li>FTP over SSL (implicit encryption) - used to connect through SSL 
+      capable servers, secure channel gets established before logon.</li>
+      <li>SFTP using SSH2 - uses to connect to an SFTP server using an encrypted 
+      connection</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>User</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">The username that will be used for the
+      logon on the server.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Password</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">The password that will be used for the
+      logon on the server. Select <b>Don't save password</b> if you don't want
+      FileZilla to remember your password for that site. In this case you will
+      be asked for the password every time you want to connect to that site.
+      Useful if you're not the only one who has access to your machine.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Logontype</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Specifies the way in which FileZilla will
+      connect to the server. If you select <b>anonymous</b>, you can't enter a
+      username and password. In this case the username always is anonymous. When
+      you select <b>Normal</b>, you have to enter a username and if required, a
+      password. When the checkbox &quot;<b>Bypass proxy / firewall settings</b>&quot;
+      is checked, then FileZilla bypasses any proxy or firewall settings that
+      you've set in the options. Checking this could be required if you want to
+      connect to servers in your LAN.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Default remote directory,<br>
+      Default local directory</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">When you connect to a site, FileZilla
+      switches both the local and the remote directory to the ones you have
+      entered here.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Default site</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">When selected, the site selected in the
+      site list is the default site. This site will be selected everytime you
+      open the Site Manager. FileZilla will also connect to this site when you
+      use &quot;Connect to default Site&quot; from the menu of the main window.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>New Site</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Creates a new entry in the list. Fill out
+      the edit fields on the right and the new site is ready to use.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>New Folder</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Creates a new folder in the tree. Use 
+    folders to group your sites.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Delete</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Deletes the selected entry from the site
+      list after asking for confirmation.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Connect</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Connects to the selected site and saves
+      any changes.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Cancel</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Discards all changes and closes the Site
+      Manager.</td>
+  </tr>
+  <tr>
+    <td class="bodyText" valign="top" nowrap><b>Save and Exit</b></td>
+    <td class="bodyText" valign="top" nowrap>-</td>
+    <td class="bodyText" valign="top">Saves all changes and closes the Site
+      Manager.</td>
+  </tr>
+</table>
+<p align="left" class="MidCaption">The menu</p>
+
+<p align="left" class="bodyText">The Site Manager has a small menu from which
+you can import and export the Site Manager entries. </p>
+
+<p align="left" class="bodyText">Your sites can be exported in two ways: as
+a simple URL list or with all details. In both cases you will be asked for the
+name of the text file into which your sites will be exported. In the first case,
+only the full URL (including port, username, password and remote directory) of
+the server gets saved. In the second case, all settings get exported.</p>
+
+<p align="left" class="bodyText">When you select <b>Import</b> from the menu,
+you will be asked for a filename. FileZilla automatically detects whether the
+file contains any sites and if it is a URL list or a full detail list.</p>
+
+</body>
+
+</html>

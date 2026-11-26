@@ -1,0 +1,2278 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_CHINESE, SUBLANG_NEUTRAL\r\n"
+    "#pragma code_page(950)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""afxres.rc""          // Standardkomponenten\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 318, 212
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "設定自訂的檔案傳輸"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "設定一個自訂的檔案傳輸。請儘可能的填寫所需要的資料，如果你有欄位空白，FileZilla 會試著把它填滿。",
+                    IDC_STATIC,7,7,304,17
+    LTEXT           "傳輸模式:",IDC_STATIC,7,30,52,8
+    CONTROL         "下載(&D)",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,40,45,10
+    CONTROL         "上傳(&U)",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,51,45,10
+    LTEXT           "本機檔案(&L):",IDC_STATIC,7,65,45,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "遠端檔案(&R):",IDC_STATIC,7,93,45,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "使用目前的伺服器(&c)",IDC_MANUALTRANSFER_SERVER1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,147,30,85,10
+    CONTROL         "使用下列的伺服器(&f)",IDC_MANUALTRANSFER_SERVER2,"Button",
+                    BS_AUTORADIOBUTTON,147,41,85,10,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,141,41,170,164,WS_GROUP
+    LTEXT           "主機名稱(&H):",IDC_STATIC,148,52,55,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,61,123,14,ES_AUTOHSCROLL
+    LTEXT           "連接埠(&P):",IDC_STATIC,274,52,35,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,273,61,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "伺服器型態(&S):",IDC_STATIC,148,80,37,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,90,157,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "登入型態",IDC_STATIC,148,108,157,38
+    CONTROL         "匿名登入(&y)",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,119,53,10
+    CONTROL         "一般登入(&o)",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,119,55,10
+    CONTROL         "略過 Proxy 設定(&B)",IDC_MANUALTRANSFER_BYPASSPROXY,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,158,132,
+                    83,10
+    LTEXT           "使用者(&e):",IDC_STATIC,148,149,35,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,158,157,14,ES_AUTOHSCROLL
+    LTEXT           "密碼(&w):",IDC_STATIC,148,176,34,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,185,157,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "確定",IDOK,15,191,50,14
+    PUSHBUTTON      "取消",IDCANCEL,75,191,50,14
+    CONTROL         "立即開始傳輸(&n)",IDC_MANUALTRANSFER_STARTNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,172,71,10
+END
+
+IDD_ABOUTBOX DIALOG  0, 0, 235, 82
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "關於 FileZilla"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<version>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版權所有 (C) 2001-2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "確定",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "撰寫者:",IDC_STATIC,41,40,35,8
+    LTEXT           "http://www.sourceforge.net/projects/filezilla",
+                    IDC_HOMEPAGE,82,54,146,8
+    LTEXT           "Tim Kosse",IDC_MAIL,82,40,34,8
+    LTEXT           "首頁:",IDC_STATIC,41,54,38,8
+    LTEXT           "中文化:",IDC_TRANSLATEDBY,41,68,41,8,NOT WS_VISIBLE
+    LTEXT           "Yuan Chia Fu (ycfunet@gmail.com)",IDC_MAIL2,82,68,110,8,
+                    NOT WS_VISIBLE
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,182,28,15,13
+END
+
+IDR_MAINFRAME DIALOG  0, 0, 385, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "位址:",IDC_STATIC,8,4,18,8
+    EDITTEXT        IDC_HOST,27,2,71,12,ES_AUTOHSCROLL
+    LTEXT           "使用者:",IDC_STATIC,108,4,26,8
+    EDITTEXT        IDC_USER,135,2,40,12,ES_AUTOHSCROLL
+    LTEXT           "密碼:",IDC_STATIC,192,4,18,8
+    EDITTEXT        IDC_PASS,211,2,40,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "連接埠:",IDC_STATIC,260,4,26,8
+    EDITTEXT        IDC_PORT,287,2,25,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "快速連線(&Q)",IDOK,325,1,60,14,BS_NOTIFY
+END
+
+IDD_FILEEXISTS DIALOG  0, 0, 259, 124
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "檔案已經存在"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "",IDC_FILEEXISTS_FILE1,7,16,150,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d 個位元組",IDC_FILEEXISTS_SIZE1,50,28,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "",IDC_FILEEXISTS_FILE2,7,64,150,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d 個位元組",IDC_FILEEXISTS_SIZE2,50,76,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "請選擇一個動作:",IDC_STATIC,165,7,87,70
+    CONTROL         "無條件覆蓋(&O)",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,172,18,73,10
+    CONTROL         "檔案較新就覆蓋(&i)",IDC_FILEEXISTS_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,172,29,77,10
+    CONTROL         "續傳(&R)",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,172,40,55,10
+    CONTROL         "重新命名(&n)",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,172,51,72,10
+    CONTROL         "跳過(&S)",IDC_FILEEXISTS_SKIP,"Button",
+                    BS_AUTORADIOBUTTON,172,62,61,10
+    CONTROL         "每次檔案存在時都使用這個動作",IDC_FILEEXISTS_ALWAYS,
+                    "Button",BS_AUTOCHECKBOX | BS_VCENTER | BS_MULTILINE | 
+                    WS_GROUP | WS_TABSTOP,170,83,82,30
+    DEFPUSHBUTTON   "確定",IDOK,105,103,50,14
+    LTEXT           "你要將檔案",IDC_STATIC,7,7,104,8
+    LTEXT           "替換為下面這個檔案？",IDC_STATIC,7,55,70,8
+END
+
+IDD_OPTIONS_FIREWALL DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Passive 模式(&P)",IDC_OPTIONS_FIREWALL_PASV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,106,65,10
+    LTEXT           "如果你能連線到 ftp 伺服器卻不能傳輸檔案，那麼你應該嘗試啟動 Passive 模式。",
+                    IDC_STATIC,7,88,272,17
+    LTEXT           "FileZilla 預設會使用任何可用的本機連接埠來做建立連線和傳輸的工作。\n如果你希望 FileZilla 只使用某一段連接埠，請將連接埠範圍設定在下面。",
+                    IDC_STATIC,19,17,260,24
+    CONTROL         "限制 FileZilla 能使用的本機連接埠(&L)",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,140,10
+    LTEXT           "最低可使用到的連接埠(&w):",IDC_STATIC,19,45,95,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,115,42,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "最高可使用到的連接埠(&H):",IDC_STATIC,19,62,95,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,115,59,40,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "下面指定的 IP 位址將使用在非 Passive 模式傳輸(&U):",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,195,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,19,137,60,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "使用 IPv6 時，下面指定的 IP 位址將使用在非 Passive 模式傳輸(&U):",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,234,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 286, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "智能連線保持設定",IDC_STATIC,7,7,270,60
+    CONTROL         "啟動智能連線保持 (Keep Alive System) (&E)",IDC_CHECK1,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,19,155,10
+    LTEXT           "『智能連線保持』會送出像是 ""PWD""、""REST 0""、""TYPE A""、""TYPE I"" 這類的指令來保持與伺服器間的連線，而這些指令會在",
+                    IDC_STATIC,25,31,227,17
+    EDITTEXT        IDC_INTERVALLOW,28,49,24,14,ES_AUTOHSCROLL
+    LTEXT           "到",IDC_STATIC,56,52,13,8
+    EDITTEXT        IDC_INTERVALHIGH,73,49,23,14,ES_AUTOHSCROLL
+    LTEXT           "秒之間以隨機的方式送出。",IDC_STATIC,101,52,100,8
+    GROUPBOX        "偵測連線逾時(&T)",IDC_STATIC,7,73,270,40
+    LTEXT           "如果一直都沒有傳輸資料，在",IDC_STATIC,14,86,96,8
+    EDITTEXT        IDC_TIMEOUT,121,81,26,14,ES_AUTOHSCROLL
+    LTEXT           "秒之後，",IDC_STATIC,151,84,50,8
+    LTEXT           "認定為連線逾時並且斷線。",IDC_STATIC,14,96,172,8
+    GROUPBOX        "設定重新連線",IDC_STATIC,7,115,270,44
+    LTEXT           "當伺服器在傳輸過程中意外斷線，等待 ",IDC_STATIC,13,128,
+                    167,8
+    EDITTEXT        IDC_DELAY,15,139,17,14,ES_AUTOHSCROLL
+    LTEXT           " 秒之後嘗試重新連線，並在嘗試了 ",IDC_STATIC,38,142,115,
+                    8
+    EDITTEXT        IDC_NUMRETRY,156,139,20,14,ES_AUTOHSCROLL
+    LTEXT           " 次之後停止。",IDC_STATIC,180,142,60,8
+    CONTROL         "啟動 IPv6 支援 (僅能工作在 Windows XP / 2003 Server 以上作業系統)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,260,10
+    LTEXT           "&Default password for anonymous logins:",IDC_STATIC,7,
+                    180,130,8
+    EDITTEXT        IDC_ANONPWD,140,178,117,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERSOMETHING DIALOG  0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "標題"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "<text>",IDC_TEXT,7,7,172,17
+    EDITTEXT        IDC_EDIT1,7,28,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "確定(&O)",IDOK,36,47,50,14
+    PUSHBUTTON      "取消(&C)",IDCANCEL,99,47,50,14
+END
+
+IDD_OPTIONS_LANGUAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "請選擇 FileZilla 所要用的語言:",IDC_STATIC,7,7,152,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "預設資料夾",IDC_STATIC,7,7,272,55
+    CONTROL         "自動記憶最後使用的資料夾(&R)",
+                    IDC_SELECTDEFAULTFOLDERTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,18,125,10
+    CONTROL         "每次都使用這個資料夾為預設資料夾(&A):",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,150,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL
+    CONTROL         "每次 FileZilla 啟動時自動開啟站台管理員(&O)",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,77,165,10
+    CONTROL         "進入站台管理員時會先為資料夾進行排序(&f)",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,88,165,10
+    CONTROL         "預設不展開資料夾(&e)",IDC_SITEMANAGEREXPANDFOLDERS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,99,95,10
+    GROUPBOX        "站台管理員選項",IDC_STATIC,7,66,272,49
+END
+
+IDD_CONNECTION4 DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "請選擇你的 Proxy 伺服器類型:",IDC_STATIC,7,7,132,8
+    CONTROL         "直接連線(不使用 proxy)(&d)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,16,120,10
+    CONTROL         "使用 SOCKS4 proxy(&4)",IDC_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,7,27,120,10
+    CONTROL         "使用 SOCKS4A proxy(&A)",IDC_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,38,120,10
+    CONTROL         "使用 SOCKS5 proxy(&5)",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,7,49,120,10
+    CONTROL         "使用 HTTP 1.1 proxy(&H)",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,7,60,120,10
+    GROUPBOX        "Proxy 詳細資料",IDC_STATIC,7,74,272,100
+    LTEXT           "主機名稱(&H):",IDC_STATIC,14,88,45,8
+    EDITTEXT        IDC_PROXYHOST,60,85,178,14,ES_AUTOHSCROLL
+    LTEXT           "連接埠(&P):",IDC_STATIC,14,106,40,8
+    EDITTEXT        IDC_PROXYPORT,60,103,178,14,ES_AUTOHSCROLL
+    LTEXT           "使用者(&U):",IDC_STATIC,14,124,40,8
+    EDITTEXT        IDC_PROXYUSER,60,121,178,14,ES_AUTOHSCROLL
+    LTEXT           "密碼(&w):",IDC_STATIC,14,142,35,8
+    EDITTEXT        IDC_PROXYPASS,60,139,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "以使用者 / 密碼登入(只適用於 SOCKS5 和 HTTP1.1 這兩種 proxy 類型)(&s)",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,159,
+                    262,10
+END
+
+IDD_CHMOD DIALOG  0, 0, 199, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "更改檔案屬性"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Text",IDC_TEXT,7,7,185,19
+    GROUPBOX        "擁有者權限",IDC_STATIC,7,27,185,25
+    CONTROL         "讀取(&R)",IDC_OWNERREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,38,45,10
+    CONTROL         "寫入(&W)",IDC_OWNERWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,38,45,10
+    CONTROL         "執行(&E)",IDC_OWNEREXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,38,45,10
+    GROUPBOX        "同群組權限",IDC_STATIC,7,58,185,25
+    CONTROL         "讀取(&a)",IDC_GROUPREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,69,46,10
+    CONTROL         "寫入(&r)",IDC_GROUPWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,69,45,10
+    CONTROL         "執行(&x)",IDC_GROUPEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,69,45,10
+    GROUPBOX        "公眾權限(擁有者/同群組以外其他人)",IDC_STATIC,7,89,185,
+                    25
+    CONTROL         "讀取(&d)",IDC_PUBLICREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,100,45,10
+    CONTROL         "寫入(&i)",IDC_PUBLICWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,100,45,10
+    CONTROL         "執行(&u)",IDC_PUBLICEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,100,45,10
+    LTEXT           "請注意：這些指令並非適用於所有的伺服器。這些指令大部分用在 UNIX 伺服器上。",
+                    IDC_STATIC,7,144,185,20
+    DEFPUSHBUTTON   "確定(&O)",IDOK,31,165,50,14
+    PUSHBUTTON      "取消(&C)",IDCANCEL,118,165,50,14
+    LTEXT           "數值化權限：",IDC_STATIC,7,126,48,8
+    EDITTEXT        IDC_NUMERIC,58,123,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = 並非所有選定了的檔案都具有相同屬性)",IDC_STATIC,
+                    102,121,90,18
+END
+
+IDD_TRANSFERASDLG DIALOG  0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "傳送到..."
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "請為這個帳號輸入使用者及密碼，並用這個帳號來傳送這些選定了的檔案及資料夾。",
+                    IDC_STATIC,7,7,194,20
+    LTEXT           "使用者(&U):",IDC_STATIC,57,32,34,8
+    EDITTEXT        IDC_USER,95,28,56,14,ES_AUTOHSCROLL
+    LTEXT           "密碼(&P):",IDC_STATIC,57,52,34,8
+    EDITTEXT        IDC_PASS,95,50,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "立即開始傳送(&T)",IDC_TRANSFERNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,75,70,75,10
+    DEFPUSHBUTTON   "確定(&O)",IDOK,46,85,50,14
+    PUSHBUTTON      "取消(&C)",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "預設傳輸型態",IDC_STATIC,7,7,272,47
+    CONTROL         "自動判斷(&u)",IDC_TYPEMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,16,20,53,10
+    CONTROL         "ASCII(&S)",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,16,
+                    30,41,10
+    CONTROL         "二進制(&B)",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,
+                    16,40,47,10
+    LTEXT           "你應該把設定設在自動判斷。如果你設定為自動判斷，那麼 FileZilla 將會依據各檔案的檔案類型來選擇最適當的傳輸型態。\n這項設定將會在每次 FileZilla 啟動時進行設定。",
+                    IDC_STATIC,88,17,181,31
+    GROUPBOX        "ASCII 檔案類型",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "如果你選擇了自動判斷，當 FileZilla 遇到下列檔案類型時，會以 ASCII 作為傳輸型態:",
+                    IDC_STATIC,14,76,256,16
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,112,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "新增(&A)",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "移除(&R)",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "如果你輸入了錯誤的檔案類型，當這類型的檔案傳輸結束時，檔案可能會是破碎的。",
+                    IDC_STATIC,167,98,104,97
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "站台管理員"
+MENU IDR_SITEMANAGER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+    GROUPBOX        "站台詳細資料",IDC_STATIC,174,0,169,244
+    LTEXT           "主機名稱(&H):",IDC_STATIC,180,11,55,8
+    EDITTEXT        IDC_HOST,180,20,123,14,ES_AUTOHSCROLL
+    LTEXT           "連接埠(&P):",IDC_STATIC,306,11,35,8
+    EDITTEXT        IDC_PORT,305,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "伺服器型態(&S):",IDC_STATIC,180,38,60,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "登入型態",IDC_STATIC,180,66,157,38
+    CONTROL         "匿名登入(&y)",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,184,77,53,10
+    CONTROL         "一般登入(&o)",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,
+                    239,77,53,10
+    CONTROL         "Account",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,293,78,
+                    42,10
+    CONTROL         "略過 Proxy 設定(&B)",IDC_FWBYPASS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,184,90,83,10
+    LTEXT           "使用者(&U):",IDC_STATIC,180,107,40,8
+    EDITTEXT        IDC_USER,180,117,103,14,ES_AUTOHSCROLL
+    LTEXT           "Account:",IDC_STATIC,287,107,30,8
+    EDITTEXT        IDC_USER2,287,117,49,14,ES_AUTOHSCROLL
+    LTEXT           "密碼(&w):",IDC_STATIC,180,134,34,8
+    EDITTEXT        IDC_PASS,180,145,157,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "不儲存密碼(&t)",IDC_PASSDONTSAVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,180,159,136,
+                    10
+    LTEXT           "註解(&o):",IDC_STATIC,180,177,27,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,180,188,157,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "設定為預設站台(&f)",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,226,80,10
+    PUSHBUTTON      "新站台(&N)",IDC_NEW,7,212,50,14,WS_GROUP
+    PUSHBUTTON      "新資料夾(&e)",IDC_SITEMANAGER_NEWFOLDER,62,212,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "刪除(&D)",IDC_DELETE,117,212,50,14
+    PUSHBUTTON      "複製(&y)",IDC_SITEMANAGER_COPY,7,230,50,14,WS_GROUP
+    PUSHBUTTON      "重新命名(&R)",IDC_SITEMANAGER_RENAME,62,230,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "進階設定(&v)...",IDC_SITEMANAGER_ADVANCED,117,230,49,14,
+                    WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,248,
+                    336,1
+    PUSHBUTTON      "連線(&C)",IDOK,79,253,50,14
+    PUSHBUTTON      "取消(&a)",IDCANCEL,150,253,50,14
+    PUSHBUTTON      "儲存並離開(&x)",IDC_EXIT,221,253,55,14
+END
+
+IDD_OPTIONS_INTERFACE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "啟動設定",IDC_STATIC,7,7,272,109
+    LTEXT           "在每次啟動 FileZilla 時顯示這個畫面？",IDC_STATIC,14,19,
+                    190,8
+    CONTROL         "每次都使用下列這些設定(&A)。",IDC_VIEWMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,29,158,10
+    CONTROL         "自動記憶最後使用的設定(&R)",IDC_VIEWMODE2,"Button",
+                    BS_AUTORADIOBUTTON,14,39,123,10
+    LTEXT           "現在使用的設定",IDC_STATIC,14,50,72,8
+    LTEXT           "要顯示的視窗元件:",IDC_STATIC,27,62,39,28,NOT WS_GROUP
+    CONTROL         "工具列(&T)",IDC_SHOWTOOLBAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,68,61,46,10
+    CONTROL         "狀態列(&S)",IDC_SHOWSTATUSBAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,125,61,46,10
+    CONTROL         "快速連線列(&Q)",IDC_SHOWQUICKCONNECTBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,213,61,63,10
+    CONTROL         "連線訊息(&M)",IDC_SHOWMESSAGELOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,68,76,55,10
+    CONTROL         "本機樹狀目錄(&o)",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,125,76,85,10
+    CONTROL         "傳輸佇列(&f)",IDC_SHOWTRANSFERQUEUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,213,76,59,10
+    CONTROL         "遠端樹狀目錄(&e)",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,68,91,85,10
+    GROUPBOX        "雜項",IDC_STATIC,7,118,272,83
+    CONTROL         "顯示提示標籤(&v)",IDC_VIEWLABELS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,131,113,10
+    CONTROL         "自動記憶 FileZilla 的視窗大小及位址(&w)",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,145,163,10
+    CONTROL         "最小化到工作列(&n) (預設)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,162,137,10
+    CONTROL         "最小化到系統工作列(&i)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,108,10
+    CONTROL         "顯示『最小化到系統工作列』按鈕(&z)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,182,155,10
+END
+
+IDD_OPTIONS_GSSPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "啟動 Kerberos GSS 支援(&E)",IDC_USEGSS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,110,10
+    LISTBOX         IDC_SERVERLIST,15,64,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,64,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "新增(&A)",IDC_SERVERADD,128,83,50,14
+    PUSHBUTTON      "移除(&R)",IDC_SERVERREMOVE,128,101,50,14
+    LTEXT           "你必須預先安裝好 Kerberos for Windows (KfW)。\n如果沒安裝好，這功能將無法使用。但如果你安裝好並成功啟動了這功能，FileZilla 會在下面列出的伺服器使用 GSS 身份認證和加密。",
+                    IDC_STATIC,7,21,272,26
+    GROUPBOX        "支援 GSS 的伺服器",IDC_STATIC,7,52,272,149
+    LTEXT           "因為在列表中的所有伺服器都將使用 GSS，因此在輸入伺服器位址前，請確定該伺服器支援 GSS。",
+                    IDC_STATIC,184,66,88,43
+    LTEXT           "在 GSS 運作前，請確定 Kerberos 必須是 Kerberos 5 的版本。",
+                    IDC_STATIC,184,109,88,28
+END
+
+IDD_OPTIONS_DEBUG DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "這些設定只用於除錯。一般來說你並不需要變更這些設定。\n但如果你在使用 FileZilla 時遇到任何問題，你可以啟動這個除錯功能，這個額外的輸出對修復錯誤也許會有幫助。",
+                    IDC_STATIC,7,7,272,35
+    CONTROL         "從 ftp engine 追蹤訊息(&T)",IDC_DEBUG_ENGINETRACE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,43,129,10
+    CONTROL         "顯示 raw 目錄列表(&S)",IDC_DEBUG_SHOWRAWLISTING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,56,129,10
+    CONTROL         "啟動除錯選單(&E)",IDC_DEBUG_DEBUGMENU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,69,81,10
+END
+
+IDD_OPTIONS_FTPPROXY DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Proxy 伺服器主機(&h)",IDC_STATIC,7,7,70,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "連接埠(&P)",IDC_STATIC,113,7,36,8
+    EDITTEXT        IDC_EDIT6,113,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "使用者(&U)",IDC_STATIC,7,36,36,8
+    EDITTEXT        IDC_EDIT7,7,47,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "密碼(&a)",IDC_STATIC,53,36,27,8
+    EDITTEXT        IDC_EDIT8,53,47,40,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "Proxy 伺服器類型(&t)",IDC_STATIC,7,71,272,103
+    CONTROL         "無 (None)",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,17,81,150,10
+    CONTROL         "SITE 主機 (SITE hostname)",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,17,91,150,10
+    CONTROL         "USER 登入 (USER after logon)",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,150,10
+    CONTROL         "代理伺服器 OPEN (Proxy OPEN)",IDC_RADIO6,"Button",
+                    BS_AUTORADIOBUTTON,17,111,150,10
+    CONTROL         "透明代理伺服器 (Transparent)",IDC_RADIO7,"Button",
+                    BS_AUTORADIOBUTTON,17,121,150,10
+    CONTROL         "USER 遠端ID@遠端主機 (USER RemoteID@RemoteHost)",
+                    IDC_RADIO8,"Button",BS_AUTORADIOBUTTON,17,131,205,10
+    CONTROL         "USER FireID@遠端主機 (USER FireID@Remotehost)",
+                    IDC_RADIO9,"Button",BS_AUTORADIOBUTTON,17,141,200,10
+    CONTROL         "USER 遠端ID@遠端主機 FireID (USER RemoteID@RemoteHost FireID)",
+                    IDC_RADIO10,"Button",BS_AUTORADIOBUTTON,17,151,250,10
+    CONTROL         "USER 遠端ID@FireID@遠端主機 (USER RemoteID@FireID@RemoteHost)",
+                    IDC_RADIO11,"Button",BS_AUTORADIOBUTTON,17,161,259,10
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "你可以在這一頁設定本機檔案列表要顯示的。",IDC_STATIC,7,
+                    7,211,8
+    CONTROL         "總是使用以下的設定(&A):",IDC_OPTIONS_LOCALVIEW_ALWAYS,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,7,20,137,10
+    LTEXT           "預設列表樣式:",IDC_STATIC,19,35,52,8,NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,73,34,72,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "當使用詳細資料時，顯示以下欄位:",IDC_STATIC,19,49,127,8,
+                    NOT WS_GROUP
+    CONTROL         "檔案大小(&F)",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,53,10
+    CONTROL         "檔案類型(&t)",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,88,61,51,10
+    CONTROL         "最後修改時間(&L)",IDC_OPTIONS_LOCALVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,145,61,72,10
+    CONTROL         "自動記憶最後使用的設定(&R)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,90,123,10
+    LTEXT           "你可以在這個對話框裡修改選單上要顯現的。",IDC_STATIC,19,
+                    104,186,8
+    CONTROL         "在詳細資料時，自動記憶欄位寬度(&c)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,116,145,10
+    LTEXT           "在詳細資料時，檔案大小格式為(&s):",IDC_STATIC,7,144,112,
+                    8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,124,142,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "顯示狀態列，狀態列包含 (已選定的) 檔案資訊(&h)",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,76,182,10
+    CONTROL         "在詳細資料時，自動記憶欄位排序的方式(&e)",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,128,170,10
+    LTEXT           "檔案『連按兩下』的動作(&d):",IDC_STATIC,7,175,99,8
+    CONTROL         "進行傳輸",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,114,
+                    175,48,10
+    CONTROL         "開啟",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,175,175,32,10
+    CONTROL         "新增到佇列",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,
+                    "Button",BS_AUTORADIOBUTTON,218,175,56,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOG  0, 0, 286, 216
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "你可以在這一頁設定遠端檔案列表要顯現的。",IDC_STATIC,7,
+                    7,218,8
+    CONTROL         "總是使用以下的設定(&A):",IDC_OPTIONS_REMOTEVIEW_ALWAYS,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,7,20,137,10
+    LTEXT           "預設列表樣式:",IDC_STATIC,19,35,52,8,NOT WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,73,34,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "當使用詳細資料時，顯示以下欄位:",IDC_STATIC,19,49,127,8,
+                    NOT WS_GROUP
+    CONTROL         "檔案大小(&z)",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,53,10
+    CONTROL         "檔案類型(&y)",IDC_OPTIONS_REMOTEVIEW_FILETYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,89,61,55,10
+    CONTROL         "日期",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,150,61,31,10
+    CONTROL         "時間",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,71,31,10
+    CONTROL         "權限(&P)",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,90,71,37,10
+    CONTROL         "擁有者 / 群組(&w)",IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,150,71,75,10
+    CONTROL         "顯示狀態列，狀態列包含 (已選定的) 檔案資訊(&o)",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,81,182,10
+    CONTROL         "自動記憶最後使用的設定(&R)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,95,238,10
+    LTEXT           "你可以在這個對話框裡修改選單上要顯現的。",IDC_STATIC,19,
+                    109,186,8
+    CONTROL         "在詳細資料時，自動記憶欄位寬度(&c)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,121,145,10
+    CONTROL         "在詳細資料時，自動記憶欄位排序的方式(&m)",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,133,170,10
+    LTEXT           "在詳細資料時，檔案大小格式為(&s):",IDC_STATIC,7,149,112,
+                    8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,125,147,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "顯示隱藏檔案(&h)",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,91,10
+    LTEXT           "警告，並不是所有伺服器都支援這個功能。就算開啟這個功能，假如該伺服器並不支援，FileZilla 依然沒有辦法顯示出這些檔案。",
+                    IDC_STATIC,19,174,260,17
+    LTEXT           "檔案『連按兩下』的動作(&d):",IDC_STATIC,7,196,99,8
+    CONTROL         "進行傳輸",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,113,
+                    196,48,10
+    CONTROL         "開啟",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,175,196,32,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "你可以在這一頁設定遠端目錄快取。",IDC_STATIC,7,7,186,8
+    CONTROL         "不使用快取(&D)",IDC_OPTIONS_CACHE_USECACHE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,18,68,10
+    CONTROL         "使用快取(&U)",IDC_OPTIONS_CACHE_USECACHE2,"Button",
+                    BS_AUTORADIOBUTTON,7,28,55,10
+    LTEXT           "一個目錄快取最長的保存時間:",IDC_STATIC,7,44,129,8
+    LTEXT           "時(&h),",IDC_STATIC,27,57,20,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "分(&m),",IDC_STATIC,69,57,27,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,49,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "秒(&s)",IDC_STATIC,118,57,28,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,98,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "這些可利用的目錄快取都是不同型態的。",IDC_STATIC,7,114,
+                    174,8,NOT WS_VISIBLE
+    CONTROL         "離開 FileZilla 時清除快取",IDC_OPTIONS_CACHE_CACHETYPE,
+                    "Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,7,124,118,
+                    10
+    CONTROL         "快取永久使用",IDC_OPTIONS_CACHE_CACHETYPE2,"Button",
+                    BS_AUTORADIOBUTTON | NOT WS_VISIBLE,7,134,83,10
+END
+
+IDD_SERVER_CHANGEPASS DIALOG  0, 0, 186, 138
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "更改伺服器密碼"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "你在伺服器上的帳號可以透過這個對話框來更改密碼。\n但請注意，這功能不一定能用在所有伺服器上。",
+                    IDC_STATIC,7,7,172,26
+    LTEXT           "舊密碼(&O):",IDC_STATIC,7,64,46,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,61,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "新密碼(&N):",IDC_STATIC,7,83,50,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,80,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "再輸入一次新密碼(&C):",IDC_STATIC,7,102,78,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,99,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "確定(&O)",IDOK,35,117,50,14
+    PUSHBUTTON      "取消(&C)",IDCANCEL,99,117,50,14
+    LTEXT           "在輸入新密碼之前，請先輸入舊密碼以便查核。",IDC_STATIC,
+                    7,34,172,24
+END
+
+IDD_VERIFY_CERT_DLG DIALOG  0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "接受憑證？"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    GROUPBOX        "發行者",IDC_STATIC,35,7,308,66
+    LTEXT           "機構:",IDC_STATIC,41,17,42,8
+    GROUPBOX        "合法性",IDC_STATIC,35,151,308,34
+    PUSHBUTTON      "接受",IDOK,190,253,50,14
+    PUSHBUTTON      "拒絕",IDCANCEL,110,253,50,14
+    CONTROL         "總是信任這個憑證",IDC_VERIFY_CERT_ALWAYS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,35,239,99,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,97,201,237,17
+    LTEXT           "摘要:",IDC_STATIC,35,201,32,8
+    LTEXT           "你要信任這個憑證？",IDC_STATIC,35,218,114,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,97,
+                    17,88,8
+    LTEXT           "好記的名稱:",IDC_STATIC,41,28,51,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,97,28,
+                    88,8
+    LTEXT           "E-Mail:",IDC_STATIC,190,28,24,8
+    LTEXT           "單位:",IDC_STATIC,190,17,18,8
+    LTEXT           "好記的名稱:",IDC_STATIC,41,28,51,8
+    LTEXT           "國家:",IDC_STATIC,41,39,27,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_ISSUER_COUNTRY,97,39,88,8
+    LTEXT           "州/省份:",IDC_STATIC,41,50,55,8
+    LTEXT           "鄉鎮:",IDC_STATIC,190,39,21,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_ISSUER_TOWN,216,39,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,
+                    97,50,237,8
+    LTEXT           "其他:",IDC_STATIC,41,61,20,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_ISSUER_OTHER,97,61,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_ISSUER_MAIL,216,28,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_ISSUER_UNIT,216,17,118,8
+    GROUPBOX        "主旨",IDC_STATIC,35,79,308,66
+    LTEXT           "機構:",IDC_STATIC,41,89,42,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,97,
+                    89,88,8
+    LTEXT           "好記的名稱:",IDC_STATIC,41,100,51,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,97,
+                    100,88,8
+    LTEXT           "E-Mail:",IDC_STATIC,190,100,24,8
+    LTEXT           "單位:",IDC_STATIC,190,89,18,8
+    LTEXT           "公有名稱:",IDC_STATIC,41,100,51,8
+    LTEXT           "國家:",IDC_STATIC,41,111,27,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,97,111,88,8
+    LTEXT           "州/省份:",IDC_STATIC,41,122,55,8
+    LTEXT           "鄉鎮:",IDC_STATIC,190,111,21,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_SUBJECT_TOWN,216,111,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,
+                    97,122,237,8
+    LTEXT           "其他:",IDC_STATIC,41,133,20,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_SUBJECT_OTHER,97,133,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,216,100,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_SUBJECT_UNIT,216,89,118,8
+    LTEXT           "有效起始:",IDC_STATIC,41,161,40,8
+    LTEXT           "有效到:",IDC_STATIC,41,172,40,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDFROM,97,161,237,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDUNTIL,97,172,237,8
+    LTEXT           "指紋 (SHA1):",IDC_STATIC,35,188,60,8
+    LTEXT           "<certificate hash>",IDC_VERIFY_CERT_HASH,100,188,243,8
+END
+
+IDD_OPTIONS_TRANSFER DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "保留下載檔案的日期 / 時間(&P)",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,139,10
+    LTEXT           "要使用主要連結來傳輸檔案(&U)，檔案必須小於",IDC_STATIC,
+                    7,34,165,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,173,31,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "個位元組",IDC_STATIC,217,34,40,8
+    CONTROL         "要使用多重連結來傳輸檔案(&m)",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,56,142,10
+    LTEXT           "必須同一時間有",IDC_STATIC,7,71,60,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,67,68,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "以上的檔案在傳輸",IDC_STATIC,87,71,66,8
+    LTEXT           "你可以指定一個預設的動作，來處理當要傳輸的檔案已經存在時的情況:",
+                    IDC_STATIC,7,97,265,8
+    CONTROL         "詢問(&A)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,108,55,10
+    CONTROL         "無條件覆蓋(&O)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,119,70,10
+    CONTROL         "檔案較新就覆蓋(&i)",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,130,80,10
+    CONTROL         "續傳(&R)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,7,141,50,10
+    CONTROL         "重新命名(&n)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,
+                    "Button",BS_AUTORADIOBUTTON,7,152,60,10
+    CONTROL         "跳過(&S)",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,
+                    "Button",BS_AUTORADIOBUTTON,7,163,50,10
+    CONTROL         "顯示 VMS 伺服器上所有檔案的修訂紀錄(&V)",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,139,10
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "你可以在這一頁選擇一個文書編輯軟體，用這個軟體來檢視/編輯檔案。",
+                    IDC_STATIC,7,7,250,8
+    LTEXT           "預設用來檢視 / 編輯檔案的軟體(&D):",IDC_STATIC,7,20,125,
+                    8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,31,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "瀏覽(&B)",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,31,50,
+                    14
+    LTEXT           "自訂檔案關聯(&C):",IDC_STATIC,7,48,78,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,58,272,99,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "每一行描述一個檔案關聯。每一個關聯都以檔案類型作為開頭，而在檔案類型的後面加入要用來開啟該檔案類型的軟體。如果這個軟體的路徑包含空格，必須使用 extensions，否則無效的那行將會被移除。",
+                    IDC_STATIC,7,161,272,25
+    LTEXT           "例如:\ntxt c:\\windows\\notepad.exe",IDC_STATIC,7,186,
+                    272,16
+END
+
+IDD_OPTIONS_IDENT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "啟動 Ident 伺服器(&E)",IDC_OPTIONS_IDENT_IDENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,26,85,10
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,53,38,104,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,209,38,70,14,ES_AUTOHSCROLL
+    CONTROL         "只在連線過程啟動(&c)",IDC_OPTIONS_IDENT_IDENTCONNECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,58,109,10
+    CONTROL         "只接受從相同 IP 來的連線要求(&I)",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,142,58,137,10
+    LTEXT           "一些 FTP 伺服器會要求你在連線時，要透過一個 Ident 伺服器。",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "使用者ID(&U):",IDC_STATIC,7,41,45,8
+    LTEXT           "系統類型(&S):",IDC_STATIC,165,41,43,8
+END
+
+IDD_SAPREFS DIALOG  0, 0, 420, 260
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FileZilla 選項"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,187,113,66
+    DEFPUSHBUTTON   "確定",IDOK,12,192,97,14
+    PUSHBUTTON      "取消",IDCANCEL,12,212,97,14
+    PUSHBUTTON      "說明",IDC_PHELP,12,232,97,14
+    LTEXT           "",IDC_CAPTION_BAR,122,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,121,19,292,234
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "限制下載速度",IDC_STATIC,5,5,275,95
+    CONTROL         "沒有限制(&N)",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,15,54,10
+    CONTROL         "把下載速度固定在(&C)",IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,25,88,10
+    CONTROL         "使用規則限制速度(&s):",IDC_SPEEDLIMIT_DOWNLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,35,85,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,100,24,55,14,
+                    ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "KB/秒",IDC_STATIC,158,27,25,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,24,46,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "新增(&A)",IDC_SPEEDLIMIT_DOWNLOAD_ADD,240,47,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "移除(&R)",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,240,60,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "上移(&U)",IDC_SPEEDLIMIT_DOWNLOAD_UP,240,73,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "下移(&o)",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,240,86,35,10,
+                    WS_DISABLED
+    GROUPBOX        "限制上傳速度",IDC_STATIC,5,105,275,95
+    CONTROL         "沒有限制(&L)",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,53,10
+    CONTROL         "把上傳速度固定在(&t)",IDC_SPEEDLIMIT_UPLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,125,83,10
+    CONTROL         "使用規則限制速度(&e):",IDC_SPEEDLIMIT_UPLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,135,89,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,100,122,55,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "KB/秒",IDC_STATIC,158,125,25,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,24,146,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "新增(&d)",IDC_SPEEDLIMIT_UPLOAD_ADD,240,147,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "移除(&m)",IDC_SPEEDLIMIT_UPLOAD_REMOVE,240,160,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "上移(&p)",IDC_SPEEDLIMIT_UPLOAD_UP,240,173,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "下移(&w)",IDC_SPEEDLIMIT_UPLOAD_DOWN,240,186,35,10,
+                    WS_DISABLED
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOG  0, 0, 227, 140
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "速度限制規則"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "規則定義",IDC_STATIC,7,3,213,87
+    CONTROL         "日期(&D):",IDC_DATE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,41,10
+    CONTROL         "DateTimePicker1",IDC_DATE_VALUE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_APPCANPARSE | DTS_LONGDATEFORMAT | 
+                    WS_TABSTOP,57,16,125,15
+    CONTROL         "從(&F):",IDC_FROM_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,39,33,10
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,49,37,63,15
+    CONTROL         "到(&o):",IDC_TO_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,117,39,33,10
+    CONTROL         "DateTimePicker2",IDC_TO_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,151,37,63,15
+    CONTROL         "星期一(&M)",IDC_CHECK_DAY1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,48,10
+    CONTROL         "星期二(&T)",IDC_CHECK_DAY2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,67,57,46,10
+    CONTROL         "星期三(&W)",IDC_CHECK_DAY3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,119,57,49,10
+    CONTROL         "星期四(&h)",IDC_CHECK_DAY4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,171,57,45,10
+    CONTROL         "星期五(&r)",IDC_CHECK_DAY5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,73,44,10
+    CONTROL         "星期六(&S)",IDC_CHECK_DAY6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,67,73,46,10
+    CONTROL         "星期日(&u)",IDC_CHECK_DAY7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,119,73,45,10
+    LTEXT           "速度(&p):",IDC_STATIC,7,99,30,8
+    EDITTEXT        IDC_SPEED,40,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "KB/秒",IDC_STATIC,94,99,30,8
+    DEFPUSHBUTTON   "確定",IDOK,110,119,50,14
+    PUSHBUTTON      "取消",IDCANCEL,170,119,50,14
+END
+
+IDD_OPTIONS_SSHPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "FileZilla 的 SFTP 連線是移植自 PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/)。",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "在與 SFTP 伺服器建立 SSH 連線時，FileZilla 將會使用 PuTTY 的預設選項。你可以在這一頁變更一些預設選項。",
+                    IDC_STATIC,7,23,272,19
+    LTEXT           "使用壓縮(&C):",IDC_STATIC,7,45,58,8
+    CONTROL         "預設",IDC_OPTIONS_SSHPAGE_COMPRESSION1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,55,39,10
+    CONTROL         "是",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,74,55,24,10
+    CONTROL         "否",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,134,55,24,10
+    LTEXT           "選擇通訊協定:",IDC_STATIC,7,68,59,8
+    LTEXT           "PuTTY 預設會使用 SSH2 來連線到 SSH 伺服器。\n(在沒有更改預設設定的情況下)",
+                    IDC_STATIC,14,80,265,17
+    LTEXT           "雖然 SSH2 的安全性比 SSH1 要來得高，但在 PuTTY 中，SSH2 存在著一些速度上的問題。\n(詳細內容可以參考下列網址\nhttp://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/sftp-slow.html)",
+                    IDC_STATIC,14,102,265,32
+    LTEXT           "如果你在 FileZilla 與 SFTP 伺服器間有速度上的問題，而且你不需要 SSH2 額外的一些安全措施，那麼你可以試著使用 SSH1。",
+                    IDC_STATIC,14,139,265,17
+    CONTROL         "預設",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,161,39,10
+    CONTROL         "使用 SSH1",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,74,161,49,10
+    CONTROL         "使用 SSH2",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,134,161,49,10
+    LTEXT           "注意：並非所有的伺服器都支援這個。",IDC_STATIC,14,171,
+                    137,8
+END
+
+IDD_SITEMANAGER_ADVANCED DIALOGEX 0, 0, 240, 196
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "'%s' (%s) 站台進階設定",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,229,16
+    LTEXT           "預設的遠端目錄(&r):",IDC_STATIC,7,28,78,8
+    EDITTEXT        IDC_REMOTEDIR,7,37,157,14,ES_AUTOHSCROLL
+    LTEXT           "預設的本機目錄(&l):",IDC_STATIC,7,55,71,8
+    EDITTEXT        IDC_LOCALDIR,7,64,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,64,12,14
+    LTEXT           "Passive 傳輸模式設定",IDC_STATIC,7,97,96,8
+    CONTROL         "使用預設模式(&d)",IDC_SITEMANAGER_ADVANCED_PASSIVE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    108,73,10
+    CONTROL         "使用 Passive 模式(&p)",
+                    IDC_SITEMANAGER_ADVANCED_PASSIVE2,"Button",
+                    BS_AUTORADIOBUTTON,80,108,80,10
+    CONTROL         "使用 Active 模式(&a)",IDC_SITEMANAGER_ADVANCED_PASSIVE3,
+                    "Button",BS_AUTORADIOBUTTON,160,108,76,10
+    LTEXT           "伺服器時區設定:",IDC_STATIC,7,126,73,8
+    LTEXT           "調整遠端檔案時差",IDC_STATIC,7,140,78,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,90,138,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,103,138,11,14
+    LTEXT           "小時",IDC_STATIC,119,140,18,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,149,138,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,136,11,14
+    LTEXT           "分鐘",IDC_STATIC,178,140,25,8
+    LTEXT           "Use UTF8 on server if available:",IDC_STATIC,7,158,103,
+                    8
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,117,156,48,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "確定",IDOK,55,175,50,14
+    PUSHBUTTON      "取消",IDCANCEL,135,175,50,14
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "綜合配置",IDC_STATIC,7,7,272,26
+    CONTROL         "遠端視窗框架置於本機視窗框架的左邊",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,155,10
+    GROUPBOX        "樹狀目錄位置",IDC_STATIC,7,38,272,84
+    LTEXT           "本機樹狀目錄：",IDC_STATIC,13,49,102,8
+    CONTROL         "顯示在檔案列表的上面 (『上下分割』顯示)",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,59,250,10
+    CONTROL         "顯示在檔案列表的左邊 (『左右分割』顯示)",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,70,250,10
+    LTEXT           "遠端樹狀目錄：",IDC_STATIC,14,85,104,8
+    CONTROL         "顯示在檔案列表的上面 (『上下分割』顯示)",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,95,250,10
+    CONTROL         "顯示在檔案列表的左邊 (『左右分割』顯示)",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,106,250,10
+    LTEXT           "要套用這些設定，必須要重新啟動 FileZilla",IDC_STATIC,7,
+                    129,171,8
+END
+
+IDD_OPTIONS_LOGGING DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "使用中字型:",IDC_STATIC,19,20,45,8
+    LTEXT           "Statisch",IDC_OPTIONS_LOGGING_FONTDATA,71,20,169,8
+    PUSHBUTTON      "選擇字型(&S)...",IDC_OPTIONS_LOGGING_CHANGEFONT,19,32,
+                    55,14
+    CONTROL         "用檔案來記錄(&L)",IDC_OPTIONS_LOGGING_LOGTOFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,51,75,10
+    LTEXT           "檔案名稱(&F):",IDC_STATIC,20,84,43,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,64,81,87,14,ES_AUTOHSCROLL
+    LTEXT           "在啟動之後，訊息紀錄中所有的訊息將會寫入到這個檔案。\n而這個紀錄檔將被儲存成 .rtf 格式。",
+                    IDC_STATIC,19,62,260,18
+    CONTROL         "在連線訊息中使用自訂的字型(&U)",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,133,10
+    CONTROL         "記錄時間(Timestamp)戳記(&T)",
+                    IDC_OPTIONS_LOGGING_TIMESTAMP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,98,85,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOGEX 0, 0, 286, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "使用 MODE Z 即時壓縮技術。\n只要伺服器支援這項功能，它可以在傳輸過程中即時的將檔案壓縮，以減少傳輸量。",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "不使用壓縮",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,28,87,10
+    CONTROL         "只在取得目錄列表時使用壓縮",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,40,150,10
+    CONTROL         "傳輸過程全程使用壓縮",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,52,121,10
+    LTEXT           "壓縮等級, 範圍從 1 (最差) 到 9 (最好):",IDC_STATIC,7,72,
+                    174,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,183,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "預設的壓縮等級是 8。這個設定值可以在壓縮率與 CPU 使用率間達成一個比較好的平衡。",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "若需要關於壓縮方法的詳細內容，可以閱讀 http://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,195,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MANUALTRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 208
+    END
+
+    IDD_VERIFY_CERT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_OPTIONS_IDENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        VERTGUIDE, 80
+        VERTGUIDE, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 189
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 49, 0
+0x5446, 0x2050, 0x74a7, 0x5320, 0x4c53, 0x542f, 0x534c, 0x5da1, 0xb4b5, 
+0xefb9, 0x5ba5, 0x4bb1, 0x2d20, 0x6920, 0x706d, 0x696c, 0x6963, 0x2074, 
+0x6e65, 0x7263, 0x7079, 0x6974, 0x6e6f, 0x5ea1, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 45, 0
+0x5446, 0x2050, 0x74a7, 0x5320, 0x4c53, 0x5da1, 0xd4b8, 0xc9ba, 0x5ba5, 
+0x4bb1, 0x2d20, 0x6520, 0x7078, 0x696c, 0x6963, 0x2074, 0x6e65, 0x7263, 
+0x7079, 0x6974, 0x6e6f, 0x5ea1, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 15, 0
+0x4653, 0x5054, 0xa820, 0xa5cf, 0x20ce, 0x5353, 0x3248, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 45, 0
+0x5446, 0x2050, 0x74a7, 0x5420, 0x534c, 0x5da1, 0xd4b8, 0xc9ba, 0x5ba5, 
+0x4bb1, 0x2d20, 0x6520, 0x7078, 0x696c, 0x6963, 0x2074, 0x6e65, 0x7263, 
+0x7079, 0x6974, 0x6e6f, 0x5ea1, "\000" 
+    0
+END
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 9, 0
+0xd4b8, 0xd3b2, 0xeab8, 0xc6ae, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 5, 0
+0x43a6, 0xedaa, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 7, 0
+0x6aa4, 0xcfb9, 0xdca5, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 7, 0
+0x70a4, 0xcfb9, 0xdca5, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0xdba6, 0xcab0, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 7, 0
+0xeca6, 0xb8a4, 0xd5b2, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 9, 0
+0xd4b8, 0xd3b2, 0xeab8, 0xc6ae, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 5, 0
+0x43a6, 0xedaa, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 7, 0
+0x6aa4, 0xcfb9, 0xdca5, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 7, 0
+0x70a4, 0xcfb9, 0xdca5, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0xdba6, 0xcab0, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 7, 0
+0xeca6, 0xb8a4, 0xd5b2, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 49, 0
+0x5446, 0x2050, 0x74a7, 0x5320, 0x4c53, 0x542f, 0x534c, 0x5da1, 0xb4b5, 
+0xefb9, 0x5ba5, 0x4bb1, 0x2d20, 0x6920, 0x706d, 0x696c, 0x6963, 0x2074, 
+0x6e65, 0x7263, 0x7079, 0x6974, 0x6e6f, 0x5ea1, "\000" 
+    IDC_SERVERTYPE, 0x403, 45, 0
+0x5446, 0x2050, 0x74a7, 0x5320, 0x4c53, 0x5da1, 0xd4b8, 0xc9ba, 0x5ba5, 
+0x4bb1, 0x2d20, 0x6520, 0x7078, 0x696c, 0x6963, 0x2074, 0x6e65, 0x7263, 
+0x7079, 0x6974, 0x6e6f, 0x5ea1, "\000" 
+    IDC_SERVERTYPE, 0x403, 15, 0
+0x4653, 0x5054, 0xa820, 0xa5cf, 0x20ce, 0x5353, 0x3248, "\000" 
+    IDC_SERVERTYPE, 0x403, 45, 0
+0x5446, 0x2050, 0x74a7, 0x5420, 0x534c, 0x5da1, 0xd4b8, 0xc9ba, 0x5ba5, 
+0x4bb1, 0x2d20, 0x6520, 0x7078, 0x696c, 0x6963, 0x2074, 0x6e65, 0x7263, 
+0x7079, 0x6974, 0x6e6f, 0x5ea1, "\000" 
+    0
+END
+
+IDD_SITEMANAGER_ADVANCED DLGINIT
+BEGIN
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x6f46, 0x6372, 0x0065, 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x654e, 0x6576, 0x0072, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "檔案(&F)"
+    BEGIN
+        MENUITEM "站台管理員(&S)\tCtrl+S",      ID_SITEMANAGER
+        MENUITEM "將目前連線複製到站台管理員(&C)", ID_COPYTOSITEMANAGER
+        MENUITEM "連線到預設站台(&o)",          ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "重新連線(&R)\tCtrl+R",        ID_TOOLBAR_RECONNECT
+        MENUITEM "斷線(&D)\tCtrl+D",            ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "離開(&x)",                    ID_APP_EXIT
+    END
+    POPUP "編輯(&E)"
+    BEGIN
+        MENUITEM "設定(&S)",                    ID_EDIT_SETTINGS
+        MENUITEM "匯出設定(&x)",                ID_EDIT_EXPORTSETTINGS
+        MENUITEM "匯入設定(&I)",                ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "傳輸(&T)"
+    BEGIN
+        POPUP "傳輸型態(&T)"
+        BEGIN
+            MENUITEM "ASCII(&A)",                   ID_TYPEMENU_ASCII
+            MENUITEM "二進制(&B)",                  ID_TYPEMENU_BINARY
+            MENUITEM "自動判斷(&u)",                ID_TYPEMENU_DETECT
+        END
+        POPUP "檔案覆蓋設定(&F)"
+        BEGIN
+            MENUITEM "詢問(&A)",                    ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "無條件覆蓋(&O)",              ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "如果檔案較新就覆蓋(&n)",      ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "續傳(&R)",                    ID_OVERWRITEMENU_RESUME
+            MENUITEM "重新命名(&n)",                ID_OVERWRITEMENU_RENAME
+            MENUITEM "跳過(&S)",                    ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "自訂傳輸(&M)...",             ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "顯示(&V)"
+    BEGIN
+        MENUITEM "重新整理(&R)\tF5",            ID_TOOLBAR_REFRESH
+        MENUITEM "顯示隱藏檔案(&h)",            ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "工具列(&T)",                  ID_VIEW_TOOLBAR
+        MENUITEM "狀態列(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM "快速連線列(&C)",              ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "本機樹狀目錄(&L)\tCtrl+T",    ID_SHOWTREE
+        MENUITEM "遠端樹狀目錄(&m)",            ID_SHOWREMOTETREE
+        MENUITEM "連線訊息(&M)",                ID_VIEW_MESSAGELOG
+        MENUITEM "傳輸佇列(&Q)",                ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "本機列表顯示(&o)"
+        BEGIN
+            MENUITEM "詳細資料(&D)",                ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "列表(&i)",                    ID_LOCALLISTSTYLE_LIST
+            MENUITEM "大圖示(&a)",                  ID_LOCALLISTSTYLE_ICON
+            MENUITEM "小圖示(&c)",                  ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "檔案大小(&z)",                ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "檔案類型(&t)",                ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "最後修改時間(&m)",            ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "顯示狀態列(&S)",              ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "排列順序依(&o)..."
+            BEGIN
+                MENUITEM "檔案名稱(&F)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "檔案大小(&s)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "檔案類型(&t)",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "最後修改日期(&L)",            ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "下 -> 上 排列(&A)",           ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "上 -> 下 排列(&D)",           ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "遠端列表顯示(&e)"
+        BEGIN
+            MENUITEM "詳細資料(&D)",                ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "列表(&i)",                    ID_REMOTELISTSTYLE_LIST
+            MENUITEM "大圖示(&a)",                  ID_REMOTELISTSTYLE_ICON
+            MENUITEM "小圖示(&c)",                  ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "檔案大小(&z)",                ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "檔案類型(&y)",                ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "日期(&a)",                    ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "時間(&T)",                    ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "權限(&P)",                    ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "擁有者 / 群組(&O)",           ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "顯示狀態列(&S)",              ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "排列順序依(&b)..."
+            BEGIN
+                MENUITEM "檔案名稱(&F)",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "檔案大小(&s)",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "檔案類型(&t)",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "日期 / 時間(&D)",             ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "下 -> 上 排列(&A)",           ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "上 -> 下 排列(&e)",           ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "佇列(&Q)"
+    BEGIN
+        MENUITEM "進行佇列程序(&P)",            ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "使用多重連結(&U)",            ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "匯出佇列(&E)...",             ID_MENU_QUEUE_EXPORT
+        MENUITEM "匯入佇列(&I)...",             ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "伺服器(&S)"
+    BEGIN
+        MENUITEM "更改密碼(&C)",                ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "輸入 FTP 指令(&E)\tCtrl+F",   ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "複製 URL 連結 到剪貼簿(&U)",  ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "說明(&H)"
+    BEGIN
+        MENUITEM "說明主題(&C)...",             ID_HELPMENU_CONTENTS
+        MENUITEM "說明搜尋(&S)...",             ID_HELPMENU_SEARCH
+        MENUITEM "說明索引...",                 ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "關於 FileZilla(&A)...",       ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "OutputContext"
+    BEGIN
+        MENUITEM "輸入指令(&E)...",             ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "複製到剪貼簿(&o)",            ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "清除全部內容(&C)",            ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "FtpContext"
+    BEGIN
+        MENUITEM "下載(&D)",                    ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "新增到佇列(&A)",              ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "下載為(&w)...",               ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "開啟(&O)",                    ID_FTPCONTEXT_OPEN
+        MENUITEM "檢視/編輯(&V)",               ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "建立目錄(&C)",                ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "刪除(&e)",                    ID_FTPCONTEXT_DELETE
+        MENUITEM "重新命名(&R)",                ID_FTPCONTEXT_RENAME
+        MENUITEM "檔案屬性(&F)...",             ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalContext"
+    BEGIN
+        MENUITEM "上傳(&U)",                    ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "新增到佇列(&A)",              ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "上傳到(&p)...",               ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "建立目錄(&C)",                ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "開啟(&O)",                    ID_LOCALCONTEXT_OPEN
+        MENUITEM "檢視/編輯(&V)",               ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "刪除(&e)",                    ID_LOCALCONTEXT_DELETE
+        MENUITEM "重新命名(&R)",                ID_LOCALCONTEXT_RENAME
+        MENUITEM "屬性(&t)",                    ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "QueueContext"
+    BEGIN
+        MENUITEM "進行佇列程序(&P)",            ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "從佇列中移除(&R)",            ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "重置狀態(&S)",                ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "暫停程序(&e)",                ID_QUEUECONTEXT_PAUSE
+        MENUITEM "恢復程序(&m)",                ID_QUEUECONTEXT_RESUME
+        MENUITEM "放棄程序(&A)",                ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "移到上面(&u)",                ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "移到下面(&d)",                ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "移到最上面(&t)",              ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "移到最下面(&b)",              ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "檔案(&F)"
+    BEGIN
+        MENUITEM "匯入(&I)",                    ID_SITEMANAGER_FILE_IMPORT
+        POPUP "匯出(&E)..."
+        BEGIN
+            MENUITEM "成為 URL 列表(&U)",           ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "包含所有細節(&d)",            ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "儲存並離開(&x)",              ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalTreeContext"
+    BEGIN
+        MENUITEM "上傳(&U)",                    ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "新增到佇列(&A)",              ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "上傳為(&p)...",               ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "刪除(&e)",                    ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "重新命名(&R)",                ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "還原(&R)",                    ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "離開(&x)",                    ID_TRAY_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,8,0
+ PRODUCTVERSION 2,2,8,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040404b0"
+        BEGIN
+            VALUE "Comments", "繁體中文 (Traditional Chinese)"
+            VALUE "FileDescription", "Traditional Chinese language DLL for FileZilla"
+            VALUE "FileVersion", "2, 2, 8, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2003 by Tim Kosse under the GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 8, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x404, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "準備完成"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "關於 FileZilla"
+    ID_APP_EXIT             "離開 FileZilla"
+    ID_HELP                 "列出說明主題"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "顯示或隱藏工具列"
+    ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "離開 FileZilla"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<這個目錄沒有可以顯示的項目>"
+    IDS_SITEMANAGER_NEWFOLDER "新資料夾"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "新資料夾 %d"
+    IDS_SITEMANAGER_NEWFTPSITE "新 FTP 站台"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "新 FTP 站台 %d"
+    IDS_SITEMANAGER_TEXTFILES "文字檔案 (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "我的 FTP 站台"
+    IDS_SITEMANAGER_XMLFILES "XML 檔案 (*.xml)|*.xml||"
+    IDS_SIZE_BYTES          "個位元組"
+    IDS_SIZE_GB             "GB"
+    IDS_SIZE_KBS            "KB"
+    IDS_SIZE_MBS            "MB"
+    IDS_STATUSBAR_ELAPSED   "經過時間 %s"
+    IDS_STATUSBAR_LEFT      "剩餘時間 %s"
+    IDS_TITLE_CONNECTED     "已經連線到 %s"
+    IDS_TITLE_CONNECTING    "正在連線到 %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "空白資料夾"
+    IDS_VIEWLABEL_LOCAL     "本機站台："
+    IDS_VIEWLABEL_REMOTE    "遠端站台："
+    IDS_DIRINFO_EMPTY       "空白目錄。"
+    IDS_DIRINFO_FILES       "%d 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_DIRSANDFILES "%d 個資料夾和 %d 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_FILESMIN    "%d 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_DIRSANDFILESMIN "%d 個資料夾和 %d 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_FILES "選定了 %d 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_DIRS "選定了 %d 個資料夾。"
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "選定了 %d 個資料夾和 %d 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_FILESMIN "選定了 %d 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "選定了 %d 個資料夾和 %d 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_FILE        "1 個檔案有 %I64d 位元組。"
+    IDS_DIRINFO_DIR         "1 個資料夾。"
+    IDS_DIRINFO_DIRANDFILES "1 個資料夾和 %d 個檔案共 %I64d 位元組。"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY "請為 ""%s"" 這個目錄選擇新的屬性"
+    IDS_CHANGEDIALOG_FILE   "請為 ""%s"" 這個檔案選擇新的屬性"
+    IDS_CHANGEDIALOG_MULTIPLEFILES "請為這些選定了的檔案及資料夾選擇新的屬性"
+    IDS_HEADER_DATE         "日期"
+    IDS_HEADER_DIRECTION    "傳輸方向"
+    IDS_HEADER_FILENAME     "檔案名稱"
+    IDS_HEADER_FILESIZE     "檔案大小"
+    IDS_HEADER_FILETYPE     "檔案類型"
+    IDS_HEADER_HOST         "主機"
+    IDS_HEADER_LASTMODIFIED "最後修改時間"
+    IDS_HEADER_LOCALNAME    "本機檔案名稱"
+    IDS_HEADER_OWNERGROUP   "擁有者 / 群組"
+    IDS_HEADER_PERMISSIONS  "權限"
+    IDS_HEADER_REMOTENAME   "遠端檔案名稱"
+    IDS_HEADER_SIZE         "大小"
+    IDS_HEADER_STATUS       "狀態"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "時間"
+    IDS_MANUALTRANSFER_HOST "請輸入一個存在的主機"
+    IDS_MANUALTRANSFER_LOCALFILE "請輸入本機檔案的路徑和檔案名稱"
+    IDS_MANUALTRANSFER_PORT "請輸入一個存在的伺服器連接埠"
+    IDS_MANUALTRANSFER_REMOTEFILE "請輸入遠端檔案的路徑和檔案名稱"
+    IDS_MANUALTRANSFER_USER "請輸入使用者名稱"
+    IDS_QUEUESTATUS_ABORTED "傳輸中斷"
+    IDS_QUEUESTATUS_CRITICALERROR "嚴重的傳輸錯誤"
+    IDS_QUEUESTATUS_ERROR   "傳輸錯誤 #%d。稍後再重試"
+    IDS_QUEUESTATUS_TOOMANYERTREIS "重試次數太多"
+    IDS_QUEUESTATUS_TRANSFERRING "傳輸中"
+    IDS_QUICKCONN_HOST      "位址："
+    IDS_QUICKCONN_PASS      "密碼："
+    IDS_QUICKCONN_PORT      "連接埠："
+    IDS_QUICKCONN_QUICKCONN "快速連線(&Q)"
+    IDS_QUICKCONN_USER      "使用者："
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "使用者中斷！"
+    IDS_ERRORMSG_INVALIDPORT "你必須有一個存在的連接埠！"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND "錯誤！無法找到 ""%s"" 語言的語言包！"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "錯誤！這個語言包只能用於較舊版本的 FileZilla，無法在這個版本中使用。\n請從 http://sourceforge.net/projects/filezilla 網站中下載較新版本的語言包！"
+    IDS_ERRORMSG_NAMEINUSE  "請輸入一個不同的檔案名稱！"
+    IDS_ERRORMSG_PATHNOTFOUND "你輸入的路徑並不存在！"
+    IDS_ERRORMSG_PORTNEEDED "請輸入一個已經存在連接埠！"
+    IDS_ERRORMSG_PREFIX     "錯誤："
+    IDS_ERRORMSG_PROXY_AUTHFAILED "驗證失敗"
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON "Proxy 需要驗證"
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "Proxy 伺服器無法理解驗證類型，也許是使用的驗證不明或伺服器不支援"
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST "無法解析 Proxy 伺服器名稱"
+    IDS_ERRORMSG_PROXY_NOCONN "無法連線到 Proxy 伺服器"
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "對 Proxy 連線要求失敗，無法透過 Proxy 伺服器進行連線"
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "錯誤，'FileZilla.xml' 無法解析，檔案可能會是破碎的。\n因此，將使用 registry 來儲存這次會談的設定。"
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "無法初始化 CSFtpIpC。請確定有足夠的系統資源可供利用！"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "無法啟動 SFTP 程序。請確定 'FzSFtp.exe' 和 'FileZilla.exe' 在同一個資料夾"
+    IDS_ERRORMSG_SFTP_CLOSED "FzSFtp.exe 已經關閉，連線終止。"
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "在 SFtp 資料通道中發現無效的資料，連線終止。"
+    IDS_ERRORMSG_SFTP_NORESPONSE "FzSFtp.exe 沒有回應，連線終止。"
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE "名稱已經存在! 請選擇一個不同的名稱！"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE "請選擇一個登入型態！"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME "請輸入一個 FTP 站台的名稱！"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "請輸入密碼！"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "請輸入使用者名稱！"
+    IDS_ERRORMSG_TIMEOUT    "發現連線逾時！"
+    IDS_ERRORMSG_UPLOADABORTED "上傳中斷"
+    IDS_ERRORMSG_UPLOADFAILED "上傳失敗"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "位址語法無效。語法應該是 [ftp://][User:Pass@]Host[:Port][/Path]\n在 [ ] 內的參數是可選擇性的。\r\nsftp:// 以及 ftps:// 也都是可接受的協定。"
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE "無法開啟 ""%s"""
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            "無法以 ""%s"" 軟體來檢視 / 編輯 ""%s"" 檔案。請檢查你的檔案類型。"
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG "錯誤，預設的檢視 / 編輯軟體沒有指定"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL "無法開啟傳輸通道。回應：%s"
+    IDS_ERRORMSG_CANTPARSECMDLINE "無法解析命令列。"
+    IDS_ERRORMSG_CANTRESOLVEHOST "無法解析主機名稱"
+    IDS_ERRORMSG_CANTRESUME "伺服器不支援續傳功能，將覆蓋檔案。"
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "伺服器不支援續傳功能，但本機檔案和遠端檔案的大小相同。"
+    IDS_ERRORMSG_CANTSENDCOMMAND "指令無法送出！登出伺服器！"
+    IDS_ERRORMSG_CANTWRITETOFILE "無法寫入到檔案 ""%s""。原因：%s"
+    IDS_ERRORMSG_CERTREJECTED "拒絕這個憑證"
+    IDS_ERRORMSG_CRITICALINTERRUPTED "使用者中斷！登出伺服器..."
+    IDS_ERRORMSG_DOWNLOADABORTED "下載中斷"
+    IDS_ERRORMSG_DOWNLOADFAILED "下載失敗"
+    IDS_ERRORMSG_ENTERSTRING "你必須輸入一個字串！"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "檔名中不可以包含下列字元:\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED "無法開啟本機檔案 %s"
+    IDS_ERRORMSG_HOSTNEEDED "請輸入一個主機名稱！"
+    IDS_ERRORMSG_IDENT_CANTSTART "啟動 Ident 伺服器發生錯誤"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                             "
+    ID_INDICATOR_TIMELEFT   "                         "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "佇列: %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d 個資料夾。"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "輸入目錄名稱"
+    IDS_INPUTDIALOGTEXT_CREATEDIR "請輸入新的目錄名稱："
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "輸入 FTP 指令"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND "請輸入伺服器要執行的指令："
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "輸入你的密碼"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD "請輸入連線到伺服器所需的密碼："
+    IDS_INPUTDIALOGTITLE_RENAME "輸入檔案名稱"
+    IDS_INPUTDIALOGTEXT_RENAME "請輸入新的檔案名稱："
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE 
+                            "鍵盤互動 (Keyboard-interactive) 確認"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "請輸入你的使用者名稱"
+    IDS_INPUTDIALOGTEXT_INPUTUSER "請輸入連線到伺服器所需的使用者名稱："
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "連線"
+    IDS_OPTIONSPAGE_DEBUG   "除錯"
+    IDS_OPTIONSPAGE_DIRCACHE "目錄快取"
+    IDS_OPTIONSPAGE_FIREWALL "防火牆設定"
+    IDS_OPTIONSPAGE_FTPPROXY "FTP Proxy 設定"
+    IDS_OPTIONSPAGE_GSS     "GSS 支援"
+    IDS_OPTIONSPAGE_IDENT   "Ident 伺服器"
+    IDS_OPTIONSPAGE_INTERFACE "使用介面設定"
+    IDS_OPTIONSPAGE_LANGUAGE "語言"
+    IDS_OPTIONSPAGE_LOCALVIEW "本機檔案列表"
+    IDS_OPTIONSPAGE_MISC    "雜項"
+    IDS_OPTIONSPAGE_PROXY   "Proxy 設定"
+    IDS_OPTIONSPAGE_REMOTEVIEW "遠端檔案列表"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "速度限制設定"
+    IDS_OPTIONSPAGE_TRANSFER "檔案傳輸設定"
+    IDS_OPTIONSPAGE_TYPE    "ASCII / 二進制"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "檔案檢視 / 編輯"
+    IDS_OPTIONSPAGE_SSH     "SFTP 設定"
+    IDS_OPTIONSPAGE_PANELAYOUT "視窗框架配置"
+    IDS_OPTIONSPAGE_LOGGING "連線訊息"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "壓縮"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "指令："
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "回應："
+    IDS_TRACEMSG_TRACE      "追蹤："
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "無法建立連線！"
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "無法在某特定範圍的連接埠建立 Socket 連線。"
+    IDS_ERRORMSG_CANTCREATEFILE "輸出檔案建立失敗！"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION "無法建立 SSL 連線"
+    IDS_ERRORMSG_CANTGETFILETYPE "無法取得檔案類型！"
+    IDS_ERRORMSG_CANTGETLIST "無法取得目錄列表！"
+    IDS_ERRORMSG_CANTGETRESPONSE "無法取得回應！"
+    IDS_ERRORMSG_CANTIMPORTFILE "匯入檔案過程發生錯誤！"
+    IDS_ERRORMSG_CANTINITSSL "無法初始化 SSL 函數"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "無法載入 SSL 函數。請確定 FileZilla 資料夾裡面有 ""ssleay32.dll"" 和 ""libeay32.dll"" 檔案。"
+    IDS_ERRORMSG_CANTOPENFILE "輸入檔案無法開啟！"
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "紀錄檔 ""%s"" 無法開啟，因此這次會談將會關閉紀錄紀錄檔的動作。"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "連線完成 "
+    IDS_STATUSMSG_CONNECTEDWITH "已經連線到 %s ，正在等待歡迎訊息..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP "已經連線到 %s ，正在初始化 SFTP 連線..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL "已經連線到 %s ，正在協議 SSL 連線..."
+    IDS_STATUSMSG_CONNECTING "正在連線到 %s ..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "取得目錄列表成功 "
+    IDS_STATUSMSG_DISCONNECTED "從伺服器斷線 "
+    IDS_STATUSMSG_DISCONNECTING "斷線中..."
+    IDS_STATUSMSG_DOWNLOADSTART "開始下載 %s"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "下載成功！！"
+    IDS_STATUSMSG_FILEIMPORTED "檔案 ""%s"" 已經成功匯入！"
+    IDS_STATUSMSG_FWCONNECT "嘗試透過 FTP Proxy 連上 %s ..."
+    IDS_STATUSMSG_IDENT_REQUEST "從 %s 傳來 Ident 連線請求"
+    IDS_STATUSMSG_IDENT_START "啟動 Ident 伺服器"
+    IDS_STATUSMSG_IDENT_STOP "停止 Ident 伺服器"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "警告！這個語言包適用於較舊版本的 FileZilla ，因此一些字串尚未被翻譯，請下載較新版本的語言包！"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "狀態："
+    IDS_STATUSMSG_RECONNECTWAIT "等待重新連線..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "正在取得目錄列表中..."
+    IDS_STATUSMSG_SSLESTABLISHED "SSL 連線建立完成。正在等待歡迎訊息..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "SSL 連線建立完成 "
+    IDS_STATUSMSG_UPLOADSTART "開始上傳 %s"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "上傳成功 "
+    IDS_STATUSMSG_WAITINGTORETRY "正在等待重試... (剩餘次數 1)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT "正在等待重試... (剩餘次數 %d)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "中斷目前連線？"
+    IDS_QUESTION_CANCELOPERATION "確定要取消目前作業？"
+    IDS_QUESTION_DELETEDIRS "確定要刪除這些 %d 目錄？"
+    IDS_QUESTION_DELETEFILE "確定要刪除 ""%s""？"
+    IDS_QUESTION_DELETEFILES "確定要刪除這些 %d 檔案？"
+    IDS_QUESTION_DELETEFILESANDDIRS "確定要刪除這些 %d 目錄和檔案？"
+    IDS_QUESTION_FILEEXISTS "這個檔案 ""%s"" (%d 個位元組) 已經存在。是否以 ""%s"" (%d 個位元組) 檔案來覆蓋？"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "你應該是第一次使用 FileZilla ，如果不是，可能是你的設定被刪除了。\nFileZilla 能夠把設定儲存在 registry 或 XML 檔案中。\n你要 FileZilla 使用 registry 來儲存設定?\n如果你是在多人環境中使用，建議你以 registry 來儲存設定。\n否則，我們建議大部分的使用者選擇 'No' 使用 XML 檔案來儲存設定。\n如果你選擇了 No ，卻有設定存放在 registry 裡面，FileZilla 會自動把設定匯入到 XML 檔案中。"
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "警告 - 發現潛在的安全問題!\n這個伺服器的 host key 與 registry 快取當中的並不相符。\n這意味著兩種可能:\n一種可能是，這個伺服器的管理者變更了 host key 。\n另一種可能是，你連到的是另外一台經過經過偽裝的伺服器。這個新的 key 的指紋是:\n%s\n如果你認為這個新的 key 是可以信任的，\n你可以選擇 'Yes' 繼續進行連線並更新快取。\n你也可以選擇 'No' 讓連線繼續進行，\n但不更新快取。\n如果你要完全放棄這個連線，可以選擇 'Cancel'。\n選擇 'Cancel' 是唯一可保證絕對安全的選擇。\n更新快取的 key？"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "在 registry 快取中並沒有發現這個伺服器的 host key 。\n你不能保證這個伺服器就是你想的那一台電腦。\n這個伺服器的 key 的指紋是:\n%s\n如果你信任這個主機，可以選擇 'Yes' 將這個 key 加入到快取中並繼續進行連線。\n如果你只希望繼續這次連線，\n並不想將 key 加入到快取中，可以選擇 'No'。\n如果你並不信任這個主機，你可以選擇 'Cancel' 放棄這個連線。\n要將 key 加入到快取中？"
+    IDS_QUESTION_SITEMANAGERDELETE "確定要刪除 ""%s""？"
+    IDS_QUESTION_TRANSFER_USEPRIMARY 
+                            "在傳輸 '%s' 過程中發生問題\n沒有辦法與伺服器建立其他的檔案傳輸連線。也許是因為你的伺服器並不支援多重連結。\nFileZilla 是否該使用已經存在了的主要連結來進行傳輸？"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            """%s"" 有經過修改。\n你要把修改過的檔案上傳到伺服器？"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "檔案有經過修改"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "匯出設定成功。\n如果你將匯出的 .xml 檔案重新命名為 'filezilla.xml'，並存放到 FileZilla 資料夾中，那麼此檔案的設定將直接取代成為目前的設定值。"
+    IDS_OPTIONS_IDENTSYSTEM "請輸入一個『系統類型』！"
+    IDS_OPTIONS_IDENTUSERID "請輸入一個 使用者ID！"
+    IDS_OPTIONS_IMPORTFAILURE "錯誤！無法從 '%s' 匯入設定"
+    IDS_OPTIONS_IMPORTOK    "匯入設定成功。"
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "保持連線系統的最長間隔時間數值必須比最短間隔時間數值要來得長！"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "保持連線系統的間隔時間最長必須介於 %d 到 %d 秒之間！"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "保持連線系統的間隔時間最短必須介於 %d 到 %d 秒之間！"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF "連接埠範圍的最高值必須高於最低值！"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH "連接埠的範圍最高必須介於 %d 到 %d 之間！"
+    IDS_OPTIONS_LIMITPORTRANGELOW "連接埠的範圍最低必須介於 %d 到 %d 之間！"
+    IDS_OPTIONS_NUMRETRIES  "請輸入連線失敗的重試次數，這次數必須介於 %d 到 %d 次之間！"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "請輸入 Proxy 的主機名稱！"
+    IDS_OPTIONS_PROXYPORT   "請輸入一個 Proxy 存在的連接埠！"
+    IDS_OPTIONS_RETRYDELAY  "請輸入每次重試之間的間隔時間，這時間必須介於 %d 到 %d 秒之間！"
+    IDS_OPTIONS_TIMEOUT     "請輸入偵測連線逾時的判斷時間，這時間必須介於 %d 到 %d 秒之間！"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "驗證失敗，這通常意味著\n你沒有 Kerberos 5 版本的 Kerberos。\n建議你第一個先執行 Leash32。\n你希望清除所有的資料，\n而且暴露你的密碼給\n上百個人知道嗎？"
+    IDS_GSSERROR_CANTLOADDLL "無法找到或載入 %s"
+    IDS_GSSERROR_CANTLOADGSSAPI "無法載入一個或多個 GSS-API！"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI "無法從 Kerberos 5 DLL 之中載入下列 API!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "初始化 sockets 失敗"
+    IDS_BROWSEFORFOLDER     "請選擇本機資料夾。"
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "憑證鏈結 (Certificate Chain) 過長"
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "這個憑證已經過期"
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "這個憑證還不是有效的"
+    IDS_CERT_ERR_CERT_REJECTED "這個憑證被拒絕"
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE 
+                            "憑證簽章 (Certificate Signature) 失敗"
+    IDS_CERT_ERR_CERT_UNTRUSTED "這個憑證不被信任"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS "略過 Proxy 設定進行連線(&b)"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "清除(&C)"
+    ID_REMOTELISTSTYLE_ICON "使用大圖示顯示元件"
+    ID_REMOTELISTSTYLE_LIST "使用列表顯示元件"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT "使用詳細資料顯示元件"
+    ID_REMOTELISTSTYLE_SMALLICON "使用小圖示顯示元件"
+    ID_SHOWQUEUE            "顯示或隱藏佇列"
+    ID_SHOWREMOTETREE       "顯示或隱藏遠端樹狀目錄"
+    ID_SHOWTREE             "顯示或隱藏本機樹狀目錄"
+    ID_SITEMANAGER          "開啟站台管理員"
+    ID_SITEMANAGER_FILE_EXPORT "匯出 FTP 伺服器列表到檔案中"
+    ID_SITEMANAGER_FILE_IMPORT "從檔案匯入 FTP 伺服器列表"
+    ID_TOOLBAR_DISCONNECT   "從伺服器斷線"
+    ID_TOOLBAR_RECONNECT    "重新連線到伺服器"
+    ID_TOOLBAR_REFRESH      "全部重新整理"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "顯示檔案大小"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "顯示檔案類型"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME "顯示最後修改的檔案日期與時間"
+    ID_VIEW_MESSAGELOG      "顯示或隱藏連線訊息"
+    ID_VIEW_QUICKCONNECT_BAR "顯示或隱藏快速連線列"
+    ID_VIEW_REMOTELISTVIEW_DATE "顯示檔案的日期"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "顯示檔案的大小"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "顯示檔案的權限"
+    ID_VIEW_REMOTELISTVIEW_TIME "顯示檔案的時間"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR 
+                            "在本機列表下方顯示狀態列，狀態列包含(已選定的)檔案和資料夾資訊"
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR 
+                            "在遠端列表下方顯示狀態列，狀態列包含(已選定的)檔案和目錄資訊"
+    ID_QUEUECONTEXT_ABORT   "從佇列中放棄並移除選定了的傳輸程序"
+    ID_QUEUECONTEXT_PAUSE   "暫停選定了的傳輸程序"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "使用小圖示顯示元件"
+    ID_MENU_QUEUE_EXPORT    "匯出佇列中所有的項目"
+    ID_MENU_QUEUE_IMPORT    "從一個外來的檔案匯入佇列項目"
+    ID_MENU_QUEUE_PROCESSNOW "開始佇列的程序運作"
+    ID_MENU_QUEUE_USEMULTIPLE "啟動此項，FileZilla 便能在同一時間傳輸多個檔案"
+    ID_MENU_SERVER_CHANGEPASS 
+                            "更改這個站台的密碼。這個功能只能用在少數 FTP 伺服器上。"
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "複製目前這個伺服器的 URL 連結 到剪貼簿，而這個 URL 連結 將會包含完整的路徑"
+    ID_MENU_SERVER_ENTERRAWCOMMAND "允許你送出 raw FTP 指令到伺服器"
+    ID_MENU_TRANSFER_MANUALTRANSFER "設定一個自己訂做的檔案傳輸"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "取消目前作業"
+    ID_COPYTOSITEMANAGER    "將目前連線複製到站台管理員中成為新站台"
+    ID_EDIT_EXPORTSETTINGS  "匯出設定到檔案中"
+    ID_EDIT_IMPORTSETTINGS  "從檔案中匯入設定"
+    ID_EDIT_SETTINGS        "進入 FileZilla 的選項對話框"
+    ID_FILE_CONNECTTODEFAULTSITE "連線到站台管理員的預設站台"
+    ID_FILE_EXPORT_ASURLLIST "將所有 FTP 站台以 URL 列表 形式匯出到文字檔案中"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "將所有 FTP 站台以 包含所有細節 形式匯出到 XML 檔案中"
+    ID_FTPCONTEXT_CREATEDIR "在 FTP 伺服器上建立一個目錄"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "列出說明主題的內容"
+    ID_HELPMENU_INDEX       "列出說明主題的索引"
+    ID_HELPMENU_SEARCH      "搜尋說明主題"
+    ID_LOCALLISTSTYLE_ICON  "使用大圖示顯示元件"
+    ID_LOCALLISTSTYLE_LIST  "使用列表顯示元件"
+    ID_LOCALLISTSTYLE_REPORT "使用詳細資料顯示元件"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "勾選此項，FileZilla 將試著顯示伺服器上隱藏的檔案。"
+    ID_OVERWRITEMENU_ASK    "當檔案已經存在時，FileZilla 將會詢問你處理的動作"
+    ID_OVERWRITEMENU_OVERWRITE "無條件覆蓋這個檔案"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER "如果檔案較新就覆蓋這個檔案"
+    ID_OVERWRITEMENU_RENAME "詢問新的檔案名稱"
+    ID_OVERWRITEMENU_RESUME "如果可以就續傳"
+    ID_OVERWRITEMENU_SKIP   "跳過已經存在的檔案"
+    ID_PROCESS_QUEUE        "進行這個佇列程序"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_DIRANDFILESMIN "1 個資料夾和 %d 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_DIRANDFILE  "1 個資料夾和 1 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_DIRSANDFILE "%d 個資料夾和 1 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_DIRANDFILEMIN "1 個資料夾和 1 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_DIRSANDFILEMIN "%d 個資料夾和 1 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_FILE "選定了 1 個檔案有 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_DIR "選定了 1 個資料夾。"
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "選定了 1 個資料夾和 %d 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_FILEMIN "選定了 1 個檔案至少有 %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "選定了 1 個資料夾和 %d 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_DIRANDFILE 
+                            "選定了 1 個資料夾和 1 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "選定了 1 個資料夾和 1 個檔案至少有 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "選定了 %d 個資料夾和 1 個檔案共 %I64d 位元組。"
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "選定了 %d 個資料夾和 1 個檔案至少有 %I64d 位元組。"
+    IDS_QUEUESTATUS_PAUSED  "已暫停"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "恢復已暫停了的佇列程序"
+    ID_VIEW_REMOTELISTVIEW_OWNERGROUP "顯示檔案的擁有者以及群組"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME "依檔案名稱排列遠端檔案列表"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE "依檔案大小排列遠端檔案列表"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE "依檔案類型排列遠端檔案列表"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "依檔案的日期 / 時間排列遠端檔案列表"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "以升冪方式由下至上排列遠端檔案列表"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "以降冪方式由上至下排列遠端檔案列表"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "無法設定 file pointer"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "在 SSL layer 中有不明的錯誤"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR "無法驗證 SSL 憑證"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME "依檔案名稱排列本機檔案列表"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE "依檔案大小排列本機檔案列表"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE "依檔案類型排列本機檔案列表"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "依檔案的最後修改日期排列本機檔案列表"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "以升冪方式由下至上排列本機檔案列表"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "以降冪方式由上至下排列本機檔案列表"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT 
+                            "自簽憑證 (Self-Signed Certificate)"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "發現憑證的欄位有格式錯誤，在此錯誤之前，憑證都是有效的"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "發現憑證的欄位有格式錯誤，在此錯誤之後，憑證都是有效的"
+    IDS_CERT_ERR_INVALID_CA "無效的 CA 憑證"
+    IDS_CERT_ERR_INVALID_PURPOSE "憑證用途 (Certificate Purpose) 不支援"
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN 
+                            "金鑰用途 (Key Usage) 並未包含在憑證簽署 (Certificate Signing) 中"
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED "路徑長度過長"
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "自簽憑證 (Self-Signed Certificate) 在憑證鏈結 (Certificate Chain) 中"
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "無法對發行者 (Issuer) 的公開金鑰 (Public Key) 進行解碼"
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "無法對憑證簽章 (Certificate Signature) 進行解密"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT 
+                            "無法取得憑證發行者 (Ccertificate Issuer)"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "無法取得本機憑證發行者 (Local Ccertificate Issuer)"
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE "無法驗證第一個憑證"
+    IDS_CERT_ERR_UNKNOWN    "憑證驗證發生不明的錯誤"
+    IDS_CERT_ERRDEPTH       "這個錯誤發生在憑證鏈結 (Certificate Chain) 中 %d 的內部"
+    IDS_CERT_OK             "這個憑證是有效的"
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+#endif    // Chinese (Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_NEUTRAL
+#pragma code_page(950)
+#endif //_WIN32
+#include "afxres.rc"          // Standardkomponenten
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

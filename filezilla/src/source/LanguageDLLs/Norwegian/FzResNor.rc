@@ -1,0 +1,2362 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Norwegian (Bokmal) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NOR)
+#ifdef _WIN32
+LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 318, 212
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Oppsett av manuell filoverføring"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Her kan du sette opp egendefinert overføring. Vennligst spesifiser så mye informasjon som mulig. Hvis du ikke angir alt, vil FileZilla prøve å fylle dem ut for deg.",
+                    IDC_STATIC,7,7,304,17
+    LTEXT           "Overføringstype",IDC_STATIC,7,30,50,8
+    CONTROL         "&Nedlasting",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,40,49,10
+    CONTROL         "&Opplasting",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,51,49,10
+    LTEXT           "&Lokal fil",IDC_STATIC,7,65,25,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "Fil på server",IDC_STATIC,7,93,39,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "&Bruk nåværende server",IDC_MANUALTRANSFER_SERVER1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,147,30,91,10
+    CONTROL         "Bruk &følgende server:",IDC_MANUALTRANSFER_SERVER2,
+                    "Button",BS_AUTORADIOBUTTON,147,41,83,10,
+                    WS_EX_TRANSPARENT
+    GROUPBOX        "¨",IDC_STATIC,141,41,170,164,WS_GROUP
+    LTEXT           "&Server:",IDC_STATIC,148,52,24,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,61,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,281,52,16,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,280,61,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "&Servertype:",IDC_STATIC,148,80,37,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,90,157,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Innloggingstype:",IDC_STATIC,148,108,157,38
+    CONTROL         "Anon&ym",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,119,41,10
+    CONTROL         "No&rmal",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,119,38,10
+    CONTROL         "&Ikke bruk proxy",IDC_MANUALTRANSFER_BYPASSPROXY,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,158,132,65,10
+    LTEXT           "Br&ukernavn:",IDC_STATIC,148,149,40,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,158,157,14,ES_AUTOHSCROLL
+    LTEXT           "P&assord",IDC_STATIC,148,176,26,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,185,157,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,15,191,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,75,191,50,14
+    CONTROL         "Start overf&øringen nå",IDC_MANUALTRANSFER_STARTNOW,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,172,82,10
+END
+
+IDD_ABOUTBOX DIALOG  0, 0, 235, 82
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Om FileZilla"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<version>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001-2003",IDC_STATIC,43,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,167,9,50,14,WS_GROUP
+    LTEXT           "Skrevet av:",IDC_STATIC,41,40,38,8
+    LTEXT           "http://www.sourceforge.net/projects/filezilla",
+                    IDC_HOMEPAGE,83,54,146,8
+    LTEXT           "Tim Kosse",IDC_MAIL,84,40,34,8
+    LTEXT           "Hjemmeside:",IDC_STATIC,41,54,41,8
+    LTEXT           "Oversatt av:",IDC_TRANSLATEDBY,41,68,40,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Eirik Hodne (hodne@stud.ntnu.no)",IDC_MAIL2,83,68,89,8,
+                    NOT WS_VISIBLE
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,182,28,15,13
+END
+
+IDR_MAINFRAME DIALOG  0, 0, 388, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Adresse:",IDC_STATIC,1,4,28,8
+    EDITTEXT        IDC_HOST,33,2,71,12,ES_AUTOHSCROLL
+    LTEXT           "Brukernavn:",IDC_STATIC,108,4,40,8
+    EDITTEXT        IDC_USER,151,2,40,12,ES_AUTOHSCROLL
+    LTEXT           "Passord:",IDC_STATIC,196,4,28,8
+    EDITTEXT        IDC_PASS,229,2,40,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,275,4,16,8
+    EDITTEXT        IDC_PORT,295,2,25,12,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "Quick&connect",IDOK,324,1,62,14,BS_NOTIFY
+END
+
+IDD_FILEEXISTS DIALOG  0, 0, 259, 124
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Files finnes fra før"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "",IDC_FILEEXISTS_FILE1,7,16,150,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d bytes",IDC_FILEEXISTS_SIZE1,50,28,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "",IDC_FILEEXISTS_FILE2,7,64,150,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d bytes",IDC_FILEEXISTS_SIZE2,50,76,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "Vennligst velg handling",IDC_STATIC,165,7,87,70
+    CONTROL         "&Skriv over",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,171,18,48,10
+    CONTROL         "Skriv over hvis nyere",IDC_FILEEXISTS_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,171,29,82,10
+    CONTROL         "&Fortsett (Resume)",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,171,40,71,10
+    CONTROL         "&Gi nytt navn",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,171,51,54,10
+    CONTROL         "&Hopp over",IDC_FILEEXISTS_SKIP,"Button",
+                    BS_AUTORADIOBUTTON,171,62,49,10
+    CONTROL         "Bruk alltid denne handlingen når filen finnes fra før.",
+                    IDC_FILEEXISTS_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    BS_VCENTER | BS_MULTILINE | WS_GROUP | WS_TABSTOP,170,83,
+                    82,30
+    DEFPUSHBUTTON   "OK",IDOK,105,103,50,14
+    LTEXT           "Vil du erstatte filen",IDC_STATIC,7,7,58,8
+    LTEXT           "med følgende fil?",IDC_STATIC,7,55,54,8
+END
+
+IDD_OPTIONS_FIREWALL DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Begrens hvilke lokale porter FileZilla skal bruke.",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,165,10
+    LTEXT           "Som standard bruker FileZilla enhver tilgjengelig port for å etablere tilkoblinger og overføringer. Hvis du vil at FileZilla kun skal bruke et sett porter, kan du angi dette under.",
+                    IDC_STATIC,19,17,260,24
+    LTEXT           "&Laveste tilgjengelige port:",IDC_STATIC,19,45,81,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,103,42,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "&Høyeste tilgjengelige port:",IDC_STATIC,19,62,82,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,103,59,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "Hvis du kan koble til ftp servere men har problemer med filoverføring e.l. kan du prøve å aktivere Passiv Modus.",
+                    IDC_STATIC,7,88,272,17
+    CONTROL         "&Passiv Modus",IDC_OPTIONS_FIREWALL_PASV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,106,60,10
+    CONTROL         "Bruk følgende IP-adresse for ikke-passive overføringer:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,188,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,19,138,60,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "&Use the following IP address for non-passive transfers if using IPv6:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,234,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 284, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Keep Alive innstillinger",IDC_STATIC,7,7,270,62
+    CONTROL         "&Bruk 'Keep Alive' systemet",IDC_CHECK1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,19,99,10
+    LTEXT           "Send 'Keep Alive' kommandoer som ""PWD"", ""REST 0"", ""TYPE A"", ""TYPE I"" i tilfeldige intervaller mellom",
+                    IDC_STATIC,25,31,234,17
+    EDITTEXT        IDC_INTERVALLOW,28,49,24,14,ES_AUTOHSCROLL
+    LTEXT           "og",IDC_STATIC,56,52,9,8,NOT WS_GROUP
+    EDITTEXT        IDC_INTERVALHIGH,73,49,23,14,ES_AUTOHSCROLL
+    LTEXT           "sekunder.",IDC_STATIC,101,52,32,8
+    GROUPBOX        "&Tidsavbrudd oppdagelse",IDC_STATIC,7,73,270,40
+    LTEXT           "Hvis null bytes er overført på",IDC_STATIC,14,85,90,8
+    EDITTEXT        IDC_TIMEOUT,121,81,26,14,ES_AUTOHSCROLL
+    LTEXT           "sekunder,",IDC_STATIC,151,84,32,8
+    LTEXT           "anta at tilkobling har blitt tidsavbrutt og koble fra.",
+                    IDC_STATIC,13,98,162,8
+    GROUPBOX        "Retry innstillinger",IDC_STATIC,7,115,270,44
+    LTEXT           "Hvis frakoblet under overføring, vent",IDC_STATIC,13,
+                    128,116,8
+    EDITTEXT        IDC_DELAY,15,138,17,14,ES_AUTOHSCROLL
+    LTEXT           "sekunder mellom tilkoblingsforsøk og prøv igjen opp til",
+                    IDC_STATIC,35,142,175,8
+    EDITTEXT        IDC_NUMRETRY,216,139,20,14,ES_AUTOHSCROLL
+    LTEXT           "ganger.",IDC_STATIC,240,141,25,8
+    CONTROL         "Enable IPv6 support (works only under Windows XP / 2003 Server or newer)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,260,10
+    LTEXT           "&Default password for anonymous logins:",IDC_STATIC,7,
+                    180,130,8
+    EDITTEXT        IDC_ANONPWD,140,178,117,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERSOMETHING DIALOG  0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Title"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "<text>",IDC_TEXT,7,7,172,17
+    EDITTEXT        IDC_EDIT1,7,28,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,36,47,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,99,47,50,14
+END
+
+IDD_OPTIONS_LANGUAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Vennligst velg hvilket språk FileZilla skal bruke:",
+                    IDC_STATIC,7,7,149,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Standard mappe",IDC_STATIC,7,7,272,55
+    CONTROL         "&Husk sist brukte mappe",IDC_SELECTDEFAULTFOLDERTYPE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,13,18,90,10
+    CONTROL         "&Bruk alltid denne mappen som standardmappe:",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,163,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "&Åpne Sitemanager hver gang FileZilla starter",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,77,155,10
+    CONTROL         "&Sorter mapper først i Sitemanager",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,89,120,10
+    CONTROL         "&Ikke ekspander mapper som standard",
+                    IDC_SITEMANAGEREXPANDFOLDERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,101,135,10
+    GROUPBOX        "Sitemanager innstillinger",IDC_STATIC,7,66,272,49
+END
+
+IDD_CONNECTION4 DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Vennligst velg proxy type",IDC_STATIC,7,7,79,8
+    CONTROL         "Direkte (ingen proxy)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,16,81,10
+    CONTROL         "SOCKS&4 proxy",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,7,
+                    27,63,10
+    CONTROL         "SOCKS4&A proxy",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
+                    7,38,67,10
+    CONTROL         "SOCKS&5 proxy",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,7,
+                    49,63,10
+    CONTROL         "&HTTP 1.1 proxy",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    7,60,66,10
+    GROUPBOX        "Proxy detaljer",IDC_STATIC,7,74,272,100,WS_GROUP
+    LTEXT           "&Server",IDC_STATIC,14,88,22,8
+    EDITTEXT        IDC_PROXYHOST,56,85,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,14,106,16,8
+    EDITTEXT        IDC_PROXYPORT,56,103,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Brukernavn:",IDC_STATIC,14,124,40,8
+    EDITTEXT        IDC_PROXYUSER,56,121,178,14,ES_AUTOHSCROLL
+    LTEXT           "Pass&ord:",IDC_STATIC,14,142,28,8
+    EDITTEXT        IDC_PROXYPASS,56,139,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "B&ruk brukernavn/passord (kun for SOCKS5 og HTTP1.1 proxy)",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,159,
+                    215,10
+END
+
+IDD_CHMOD DIALOG  0, 0, 199, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Endre filrettigheter"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Text",IDC_TEXT,7,7,185,19
+    GROUPBOX        "Eier rettigheter",IDC_STATIC,7,27,185,25
+    CONTROL         "&Les",IDC_OWNERREAD,"Button",BS_AUTO3STATE | WS_TABSTOP,
+                    19,38,27,10
+    CONTROL         "&Skriv",IDC_OWNERWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,38,32,10
+    CONTROL         "&Kjørbar",IDC_OWNEREXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,38,38,10
+    GROUPBOX        "Gruppe rettigheter",IDC_STATIC,7,58,185,25
+    CONTROL         "L&es",IDC_GROUPREAD,"Button",BS_AUTO3STATE | WS_TABSTOP,
+                    19,69,27,10
+    CONTROL         "S&kriv",IDC_GROUPWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,69,32,10
+    CONTROL         "K&jørbar",IDC_GROUPEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,69,38,10
+    GROUPBOX        "Allmenn rettigheter",IDC_STATIC,7,89,185,25
+    CONTROL         "Les",IDC_PUBLICREAD,"Button",BS_AUTO3STATE | WS_TABSTOP,
+                    19,100,27,10
+    CONTROL         "Skri&v",IDC_PUBLICWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,100,32,10
+    CONTROL         "Kj&ørbar",IDC_PUBLICEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,100,38,10
+    LTEXT           "Legg merke til at ikke alle servere forstår denne kommandoen. Den er fortrinnsvis brukt på UNIX servere.",
+                    IDC_STATIC,7,144,185,20
+    DEFPUSHBUTTON   "&OK",IDOK,31,165,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,118,165,50,14
+    LTEXT           "Numerisk verdi:",IDC_STATIC,7,126,50,8
+    EDITTEXT        IDC_NUMERIC,58,123,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = attributten er ikke lik for alle valgte filer)",
+                    IDC_STATIC,102,121,90,18
+END
+
+IDD_TRANSFERASDLG DIALOG  0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Overfør som..."
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Vennligst angi brukernavnet og passordet for kontoen som skal bli brukt for å overføre de valgte filer og mapper:",
+                    IDC_STATIC,7,7,194,20
+    LTEXT           "&Brukernavn:",IDC_STATIC,55,32,40,8
+    EDITTEXT        IDC_USER,97,28,56,14,ES_AUTOHSCROLL
+    LTEXT           "&Passord:",IDC_STATIC,55,52,28,8
+    EDITTEXT        IDC_PASS,97,50,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Overfør &nå",IDC_TRANSFERNOW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,75,70,49,10
+    DEFPUSHBUTTON   "&OK",IDOK,46,85,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Standard overføringstype",IDC_STATIC,7,7,272,47
+    CONTROL         "A&utomatisk",IDC_TYPEMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,16,20,51,10
+    CONTROL         "A&SCII",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,16,30,
+                    34,10
+    CONTROL         "&Binær",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,16,40,
+                    35,10
+    LTEXT           "Du bør ikke endre dette fra 'Automatisk'. FileZilla vil da bruke den riktige overføringstypen basert på filtypen. Denne overføringstypen vil bli satt hver gang FileZilla starter.",
+                    IDC_STATIC,88,17,181,31
+    GROUPBOX        "ASCII filer",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "Hvis du har valgt 'Automatisk' vil fileZilla bruke ASCII overføring for følgende filtyper:",
+                    IDC_STATIC,14,76,256,16
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,112,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Legg til",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "&Fjern",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "Hvis du angir feil filtyper kan disse bli ødelagt i overføringen!",
+                    IDC_STATIC,167,98,104,97
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+MENU IDR_SITEMANAGER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+    GROUPBOX        "Server detaljer",IDC_STATIC,174,0,169,244
+    LTEXT           "A&dresse",IDC_STATIC,180,11,26,8
+    EDITTEXT        IDC_HOST,180,20,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,312,11,16,8
+    EDITTEXT        IDC_PORT,312,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Servertype:",IDC_STATIC,180,38,37,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Innloggingstype:",IDC_STATIC,180,66,157,38
+    CONTROL         "Anony&m",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,189,77,41,10
+    CONTROL         "Norma&l",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,233,78,
+                    38,10
+    CONTROL         "Account",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,289,78,
+                    42,10
+    CONTROL         "&Ikke bruk proxy innstillinger",IDC_FWBYPASS,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,189,90,101,10
+    LTEXT           "&Brukernavn",IDC_STATIC,180,107,38,8
+    EDITTEXT        IDC_USER,180,117,103,14,ES_AUTOHSCROLL
+    LTEXT           "Account:",IDC_STATIC,287,107,30,8
+    EDITTEXT        IDC_USER2,287,117,49,14,ES_AUTOHSCROLL
+    LTEXT           "Pass&ord",IDC_STATIC,180,135,26,8
+    EDITTEXT        IDC_PASS,180,144,157,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Ikke la&gre passordet",IDC_PASSDONTSAVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,180,162,80,
+                    10
+    LTEXT           "&Kommentarer:",IDC_STATIC,180,177,44,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,180,188,157,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "Se&tt som standard server",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,226,94,10
+    PUSHBUTTON      "&Ny server",IDC_NEW,7,212,50,14,WS_GROUP
+    PUSHBUTTON      "N&y mappe",IDC_SITEMANAGER_NEWFOLDER,62,212,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "&Fjern",IDC_DELETE,117,212,50,14
+    PUSHBUTTON      "&Kopier",IDC_SITEMANAGER_COPY,7,230,50,14,WS_GROUP
+    PUSHBUTTON      "&Gi nytt navn",IDC_SITEMANAGER_RENAME,62,230,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "A&vansert",IDC_SITEMANAGER_ADVANCED,117,230,50,14,
+                    WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,249,
+                    336,1
+    PUSHBUTTON      "Ko&ble til",IDOK,79,253,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,150,253,50,14
+    PUSHBUTTON      "&Lagre og lukk",IDC_EXIT,221,253,50,14
+END
+
+IDD_OPTIONS_INTERFACE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Oppstartsinnstillinger",IDC_STATIC,7,7,272,100
+    LTEXT           "Når FileZilla starter, hvilke GUI elementer skal vises?",
+                    IDC_STATIC,14,19,166,8
+    CONTROL         "&Bruk alltid konfigurasjonen under",IDC_VIEWMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,29,119,10
+    CONTROL         "&Husk sist brukte konfigurasjon",IDC_VIEWMODE2,"Button",
+                    BS_AUTORADIOBUTTON,14,39,111,10
+    LTEXT           "Nåværende konfigurasjon:",IDC_STATIC,14,50,85,8
+    LTEXT           "Vis disse delene av GUI:",IDC_STATIC,27,62,39,28,NOT 
+                    WS_GROUP
+    CONTROL         "&Toolbar",IDC_SHOWTOOLBAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,72,61,40,10
+    CONTROL         "&Statusbar",IDC_SHOWSTATUSBAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,138,61,46,10
+    CONTROL         "&Quickconnect Bar",IDC_SHOWQUICKCONNECTBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,203,61,73,10
+    CONTROL         "&Meldingsloggen",IDC_SHOWMESSAGELOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,76,65,10
+    CONTROL         "L&okal fil liste",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,138,76,54,10
+    CONTROL         "Over&føringskøen",IDC_SHOWTRANSFERQUEUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,203,76,68,10
+    CONTROL         "S&erver fil liste",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,91,57,10
+    GROUPBOX        "Diverse",IDC_STATIC,7,111,272,80
+    CONTROL         "Vis visnings etikett ('label')",IDC_VIEWLABELS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,123,97,10
+    CONTROL         "Husk FileZilla's vindustørrelse og posisjon",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,134,145,10
+    CONTROL         "Mi&nimer til taskbar (standard)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,152,105,10
+    CONTROL         "M&inimer til tray istedenfor taskbar",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,162,118,10
+    CONTROL         "Vis minimer til tray &knappen",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,101,10
+END
+
+IDD_OPTIONS_GSSPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "&Aktiver Kereros GSS støtte.",IDC_USEGSS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,102,10
+    LISTBOX         IDC_SERVERLIST,15,64,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,64,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Legg til",IDC_SERVERADD,128,83,50,14
+    PUSHBUTTON      "&Fjern",IDC_SERVERREMOVE,128,101,50,14
+    LTEXT           "Du trenger Kerberos for Windows (KfW) installert for at denne funksjonaliteten skal fungere. Hvis aktivert vil FileZilla bruke GSS autentifikasjon og kryptering for serverene i listen under:",
+                    IDC_STATIC,7,21,272,26
+    GROUPBOX        "GSS aktiverte servere:",IDC_STATIC,7,52,272,149
+    LTEXT           "For hver server i listen som slutter på en tekst-streng, vil GSS bli brukt. Vennligst bare angi servere som støtter GSS.",
+                    IDC_STATIC,184,66,88,43
+    LTEXT           "En gydlige Kerberos versjon 5 'ticket' er nødvendig før GSS vil fungere.",
+                    IDC_STATIC,184,109,88,28
+END
+
+IDD_OPTIONS_DEBUG DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Disse innstillingere er for debugging. Normalt vil du ikke trenge å endre disse men hvis du har problemer med FileZilla kan du bruke dem. Den ekstra informasjonen du da får kan hjelpe deg med å finne problemet.",
+                    IDC_STATIC,7,7,272,35
+    CONTROL         "&Spor meldinger fra ftp motoren",IDC_DEBUG_ENGINETRACE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,43,110,10
+    CONTROL         "&Vis ubearbeidet mappe opplisting",
+                    IDC_DEBUG_SHOWRAWLISTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,56,129,10
+    CONTROL         "&Vis debuggingsmenyen",IDC_DEBUG_DEBUGMENU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,69,89,10
+END
+
+IDD_OPTIONS_FTPPROXY DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Proxy &server",IDC_STATIC,7,7,40,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Port",IDC_STATIC,113,7,14,8
+    EDITTEXT        IDC_EDIT6,113,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Brukernavn",IDC_STATIC,7,36,38,8
+    EDITTEXT        IDC_EDIT7,7,47,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Pass&ord",IDC_STATIC,53,36,26,8
+    EDITTEXT        IDC_EDIT8,53,47,40,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "Proxy &type",IDC_STATIC,7,71,272,103
+    CONTROL         "Ingen",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,17,81,34,10
+    CONTROL         "SITE hostname",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    17,91,65,10
+    CONTROL         "USER after logon",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,71,10
+    CONTROL         "Proxy OPEN",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,17,
+                    111,55,10
+    CONTROL         "Transparent",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,17,
+                    121,54,10
+    CONTROL         "USER RemoteID@Remotehost",IDC_RADIO8,"Button",
+                    BS_AUTORADIOBUTTON,17,131,115,10
+    CONTROL         "USER FireID@Remotehost",IDC_RADIO9,"Button",
+                    BS_AUTORADIOBUTTON,17,141,102,10
+    CONTROL         "USER RemoteID@RemoteHost FireID",IDC_RADIO10,"Button",
+                    BS_AUTORADIOBUTTON,17,151,137,10
+    CONTROL         "USER RemoteID@fireID@remoteHost",IDC_RADIO11,"Button",
+                    BS_AUTORADIOBUTTON,17,161,137,10
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Her kan du konfigurere utseende på den lokale visningen av filer og mapper",
+                    IDC_STATIC,7,7,240,8
+    CONTROL         "Bruk alltid følgende konfigurasjon:",
+                    IDC_OPTIONS_LOCALVIEW_ALWAYS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,20,122,10
+    LTEXT           "&Standard liste stil:",IDC_STATIC,19,35,56,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,75,34,72,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Vis disse kolonnene under detaljert-visning",IDC_STATIC,
+                    19,49,134,8,NOT WS_GROUP
+    CONTROL         "&Filstørrelse",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,49,10
+    CONTROL         "Fil&type",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,87,61,36,10
+    CONTROL         "&Sist modifisert",IDC_OPTIONS_LOCALVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,133,61,59,10
+    CONTROL         "&Vis statuslinjen med informasjon om (valgte) filer",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,76,164,10
+    CONTROL         "&Husk sist brukte konfigurasjon",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,91,111,10
+    LTEXT           "I dette tilfellet kan du modifsere utseende på menyen",
+                    IDC_STATIC,19,105,166,8
+    CONTROL         "Husk kolonnebredden i detaljert-vising",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,120,136,10
+    LTEXT           "Fil&størrelseformat i detaljert-visning:",IDC_STATIC,7,
+                    154,109,8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,119,152,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Husk kolonnesorterings retning i detaljert-visning",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,133,167,10
+    LTEXT           "Dobbeltklikk av fil handling:",IDC_STATIC,7,175,88,8
+    CONTROL         "Overfør",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,99,
+                    175,39,10
+    CONTROL         "Åpne",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,151,175,33,10
+    CONTROL         "Legg til kø",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,
+                    "Button",BS_AUTORADIOBUTTON,197,175,49,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOG  0, 0, 286, 217
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Her kan du konfigurere utseende på server visningen av filer og mapper",
+                    IDC_STATIC,7,7,226,8
+    CONTROL         "Bruk alltid følgende konfigurasjon:",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,20,122,10
+    LTEXT           "&Standard liste stil:",IDC_STATIC,19,35,56,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,77,34,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Vis disse kolonnene under detaljert-visning(filnavn er alltid vist)",
+                    IDC_STATIC,19,49,196,8,NOT WS_GROUP
+    CONTROL         "&Filstørrelse",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,49,10
+    CONTROL         "Filt&ype",IDC_OPTIONS_REMOTEVIEW_FILETYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,61,36,10
+    CONTROL         "&Dato",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,130,61,31,10
+    CONTROL         "&Tid",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,72,26,10
+    CONTROL         "&Rettigheter",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,72,51,10
+    CONTROL         "Eier / gru&ppe",IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,130,72,57,10
+    CONTROL         "&Vis statuslinjen med informasjon om (valgte) filer",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,85,164,10
+    CONTROL         "&Husk sist brukte konfigurasjon",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,98,111,10
+    LTEXT           "I dette tilfellet kan du modifsere utseende på menyen",
+                    IDC_STATIC,19,111,166,8
+    CONTROL         "Husk kolonnebredden i detaljert-vising",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,124,136,10
+    CONTROL         "Husk kolonnesorterings retning i detaljert-visning",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,136,167,10
+    LTEXT           "Fil&størrelseformat i detaljert-visning:",IDC_STATIC,7,
+                    150,109,8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,126,148,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Vis a&lltid skjulte filer",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,164,76,10
+    LTEXT           "Ikke alle servere støtter dette. FileZilla klarer ikke å liste opp filene på disse serverene hvis dette er aktivert.",
+                    IDC_STATIC,19,175,260,17
+    LTEXT           "Dobbeltklikk av fil handling:",IDC_STATIC,7,200,88,8
+    CONTROL         "Overfør",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,98,
+                    200,39,10
+    CONTROL         "Åpne",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,"Button",
+                    BS_AUTORADIOBUTTON,151,200,33,10
+    CONTROL         "Legg til kø",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK3,
+                    "Button",BS_AUTORADIOBUTTON,203,200,49,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Her kan du konfigurere cache støtten for mapper på serveren.",
+                    IDC_STATIC,7,7,196,8
+    CONTROL         "&Ikke bruk cache",IDC_OPTIONS_CACHE_USECACHE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,18,68,10
+    CONTROL         "&Bruk cache",IDC_OPTIONS_CACHE_USECACHE2,"Button",
+                    BS_AUTORADIOBUTTON,7,28,53,10
+    LTEXT           "Maksimum tid en mappe vil være i cache",IDC_STATIC,7,44,
+                    130,8
+    LTEXT           "&timer,",IDC_STATIC,27,57,18,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&minutter,",IDC_STATIC,69,57,28,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,49,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&sekunder.",IDC_STATIC,118,57,32,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,98,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "Det er forskjellige typer mappe caching tilgjengelig:",
+                    IDC_STATIC,7,114,160,8,NOT WS_VISIBLE
+    CONTROL         "Rens cache når FileZilla avsluttes",
+                    IDC_OPTIONS_CACHE_CACHETYPE,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,124,122,10
+    CONTROL         "Bruk persistent cache",IDC_OPTIONS_CACHE_CACHETYPE2,
+                    "Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,7,134,85,10
+END
+
+IDD_SERVER_CHANGEPASS DIALOG  0, 0, 186, 138
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Endre serverpassord"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Her kan du endre passordet som er benyttet for denne kontoen på serveren.\nDenne funksjonaliteten er ikke støttet av alle servere.",
+                    IDC_STATIC,7,7,172,26
+    LTEXT           "&Gammelt passord:",IDC_STATIC,7,64,57,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,61,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Nytt passord:",IDC_STATIC,7,83,42,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,80,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Skriv passordet på nytt:",IDC_STATIC,7,102,75,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,99,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,35,117,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,99,117,50,14
+    LTEXT           "Vennligt angi det gamle passordet for å verifisere at du har tilgang til å endre det og skriv inn det nye passordet.",
+                    IDC_STATIC,7,33,172,24
+END
+
+IDD_VERIFY_CERT_DLG DIALOG  0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Godta sertifikat?"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Utsteder",IDC_STATIC,35,7,308,66
+    LTEXT           "Organisasjon:",IDC_STATIC,41,17,44,8
+    GROUPBOX        "Gydlig",IDC_STATIC,35,151,308,34
+    PUSHBUTTON      "Godta",IDOK,194,253,50,14
+    PUSHBUTTON      "Avslå",IDCANCEL,110,253,50,14
+    CONTROL         "Stol alltid på dette sertifikatet",
+                    IDC_VERIFY_CERT_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,35,239,106,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,100,203,237,17
+    LTEXT           "Oppsummering:",IDC_STATIC,35,203,50,8
+    LTEXT           "Vil du godta dette sertifikatet?",IDC_STATIC,35,223,94,
+                    8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,100,
+                    17,88,8
+    LTEXT           "Navn:",IDC_STATIC,41,28,20,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,100,28,
+                    88,8
+    LTEXT           "E-post:",IDC_STATIC,194,28,25,8
+    LTEXT           "Enhet:",IDC_STATIC,194,17,22,8
+    LTEXT           "Navn:",IDC_STATIC,41,28,20,8
+    LTEXT           "Land:",IDC_STATIC,41,39,19,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_ISSUER_COUNTRY,100,39,88,8
+    LTEXT           "Stat / Provins:",IDC_STATIC,41,50,46,8
+    LTEXT           "By:",IDC_STATIC,194,39,11,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_ISSUER_TOWN,219,39,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,
+                    100,50,237,8
+    LTEXT           "Annet:",IDC_STATIC,41,61,22,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_ISSUER_OTHER,100,61,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_ISSUER_MAIL,219,28,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_ISSUER_UNIT,219,17,118,8
+    GROUPBOX        "Emne",IDC_STATIC,35,79,308,66
+    LTEXT           "Organisasjon",IDC_STATIC,41,89,42,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,
+                    100,89,88,8
+    LTEXT           "Navn:",IDC_STATIC,41,100,20,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,100,
+                    100,88,8
+    LTEXT           "E-post:",IDC_STATIC,194,100,25,8
+    LTEXT           "Enhet:",IDC_STATIC,194,89,22,8
+    LTEXT           "Navn:",IDC_STATIC,41,100,20,8
+    LTEXT           "Land:",IDC_STATIC,41,111,19,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,100,111,88,8
+    LTEXT           "Stat / Provins:",IDC_STATIC,41,122,46,8
+    LTEXT           "By:",IDC_STATIC,194,111,11,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_SUBJECT_TOWN,219,111,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,
+                    100,122,237,8
+    LTEXT           "Annet:",IDC_STATIC,41,133,22,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_SUBJECT_OTHER,100,133,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,219,100,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_SUBJECT_UNIT,219,89,118,8
+    LTEXT           "Fra:",IDC_STATIC,41,161,13,8
+    LTEXT           "Til:",IDC_STATIC,41,172,10,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDFROM,100,161,237,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDUNTIL,100,172,237,8
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    LTEXT           "Fingerprint (SHA1):",IDC_STATIC,35,188,60,8
+    LTEXT           "<certificate hash>",IDC_VERIFY_CERT_HASH,100,188,243,8
+END
+
+IDD_OPTIONS_TRANSFER DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Behold &dato/tid for nedlastede filer.",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,126,10
+    LTEXT           "&Bruk primær overføring hvis filen er mindre enn",
+                    IDC_STATIC,7,34,146,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,160,31,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "bytes",IDC_STATIC,206,34,18,8
+    CONTROL         "Bruk &flere tilkoblinger for å overføre filer",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,56,138,10
+    LTEXT           "Overfør opp til",IDC_STATIC,7,71,45,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,55,68,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "filer på samme tid.",IDC_STATIC,75,71,57,8
+    LTEXT           "Hvis targetfilen finnes fra før, kan du her definere en standard handling:",
+                    IDC_STATIC,7,97,224,8
+    CONTROL         "&Spør",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,108,31,10
+    CONTROL         "Skriv &over",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,119,48,10
+    CONTROL         "Skriv over hvis &nyere",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,129,82,10
+    CONTROL         "Fo&rtsett (Resume)",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,7,141,71,10
+    CONTROL         "&Gi nytt navn",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,
+                    "Button",BS_AUTORADIOBUTTON,7,152,54,10
+    CONTROL         "&Hopp over",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,
+                    "Button",BS_AUTORADIOBUTTON,7,163,49,10
+    CONTROL         "Display all file revisions on &VMS servers",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,139,10
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Her kan du angi hvilket program som skal brukes til å vise / editere filer.",
+                    IDC_STATIC,7,7,272,8
+    LTEXT           "&Standard program for å vise / editere filer:",
+                    IDC_STATIC,7,20,272,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,31,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Finn",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,31,50,14
+    LTEXT           "Spesielle filassosiasjoner:",IDC_STATIC,7,48,80,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,58,272,99,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Hver linje representerer en filassosiasjon. Den starter med filtypen etterfulgt av et mellomrom. Deretter kommer programmet som skal bli brukt for å vise eller editere filtypen. Bruk """" for filtyper som har mellomrom i seg. Ugyldige linjer vil bli fjernet.",
+                    IDC_STATIC,7,161,272,25
+    LTEXT           "Eksempel:\ntxt c:\\windows\\notepad.exe",IDC_STATIC,7,
+                    185,272,16
+END
+
+IDD_OPTIONS_IDENT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "&Aktiver Ident server",IDC_OPTIONS_IDENT_IDENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,26,77,10
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,41,38,132,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,206,38,73,14,ES_AUTOHSCROLL
+    CONTROL         "Aktiver kun &under oppkobling.",
+                    IDC_OPTIONS_IDENT_IDENTCONNECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,58,111,10
+    CONTROL         "Bare aksepter etterspørsler fra samme &IP",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,136,58,143,10
+    LTEXT           "Noen FTP servere krever at du har en Ident server når du kobler opp mot dem.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "&Bruker ID:",IDC_STATIC,7,41,33,8
+    LTEXT           "&System:",IDC_STATIC,177,41,26,8
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Fartsgrense nedlasting",IDC_STATIC,5,5,275,95
+    CONTROL         "&Ingen",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,15,34,10
+    CONTROL         "&Konstant fartsgrense på:",
+                    IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,"Button",
+                    BS_AUTORADIOBUTTON,12,25,93,10
+    CONTROL         "&Bruk fartsgrense regler:",
+                    IDC_SPEEDLIMIT_DOWNLOAD_RULES,"Button",
+                    BS_AUTORADIOBUTTON,12,35,89,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,105,24,55,14,
+                    ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,162,27,16,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,24,46,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "&Legg til",IDC_SPEEDLIMIT_DOWNLOAD_ADD,240,47,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Fjern",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,240,60,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Opp",IDC_SPEEDLIMIT_DOWNLOAD_UP,240,73,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Ned",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,240,86,35,10,
+                    WS_DISABLED
+    GROUPBOX        "Fartsgrense opplasting",IDC_STATIC,5,105,275,95
+    CONTROL         "In&gen",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,34,10
+    CONTROL         "Konst&ant fartsgrense på:",
+                    IDC_SPEEDLIMIT_UPLOAD_CONSTANT,"Button",
+                    BS_AUTORADIOBUTTON,12,125,93,10
+    CONTROL         "Br&uk fartsgrense regler:",IDC_SPEEDLIMIT_UPLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,135,89,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,105,122,55,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_DISABLED
+    LTEXT           "kB/s",IDC_STATIC,163,125,16,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,24,146,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "Legg t&il",IDC_SPEEDLIMIT_UPLOAD_ADD,240,147,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "F&jern",IDC_SPEEDLIMIT_UPLOAD_REMOVE,240,160,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "O&pp",IDC_SPEEDLIMIT_UPLOAD_UP,240,173,35,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Ne&d",IDC_SPEEDLIMIT_UPLOAD_DOWN,240,186,35,10,
+                    WS_DISABLED
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOG  0, 0, 227, 140
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Fartsgrense regler"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Kriterier:",IDC_STATIC,7,3,213,87
+    CONTROL         "&Dato",IDC_DATE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,31,10
+    CONTROL         "DateTimePicker1",IDC_DATE_VALUE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_APPCANPARSE | DTS_LONGDATEFORMAT | 
+                    WS_TABSTOP,50,16,125,15
+    CONTROL         "&Fra:",IDC_FROM_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,39,28,10
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,50,37,55,15
+    CONTROL         "T&il",IDC_TO_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,117,39,23,10
+    CONTROL         "DateTimePicker2",IDC_TO_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,145,37,55,15
+    CONTROL         "&Mandag",IDC_CHECK_DAY1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,42,10
+    CONTROL         "&Tirsdag",IDC_CHECK_DAY2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,57,39,10
+    CONTROL         "&Onsdag",IDC_CHECK_DAY3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,57,41,10
+    CONTROL         "Torsda&g",IDC_CHECK_DAY4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,165,57,42,10
+    CONTROL         "F&redag",IDC_CHECK_DAY5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,73,38,10
+    CONTROL         "&Lørdag",IDC_CHECK_DAY6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,73,38,10
+    CONTROL         "S&øndag",IDC_CHECK_DAY7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,73,41,10
+    LTEXT           "F&art:",IDC_STATIC,7,99,15,8
+    EDITTEXT        IDC_SPEED,34,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kB/s",IDC_STATIC,88,99,16,8
+    DEFPUSHBUTTON   "OK",IDOK,110,119,50,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,170,119,50,14
+END
+
+IDD_OPTIONS_SSHPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "FileZilla bruker deler av PuTTY(http://www.chiark.greenend.org.uk/~sgtatham/putty/) for SFTP tilkoblinger.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "For å etablere SSH tilkoblinger til SFTP servere bruker FileZilla standardinnstillingene til PuTTY. Her kan du endre noen av disse innstillingene.",
+                    IDC_STATIC,7,23,272,19
+    LTEXT           "Bruk &kompresjon:",IDC_STATIC,7,45,56,8
+    CONTROL         "Standard",IDC_OPTIONS_SSHPAGE_COMPRESSION1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,55,45,10
+    CONTROL         "Ja",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,74,55,23,10
+    CONTROL         "Nei",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,134,55,27,10
+    LTEXT           "Protokolltype:",IDC_STATIC,7,68,44,8
+    LTEXT           "Som standard (hvis du ikke har endret dette selv), bruker PuTTY SSH2 for tilkobling til SFTP servere.",
+                    IDC_STATIC,14,80,265,17
+    LTEXT           "Mens SSH2 er sikrere enn SSH1 har SSH2 implementasjonen i PuTTY noen fartsproblemer. (Se http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/ sftp-slow.html for detaljer)",
+                    IDC_STATIC,14,96,265,32
+    LTEXT           "Hvis du opplever fartsproblemer med SFTP servere i FileZilla og du ikke trenger den ekstra sikkerheten SSH2 tilbyr, kan du tvinge bruk av SSH1 her.",
+                    IDC_STATIC,14,128,265,17
+    CONTROL         "Standard",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,146,45,10
+    CONTROL         "Bruk SSH1",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,74,146,51,10
+    CONTROL         "Bruk SSH2",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,134,146,51,10
+    LTEXT           "Husk at ikke alle servere støtter dette.",IDC_STATIC,14,
+                    156,120,8
+END
+
+IDD_SITEMANAGER_ADVANCED DIALOGEX 0, 0, 240, 189
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Avanserte innstillinger for serveren '%s' (%s)",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,226,16
+    LTEXT           "Standard lokal mappe:",IDC_STATIC,7,28,72,8
+    EDITTEXT        IDC_LOCALDIR,7,36,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,36,12,14
+    LTEXT           "Standard map&pe på server:",IDC_STATIC,7,58,86,8
+    EDITTEXT        IDC_REMOTEDIR,7,66,157,14,ES_AUTOHSCROLL,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Passiv overførings modus:",IDC_STATIC,7,88,83,8
+    CONTROL         "Bruk &standard",IDC_SITEMANAGER_ADVANCED_PASSIVE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,98,
+                    60,10
+    CONTROL         "Bruk &passiv modus",IDC_SITEMANAGER_ADVANCED_PASSIVE2,
+                    "Button",BS_AUTORADIOBUTTON,80,98,75,10
+    CONTROL         "Bruk a&ktiv modus",IDC_SITEMANAGER_ADVANCED_PASSIVE3,
+                    "Button",BS_AUTORADIOBUTTON,160,98,71,10
+    LTEXT           "Server tidssone innstillinger",IDC_STATIC,7,117,86,8
+    LTEXT           "Juster filer på server med",IDC_STATIC,7,131,79,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,90,129,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,103,127,11,14
+    LTEXT           "timer",IDC_STATIC,119,131,16,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,141,128,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,151,126,11,14
+    LTEXT           "minutter.",IDC_STATIC,170,130,28,8
+    LTEXT           "Use UTF8 on server if available:",IDC_STATIC,7,153,103,
+                    8
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,117,151,48,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&OK",IDOK,55,168,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,135,168,50,14
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOG  0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Generelt",IDC_STATIC,7,7,272,26
+    CONTROL         "Posisjoner server listing til venstre for lokal visning",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,170,10
+    GROUPBOX        "Sti visnings plassering",IDC_STATIC,7,37,272,83
+    LTEXT           "Lokal sti visning:",IDC_STATIC,13,48,53,8
+    CONTROL         "Plasser over fil-listen",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,58,79,10
+    CONTROL         "Plasser over til venstre av fil-listen",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,69,121,10
+    LTEXT           "Server sti visning:",IDC_STATIC,14,84,56,8
+    CONTROL         "Plasser over fil-listen",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,94,79,10
+    CONTROL         "Plasser over til venstre av fil-listen",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,105,121,10
+    LTEXT           "Hvis du endrer disse innstillingene må du restarte FileZilla",
+                    IDC_STATIC,7,126,250,8
+END
+
+IDD_SAPREFS DIALOG  0, 0, 415, 260
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FileZilla innstillinger"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,187,113,66
+    DEFPUSHBUTTON   "OK",IDOK,12,194,97,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,12,214,97,14
+    PUSHBUTTON      "Hjelp",IDC_PHELP,12,234,97,14
+    LTEXT           "",IDC_CAPTION_BAR,122,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,121,19,292,234
+END
+
+IDD_OPTIONS_LOGGING DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Bruk følgende font for meldingsloggen:",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,133,10
+    LTEXT           "Nåværende font:",IDC_STATIC,19,20,54,8
+    LTEXT           "Statisch",IDC_OPTIONS_LOGGING_FONTDATA,81,20,198,8
+    PUSHBUTTON      "Velg &font",IDC_OPTIONS_LOGGING_CHANGEFONT,19,32,50,14
+    CONTROL         "&Logg alt til fil",IDC_OPTIONS_LOGGING_LOGTOFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,50,84,10
+    LTEXT           "Hvis aktivert vil alle meldinger fra meldingsloggen bli skrevet til filen. Logg filen skal være av typen '.rtf'",
+                    IDC_STATIC,19,61,260,18
+    LTEXT           "&Filnavn",IDC_STATIC,19,81,24,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,53,79,90,14,ES_AUTOHSCROLL
+    CONTROL         "&Timestamp log entries",IDC_OPTIONS_LOGGING_TIMESTAMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,98,85,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOGEX 0, 0, 286, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Using the MODE Z ftp protocol extension it is possible to use compressed file transfers on servers which support it.",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "Don't use compression",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,28,87,10
+    CONTROL         "Use compression only for directory listings",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,40,150,10
+    CONTROL         "Use compression for all transfers",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,52,121,10
+    LTEXT           "Compression level, ranging from 1 (worst) to 9 (best):",
+                    IDC_STATIC,7,72,174,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,183,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "The default compression level is 8. It's a good tradeoff between the amount compression achieved and CPU usage.",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "For details about the compression method, please read http://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,195,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MANUALTRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        RIGHTMARGIN, 386
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_SITEMANAGER, DIALOG
+    BEGIN
+        RIGHTMARGIN, 343
+    END
+
+    IDD_OPTIONS_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_LOCALVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_VERIFY_CERT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        VERTGUIDE, 35
+        VERTGUIDE, 41
+        VERTGUIDE, 100
+        VERTGUIDE, 194
+        VERTGUIDE, 219
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_OPTIONS_VIEWEDIT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 279
+    END
+
+    IDD_OPTIONS_IDENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        VERTGUIDE, 80
+        VERTGUIDE, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 182
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        VERTGUIDE, 143
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 39, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x542f, 0x534c, 0x2820, 
+0x6d69, 0x6c70, 0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 
+0x296e, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 16, 0
+0x4653, 0x5054, 0x7520, 0x6973, 0x676e, 0x5320, 0x4853, 0x0032, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 35, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5420, 0x534c, 0x2820, 0x7865, 0x6c70, 
+0x6369, 0x7469, 0x6520, 0x636e, 0x7972, 0x7470, 0x6f69, 0x296e, "\000" 
+    0
+END
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 10, 0
+0x6544, 0x6174, 0x6a6c, 0x7265, 0x0074, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0065, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 13, 0
+0x7453, 0x726f, 0x2065, 0x6b69, 0x6e6f, 0x7265, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 11, 0
+0x6d53, 0x20e5, 0x6b69, 0x6e6f, 0x7265, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 6, 0
+0x7942, 0x6574, 0x0073, 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 10, 0
+0x6544, 0x6174, 0x6a6c, 0x7265, 0x0074, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0065, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 13, 0
+0x7453, 0x726f, 0x2065, 0x6b69, 0x6e6f, 0x7265, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 11, 0
+0x6d53, 0x20e5, 0x6b69, 0x6e6f, 0x7265, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 6, 0
+0x7942, 0x6574, 0x0073, 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 40, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x542f, 0x534c, 0x2820, 
+0x6d69, 0x6c70, 0x7369, 0x7469, 0x2074, 0x726b, 0x7079, 0x6574, 0x6972, 
+0x676e, 0x0029, 
+    IDC_SERVERTYPE, 0x403, 34, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5320, 0x4c53, 0x2820, 0x6562, 0x7473, 
+0x6d65, 0x2074, 0x726b, 0x7079, 0x6574, 0x6972, 0x676e, 0x0029, 
+    IDC_SERVERTYPE, 0x403, 14, 0
+0x4653, 0x5054, 0x7620, 0x6465, 0x5320, 0x4853, 0x0032, 
+    IDC_SERVERTYPE, 0x403, 34, 0
+0x5446, 0x2050, 0x766f, 0x7265, 0x5420, 0x534c, 0x2820, 0x6562, 0x7473, 
+0x6d65, 0x2074, 0x6e65, 0x7263, 0x7079, 0x6974, 0x6e6f, 0x0029, 
+    0
+END
+
+IDD_SITEMANAGER_ADVANCED DLGINIT
+BEGIN
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x6f46, 0x6372, 0x0065, 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 6, 0
+0x654e, 0x6576, 0x0072, 
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&Fil"
+    BEGIN
+        MENUITEM "&Site Manager...\tCtrl+S",    ID_SITEMANAGER
+        MENUITEM "&Kopier tilkoblingen til Site Manager", 
+                                                ID_COPYTOSITEMANAGER
+        MENUITEM "K&oble til standard server",  ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "Koble til på &ny",            ID_TOOLBAR_RECONNECT
+        MENUITEM "Koble &fra",                  ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "&Avslutt",                    ID_APP_EXIT
+    END
+    POPUP "&Endre"
+    BEGIN
+        MENUITEM "&Innstillinger...",           ID_EDIT_SETTINGS
+        MENUITEM "E&ksporter innstillinger...", ID_EDIT_EXPORTSETTINGS
+        MENUITEM "&Importer innstillinger...",  ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "&Overføring"
+    BEGIN
+        POPUP "&Overføringstype"
+        BEGIN
+            MENUITEM "&ASCII",                      ID_TYPEMENU_ASCII
+            MENUITEM "&Binær",                      ID_TYPEMENU_BINARY
+            MENUITEM "A&uto",                       ID_TYPEMENU_DETECT
+        END
+        POPUP "Filoverskrivings innstillinger"
+        BEGIN
+            MENUITEM "&Spør",                       ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "&Skriv over",                 ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "Skriv over hvis &nyere",      ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "&Fortsett (Resume)",          ID_OVERWRITEMENU_RESUME
+            MENUITEM "&Gi nytt navn",               ID_OVERWRITEMENU_RENAME
+            MENUITEM "&Hopp over",                  ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Manuell overføring...",      ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "&Vis"
+    BEGIN
+        MENUITEM "&Oppdater visning\t     F5",  ID_TOOLBAR_REFRESH
+        MENUITEM "Vis &skjulte filer",          ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Verktøylinje",               ID_VIEW_TOOLBAR
+        MENUITEM "&Statuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM "Quick &Connect Bar",          ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Lokal sti visning\tCtrl+T",  ID_SHOWTREE
+        MENUITEM "Server sti visning",          ID_SHOWREMOTETREE
+        MENUITEM "&Meldingslogg",               ID_VIEW_MESSAGELOG
+        MENUITEM "Overførings&kø",              ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "Lo&kal visning"
+        BEGIN
+            MENUITEM "&Detaljer",                   ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "&Liste",                      ID_LOCALLISTSTYLE_LIST
+            MENUITEM "Store &ikoner",               ID_LOCALLISTSTYLE_ICON
+            MENUITEM "Små i&koner",                 ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "Filest&ørrelse",              ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "Fil&type",                    ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "Sist &modifisert tid",        ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Vis statuslinje",            ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "S&orter etter..."
+            BEGIN
+                MENUITEM "&Filnavn",                    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "Filst&ørrelse",               ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "File&type",                   ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Sist modifisert",            ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "Ø&kende",                     ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "&Synkene",                    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "S&erver visning"
+        BEGIN
+            MENUITEM "&Detaljer",                   ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "&Liste",                      ID_REMOTELISTSTYLE_LIST
+            MENUITEM "Store &ikoner",               ID_REMOTELISTSTYLE_ICON
+            MENUITEM "Små i&koner",                 ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "File&størrelse",              ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "File&type",                   ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "&Dato",                       ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "&Tid",                        ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "&Tillatelser",                ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "&Eier / Gruppe",              ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Vis statuslinje",            ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "Sorter &etter..."
+            BEGIN
+                MENUITEM "&Filnavn",                    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "Fil&størrelse",               ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "Fil&type",                    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Dato / tid",                 ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "&Økende",                     ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "S&ynkende",                   ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "&Kø"
+    BEGIN
+        MENUITEM "&Start overføringer i kø",    ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "&Bruk flere tilkoblinger",    ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "&Eksporter...",               ID_MENU_QUEUE_EXPORT
+        MENUITEM "&Importer...",                ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "&Server"
+    BEGIN
+        MENUITEM "&Endre passord...",           ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "&Kjør FTP kommando...\tCtrl+F", 
+                                                ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "Kopier &URL til clipboard",   ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "&Hjelp"
+    BEGIN
+        MENUITEM "&Innhold...",                 ID_HELPMENU_CONTENTS
+        MENUITEM "&Søk...",                     ID_HELPMENU_SEARCH
+        MENUITEM "I&ndeks...",                  ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "&Om FileZilla...",            ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "OutputContext"
+    BEGIN
+        MENUITEM "&Skriv inn kommando...",      ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Kopier til clipboard",       ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "&Slett &alt",                 ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "FtpContext"
+    BEGIN
+        MENUITEM "&Last ned",                   ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "Legg til i &kø",              ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "Last ned &som...",            ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Åpne",                       ID_FTPCONTEXT_OPEN
+        MENUITEM "&Vis/editer",                 ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "&Ny mappe",                   ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "&Fjern",                      ID_FTPCONTEXT_DELETE
+        MENUITEM "&Gi nytt navn",               ID_FTPCONTEXT_RENAME
+        MENUITEM "&Filattributter",             ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalContext"
+    BEGIN
+        MENUITEM "&Last opp",                   ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "Legg til i &kø",              ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "Last opp &som...",            ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Ny mappe",                   ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Åpne",                       ID_LOCALCONTEXT_OPEN
+        MENUITEM "&Vis/editer",                 ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "&Fjern",                      ID_LOCALCONTEXT_DELETE
+        MENUITEM "&Gi nytt navn",               ID_LOCALCONTEXT_RENAME
+        MENUITEM "&Egenskaper",                 ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "QueueContext"
+    BEGIN
+        MENUITEM "&Start overføringer i kø",    ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "&Fjern fra kø",               ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "Nullstill stat&us",           ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "&Pause",                      ID_QUEUECONTEXT_PAUSE
+        MENUITEM "&Fortsett (Resume)",          ID_QUEUECONTEXT_RESUME
+        MENUITEM "&Avbryt",                     ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "Flytt &opp",                  ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "Flytt &ned",                  ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "Flytt til &topp",             ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "Flytt til &bunn",             ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "&Fil"
+    BEGIN
+        MENUITEM "&Importer",                   ID_SITEMANAGER_FILE_IMPORT
+        POPUP "&Eksporter..."
+        BEGIN
+            MENUITEM "som &URL liste",              ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "med alle &detaljer",          ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Lagre og &lukk",              ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalTreeContext"
+    BEGIN
+        MENUITEM "&Last opp",                   ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "Legg til i &kø",              ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "Last opp &som...",            ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Fjern",                      ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "&Gi nytt navn",               ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "&Gjenopprett",                ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "&Avslutt",                    ID_TRAY_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,8,0
+ PRODUCTVERSION 2,2,8,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Norwegian"
+            VALUE "FileDescription", "FileZilla"
+            VALUE "FileVersion", "2, 2, 8, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2003 by Tim Kosse under the GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 8, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "Klar"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Om FileZilla"
+    ID_APP_EXIT             "Avslutt FileZilla"
+    ID_HELP                 "Viser innholdet av hjelp"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Vis eller skjul verktøylinjen"
+    ID_VIEW_STATUS_BAR      "Vis eller skjul statuslinjen"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "Avslutt FileZilla"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Socket initialisering feilet."
+    IDS_BROWSEFORFOLDER     "Vennligst velg lokal mappe."
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "Sertifikat chain for lang."
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "Sertifikatet er ikke lengre gyldig."
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "Sertifikatet er ikke gyldig enda."
+    IDS_CERT_ERR_CERT_REJECTED "Sertifikat avvist."
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE "Sertifikatsignaturen feilet."
+    IDS_CERT_ERR_CERT_UNTRUSTED "Sertifikatet ble ikke stolt på."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<Tom mappe>"
+    IDS_SITEMANAGER_NEWFOLDER "Ny mappe"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "Ny mappe %d"
+    IDS_SITEMANAGER_NEWFTPSITE "Ny FTP server"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "Ny FTP server %d"
+    IDS_SITEMANAGER_TEXTFILES "Tekst filer (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "Mine FTP servere"
+    IDS_SITEMANAGER_XMLFILES "XML filer (*.xml)|*.xml||"
+    IDS_SIZE_BYTES          "bytes"
+    IDS_SIZE_GB             "GB"
+    IDS_SIZE_KBS            "KB"
+    IDS_SIZE_MBS            "MB"
+    IDS_STATUSBAR_ELAPSED   "%s brukt"
+    IDS_STATUSBAR_LEFT      "%s igjen"
+    IDS_TITLE_CONNECTED     "Tilkoblet %s"
+    IDS_TITLE_CONNECTING    "Kobler til %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "Tom mappe"
+    IDS_VIEWLABEL_LOCAL     "Lokal sti:"
+    IDS_VIEWLABEL_REMOTE    "Server sti:"
+    IDS_DIRINFO_EMPTY       "Tom mappe."
+    IDS_DIRINFO_FILES       "%d filer med %I64d bytes."
+    IDS_DIRINFO_DIRSANDFILES "%d mapper og %d filer med %I64d bytes."
+    IDS_DIRINFO_FILESMIN    "%d filer med minst %I64d bytes."
+    IDS_DIRINFO_DIRSANDFILESMIN "%d mapper og %d filer med minst %I64d bytes."
+    IDS_DIRINFO_SELECTED_FILES "Valgt %d filer med %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIRS "Valgt %d mapper."
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "Valgt %d mapper og %d filer med %I64d bytes."
+    IDS_DIRINFO_SELECTED_FILESMIN "Valgt %d filer med minst %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "Valgt %d mapper og %d filer med minst %I64d bytes"
+    IDS_DIRINFO_FILE        "1 fil med %I64d bytes."
+    IDS_DIRINFO_DIR         "1 mappe."
+    IDS_DIRINFO_DIRANDFILES "1 mappe og %d filer med %I64d bytes."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY 
+                            "Vennligst velg nye attributter for mappen ""%s"""
+    IDS_CHANGEDIALOG_FILE   "Vennligst velg nye attributter for filen ""%s"""
+    IDS_CHANGEDIALOG_MULTIPLEFILES 
+                            "Vennligst velg nye attributter for de valge filer og mapper"
+    IDS_HEADER_DATE         "Dato"
+    IDS_HEADER_DIRECTION    "Retning"
+    IDS_HEADER_FILENAME     "Filnavn"
+    IDS_HEADER_FILESIZE     "Filestørrelse"
+    IDS_HEADER_FILETYPE     "Filtype"
+    IDS_HEADER_HOST         "Adresse"
+    IDS_HEADER_LASTMODIFIED "Sist modifisert"
+    IDS_HEADER_LOCALNAME    "Lokalt filnavn"
+    IDS_HEADER_OWNERGROUP   "Eier / Gruppe"
+    IDS_HEADER_PERMISSIONS  "Rettigheter"
+    IDS_HEADER_REMOTENAME   "Server filnavn"
+    IDS_HEADER_SIZE         "Størrelse"
+    IDS_HEADER_STATUS       "Status"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "Tid"
+    IDS_MANUALTRANSFER_HOST "Vennligst skriv inn en gyldig serveradresse"
+    IDS_MANUALTRANSFER_LOCALFILE 
+                            "Vennligst skriv inn sti og filnavn til den lokale filen"
+    IDS_MANUALTRANSFER_PORT "Vennligst skriv inn en gyldig server port"
+    IDS_MANUALTRANSFER_REMOTEFILE 
+                            "Vennligst skriv inn sti og navn til filen på serveren"
+    IDS_MANUALTRANSFER_USER "Vennligst skriv inn brukernavn"
+    IDS_QUEUESTATUS_ABORTED "Overføring avbrutt"
+    IDS_QUEUESTATUS_CRITICALERROR "Kritisk overføringsfeil"
+    IDS_QUEUESTATUS_ERROR   "Overføringsfeil #%d. Prøv igjen senere"
+    IDS_QUEUESTATUS_TOOMANYERTREIS "Too many retries"
+    IDS_QUEUESTATUS_TRANSFERRING "Overfører"
+    IDS_QUICKCONN_HOST      "Adresse:"
+    IDS_QUICKCONN_PASS      "Passord:"
+    IDS_QUICKCONN_PORT      "Port:"
+    IDS_QUICKCONN_QUICKCONN "&Quickconnect"
+    IDS_QUICKCONN_USER      "Brukernavn:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "Avbrutt av bruker!"
+    IDS_ERRORMSG_INVALIDPORT "Du må spesifisere en gyldig port!"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND 
+                            "Feil! Språk DLL'en for språket ""%s"" ble ikke funnet!"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "Feil! Språk DLL'en ble skrevet for en eldre versjon av FileZilla og er ikke kompatibel med denne versjonen.\nHent ned den nyeste versjonen av språk DLL'en fra http://sourceforge.net/projects/filezilla"
+    IDS_ERRORMSG_NAMEINUSE  "Vennligst skriv in et annet filnavn!"
+    IDS_ERRORMSG_PATHNOTFOUND "Stien du har angitt ble ikke funnet!"
+    IDS_ERRORMSG_PORTNEEDED "Vennligst skriv inn en gyldig port!"
+    IDS_ERRORMSG_PREFIX     "Feil:"
+    IDS_ERRORMSG_PROXY_AUTHFAILED "Autentifikasjon feilet"
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON "Proxy behøver autentifikasjon"
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "Nødvendig autoriseringstype rapportert fra proxy-serveren er ukjent eller ikke støttet"
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST "Finner ikke proxy-serveren's adresse"
+    IDS_ERRORMSG_PROXY_NOCONN "Klarer ikke å koble til proxy-serveren"
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "Proxy etterspørsel feilet, klarer ikke å koble til via proxy-server"
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "Feil i 'FileZilla.xml', filen kan være ødelagt.\n FileZilla vil lagre innstillinger i registeret når denne filen ikke kan leses."
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "Klarer ikke å initialisere CSFtplpC. Sjekk at nok systemressurser er tilgjengelig!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "Kan ikke starte SFTP prosessen. Sjekk at filen 'FZSFtp.exe' er i samme mappe som 'FileZilla.exe'"
+    IDS_ERRORMSG_SFTP_CLOSED "FzSFtp.exe ble lukket, avbryter tilkoblingen."
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "Ugyldig data ble funnet i datakanalen til SFtp, avbryter tilkoblingen."
+    IDS_ERRORMSG_SFTP_NORESPONSE 
+                            "FzSFtp.exe svarer ikke, avbryter tilkoblingen."
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE 
+                            "Navnet eksisterer allerede! Vennligst velg et annet!"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE "Vennligst velg innloggingstype!"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME 
+                            "Vennligst skriv inn et navn for FTP serveren!"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "Vennligst skriv inn et passord!"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "Vennligst skriv inn et brukernavn!"
+    IDS_ERRORMSG_TIMEOUT    "Tidavbrudd oppdaget!"
+    IDS_ERRORMSG_UPLOADABORTED "Opplasting avbrutt"
+    IDS_ERRORMSG_UPLOADFAILED "Opplasting feilet"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "Ugyldig adresse syntax. Burde være  [ftp://][Brukernavn:Passord@]Host[:Port][/Sti]\nParametere omsluttet av [ ] er ikke krevd.\r\nsftp:// og ftps:// er også gyldige protokoller."
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE "Klarer ikke å åpne ""%s"""
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            "Klarer ikke å starte ""%s"" for å vise / editere ""%s"". Vennligst sjekk dine filassosiasjoner."
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG "Feil, standard program ikke definert"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL 
+                            "Overføringskanalen kan ikke åpnes. Grunn: %s"
+    IDS_ERRORMSG_CANTPARSECMDLINE "Problemer med kommandolinjen."
+    IDS_ERRORMSG_CANTRESOLVEHOST "Får ikke kontakt med adressen"
+    IDS_ERRORMSG_CANTRESUME "Resume kommandoen er ikke støttet av serveren. Skriver over filen."
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "Resume kommandoen er ikke støttet av serveren men filen lokalt og filen på server har samme størrelse."
+    IDS_ERRORMSG_CANTSENDCOMMAND 
+                            "Ute av stand til å sende kommandoen! Logger av server!"
+    IDS_ERRORMSG_CANTWRITETOFILE "Kan ikke skrive til filen ""%s"". Grunn: %s"
+    IDS_ERRORMSG_CERTREJECTED "Peer sertifikatet avvist"
+    IDS_ERRORMSG_CRITICALINTERRUPTED "Avbrutt av bruker! Logger av server.."
+    IDS_ERRORMSG_DOWNLOADABORTED "Nedlasting avbrutt"
+    IDS_ERRORMSG_DOWNLOADFAILED "Nedlasting feilet"
+    IDS_ERRORMSG_ENTERSTRING "Du må skrive inn en tekst-streng!"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "Et filnavn kan ikke inneholde noen av følgende tegn::\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED "Klarte ikke å åpne den lokale filen %s"
+    IDS_ERRORMSG_HOSTNEEDED "Vennligst skriv inn en adresse!"
+    IDS_ERRORMSG_IDENT_CANTSTART "Feil ved oppstart av Ident serveren"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                             "
+    ID_INDICATOR_TIMELEFT   "                         "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "Kø: %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d mapper."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "Skriv inn mappenavn"
+    IDS_INPUTDIALOGTEXT_CREATEDIR 
+                            "Vennligst skriv inn navnet på den nye mappen:"
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "Angi FTP kommando"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND 
+                            "Vennligst angi kommandoen som skal bli kjørt på serveren:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "Skriv inn ditt passord"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD 
+                            "Vennligst angi passordet som skal brukes for å koble til serveren:"
+    IDS_INPUTDIALOGTITLE_RENAME "Skriv inn nytt filnavn"
+    IDS_INPUTDIALOGTEXT_RENAME 
+                            "Vennligst skriv inn navnet hvor filen vil bli lagret:"
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE 
+                            "Keyboard-interaktiv autentifikasjon"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "Skriv inn ditt brukernavn:"
+    IDS_INPUTDIALOGTEXT_INPUTUSER 
+                            "Vennligst angi brukernavnet som skal brukes for å koble til serveren:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "Tilkobling"
+    IDS_OPTIONSPAGE_DEBUG   "Debugging"
+    IDS_OPTIONSPAGE_DIRCACHE "Mappe cache"
+    IDS_OPTIONSPAGE_FIREWALL "Brannmur innstillinger"
+    IDS_OPTIONSPAGE_FTPPROXY "FTP proxy innstillinger"
+    IDS_OPTIONSPAGE_GSS     "GSS støtte"
+    IDS_OPTIONSPAGE_IDENT   "Ident server"
+    IDS_OPTIONSPAGE_INTERFACE "Grensesnitt innstillinger"
+    IDS_OPTIONSPAGE_LANGUAGE "Språk"
+    IDS_OPTIONSPAGE_LOCALVIEW "Lokal fil liste"
+    IDS_OPTIONSPAGE_MISC    "Diverse"
+    IDS_OPTIONSPAGE_PROXY   "Proxy innstillinger"
+    IDS_OPTIONSPAGE_REMOTEVIEW "Server fil liste"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "Fartsgrense"
+    IDS_OPTIONSPAGE_TRANSFER "Filoverføring innstillinger"
+    IDS_OPTIONSPAGE_TYPE    "ASCII/Binær"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "Fil visning / editering"
+    IDS_OPTIONSPAGE_SSH     "SFTP innstillinger"
+    IDS_OPTIONSPAGE_PANELAYOUT "Panel utseende"
+    IDS_OPTIONSPAGE_LOGGING "Meldingslogg"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "Compression"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "Kommando:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "Respons:"
+    IDS_TRACEMSG_TRACE      "Spor:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "Klarer ikke å koble til!"
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "Klarer ikke å lage socket i det spesifiserte port settet."
+    IDS_ERRORMSG_CANTCREATEFILE "Klarte ikke å lage utmatings (output) fil!"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION 
+                            "Klarer ikke å etablere SSL tilkobling"
+    IDS_ERRORMSG_CANTGETFILETYPE "Klarer ikke å finne filtypen!"
+    IDS_ERRORMSG_CANTGETLIST "Klarte ikke å motta mappe opplisting."
+    IDS_ERRORMSG_CANTGETRESPONSE "Får ingen respons!"
+    IDS_ERRORMSG_CANTIMPORTFILE "Error importing the file!"
+    IDS_ERRORMSG_CANTINITSSL "Klarer ikke å initialisere SSL biblioteket"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "Klarer ikke å initialisere SSL biblioteket. Se til at filene ""ssleay32.dll"" og ""libeay32.dll"" ligger i samme mappe som FileZilla."
+    IDS_ERRORMSG_CANTOPENFILE "Klarer ikke å åpne input filen!"
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "Loggfilen ""%s"" kan ikke åpnes. Logging til fil er deaktivert."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "Tilkoblet"
+    IDS_STATUSMSG_CONNECTEDWITH "Tilkoblet %s. Venter på velkomstmelding..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP 
+                            "Tilkoblet %s, initialiserer SFTP tilkobling..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL 
+                            "Tilkoblet %s, forhandler SSL tilkobling..."
+    IDS_STATUSMSG_CONNECTING "Kobler til %s ..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "Fullført mappe opplisting"
+    IDS_STATUSMSG_DISCONNECTED "Frakoblet fra server"
+    IDS_STATUSMSG_DISCONNECTING "Kobler fra..."
+    IDS_STATUSMSG_DOWNLOADSTART "Starter nedlasting av %s"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "Fullført nedlasting"
+    IDS_STATUSMSG_FILEIMPORTED "Filen ""%s"" ble importert!"
+    IDS_STATUSMSG_FWCONNECT "Prøver å aksessere %s via ftp proxy..."
+    IDS_STATUSMSG_IDENT_REQUEST "Ident etterspørsel fra: %s"
+    IDS_STATUSMSG_IDENT_START "Ident server startet"
+    IDS_STATUSMSG_IDENT_STOP "Ident server stoppet"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "Advarsel! Språk DLL'en ble skrevet for en tidligere versjon av FileZilla. Noen strenger er kanskje ikke oversatt! Vennligst last ned en nyere versjon av denne."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "Status:"
+    IDS_STATUSMSG_RECONNECTWAIT "Venter med koble til på ny..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "Mottar mappeliste..."
+    IDS_STATUSMSG_SSLESTABLISHED 
+                            "SSL tilkobling etablert. Venter på velkomstmelding..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "SSL tilkobling etablert"
+    IDS_STATUSMSG_UPLOADSTART "Starter opplasting av %s"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "Opplasting fullført"
+    IDS_STATUSMSG_WAITINGTORETRY "Venter på å prøve på ny... (1 forsøk igjen)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT 
+                            "Venter på å prøve på ny... (%d forsøk igjen)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "Avbryt gjeldende tilkobling?"
+    IDS_QUESTION_CANCELOPERATION "Virkelig avbryte nåværende operasjon?"
+    IDS_QUESTION_DELETEDIRS "Virkelig slette %d mapper?"
+    IDS_QUESTION_DELETEFILE "Virkelig slette ""%s""?"
+    IDS_QUESTION_DELETEFILES "Virkelig slette %d filer?"
+    IDS_QUESTION_DELETEFILESANDDIRS "Virkelig slette %d filer og mapper?"
+    IDS_QUESTION_FILEEXISTS "Filen ""%s"" (%d bytes) finnes fra før. Skriv over med ""%s"" (%d bytes)?"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "Enten har du startet FileZilla for første gang eller så har dine innstillinger blitt slettet.\nFileZilla kan lagre sine innstillinger i registeret eller i en XML fil.\nVil du at FileZilla skal bruke registeret?\nDet er anbefalt å bruke registeret hvis du er i et fler-bruker miljø.\nVelg 'Nei' for å bruke en XML fil hvilket er anbefalt for de fleste brukere.\nHvis du svarer nei her og det er innstillinger i registeret vil de bli importert til XML filen.\n\nVil du bruke registeret istedenfor en XML fil?"
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "ADVARSEL - POTENSIELT SIKKERHETS BRUDD!\nServerens adresse nøkkel samsvarer ikke med noen av de tidligere nøklene\ncached in registeret. Dette betyr at enten har administratoren byttet nøkkel eller så har du faktisk koblet til en annen datamaskin som utgir seg for å være serveren. Den nye nøkkel fingerprintet er:\n%s\nHvis du hadde ventet denne endringer og stoler på den nye nøkkelen,\nvelg 'Ja' for å oppdatere cache'n og fortsette å koble til.\nHvis du vil fortsette å koble til men uten å oppdatere cache'n, velg 'Nei'.\nHvis du vil avbryte tilkoblingen fullstendig velg \n'Avbryt'. Å velge 'Avbryt' er det eneste garanterte sikre valget.\nOppdatere nøkkel i cache?"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "Serverens 'host'-nøkkel er ikke fra før i registeret. Du\nhar ingen garanti for at serveren er den datamaskinen du\n tror den er.\n\nServeren's nøkkel fingerprint er:\n%s\n\nHvis du stoler på denne, velg 'Ja' for å legge til\n nøkkelen i registeret og fortsette tilkoblingen.\nHvis du vil fortsette tilkoblingen uten å legge til\n nøkkelen i registeret, velg 'Nei'.\nHvis du ikke vil stole på denne serveren, velg 'Avbryt' for å avbryte\n tilkoblingen.\n\nLagre nøkkel i registeret?"
+    IDS_QUESTION_SITEMANAGERDELETE "Virkelig slette ""%s""?"
+    IDS_QUESTION_TRANSFER_USEPRIMARY 
+                            "Problem under overføring av '%s'\nIngen tilleggstilkoblinger kan bli etablert med serveren for å overføre filen. Serveren din støtter kanskje ikke flere tilkoblinger.\nSkal FileZilla bruke den primære tilkoblingen for overføringen siden du allerede er tilkoblet denne serveren?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            """%s"" har blitt modifisert.\nVil du laste den opp til serveren?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "Filen har blitt modifisert"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "Innstillingene har blitt eksportert. \nHvis du plasserer den genererte .xml filen i samme mappe som FileZilla med navnet 'filezilla.xml', vil denne bli brukt for å lagre innstillinger istedenfor registeret."
+    IDS_OPTIONS_IDENTSYSTEM "Vennligst skriv inn en operasjonssystem ID !"
+    IDS_OPTIONS_IDENTUSERID "Vennligst skriv inn en bruker ID !"
+    IDS_OPTIONS_IMPORTFAILURE 
+                            "Feil! Klarte ikke å importere innstillinger fra '%s'"
+    IDS_OPTIONS_IMPORTOK    "Innstillingene har blitt importert!"
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "Den øvre grensen for 'Keep Alive' intervallet må være høyere enn den nedre!"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "Den øvre grensen av 'Keep Alive' intervallet må være mellom %d og %d sekunder!"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "Den nedre grensen av 'Keep Alive' intervallet må være mellom %d og %d sekunder!"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF 
+                            "Den øvre grensen for port settet må være høyere enn den nedre!"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH 
+                            "Den øvre grensen for port settet må være mellom %d og %d!"
+    IDS_OPTIONS_LIMITPORTRANGELOW 
+                            "Den nedre grensen for port settet må være mellom %d og %d!"
+    IDS_OPTIONS_NUMRETRIES  "Vennligst skriv inn en verdig mellom %d og %d for maks antall retry forsøk!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "Vennligst skriv inn adressen til proxy'en!"
+    IDS_OPTIONS_PROXYPORT   "Vennligst skriv inn en gyldig for proxy'en!"
+    IDS_OPTIONS_RETRYDELAY  "Vennligst skrv inn en verdi mellom %d og %d for forskinkelsen mellom hver retry!"
+    IDS_OPTIONS_TIMEOUT     "Vennligt skriv inn en verdi mellom %d og %d for tidsavbrudd oppdagelse"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "Autentifikasjon feilet. Som regel skyldes dette\n at du ikke har en Kerberos 5 ticket.\nPrøv å kjøre Leash32 først.\nVil du sende all data åpent\n og potensielt la hundrevis av folk lese\n passordet ditt?"
+    IDS_GSSERROR_CANTLOADDLL "Kan ikke finne eller laste %s"
+    IDS_GSSERROR_CANTLOADGSSAPI 
+                            "En eller flere av GSS-API'ene ble ikke lastet!"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI 
+                            "Følgende API'er kunne ikke bli lastet fra Kerberos 5 DLL'en!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT "Selvsignert sertifikat."
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "Formateringsfeil i sertifikatets gyldig til-felt."
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "Formateringsfeil i sertifikatets fra-felt."
+    IDS_CERT_ERR_INVALID_CA "Ugyldig CA sertifikat"
+    IDS_CERT_ERR_INVALID_PURPOSE "Ikke-støttet sertifikatmetode."
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN 
+                            "Nøkkelbruk inkluderer ikke sertifikat signering."
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED "Stilengde for lang."
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "Selvsignert sertifikat i sertifikat chain."
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "Klarer ikke å dekode utsteder's fellesnøkkel"
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "Klarer ikke å dekryptere sertifikatsignaturen."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT 
+                            "Klarer ikke å hente utsteder sertifikat."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "Klarer ikke å hente lokalt utsteder sertifikat."
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE 
+                            "Klarer ikke å verifisere det første sertifikatet"
+    IDS_CERT_ERR_UNKNOWN    "Ukjent feil med sertifikatsverifikasjon"
+    IDS_CERT_ERRDEPTH       "Feilen oppstod i dybde %d i sertifikatet."
+    IDS_CERT_OK             "Sertifikatet ser ut til å være gyldig"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS 
+                            "Koble til uten å benytte proxy innstillinger"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "&Slett"
+    ID_REMOTELISTSTYLE_ICON "Viser objekter med store ikoner"
+    ID_REMOTELISTSTYLE_LIST "Viser objekter som liste"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT "Viser objekter med detaljer"
+    ID_REMOTELISTSTYLE_SMALLICON "Viser objekter med små ikoner"
+    ID_SHOWQUEUE            "Vis eller skjul køen"
+    ID_SHOWREMOTETREE       "Vis eller skjul server visning"
+    ID_SHOWTREE             "Vis eller skjul lokal visning"
+    ID_SITEMANAGER          "Åpner Site Manager"
+    ID_SITEMANAGER_FILE_EXPORT 
+                            "Eksporterer en liste av FTP servere til en fil"
+    ID_SITEMANAGER_FILE_IMPORT "Importerer en liste av FTP servere fra en fil"
+    ID_TOOLBAR_DISCONNECT   "Koble fra server"
+    ID_TOOLBAR_RECONNECT    "Koble til server på ny"
+    ID_TOOLBAR_REFRESH      "Oppdatere alle visninger"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "Viser filstørrelse"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "Viser filtype"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME 
+                            "Viser dato og tid objektet sist ble modifisert"
+    ID_VIEW_MESSAGELOG      "Vis eller skjul meldingsloggen"
+    ID_VIEW_QUICKCONNECT_BAR "Vis eller skjul Quickconnect linjen"
+    ID_VIEW_REMOTELISTVIEW_DATE "Viser datoen til filen"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "Viser filstørrelsen"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "Viser fil-tillatelsene"
+    ID_VIEW_REMOTELISTVIEW_TIME "Viser tiden til filen"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR "Viser eller skjuler statuslinjen"
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR "Viser eller skjuler statuslinjen"
+    ID_QUEUECONTEXT_ABORT   "Stanser valgte overføringer og fjerner dem fra køen"
+    ID_QUEUECONTEXT_PAUSE   "Pauser valgte overføringer"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "Viser objekter med små ikoner"
+    ID_MENU_QUEUE_EXPORT    "Eksporterer alle enheter i køen"
+    ID_MENU_QUEUE_IMPORT    "Importerer kø fra fil"
+    ID_MENU_QUEUE_PROCESSNOW "Starter å prosessere køen"
+    ID_MENU_QUEUE_USEMULTIPLE 
+                            "Hvis aktivert kan FileZilla bruke flere tilkoblinger for å overføre flere filer på en gang"
+    ID_MENU_SERVER_CHANGEPASS 
+                            "Endrer passordet for kontoen på serveren Obs: Kun et fåtall servere støtter dette"
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "Kopierer URL'en til den gjeldende serveren inkludert stien til clipboard"
+    ID_MENU_SERVER_ENTERRAWCOMMAND 
+                            "Tillater deg å sende konkrete FTP kommandoer til serveren"
+    ID_MENU_TRANSFER_MANUALTRANSFER "Sett opp en manuell overføring"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "Avbryt gjeldende operasjon"
+    ID_COPYTOSITEMANAGER    "Kopierer nåværende tilkobling til en ny server i Site Manager"
+    ID_EDIT_EXPORTSETTINGS  "Eksporter innstillinger til fil"
+    ID_EDIT_IMPORTSETTINGS  "Importer innstillinger fra fil"
+    ID_EDIT_SETTINGS        "Åpner FileZilla's innstillinger"
+    ID_FILE_CONNECTTODEFAULTSITE "Kobler til standard server i Site Manager"
+    ID_FILE_EXPORT_ASURLLIST 
+                            "Eksporter alle FTP servere til en tekstfil som en URL liste"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "Eksporter alle FTP servere til en tekstfil med alle detaljer."
+    ID_FTPCONTEXT_CREATEDIR "Lage en ny mappe på ftp serveren"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "Viser innholdsregisteret til hjelpefilen"
+    ID_HELPMENU_INDEX       "Viser indeksen til hjelpefilen"
+    ID_HELPMENU_SEARCH      "Søk i hjelpefilen"
+    ID_LOCALLISTSTYLE_ICON  "Viser objekter med store ikoner"
+    ID_LOCALLISTSTYLE_LIST  "Viser objekter som liste"
+    ID_LOCALLISTSTYLE_REPORT "Viser objekter med detaljer"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "Vis aktivert prøver FileZilla også å vise skjulte filer på serveren."
+    ID_OVERWRITEMENU_ASK    "FileZilla vil spør deg hva du vil gjøre hvis files finnes fra før"
+    ID_OVERWRITEMENU_OVERWRITE "Skriver alltid over filen"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER 
+                            "Overskriver den gamle filen hvis den andre er nyere"
+    ID_OVERWRITEMENU_RENAME "Spør etter nytt filnavn"
+    ID_OVERWRITEMENU_RESUME "Fortsetter overføringen hvis mulig"
+    ID_OVERWRITEMENU_SKIP   "Hopper over gjeldende fil"
+    ID_PROCESS_QUEUE        "Start overføringer i køen"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1 fil med minst %I64d bytes."
+    IDS_DIRINFO_DIRANDFILESMIN "1 mappe og %d filer med minst %I64d bytes."
+    IDS_DIRINFO_DIRANDFILE  "1 mappe og 1 fil med %I64d bytes."
+    IDS_DIRINFO_DIRSANDFILE "%d mapper og 1 fil med %I64d bytes."
+    IDS_DIRINFO_DIRANDFILEMIN "1 mappe og 1 fil med minst %I64d bytes."
+    IDS_DIRINFO_DIRSANDFILEMIN "%d mapper og 1 fil med minst %I64d bytes."
+    IDS_DIRINFO_SELECTED_FILE "Valgt 1 fil med %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIR "Valgt 1 mappe."
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "Valgt 1 mappe og %d filer med %I64d bytes."
+    IDS_DIRINFO_SELECTED_FILEMIN "Valgt 1 fil med minst %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "Valgt 1 mappe og %d filer med minst %I64d bytes"
+    IDS_DIRINFO_SELECTED_DIRANDFILE "Valgt 1 mappe og 1 fil med %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "Valgt 1 mappe og 1 fil med minst %I64d bytes"
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "Valgt %d mapper og 1 fil med %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "Valgt %d mapper og 1 fil med minst %I64d bytes"
+    IDS_QUEUESTATUS_PAUSED  "Stanset"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "Fortsetter overføringer som er pauset"
+    ID_VIEW_REMOTELISTVIEW_FILETYPE "Viser filtypen"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME 
+                            "Sorterer server visning etter filnavn"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE 
+                            "Sorterer server visning etter filstørrelse"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE 
+                            "Sorterer server visning etter filtype"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "Sorterer server visning etter sist filen ble modifisert"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "Sorterer lokal sti visning i økende rekkefølge"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "Sorterer lokal sti visning i synkene rekkefølge"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "Kunne ikke set filpeker"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "Ukjent feil i SSL"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR "Kunne ikke verifisere SSL sertifikatet"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME 
+                            "Sorterer lokal visning etter filnavn"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE 
+                            "Sorterer lokal visning etter filstørrelse"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE 
+                            "Sorterer lokal visning etter filtype"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "Sorterer lokal visning etter når filen sist ble modifisert"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "Sorterer lokal visning i økende rekkefølge"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "Sorterer lokal visning i synkene rekkefølge"
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+#endif    // Norwegian (Bokmal) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

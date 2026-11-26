@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<title>The Main Window</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+
+<p align="center" class="PageCaption">The Main Window</p>
+<p align="left" class="MidCaption">Overview:</p>
+<p class="bodyText">When you have established a connection between your local PC and an FTP site,
+the FileZilla main window displays the files and folders for your PC on the
+left side of the main window and the files and folders of the FTP site on the
+right side. At the top of the window there is a menu and a toolbar. From there
+you can access other functions of FileZilla and you can change the layout of the
+main window. Below that, there is the message log. Every action you take on the
+FTP server is logged there, as well as all status messages. Located at the bottom of the
+window is the Transfer Queue, which allows you to see what files are
+scheduled for upload/download and their progress.</p>
+
+<p class="bodyText" align="center"><IMG SRC="MainWindow.png" USEMAP="#MainWindow.png" BORDER=0 width="500" height="378">
+<MAP NAME="MainWindow.png">
+<AREA SHAPE=RECT COORDS="2,13,103,24" HREF="Menus and Toolbars.htm#menu" ALT="Find out more about the FileZilla menu.">
+<AREA SHAPE=RECT COORDS="2,24,170,41" HREF="Menus and Toolbars.htm#toolbar" ALT="Find out more about the toolbar">
+<AREA SHAPE=RECT COORDS="2,40,341,57" HREF="Menus and Toolbars.htm#quickconnectbar" ALT="Find out more about the Quickconnect Bar">
+<AREA SHAPE=RECT COORDS="2,57,496,106" HREF="messagelog.htm" ALT="Find out more about the Message Log">
+<AREA SHAPE=RECT COORDS="2,106,257,300" HREF="File Views.htm#local" ALT="Find out more about the local view">
+<AREA SHAPE=RECT COORDS="257,106,497,300" HREF="File Views.htm#remote" ALT="Find out more about the remote view">
+<AREA SHAPE=RECT COORDS="2,300,497,365" HREF="queue.htm" ALT="Find out more about the transfer queue">
+<AREA SHAPE=RECT COORDS="2,365,497,376" HREF="Main Window.htm#statusbar" ALT="Find out more about the status bar">
+</MAP><br>
+(FileZilla main window: Click on any part of the window to go to its description)</p>
+
+<ul>
+  <li>
+    <p class="bodyText"><a name="menu"></a><b>The Menu: </b>From the menu you
+    can access the other parts of FileZilla and from here you can change the
+    visual style of the main window. See the <a href="Menus%20and%20Toolbars.htm#menu">Menus and Toolbars section</a> for more information.
+  <li>
+    <p class="bodyText"><a name="toolbar"></a><b>The Toolbar: </b>These buttons give you quick
+    access to the most useful features of FileZilla. See the <a href="Menus%20and%20Toolbars.htm#toolbar">Menus and Toolbars section</a> for more information.
+  <li>
+    <p class="bodyText"><b><a name="quickconnectbar"></a>The Quickconnect Bar:</b> Allows you to
+    quickly connect to FTP sites without having to create a site profile for it.
+    See the <a href="Menus%20and%20Toolbars.htm#quickconnectbar">Menus and Toolbars section</a> for more information.
+  <li>
+    <p class="bodyText"><b><a name="messagelog"></a>The Message Log:</b> Below the list boxes,
+    there is a message area that logs all queries from the FileZilla client
+    (your PC) and all responses from the FTP site. The Message Log can be
+    toggled by the <img border="0" src="toolbar_messagelog.png" width="20" height="20">
+    button on the toolbar. See the <a href="messagelog.htm">Message Log section</a>
+    for more information
+  <li>
+    <p class="bodyText"><a name="localview"></a><b>Local View: </b>The
+    current folder is shown at the top in the edit field and in the folder tree. The list box below shows all of the files and folders within the current folder.
+    Icons are used to identify the different files and folders. Any disk drives that you can
+    access also appear in the list. The treeview can be toggled by the <img src="toolbar_treeview.png" align="absMiddle" width="20" height="20">
+    button on the toolbar. See the <a href="File%20Views.htm#local">File and Folder views
+    section</a> for more information.
+  <li>
+    <p class="bodyText"><b><a name="remoteview"></a>Remote View: </b>Displays all the
+    accessible files under the current directory on the FTP server you are
+    connected to. You will notice a folder
+    called &quot;..&quot; displayed in all directories. This folder allows you
+    to go up to the parent directory of the current folder. On the top there is
+    a combo box with the current folder. See the <a href="File%20Views.htm#remote">File and Folder views
+    section</a> for more information.
+  <li>
+    <p class="bodyText"><b><a name="queue"></a>Transfer Queue: </b>Shows the status of any
+    incoming/outgoing files from/to the FTP server. This list can be toggled by
+    the <img src="toolbar_queue.png" align="absMiddle" width="20" height="20">
+    button on the toolbar. See the <a href="queue.htm">Queue section</a> for
+    more information.</li>
+  <li>
+    <p class="bodyText"><a name="statusbar"></a><b>Status bar:</b> Shows
+    information about the current transfer and the queue size. The file transfer
+    information includes (from the left to the right): Elapsed time, time left,
+    progress bar, transferred bytes and transfer rate. The two LEDs on the right
+    indicate whether files are being received (green) or sent (red).</li>
+</ul>
+
+    <p class="MidCaption">Keyboard Shortcuts<p class="bodyText">&nbsp;<table border="0" id="AutoNumber1">
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>F5</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Refreshes local and remote file and folder views</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Tab</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Switches to the next view</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+C</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Stops the current operation</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+D</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Disconnects from server</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+Q</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Connects to the server entered in the Quickconnect bar</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+R</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Reconnects to server</td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+S</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Opens the <b>Site Manager</b></td>
+  </tr>
+  <tr>
+    <td nowrap valign="top" class="bodyText" align="right"><b>Ctrl+T</b></td>
+    <td nowrap valign="top" class="bodyText">-</td>
+    <td class="bodyText">Shows or hides the treeview</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

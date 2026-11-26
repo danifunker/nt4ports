@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<title>The Message Log</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p align="center" class="PageCaption">Le Journal des Messages</p>
+<p align="left" class="MidCaption">Vue d'ensemble:</p>
+<p align="left" class="bodyText">Toutes les commandes envoy&eacute;es au serveur 
+  FTP et leurs r&eacute;ponses, ainsi que les messages d'&eacute;tat et d'erreurs 
+  sont consign&eacute;s dans le Journal des Messages. </p>
+<p align="left" class="bodyText">Devant chaque entr&eacute;e le type du message 
+  est indiqu&eacute; et diff&eacute;rentes couleurs sont utilis&eacute;es pour 
+  indiquer ce type. Il existe quatre types de messages:</p>
+<table border="0">
+  <tr>
+    <td valign="top" class="bodyText">&Eacute;tat:</td>
+    <td class="bodyText">Ce sont des messages d'&eacute;tat normaux contenant 
+      des information utiles concernant l'activit&eacute; en cours. Exemples de 
+      messages d'&eacute;tat: &quot;Connexion au &lt;serveur&gt;...&quot; ou &quot;R&eacute;cup&eacute;ration 
+      du contenu du r&eacute;pertoire...&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText"><font color="#FF0000">Erreur:</font></td>
+    <td class="bodyText">Les messages d'erreur sont affich&eacute;s en rouge. 
+      Ils apparaissent toujours lorsqu'une op&eacute;ration &eacute;choue &agrave; 
+      cause d'une erreur ou si elle est annul&eacute;e par l'utilisateur.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText"><font color="#000080">Commande:</font></td>
+    <td class="bodyText">Ce sont les commandes envoy&eacute;es au serveur. Elles 
+      demandent au serveur d'initialiser un transfert de donn&eacute;es par exemple.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText">
+      <p class="bodyText"><font color="#008000">R&eacute;ponse:</font>
+    </td>
+    <td class="bodyText">
+      <p class="bodyText">Ce sont les r&eacute;ponses du serveur FTP. Les &eacute;l&eacute;ments 
+        les plus importants concernant ces r&eacute;ponses sont les chiffres qui 
+        les pr&eacute;c&egrave;dent. FileZilla les utilise pour d&eacute;terminer 
+        si un commande a r&eacute;ussi. Un 2 ou un 3 comme premier chiffre indique 
+        un succ&egrave;s, 4 et 5 indiquent un &eacute;chec.&nbsp; Un &eacute;chec 
+        de commande ne signifie pas n&eacute;cessairement que l'op&eacute;ration 
+        en cours a &eacute;chou&eacute;.
+    </td>
+  </tr>
+</table>
+<p class="MidCaption">Menu Contextuel du Journal des Messages:</p>
+<p class="bodyText">Le Journal des Messages poss&egrave;de un menu contextuel. 
+  Un clic droit dans ce Journal ouvre le menu. Il comporte trois &eacute;l&eacute;ments:</p>
+<table border="0">
+  <tr>
+    <td valign="top" nowrap width="225"> 
+      <p class="bodyText"><b>Entrer une commande...</b>
+    </td>
+    <td valign="top" class="bodyText" width="10">-</td>
+    <td width="769"> 
+      <p class="bodyText">Vous permet d'entrer une commande personnalis&eacute;e. 
+        Cette commande sera envoy&eacute;e au serveur FTP. 
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap width="225"> 
+      <p class="bodyText"><b>Copier dans le presse-papiers</b>
+    </td>
+    <td valign="top" class="bodyText" width="10">-</td>
+    <td width="769"> 
+      <p class="bodyText">Copie le Journal des Messages complet dans le presse-papiers. 
+        Utile si vous voulez travailler en fonction des donn&eacute;es de ce journal, 
+        par exemple pour rapporter un bogue
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap width="225"> 
+      <p class="bodyText"><b>Tout effacer</b>
+    </td>
+    <td valign="top" class="bodyText" width="10">-</td>
+    <td width="769"> 
+      <p class="bodyText">Efface toutes les entr&eacute;es du Journal des Messages.
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

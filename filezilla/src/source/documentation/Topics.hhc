@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Introduction">
+		<param name="Local" value="introduction.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="General information">
+		<param name="Local" value="general information.htm">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Compiling FileZilla">
+			<param name="Local" value="compiling.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="FileZilla history">
+			<param name="Local" value="history.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Version history">
+			<param name="Local" value="version history.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Using FileZilla">
+		<param name="Local" value="Using FileZilla.htm">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Quick Guide">
+			<param name="Local" value="quickguide.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The Main Window">
+			<param name="Local" value="Main Window.htm">
+			<param name="ImageNumber" value="1">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Menus and Toolbars">
+				<param name="Local" value="Menus and Toolbars.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="The Message Log">
+				<param name="Local" value="messagelog.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="The File and Folder View">
+				<param name="Local" value="File Views.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="The Transfer Queue">
+				<param name="Local" value="queue.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The Site Manager">
+			<param name="Local" value="sitemanager.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Configuration">
+		<param name="Local" value="configuration.htm">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Connection">
+			<param name="Local" value="connection.htm">
+			<param name="ImageNumber" value="1">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Firewall settings">
+				<param name="Local" value="firewall.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Proxy settings">
+				<param name="Local" value="proxy.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="FTP Proxy settings">
+				<param name="Local" value="ftpproxy.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="GSS Support">
+				<param name="Local" value="gss.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Directory Cache">
+				<param name="Local" value="dircache.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Ident server">
+				<param name="Local" value="ident.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="SFTP settings">
+				<param name="Local" value="sftp.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="File transfer Settings">
+			<param name="Local" value="filetransfer.htm">
+			<param name="ImageNumber" value="1">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ASCII/Binary">
+				<param name="Local" value="asciibinary.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Speed Limit Settings">
+				<param name="Local" value="speedlimit.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Interface settings">
+			<param name="Local" value="interface.htm">
+			<param name="ImageNumber" value="1">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Local file list">
+				<param name="Local" value="localfilelist.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Remote file list">
+				<param name="Local" value="remotefilelist.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Language">
+				<param name="Local" value="language.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Miscellaneous">
+				<param name="Local" value="miscellaneous.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="File viewing / editing">
+				<param name="Local" value="viewedit.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Debug">
+			<param name="Local" value="debug.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Credits">
+		<param name="Local" value="credits.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

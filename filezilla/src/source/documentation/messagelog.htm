@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<title>The Message Log</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+
+<p align="center" class="PageCaption">The Message Log</p>
+<p align="left" class="MidCaption">Overview</p>
+<p align="left" class="bodyText">All commands sent to the FTP server and their
+responses, as well as status messages and error messages are logged into the
+Message Log. </p>
+<p align="left" class="bodyText">Before each entry the type of the message is
+listed and different colors are used to indicate the type. There are four types
+of messages:</p>
+<table border="0">
+  <tr>
+    <td valign="top" class="bodyText">Status:</td>
+    <td class="bodyText">These are normal status messages containing useful
+      information about the current operation. Examples for status messages are
+      &quot;Connecting to &lt;server&gt;...&quot; or &quot;Retrieving directory
+      listing...&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText"><font color="#FF0000">Error:</font></td>
+    <td class="bodyText">Error messages are displayed in red. They always appear
+      when an operation fails due to an error or if aborted by the user.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText"><font color="#000080">Command:</font></td>
+    <td class="bodyText">These are the commands sent to the server. They request
+      the server to initiate a data transfer, for example.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="bodyText">
+      <p class="bodyText"><font color="#008000">Response:</font></td>
+    <td class="bodyText">
+      <p class="bodyText">These are the responses from the FTP servers. The most
+      important thing about the responses are the preceding numbers. FileZilla
+      uses them to determine whether a command was successful. A 2 or 3 in the
+      first digit indicates success, 4 and 5 indicate a failure.&nbsp; A failed 
+      command does not necessarily mean that the current operation has failed.</td>
+  </tr>
+</table>
+<p class="MidCaption">Message Log context menu</p>
+<p class="bodyText">The Message Log has a context menu. Right-click the Message Log to open the menu. There are three menu items:</p>
+<table border="0">
+  <tr>
+    <td valign="top" nowrap>
+      <p class="bodyText"><b>Enter command...</b></td>
+    <td valign="top" class="bodyText">-</td>
+    <td>
+      <p class="bodyText">Allows you to enter a custom command. This command
+      will be sent to the FTP server. </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap>
+      <p class="bodyText"><b>Copy to Clipboard</b></td>
+    <td valign="top" class="bodyText">-</td>
+    <td>
+      <p class="bodyText">Copies the entire Message Log to the clipboard. Useful
+      if you want to work with the data from the Message Log, for example to
+      write a bug report</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap>
+      <p class="bodyText"><b>Clear All</b></td>
+    <td valign="top" class="bodyText">-</td>
+    <td>
+      <p class="bodyText">Clears all entries from the Message Log.</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

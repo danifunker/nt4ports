@@ -1,0 +1,255 @@
+#! /bin/bash
+
+# Automated build script for FileZilla. To use it you need the
+# following installed:
+#
+# - Visual C++ 6 or 7
+# - MS Platform SDK for the latest header files
+# - Recent version of Cygwin
+# - Perl (this can be installed with cygwin now)
+# - GCC (either MinGW or Cygwin version with windows headers)
+# - NSIS
+
+# Stop on any error
+set -e
+# For debugging, turn this on
+#set -x
+
+echo
+echo FileZilla autobuild script
+echo
+
+MSVC6DIR=$(regtool get '\machine\Software\Microsoft\VisualStudio\6.0\Setup\Microsoft Visual Studio\ProductDir' 2> tmp) || True
+if [ "$MSVC6DIR" != "" ]
+then
+  MSVC6DIR="`cygpath \"$MSVC6DIR\\COMMON\\msdev98\\BIN\"`"
+fi
+
+MSVC7DIR=$(regtool get '\machine\Software\Microsoft\VisualStudio\7.0\InstallDir' 2> tmp) || True
+
+MSVC71DIR=$(regtool get '\machine\Software\Microsoft\VisualStudio\7.1\InstallDir' 2> tmp) || True
+rm tmp
+
+MSVCVER=6
+if [ -e "$MSVC7DIR" ]
+then
+    MSVCVER=7
+fi
+
+if [ -e "$MSVC71DIR" ]
+then
+    MSVCVER=71
+fi
+
+MSDevDir=$MSVC6DIR
+if [ $MSVCVER == "7" ]
+then
+  MSDevDir=$MSVC7DIR
+elif [ $MSVCVER == "71" ]
+then
+  MSDevDir=$MSVC71DIR
+fi
+
+if [ "$CYGWIN_ROOT" == "" ]
+then
+  CYGWIN_ROOT=$(cygpath -w /)
+  export CYGWIN_ROOT
+fi
+
+PATH=$PATH:"$MSDevDir"
+
+function die()
+{
+  echo Error: $@
+  exit 2
+}
+
+function buildproject()
+{
+  if [ $MSVCVER != "6" ]
+  then
+    BUILDSWITCH=/build
+    if [ $CLEAN == "1" ]
+    then
+      BUILDSWITCH=/rebuild
+    fi
+    devenv "source/FileZilla.sln" $BUILDSWITCH "$2" /project $1 /OUT msdev.log
+  else
+    REBUILD=
+    if [ $CLEAN == "1" ]
+    then
+      REBUILD=/REBUILD
+    fi
+    msdevbuild $1 $2 $REBUILD
+  fi
+}
+
+# Arguments: <Release/Debug>
+function buildall()
+{
+  echo - FzSFTP
+  buildproject FzSFtp $1 $REBUILD
+  echo - FileZilla
+  buildproject FileZilla $1 $REBUILD 
+  echo - Bulgarian language file
+  buildproject FzResBu $1 $REBUILD
+  echo - Breton language file
+  buildproject FzResBr $1 $REBUILD
+  echo - Catalan language file
+  buildproject FzResCa $1 $REBUILD
+  echo - Traditional Chinese language file
+  buildproject FzResCh $1 $REBUILD
+  echo - Simplified Chinese language file
+  buildproject FzResChs $1 $REBUILD
+  echo - Czech language file
+  buildproject FzResCze $1 $REBUILD
+  echo - German language file
+  buildproject FzResDe $1 $REBUILD
+  echo - French language file
+  buildproject FzResFr $1 $REBUILD
+  echo - Hungarian language file
+  buildproject FzResHu $1 $REBUILD
+  echo - Italian language file
+  buildproject FzResIt $1 $REBUILD
+  echo - Japanese language file
+  buildproject FzResJp $1 $REBUILD
+  echo - Korean language file
+  buildproject FzResKr $1 $REBUILD
+  echo - Polish language file
+  buildproject FzResPo $1 $REBUILD
+  echo - Norwegian language file
+  buildproject FzResNor $1 $REBUILD
+  echo - Russian language file
+  buildproject FzResRu $1 $REBUILD
+  echo - Slovak language file
+  buildproject FzResSk $1 $REBUILD
+  echo - Spanish language file
+  buildproject FzResEs $1 $REBUILD
+}
+
+function msdevbuild()
+{
+  if ! msdev "source/FileZilla.dsw" /MAKE "$1 - Win32 $2" /OUT msdev.log $3
+  then
+    cat msdev.log
+    die Building $1
+  fi
+  rm -f msdev.log
+#  rm -f msdev.log src/$1/Release/$1.$2
+}
+
+[ -e readme.htm ] || die "Please run from top level folder by typing:	build"
+[ -e source/filezilla.sln ] || die "Please run from top level folder by typing:	build"
+
+# Command line parameters
+CLEAN=1
+VERBOSE=0
+
+while [ "$1" != "" ]
+do
+  case $1 in
+      -n)
+	  CLEAN=0
+	  ;;
+      -v)
+	  VERBOSE=1
+	  ;;
+      *)
+	  echo "Error: Unrecognized build type '$1'"
+	  exit 1
+	  ;;
+  esac
+  shift
+done
+
+function buildnumparse()
+{
+    MAJOR_VER=$1
+    MINOR_VER=$2
+    BUILD_VER=$3
+}
+
+echo "Build release versions"
+buildall Release
+
+echo "Compiling documentation"
+# makehm ID_,IDH_,0x10000 IDM_,IDH_,0x10000 IDP_,IDH_,0x30000 IDR_,IDH_,0x20000 IDD_,IDH_,0x20000 IDW_,IDH_,0x50000 source/resource.h > source/documentation/FileZilla_raw.hm
+#cat source/documentation/FileZilla_raw.hm | sed "s/^/#define /" > source/documentation/FileZilla.hm
+#rm -f source/documentation/FileZilla_raw.hm
+set +e
+# hhc source/documentation/FileZilla.hhp > hhc.log
+set -e
+if [ ! -e "source/documentation/FileZilla.chm" ]
+then
+  cat hhc.log
+  die Failed to compile documentation
+fi
+rm -f hhc.log
+
+echo "Running NSIS to generate installer"
+if ! makensis.exe source/install/FileZilla.nsi > nsis.log
+then
+  cat nsis.log
+  die Building installer
+fi
+rm -f nsis.log
+
+echo "Creating binary .zip"
+rm -f FileZilla.zip
+if ! zip -9 -j FileZilla.zip source/release/FileZilla.exe \
+  source/release/FileZilla.pdb \
+  source/FzSFtp/release/FzSFtp.exe \
+  source/install/FzGSS.dll \
+  source/install/dbghelp.dll \
+  source/openssl/ssleay32.dll \
+  source/openssl/libeay32.dll \
+  "source/LanguageDLLs/Bulgarian/release/FzResBu.dll" \
+  "source/LanguageDLLs/TraditionalChinese/release/FzResCh.dll" \
+  "source/LanguageDLLs/SimplifiedChinese/release/FzResChs.dll" \
+  "source/LanguageDLLs/German/release/FzResDe.dll" \
+  "source/LanguageDLLs/Spanish/release/FzResEs.dll" \
+  "source/LanguageDLLs/French/release/FzResFr.dll" \
+  "source/LanguageDLLs/Hungarian/release/FzResHu.dll" \
+  "source/LanguageDLLs/Italian/release/FzResIt.dll" \
+  "source/LanguageDLLs/Korean/release/FzResKr.dll" \
+  "source/LanguageDLLs/Norwegian/release/FzResNor.dll" \
+  "source/LanguageDLLs/Polish/release/FzResPo.dll" \
+  "source/LanguageDLLs/Japanese/release/FzResJp.dll" \
+  "source/LanguageDLLs/Russian/release/FzResRu.dll" \
+  readme.htm \
+  source/documentation/FileZilla.chm \
+  GPL.html \
+  legal.htm \
+  puttylicense.html \
+  > zip.log
+then
+  cat zip.log
+  die "Zipping binaries"
+fi
+rm -f zip.log
+
+echo "Packing source .zip"
+rm -f FileZilla_src.zip
+cd source/install
+./source.bat > tmp
+rm tmp
+zip -r -9 ../../FileZilla_src.zip source > tmp
+rm tmp
+cd ../..
+zip -9 FileZilla_src.zip build.bat > tmp
+rm tmp
+
+echo "Packing debug files (*.pdb, *.map, *.cod, ...)"
+rm -f FileZilla_dbg.zip
+cd source/release
+zip -r -9 -j ../../FileZilla_dbg.zip *.map > tmp
+rm tmp
+zip -r -9 -j ../../FileZilla_dbg.zip *.pdb > tmp
+zip -r -9 -j ../../FileZilla_dbg.zip *.cod > tmp
+rm tmp
+cd ../..
+
+echo "Installing..."
+./FileZilla_setup.exe
+
+echo Build complete.

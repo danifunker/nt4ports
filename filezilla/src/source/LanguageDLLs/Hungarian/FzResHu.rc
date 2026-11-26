@@ -1,0 +1,2366 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Hungarian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)
+#ifdef _WIN32
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 318, 212
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Kézi fájlátvitel beállításai"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Állítsa be az egyéni fájlátvitel paramétereit. Lehetõleg minél több információt adjon meg. Amelyik mezõt üresen hagyja, azt a FileZilla megpróbálja kitölteni.",
+                    IDC_STATIC,7,7,304,17
+    LTEXT           "Átvitel típusa:",IDC_STATIC,7,30,52,8
+    CONTROL         "&Letöltés",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,40,48,10
+    CONTROL         "&Feltöltés",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,51,39,10
+    LTEXT           "&Helyi fájl:",IDC_STATIC,7,65,31,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "&Távoli fájl:",IDC_STATIC,7,93,38,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "Az aktuális &kiszolgáló használata",
+                    IDC_MANUALTRANSFER_SERVER1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,147,30,121,10
+    CONTROL         "Az alá&bbi kiszolgáló használata",
+                    IDC_MANUALTRANSFER_SERVER2,"Button",BS_AUTORADIOBUTTON,
+                    147,41,112,10,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,141,41,170,164,WS_GROUP
+    LTEXT           "&Cím:",IDC_STATIC,148,52,18,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,61,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,281,52,16,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,280,61,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "&Adatkapcsolat típusa:",IDC_STATIC,148,80,78,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,90,157,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Bejelentkezés típusa",IDC_STATIC,148,108,157,38
+    CONTROL         "&Névtelen",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,119,53,10
+    CONTROL         "Nor&mál",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,119,38,10
+    CONTROL         "Pro&xy / tûzfal beállításainak kihagyása",
+                    IDC_MANUALTRANSFER_BYPASSPROXY,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,158,132,135,10
+    LTEXT           "Felha&sználónév:",IDC_STATIC,148,149,56,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,158,157,14,ES_AUTOHSCROLL
+    LTEXT           "&Jelszó:",IDC_STATIC,148,176,34,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,185,157,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,15,191,50,14
+    PUSHBUTTON      "Mégse",IDCANCEL,75,191,50,14
+    CONTROL         "Az átvitel megkez&dése azonnal",
+                    IDC_MANUALTRANSFER_STARTNOW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,172,116,10
+END
+
+IDD_ABOUTBOX DIALOG  0, 0, 235, 82
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FileZilla névjegye"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<version>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2001-2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "Készítette:",IDC_STATIC,41,40,35,8
+    LTEXT           "http://www.sourceforge.net/projects/filezilla",
+                    IDC_HOMEPAGE,82,54,146,8
+    LTEXT           "Tim Kosse",IDC_MAIL,82,40,34,8
+    LTEXT           "Honlap:",IDC_STATIC,41,54,38,8
+    LTEXT           "Fordította:",IDC_TRANSLATEDBY,41,68,39,8,NOT WS_VISIBLE
+    LTEXT           "Bata György (batagy@mail.datanet.hu)",IDC_MAIL2,82,68,128,
+                    8,NOT WS_VISIBLE
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,182,28,15,13
+END
+
+IDR_MAINFRAME DIALOG  0, 0, 397, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Cím:",IDC_STATIC,1,4,17,8
+    EDITTEXT        IDC_HOST,22,2,71,12,ES_AUTOHSCROLL
+    LTEXT           "Felhasználónév:",IDC_STATIC,100,4,54,8
+    EDITTEXT        IDC_USER,163,2,40,12,ES_AUTOHSCROLL
+    LTEXT           "Jelszó:",IDC_STATIC,208,4,25,8
+    EDITTEXT        IDC_PASS,237,2,40,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,286,4,16,8
+    EDITTEXT        IDC_PORT,306,2,25,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Csatlakozás",IDOK,339,1,58,14,BS_NOTIFY
+END
+
+IDD_FILEEXISTS DIALOGEX 0, 0, 259, 124
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "A fájl már létezik"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_FILEEXISTS_FILE1,7,16,150,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d byte",IDC_FILEEXISTS_SIZE1,50,28,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "",IDC_FILEEXISTS_FILE2,7,64,150,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d byte",IDC_FILEEXISTS_SIZE2,50,76,100,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "Adja meg a mûveletet:",IDC_STATIC,165,7,87,70
+    CONTROL         "&Felülírás",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,172,18,46,10
+    CONTROL         "Felülírás, &ha újabb",IDC_FILEEXISTS_RADIO2,"Button",
+                    BS_AUTORADIOBUTTON,172,29,73,10
+    CONTROL         "F&olytatás",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,172,40,42,10
+    CONTROL         "Át&nevezés",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,172,51,51,10
+    CONTROL         "&Kihagyás",IDC_FILEEXISTS_SKIP,"Button",
+                    BS_AUTORADIOBUTTON,172,62,50,10
+    CONTROL         "&Mindig ezt alkalmazza, ha egy fájl már létezik",
+                    IDC_FILEEXISTS_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    BS_VCENTER | BS_MULTILINE | WS_GROUP | WS_TABSTOP,170,83,
+                    82,30
+    DEFPUSHBUTTON   "OK",IDOK,105,103,50,14
+    LTEXT           "Lecseréli a létezõ fájlt",IDC_STATIC,7,7,104,8
+    LTEXT           "ezzel?",IDC_STATIC,7,55,70,8
+END
+
+IDD_OPTIONS_FIREWALL DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Passzív mód használata",IDC_OPTIONS_FIREWALL_PASV,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,106,92,10
+    LTEXT           "Ha csatlakozni tud FTP kiszolgálókhoz, de problémák vannak az átvitellel, valószínûleg engedélyeznie kell a passzív módot.",
+                    IDC_STATIC,7,88,272,17
+    LTEXT           "Alapesetben a FileZilla bármelyik szabad helyi portot használhatja a kapcsolat felépítéséhez, és az átvitelhez. Ha azt szeretné, hogy a FileZilla a portoknak\ncsak egy kis tartományát használja, adja meg a port tartomány határait.",
+                    IDC_STATIC,19,17,260,24
+    CONTROL         "A &FileZilla által használt helyi portok korlátozása",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,165,10
+    LTEXT           "Leg&alacsonyabb elérhetõ port:",IDC_STATIC,19,47,100,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,120,44,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "Leg&magasabb elérhetõ port:",IDC_STATIC,19,64,96,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,120,61,40,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "A &következõ IP cím használata nem-passzív átvitelre:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,186,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,19,137,60,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "A következõ IP &cím használata nem-passzív átvitelre IPv6 esetén:",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,234,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 286, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Ébrentartás beállításai",IDC_STATIC,7,7,276,54
+    CONTROL         "&Az Ébrentartási rendszer engedélyezése, a kapcsolat fenntartása érdekében",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,19,
+                    260,10
+    LTEXT           "A FileZilla küldjön ébrentartási parancsokat (pl. PWD, REST 0, TYPE A, TYPE I)",
+                    IDC_STATIC,25,31,252,8
+    EDITTEXT        IDC_INTERVALLOW,28,40,24,14,ES_AUTOHSCROLL
+    LTEXT           "és",IDC_STATIC,56,43,13,8
+    EDITTEXT        IDC_INTERVALHIGH,70,40,24,14,ES_AUTOHSCROLL
+    LTEXT           "másodperc közötti véletlenszerû idõközönként.",
+                    IDC_STATIC,99,43,161,8
+    GROUPBOX        "&Idõtúllépés beállítása",IDC_STATIC,7,67,276,40
+    LTEXT           "Ha",IDC_STATIC,14,79,13,8
+    EDITTEXT        IDC_TIMEOUT,29,76,26,14,ES_AUTOHSCROLL
+    LTEXT           "másodpercig nem történik adatátvitel, akkor a FileZilla tételezze",
+                    IDC_STATIC,61,79,211,8
+    LTEXT           "fel, hogy a kapcsolatban idõtúllépés van, és szüntesse meg a kapcsolatot.",
+                    IDC_STATIC,14,91,239,8
+    GROUPBOX        "Újrapróbálkozások beállításai",IDC_STATIC,7,115,276,44
+    LTEXT           "Ha átvitel közben a kapcsolat megszakad, a bejelentkezési kísérletek között várjon",
+                    IDC_STATIC,13,127,263,8
+    EDITTEXT        IDC_DELAY,15,137,17,14,ES_AUTOHSCROLL
+    LTEXT           "másodpercet, és a bejelentkezéseket",IDC_STATIC,38,140,
+                    121,8
+    EDITTEXT        IDC_NUMRETRY,160,137,20,14,ES_AUTOHSCROLL
+    LTEXT           "alkalommal próbálja újra.",IDC_STATIC,184,140,85,8
+    CONTROL         "IPv6 támogatás engedélyezése (csak Windows XP/2003 és újabb alatt mûködik)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,270,10
+    LTEXT           "Alapértelmezett jelszó a &névtelen bejelentkezésekhez:",
+                    IDC_STATIC,7,180,177,8
+    EDITTEXT        IDC_ANONPWD,7,190,175,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERSOMETHING DIALOG  0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Title"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "<text>",IDC_TEXT,7,7,172,17
+    EDITTEXT        IDC_EDIT1,7,28,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,36,47,50,14
+    PUSHBUTTON      "&Mégse",IDCANCEL,99,47,50,14
+END
+
+IDD_OPTIONS_LANGUAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Válassza ki a FileZilla által használt nyelvet:",
+                    IDC_STATIC,7,7,152,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Alapértelmezett könyvtár",IDC_STATIC,7,7,272,55
+    CONTROL         "&Az utoljára használt mappa megjegyzése",
+                    IDC_SELECTDEFAULTFOLDERTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,18,147,10
+    CONTROL         "&Mindig az alábbi könyvtár használata alapértelmezett mappaként:",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,224,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL
+    CONTROL         "A &FileZilla minden indulásakor a Kedvenc Helyek megnyitása",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,76,207,10
+    CONTROL         "A mappák elõre ren&dezése a Kedvenc Helyekben",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,89,171,10
+    CONTROL         "Meg&nyitáskor a mappák ne legyenek kibontva",
+                    IDC_SITEMANAGEREXPANDFOLDERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,102,163,10
+    GROUPBOX        "Kedvenc Helyek beállításai",IDC_STATIC,7,66,272,49
+END
+
+IDD_CONNECTION4 DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Adja meg a proxy típusát:",IDC_STATIC,7,7,99,8
+    CONTROL         "&Közvetlen kapcsolat (nincs proxy)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,16,122,10
+    CONTROL         "SOCKS&4 proxy",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,7,
+                    27,63,10
+    CONTROL         "SOCKS4&A proxy",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
+                    7,38,67,10
+    CONTROL         "SOCKS&5 proxy",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,7,
+                    49,63,10
+    CONTROL         "&HTTP 1.1 proxy",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,
+                    7,60,66,10
+    GROUPBOX        "A proxy adatai",IDC_STATIC,7,74,272,100
+    LTEXT           "&Cím:",IDC_STATIC,14,88,18,8
+    EDITTEXT        IDC_PROXYHOST,72,85,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,14,106,16,8
+    EDITTEXT        IDC_PROXYPORT,72,103,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Felhasználónév:",IDC_STATIC,14,124,53,8
+    EDITTEXT        IDC_PROXYUSER,72,121,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Jelszó:",IDC_STATIC,14,142,34,8
+    EDITTEXT        IDC_PROXYPASS,72,139,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "F&elhasználónév / Jelszó használata (csak SOCKS5 és HTTP 1.1 proxynál)",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,159,
+                    260,10
+END
+
+IDD_CHMOD DIALOG  0, 0, 199, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Attribútumok módosítása"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Text",IDC_TEXT,7,7,185,19
+    GROUPBOX        "Tulajdonos engedélyei",IDC_STATIC,7,27,185,25
+    CONTROL         "&Olvasás",IDC_OWNERREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,38,45,10
+    CONTROL         "Í&rás",IDC_OWNERWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,38,33,10
+    CONTROL         "Végr&ehajtás",IDC_OWNEREXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,125,38,53,10
+    GROUPBOX        "Csoport engedélyek",IDC_STATIC,7,58,185,25
+    CONTROL         "O&lvasás",IDC_GROUPREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,69,45,10
+    CONTROL         "Ír&ás",IDC_GROUPWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,69,33,10
+    CONTROL         "Végre&hajtás",IDC_GROUPEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,125,69,53,10
+    GROUPBOX        "Nyilvános engedélyek",IDC_STATIC,7,89,185,25
+    CONTROL         "Ol&vasás",IDC_PUBLICREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,100,45,10
+    CONTROL         "Írá&s",IDC_PUBLICWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,100,33,10
+    CONTROL         "Végrehaj&tás",IDC_PUBLICEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,125,100,53,10
+    LTEXT           "Megjegyzés: nem minden állomás támogatja ezt a parancsot. Nagyrészt UNIX kiszolgálókon használt.",
+                    IDC_STATIC,7,144,185,20
+    DEFPUSHBUTTON   "O&K",IDOK,31,165,50,14
+    PUSHBUTTON      "&Mégse",IDCANCEL,118,165,50,14
+    LTEXT           "Számérték:",IDC_STATIC,7,126,48,8
+    EDITTEXT        IDC_NUMERIC,49,123,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = az attribútum nem ugyanaz a kijelölt fájlokra)",
+                    IDC_STATIC,102,121,90,18
+END
+
+IDD_TRANSFERASDLG DIALOG  0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Átvitel másként..."
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Adja meg a felhasználónevet és jelszót a fiókhoz, amely a kijelölt fájlok és könyvtárak átviteléhez szükséges.",
+                    IDC_STATIC,7,7,194,20
+    LTEXT           "&Felhasználónév:",IDC_STATIC,47,32,52,8
+    EDITTEXT        IDC_USER,104,28,56,14,ES_AUTOHSCROLL
+    LTEXT           "&Jelszó:",IDC_STATIC,47,52,34,8
+    EDITTEXT        IDC_PASS,104,50,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Átvitel &azonnal",IDC_TRANSFERNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,74,70,59,10
+    DEFPUSHBUTTON   "&OK",IDOK,46,85,50,14
+    PUSHBUTTON      "&Mégse",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Alapértelmezett átviteli típus",IDC_STATIC,7,7,272,47
+    CONTROL         "A&utomatikus",IDC_TYPEMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,16,20,53,10
+    CONTROL         "&ASCII",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,16,30,
+                    34,10
+    CONTROL         "&Bináris",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,16,
+                    40,35,10
+    LTEXT           "Célszerû a beállítást automatikuson hagyni. Ekkor a FileZilla a megfelelõ átviteli típust választja ki a fájl kiterjesztés alapján. Az itt megadott opció az alapértelmezett beállítás, amikor a FileZilla elindul.",
+                    IDC_STATIC,107,16,167,34
+    GROUPBOX        "ASCII fájlok",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "Ha az automatikus átvitelt választotta, a FileZilla a következõ kiterjesztésû fájlokhoz ASCII átvitelt használ:",
+                    IDC_STATIC,14,76,256,16
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,112,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Hozzáadás",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "&Eltávolítás",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "Ha rossz fájltípust ad meg,\nazok a fájlok az átvitel során meghibásodhatnak.",
+                    IDC_STATIC,167,98,104,97
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Kedvenc Helyek"
+MENU IDR_SITEMANAGER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+    GROUPBOX        "Az állomás adatai",IDC_STATIC,174,0,169,244
+    LTEXT           "&Cím:",IDC_STATIC,180,11,18,8
+    EDITTEXT        IDC_HOST,180,20,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_STATIC,312,11,16,8
+    EDITTEXT        IDC_PORT,312,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "A&datkapcsolat típusa:",IDC_STATIC,180,38,76,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Bejelentkezés típusa",IDC_STATIC,180,66,157,38
+    CONTROL         "&Névtelen",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,189,77,50,10
+    CONTROL         "No&rmál",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,241,77,
+                    38,10
+    CONTROL         "Fiók",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,289,77,
+                    35,10
+    CONTROL         "Pro&xy / tûzfal beállításainak kihagyása",IDC_FWBYPASS,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,189,90,
+                    139,10
+    LTEXT           "Fe&lhasználónév:",IDC_STATIC,180,107,57,8
+    EDITTEXT        IDC_USER,180,117,103,14,ES_AUTOHSCROLL
+    LTEXT           "Fiók:",IDC_STATIC,287,107,30,8
+    EDITTEXT        IDC_USER2,287,117,49,14,ES_AUTOHSCROLL
+    LTEXT           "&Jelszó:",IDC_STATIC,180,134,34,8
+    EDITTEXT        IDC_PASS,180,143,157,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "N&e mentse a jelszót. ",IDC_PASSDONTSAVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,180,161,81,
+                    10
+    LTEXT           "Megjegyzések:",IDC_STATIC,179,178,53,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,179,189,157,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "E&z az alapértelmezett állomás",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,228,110,10
+    PUSHBUTTON      "Új áll&omás",IDC_NEW,7,212,50,14,WS_GROUP
+    PUSHBUTTON      "Új m&appa",IDC_SITEMANAGER_NEWFOLDER,62,212,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "&Törlés",IDC_DELETE,117,212,50,14
+    PUSHBUTTON      "&Másolás",IDC_SITEMANAGER_COPY,7,230,50,14,WS_GROUP
+    PUSHBUTTON      "Átne&vezés",IDC_SITEMANAGER_RENAME,62,230,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "&Speciális...",IDC_SITEMANAGER_ADVANCED,117,230,50,14,
+                    WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,248,
+                    336,1
+    PUSHBUTTON      "Csatla&kozás",IDOK,79,253,50,14
+    PUSHBUTTON      "Mé&gse",IDCANCEL,150,253,50,14
+    PUSHBUTTON      "Mentés és &Bezárás",IDC_EXIT,221,253,73,14
+END
+
+IDD_OPTIONS_INTERFACE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Induló beállítások",IDC_STATIC,7,7,272,105
+    LTEXT           "A FileZilla elindulásakor mely grafikus elemek jelenjenek meg?",
+                    IDC_STATIC,14,19,200,8
+    CONTROL         "Min&dig az alábbi konfiguráció használata",IDC_VIEWMODE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,39,158,10
+    CONTROL         "Az utoljára &használt konfiguráció megjegyzése",
+                    IDC_VIEWMODE2,"Button",BS_AUTORADIOBUTTON,14,29,162,10
+    LTEXT           "A konfiguráció ezeket az elemeket tartalmazza:",
+                    IDC_STATIC,14,50,151,8
+    CONTROL         "&Eszköztár",IDC_SHOWTOOLBAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,26,61,47,10
+    CONTROL         "Állapot&sor",IDC_SHOWSTATUSBAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,108,61,46,10
+    CONTROL         "&Gyorskapcsolódás sor",IDC_SHOWQUICKCONNECTBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,190,61,84,10
+    CONTROL         "Üzenet &napló",IDC_SHOWMESSAGELOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,26,76,59,10
+    CONTROL         "Helyi &könyvtárfa",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,108,76,65,10
+    CONTROL         "Átviteli &várólista",IDC_SHOWTRANSFERQUEUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,190,76,65,10
+    CONTROL         "Távoli könyvtárf&a",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,26,91,72,10
+    GROUPBOX        "Egyéb",IDC_STATIC,7,115,272,86
+    CONTROL         "A fájlablakok &címkéjének megjelenítése",IDC_VIEWLABELS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,129,141,10
+    CONTROL         "A &FileZilla méretének és pozíciójának megjegyzése",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,142,201,10
+    CONTROL         "Kicsinyítés a &tálcára (alapértelmezett)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,162,135,10
+    CONTROL         "Kicsinyítés ikonként az é&rtesítési területre (az óra mellé)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,190,10
+    CONTROL         "G&omb megjelenítése az értesítési területre történõ kicsinyítéshez",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,182,221,10
+END
+
+IDD_OPTIONS_GSSPAGE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "&A Kerberos GSS támogatás engedélyezése",IDC_USEGSS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,153,10
+    LISTBOX         IDC_SERVERLIST,15,64,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,64,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Hozzáadás",IDC_SERVERADD,128,83,50,14
+    PUSHBUTTON      "&Eltávolítás",IDC_SERVERREMOVE,128,101,50,14
+    LTEXT           "Ehhez a beállításhoz a Kerberos for Windows-nak telepítve kell lennie, különben\na funkció nem mûködik. Ha engedélyezi, a FileZilla GSS hitelesítést és titkosítást alkalmaz az alább felsorolt állomásokhoz.",
+                    IDC_STATIC,7,21,272,26
+    GROUPBOX        "GSS-t támogató állomások",IDC_STATIC,7,52,272,149
+    LTEXT           "Minden olyan kiszolgálóhoz, amelynek a címe a lista valamelyik karakterláncára végzõdik, a FileZilla GSS-t használ. Csak olyan állomásokat adjon meg, amelyek támogatják a GSS-t.",
+                    IDC_STATIC,184,66,88,68
+    LTEXT           "A GSS mûködéséhez érvényes 5-ös verziójú Kerberos jegy szükséges.",
+                    IDC_STATIC,184,133,88,28
+END
+
+IDD_OPTIONS_DEBUG DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Ezek a beállítások csupán hibakeresési célt szolgálnak. Általában nem kell õket megváltoztatnia. Azonban ha bármilyen problémát észlel a FileZilla mûködésében, engedélyezheti a funkciókat. A jelzett üzenetek segíthetnek a probléma megoldásában.",
+                    IDC_STATIC,7,7,275,35
+    CONTROL         "&Az FTP motor járulékos üzeneteinek nyomon követése az Üzenet naplóban",
+                    IDC_DEBUG_ENGINETRACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,43,256,10
+    CONTROL         "&Nyers könyvtár lista nyomon követése az Üzenet naplóban",
+                    IDC_DEBUG_SHOWRAWLISTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,56,202,10
+    CONTROL         "A &Hibakeresés (Debug) menü engedélyezése",
+                    IDC_DEBUG_DEBUGMENU,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,69,159,10
+END
+
+IDD_OPTIONS_FTPPROXY DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Proxy &címe:",IDC_STATIC,7,7,40,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Port:",IDC_STATIC,118,7,14,8
+    EDITTEXT        IDC_EDIT6,118,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Felhasználónév:",IDC_STATIC,7,36,52,8
+    EDITTEXT        IDC_EDIT7,7,47,52,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Jelszó:",IDC_STATIC,65,36,27,8
+    EDITTEXT        IDC_EDIT8,65,47,52,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "FTP proxy &típusa",IDC_STATIC,7,71,272,104
+    CONTROL         "Nincs",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,17,81,33,10
+    CONTROL         "SITE címe",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,17,91,
+                    65,10
+    CONTROL         "USER bejelentkezés után",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,97,10
+    CONTROL         "Proxy OPEN",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,17,
+                    111,55,10
+    CONTROL         "Transzparens",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,17,
+                    121,57,10
+    CONTROL         "USER RemoteID@Remotehost",IDC_RADIO8,"Button",
+                    BS_AUTORADIOBUTTON,17,131,116,10
+    CONTROL         "USER FireID@Remotehost",IDC_RADIO9,"Button",
+                    BS_AUTORADIOBUTTON,17,141,102,10
+    CONTROL         "USER RemoteID@RemoteHost FireID",IDC_RADIO10,"Button",
+                    BS_AUTORADIOBUTTON,17,151,137,10
+    CONTROL         "USER RemoteID@FireID@RemoteHost",IDC_RADIO11,"Button",
+                    BS_AUTORADIOBUTTON,17,162,143,10
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Ezen az oldalon a helyi fájlablak megjelenését állíthatja be.",
+                    IDC_STATIC,7,7,211,8
+    CONTROL         "Mindig az alá&bbi konfiguráció használata:",
+                    IDC_OPTIONS_LOCALVIEW_ALWAYS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,20,150,10
+    LTEXT           "&Alapértelmezett nézet:",IDC_STATIC,19,35,73,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,95,34,72,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Részletes nézet esetén megjelenõ oszlopok:",IDC_STATIC,
+                    19,49,150,8,NOT WS_GROUP
+    CONTROL         "Fájl&méret",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,44,10
+    CONTROL         "Fájl&típus",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,93,61,40,10
+    CONTROL         "Mó&dosítás ideje",IDC_OPTIONS_LOCALVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,158,61,72,10
+    CONTROL         "Az &utoljára használt konfiguráció megjegyzése",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,89,163,10
+    LTEXT           "Ebben az esetben a megjelenést a menübõl módosíthatja.",
+                    IDC_STATIC,19,103,186,8
+    CONTROL         "Az oszlop &szélességek megjegyzése részletes nézetben",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,115,203,10
+    LTEXT           "A &fájlméret formátuma:",IDC_STATIC,7,143,74,8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,83,141,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Helyi állapotsor megjelenítése a (kijelölt) fájl információkhoz",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,75,202,10
+    CONTROL         "Az &oszlop rendezési irányának megjegyzése részletes nézetben",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,127,212,10
+    LTEXT           "A fájlokra történõ dupla kattintás mû&velete:",
+                    IDC_STATIC,7,175,138,8
+    CONTROL         "Feltöltés",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    186,41,10
+    CONTROL         "Megnyitás",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,
+                    "Button",BS_AUTORADIOBUTTON,65,186,49,10
+    CONTROL         "Hozzáadás a várólistához",
+                    IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,123,186,97,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOG  0, 0, 286, 227
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Ezen az oldalon a távoli fájlablak megjelenését állíthatja be.",
+                    IDC_STATIC,7,7,218,8
+    CONTROL         "Mindig az alá&bbi konfiguráció használata:",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,20,150,10
+    LTEXT           "&Alapértelmezett nézet:",IDC_STATIC,19,35,73,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,95,34,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Részletes nézet esetén megjelenõ oszlopok:",IDC_STATIC,
+                    19,49,150,8,NOT WS_GROUP
+    CONTROL         "Fájl&méret",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,44,10
+    CONTROL         "Fájltí&pus",IDC_OPTIONS_REMOTEVIEW_FILETYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,93,61,40,10
+    CONTROL         "&Dátum",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,158,61,37,10
+    CONTROL         "&Idõ",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,72,26,10
+    CONTROL         "&Engedélyek",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,93,72,53,10
+    CONTROL         "Tulajdonos / &Csoport",
+                    IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,158,72,81,10
+    CONTROL         "&Távoli állapotsor megjelenítése a (kijelölt) fájl információkhoz",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,85,204,10
+    CONTROL         "Az &utoljára használt konfiguráció megjegyzése",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,99,163,10
+    LTEXT           "Ebben az esetben a megjelenést a menübõl módosíthatja.",
+                    IDC_STATIC,19,113,186,8
+    CONTROL         "Az oszlop &szélességek megjegyzése részletes nézetben",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,203,10
+    CONTROL         "Az &oszlop rendezési irányának megjegyzése részletes nézetben",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,137,212,10
+    LTEXT           "A &fájlméret formátuma:",IDC_STATIC,7,153,74,8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,83,151,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "A &rejtett fájlok megjelenítése",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,167,110,10
+    LTEXT           "Vigyázat, nem minden kiszolgáló támogatja ezt a funkciót. Ha ilyen állomásokon engedélyezi a szolgáltatást, a FileZilla esetleg nem tudja kilistázni fájlokat.",
+                    IDC_STATIC,19,178,260,17
+    LTEXT           "A fájlokra történõ dupla kattintás mû&velete:",
+                    IDC_STATIC,7,200,138,8
+    CONTROL         "Letöltés",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    211,41,10
+    CONTROL         "Megnyitás",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,
+                    "Button",BS_AUTORADIOBUTTON,65,211,49,10
+    CONTROL         "Hozzáadás a várólistához",
+                    IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,123,211,97,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Ezen az oldalon a távoli könyvtárak gyorsítótárazását állíthatja be.",
+                    IDC_STATIC,7,7,211,8
+    CONTROL         "&Ne használjon gyorsítótárazást",
+                    IDC_OPTIONS_CACHE_USECACHE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,18,113,10
+    CONTROL         "&Használjon gyorsítótárazást",
+                    IDC_OPTIONS_CACHE_USECACHE2,"Button",BS_AUTORADIOBUTTON,
+                    7,28,103,10
+    LTEXT           "Az a maximális idõtartam, amelyre egy könyvtár a gyorsítótárba kerül:",
+                    IDC_STATIC,7,44,219,8
+    LTEXT           "ó&ra,",IDC_STATIC,27,57,15,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&perc,",IDC_STATIC,67,57,20,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,45,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&másodperc.",IDC_STATIC,112,57,41,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,89,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "Kétféle gyorsítótárazás lehetséges:",IDC_STATIC,7,114,
+                    115,8,NOT WS_VISIBLE
+    CONTROL         "A &FileZilla bezárásakor a gyorsítótár törlése",
+                    IDC_OPTIONS_CACHE_CACHETYPE,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,124,153,10
+    CONTROL         "Állan&dó gyorsítótár használata",
+                    IDC_OPTIONS_CACHE_CACHETYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,134,112,10
+END
+
+IDD_SERVER_CHANGEPASS DIALOG  0, 0, 186, 138
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Jelszó módosítása"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Itt módosíthatja az adott kiszolgáló adott fiókjához szükséges bejelentkezési jelszót. Ezt a szolgáltatást csak néhány állomás támogatja!",
+                    IDC_STATIC,7,7,172,26
+    LTEXT           "&Régi jelszó:",IDC_STATIC,7,64,46,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,61,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Új j&elszó:",IDC_STATIC,7,83,50,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,80,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Új jel&szó megerõsítése:",IDC_STATIC,7,102,74,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,99,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,35,117,50,14
+    PUSHBUTTON      "&Mégse",IDCANCEL,99,117,50,14
+    LTEXT           "Adja meg a régi jelszót, hogy megerõsítse a jogosultságot a jelszó módosításra, majd az új\njelszót és ezt is erõsítse meg.",
+                    IDC_STATIC,7,33,172,24
+END
+
+IDD_VERIFY_CERT_DLG DIALOG  0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Bizonyítvány elfogadása"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Kiállító",IDC_STATIC,35,7,308,66
+    LTEXT           "Szervezet:",IDC_STATIC,41,17,42,8
+    GROUPBOX        "Érvényesség",IDC_STATIC,35,151,308,34
+    PUSHBUTTON      "Elfogadás",IDOK,190,253,50,14
+    PUSHBUTTON      "Visszautasítás",IDCANCEL,110,253,55,14
+    CONTROL         "Mindig fogadja el ezt a bizonyítványt",
+                    IDC_VERIFY_CERT_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,35,239,128,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,97,202,237,17
+    LTEXT           "Összegzés:",IDC_STATIC,35,202,40,8
+    LTEXT           "Elfogadja a bizonyítványt?",IDC_STATIC,35,225,114,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,97,
+                    17,88,8
+    LTEXT           "Rövid név:",IDC_STATIC,41,28,51,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,97,28,
+                    88,8
+    LTEXT           "E-Mail:",IDC_STATIC,190,28,22,8
+    LTEXT           "Egység:",IDC_STATIC,190,17,25,8
+    LTEXT           "Rövid név:",IDC_STATIC,41,28,51,8
+    LTEXT           "Ország:",IDC_STATIC,41,39,27,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_ISSUER_COUNTRY,97,39,88,8
+    LTEXT           "Állam / Megye:",IDC_STATIC,41,50,55,8
+    LTEXT           "Város:",IDC_STATIC,190,39,21,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_ISSUER_TOWN,220,39,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,
+                    97,50,237,8
+    LTEXT           "Más:",IDC_STATIC,41,61,20,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_ISSUER_OTHER,97,61,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_ISSUER_MAIL,220,28,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_ISSUER_UNIT,220,17,118,8
+    GROUPBOX        "Tulajdonos",IDC_STATIC,35,79,308,66
+    LTEXT           "Szervezet:",IDC_STATIC,41,89,42,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,97,
+                    89,88,8
+    LTEXT           "Rövid név:",IDC_STATIC,41,100,51,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,97,
+                    100,88,8
+    LTEXT           "E-Mail:",IDC_STATIC,190,100,22,8
+    LTEXT           "Egység:",IDC_STATIC,190,89,25,8
+    LTEXT           "Rövid név:",IDC_STATIC,41,100,51,8
+    LTEXT           "Ország:",IDC_STATIC,41,111,27,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,97,111,88,8
+    LTEXT           "Állam / Megye:",IDC_STATIC,41,122,55,8
+    LTEXT           "Város:",IDC_STATIC,190,111,21,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_SUBJECT_TOWN,220,111,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,
+                    97,122,237,8
+    LTEXT           "Más:",IDC_STATIC,41,133,20,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_SUBJECT_OTHER,97,133,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,220,100,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_SUBJECT_UNIT,220,89,118,8
+    LTEXT           "Kezdete:",IDC_STATIC,41,161,32,8
+    LTEXT           "Lejárata:",IDC_STATIC,41,172,32,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDFROM,97,161,237,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDUNTIL,97,172,237,8
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    LTEXT           "Ujjlenyomat (SHA1):",IDC_STATIC,35,188,63,8
+    LTEXT           "<certificate hash>",IDC_VERIFY_CERT_HASH,100,188,243,8
+END
+
+IDD_OPTIONS_TRANSFER DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "A letöltött fájlok &dátumának és idejének megtartása",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,183,10
+    LTEXT           "&Az elsõdleges szálon történjen az átvitel, ha a fájlméret kisebb, mint",
+                    IDC_STATIC,7,66,219,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,228,63,40,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "byte.",IDC_STATIC,270,66,17,8
+    LTEXT           "&Egyszerre maximálisan",IDC_STATIC,19,47,75,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,94,44,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "fájlt vigyen át.",IDC_STATIC,113,47,50,8
+    CONTROL         "&Többszálú kapcsolat használata a fájlok átviteléhez",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,34,178,10
+    LTEXT           "Alapértelmezett mûvelet, ha az átvitel célfájlja már létezik:",
+                    IDC_STATIC,7,97,191,8
+    CONTROL         "&Rákérdezés",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    108,53,10
+    CONTROL         "&Felülírás",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,119,46,10
+    CONTROL         "Felülírás, &ha újabb",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,129,73,10
+    CONTROL         "F&olytatás",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,
+                    "Button",BS_AUTORADIOBUTTON,7,141,46,10
+    CONTROL         "Át&nevezés",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,
+                    "Button",BS_AUTORADIOBUTTON,7,152,51,10
+    CONTROL         "&Kihagyás",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,
+                    "Button",BS_AUTORADIOBUTTON,7,163,46,10
+    CONTROL         "Az összes fájl változat megjelenítése &VMS kiszolgálókon",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,192,10
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Ezen az oldalon megadhatja azokat a külsõ programokat, amelyeket a fájlok megtekintésére vagy szerkesztésére használhat.",
+                    IDC_STATIC,7,7,277,17
+    LTEXT           "&Alapértelmezett program a fájlok megtekintésére vagy szerkesztésére:",
+                    IDC_STATIC,7,29,225,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,40,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Tallózás",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,40,
+                    50,14
+    LTEXT           "&Egyéni fájl társítások:",IDC_STATIC,7,57,78,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,67,272,90,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Minden sor egy fájl társítást jelent. A sort a fájl kiterjesztéssel kell kezdeni, melyet\negy szóköz követ. Ezután az adott kiterjesztésû fájl szerkesztésére használni kívánt",
+                    IDC_STATIC,7,161,272,16
+    LTEXT           "program elérési útja jön. Ha az elérési út szóközt is tartalmaz, akkor idézõjelek közé\nkell tenni. Az érvénytelen sorok eltávolítódnak.\nPéldául:   txt c:\\windows\\notepad.exe",
+                    IDC_STATIC,7,177,272,27
+END
+
+IDD_SAPREFS DIALOG  0, 0, 420, 260
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FileZilla Beállítások"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,187,113,66
+    DEFPUSHBUTTON   "OK",IDOK,12,193,97,14
+    PUSHBUTTON      "Mégse",IDCANCEL,12,213,97,14
+    PUSHBUTTON      "Súgó",IDC_PHELP,12,233,97,14
+    LTEXT           "",IDC_CAPTION_BAR,122,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,121,19,292,234
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Letöltési sebesség korlátozása",IDC_STATIC,5,5,275,95
+    CONTROL         "&Nincs korlátozás",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,12,15,69,10
+    CONTROL         "Állan&dó sebességkorlát:",
+                    IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,"Button",
+                    BS_AUTORADIOBUTTON,12,25,91,10
+    CONTROL         "&Sebesség korlátozó szabályok használata:",
+                    IDC_SPEEDLIMIT_DOWNLOAD_RULES,"Button",
+                    BS_AUTORADIOBUTTON,12,35,149,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,105,21,55,14,
+                    ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "kB/s.",IDC_STATIC,163,26,21,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,24,46,201,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "&Hozzáadás",IDC_SPEEDLIMIT_DOWNLOAD_ADD,230,47,45,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Eltávolítás",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,230,60,45,
+                    10,WS_DISABLED
+    PUSHBUTTON      "&Mozgatás fel",IDC_SPEEDLIMIT_DOWNLOAD_UP,230,73,45,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Mozga&tás le",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,230,86,45,10,
+                    WS_DISABLED
+    GROUPBOX        "Feltöltési sebesség korlátozása",IDC_STATIC,5,105,275,
+                    95
+    CONTROL         "Nincs &korlátozás",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,69,10
+    CONTROL         "Állandó se&bességkorlát:",
+                    IDC_SPEEDLIMIT_UPLOAD_CONSTANT,"Button",
+                    BS_AUTORADIOBUTTON,12,125,91,10
+    CONTROL         "Sebesség ko&rlátozó szabályok használata:",
+                    IDC_SPEEDLIMIT_UPLOAD_RULES,"Button",BS_AUTORADIOBUTTON,
+                    12,135,149,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,105,120,55,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "kB/s.",IDC_STATIC,163,126,21,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,24,146,201,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Ho&zzáadás",IDC_SPEEDLIMIT_UPLOAD_ADD,230,147,45,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Eltá&volítás",IDC_SPEEDLIMIT_UPLOAD_REMOVE,230,160,45,
+                    10,WS_DISABLED
+    PUSHBUTTON      "Mozg&atás fel",IDC_SPEEDLIMIT_UPLOAD_UP,230,173,45,10,
+                    WS_DISABLED
+    PUSHBUTTON      "M&ozgatás le",IDC_SPEEDLIMIT_UPLOAD_DOWN,230,186,45,10,
+                    WS_DISABLED
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOG  0, 0, 227, 140
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Sebesség korlátozó szabály"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Feltételek",IDC_STATIC,7,3,213,87
+    CONTROL         "Dá&tum:",IDC_DATE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,38,10
+    CONTROL         "DateTimePicker1",IDC_DATE_VALUE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_APPCANPARSE | DTS_LONGDATEFORMAT | 
+                    WS_TABSTOP,55,16,125,15
+    CONTROL         "&Ettõl:",IDC_FROM_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,39,33,10
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,55,37,55,15
+    CONTROL         "E&ddig:",IDC_TO_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,122,39,35,10
+    CONTROL         "DateTimePicker2",IDC_TO_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,158,37,55,15
+    CONTROL         "&Hétfõ",IDC_CHECK_DAY1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,41,10
+    CONTROL         "&Kedd",IDC_CHECK_DAY2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,57,43,10
+    CONTROL         "&Szerda",IDC_CHECK_DAY3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,57,54,10
+    CONTROL         "&Csütörtök",IDC_CHECK_DAY4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,153,57,45,10
+    CONTROL         "&Péntek",IDC_CHECK_DAY5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,73,35,10
+    CONTROL         "Szo&mbat",IDC_CHECK_DAY6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,73,44,10
+    CONTROL         "&Vasárnap",IDC_CHECK_DAY7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,73,46,10
+    LTEXT           "Se&besség:",IDC_STATIC,7,99,35,8
+    EDITTEXT        IDC_SPEED,44,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "kB/s.",IDC_STATIC,98,99,21,8
+    DEFPUSHBUTTON   "OK",IDOK,110,119,50,14
+    PUSHBUTTON      "Mégse",IDCANCEL,170,119,50,14
+END
+
+IDD_OPTIONS_IDENT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "&Azonosító szerver engedélyezése",
+                    IDC_OPTIONS_IDENT_IDENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,26,121,10
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,84,38,132,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,84,58,73,14,ES_AUTOHSCROLL
+    CONTROL         "Engedélyezés csak a csatlakozáskor",
+                    IDC_OPTIONS_IDENT_IDENTCONNECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,78,131,10
+    CONTROL         "Kérések elfogadása csak ugyanarról az IP címrõl",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,89,170,10
+    LTEXT           "Néhány FTP kiszolgáló a hozzájuk történõ csatlakozáshoz azt igényli, hogy a helyi számítógépen egy Azonosító szerverfolyamat fusson.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "Felhasználó azonosító:",IDC_STATIC,7,41,75,8
+    LTEXT           "Rendszer:",IDC_STATIC,7,61,35,8
+END
+
+IDD_OPTIONS_SSHPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "A FileZilla a PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/) egyes részeit használja az SFTP kapcsolatokhoz. Az SFTP kiszolgálókhoz történõ SSH",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "kapcsolat felépítéséhez a FileZilla a PuTTY alapértelmezett beállításait alkalmazza.\nEzen az oldalon felülbírálhat néhány alapértelmezett beállítást.",
+                    IDC_STATIC,7,23,272,19
+    LTEXT           "Tömörítés használata:",IDC_STATIC,7,45,74,8
+    CONTROL         "Alapértelmezett",IDC_OPTIONS_SSHPAGE_COMPRESSION1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,14,55,65,10
+    CONTROL         "Igen",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,89,55,28,10
+    CONTROL         "Nem",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,164,55,33,10
+    LTEXT           "Protokoll kiválasztása:",IDC_STATIC,7,68,75,8
+    LTEXT           "Alapértelmezésben (ha nem módosítja az alap-beállítást), a PuTTY SSH2-t\nhasznál az SFTP kiszolgálókhoz történõ csatlakozásra. Bár az SSH1-nél",
+                    IDC_STATIC,14,80,265,17
+    LTEXT           "biztonságosabb, az SSH2 PuTTY-beli megvalósításának a sebességével\nproblémák vannak. (Nézze meg a http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/sftp-slow.html webcímet további információkért.) Ha a FileZilla használata során az SFTP",
+                    IDC_STATIC,14,96,265,32
+    LTEXT           "kiszolgálókkal sebesség problémákat tapasztal, és az SSH2 többlet\nbiztonságát nem igényli, akkor célszerû lehet az SSH1 használatának beállítása.",
+                    IDC_STATIC,14,128,265,17
+    CONTROL         "Alapértelmezett",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,148,65,10
+    CONTROL         "SSH1 használata",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,89,148,69,10
+    CONTROL         "SSH2 használata",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,164,148,69,10
+    LTEXT           "Vegye figyelembe, hogy nem minden kiszolgáló támogatja az egyes protokollokat.",
+                    IDC_STATIC,14,160,261,8
+END
+
+IDD_SITEMANAGER_ADVANCED DIALOGEX 0, 0, 240, 193
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Speciális állomás beállítások"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Speciális beállítások a következõ állomásra: '%s' (%s)",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,226,16
+    LTEXT           "Alapértelmezett távol&i mappa:",IDC_STATIC,7,30,97,8
+    EDITTEXT        IDC_REMOTEDIR,7,39,157,14,ES_AUTOHSCROLL
+    LTEXT           "Alapértelmezett hel&yi mappa:",IDC_STATIC,7,57,95,8
+    EDITTEXT        IDC_LOCALDIR,7,66,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,66,12,14
+    LTEXT           "Passzív átviteli mód beállítása:",IDC_STATIC,7,92,100,8
+    CONTROL         "&Alapértelmezett",IDC_SITEMANAGER_ADVANCED_PASSIVE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    103,67,10
+    CONTROL         "&Passzív mód",IDC_SITEMANAGER_ADVANCED_PASSIVE2,"Button",
+                    BS_AUTORADIOBUTTON,80,103,74,10
+    CONTROL         "Aktív &mód",IDC_SITEMANAGER_ADVANCED_PASSIVE3,"Button",
+                    BS_AUTORADIOBUTTON,160,103,69,10
+    LTEXT           "A kiszolgáló idõzónájának idõeltolódása:",IDC_STATIC,7,
+                    121,132,8
+    LTEXT           "A távoli fájl idejének módosítása",IDC_STATIC,7,135,104,
+                    8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,113,133,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,126,134,11,14
+    LTEXT           "órával és",IDC_STATIC,142,135,30,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,174,133,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,184,131,11,14
+    LTEXT           "perccel.",IDC_STATIC,203,135,27,8
+    LTEXT           "UTF8 használata a kiszolgálón, ha támogatott:",
+                    IDC_STATIC,7,155,151,8
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,159,153,73,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,55,172,50,14
+    PUSHBUTTON      "Mégse",IDCANCEL,135,172,50,14
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOGEX 0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Általános",IDC_STATIC,7,7,272,26
+    CONTROL         "A távoli könyvtárfa és fájlablak megjelenítése a bal oldalon",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,205,10
+    GROUPBOX        "Könyvtárfák elhelyezkedése",IDC_STATIC,7,38,272,82
+    LTEXT           "Helyi könyvtárfa:",IDC_STATIC,13,49,60,8
+    CONTROL         "Elhelyezkedés a fájlablak fölött",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,59,117,10
+    CONTROL         "Elhelyezkedés a fájlablaktól balra",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,70,122,10
+    LTEXT           "Távoli könyvtárfa:",IDC_STATIC,14,85,63,8
+    CONTROL         "Elhelyezkedés a fájlablak fölött",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,95,117,10
+    CONTROL         "Elhelyezkedés a fájlablaktól balra",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,106,122,10
+    LTEXT           "Ezen beállítások érvényesítéséhez a FileZilla-t újra kell indítani",
+                    IDC_STATIC,7,123,205,8
+END
+
+IDD_OPTIONS_LOGGING DIALOGEX 0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Jelenlegi betûtípus:",IDC_STATIC,19,20,63,8
+    LTEXT           "Statisch",IDC_OPTIONS_LOGGING_FONTDATA,89,20,169,8
+    PUSHBUTTON      "&Betûtípus kiválasztása...",
+                    IDC_OPTIONS_LOGGING_CHANGEFONT,19,32,87,14
+    CONTROL         "Napló&zás fájlba",IDC_OPTIONS_LOGGING_LOGTOFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,51,65,10
+    LTEXT           "&Fájlnév:",IDC_STATIC,20,85,27,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,49,82,94,14,ES_AUTOHSCROLL
+    LTEXT           "Ha engedélyezi, az Üzenet naplóban lévõ összes üzenet kiíródik a fájlba.\nA naplófájlnak .rtf kiterjesztésûnek kell lennie.",
+                    IDC_STATIC,19,63,260,17
+    CONTROL         "&Egyéni betûtípus használata az Üzenet naplóban",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,173,10
+    CONTROL         "&Idõbélyegzés hozzáadása a naplóhoz",
+                    IDC_OPTIONS_LOGGING_TIMESTAMP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,101,135,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOGEX 0, 0, 286, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "A MODE Z ftp segédprotokoll használatával lehetõség van a fájlok tömörített átvitelére, amennyiben a kiszolgáló is támogatja ezt a funkciót.",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "Ne használjon tömörítést",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,28,98,10
+    CONTROL         "Tömörítés használata csak a könyvtárak listázására",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,40,181,10
+    CONTROL         "Tömörítés használata mindenféle átvitelhez",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,52,153,10
+    LTEXT           "A tömörítés szintje (1-es a legkisebb mértékû, 9-es a legerõsebb):",
+                    IDC_STATIC,7,72,213,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,222,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Az alapértelmezett tömörítési szint a 8-as. Minél erõsebb a tömörítés, annál nagyobb a processzor használati igény, általában a 8-as szint jó választási lehetõség.",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "A MODE Z tömörítési módról további információkat olvashat a következõ webcímen: http://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,195,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MANUALTRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_LOCALVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 208
+    END
+
+    IDD_SAPREFS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 394
+        BOTTOMMARGIN, 234
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 186
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&Fájl"
+    BEGIN
+        MENUITEM "Kedvenc &Helyek",             ID_SITEMANAGER
+        MENUITEM "Kapc&solat felvétele a Kedvenc Helyek közé", 
+                                                ID_COPYTOSITEMANAGER
+        MENUITEM "&Csatlakozás az alapértelmezett állomáshoz", 
+                                                ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "Új&racsatlakozás",            ID_TOOLBAR_RECONNECT
+        MENUITEM "&Lekapcsolódás",              ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "&Kilépés",                    ID_APP_EXIT
+    END
+    POPUP "S&zerkesztés"
+    BEGIN
+        MENUITEM "&Beállítások",                ID_EDIT_SETTINGS
+        MENUITEM "Beállítások &exportálása",    ID_EDIT_EXPORTSETTINGS
+        MENUITEM "Beállítások i&mportálása",    ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "Á&tvitel"
+    BEGIN
+        POPUP "Át&vitel típusa"
+        BEGIN
+            MENUITEM "&ASCII",                      ID_TYPEMENU_ASCII
+            MENUITEM "&Bináris",                    ID_TYPEMENU_BINARY
+            MENUITEM "A&utomatikus",                ID_TYPEMENU_DETECT
+        END
+        POPUP "&Fájl felülírás beállítása"
+        BEGIN
+            MENUITEM "&Rákérdezés",                 ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "&Felülírás",                  ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "Felülírás, &ha újabb",        ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "F&olytatás",                  ID_OVERWRITEMENU_RESUME
+            MENUITEM "Át&nevezés",                  ID_OVERWRITEMENU_RENAME
+            MENUITEM "&Kihagyás",                   ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Kézi átvitel...",            ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "&Nézet"
+    BEGIN
+        MENUITEM "&Frissítés",                  ID_TOOLBAR_REFRESH
+        MENUITEM "&Rejtett fájlok mutatása",    ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Eszköztár",                  ID_VIEW_TOOLBAR
+        MENUITEM "Állapot&sor",                 ID_VIEW_STATUS_BAR
+        MENUITEM "&Gyorskapcsolódás sor",       ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Helyi &könyvtárfa",           ID_SHOWTREE
+        MENUITEM "Távoli könyvtárf&a",          ID_SHOWREMOTETREE
+        MENUITEM "Üzenet &napló",               ID_VIEW_MESSAGELOG
+        MENUITEM "Átviteli &várólista",         ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "&Helyi fájlablak nézete"
+        BEGIN
+            MENUITEM "&Részletek",                  ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "&Lista",                      ID_LOCALLISTSTYLE_LIST
+            MENUITEM "&Nagy ikonok",                ID_LOCALLISTSTYLE_ICON
+            MENUITEM "&Kis ikonok",                 ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "Fájl&méret",                  ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "Fájl&típus",                  ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "Mó&dosítás ideje",            ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Helyi állapotsor",           ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "R&endezés..."
+            BEGIN
+                MENUITEM "Fájl&név",                    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "Fájl&méret",                  ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "Fájl&típus",                  ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "Mó&dosítás ideje",            ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "Nö&vekvõ",                    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "&Csökkenõ",                   ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "&Távoli fájlablak nézete"
+        BEGIN
+            MENUITEM "&Részletek",                  ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "&Lista",                      ID_REMOTELISTSTYLE_LIST
+            MENUITEM "&Nagy ikonok",                ID_REMOTELISTSTYLE_ICON
+            MENUITEM "&Kis ikonok",                 ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "Fájl&méret",                  ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "Fájltí&pus",                  ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "&Dátum",                      ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "&Idõ",                        ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "&Engedélyek",                 ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "Tulajdonos / &Csoport",       ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Távoli állapotsor",          ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "Rende&zés..."
+            BEGIN
+                MENUITEM "Fájl&név",                    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "Fájl&méret",                  ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "Fájl&típus",                  ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Dátum / Idõ",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "Nö&vekvõ",                    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "&Csökkenõ",                   ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "&Várólista"
+    BEGIN
+        MENUITEM "&Várólista végrehajtása",     ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "&Többszálú kapcsolat használata", 
+                                                ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "&Exportálás...",              ID_MENU_QUEUE_EXPORT
+        MENUITEM "&Importálás...",              ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "&Kiszolgáló"
+    BEGIN
+        MENUITEM "&Jelszó módosítása",          ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "&FTP parancs beírása",        ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "&URL másolása a vágólapra",   ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "&Súgó"
+    BEGIN
+        MENUITEM "&Tartalom...",                ID_HELPMENU_CONTENTS
+        MENUITEM "&Keresés...",                 ID_HELPMENU_SEARCH
+        MENUITEM "Tárgy&mutató...",             ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "&Névjegy...",                 ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "OutputContext"
+    BEGIN
+        MENUITEM "&Parancs beírása...",         ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Másolás a vágólapra",        ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "&Egész napló törlése",        ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "FtpContext"
+    BEGIN
+        MENUITEM "&Letöltés",                   ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "&Várólistához adás",          ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "Letöltés máské&nt...",        ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Megnyitás",                  ID_FTPCONTEXT_OPEN
+        MENUITEM "&Szerkesztés",                ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "&Könyvtár létrehozása",       ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "&Törlés",                     ID_FTPCONTEXT_DELETE
+        MENUITEM "Átne&vezés",                  ID_FTPCONTEXT_RENAME
+        MENUITEM "&Attribútumok...",            ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalContext"
+    BEGIN
+        MENUITEM "&Feltöltés",                  ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "&Várólistához adás",          ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "Feltöltés máské&nt...",       ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Könyvtár létrehozása",       ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Megnyitás",                  ID_LOCALCONTEXT_OPEN
+        MENUITEM "&Szerkesztés",                ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "&Törlés",                     ID_LOCALCONTEXT_DELETE
+        MENUITEM "Átne&vezés",                  ID_LOCALCONTEXT_RENAME
+        MENUITEM "T&ulajdonságok",              ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "QueueContext"
+    BEGIN
+        MENUITEM "&Várólista végrehajtása",     ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "&Eltávolítás a várólistából", ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "Állapot &törlése",            ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "Felfüggeszté&s",              ID_QUEUECONTEXT_PAUSE
+        MENUITEM "Folyt&atás",                  ID_QUEUECONTEXT_RESUME
+        MENUITEM "Megsza&kítás",                ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "Mozgatás &fel",               ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "Mozgatás &le",                ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "&Mozgatás az elejére",        ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "Mo&zgatás a végére",          ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "&Fájl"
+    BEGIN
+        MENUITEM "&Importálás",                 ID_SITEMANAGER_FILE_IMPORT
+        POPUP "&Exportálás"
+        BEGIN
+            MENUITEM "&URL listaként",              ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "&Minden részlettel",          ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Mentés és &Bezárás",          ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalTreeContext"
+    BEGIN
+        MENUITEM "&Feltöltés",                  ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "&Várólistához adás",          ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "Feltöltés máské&nt...",       ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Törlés",                     ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "Átne&vezés",                  ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "&Megjelenítés",               ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "&Kilépés",                    ID_TRAY_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 41, 0
+0x5446, 0x2050, 0x5353, 0x2f4c, 0x4c54, 0x2053, 0x6566, 0x656c, 0x7474, 
+0x2820, 0x6d69, 0x6c70, 0x6369, 0x7469, 0x7420, 0x7469, 0x6f6b, 0xed73, 
+0xe174, 0x2973, "\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 37, 0
+0x5446, 0x2050, 0x5353, 0x204c, 0x6566, 0x656c, 0x7474, 0x2820, 0x7865, 
+0x6c70, 0x6369, 0x7469, 0x7420, 0x7469, 0x6f6b, 0xed73, 0xe174, 0x2973, 
+"\000" 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 24, 0
+0x4653, 0x5054, 0x5320, 0x4853, 0x2032, 0x6168, 0x7a73, 0xe16e, 0x616c, 
+0xe174, 0x6176, 0x006c, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 37, 0
+0x5446, 0x2050, 0x4c54, 0x2053, 0x6566, 0x656c, 0x7474, 0x2820, 0x7865, 
+0x6c70, 0x6369, 0x7469, 0x7420, 0x7469, 0x6f6b, 0xed73, 0xe174, 0x2973, 
+"\000" 
+    0
+END
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 10, 0
+0xe952, 0x7a73, 0x656c, 0x6574, 0x006b, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0061, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 12, 0
+0x614e, 0x7967, 0x6920, 0x6f6b, 0x6f6e, 0x006b, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 11, 0
+0x694b, 0x2073, 0x6b69, 0x6e6f, 0x6b6f, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7942, 0x6574, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 10, 0
+0xe952, 0x7a73, 0x656c, 0x6574, 0x006b, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0061, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 12, 0
+0x614e, 0x7967, 0x6920, 0x6f6b, 0x6f6e, 0x006b, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 11, 0
+0x694b, 0x2073, 0x6b69, 0x6e6f, 0x6b6f, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7942, 0x6574, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x424d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 41, 0
+0x5446, 0x2050, 0x5353, 0x2f4c, 0x4c54, 0x2053, 0x6566, 0x656c, 0x7474, 
+0x2820, 0x6d69, 0x6c70, 0x6369, 0x7469, 0x7420, 0x7469, 0x6f6b, 0xed73, 
+0xe174, 0x2973, "\000" 
+    IDC_SERVERTYPE, 0x403, 37, 0
+0x5446, 0x2050, 0x5353, 0x204c, 0x6566, 0x656c, 0x7474, 0x2820, 0x7865, 
+0x6c70, 0x6369, 0x7469, 0x7420, 0x7469, 0x6f6b, 0xed73, 0xe174, 0x2973, 
+"\000" 
+    IDC_SERVERTYPE, 0x403, 24, 0
+0x4653, 0x5054, 0x5320, 0x4853, 0x2032, 0x6168, 0x7a73, 0xe16e, 0x616c, 
+0xe174, 0x6176, 0x006c, 
+    IDC_SERVERTYPE, 0x403, 37, 0
+0x5446, 0x2050, 0x4c54, 0x2053, 0x6566, 0x656c, 0x7474, 0x2820, 0x7865, 
+0x6c70, 0x6369, 0x7469, 0x7420, 0x7469, 0x6f6b, 0xed73, 0xe174, 0x2973, 
+"\000" 
+    0
+END
+
+IDD_SITEMANAGER_ADVANCED DLGINIT
+BEGIN
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 12, 0
+0x7541, 0x6f74, 0x616d, 0x6974, 0x756b, 0x0073, 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 13, 0
+0xe94b, 0x796e, 0x7a73, 0x7265, 0x74ed, 0x6576, "\000" 
+    IDC_SITEMANAGER_ADVANCED_UTF8, 0x403, 8, 0
+0x6f53, 0x6168, 0x6573, 0x006d, 
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(1250)\r\n"
+    "#endif //_WIN32\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,8,0
+ PRODUCTVERSION 2,2,8,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Hungarian"
+            VALUE "FileDescription", "Hungarian language DLL for FileZilla"
+            VALUE "FileVersion", "2, 2, 8, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Copyright (C) 2001-2003 by Tim Kosse under the GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 8, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "Kész"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "A FileZilla névjegye"
+    ID_APP_EXIT             "A FileZilla bezárása"
+    ID_HELP                 "A Súgó Tartalom fülének megjelenítése"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Az Eszköztár megjelenítése vagy elrejtése"
+    ID_VIEW_STATUS_BAR      "Az Állapotsor megjelenítése vagy elrejtése"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "A FileZilla bezárása"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<Üres mappa>"
+    IDS_SITEMANAGER_NEWFOLDER "Új mappa"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "Új mappa %d"
+    IDS_SITEMANAGER_NEWFTPSITE "Új FTP állomás"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "Új FTP állomás %d"
+    IDS_SITEMANAGER_TEXTFILES "Szövegfájlok (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "Kedvenc FTP állomásaim"
+    IDS_SITEMANAGER_XMLFILES "XML fájlok (*.xml)|*.xml||"
+    IDS_SIZE_BYTES          "byte"
+    IDS_SIZE_GB             "GB"
+    IDS_SIZE_KBS            "KB"
+    IDS_SIZE_MBS            "MB"
+    IDS_STATUSBAR_ELAPSED   "Eltelt: %s"
+    IDS_STATUSBAR_LEFT      "Maradék: %s"
+    IDS_TITLE_CONNECTED     "Csatlakozva: %s"
+    IDS_TITLE_CONNECTING    "Csatlakozás: %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "Mappa kiürítése"
+    IDS_VIEWLABEL_LOCAL     "Helyi fájlok:"
+    IDS_VIEWLABEL_REMOTE    "Távoli fájlok:"
+    IDS_DIRINFO_EMPTY       "Üres mappa"
+    IDS_DIRINFO_FILES       "%d fájl, fájlok mérete: %I64d byte"
+    IDS_DIRINFO_DIRSANDFILES "%d mappa és %d fájl, fájlok mérete: %I64d byte"
+    IDS_DIRINFO_FILESMIN    "%d fájl, fájlok mérete: legalább %I64d byte"
+    IDS_DIRINFO_DIRSANDFILESMIN 
+                            "%d mappa és %d fájl, fájlok mérete: legalább %I64d byte"
+    IDS_DIRINFO_SELECTED_FILES "%d kijelölt fájl, fájlok mérete: %I64d byte"
+    IDS_DIRINFO_SELECTED_DIRS "%d kijelölt mappa"
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "%d kijelölt mappa és %d kijelölt fájl, fájlok mérete: %I64d byte"
+    IDS_DIRINFO_SELECTED_FILESMIN 
+                            "%d kijelölt fájl, fájlok mérete: legalább %I64d byte"
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "%d kijelölt mappa és %d kijelölt fájl, fájlok mérete: legalább %I64d byte"
+    IDS_DIRINFO_FILE        "1 fájl, méret: %I64d byte"
+    IDS_DIRINFO_DIR         "1 mappa"
+    IDS_DIRINFO_DIRANDFILES "1 mappa és %d fájl, fájlok mérete: %I64d byte"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY 
+                            "Kérem jelölje ki az új attribútumokat ehhez a könyvtárhoz: ""%s"""
+    IDS_CHANGEDIALOG_FILE   "Kérem jelölje ki az új attribútumokat ehhez a fájlhoz: ""%s"""
+    IDS_CHANGEDIALOG_MULTIPLEFILES 
+                            "Kérem jelölje ki az új attribútumokat az összes kijelölt fájlhoz és könyvtárhoz."
+    IDS_HEADER_DATE         "Dátum"
+    IDS_HEADER_DIRECTION    "Irány"
+    IDS_HEADER_FILENAME     "Fájlnév"
+    IDS_HEADER_FILESIZE     "Fájlméret"
+    IDS_HEADER_FILETYPE     "Fájltípus"
+    IDS_HEADER_HOST         "Cím"
+    IDS_HEADER_LASTMODIFIED "Módosítás ideje"
+    IDS_HEADER_LOCALNAME    "Helyi fájlnév"
+    IDS_HEADER_OWNERGROUP   "Tulajdonos / Csoport"
+    IDS_HEADER_PERMISSIONS  "Engedélyek"
+    IDS_HEADER_REMOTENAME   "Távoli fájlnév"
+    IDS_HEADER_SIZE         "Méret"
+    IDS_HEADER_STATUS       "Állapot"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "Idõ"
+    IDS_MANUALTRANSFER_HOST "Kérem adjon meg egy érvényes címet!"
+    IDS_MANUALTRANSFER_LOCALFILE 
+                            "Kérem adja meg a helyi fájl elérési útját és nevét!"
+    IDS_MANUALTRANSFER_PORT "Kérem adjon meg egy érvényes kiszolgáló portot!"
+    IDS_MANUALTRANSFER_REMOTEFILE 
+                            "Kérem adja meg a távoli fájl elérési útját és nevét!"
+    IDS_MANUALTRANSFER_USER "Kérem adja meg a felhasználónevet!"
+    IDS_QUEUESTATUS_ABORTED "Átvitel megszakítva"
+    IDS_QUEUESTATUS_CRITICALERROR "Kritikus átviteli hiba"
+    IDS_QUEUESTATUS_ERROR   "Átviteli hiba #%d. Késõbb újrapróbálkozás."
+    IDS_QUEUESTATUS_TOOMANYERTREIS "Túl sok próbálkozás"
+    IDS_QUEUESTATUS_TRANSFERRING "Átvitel folyamatban"
+    IDS_QUICKCONN_HOST      "Cím:"
+    IDS_QUICKCONN_PASS      "Jelszó:"
+    IDS_QUICKCONN_PORT      "Port:"
+    IDS_QUICKCONN_QUICKCONN "Csatlakozás"
+    IDS_QUICKCONN_USER      "Felhasználónév:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "Megszakítva a felhasználó által!"
+    IDS_ERRORMSG_INVALIDPORT "Érvényes portot adjon meg!"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND 
+                            "Hiba! A nyelvi DLL nem található ehhez a nyelvhez: ""%s""!"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "Hiba! A nyelvi DLL a FileZilla régebbi verziójához íródott és nem kompatibilis ezzel a verzióval.\nKérem töltse le ennek a nyelvi DLL-nek egy újabb verzióját a http://sourceforge.net/projects/filezilla címrõl."
+    IDS_ERRORMSG_NAMEINUSE  "Kérem adjon meg egy másik fájlnevet!"
+    IDS_ERRORMSG_PATHNOTFOUND "A megadott elérési út nem található!"
+    IDS_ERRORMSG_PORTNEEDED "Kérem adjon meg egy érvényes portot!"
+    IDS_ERRORMSG_PREFIX     "Hiba:"
+    IDS_ERRORMSG_PROXY_AUTHFAILED "A hitelesítés nem sikerült"
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON "A proxy hitelesítést igényel"
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "A proxy kiszolgáló által elvárt hitelesítés típusa ismeretlen vagy nem támogatott"
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST 
+                            "A proxy kiszolgáló címe nem oldható fel"
+    IDS_ERRORMSG_PROXY_NOCONN "Nem lehet csatlakozni a proxy kiszolgálóhoz"
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "A proxykérés nem sikerült, nem lehet a proxy-n keresztül csatlakozni."
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "Hiba, a 'FileZilla.xml' fájl nem elemezhetõ, lehet hogy hibás.\nErre a munkamenetre a regisztrációs adatbázis fogja tárolni a beállításokat."
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "A CSFtpIpC nem inicializálható. Gyõzõdjön meg róla, hogy elég rendszer erõforrás áll rendelkezésre!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "Az SFTP folyamat nem indítható. Gyõzõdjön meg róla, hogy az 'FzSFtp.exe' ugyanabban a könyvtárban van, mint a 'FileZilla.exe'."
+    IDS_ERRORMSG_SFTP_CLOSED 
+                            "Az FzSFtp.exe bezáródott, a kapcsolat befejezése."
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "Az SFTP adatcsatornában érvénytelen adat fordult elõ, a kapcsolat befejezése."
+    IDS_ERRORMSG_SFTP_NORESPONSE 
+                            "Az FzSFtp.exe nem válaszol, a kapcsolat befejezése."
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE 
+                            "Ez a név már létezik! Kérem válasszon egy másikat!"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE 
+                            "Kérem adja meg a bejelentkezés típusát!"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME 
+                            "Kérem adjon egy nevet az FTP állomásnak!"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "Kérem adjon meg egy jelszót!"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "Kérem adjon meg egy felhasználónevet!"
+    IDS_ERRORMSG_TIMEOUT    "Idõtúllépés!"
+    IDS_ERRORMSG_UPLOADABORTED "A feltöltés megszakadt"
+    IDS_ERRORMSG_UPLOADFAILED "A feltöltés nem sikerült"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "A cím szintaktikája érvénytelen. [ftp://][felhasználónév:jelszó@]cím[:port][/elérési út] alakúnak kell lennie.\nA [ ] szögletes zárójelben lévõ paraméterek opcionálisak.\r\nAz sftp:// és ftps:// szintén támogatott protokollok."
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE """%s"" nem nyitható meg."
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            """%s"" nem indítható a következõ fájl szerkesztéséhez: ""%s"". Nézze meg a fájl társításokat."
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG 
+                            "Nem adott meg alapértelmezett szerkesztõ programot."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL 
+                            "Az átviteli csatorna nem nyitható meg. Oka: %s"
+    IDS_ERRORMSG_CANTPARSECMDLINE "A parancs nem elemezhetõ."
+    IDS_ERRORMSG_CANTRESOLVEHOST "Az állomásnév nem oldható fel"
+    IDS_ERRORMSG_CANTRESUME "Az átvitel folytatását a kiszolgáló nem támogatja, a fájl felülírása."
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "Az átvitel folytatását a kiszolgáló nem támogatja, de a helyi és a távoli fájl mérete megegyezik."
+    IDS_ERRORMSG_CANTSENDCOMMAND 
+                            "Nem lehetséges a parancs elküldése! Lekapcsolódás a kiszolgálóról!"
+    IDS_ERRORMSG_CANTWRITETOFILE 
+                            "Nem lehetséges a(z) ""%s"" fájlba írás. Oka: %s"
+    IDS_ERRORMSG_CERTREJECTED "A bizonyítvány visszautasítva"
+    IDS_ERRORMSG_CRITICALINTERRUPTED 
+                            "Megszakítva a felhasználó által! Lekapcsolódás a kiszolgálóról..."
+    IDS_ERRORMSG_DOWNLOADABORTED "A letöltés megszakadt"
+    IDS_ERRORMSG_DOWNLOADFAILED "A letöltés nem sikerült"
+    IDS_ERRORMSG_ENTERSTRING "Be kell írnia egy karakterláncot!"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "A fájlnév nem tartalmazhatja a következõ karaktereket:\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED "A helyi %s fájl megnyitása nem sikerült"
+    IDS_ERRORMSG_HOSTNEEDED "Kérem adja meg a címet!"
+    IDS_ERRORMSG_IDENT_CANTSTART "Hiba az Azonosító szerver indításakor"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                         "
+    ID_INDICATOR_TIMELEFT   "                              "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "Várólista: %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d mappa"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "Könyvtárnév megadása"
+    IDS_INPUTDIALOGTEXT_CREATEDIR "Kérem adja meg az új könyvtár nevét:"
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "FTP parancs beírása"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND 
+                            "Kérem írja be a parancsot, amit a kiszolgálón futtatni szeretne:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "Jelszó megadása"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD 
+                            "Kérem adja meg a jelszót, ami a bejelentkezéshez szükséges:"
+    IDS_INPUTDIALOGTITLE_RENAME "Új fájlnév megadása"
+    IDS_INPUTDIALOGTEXT_RENAME 
+                            "Kérem adja meg a fájlnevet, amellyel a fájl eltárolódik:"
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE 
+                            "Interaktív hitelesítés a billentyûzettel"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "Felhasználónév megadása"
+    IDS_INPUTDIALOGTEXT_INPUTUSER 
+                            "Kérem adja meg a felhasználónevet, ami a bejelentkezéshez szükséges:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "Kapcsolat"
+    IDS_OPTIONSPAGE_DEBUG   "Hibakeresés"
+    IDS_OPTIONSPAGE_DIRCACHE "Mappák gyorsítótárazása"
+    IDS_OPTIONSPAGE_FIREWALL "Tûzfal beállításai"
+    IDS_OPTIONSPAGE_FTPPROXY "FTP proxy beállításai"
+    IDS_OPTIONSPAGE_GSS     "GSS támogatás"
+    IDS_OPTIONSPAGE_IDENT   "Azonosító szerver"
+    IDS_OPTIONSPAGE_INTERFACE "Megjelenés beállításai"
+    IDS_OPTIONSPAGE_LANGUAGE "Nyelv"
+    IDS_OPTIONSPAGE_LOCALVIEW "Helyi fájlablak"
+    IDS_OPTIONSPAGE_MISC    "Egyéb"
+    IDS_OPTIONSPAGE_PROXY   "Proxy beállításai"
+    IDS_OPTIONSPAGE_REMOTEVIEW "Távoli fájlablak"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "Sebességkorlátozás"
+    IDS_OPTIONSPAGE_TRANSFER "Fájl átvitel beállításai"
+    IDS_OPTIONSPAGE_TYPE    "ASCII/Bináris"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "Fájl szerkesztés"
+    IDS_OPTIONSPAGE_SSH     "SFTP beállítások"
+    IDS_OPTIONSPAGE_PANELAYOUT "Panelek elrendezése"
+    IDS_OPTIONSPAGE_LOGGING "Üzenet napló"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "Tömörítés"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "Parancs:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "Válasz:"
+    IDS_TRACEMSG_TRACE      "Követés:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "A csatlakozás nem lehetséges!"
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "A megadott port tartományban nem lehetséges a szoftvercsatorna felépítése."
+    IDS_ERRORMSG_CANTCREATEFILE "A kimeneti fájl létrehozása nem sikerült!"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION 
+                            "Az SSL kapcsolat nem hozható létre"
+    IDS_ERRORMSG_CANTGETFILETYPE "A fájltípus nem határozható meg!"
+    IDS_ERRORMSG_CANTGETLIST "A könyvtár lista nem kérdezhetõ le"
+    IDS_ERRORMSG_CANTGETRESPONSE "Nem érkezett válasz!"
+    IDS_ERRORMSG_CANTIMPORTFILE "Hiba a fájl importálásakor!"
+    IDS_ERRORMSG_CANTINITSSL "Az SSL függvénytár fájlok nem inicializálhatók"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "Az SSL függvénytár nem tölthetõ be. Gyõzõdjön meg róla, hogy az ""ssleay32.dll"" és ""libeay32.dll"" fájlok ugyanabban a mappában vannak, mint a FileZilla."
+    IDS_ERRORMSG_CANTOPENFILE "A bemeneti fájl nem nyitható meg!"
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "A ""%s"" naplófájl nem nyitható meg. A fájlba történõ naplózás letiltódik erre a munkamenetre."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "A csatlakozás sikerült"
+    IDS_STATUSMSG_CONNECTEDWITH 
+                            "Csatlakozva a kiszolgálóhoz: %s. Várakozás az üdvözlõ üzenetre..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP 
+                            "Csatlakozva a kiszolgálóhoz: %s, az SFTP adatkapcsolat inicializálása..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL 
+                            "Csatlakozva a kiszolgálóhoz: %s, az SSL adatkapcsolat egyeztetése..."
+    IDS_STATUSMSG_CONNECTING "Csatlakozás a következõ kiszolgálóhoz: %s ..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "A könyvtár listázás sikerült"
+    IDS_STATUSMSG_DISCONNECTED "Lekapcsolódva a kiszolgálóról"
+    IDS_STATUSMSG_DISCONNECTING "Lekapcsolódás..."
+    IDS_STATUSMSG_DOWNLOADSTART "Letöltés indítása: %s"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "A letöltés sikerült"
+    IDS_STATUSMSG_FILEIMPORTED 
+                            "A ""%s"" fájl importálása sikeresen megtörtént!"
+    IDS_STATUSMSG_FWCONNECT "%s elérése az FTP proxy-n keresztül..."
+    IDS_STATUSMSG_IDENT_REQUEST "Azonosítási kérés innen: %s"
+    IDS_STATUSMSG_IDENT_START "Az Azonosító szerver elindult"
+    IDS_STATUSMSG_IDENT_STOP "Az Azonosító szerver megállt"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "Figyelmeztetés! A nyelvi DLL a FileZilla valamely elõzõ verziójához íródott. Néhány karakterlánc lehet hogy nincs lefordítva. Töltse le a nyelvi DLL egy újabb verzióját!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "Állapot:"
+    IDS_STATUSMSG_RECONNECTWAIT "Várakozás az újracsatlakozásra..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "Könyvtár lista lekérdezése..."
+    IDS_STATUSMSG_SSLESTABLISHED 
+                            "Az SSL adatkapcsolat létrejött. Várakozás az üdvözlõ üzenetre..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "Az SSL adatkapcsolat létrejött"
+    IDS_STATUSMSG_UPLOADSTART "Feltöltés indítása: %s"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "A feltöltés sikerült"
+    IDS_STATUSMSG_WAITINGTORETRY 
+                            "Várakozás az újrapróbálkozásra... (1 próbálkozás van még hátra)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT 
+                            "Várakozás az újrapróbálkozásra... (%d próbálkozás van még hátra)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "Megszünteti a jelenlegi kapcsolatot?"
+    IDS_QUESTION_CANCELOPERATION "Biztosan megszakítja az aktuális mûveletet?"
+    IDS_QUESTION_DELETEDIRS "Biztosan törölni szeretne %d könyvtárat?"
+    IDS_QUESTION_DELETEFILE "Biztosan törölni szeretné a következõt: ""%s""?"
+    IDS_QUESTION_DELETEFILES "Biztosan törölni szeretne %d fájlt?"
+    IDS_QUESTION_DELETEFILESANDDIRS 
+                            "Biztosan törölni szeretne %d könyvtárat és fájlt?"
+    IDS_QUESTION_FILEEXISTS """%s"" fájl (%d byte) már létezik. Felülírja ezzel: ""%s"" (%d byte)?"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "A FileZilla ezen verzióját elõször használja, vagy a beállítások törlõdtek.\nA program a beállításait a regisztrációs adatbázisban vagy egy XML fájlban tárolhatja.\nSzeretné, hogy a FileZilla a regisztrációs adatbázist használja?\nA regisztrációs adatbázis használata ajánlott, ha több felhasználós környezetben dolgozik.\nVálassza a 'Nem'-et az XML fájl használatához, mely a legtöbb felhasználó számára megfelelõ.\nHa az XML fájlt választja és a beállítások a regisztrációs adatbázisban vannak, akkor ezek átkerülnek az XML fájlba."
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "VIGYÁZAT - A BIZTONSÁG SÉRÜLHET!\nA kiszolgáló címkulcsa nem egyezik az elõzõleg a regisztrációs adatbázisban eltárolttal.\nEz azt jelenti, hogy az állomás rendszergazdája megváltoztatta a címkulcsot,\nvagy Ön most egy másik, a kívánt kiszolgáló címét tettetõ számítógéphez csatlakozott.\nAz új kulcs ujjlenyomata:\n%s\nHa számított erre a változásra, és megbízik az új kulcsban, akkor válassza az 'Igen'-t\na kulcs módosításához, és folytassa a csatlakozást.\nHa a kulcs módosítása nélkül szeretne csatlakozni, akkor válassza a 'Nem'-et.\nHa a kapcsolatot teljesen meg akarja szakítani, nyomja meg a 'Mégse' gombot.\nA 'Mégse' választása az EGYEDÜLI garantált biztonságos lehetõség.\n\nMódosítja az eltárolt kulcsot?"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "A kiszolgáló címkulcsa nincs a regisztrációs adatbázisban.\nEzért nincs biztosíték arra, hogy a kiszolgáló az a számítógép, melyre csatlakozni szeretne.\nA kiszolgáló kulcsának ujjlenyomata:\n%s\nHa megbízik ebben a címben, válassza az 'Igen'-t a kulcs eltárolásához, és folytassa a csatlakozást.\nHa csak egyszer szeretne csatlakozni, a kulcs eltárolása nélkül, akkor válassza a 'Nem'-et.\nHa nem bízik meg ebben a címben, akkor válassza a 'Mégse' gombot a kapcsolat megszakításához.\n\nEltárolja a kulcsot?"
+    IDS_QUESTION_SITEMANAGERDELETE "Biztosan törölni szeretné: ""%s""?"
+    IDS_QUESTION_TRANSFER_USEPRIMARY 
+                            "Probléma van '%s' átvitelével.\nA fájl átviteléhez újabb kapcsolat (szál) nem hozható létre. A kiszolgáló valószínûleg nem támogatja a többszörös kapcsolat létrehozását.\nMivel már csatlakozott az állomáshoz, a FileZilla az elsõdleges szálat használja az átvitelre?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            "A következõ fájl módosult: ""%s"".\nSzeretné a fájlt így visszatölteni a kiszolgálóra?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "A fájl módosult"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "A beállítások exportálása sikeresen megtörtént.\nHa a létrehozott .xml fájlt beteszi a FileZilla mappájába, és átnevezi 'filezilla.xml' névre,\na FileZilla a beállításokat közvetlenül ebben a fájlban fogja tárolni a regisztrációs adatbázis helyett."
+    IDS_OPTIONS_IDENTSYSTEM "Kérem adjon meg egy operációs rendszer azonosítót!"
+    IDS_OPTIONS_IDENTUSERID "Kérem adja meg a felhasználó azonosítót!"
+    IDS_OPTIONS_IMPORTFAILURE 
+                            "Hiba! A beállítások importálása nem sikerült ebbõl: '%s'"
+    IDS_OPTIONS_IMPORTOK    "A beállítások importálása sikeresen megtörtént."
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "Az Ébrentartási intervallum felsõ határának nagyobbnak kell lennie az alsó határnál!"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "Az Ébrentartási intervallum felsõ határának %d és %d másodperc között kell lennie!"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "Az Ébrentartási intervallum alsó határának %d és %d másodperc között kell lennie!"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF 
+                            "A port tartomány felsõ határának magasabbnak kell lennie az alsó határnál!"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH 
+                            "A port tartomány felsõ határának %d és %d között kell lennie!"
+    IDS_OPTIONS_LIMITPORTRANGELOW 
+                            "A port tartomány alsó határának %d és %d között kell lennie!"
+    IDS_OPTIONS_NUMRETRIES  "Az újrapróbálkozások számához %d és %d közötti értéket írjon be!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "Kérem adja meg a proxy címét!"
+    IDS_OPTIONS_PROXYPORT   "Kérem adjon meg érvényes port számot a proxy-hoz!"
+    IDS_OPTIONS_RETRYDELAY  "Az újrapróbálkozások közötti késleltetés idejéhez %d és %d közé esõ értéket írjon be!"
+    IDS_OPTIONS_TIMEOUT     "Az idõtúllépés megadásához %d és %d közé esõ értéket írjon be!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "A hitelesítés nem sikerült, valószínûleg nem\nrendelkezik érvényes 5-ös verziójú Kerberos jeggyel.\nTalán futtassa elõször a Leash32-t.\nKívánja az összes adatot tisztán elküldeni,\nés a jelszavát emberek százainak kiszolgáltatni?"
+    IDS_GSSERROR_CANTLOADDLL "Nem található vagy nem betölthetõ ez a fájl: %s"
+    IDS_GSSERROR_CANTLOADGSSAPI "Egy vagy több GSS-API nem töltõdött be!"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI 
+                            "A Kerberos 5 DLL-bõl a következõ API-k nem tölthetõek be!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "A szoftvercsatornák inicializációja nem sikerült"
+    IDS_BROWSEFORFOLDER     "Válassza ki az alapértelmezett helyi mappát."
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "A bizonyítványlánc túl hosszú."
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "A bizonyítvány érvényessége lejárt."
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "A bizonyítvány még nem érvényes."
+    IDS_CERT_ERR_CERT_REJECTED "A bizonyítvány visszautasításra került."
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE "A bizonyítvány aláírása hibás."
+    IDS_CERT_ERR_CERT_UNTRUSTED "A bizonyítvány nem megbízható."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS 
+                            "Csatlakozás a proxy beállítások kihagyásával"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "&Törlés"
+    ID_REMOTELISTSTYLE_ICON "Az objektumokat nagy ikonokkal mutatja"
+    ID_REMOTELISTSTYLE_LIST "Az objektumokat listaként mutatja"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT "Az objektumokat részletesen mutatja"
+    ID_REMOTELISTSTYLE_SMALLICON "Az objektumokat kis ikonokkal mutatja"
+    ID_SHOWQUEUE            "A várólista megjelenítése vagy elrejtése"
+    ID_SHOWREMOTETREE       "A Távoli könyvtárfa megjelenítése vagy elrejtése"
+    ID_SHOWTREE             "A Helyi könyvtárfa megjelenítése vagy elrejtése"
+    ID_SITEMANAGER          "A Kedvenc Helyek megnyitása"
+    ID_SITEMANAGER_FILE_EXPORT 
+                            "Az állomások listájának exportálása egy fájlba"
+    ID_SITEMANAGER_FILE_IMPORT "Állomások listájának importálása egy fájlból"
+    ID_TOOLBAR_DISCONNECT   "Lekapcsolódás a kiszolgálóról"
+    ID_TOOLBAR_RECONNECT    "Újracsatlakozás a kiszolgálóhoz"
+    ID_TOOLBAR_REFRESH      "A fájlablakok frissítése"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "A fájlok méretének megjelenítése"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "A fájlok típusának megjelenítése"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME 
+                            "Utolsó módosítás dátumának és idejének megjelenítése"
+    ID_VIEW_MESSAGELOG      "Az Üzenet napló megjelenítése vagy elrejtése"
+    ID_VIEW_QUICKCONNECT_BAR 
+                            "A Gyorskapcsolódás eszköztár megjelenítése vagy elrejtése"
+    ID_VIEW_REMOTELISTVIEW_DATE "Az objektumok dátumának megjelenítése"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "A fájlok méretének megjelenítése"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "Az engedélyek megjelenítése"
+    ID_VIEW_REMOTELISTVIEW_TIME "A fájlok idejének megjelenítése"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR 
+                            "A helyi állapotsor megjelenítése vagy elrejtése"
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR 
+                            "A távoli állapotsor megjelenítése vagy elrejtése"
+    ID_QUEUECONTEXT_ABORT   "A kijelölt átvitelek megszakítása és eltávolításuk a várólistából"
+    ID_QUEUECONTEXT_PAUSE   "A kijelölt átvitelek felfüggesztése"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "Az objektumokat kis ikonokkal mutatja"
+    ID_MENU_QUEUE_EXPORT    "A várólista összes elemének kiexportálása"
+    ID_MENU_QUEUE_IMPORT    "Várólista elemek importálása egy külsõ fájlból"
+    ID_MENU_QUEUE_PROCESSNOW 
+                            "Az Átviteli várólista végrehajtásának elindítása"
+    ID_MENU_QUEUE_USEMULTIPLE "Több fájl egyidejû átvitelének engedélyezése"
+    ID_MENU_SERVER_CHANGEPASS "Az állomás jelszavának megváltoztatása"
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "Az aktuális kiszolgáló URL címének másolása a vágólapra az elérési úttal együtt"
+    ID_MENU_SERVER_ENTERRAWCOMMAND 
+                            "Nyers FTP parancsok küldése a kiszolgálóra"
+    ID_MENU_TRANSFER_MANUALTRANSFER "Kézi átvitel beállítása"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "Aktuális mûvelet megszakítása"
+    ID_COPYTOSITEMANAGER    "Az aktuális kapcsolat bemásolása a Kedvenc Helyekbe"
+    ID_EDIT_EXPORTSETTINGS  "A beállítások kiexportálása egy fájlba"
+    ID_EDIT_IMPORTSETTINGS  "A beállítások beimportálása egy fájlból"
+    ID_EDIT_SETTINGS        "A FileZilla Beállítások ablakjának megnyitása"
+    ID_FILE_CONNECTTODEFAULTSITE 
+                            "A Kedvenc Helyek alapértelmezett állomásához kapcsolódás"
+    ID_FILE_EXPORT_ASURLLIST 
+                            "Az állomások exportálása szövegfájlba URL listaként"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "Az állomások exportálása szövegfájlba minden részlettel"
+    ID_FTPCONTEXT_CREATEDIR "Könyvtár létrehozása a távoli kiszolgálón"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "A Súgó Tartalom fülének megjelenítése"
+    ID_HELPMENU_INDEX       "A Súgó Tárgymutató fülének megjelenítése"
+    ID_HELPMENU_SEARCH      "A Súgó Keresés fülének megjelenítése"
+    ID_LOCALLISTSTYLE_ICON  "Az objektumokat nagy ikonokkal mutatja"
+    ID_LOCALLISTSTYLE_LIST  "Az objektumokat listaként mutatja"
+    ID_LOCALLISTSTYLE_REPORT "Az objektumokat részletesen mutatja"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "Megpróbálja a kiszolgáló rejtett fájljait megjeleníteni"
+    ID_OVERWRITEMENU_ASK    "Ha egy fájl már létezik, megkérdezi, mit tegyen"
+    ID_OVERWRITEMENU_OVERWRITE "Mindig felülírja a fájlt"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER 
+                            "Ha az áttöltendõ fájl újabb, felülírja a fájlt"
+    ID_OVERWRITEMENU_RENAME "Egy új fájlnevet kér be"
+    ID_OVERWRITEMENU_RESUME "Folytatja a megszakadt átvitelt, ha lehetséges"
+    ID_OVERWRITEMENU_SKIP   "A már létezõ fájlok áttöltését kihagyja"
+    ID_PROCESS_QUEUE        "Az Átviteli várólista végrehajtása"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1 fájl, méret: legalább %I64d byte"
+    IDS_DIRINFO_DIRANDFILESMIN 
+                            "1 mappa és %d fájl, fájlok mérete: legalább %I64d byte"
+    IDS_DIRINFO_DIRANDFILE  "1 mappa és 1 fájl, fájl mérete: %I64d byte"
+    IDS_DIRINFO_DIRSANDFILE "%d mappa és 1 fájl, fájl mérete: %I64d byte"
+    IDS_DIRINFO_DIRANDFILEMIN 
+                            "1 mappa és 1 fájl, fájl mérete: legalább %I64d byte"
+    IDS_DIRINFO_DIRSANDFILEMIN 
+                            "%d mappa és 1 fájl, fájl mérete: legalább %I64d byte"
+    IDS_DIRINFO_SELECTED_FILE "1 kijelölt fájl, méret: %I64d byte"
+    IDS_DIRINFO_SELECTED_DIR "1 kijelölt mappa"
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "1 kijelölt mappa és %d kijelölt fájl, fájlok mérete: %I64d byte"
+    IDS_DIRINFO_SELECTED_FILEMIN "1 kijelölt fájl, méret: legalább %I64d byte"
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "1 kijelölt mappa és %d kijelölt fájl, fájlok mérete: legalább %I64d byte"
+    IDS_DIRINFO_SELECTED_DIRANDFILE 
+                            "1 kijelölt mappa és 1 kijelölt fájl, fájl mérete: %I64d byte"
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "1 kijelölt mappa és 1 kijelölt fájl, fájl mérete: legalább %I64d byte"
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "%d kijelölt mappa és 1 kijelölt fájl, fájl mérete: %I64d byte"
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "%d kijelölt mappa és 1 kijelölt fájl, fájl mérete: legalább %I64d byte"
+    IDS_QUEUESTATUS_PAUSED  "Felfüggesztve"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "A felfüggesztett átvitelek folytatása"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME 
+                            "A távoli fájlok rendezése a fájlnév szerint"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE 
+                            "A távoli fájlok rendezése a fájlméret szerint"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE 
+                            "A távoli fájlok rendezése a fájltípus szerint"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "A távoli fájlok rendezése a dátum / idõ szerint"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "A távoli fájlok rendezése növekvõ sorrendben"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "A távoli fájlok rendezése csökkenõ sorrendben"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "A fájl mutató nem állítható be"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "Ismeretlen hiba az SSL rétegben"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR 
+                            "Az SSL bizonyítvány ellenõrzése nem sikerült"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME 
+                            "A helyi fájlok rendezése a fájlnév szerint"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE 
+                            "A helyi fájlok rendezése a fájlméret szerint"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE 
+                            "A helyi fájlok rendezése a fájltípus szerint"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "A helyi fájlok rendezése az utolsó módosítás ideje szerint"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "A helyi fájlok rendezése növekvõ sorrendben"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "A helyi fájlok rendezése csökkenõ sorrendben"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT "A bizonyítvány önaláírt."
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "A bizonyítvány érvényességi lejárata hibás formátumú."
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "A bizonyítvány érvényességi kezdete hibás formátumú."
+    IDS_CERT_ERR_INVALID_CA "Érvénytelen CA bizonyítvány."
+    IDS_CERT_ERR_INVALID_PURPOSE 
+                            "A bizonyítvány felhasználási célja nem támogatott."
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN 
+                            "A kulcs használata nem tartalmaz bizonyítvány aláírást."
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED 
+                            "A bizonyítványlánc hosszkorlátja túllépõdött."
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "Önaláírt bizonyítvány a bizonyítványláncban."
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "A kiállító nyilvános kulcsa nem dekódolható."
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "A bizonyítvány aláírása nem dekódolható."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT 
+                            "A kiállító bizonyítványa nem szerezhetõ meg."
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "A helyi kiállító bizonyítványa nem szerezhetõ meg."
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE 
+                            "Az elsõ bizonyítvány nem ellenõrizhetõ."
+    IDS_CERT_ERR_UNKNOWN    "Ismeretlen bizonyítvány ellenõrzési hiba történt."
+    IDS_CERT_ERRDEPTH       "A hiba a bizonyítványlánc következõ helyén történt: %d."
+    IDS_CERT_OK             "A bizonyítvány érvényesnek tûnik."
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+#endif    // Hungarian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)
+#ifdef _WIN32
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

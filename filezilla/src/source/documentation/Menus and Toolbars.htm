@@ -1,0 +1,304 @@
+<html>
+
+<head>
+<title>Menus and Toolbars</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+
+<p class="PageCaption" align="center">Menus and Toolbars</p>
+<p class="MidCaption"><a name="menu"></a>1. The main menu</p>
+<p class="bodyText" align="left">This section describes all items of the main menu. Using the
+menu, you can access a lot of different features.</p>
+<blockquote>
+<p class="bodyText" align="left"><b>File</b> - Popup menu for some general
+  operations and Sitemanager functions</p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Site Manager</b> - Opens the <a href="sitemanager.htm">Site
+    Manager</a>
+    </p>
+    <p class="bodyText" align="left"><b>Copy connection to site manager</b> -
+    Copies the current connection into the Sitemanager as a new entry
+    </p>
+    <p class="bodyText" align="left"><b>Connect to default site</b> - Connects
+    to the default site in the Site Manager.
+    </p>
+    <p class="bodyText" align="left"><b>Reconnect</b> - Connects to the last
+    server you were connected to. Useful when you've lost the connection.
+    FileZilla automatically switches to the last used folder on the server. You
+    can also use the <img border="0" src="toolbar_reconnect.png" width="20" height="20">
+    button on the toolbar.
+    </p>
+    <p class="bodyText" align="left"><b>Disconnect</b> - Disconnects from an FTP
+    server. You can also use the <img border="0" src="toolbar_disconnect.png" width="20" height="20">
+    button on the toolbar.
+    </p>
+    <p class="bodyText" align="left"><b>Exit</b> - Disconnects from the server
+    and exits FileZilla. All files in the transfer queue that have not been
+    transferred yet are remembered for the next time FileZilla starts so that
+    the transfers can be continued.
+    </p>
+  </blockquote>
+    <p class="bodyText" align="left"><b>Edit</b>
+    </p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Settings</b> - Opens the options dialog
+    of FileZilla. There you can <a href="configuration.htm">configure FileZilla</a>.
+    </p>
+    <p class="bodyText" align="left"><b>Export settings</b> - Exports all
+    settings of FileZilla into an .xml file. When you select this menu item, you
+    will be asked for a filename under which the settings will be exported. This
+    function is useful if you want to make a backup of the settings or if you
+    want to copy all settings to a second machine.
+    </p>
+    <p class="bodyText" align="left"><b>Import settings</b> - Imports settings 
+    from an previously exported .xml file.</p>
+  </blockquote>
+  <p class="bodyText" align="left"><b>Transfer</b> - This popup menu allows you
+  to control the file transfers.
+    </p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Transfer Type</b> - Selects the current
+    transfer type. You can choose between <b>ASCII</b>, <b>Binary</b> and <b>Auto</b>.
+    If you select <b>ASCII</b>, all files will be transferred in ASCII
+    mode. If you select <b>Binary</b>, all files will be transferred in binary
+    mode. If you select <b>Auto</b>, FileZilla detects and chooses the transfer
+    type based on the file extension. You can enter which extensions will be
+    considered as ASCII files in the <a href="asciibinary.htm">ASCII/Binary
+    page</a> in the options. You should leave this setting on <b>Auto</b>, if
+    you don't want to force a specific transfer type. A wrong setting may result
+    in corrupt files.
+    </p>
+    <p class="bodyText" align="left"><b>File overwrite settings</b> - This menu 
+    item opens a submenu. In this menu you can set the default behaviour for 
+    file transfers where the target file already exists. The default setting is
+    <b>Ask</b>. When selected, FileZilla will ask every time how to proceed when 
+    a target already exists.</p>
+    <p class="bodyText" align="left"><b>Manual Transfer</b> - Sets up a manual 
+    transfer. You have to enter the server address, the path and the folder of the file 
+    local and remote file and which type of transfer (Upload or Download) should 
+    be established. This is especially useful if you want to transfer hidden 
+    files that don't show up in the directory listing or if it's not possible to 
+    list the contents of a directory.</p>
+  </blockquote>
+  <p class="bodyText" align="left"><b>View</b> - Controls the visual aspects of
+  the main window
+    </p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Refresh Views</b> - Refreshes the file
+    and folder views. You can also use the <img border="0" src="toolbar_refresh.png" width="20" height="20">
+    button on the toolbar.
+    </p>
+    <p class="bodyText" align="left"><b>Show hidden files</b> - Some servers 
+    don't show hidden files like dotfiles (filenames starting with a dot) by 
+    default. Enable <b>Show hidden files</b> if you want to see those file. 
+    However, not all servers support these feature, they may return an error or 
+    may return broken or incomplete directory listings. So be careful when 
+    enabling this feature.</p>
+    <p class="bodyText" align="left"><b>Toolbar</b> - Toggles the toolbar on or
+    off
+    </p>
+    <p class="bodyText" align="left"><b>Statusbar - </b>Toggles the statusbar on
+    or off
+    </p>
+    <p class="bodyText" align="left"><b>Quickconnect Bar</b> - Toggles the
+    Quickconnect bar on or off
+    </p>
+    <p class="bodyText" align="left"><b>Local Treeview</b> - Toggles the local
+    treeview on or off. You may also use the <img border="0" src="toolbar_treeview.png" width="20" height="20">
+    button on the toolbar.
+    </p>
+    <p class="bodyText" align="left"><b>Remote Treeview</b> - Toggles the remote
+    treeview on or off. You may also use the <img border="0" src="toolbar_remotetreeview.png" width="20" height="20">
+    button on the toolbar.
+    </p>
+    <p class="bodyText" align="left"><b>Message Log</b> - Toggles the message log
+    on or off. You may also use the <img border="0" src="toolbar_messagelog.png" width="20" height="20">
+    button on the toolbar.
+    </p>
+    <p class="bodyText" align="left"><b>Transfer Queue</b> - Toggles the
+    transfer queue on or off. You may also use the <img border="0" src="toolbar_queue.png" width="20" height="20">
+    button on the toolbar.
+    </p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Local list view</b> - In this popup menu
+    you can change the layout of the local file list. You can choose between the
+    <b>Details</b>, <b>List</b>, <b>Small Icons</b> and <b>Large Icons</b>
+    style. You can also select which columns should be visible in details style.
+    The <b>Filesize</b>,<b> Filetype</b> and <b>Last Modified</b> columns can be
+    toggled.
+    </p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Remote</b><b> list view</b> - In this
+    popup menu you can change the layout of the remote file list. You can choose
+    between the <b>Details</b>, <b>List</b>, <b>Small Icons</b> and <b>Large
+    Icons</b> style. You can also select which columns should be visible in
+    details style. The <b>Filesize</b>,<b> Date/Time</b> and <b>Permissions</b>
+    columns can be toggled.
+    </p>
+  </blockquote>
+    <p class="bodyText" align="left"><b>Queue</b></p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Process Queue</b> - If checked, 
+    FileZilla processes the queue.</p>
+    <p class="bodyText" align="left"><b>Use multiple connections</b> - FileZilla 
+    can transfer up to 10 files (number can be set in the settings dialog, 
+    default is 2) simultaniously when enabled. If you don't want FileZilla to 
+    use multiple connections, disable this feature. You may also have to disable 
+    this feature for servers which do not support multiple connections. 
+    FileZilla can detect such servers automatically, but some misconfigured 
+    servers may even ban you for some time when trying to establish multiple 
+    connections, so disabling this prevents problems with some servers.</p>
+    <p class="bodyText" align="left"><b>Export</b> - Exports all queue items 
+    into a file</p>
+    <p class="bodyText" align="left"><b>Import</b> - Imports queue entries from 
+    an external file</p>
+  </blockquote>
+    <p class="SmallCaption" align="left">Server</p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Change password</b> - Allows you to 
+    change the password used to connect to te server. Due to security 
+    considerations, not all servers allow you to change the password this way.</p>
+    <p class="bodyText" align="left"><b>Enter raw FTP command</b> - Opens an 
+    input dialog where you can enter any FTP command. This is useful if you want 
+    to perform actions on the servers not otherwise supported by FileZilla.</p>
+    <p class="bodyText" align="left"><b>Copy URL to clipboard</b> - Copies the 
+    address of the current server and path to the clipboard</p>
+  </blockquote>
+  <p class="bodyText" align="left"><b>Help </b>- Use this popup menu if you need
+  help
+    </p>
+  <blockquote>
+    <p class="bodyText" align="left"><b>Contents </b>- Displays the table of
+    contents of the help file.
+    </p>
+    <p class="bodyText" align="left"><b>Index </b>- Displays the index of the
+    help file
+    </p>
+    <p class="bodyText" align="left"><b>Search </b>- Opens the search page of
+    the help file
+    </p>
+    <p class="bodyText" align="left"><b>About FileZilla...</b> - Opens the
+    Aboutbox of FileZilla with some useful information.
+    </p>
+  </blockquote>
+</blockquote>
+
+<p class="MidCaption" align="left"><b><a name="toolbar"></a>2. The Toolbar</b>
+    </p>
+
+<p class="MidCaption" align="center">
+<img border="0" src="toolbar.png" width="287" height="28">
+    </p>
+<p class="bodyText" align="left">From the toolbar, you have quick access to a
+lot of important functions. When a function is not available, the corresponding
+icon is greyed out.
+    </p>
+<blockquote>
+  <table border="0">
+    <tr>
+      <td><img border="0" src="toolbar_sitemanager.png" width="20" height="20"></td>
+      <td class="bodyText">Opens the <a href="sitemanager.htm">Site Manager</a></td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_treeview.png" width="20" height="20"></td>
+      <td class="bodyText">Toggles the local treeview. When checked, the treeview is
+        visible.</td>
+    </tr>
+    <tr>
+      <td>
+      <img border="0" src="toolbar_remotetreeview.png" width="20" height="20"></td>
+      <td class="bodyText">Toggles the remote treeview. When checked, the treeview is
+        visible.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_queue.png" width="20" height="20"></td>
+      <td class="bodyText">Toggles the <a href="queue.htm">transfer queue</a>.
+        When checked, the queue is visible.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_messagelog.png" width="20" height="20"></td>
+      <td class="bodyText">Toggles the <a href="messagelog.htm">Message Log</a>.
+        When checked, the message log is visible.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_refresh.png" width="20" height="20"></td>
+      <td class="bodyText">Refreshes both the local file list as well as the
+        remote file list.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_transfer.png" width="20" height="20"></td>
+      <td class="bodyText">Starts processing the transfer queue. Use this button
+        to start the transfer of any queue files.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_cancel.png" width="20" height="20"></td>
+      <td class="bodyText">Cancels the current operation. It also stops
+        processing the queue.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_disconnect.png" width="20" height="20"></td>
+      <td class="bodyText">Disconnects from a server.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_reconnect.png" width="20" height="20"></td>
+      <td class="bodyText">If you aren't currently connected to a server, using
+        this button reconnects to the last used server and switches to the last
+        used directory on the server.</td>
+    </tr>
+    <tr>
+      <td><img border="0" src="toolbar_help.png" width="20" height="20"></td>
+      <td class="bodyText">Displays the table of contents of the FileZilla
+        documentation.</td>
+    </tr>
+  </table>
+</blockquote>
+<p class="MidCaption" align="left"><a name="quickconnectbar"></a>3. The
+Quickconnect Bar
+    </p>
+<p class="bodyText" align="center"><img border="0" src="quickconnectbar.png" width="584" height="28">
+    </p>
+<p class="bodyText" align="left">Using the Quickconnect bar you can quickly
+connect to an FTP server. There are four edit fields. In the first field you 
+have to enter the address of the FTP server. It can either be a host name (like 
+ftp.sourceforge.net) or an IP, but FileZilla also supports addresses with username, password and port in the
+address. The full syntax for the address edit field is: <b>[protocol://][User:Pass@]Host[:Port][/Path]
+</b>The parameter within <b>[ ]</b> are optional. The first parameter<b> </b>specifies
+the protocol that should be used to connect to the server. Supported protocols 
+are <b>ftp://</b>,<b> ftps://</b> (FTP over SSL) and <b>sftp://</b> (Secure FTP 
+using SSH2). If no protocol is specified, <b>ftp://</b> is used. The second parameter specifies the username and password that
+should be used to connect to the server. The next optional parameter specifies
+the port where the server is located. If the port is not specified, FileZilla
+uses port 21. The last parameter specifies the remote path FileZilla should
+switch to when connecting. </p>
+
+<p class="bodyText" align="left">The next two edit fields specify the username
+and password that should be used to connect to the server. If you leave the
+username field empty, anonymous logon will be selected. Both fields will be
+overwritten if you specify a username and/or password in the address field. </p>
+
+<p class="bodyText" align="left">The last field specifies the port of the FTP
+server. By default this value is 21. Change this value if the server is located
+at another port. This field will be overwritten if you specify a username and/or
+password in the address field. </p>
+
+<p class="bodyText" align="left">Click on Quickconnect if you are ready.
+FileZilla will then connect to the FTP server. If you've entered invalid
+information, FileZilla will display an error message. The arrow next to the 
+quickconnect buttons opens a dropdown menu. Using the <b>Clear</b> item in the 
+menu you can empty the quickconnect bar. Below this entry, a list of the 10 most 
+recently visited servers in the current session is maintained. Select server 
+from the list to connect to it.</p>
+
+</body>
+
+</html>

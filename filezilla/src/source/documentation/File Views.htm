@@ -1,0 +1,275 @@
+<html>
+<head>
+<title>The File and Folder views</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p align="left" class="PageCaption">The File and Folder views</p>
+<p class="MidCaption"><a name="remote"></a>1. The remote site</p>
+<p class="bodyText">The file and folder view of the remote site is located on
+the right side of the main window. With it you can navigate on an FTP server and
+initiate downloads.</p>
+<p class="bodyText" align="center"><img border="0" src="fileview_remote.png" width="445" height="306"></p>
+
+<p class="SmallCaption" align="left">The file and folder list</p>
+
+<p class="bodyText" align="left">Each line represents a file or folder. The file
+and folder icons help you to identify the files and folders quickly. The labels
+above each column describe their meaning. The meaning of the first 4 columns
+should be clear: Filename, Filesize, Date and Time. The last column entitled
+&quot;Permissions&quot; tells you what access rights you have on the files. You don't
+really have to care about the permissions. The first character indicates whether
+the entry is a file, a directory or a link. The last characters are three groups
+of three characters each. The first group describes the owner rights, the second
+the group rights and the last one the public rights. An r means that you have
+read access, w means write access and x means the right to execute a file. You
+can sort the list by clicking on one of the column labels. A small gray arrow
+indicates which column the list is sorted on and the sort direction. You can toggle the sort direction by clicking the heading again.</p>
+<p class="bodyText" align="left">You can change the style of the list and the
+visible columns with the <a href="Menus%20and%20Toolbars.htm#menu">menu of the
+main window</a>.</p>
+<p class="SmallCaption" align="left">Navigating on the server</p>
+
+<p class="bodyText" align="left">On the upper side you will notice the combo
+box. Here the current folder is listed. You can also enter a new folder. Press
+enter and FileZilla switches to this folder. You can also click on the arrow on
+the right to open a popup menu containing a list of all directories you've
+visited on that server. Click on an item to switch to that directory.</p>
+<p class="bodyText" align="center"><img border="0" src="fileview_combo.png" width="254" height="60"></p>
+<p class="bodyText" align="left">Below that is the file and folder list. The
+first entry in the list is always &quot;..&quot;. It represents the parent
+folder of the current folder. You can switch to a folder by double clicking it
+or by using the context menu.&nbsp;</p>
+<p class="SmallCaption" align="left">Downloading files</p>
+<p class="bodyText" align="left">There are three ways to download a file: You can
+double click it, you can use the context menu or you can drag and drop the file
+into the local file list. You can operate on a folder in the same way. You may
+also select multiple files and folders for transfer in one operation, except of
+course double-clicking is not available in this situation. To add items to the
+queue for a later transfer, you may again use the context menu or you can drag
+and drop them into the queue.</p>
+<p class="SmallCaption" align="left">The context menu</p>
+<p class="bodyText" align="left">Right-click the file and folder list to display
+the context menu.</p>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Download</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Downloads the selected files and folders. The download
+      starts immediately.&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Add to Queue</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Adds all selected items to the transfer queue. Use the
+      <img border="0" src="toolbar_transfer.png" width="20" height="20"> button
+      on the toolbar to start the transfer.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Download as</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Asks you for a username and password that will be
+      used to download the selected files and folders.&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="20">
+      <p class="bodyText"><b>Open</b></td>
+    <td valign="top" height="20">
+      <p class="bodyText">-</td>
+    <td valign="top" height="20">
+      <p class="bodyText">Opens the selected directory.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="20">
+      <p class="bodyText"><b>View/Edit</b></td>
+    <td valign="top" height="20">
+      <p class="bodyText">-</td>
+    <td valign="top" height="20">
+      <p class="bodyText">When using this command, FileZilla downloads the 
+      selected file into a temporary folder. Then it opens the file with the 
+      file viewer/editor you've set in the settings dialog. When you've closed 
+      the viewer/editor and the file has changed, FileZilla will ask you if you 
+      want to upload the file back to the server.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Create Directory</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Creates a new directory in the current folder. You
+      have to enter a name for the new folder before it will be created.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Delete</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Removes all selected files and folders. You will be
+      asked for confirmation.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Rename</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Renames the selected file. You'll be asked for the new
+      name.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>File attributes</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Allows you to change the attributes of the selected
+      file. This function is not supported by all FTP servers.</td>
+  </tr>
+</table>
+<p class="MidCaption"><a name="local"></a>2. The local site</p>
+<p class="bodyText">The file and folder view of the local site is located on
+the left side of the main window. With it you can navigate on your local machine
+and
+initiate uploads.</p>
+<p class="bodyText" align="center"><img border="0" src="fileview_local.png" width="377" height="234"></p>
+
+<p class="SmallCaption" align="left">The file and folder list</p>
+
+<p class="bodyText" align="left">The local file and folder list is very similar
+to the remote file and folder list. The labels above each column describe their
+meaning. Again you can sort the list and the small gray arrow indicates which
+column the list is sorted on and the sort direction.</p>
+
+<p class="bodyText" align="left">You can change the style of the list and the
+visible columns with the <a href="Menus%20and%20Toolbars.htm#menu">menu of the
+main window</a>.</p>
+<p class="SmallCaption" align="left">Navigating on the local site</p>
+
+<p class="bodyText" align="left">On the upper side you will notice an edit
+field. Here the current folder is listed. You can also enter a new folder. Press
+enter and FileZilla switches to this folder.</p>
+<p class="bodyText" align="left">Below that is a treeview. It displays the
+folder structure of your machine. The current folder is always selected. Select
+another item to switch to that folder. The treeview can be toggled using the <img border="0" src="toolbar_treeview.png" width="20" height="20">
+button on the toolbar.</p>
+<p class="bodyText" align="left">On the bottom there finally is the file and
+folder list. The first entry in the list is always &quot;..&quot;. It represents
+the parent folder of the current folder. You can switch to a folder by double clicking it
+or by using the context menu.&nbsp;</p>
+<p class="SmallCaption" align="left">Uploading files</p>
+<p class="bodyText" align="left">There are three ways to upload a file: You can
+double click it, you can use the context menu or you can drag and drop the file
+into the remote file list. You can operate on a folder in the same way. You may also
+select multiple files and folders for transfer in one operation, except of course
+double-clicking is not available in this situation. To add items
+to the queue for a later transfer, you may again use the context menu or you can
+drag and drop them into the queue.</p>
+<p class="SmallCaption" align="left">The context menu</p>
+<p class="bodyText" align="left">Right-click the file and folder list to display
+the context menu.</p>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Upload</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Uploads the selected files and folders. The upload
+      starts immediately. </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Add to Queue</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Adds all selected items to the transfer queue. Use the
+      <img border="0" src="toolbar_transfer.png" width="20" height="20"> button
+      on the toolbar to start the transfer.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Upload as</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Asks you for a username and password that will be
+      used to upload the selected files and folders. </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="20">
+      <p class="bodyText"><b>Open</b></td>
+    <td valign="top" height="20">
+      <p class="bodyText">-</td>
+    <td valign="top" height="20">
+      <p class="bodyText">If you've selected a directory, FileZilla switches to
+      that directory. If you've selected a file, it will be opened with its
+      associated application.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="20">
+      <p class="bodyText"><b>View/Edit</b></td>
+    <td valign="top" height="20">
+      <p class="bodyText">-</td>
+    <td valign="top" height="20">
+      <p class="bodyText">Opens the selected file with the file viewer/editor 
+      specified in the settings dialog.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Create Directory</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Creates a new directory in the current folder. You
+      have to enter a name for the new folder before it will be created.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Delete</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Removes all selected files and folders. You will be
+      asked for confirmation.</td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21">
+      <p class="bodyText"><b>Rename</b></td>
+    <td valign="top" height="21">
+      <p class="bodyText">-</td>
+    <td valign="top" height="21">
+      <p class="bodyText">Renames the selected file. You'll be asked for the new
+      name.</td>
+  </tr>
+</table>
+
+<p class="MidCaption">3. Shortcuts</p>
+<ul>
+  <li>
+  <p class="bodyText"><b>F5</b> - refreshes both file lists</li>
+  <li>
+  <p class="bodyText"><b>CTRL + A</b> - Select all files in the current file 
+  list.</li>
+  <li>
+  <p class="bodyText"><b>DEL</b> - Delete all selected files and folders. 
+  Deleted files will be moved to the recycle bin</li>
+  <li>
+  <p class="bodyText"><b>SHIFT + DEL</b> - Delete all selected files and folders. 
+  Deleted files will be erased and not moved to the recycle bin.</li>
+</ul>
+
+</body>
+</html>

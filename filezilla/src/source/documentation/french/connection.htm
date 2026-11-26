@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Connection</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+<body>
+<p align="center" class="PageCaption">Connexion</p>
+<p class="MidCaption" align="left">Vue d'Ensemble:</p>
+<p class="bodyText" align="left">La section de connexion et ses rubriques contr&ocirc;lent 
+  la fa&ccedil;on dont FileZilla se connecte aux serveurs FTP.</p>
+<p class="bodyText" align="center"><img border="0" src="connection.png" width="597" height="405"> 
+  <br>
+  (Fen&ecirc;tre de connexion de la bo&icirc;te de dialogue des Options de FileZilla)</p>
+<p class="SmallCaption" align="left">Param&egrave;tres Anti-d&eacute;connexion:</p>
+<p class="bodyText" align="left">La plupart des connexions FTP font des pauses 
+  s'il y a eu inactivit&eacute; trop longtemps.&nbsp; FileZilla peut &ecirc;tre 
+  configur&eacute; pour envoyer des commandes Anti-d&eacute;connexion comme &quot;PWD&quot;, 
+  &quot;REST 0&quot;, &quot;TYPE A&quot;, ou &quot;TYPE I&quot; pour simuler un 
+  activit&eacute; et emp&ecirc;cher le serveur FTP de vous d&eacute;loger.&nbsp; 
+  Pour utiliser le Syst&egrave;me Anti-d&eacute;connexion, cochez la case &quot;Activer 
+  le Syst&egrave;me Anti-d&eacute;connexion&quot;.&nbsp; Vous pouvez aussi configurer 
+  la frequence des commandes Anti-d&eacute;connexion en entrant &agrave; quel 
+  intervalles de temps FileZilla enverra des commandes Anti-d&eacute;connexion. 
+  Notez que l'activation de cette option n'emp&ecirc;he pas les serveurs qui n'utisent 
+  pas les pauses de transfert de vous d&eacute;loger si l'inactivit&eacute; a 
+  &eacute;t&eacute; trop longue.</p>
+<p class="SmallCaption" align="left"> D&eacute;tection des Temps d'Inactivit&eacute;:</p>
+<p class="bodyText" align="left">Apr&egrave;s que FileZilla ait envoy&eacute; 
+  une commande, si le serveur FTP ne r&eacute;pond pas, ou lance une r&eacute;ponse 
+  qui n'aboutit pas, FileZilla pr&eacute;sume que la connexion est devenue inactive, 
+  et entra&icirc;ne la d&eacute;connexion.&nbsp; Ici, vous pouvez entrer le d&eacute;lai 
+  en secondes que FileZilla doit attendre avant la d&eacute;connexion. Si vous 
+  avez une connexion tr&egrave;s lente au serveur et qu'il se produit toujours 
+  des pauses, essayez d'utiliser des valeurs plus &eacute;lev&eacute;es.</p>
+<p class="SmallCaption" align="left">Param&egrave;tres de Ralance:</p>
+<p class="bodyText" align="left">Si une connexion se ferme pendant un transfert, 
+  FileZilla peut &ecirc;tre configur&eacute; pour se reconnecter et retenter le 
+  transfert.&nbsp; Ici, vous pouvez configurer le temps que FileZilla attendra 
+  avant de se reconnecter, et le nombre de tentatives de reconnexion.</p>
+<p class="MidCaption">Options Suppl&eacute;mentaires</p>
+<p class="bodyText">La section connexion dispose des plusieurs rubriques dans 
+  lesquelles vous pouvez configurer d'autres aspects de la connexion:</p>
+<ul>
+  <li> 
+    <p class="bodyText"><b><a href="firewall.htm">Configuration Pare-feu</a></b>
+  </li>
+  <li> 
+    <p class="bodyText"><b><a href="ftpproxy.htm">Configuration Proxy FTP </a></b>
+  </li>
+  <li> 
+    <p class="bodyText"><b><a href="proxy.htm">Configuration Proxy </a></b>
+  </li>
+  <li> 
+    <p class="bodyText"><b><a href="gss.htm">Support GSS </a></b>
+  </li>
+  <li> 
+    <p class="bodyText"><b><a href="dircache.htm">Cache de Dossier</a></b>
+  </li>
+  <li> 
+    <p class="bodyText"><b><a href="ident.htm">Serveur d'Identit&eacute;</a></b>
+  </li>
+</ul>
+</body>
+</html>

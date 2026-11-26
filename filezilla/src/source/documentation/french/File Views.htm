@@ -1,0 +1,340 @@
+<html>
+<head>
+<title>The File and Folder views</title>
+<link rel="stylesheet" type="text/css" href="filezilla.css">
+</head>
+
+<body>
+<p align="left" class="PageCaption">L'affichage des Fichiers et Dossiers</p>
+<p class="MidCaption"><a name="remote"></a>1. Le site distant</p>
+<p class="bodyText">L'affichage des fichiers et dossiers du site distant se trouve 
+  dans la partie droite de la fen&ecirc;tre principale. Avec cet affichage, vous 
+  pouvez parcourir le serveur FTP et lancer les t&eacute;l&eacute;chargements.</p>
+<p class="bodyText" align="center"><img border="0" src="fileview_remote.png" width="358" height="200"></p>
+
+<p class="SmallCaption" align="left">La liste des fichiers et dossiers</p>
+
+<p class="bodyText" align="left">Chaque ligne repr&eacute;sente un fichier ou 
+  un dossier. Les ic&ocirc;nes des fichiers et dossiers vous aident &agrave; identifier 
+  les fichiers et dossiers rapidement. Les en-t&ecirc;tes de chaque colonne d&eacute;crivent 
+  leur signification. La signification des quatre premi&egrave;res colonnes est 
+  claire: Nom du fichier, Taille du fichier, Date et heure. La derni&egrave;re 
+  colonne intitul&eacute;e &quot;Permissions&quot; vous indique les droits d'acc&egrave;s 
+  que vous avez sur les fichiers. Vous n'avez pas vraiment &agrave; vous pr&eacute;occuper 
+  de ces permissions. Le premier caract&egrave;re indique si l'entr&eacute;e est 
+  un fichier, un r&eacute;pertoire ou un lien. Les derniers caract&egrave;res 
+  sont compos&eacute;s de trois groupes de trois caract&egrave;res chacun. Le 
+  premier groupe d&eacute;crit les droits de propri&eacute;t&eacute;, le second 
+  groupe les droites de groupe et les derniers les droits publiques. Un r signifie 
+  que vous avez acc&egrave;s en lecture, w signifie un droit d'acc&egrave;s en 
+  &eacute;criture et x le droit d'ex&eacute;cuter un fichier. Vous pouvez trier 
+  la liste en cliquant sur un en-t&ecirc;te de colonne. Une petite fl&egrave;che 
+  gris&eacute;e indique la colonne qui a servi au tri et la direction du tri. 
+  Vous pouvez basculer entre les directions de tri en cliquant &agrave; nouveau 
+  sur l'en-t&ecirc;te.</p>
+<p class="bodyText" align="left">Vous pouvez modifier le style de la liste et 
+  la visibilit&eacute; des colonnes &agrave; l'aide du <a href="Menus and Toolbars.htm#menu">menu 
+  de la fen&ecirc;tre principale</a>.</p>
+<p class="SmallCaption" align="left">Parcourir le serveur</p>
+
+<p class="bodyText" align="left">Vers le bord sup&eacute;rieur vous remarquerez 
+  une liste d&eacute;roulante. Le dossier actuel est list&eacute; ici. Vous pouvez 
+  &eacute;galement entrer un nouveau dossier. Pressez sur <i>Enter</i> et FileZilla 
+  basculera vers ce dossier. Vous pouvez aussi cliquer sur la fl&egrave;che &agrave; 
+  droite pour ouvrir le menu d&eacute;roulant contenant une liste de tous les 
+  r&eacute;pertoires que vous avez visit&eacute; sur ce serveur. Cliquez sur un 
+  &eacute;l&eacute;ment pour basculer vers ce r&eacute;pertoire.</p>
+<p class="bodyText" align="center"><img border="0" src="fileview_combo.png" width="254" height="60"></p>
+<p class="bodyText" align="left">En dessous se trouve la liste des fichiers et 
+  dossiers. La premi&egrave;re entr&eacute;e de la liste est toujours &quot;<b>..</b>&quot;. 
+  Elle repr&eacute;sente le dossier parent du dossier actuel. Vous pouvez acc&eacute;der 
+  &agrave; un dossier en double-cliquant dessus ou en utilisant le menu contextuel.&nbsp;</p>
+<p class="SmallCaption" align="left">T&eacute;l&eacute;chargement de fichiers</p>
+<p class="bodyText" align="left">Il existe trois fa&ccedil;ons de t&eacute;l&eacute;charger 
+  un fichier: vous pouvez double cliquer dessus, vous pouvez utiliser le menu 
+  contextuel ou vous pouvez utiliser la fonction glisser-d&eacute;poser vers la 
+  liste des fichiers locaux. Vous pouvez op&eacute;rer sur un dossier de la m&ecirc;me 
+  fa&ccedil;on. Vous pouvez aussi s&eacute;lectionner plusieurs fichiers et dossiers 
+  pour un transfert en une op&eacute;ration, sauf que bien entendu le double-clic 
+  n'est pas disponible dans ce cas de figure. Pour ajouter des &eacute;l&eacute;ments 
+  &agrave; la file d'attente pour un transfert diff&eacute;r&eacute;, vous pouvez 
+  &eacute;galement utiliser le menu contextuel ou utiliser le glisser-d&eacute;poser 
+  vers la file d'attente.</p>
+<p class="SmallCaption" align="left">Le menu contextuel</p>
+<p class="bodyText" align="left">Faites un clic droit sur un fichier ou un dossier 
+  de la liste pour afficher le menu contextuel.</p>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>T&eacute;l&eacute;charger</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">RE&ccedil;oit les fichiers et dossiers s&eacute;lectionn&eacute;s. 
+        La r&eacute;ception d&eacute;marre imm&eacute;diatement.&nbsp; 
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Ajouter &agrave; la file d'attente</b>
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Ajoute tous les &eacute;l&eacute;ments s&eacute;lectionn&eacute;s 
+        vers la file d'attente de transfert. Utilisez le bouton <img border="0" src="toolbar_transfer.png" width="20" height="20"> 
+        de la barre d'outils pour d&eacute;marrer le transfert. 
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>T&eacute;l&eacute;charger sous</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Vous demande le nom d'utilisateur et le mot de passe 
+        qui seront requis pour la r&eacute;ception des fichiers et dossiers s&eacute;lectionn&eacute;s.&nbsp; 
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="20" width="190"> 
+      <p class="bodyText"><b>Ouvrir</b>
+    </td>
+    <td valign="top" height="20" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="20" width="800"> 
+      <p class="bodyText">Ouvre le dossier s&eacute;lectionn&eacute;.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="20" width="190"> 
+      <p class="bodyText"><b>Afficher/&Eacute;diter</b> 
+    </td>
+    <td valign="top" height="20" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="20" width="800"> 
+      <p class="bodyText">Si vous utilisez cette commande, FileZilla re&ccedil;oit 
+        le ficher s&eacute;lectionn&eacute; dans un dossier temporaire. Puis il 
+        ouvre le fichier avec l'utilitaire d'Affichage/&Eacute;dition que vous 
+        avez choisi dans la bo&icirc;te de dialogues des Param&egrave;tres. Quand 
+        vous fermez cet utilitaire et que le fichier a &eacute;t&eacute; modifi&eacute;, 
+        FileZilla vous demandera si vous voulez mettre le fichier &agrave; jour 
+        sur le serveur. 
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Cr&eacute;er un R&eacute;pertoire</b>
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Cr&eacute;e un nouveau dossier dans le dossier actuel. 
+        Vous devez entrer le nom du nouveau dossier avant qu'il soit cr&eacute;&eacute;.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Supprimer</b>
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Supprime tous les fichiers et dossiers s&eacute;lectionn&eacute;s. 
+        Une confirmation vous sera demand&eacute;e.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Renommer</b>
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Renomme les fichiers s&eacute;lectionn&eacute;s. Une 
+        confirmation vous sera demand&eacute;e pour le nouveau nom.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Propri&eacute;t&eacute;s</b>
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-</td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Vous permet de modifier les attributs du fichier s&eacute;lectionn&eacute;. 
+        Cette fonction n'est pas support&eacute;e par tous les serveurs FTP. 
+    </td>
+  </tr>
+</table>
+<p class="MidCaption"><a name="local"></a>2. Le site local </p>
+<p class="bodyText">L'affichage des fichiers et dossiers de site local se situe 
+  dans la partie gauche de la fen&ecirc;tre principale. Avec cet affichage, vous 
+  pouvez parcourir votre disque local et initialiser les mises &agrave; jour vers 
+  le serveur.</p>
+<p class="bodyText" align="center"><img border="0" src="fileview_local.png" width="362" height="260"></p>
+
+<p class="SmallCaption" align="left">La liste de fichiers et dossiers</p>
+
+<p class="bodyText" align="left">La liste locale des fichiers et dossiers est 
+  tr&egrave;s similaire &agrave; celle des fichiers et dossiers distants. L'en-t&ecirc;te 
+  de chaque colonne d&eacute;crit sa signification. Vous pouvez aussi trier la 
+  liste et la petite fl&egrave;che gris&eacute;e indique la colonne tri&eacute;e 
+  et la direction du tri.</p>
+
+<p class="bodyText" align="left">Vous pouvez modifier le style de la liste et 
+  la visibilit&eacute; des colonnes &agrave; l'aide du <a href="Menus and Toolbars.htm#menu">menu 
+  de la fen&ecirc;tre principale</a>.</p>
+<p class="SmallCaption" align="left">Parcourir le site local </p>
+
+<p class="bodyText" align="left">Vers le bord sup&eacute;rieur vous remarquez 
+  un champ de texte. Le dossier actuel est list&eacute; ici. Vous pouvez &eacute;galement 
+  entrer un nouveau dossier. Appuyez sur <i>Enter</i> et FileZilla basculera vers 
+  ce dossier.</p>
+<p class="bodyText" align="left">En dessous se trouve une arborescence. Elle affiche 
+  la structure du dossier de votre disque dur. Le dossier courant est toujours 
+  s&eacute;lectionn&eacute;. S&eacute;lectionnez un autre &eacute;l&eacute;ment 
+  pour basculer vers ce dossier. L'arborescence peut &ecirc;tre modifi&eacute;e 
+  en utilisant le bouton <img border="0" src="toolbar_treeview.png" width="20" height="20"> 
+  de la barre d'outils.</p>
+<p class="bodyText" align="left">Enfin, en bas se trouve la liste des fichiers 
+  et dossiers. La premi&egrave;re entr&eacute;e de la liste est toujours &quot;<b>..</b>&quot;. 
+  Elle repr&eacute;sente le dossier parent du dossier actuel. Vous pouvez basculer 
+  vers un dossier en double-cliquant dessus ou en utilisant le menu contextuel.&nbsp;</p>
+<p class="SmallCaption" align="left">Mise &agrave; jour des fichiers</p>
+<p class="bodyText" align="left">Il existe trois fa&ccedil;ons d'envoyer un fichier: 
+  vous pouvez double cliquer dessus, vous pouvez utiliser le menu contextuel ou 
+  vous pouvez utiliser la fonction glisser-d&eacute;poser vers la liste des fichiers 
+  distants. Vous pouvez op&eacute;rer sur un dossier de la m&ecirc;me fa&ccedil;on. 
+  Vous pouvez aussi s&eacute;lectionner plusieurs fichiers et dossiers pour un 
+  transfert en une op&eacute;ration, sauf que bien entendu le double-clic n'est 
+  pas disponible dans ce cas de figure. Pour ajouter des &eacute;l&eacute;ments 
+  &agrave; la file d'attente pour un transfert diff&eacute;r&eacute;, vous pouvez 
+  &eacute;galement utiliser le menu contextuel ou utiliser le glisser-d&eacute;poser 
+  vers la file d'attente.</p>
+<p class="SmallCaption" align="left">Le menu contextuel</p>
+<p class="bodyText" align="left">Faites un clic droit sur un fichier ou un dossier 
+  de la liste pour afficher le menu contextuel.</p>
+<table border="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Charger sur le serveur</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Envoie les fichiers et dossiers s&eacute;lectionn&eacute;s. 
+        L'envoi d&eacute;marre imm&eacute;diatement.&nbsp; 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Ajouter &agrave; la file d'attente</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Ajoute tous les &eacute;l&eacute;ments s&eacute;lectionn&eacute;s 
+        vers la file d'attente de transfert. Utilisez le bouton <img border="0" src="toolbar_transfer.png" width="20" height="20"> 
+        de la barre d'outils pour d&eacute;marrer l'envoi. 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Charger sous</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Vous demande le nom d'utilisateur et le mot de passe 
+        qui seront requis pour la mise &agrave; jour des fichiers et dossiers 
+        s&eacute;lectionn&eacute;s.&nbsp; 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" nowrap height="20" width="190"> 
+      <p class="bodyText"><b>Ouvrir</b> 
+    </td>
+    <td valign="top" height="20" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="20" width="800"> 
+      <p class="bodyText">Ouvre le dossier s&eacute;lectionn&eacute;. 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" nowrap height="20" width="190"> 
+      <p class="bodyText"><b>Afficher/&Eacute;diter</b> 
+    </td>
+    <td valign="top" height="20" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="20" width="800"> 
+      <p class="bodyText">Ouvre le fichier avec l'utilitaire d'Affichage/&Eacute;dition 
+        que vous avez choisi dans la bo&icirc;te de dialogues des Param&egrave;tres. 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Cr&eacute;er un R&eacute;pertoire</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Cr&eacute;e un nouveau dossier dans le dossier actuel. 
+        Vous devez entrer le nom du nouveau dossier avant qu'il soit cr&eacute;&eacute;. 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Supprimer</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Supprime tous les fichiers et dossiers s&eacute;lectionn&eacute;s. 
+        Une confirmation vous sera demand&eacute;e. 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" nowrap height="21" width="190"> 
+      <p class="bodyText"><b>Renommer</b> 
+    </td>
+    <td valign="top" height="21" width="10"> 
+      <p class="bodyText">-
+    </td>
+    <td valign="top" height="21" width="800"> 
+      <p class="bodyText">Renomme les fichiers s&eacute;lectionn&eacute;s. Une 
+        confirmation vous sera demand&eacute;e pour le nouveau nom. 
+    </td>
+  </tr>
+</table>
+<p class="MidCaption">3. Raccourcis clavier</p>
+<ul>
+  <li>
+    <p class="bodyText"><b>F5</b> - R&eacute;initialise toutes les listes
+  </li>
+  <li>
+    <p class="bodyText"><b>CTRL + A</b> - S&eacute;lectionne tous les fichiers 
+      de la liste de fichiers actuelle.
+  </li>
+  <li>
+    <p class="bodyText"><b>DEL</b> - Supprime tous les fichiers et dossiers s&eacute;lectionn&eacute;s. 
+      Les fichiers seront d&eacute;plac&eacute;s dans la corbeille
+  </li>
+  <li>
+    <p class="bodyText"><b>SHIFT + DEL</b> - supprime tous les fichiers et dossiers 
+      s&eacute;lectionn&eacute;s. Les &eacute;l&eacute;ments seront d&eacute;truits 
+      et non d&eacute;plac&eacute;s vers la corbeille.
+  </li>
+</ul>
+
+</body>
+</html>

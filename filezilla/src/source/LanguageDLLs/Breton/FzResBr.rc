@@ -1,0 +1,2554 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Breton resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 0x200, 0x20
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SITEMANAGER_ADVANCED DIALOG  0, 0, 240, 196
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Perzhioù avancés du site"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Perzhioù kempleshoc'h al load '%s' (%s)",
+                    IDC_SITEMANAGER_ADVANCED_SITENAME,7,7,226,16
+    LTEXT           "&Kavlec'h arbell dre-ziouer :",IDC_STATIC,7,36,94,8
+    EDITTEXT        IDC_REMOTEDIR,7,45,157,14,ES_AUTOHSCROLL
+    LTEXT           "Kavlec'h &lec'hel dre-ziouer :",IDC_STATIC,7,63,88,8
+    EDITTEXT        IDC_LOCALDIR,7,72,142,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SITEMANAGER_LOCALDIR_BROWSE,153,72,12,14
+    LTEXT           "Perzh eus mod ar treuzkas :",IDC_STATIC,7,105,104,8
+    CONTROL         "Mod dre-&ziouer",IDC_SITEMANAGER_ADVANCED_PASSIVE1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,
+                    116,68,10
+    CONTROL         "Mod &gouzañvat",IDC_SITEMANAGER_ADVANCED_PASSIVE2,
+                    "Button",BS_AUTORADIOBUTTON,80,116,69,10
+    CONTROL         "Mod &oberiat",IDC_SITEMANAGER_ADVANCED_PASSIVE3,"Button",
+                    BS_AUTORADIOBUTTON,160,116,63,10
+    LTEXT           "Fiñval gwerzhid-eur an dafariad :",IDC_STATIC,7,134,128,
+                    8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET,90,146,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,103,146,11,14
+    LTEXT           "Aozañ an eur arbell deus",IDC_STATIC,7,148,82,8
+    LTEXT           "eur",IDC_STATIC,119,148,22,8
+    EDITTEXT        IDC_SITEMANAGER_ADVANCED_TZOFFSET2,144,146,25,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SITEMANAGER_ADVANCED_TZSPIN2,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,152,144,11,14
+    LTEXT           "minutenn.",IDC_STATIC,173,148,38,8
+    LTEXT           "Use UTF8 on server if available:",IDC_STATIC,7,160,103,
+                    8
+    COMBOBOX        IDC_SITEMANAGER_ADVANCED_UTF8,117,158,48,90,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Mat eo",IDOK,55,175,50,14
+    PUSHBUTTON      "Nullañ",IDCANCEL,135,175,50,14
+END
+
+IDD_OPTIONS_IDENT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "&Gweredekaat an dafariad identelezh",
+                    IDC_OPTIONS_IDENT_IDENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,26,134,10
+    EDITTEXT        IDC_OPTIONS_IDENT_USERID,45,38,123,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_OPTIONS_IDENT_SYSTEM,212,38,67,14,ES_AUTOHSCROLL
+    CONTROL         "nemet e-pad ar c'hennaskañ",
+                    IDC_OPTIONS_IDENT_IDENTCONNECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,58,117,10
+    CONTROL         "Degemer adalek ar memes IP hepken",
+                    IDC_OPTIONS_IDENT_SAMEIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,136,58,143,10
+    LTEXT           "Lod a zafariadoù FTP a c'houlenn ganeoc'h e vefe oberiant un dafariad identelezh e-pad ar c'hennaskañ.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "Implijour :",IDC_STATIC,7,41,36,8
+    LTEXT           "Reizhiad :",IDC_STATIC,177,41,32,8
+END
+
+IDD_OPTIONS_VIEWEDIT DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Dibabit war ar bajenn-mañ pe goulev a vo implijet evit gwelout pe embann ur restr.",
+                    IDC_STATIC,7,7,261,8
+    LTEXT           "Goulev &dre-ziouer evit gwelout pe embann ur restr :",
+                    IDC_STATIC,7,20,181,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_DEFAULT,7,31,215,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Furchal",IDC_OPTIONS_VIEWEDIT_DEFAULT_BROWSE,229,31,50,
+                    14
+    LTEXT           "&Kenstagadennoù ar restroù personelaet :",IDC_STATIC,7,
+                    48,124,8
+    EDITTEXT        IDC_OPTIONS_VIEWEDIT_CUSTOM,7,58,272,93,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Ul linenn dre genstagadenn restr, o kregiñ gant astenn ar restr ha gant an esaouenn hag ar goulev implijet evit gwelout pe embann ar restroù-mañ. Lakait "" war dro an astennoù o deus esaouennoù enno. Linennoù direizh a vo dilamet.",
+                    IDC_STATIC,7,154,272,27
+    LTEXT           "Skouer :\ntxt c:\\windows\\notepad.exe",IDC_STATIC,7,
+                    185,272,16
+END
+
+IDD_MANUALTRANSFER DIALOGEX 0, 0, 332, 213
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Perzhioù an treuzkas dre-zorn"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Spisaat un treuzkas dre-zorn. Roit kement a geloù hag e c'hellit reiñ. Ma laoskit maeziennoù goullo e glasko FileZilla d'o leuniañ.",
+                    IDC_STATIC,7,7,318,17
+    LTEXT           "Rizh an treuzkas :",IDC_STATIC,7,30,58,8
+    CONTROL         "&Pellgargañ",IDC_MANUALTRANSFER_UPDOWN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,40,67,10
+    CONTROL         "&Kargañ",IDC_MANUALTRANSFER_UPDOWN2,"Button",
+                    BS_AUTORADIOBUTTON,7,51,54,10
+    LTEXT           "Restr &lec'hel :",IDC_STATIC,7,65,42,8
+    EDITTEXT        IDC_MANUALTRANSFER_LOCALFILE,7,74,125,14,ES_AUTOHSCROLL
+    LTEXT           "Restr &arbell :",IDC_STATIC,7,93,48,8
+    EDITTEXT        IDC_MANUALTRANSFER_REMOTEFILE,7,103,125,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "Implijit an dafar &red",IDC_MANUALTRANSFER_SERVER1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,152,23,91,10
+    CONTROL         "Implijit an dafar war-&lerc'h",
+                    IDC_MANUALTRANSFER_SERVER2,"Button",BS_AUTORADIOBUTTON,
+                    152,34,103,10,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_STATIC,141,42,184,164,WS_GROUP
+    LTEXT           "&Ostiz :",IDC_STATIC,148,52,20,8
+    EDITTEXT        IDC_MANUALTRANSFER_HOST,148,61,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Porzh:",IDC_STATIC,281,52,23,8
+    EDITTEXT        IDC_MANUALTRANSFER_PORT,280,61,25,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Rizh an &dafar :",IDC_STATIC,148,80,56,8
+    COMBOBOX        IDC_MANUALTRANSFER_SERVERTYPE,148,90,169,49,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Rizh an dilesaat",IDC_STATIC,148,108,171,38
+    CONTROL         "Dis&anv",IDC_MANUALTRANSFER_LOGONTYPE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,158,119,45,10
+    CONTROL         "R&eizh",IDC_MANUALTRANSFER_LOGONTYPE2,"Button",
+                    BS_AUTORADIOBUTTON,228,119,38,10
+    CONTROL         "&Tremen a-gostez d'ar perzhioù proksi / harz-tan",
+                    IDC_MANUALTRANSFER_BYPASSPROXY,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,154,132,163,10
+    LTEXT           "&Anv implijour :",IDC_STATIC,148,149,56,8
+    EDITTEXT        IDC_MANUALTRANSFER_USER,148,158,169,14,ES_AUTOHSCROLL
+    LTEXT           "&Ger-tremen :",IDC_STATIC,148,176,48,8
+    EDITTEXT        IDC_MANUALTRANSFER_PASS,148,185,169,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Mat eo",IDOK,15,192,50,14
+    PUSHBUTTON      "Nullañ",IDCANCEL,75,192,50,14
+    CONTROL         "Kregiñ &gant an treuzkas diouzhtu",
+                    IDC_MANUALTRANSFER_STARTNOW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,172,126,10
+END
+
+IDD_OPTIONS_TRANSFER DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Mirout deiziadoù hag eurioù ar restroù pellgarget",
+                    IDC_OPTIONS_TRANSFER_PRESERVEDATETIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,183,10
+    LTEXT           "Implijout ar c'hennaskañ pennañ m'emañ ar restr bihanoc'h eget",
+                    IDC_STATIC,7,34,207,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXPRIMARYSIZE,215,31,36,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "eizh-bit",IDC_STATIC,252,34,27,8
+    LTEXT           "Treuzkas betek",IDC_STATIC,7,62,57,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_MAXTRANSFERCONNECTIONS,69,60,16,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "restr en ur ser",IDC_STATIC,89,62,70,8
+    CONTROL         "Ober gant kennaskañ en ur ser evit treuzkas ar restroù",
+                    IDC_OPTIONS_TRANSFER_USEMULTIPLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,48,209,10
+    LTEXT           "Mar bukenn un treuzkas a zo amañ dija e c'hellit spisaat un oberiadenn dre-ziouer :",
+                    IDC_STATIC,7,97,263,8
+    CONTROL         "&Goulenn",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,108,49,10
+    CONTROL         "&Flastrañ",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,119,40,10
+    CONTROL         "Flastrañ mard eo &freskoc'h",
+                    IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,129,128,10
+    CONTROL         "&Kenderc'hel",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO4,
+                    "Button",BS_AUTORADIOBUTTON,7,141,49,10
+    CONTROL         "Ad&envel",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,7,152,50,10
+    CONTROL         "&War-lerc'h",IDC_OPTIONS_TRANSFER_FILEEXISTS_RADEIO6,
+                    "Button",BS_AUTORADIOBUTTON,7,163,72,10
+    CONTROL         "Diskouez pep adweladenn restroù war an dafariadoù &VMS",
+                    IDC_OPTIONS_TRANSFER_VMSALLREVISIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,185,221,10
+END
+
+IDD_VERIFY_CERT_DLG DIALOG  0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Degemer an testeni ?"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Kaser",IDC_STATIC,35,7,308,66
+    LTEXT           "Aozadur :",IDC_STATIC,41,17,44,8
+    GROUPBOX        "Gwriegezh",IDC_STATIC,35,151,308,34
+    PUSHBUTTON      "Degemer",IDOK,190,253,50,14
+    PUSHBUTTON      "Nac'hat",IDCANCEL,110,253,50,14
+    CONTROL         "Kaout fiziañs d'an testeni-mañ bepred",
+                    IDC_VERIFY_CERT_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,35,239,150,10
+    LTEXT           "<text>",IDC_VERIFY_CERT_SUMMARY,97,204,237,17
+    LTEXT           "Berradenn :",IDC_STATIC,35,204,43,8
+    LTEXT           "Ha fellout a ra deoc'h kaout fiziañs d'an testeni-mañ ?",
+                    IDC_STATIC,35,225,181,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_ISSUER_ORGANIZATION,97,
+                    17,88,8
+    LTEXT           "Anv boutin :",IDC_STATIC,41,28,49,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_ISSUER_COMMONNAME,97,28,
+                    88,8
+    LTEXT           "Postel :",IDC_STATIC,190,28,28,8
+    LTEXT           "Unvez",IDC_STATIC,190,17,26,8
+    LTEXT           "Common Name:",IDC_STATIC,41,28,51,8
+    LTEXT           "Bro :",IDC_STATIC,41,39,20,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_ISSUER_COUNTRY,97,39,88,8
+    LTEXT           "Stad / Proviñs :",IDC_STATIC,41,50,53,8
+    LTEXT           "Kêr :",IDC_STATIC,190,39,18,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_ISSUER_TOWN,216,39,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_ISSUER_STATEPROVINCE,
+                    97,50,237,8
+    LTEXT           "All :",IDC_STATIC,41,61,22,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_ISSUER_OTHER,97,61,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_ISSUER_MAIL,216,28,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_ISSUER_UNIT,216,17,118,8
+    GROUPBOX        "Danvez",IDC_STATIC,35,79,308,66
+    LTEXT           "Aozadur:",IDC_STATIC,41,89,42,8
+    LTEXT           "<organisation>",IDC_VERIFY_CERT_SUBJECT_ORGANIZATION,97,
+                    89,88,8
+    LTEXT           "Anv boutin :",IDC_STATIC,41,100,49,8
+    LTEXT           "<common name>",IDC_VERIFY_CERT_SUBJECT_COMMONNAME,97,
+                    100,88,8
+    LTEXT           "Postel :",IDC_STATIC,190,100,28,8
+    LTEXT           "Unvez",IDC_STATIC,190,89,26,8
+    LTEXT           "Common Name:",IDC_STATIC,41,100,51,8
+    LTEXT           "Bro :",IDC_STATIC,41,111,20,8
+    LTEXT           "<country>",IDC_VERIFY_CERT_SUBJECT_COUNTRY,97,111,88,8
+    LTEXT           "Stad / Proviñs :",IDC_STATIC,41,122,53,8
+    LTEXT           "Kêr :",IDC_STATIC,190,111,18,8
+    LTEXT           "<town>",IDC_VERIFY_CERT_SUBJECT_TOWN,216,111,118,8
+    LTEXT           "<state province>",IDC_VERIFY_CERT_SUBJECT_STATEPROVINCE,
+                    97,122,237,8
+    LTEXT           "All :",IDC_STATIC,41,133,22,8
+    LTEXT           "<other>",IDC_VERIFY_CERT_SUBJECT_OTHER,97,133,237,8
+    LTEXT           "<mail>",IDC_VERIFY_CERT_SUBJECT_MAIL,216,100,118,8
+    LTEXT           "<unit>",IDC_VERIFY_CERT_SUBJECT_UNIT,216,89,118,8
+    LTEXT           "Adalek :",IDC_STATIC,41,161,29,8
+    LTEXT           "Betek :",IDC_STATIC,41,172,35,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDFROM,97,161,237,8
+    LTEXT           "<date/time>",IDC_VERIFY_CERT_VALIDUNTIL,97,172,237,8
+    ICON            "",IDC_VERIFY_CERT_ICON,7,7,20,20
+    LTEXT           "Louc'h (SHA1) :",IDC_STATIC,35,188,61,8
+    LTEXT           "<certificate hash>",IDC_VERIFY_CERT_HASH,100,188,243,8
+END
+
+IDD_SERVER_CHANGEPASS DIALOG  0, 0, 186, 146
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Kemmañ ar ger-tremen war an dafariad-mañ"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Amañ e c'hellit a rit kemmañ ar ger-tremen evit ar c'hont-mañ war an dafariad-mañ. N'eo ket skoret an oberiadenn-mañ gant an holl zafariadoù.",
+                    IDC_STATIC,7,7,172,26
+    LTEXT           "Ger-tremen &kozh :",IDC_STATIC,7,71,71,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_OLD,86,68,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Ger-tremen nevez :",IDC_STATIC,7,90,78,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW,86,87,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Kadarnaat an dibab :",IDC_STATIC,7,110,64,8
+    EDITTEXT        IDC_SERVER_CHANGEPASS_NEW2,86,106,93,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&Mat eo",IDOK,35,125,50,14
+    PUSHBUTTON      "&Nullañ",IDCANCEL,99,125,50,14
+    LTEXT           "Roit ar ger-tremen kozh da gentañ evit kadarnaat ho peus droad da cheñch anezhañ ha roit ar ger-tremen nevez div wech war-lerc'h (evit kadarnaat).",
+                    IDC_STATIC,7,33,172,32
+END
+
+IDD_ABOUTBOX DIALOG  0, 0, 235, 82
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "A-zivout FileZilla"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            20,IDC_FZICON,11,17,20,20
+    LTEXT           "<version>",IDC_VERSION,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Pep gwir miret strizh (C) 2001-2004",IDC_STATIC,40,25,
+                    119,8
+    DEFPUSHBUTTON   "&Mat eo",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "Savet gant :",IDC_STATIC,41,40,49,8
+    LTEXT           "http://filezilla.sourceforge.net/",IDC_HOMEPAGE,111,54,
+                    105,8
+    LTEXT           "Tim Kosse",IDC_MAIL,111,39,34,8
+    LTEXT           "Pajenn ar raktres :",IDC_STATIC,42,54,65,8
+    LTEXT           "Troet gant :",IDC_TRANSLATEDBY,41,68,39,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "KAD-Korvigelloù an Drouizig (drouizig@drouizig.org)",
+                    IDC_MAIL2,111,67,117,8,NOT WS_VISIBLE
+    CONTROL         "",IDC_DONATE,"Static",SS_BITMAP,182,28,15,13
+END
+
+IDR_MAINFRAME DIALOG  0, 0, 447, 16
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Chomlec'h :",IDC_STATIC,1,4,38,8
+    EDITTEXT        IDC_HOST,46,2,55,12,ES_AUTOHSCROLL
+    LTEXT           "Implijour :",IDC_STATIC,105,4,30,8
+    EDITTEXT        IDC_USER,143,2,58,12,ES_AUTOHSCROLL
+    LTEXT           "Ger-tremen :",IDC_STATIC,206,4,48,8
+    EDITTEXT        IDC_PASS,258,2,41,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Porzh :",IDC_STATIC,304,4,23,8
+    EDITTEXT        IDC_PORT,331,2,32,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Kennaskañ &prim",IDOK,369,1,76,14,BS_NOTIFY
+END
+
+IDD_FILEEXISTS DIALOG  0, 0, 259, 124
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ur restr a zo aze dija"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "",IDC_FILEEXISTS_FILE1,7,16,137,8
+    ICON            "",IDC_FILEEXISTS_ICON1,21,29,20,20
+    LTEXT           "%d eizh-bit",IDC_FILEEXISTS_SIZE1,50,28,89,8
+    LTEXT           "",IDC_FILEEXISTS_DATE1,50,40,100,8
+    LTEXT           "",IDC_FILEEXISTS_FILE2,7,64,138,8
+    ICON            "",IDC_FILEEXISTS_ICON2,20,77,20,20
+    LTEXT           "%d eizh-bit",IDC_FILEEXISTS_SIZE2,50,76,88,8
+    LTEXT           "",IDC_FILEEXISTS_DATE2,50,88,100,8
+    GROUPBOX        "Diuzit un oberiadenn :",IDC_STATIC,150,7,102,70
+    CONTROL         "&Flastrañ",IDC_FILEEXISTS_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,156,17,40,10
+    CONTROL         "Flastrañ mard eo &freskoc'h",IDC_FILEEXISTS_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,156,28,96,10
+    CONTROL         "&Kenderc'hel",IDC_FILEEXISTS_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,156,38,49,10
+    CONTROL         "Ad&envel",IDC_FILEEXISTS_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,156,49,50,10
+    CONTROL         "&War-lerc'h",IDC_FILEEXISTS_SKIP,"Button",
+                    BS_AUTORADIOBUTTON,156,62,62,10
+    CONTROL         "Atav ober an oberiadenn-mañ p'emañ ur restr aze.",
+                    IDC_FILEEXISTS_ALWAYS,"Button",BS_AUTOCHECKBOX | 
+                    BS_VCENTER | BS_MULTILINE | WS_GROUP | WS_TABSTOP,168,83,
+                    84,30
+    DEFPUSHBUTTON   "Mat eo",IDOK,105,103,50,14
+    LTEXT           "Ha fellout a ra deoc'h lakaat ar restr",IDC_STATIC,7,7,
+                    134,8
+    LTEXT           "e-lec'h ar restr a heul ?",IDC_STATIC,7,55,70,8
+END
+
+IDD_OPTIONS_FIREWALL DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Mod &gouzañvat",IDC_OPTIONS_FIREWALL_PASV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,103,82,10
+    LTEXT           "Ma c'hellit bezañ kennasket ouzh an dafariadoù FTP met ne deu ket mat treuzkas ar restroù, e tlefe deoc'h gweredekaat ar mod gouzañvat.",
+                    IDC_STATIC,7,82,272,17
+    LTEXT           "Implijout a ra FileZilla dre-ziouer n'eus forzh peseurt porzh lec'hel a vez kavet gantañ evit ober ar c'hennaskañ hag an treuzkasoù. Ma fell deoc'h e vefe implijet gant FileZilla nemet ur skeuliadig porzhioù, lakait ar skeuliadig-mañ er maeziennomù a heul.",
+                    IDC_STATIC,7,16,272,24
+    CONTROL         "&Harzañ ar porzhioù lec'hel implijet gant FileZilla",
+                    IDC_OPTIONS_FIREWALL_LIMITPORTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,147,10
+    LTEXT           "Ar porzh &bihanañ a vez kavet :",IDC_STATIC,19,45,81,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGELOW,118,42,40,14,
+                    ES_AUTOHSCROLL
+    LTEXT           "Ar &porzh brasañ a vez kavet :",IDC_STATIC,19,62,86,8
+    EDITTEXT        IDC_OPTIONS_FIREWALL_RANGEHIGH,118,59,40,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "&Ober gant ar chomlec'h IP-mañ evit an treuzkasoù ha n'int ket gouzañvat :",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,259,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP,19,138,60,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "&Ober gant ar chomlec'h IP-mañ evit an treuzkasoù ha n'int ket gouzañvat e IPv6 :",
+                    IDC_OPTIONS_FIREWALL_USETRANSFERIP_IPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,158,272,10
+    EDITTEXT        IDC_OPTIONS_FIREWALL_TRANSFERIP_IPV6,19,171,60,14,
+                    ES_AUTOHSCROLL
+END
+
+IDD_CONNECTION2 DIALOGEX 0, 0, 286, 212
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Perzhioù enep-&digennaskañ",IDC_STATIC,7,7,270,66
+    CONTROL         "&Gweredekaat ar reizhiad enep-digennaskañ :",IDC_CHECK1,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,19,158,10
+    LTEXT           "Chom kennasket en ur gas arc'hwelioù evel ""PWD"", ""REST 0"", ""TYPE A"", ""TYPE I"" dindan badennoù diforzhek etre",
+                    IDC_STATIC,25,31,239,17
+    EDITTEXT        IDC_INTERVALLOW,28,51,24,14,ES_AUTOHSCROLL
+    LTEXT           "ha",IDC_STATIC,59,53,8,8
+    EDITTEXT        IDC_INTERVALHIGH,73,51,23,14,ES_AUTOHSCROLL
+    LTEXT           "eilenn.",IDC_STATIC,101,54,34,8
+    GROUPBOX        "&Amzer disoberiantiz",IDC_STATIC,7,73,270,40
+    LTEXT           "Mard ez eus tra ebet da vezañ treuzkaset e-pad",
+                    IDC_STATIC,14,86,77,8
+    EDITTEXT        IDC_TIMEOUT,97,83,26,14,ES_AUTOHSCROLL
+    LTEXT           "eilenn, gweredekaat",IDC_STATIC,127,86,70,8
+    LTEXT           "emañ disoberiant ar c'hennaskañ hag en em zigennaskañ war-lerc'h.",
+                    IDC_STATIC,14,96,256,8
+    GROUPBOX        "Perzhioù ad&lañsañ",IDC_STATIC,7,115,270,44
+    LTEXT           "Mard eo digennasket an dafariad e-pad an treuzkas, lakaat FileZilla da c'hortoz",
+                    IDC_STATIC,13,128,247,8
+    EDITTEXT        IDC_DELAY,13,139,17,14,ES_AUTOHSCROLL
+    LTEXT           "eilenn hag eseañ en-dro betek",IDC_STATIC,38,142,101,8
+    EDITTEXT        IDC_NUMRETRY,139,139,20,14,ES_AUTOHSCROLL
+    LTEXT           "gwech.",IDC_STATIC,163,142,52,8
+    CONTROL         "Gweredekaat ar skor IPv6 (dindans Windows XP / 2003 Server pe freskoc'h)",
+                    IDC_OPTIONS_CONNECTION2_ENABLEIPV6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,163,272,10
+    LTEXT           "&Default password for anonymous logins:",IDC_STATIC,7,
+                    180,130,8
+    EDITTEXT        IDC_ANONPWD,140,178,117,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERSOMETHING DIALOG  0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Titl"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_EDIT1,7,28,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&Mat eo",IDOK,36,47,50,14
+    PUSHBUTTON      "&Nullañ",IDCANCEL,99,47,50,14
+    LTEXT           "<text>",IDC_TEXT,7,7,172,17
+END
+
+IDD_OPTIONS_LANGUAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Dibabit yezh etrefas FileZilla :",IDC_STATIC,7,7,117,8
+    LISTBOX         IDC_LANGUAGELIST,7,21,154,153,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_MISC DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Teuliad dre-ziouer",IDC_STATIC,7,7,272,55
+    CONTROL         "&Derc'hel soñj eus an teuliad diwezhañ implijet",
+                    IDC_SELECTDEFAULTFOLDERTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,18,184,10
+    CONTROL         "Atav &ober gant an teuliad-mañ evel teuliad dre-ziouer :",
+                    IDC_SELECTDEFAULTFOLDERTYPE2,"Button",BS_AUTORADIOBUTTON,
+                    13,29,185,10
+    EDITTEXT        IDC_DEFAULTFOLDER,24,41,160,14,ES_AUTOHSCROLL
+    CONTROL         "&Digeriñ an Ardoer loadoù p'eo bet loc'het FileZilla",
+                    IDC_SITEMANAGERONSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,76,258,10
+    CONTROL         "Rummañ an teuliadoù en Ardoer loadoù da gentañ",
+                    IDC_SITEMANAGERSORTFOLDERSFIRST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,89,208,10
+    CONTROL         "Chom &hep astennañ an teuliadoù, dre-ziouer",
+                    IDC_SITEMANAGEREXPANDFOLDERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,103,185,10
+    GROUPBOX        "Dibaboù an Ardoer loadoù",IDC_STATIC,7,66,272,50
+END
+
+IDD_CONNECTION4 DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Dibabit rizh ar proksi :",IDC_STATIC,7,7,113,8
+    CONTROL         "Kennaskañ &eeun (proksi ebet)",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,16,120,10
+    CONTROL         "Proksi SOCKS&4",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,
+                    7,27,63,10
+    CONTROL         "Proksi SOCKS4&A",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
+                    7,38,68,10
+    CONTROL         "Proksi SOCKS&5",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    7,49,63,10
+    CONTROL         "Proksi &HTTP 1.1",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,7,60,67,10
+    GROUPBOX        "Munudoù evit ar proksi",IDC_STATIC,7,74,272,106
+    LTEXT           "&Ostiz :",IDC_STATIC,14,88,20,8
+    EDITTEXT        IDC_PROXYHOST,64,85,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Porzh :",IDC_STATIC,14,106,18,8
+    EDITTEXT        IDC_PROXYPORT,64,103,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Implijour :",IDC_STATIC,14,124,36,8
+    EDITTEXT        IDC_PROXYUSER,64,121,178,14,ES_AUTOHSCROLL
+    LTEXT           "&Ger-tremen :",IDC_STATIC,14,142,48,8
+    EDITTEXT        IDC_PROXYPASS,64,139,178,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Ober &gant Implijour / Ger-tremen (nemet evit proksioù SOCKS5 ha HTTP1.1)",
+                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,158,
+                    258,10
+END
+
+IDD_CHMOD DIALOG  0, 0, 199, 194
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Kemmañ doareennoù ar restr"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Text",IDC_TEXT,7,7,185,19
+    GROUPBOX        "Aotregezhioù ar perc'henn",IDC_STATIC,7,27,185,25
+    CONTROL         "&Lenn",IDC_OWNERREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,38,40,10
+    CONTROL         "Skriv&añ",IDC_OWNERWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,38,40,10
+    CONTROL         "&Erounit",IDC_OWNEREXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,38,47,10
+    GROUPBOX        "Aotregezhioù ar strollad",IDC_STATIC,7,58,185,25
+    CONTROL         "Le&nn",IDC_GROUPREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,69,40,10
+    CONTROL         "Skr&ivañ",IDC_GROUPWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,69,40,10
+    CONTROL         "E&rounit",IDC_GROUPEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,69,47,10
+    GROUPBOX        "Aotregezhioù publik",IDC_STATIC,7,89,185,25
+    CONTROL         "Len&n",IDC_PUBLICREAD,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,19,100,40,10
+    CONTROL         "Skri&vañ",IDC_PUBLICWRITE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,78,100,40,10
+    CONTROL         "Erou&nit",IDC_PUBLICEXECUTE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,137,100,47,10
+    LTEXT           "Diwallit, ne vez ket degemeret mat an arc'hwel-mañ gant lod a zafariadoù. Implijet e vez an arc'hwel-mañ gant dafariadoù UNIX ha GNU/Linux hepken.",
+                    IDC_STATIC,7,144,179,24
+    DEFPUSHBUTTON   "&Mat eo",IDOK,31,173,50,14
+    PUSHBUTTON      "&Nullañ",IDCANCEL,118,173,50,14
+    LTEXT           "Gwerzhiad neverel :",IDC_STATIC,7,126,64,8
+    EDITTEXT        IDC_NUMERIC,70,123,40,14,ES_AUTOHSCROLL
+    LTEXT           "(x = doareenn disheñvel evit an holl restroù diuzet)",
+                    IDC_STATIC,114,118,78,26
+END
+
+IDD_TRANSFERASDLG DIALOG  0, 0, 208, 106
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Treuzkas dindan..."
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Roit perzhioù ar c'hont implijet evit treuzkas ar restroù ha teuliadoù diuzet ganeoc'h.",
+                    IDC_STATIC,7,7,194,20
+    LTEXT           "&Implijour :",IDC_STATIC,57,32,36,8
+    EDITTEXT        IDC_USER,95,28,56,14,ES_AUTOHSCROLL
+    LTEXT           "Ger-&tremen :",IDC_STATIC,45,53,48,8
+    EDITTEXT        IDC_PASS,95,50,56,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "&Treuzkas &diouzhtu",IDC_TRANSFERNOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,75,70,85,10
+    DEFPUSHBUTTON   "&Mat eo",IDOK,46,85,50,14
+    PUSHBUTTON      "&Nullañ",IDCANCEL,112,85,50,14
+END
+
+IDD_OPTIONS_TYPEPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Rizh an treuzkas dre-ziouer",IDC_STATIC,7,7,272,47
+    CONTROL         "&Dinoiñ emgefre",IDC_TYPEMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,16,20,63,10
+    CONTROL         "A&SCII",IDC_TYPEMODE2,"Button",BS_AUTORADIOBUTTON,16,30,
+                    34,10
+    CONTROL         "&Daouek",IDC_TYPEMODE3,"Button",BS_AUTORADIOBUTTON,16,
+                    40,37,10
+    LTEXT           "Dleout a rafec'h leuskel ar perzh-mañ da ""Dinoiñ emgefre"". Dibab a raio FileZilla ar rizh mat evit an treuzkas diazezet war astenn ar restr. Spisaet e vo ar rizh-mañ pep gwech e vo lañset FileZilla.",
+                    IDC_STATIC,87,16,181,35
+    GROUPBOX        "Restroù ASCII",IDC_STATIC,7,61,272,140,WS_GROUP
+    LTEXT           "M'ho peus dibabet an dinoiñ emgefre e impijo FileZilla an treuzkas ASCII evit ar restroù da heul :",
+                    IDC_STATIC,14,76,256,16
+    LISTBOX         IDC_TYPELIST,13,98,87,95,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TYPENAME,112,98,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Ouzhpennañ",IDC_TYPEADD,111,117,50,14
+    PUSHBUTTON      "&Dilemel",IDC_TYPEREMOVE,111,135,50,14
+    LTEXT           "Ma lakait astennoù restroù direizh e c'hello bezañ lovret ar restroù-mañ e-pad an treuzkas.",
+                    IDC_STATIC,167,98,104,97
+END
+
+IDD_SITEMANAGER DIALOGEX 0, 0, 350, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Ardoer loadoù"
+MENU IDR_SITEMANAGER
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "Tree1",IDC_SITEMANAGERTREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,4,160,204
+    GROUPBOX        "Munudoù al load",IDC_STATIC,174,0,169,244
+    LTEXT           "&Ostiz :",IDC_STATIC,180,11,20,8
+    EDITTEXT        IDC_HOST,180,20,127,14,ES_AUTOHSCROLL
+    LTEXT           "&Porzh :",IDC_STATIC,312,11,24,8
+    EDITTEXT        IDC_PORT,312,20,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Rizh an &dafariad :",IDC_STATIC,180,38,56,8
+    COMBOBOX        IDC_SERVERTYPE,180,48,157,49,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    GROUPBOX        "Rizh an dilesaat :",IDC_STATIC,180,66,157,38
+    CONTROL         "&Disanv",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,189,77,45,10
+    CONTROL         "R&eizh",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,236,77,
+                    38,10
+    CONTROL         "Account",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,289,78,
+                    42,10
+    CONTROL         "Tremen a-gostez d'ar proksi/harz-tan",IDC_FWBYPASS,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,184,90,
+                    150,10
+    LTEXT           "&Implijour :",IDC_STATIC,180,107,36,8
+    EDITTEXT        IDC_USER,180,117,103,14,ES_AUTOHSCROLL
+    LTEXT           "Account:",IDC_STATIC,287,107,30,8
+    EDITTEXT        IDC_USER2,287,117,49,14,ES_AUTOHSCROLL
+    LTEXT           "&Ger-tremen :",IDC_STATIC,180,134,48,8
+    EDITTEXT        IDC_PASS,180,143,157,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Chom &hep gwarediñ ar ger-tremen. ",IDC_PASSDONTSAVE,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,180,
+                    161,129,10
+    LTEXT           "Evezhiadennoù :",IDC_STATIC,180,177,49,8
+    EDITTEXT        IDC_SITEMANAGER_COMMENTS,180,188,157,28,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    CONTROL         "Load &dre-ziouer",IDC_DEFAULT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,180,228,62,10
+    PUSHBUTTON      "&Load &nevez",IDC_NEW,7,212,50,14,WS_GROUP
+    PUSHBUTTON      "Sev&el teuliad",IDC_SITEMANAGER_NEWFOLDER,62,212,50,14,
+                    WS_GROUP
+    PUSHBUTTON      "Dil&emel",IDC_DELETE,117,212,50,14
+    PUSHBUTTON      "Kop&iañ",IDC_SITEMANAGER_COPY,7,230,50,14,WS_GROUP
+    PUSHBUTTON      "Aden&vel",IDC_SITEMANAGER_RENAME,62,230,50,14,WS_GROUP
+    PUSHBUTTON      "Kem&pleshoc'h",IDC_SITEMANAGER_ADVANCED,117,230,50,14,
+                    WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,248,
+                    336,1
+    PUSHBUTTON      "&Kennaskañ",IDOK,79,253,50,14
+    PUSHBUTTON      "&Nullañ",IDCANCEL,150,253,50,14
+    PUSHBUTTON      "Gwarediñ ha &Kuitaat",IDC_EXIT,221,253,71,14
+END
+
+IDD_OPTIONS_INTERFACE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Perzhioù loc'hañ",IDC_STATIC,7,7,272,113
+    LTEXT           "P'eo bet loc'het FileZilla, pe elfennoù eus an etrefas implijour (GUI) a vo hewelus ?",
+                    IDC_STATIC,14,19,256,20
+    CONTROL         "Atav &ober gant ar perzhioù a heul.",IDC_VIEWMODE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,38,152,10
+    CONTROL         "Derc'hel &soñj eus ar perzhioù diwezhañ implijet.",
+                    IDC_VIEWMODE2,"Button",BS_AUTORADIOBUTTON,15,49,184,10
+    LTEXT           "Perzhioù red :",IDC_STATIC,16,63,69,8
+    CTEXT           "Gwereañ perzhioù an etrefas-mañ :",IDC_STATIC,7,79,49,
+                    28,NOT WS_GROUP
+    CONTROL         "Treug &lec'hel",IDC_SHOWLOCALTREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,62,73,81,10
+    CONTROL         "Barrenn st&ad",IDC_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,187,77,62,10
+    CONTROL         "&Kerzh-levr kemennadoù",IDC_SHOWMESSAGELOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,62,84,94,10
+    CONTROL         "Barrenn &ostilhoù",IDC_SHOWTOOLBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,187,87,80,10
+    CONTROL         "&Lostennad an treuzkasadennoù",IDC_SHOWTRANSFERQUEUE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,62,94,118,10
+    CONTROL         "Barrenn gennaskañ &brim",IDC_SHOWQUICKCONNECTBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,187,97,92,10
+    CONTROL         "Treug &arbell",IDC_SHOWREMOTETREEVIEW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,62,105,87,10
+    GROUPBOX        "A-bep seurt",IDC_STATIC,7,124,272,77
+    CONTROL         "D&iskouez titl ar gwelioù",IDC_VIEWLABELS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,137,101,10
+    CONTROL         "Derc'hel soñj eus ment ha lec'hiadur ar &prenestr FileZilla",
+                    IDC_REMEMBERWINDOWPOS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,148,213,10
+    CONTROL         "Bihan&aat er varrenn boelladoù (diouer)",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,162,150,10
+    CONTROL         "Bihanaat evel un arlun er varrenn boelladoù kentoc'h eget un afell",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY2,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,172,236,10
+    CONTROL         "Diskouez an afell ""bihanaat evel arlun""",
+                    IDC_OPTIONS_INTERFACE_MINIMIZETOTRAY3,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,13,182,155,10
+END
+
+IDD_OPTIONS_GSSPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Gweredekaat ar skor &Kerberos GSS",IDC_USEGSS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,153,10
+    LISTBOX         IDC_SERVERLIST,15,64,108,129,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GSSSERVERNAME,129,64,49,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Ouzhpennañ",IDC_SERVERADD,128,83,50,14
+    PUSHBUTTON      "&Dilemel",IDC_SERVERREMOVE,128,101,50,14
+    LTEXT           "Kerberos evit Windows (KfW) a zo rekis. Ma n'eo ket staliet n'ez aio ket en-dro an arc'hwel-mañ. Mard eo staliet e raio FileZilla gant an dilesaat hag an enodiñ GSS evit an dafariadoù er rollad da heul.",
+                    IDC_STATIC,7,21,272,26
+    GROUPBOX        "Dafariadoù a zo gweredekaet GSS ganto",IDC_STATIC,7,52,
+                    272,149
+    LTEXT           "Evit pep dafariad a vez kavet e chomlec'h er rollad, e vo implijet GSS. Trugarez da lakaat dafariadoù ez a mat gant GSS.",
+                    IDC_STATIC,184,66,88,51
+    LTEXT           "Un tiked Kerberos stumm 5 a zo rekis a-raok e vo lañset GSS.",
+                    IDC_STATIC,184,118,88,28
+END
+
+IDD_OPTIONS_DEBUG DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Implijet e vez ar perzhioù-mañ nemet evit an dilastezañ. N'eo ket ret deoc'h o c'hemmañ.\nM'ho peus alato kudennoù gant FileZilla e c'hellit gweredekaat an arc'hwel lastezañ-mañ. Gallout a ra ar stlennoù ouzhpenn-mañ reiñ un taol sikour deomp.",
+                    IDC_STATIC,7,7,272,35
+    CONTROL         "Tresañ kemennadoù ar c'heflusker ftp",
+                    IDC_DEBUG_ENGINETRACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,43,138,10
+    CONTROL         "Diskouez roll eeun ar c'havlec'hioù",
+                    IDC_DEBUG_SHOWRAWLISTING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,56,129,10
+    CONTROL         "&Gweredekaat al lañser dilastezañ",IDC_DEBUG_DEBUGMENU,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,69,126,10
+END
+
+IDD_OPTIONS_FTPPROXY DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "&Ostiz ar proksi",IDC_STATIC,7,7,66,8
+    EDITTEXT        IDC_EDIT5,7,17,104,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Porzh",IDC_STATIC,113,7,40,8
+    EDITTEXT        IDC_EDIT6,113,17,24,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "&Implijour",IDC_STATIC,7,36,32,8
+    EDITTEXT        IDC_EDIT7,7,47,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Ger-&tremen",IDC_STATIC,53,36,44,8
+    EDITTEXT        IDC_EDIT8,53,47,40,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "&Rizh ar proksi",IDC_STATIC,7,71,272,104
+    CONTROL         "Proksi ebet",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,17,81,37,10
+    CONTROL         "SITE hostname",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,
+                    17,91,65,10
+    CONTROL         "USER goude logon",IDC_RADIO5,"Button",
+                    BS_AUTORADIOBUTTON,17,101,71,10
+    CONTROL         "Proxy OPEN",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,17,
+                    111,55,10
+    CONTROL         "Treuzwelus",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,17,
+                    121,54,10
+    CONTROL         "USER RemoteID@Remotehost",IDC_RADIO8,"Button",
+                    BS_AUTORADIOBUTTON,17,131,115,10
+    CONTROL         "USER FireID@Remotehost",IDC_RADIO9,"Button",
+                    BS_AUTORADIOBUTTON,17,141,102,10
+    CONTROL         "USER RemoteID@RemoteHost FireID",IDC_RADIO10,"Button",
+                    BS_AUTORADIOBUTTON,17,151,137,10
+    CONTROL         "USER RemoteID@FireID@RemoteHost",IDC_RADIO11,"Button",
+                    BS_AUTORADIOBUTTON,17,162,143,10
+END
+
+IDD_OPTIONS_LOCALVIEW DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Gallout a rit kemmañ neuz ar rollad restroù lec'hel, war ar bajennad-mañ.",
+                    IDC_STATIC,7,7,244,8
+    CONTROL         "Atav &ober gant ar perzhioù a heul :",
+                    IDC_OPTIONS_LOCALVIEW_ALWAYS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,20,147,10
+    LTEXT           "Gwereañ dre-ziouer :",IDC_STATIC,19,35,69,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_STYLE,95,33,72,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Bannoù hewelus evit ar gwereañ gant munudoù :",
+                    IDC_STATIC,19,49,133,8,NOT WS_GROUP
+    CONTROL         "Ment &restr",IDC_OPTIONS_LOCALVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,61,63,10
+    CONTROL         "R&izh restr",IDC_OPTIONS_LOCALVIEW_TYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,103,61,63,10
+    CONTROL         "Kemm &diwezhañ",IDC_OPTIONS_LOCALVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,175,61,82,10
+    CONTROL         "Derc'hel soñj eus ar perzhioù &diwezhañ implijet",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,89,164,10
+    LTEXT           "Evel-se e c'hellit kemmañ an neuz dre al lañser ""Gwereañ"".",
+                    IDC_STATIC,19,103,228,8
+    CONTROL         "Derc'hel soñj eus ledander ar &bannoù er gwereañ gant munudoù",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,115,239,10
+    LTEXT           "Men&trez ar mentoù restr :",IDC_STATIC,7,142,90,8
+    COMBOBOX        IDC_OPTIONS_LOCALVIEW_SIZEFORMAT,101,140,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Diskouez keladoù diwar ar restroù (diuzet) er varrenn stad",
+                    IDC_OPTIONS_LOCALVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,75,243,10
+    CONTROL         "Derc'hel soñj eus urzh ar rummañ er wel &gant munudoù",
+                    IDC_OPTIONS_LOCALVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,126,216,10
+    LTEXT           "Petra a ra an daou-&glikañ :",IDC_STATIC,7,175,87,8
+    CONTROL         "Treuzkas",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,95,
+                    175,45,10
+    CONTROL         "Digeriñ",IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK2,
+                    "Button",BS_AUTORADIOBUTTON,151,175,35,10
+    CONTROL         "Ouzhpennañ ur restr",
+                    IDC_OPTIONS_INTERFACE_LOCAL_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,193,174,86,10
+END
+
+IDD_OPTIONS_REMOTEVIEW DIALOG  0, 0, 286, 220
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Gallout a rit kemmañ neuz ar rollad restroù arbell, war ar bajennad-mañ.",
+                    IDC_STATIC,7,7,248,8
+    CONTROL         "Atav &ober gant ar perzhioù a heul :",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,19,147,10
+    LTEXT           "Gwereañ dre-ziouer :",IDC_STATIC,19,34,69,8,NOT 
+                    WS_GROUP
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_STYLE,93,32,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Bannoù hewelus evit ar gwereañ gant munudoù :",
+                    IDC_STATIC,19,48,133,8,NOT WS_GROUP
+    CONTROL         "Ment restr ",IDC_OPTIONS_REMOTEVIEW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,60,65,10
+    CONTROL         "Rizh restr",IDC_OPTIONS_REMOTEVIEW_FILETYPE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,99,61,40,10
+    CONTROL         "&Deiziad",IDC_OPTIONS_REMOTEVIEW_DATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,160,60,31,10
+    CONTROL         "&Eur",IDC_OPTIONS_REMOTEVIEW_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,28,73,35,10
+    CONTROL         "&Aotregezhioù",IDC_OPTIONS_REMOTEVIEW_PERMISSIONS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,99,73,53,10
+    CONTROL         "Perc'henn / &Strollad",
+                    IDC_OPTIONS_REMOTEVIEW_OWNERGROUP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,160,73,82,10
+    CONTROL         "&Diskouez keladoù diwar ar restroù (diuzet) er varrenn stad",
+                    IDC_OPTIONS_REMOTEVIEW_SHOWSTATUSBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,19,85,243,10
+    CONTROL         "Derc'hel soñj eus ar perzhioù &diwezhañ implijet",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBER,"Button",
+                    BS_AUTORADIOBUTTON,7,98,164,10
+    LTEXT           "Evel-se e c'hellit kemmañ an neuz dre al lañser ""Gwereañ"".",
+                    IDC_STATIC,19,110,228,8
+    CONTROL         "Derc'hel soñj eus ledander ar &bannoù er gwereañ gant munudoù",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNWIDTHS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,121,235,10
+    CONTROL         "Derc'hel soñj eus urzh ar rummañ er wel &gant munudoù",
+                    IDC_OPTIONS_REMOTEVIEW_REMEMBERCOLUMNSORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,132,213,10
+    LTEXT           "Men&trez ar mentoù restr :",IDC_STATIC,7,148,90,8
+    COMBOBOX        IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT,101,146,72,76,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Atav diskouez ar restroù &kuzh",
+                    IDC_OPTIONS_REMOTEVIEW_ALWAYSSHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,164,129,10
+    LTEXT           "Diwallit, n'eo ket skoret an arc'hwel-mañ gant an holl zafariadoù. Ne vo ket barrek FileZilla da reiñ deoc'h roll ar restroù kuzh war an dafariadoù-mañ ha pa'z eo bet gweredeaket an dibab-mañ.",
+                    IDC_STATIC,19,174,260,26
+    LTEXT           "Petra a ra an daou-&glikañ :",IDC_STATIC,7,203,86,8
+    CONTROL         "Treuzkas",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,95,
+                    203,43,10
+    CONTROL         "Digeriñ",IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK2,
+                    "Button",BS_AUTORADIOBUTTON,141,203,35,10
+    CONTROL         "Ouzhpennañ d'al lostennad",
+                    IDC_OPTIONS_INTERFACE_REMOTE_DOUBLECLICK3,"Button",
+                    BS_AUTORADIOBUTTON,181,203,98,10
+END
+
+IDD_OPTIONS_DIRCACHE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Gallout a rit kefluniañ war ar bajenn-mañ krubuilh ar c'havlec'hioù arbell",
+                    IDC_STATIC,7,7,242,8
+    CONTROL         "&Chom hep ober gant ar c'hrubuilh",
+                    IDC_OPTIONS_CACHE_USECACHE,"Button",BS_AUTORADIOBUTTON,7,
+                    18,153,10
+    CONTROL         "&Ober gant ar c'hrubuilh",IDC_OPTIONS_CACHE_USECACHE2,
+                    "Button",BS_AUTORADIOBUTTON,7,28,102,10
+    LTEXT           "Pad uhelañ e vo krubuilhet ur c'havlec'h",IDC_STATIC,7,
+                    44,194,8
+    LTEXT           "&eur,",IDC_STATIC,27,57,24,8
+    EDITTEXT        IDC_OPTIONS_CACHE_HOURS,7,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&minutenn,",IDC_STATIC,73,57,34,8
+    EDITTEXT        IDC_OPTIONS_CACHE_MINUTES,53,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "&eilenn",IDC_STATIC,129,57,32,8
+    EDITTEXT        IDC_OPTIONS_CACHE_SECONDS,109,54,18,14,ES_AUTOHSCROLL
+    LTEXT           "Bez'zo meur a rizh krubuilh kavlec'hioù hegerz.",
+                    IDC_STATIC,7,114,189,8,NOT WS_VISIBLE
+    CONTROL         "Goulloiñ ar c'hrubuilh en ur guitaat FileZilla",
+                    IDC_OPTIONS_CACHE_CACHETYPE,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,124,221,10
+    CONTROL         "Ober gant ur c'hrubuilh padel",
+                    IDC_OPTIONS_CACHE_CACHETYPE2,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,7,134,128,10
+END
+
+IDD_SAPREFS DIALOG  0, 0, 420, 260
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dibaboù FileZilla"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Tree1",IDC_PAGE_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,5,113,174
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,187,113,66
+    DEFPUSHBUTTON   "Mat eo",IDOK,12,193,97,14
+    PUSHBUTTON      "Nullañ",IDCANCEL,12,213,97,14
+    PUSHBUTTON      "Skoazell",IDC_PHELP,12,233,97,14
+    LTEXT           "",IDC_CAPTION_BAR,122,5,291,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_DLG_FRAME,"Static",SS_GRAYFRAME,121,19,292,234
+END
+
+IDD_OPTIONS_SPEEDLIMIT DIALOG  0, 0, 306, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Harzañ tizh ar pellgargañ",IDC_STATIC,5,5,294,95
+    CONTROL         "&Harz ebet",IDC_SPEEDLIMIT_DOWNLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,15,49,10
+    CONTROL         "&Tizh digemmus a zo",IDC_SPEEDLIMIT_DOWNLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,25,77,10
+    CONTROL         "&Ober gant reolennoù :",IDC_SPEEDLIMIT_DOWNLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,35,80,10
+    EDITTEXT        IDC_SPEEDLIMIT_DOWNLOAD_VALUE,105,24,55,14,
+                    ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Ke/e",IDC_STATIC,162,27,16,8
+    LISTBOX         IDC_SPEEDLIMIT_DOWNLOAD_RULES_LIST,24,46,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "&Ouzhpennañ",IDC_SPEEDLIMIT_DOWNLOAD_ADD,240,47,53,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Dilemel",IDC_SPEEDLIMIT_DOWNLOAD_REMOVE,240,60,53,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Uh&eloc'h",IDC_SPEEDLIMIT_DOWNLOAD_UP,240,73,52,10,
+                    WS_DISABLED
+    PUSHBUTTON      "I&zeloc'h",IDC_SPEEDLIMIT_DOWNLOAD_DOWN,240,86,52,10,
+                    WS_DISABLED
+    GROUPBOX        "Harzañ tizh ar pellgargañ",IDC_STATIC,5,105,294,95
+    CONTROL         "&Harz ebet",IDC_SPEEDLIMIT_UPLOAD_NOLIMIT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,12,115,49,10
+    CONTROL         "Harz &digemmus a zo",IDC_SPEEDLIMIT_UPLOAD_CONSTANT,
+                    "Button",BS_AUTORADIOBUTTON,12,125,77,10
+    CONTROL         "O&ber gant ar reolennoù :",IDC_SPEEDLIMIT_UPLOAD_RULES,
+                    "Button",BS_AUTORADIOBUTTON,12,135,93,10
+    EDITTEXT        IDC_SPEEDLIMIT_UPLOAD_VALUE,105,122,55,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "Ke/e",IDC_STATIC,163,125,16,8
+    LISTBOX         IDC_SPEEDLIMIT_UPLOAD_RULES_LIST,24,146,211,50,
+                    LBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "O&uzhpennañ",IDC_SPEEDLIMIT_UPLOAD_ADD,240,147,51,10,
+                    WS_DISABLED
+    PUSHBUTTON      "Dil&emel",IDC_SPEEDLIMIT_UPLOAD_REMOVE,240,160,51,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Uheloc'h",IDC_SPEEDLIMIT_UPLOAD_UP,240,173,51,10,
+                    WS_DISABLED
+    PUSHBUTTON      "&Izeloc'h",IDC_SPEEDLIMIT_UPLOAD_DOWN,240,186,51,10,
+                    WS_DISABLED
+END
+
+IDD_SPEEDLIMIT_RULE_DIALOG DIALOG  0, 0, 227, 140
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Reolenn harzañ"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Dezverk",IDC_STATIC,7,3,213,87
+    CONTROL         "&Deiziad:",IDC_DATE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,39,10
+    CONTROL         "DateTimePicker1",IDC_DATE_VALUE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_APPCANPARSE | DTS_LONGDATEFORMAT | 
+                    WS_TABSTOP,56,16,145,15
+    CONTROL         "&Eus :",IDC_FROM_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,39,29,10
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,56,37,49,15
+    CONTROL         "&Da :",IDC_TO_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,117,39,25,10
+    CONTROL         "DateTimePicker2",IDC_TO_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP | 0x8,145,37,55,15
+    CONTROL         "Di&lun",IDC_CHECK_DAY1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,57,33,10
+    CONTROL         "Di&meurzh",IDC_CHECK_DAY2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,57,42,10
+    CONTROL         "Dimerc'h&er",IDC_CHECK_DAY3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,57,54,10
+    CONTROL         "Dir&iaou",IDC_CHECK_DAY4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,165,57,45,10
+    CONTROL         "Di&gwener",IDC_CHECK_DAY5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,73,44,10
+    CONTROL         "Di&sadorn",IDC_CHECK_DAY6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,61,73,43,10
+    CONTROL         "Dis&ul",IDC_CHECK_DAY7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,107,73,48,10
+    LTEXT           "Tizh:",IDC_STATIC,7,99,26,8
+    EDITTEXT        IDC_SPEED,34,96,50,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Ke/e",IDC_STATIC,88,99,16,8
+    DEFPUSHBUTTON   "Mat eo",IDOK,110,119,50,14
+    PUSHBUTTON      "Nullañ",IDCANCEL,170,119,50,14
+END
+
+IDD_OPTIONS_SSHPAGE DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Imlijout a ra FileZilla ul lodenn eus PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/) evit ar c'hennaskañ SFTP.",
+                    IDC_STATIC,7,7,272,17
+    LTEXT           "A-benn ober ar c'hennaskañ SSH gant an dafariadoù SFTP e implij FileZilla dibaboù PuTTY dre-ziouer. Amañ e c'hellit cheñch ul lodenn eus an diababoù-mañ.",
+                    IDC_STATIC,7,23,272,19
+    LTEXT           "&Gwaskañ ar stlennadoù :",IDC_STATIC,7,45,99,8
+    CONTROL         "Diouer",IDC_OPTIONS_SSHPAGE_COMPRESSION1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,55,37,10
+    CONTROL         "Ya",IDC_OPTIONS_SSHPAGE_COMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,74,55,27,10
+    CONTROL         "Ket",IDC_OPTIONS_SSHPAGE_COMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,134,55,29,10
+    LTEXT           "Diuz ar protokol :",IDC_STATIC,7,68,76,8
+    LTEXT           "Ma n'ho peus kemmet ar perzhioù dre-ziouer e ra PuTTY gant ar protokol SSH2 evit kennaskañ ouzh an dafariadoù SSH.",
+                    IDC_STATIC,14,80,265,17
+    LTEXT           "Suroc'h eo e pep keñver ar protokol SSH1, koulskoude implij ar protokol SSH2 e-barzh PuTTY en deus kudennoù tizh. (Kit da http://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/sftp-slow.html evit lenn muioc'h a vunudoù)",
+                    IDC_STATIC,14,96,265,32
+    LTEXT           "M'en deus FileZilla kudennoù tizh gant an dafariadoù SFTP ha ma n'ho peus ezhomm d'ar surentez uhelañ SSH2, chomit gant implij ar protokol SSH1.",
+                    IDC_STATIC,14,128,265,17
+    CONTROL         "Diouer",IDC_OPTIONS_SSHPAGE_PROTOCOL1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,146,37,10
+    CONTROL         "Implijout SSH1",IDC_OPTIONS_SSHPAGE_PROTOCOL2,"Button",
+                    BS_AUTORADIOBUTTON,74,146,57,10
+    CONTROL         "Implijout SSH2",IDC_OPTIONS_SSHPAGE_PROTOCOL3,"Button",
+                    BS_AUTORADIOBUTTON,134,146,57,10
+    LTEXT           "Diwallit 'ta, n'eo ket skoret an traoù-mañ gant lod a zafariadoù.",
+                    IDC_STATIC,14,156,196,8
+END
+
+IDD_OPTIONS_PANELAYOUT DIALOG  0, 0, 286, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Hollek",IDC_STATIC,7,7,272,26
+    CONTROL         "Kempenn ar gwelioù arbell a gleiz d'ar gwelioù lec'hel",
+                    IDC_OPTIONS_PANELAYOUT_SWITCHREMOTE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,18,195,10
+    GROUPBOX        "Lec'hiadur an treugoù",IDC_STATIC,7,38,272,83
+    LTEXT           "Treug lec'hel :",IDC_STATIC,13,49,70,8
+    CONTROL         "Kempenn a-us da roll ar restroù",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,59,153,10
+    CONTROL         "Kempenn a gleiz da roll ar restroù",
+                    IDC_OPTIONS_PANELAYOUT_LOCALTREE2,"Button",
+                    BS_AUTORADIOBUTTON,14,70,164,10
+    LTEXT           "Treug arbell :",IDC_STATIC,14,85,76,8
+    CONTROL         "Kempenn a-us da roll ar restroù",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,95,153,10
+    CONTROL         "Kempenn a gleiz da roll ar restroù",
+                    IDC_OPTIONS_PANELAYOUT_REMOTETREE2,"Button",
+                    BS_AUTORADIOBUTTON,15,106,164,10
+    LTEXT           "Ret eo adloc'hañ FileZilla evit ma vez kemmet ar perzhioù-mañ.",
+                    IDC_STATIC,7,124,231,8
+END
+
+IDD_OPTIONS_LOGGING DIALOG  0, 0, 286, 208
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Nodrezh red :",IDC_STATIC,19,20,56,8
+    LTEXT           "Digemmus",IDC_OPTIONS_LOGGING_FONTDATA,79,20,169,8
+    PUSHBUTTON      "&Diuz an nodrezh...",IDC_OPTIONS_LOGGING_CHANGEFONT,19,
+                    32,85,14
+    CONTROL         "Gwarediñ kerzh-levr ar c'hemennadoù",
+                    IDC_OPTIONS_LOGGING_LOGTOFILE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,50,121,10
+    LTEXT           "Anv restr :",IDC_STATIC,19,84,50,8
+    EDITTEXT        IDC_OPTIONS_LOGGING_FILENAME,71,82,83,14,ES_AUTOHSCROLL
+    LTEXT           "P'eo bet gweredekaet e vez gwaredet pep kemennad eus ar c'herzh-levr e-barzh ar restr. Ret eo bezañ .rtf astenn restr ar c'herzh-levr",
+                    IDC_STATIC,19,62,260,17
+    CONTROL         "&Ober gant un nodrezh personelaet evit kerzh-levr ar c'hemennadoù",
+                    IDC_OPTIONS_LOGGING_USECUSTOMFONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,231,10
+    CONTROL         "&Lakaat un deiziad evit pep linenn eus ar c'herzh-levr",
+                    IDC_OPTIONS_LOGGING_TIMESTAMP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,98,212,10
+END
+
+IDD_OPTIONS_TRANSFER_COMPRESSION DIALOG  0, 0, 286, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "P'eo bet implijet astenn ""MODE Z"" ar protokol FTP eo posubl treuzkas restroù gwasket war an dafariad a skor anezhañ.",
+                    IDC_STATIC,7,7,272,18
+    CONTROL         "Chom hep imlijout gwaskañ",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,7,28,211,10
+    CONTROL         "Nemet gwaskañ ar rolladoù",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION2,"Button",
+                    BS_AUTORADIOBUTTON,7,40,246,10
+    CONTROL         "Gwaskañ ar stlennadoù evit pep treuzkas",
+                    IDC_OPTIONS_TRANSFER_COMPRESSION_USECOMPRESSION3,"Button",
+                    BS_AUTORADIOBUTTON,7,52,215,10
+    LTEXT           "Live gwaskañ, adalek 1 (gwan) betek 9 (gwelloc'h) :",
+                    IDC_STATIC,7,72,174,8
+    EDITTEXT        IDC_OPTIONS_TRANSFER_COMPRESSION_LEVEL,183,70,15,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Al live gwaskañ dre-ziouer a zo 8. Ur ""gwerzhiad emglev"" mat a-walc'h eo etre an taos gwaskañ tapet hag implij ar c'hewerier.",
+                    IDC_STATIC,7,84,272,18
+    LTEXT           "Evit gouzout hiroc'h a-zivout an hentenn gwaskañ, kit da lenn http://www.ietf.org/internet-drafts/draft-preston-ftpext-deflate-02.txt",
+                    IDC_STATIC,7,195,272,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SITEMANAGER_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        VERTGUIDE, 80
+        VERTGUIDE, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_OPTIONS_IDENT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_VIEWEDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_MANUALTRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 325
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+    END
+
+    IDD_OPTIONS_TRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_VERIFY_CERT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        VERTGUIDE, 35
+        VERTGUIDE, 41
+        VERTGUIDE, 97
+        VERTGUIDE, 185
+        VERTGUIDE, 190
+        VERTGUIDE, 216
+        VERTGUIDE, 334
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+        HORZGUIDE, 17
+        HORZGUIDE, 28
+        HORZGUIDE, 39
+        HORZGUIDE, 50
+        HORZGUIDE, 61
+        HORZGUIDE, 79
+        HORZGUIDE, 89
+        HORZGUIDE, 100
+        HORZGUIDE, 111
+        HORZGUIDE, 122
+        HORZGUIDE, 133
+        HORZGUIDE, 151
+        HORZGUIDE, 161
+        HORZGUIDE, 172
+        HORZGUIDE, 194
+        HORZGUIDE, 211
+    END
+
+    IDD_SERVER_CHANGEPASS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 139
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 75
+    END
+
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        RIGHTMARGIN, 424
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_FILEEXISTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 117
+    END
+
+    IDD_OPTIONS_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_CONNECTION2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_ENTERSOMETHING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 61
+    END
+
+    IDD_OPTIONS_LANGUAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_MISC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_CONNECTION4, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_CHMOD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 187
+    END
+
+    IDD_TRANSFERASDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 201
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_OPTIONS_TYPEPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SITEMANAGER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_OPTIONS_INTERFACE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_GSSPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_FTPPROXY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_LOCALVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_REMOTEVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 213
+    END
+
+    IDD_OPTIONS_DIRCACHE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_SAPREFS, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 418
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 253
+    END
+
+    IDD_SPEEDLIMIT_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_OPTIONS_SSHPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        VERTGUIDE, 74
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+        HORZGUIDE, 55
+        HORZGUIDE, 146
+    END
+
+    IDD_OPTIONS_PANELAYOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_OPTIONS_LOGGING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 201
+    END
+
+    IDD_OPTIONS_TRANSFER_COMPRESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 279
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 0x0200, 0x20\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""l.fra\\afxres.rc""          // Standardkomponenten\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_MANUALTRANSFER DLGINIT
+BEGIN
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 38, 0
+0x5446, 0x2050, 0x7573, 0x2072, 0x5353, 0x2f4c, 0x4c54, 0x2053, 0x6328, 
+0x6968, 0x6666, 0x6172, 0x6567, 0x6920, 0x706d, 0x696c, 0x6963, 0x6574, 
+0x0029, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 34, 0
+0x5446, 0x2050, 0x7573, 0x2072, 0x5353, 0x204c, 0x6328, 0x6968, 0x6666, 
+0x6172, 0x6567, 0x6520, 0x7078, 0x696c, 0x6963, 0x6574, 0x0029, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 14, 0
+0x4653, 0x5054, 0x7320, 0x7275, 0x5320, 0x4853, 0x0032, 
+    IDC_MANUALTRANSFER_SERVERTYPE, 0x403, 34, 0
+0x5446, 0x2050, 0x7573, 0x2072, 0x4c54, 0x2053, 0x6328, 0x6968, 0x6666, 
+0x6172, 0x6567, 0x6520, 0x7078, 0x696c, 0x6963, 0x6574, 0x0029, 
+    0
+END
+
+IDD_OPTIONS_LOCALVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 9, 0
+0xe944, 0x6174, 0x6c69, 0xe96c, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0065, 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 15, 0
+0x7247, 0x6e61, 0x6564, 0x2073, 0x6349, 0x6ef4, 0x7365, "\000" 
+    IDC_OPTIONS_LOCALVIEW_STYLE, 0x403, 15, 0
+0x6550, 0x6974, 0x6574, 0x2073, 0x6349, 0x6ef4, 0x7365, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 7, 0
+0x636f, 0x6574, 0x7374, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x6f4b, "\000" 
+    IDC_OPTIONS_LOCALVIEW_SIZEFORMAT, 0x403, 3, 0
+0x6f4d, "\000" 
+    0
+END
+
+IDD_OPTIONS_REMOTEVIEW DLGINIT
+BEGIN
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 9, 0
+0xe944, 0x6174, 0x6c69, 0xe96c, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 6, 0
+0x694c, 0x7473, 0x0065, 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 15, 0
+0x7247, 0x6e61, 0x6564, 0x2073, 0x6349, 0x6ef4, 0x7365, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_STYLE, 0x403, 15, 0
+0x6550, 0x6974, 0x6574, 0x2073, 0x6349, 0x6ef4, 0x7365, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 5, 0
+0x7541, 0x6f74, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 7, 0
+0x636f, 0x6574, 0x7374, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x6f4b, "\000" 
+    IDC_OPTIONS_REMOTEVIEW_SIZEFORMAT, 0x403, 3, 0
+0x6f4d, "\000" 
+    0
+END
+
+IDD_SITEMANAGER DLGINIT
+BEGIN
+    IDC_SERVERTYPE, 0x403, 4, 0
+0x5446, 0x0050, 
+    IDC_SERVERTYPE, 0x403, 40, 0
+0x5446, 0x2050, 0x7573, 0x2072, 0x5353, 0x2f4c, 0x4c54, 0x2053, 0x4328, 
+0x6968, 0x6666, 0x6572, 0x656d, 0x746e, 0x6920, 0x706d, 0x696c, 0x6963, 
+0x6574, 0x0029, 
+    IDC_SERVERTYPE, 0x403, 36, 0
+0x5446, 0x2050, 0x7573, 0x2072, 0x5353, 0x204c, 0x4328, 0x6968, 0x6666, 
+0x6572, 0x656d, 0x746e, 0x6520, 0x7078, 0x696c, 0x6963, 0x6574, 0x0029, 
+
+    IDC_SERVERTYPE, 0x403, 23, 0
+0x4653, 0x5054, 0x6520, 0x206e, 0x7475, 0x6c69, 0x7369, 0x6e61, 0x2074, 
+0x5353, 0x3248, "\000" 
+    IDC_SERVERTYPE, 0x403, 36, 0
+0x5446, 0x2050, 0x7573, 0x2072, 0x4c54, 0x2053, 0x4328, 0x6968, 0x6666, 
+0x6572, 0x656d, 0x746e, 0x6520, 0x7078, 0x696c, 0x6963, 0x6574, 0x0029, 
+
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_SITEMANAGER
+    SEPARATOR
+    BUTTON      ID_SHOWTREE
+    BUTTON      ID_SHOWREMOTETREE
+    BUTTON      ID_SHOWQUEUE
+    BUTTON      ID_VIEW_MESSAGELOG
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_REFRESH
+    BUTTON      ID_PROCESS_QUEUE
+    BUTTON      ID_CANCELBUTTON
+    BUTTON      ID_TOOLBAR_DISCONNECT
+    BUTTON      ID_TOOLBAR_RECONNECT
+    SEPARATOR
+    BUTTON      ID_HELPMENU_CONTENTS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_SYSTRAY_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "&Adkemer",                    ID_TRAY_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "&Kuitaat",                    ID_TRAY_EXIT
+    END
+END
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&Restr"
+    BEGIN
+        MENUITEM "Ardoer-&loadoù",              ID_SITEMANAGER
+        MENUITEM "&Kopiañ ar c'hennaskañ e-barzh an Ardoer-loadoù", 
+                                                ID_COPYTOSITEMANAGER
+        MENUITEM "&Kennaskañ ouzh al load dre-ziouer", 
+                                                ID_FILE_CONNECTTODEFAULTSITE
+        MENUITEM SEPARATOR
+        MENUITEM "&Adkennaskañ",                ID_TOOLBAR_RECONNECT
+        MENUITEM "&Digennaskañ",                ID_TOOLBAR_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "&Kuitaat",                    ID_APP_EXIT
+    END
+    POPUP "&Embann"
+    BEGIN
+        MENUITEM "&Dibaboù && Perzhioù",        ID_EDIT_SETTINGS
+        MENUITEM "E&zporzhiañ ar perzhioù",     ID_EDIT_EXPORTSETTINGS
+        MENUITEM "&Enporzhiañ ar perzhioù",     ID_EDIT_IMPORTSETTINGS
+    END
+    POPUP "&Treuzkas"
+    BEGIN
+        POPUP "&Rizh an treuzkas"
+        BEGIN
+            MENUITEM "&ASCII",                      ID_TYPEMENU_ASCII
+            MENUITEM "&Daouek",                     ID_TYPEMENU_BINARY
+            MENUITEM "E&mgefre",                    ID_TYPEMENU_DETECT
+        END
+        POPUP "Flastrañ ar &restroù"
+        BEGIN
+            MENUITEM "&Goulenn",                    ID_OVERWRITEMENU_ASK
+            MENUITEM SEPARATOR
+            MENUITEM "&Flastrañ",                   ID_OVERWRITEMENU_OVERWRITE
+
+            MENUITEM "Flastrañ mard eo &freskoc'h", ID_OVERWRITEMENU_OVERWRITEIFNEWER
+
+            MENUITEM "&Kenderc'hel",                ID_OVERWRITEMENU_RESUME
+            MENUITEM "Ad&envel",                    ID_OVERWRITEMENU_RENAME
+            MENUITEM "Tre&men",                     ID_OVERWRITEMENU_SKIP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Treuzkas dre-&zorn",          ID_MENU_TRANSFER_MANUALTRANSFER
+
+    END
+    POPUP "G&wereañ"
+    BEGIN
+        MENUITEM "&Freskaat ar gwelioù",        ID_TOOLBAR_REFRESH
+        MENUITEM "&Diskouez ar restroù kuzhet", ID_MENU_VIEW_SHOWHIDDEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Barrenn ostilhoù",           ID_VIEW_TOOLBAR
+        MENUITEM "Barrenn &stad",               ID_VIEW_STATUS_BAR
+        MENUITEM "Barrenn gennaskañ &brim",     ID_VIEW_QUICKCONNECT_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Treug &lec'hel",              ID_SHOWTREE
+        MENUITEM "Treug &arbell",               ID_SHOWREMOTETREE
+        MENUITEM "Kerzh-levr &kemennadoù",      ID_VIEW_MESSAGELOG
+        MENUITEM "&Lostennad an treuzkasadennoù", ID_SHOWQUEUE
+        MENUITEM SEPARATOR
+        POPUP "Gwel ar roll &lec'hel"
+        BEGIN
+            MENUITEM "&Munudoù",                    ID_LOCALLISTSTYLE_REPORT
+            MENUITEM "&Roll",                       ID_LOCALLISTSTYLE_LIST
+            MENUITEM "Arlunioù &bras",              ID_LOCALLISTSTYLE_ICON
+            MENUITEM "Ar&lunioù bihan",             ID_LOCALLISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Ment ar restroù",            ID_VIEW_LOCALLISTVIEW_FILESIZE
+
+            MENUITEM "Riz&h",                       ID_VIEW_LOCALLISTVIEW_FILETYPE
+
+            MENUITEM "Eur &kemmañ",                 ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Diskouez ar varrenn stad",   ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR
+
+            POPUP "Rummañ &diouzh..."
+            BEGIN
+                MENUITEM "&Anv",                        ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "&Ment",                       ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "&Rizh",                       ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Kemmañ diwezhañ",            ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED
+
+                MENUITEM SEPARATOR
+                MENUITEM "&War-gresk",                  ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "&War-zigresk",                ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+        POPUP "Gwel ar roll &arbell"
+        BEGIN
+            MENUITEM "&Munudoù",                    ID_REMOTELISTSTYLE_REPORT
+
+            MENUITEM "Rol&l",                       ID_REMOTELISTSTYLE_LIST
+            MENUITEM "&Arlunioù bras",              ID_REMOTELISTSTYLE_ICON
+            MENUITEM "Arlunioù &bihan",             ID_REMOTELISTSTYLE_SMALLICON
+
+            MENUITEM SEPARATOR
+            MENUITEM "&Ment ar restroù",            ID_VIEW_REMOTELISTVIEW_FILESIZE
+
+            MENUITEM "Rizh ar &restr",              ID_VIEW_REMOTELISTVIEW_FILETYPE
+
+            MENUITEM "&Deiziad",                    ID_VIEW_REMOTELISTVIEW_DATE
+
+            MENUITEM "&Eur",                        ID_VIEW_REMOTELISTVIEW_TIME
+
+            MENUITEM "Aotre&gezhioù",               ID_VIEW_REMOTELISTVIEW_PERMISSIONS
+
+            MENUITEM "&Perc'henn / strollad",       ID_VIEW_REMOTELISTVIEW_OWNERGROUP
+
+            MENUITEM SEPARATOR
+            MENUITEM "Diskouez ar &varrenn stad",   ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR
+
+            POPUP "Rummañ &diouzh..."
+            BEGIN
+                MENUITEM "&Anv",                        ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME
+
+                MENUITEM "&Ment",                       ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE
+
+                MENUITEM "&Rizh",                       ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE
+
+                MENUITEM "&Deiziad / Eur",              ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME
+
+                MENUITEM SEPARATOR
+                MENUITEM "&War-gresk",                  ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING
+
+                MENUITEM "War-&zigresk",                ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING
+
+            END
+        END
+    END
+    POPUP "&Lostennad"
+    BEGIN
+        MENUITEM "Keweriañ al &lostennad",      ID_MENU_QUEUE_PROCESSNOW
+        MENUITEM "&Implijout ar c'hennaskañ &liezek", 
+                                                ID_MENU_QUEUE_USEMULTIPLE
+        MENUITEM SEPARATOR
+        MENUITEM "&Ezporzhiañ...",              ID_MENU_QUEUE_EXPORT
+        MENUITEM "&Enporzhiañ...",              ID_MENU_QUEUE_IMPORT
+    END
+    POPUP "&Dafariad"
+    BEGIN
+        MENUITEM "&Kemmañ ar ger-tremen",       ID_MENU_SERVER_CHANGEPASS
+        MENUITEM "&Reiñ un arc'hwel FTP",       ID_MENU_SERVER_ENTERRAWCOMMAND
+
+        MENUITEM "Kopiañ an &URL er golver",    ID_MENU_SERVER_COPYURLTOCLIPBOARD
+
+    END
+    POPUP "Skoaze&ll", HELP
+    BEGIN
+        MENUITEM "&Pennadoù ar skoazell",       ID_HELPMENU_CONTENTS
+        MENUITEM "&Klask",                      ID_HELPMENU_SEARCH
+        MENUITEM "Roll ar gerioù",              ID_HELPMENU_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "&A-zivout FileZilla...",      ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUTCONTEXT MENU 
+BEGIN
+    POPUP "OutputContext"
+    BEGIN
+        MENUITEM "&Roit un arc'hwel...",        ID_OUTPUTCONTEXT_ENTERCOMMAND
+
+        MENUITEM SEPARATOR
+        MENUITEM "K&opiañ er golver",           ID_OUTPUTCONTEXT_COPYTOCLIPBOARD
+
+        MENUITEM "&Diverkañ pep tra",           ID_OUTPUTCONTEXT_CLEARALL
+    END
+END
+
+IDR_FTPCONTEXTMENU MENU 
+BEGIN
+    POPUP "FtpContext"
+    BEGIN
+        MENUITEM "&Pellgargañ",                 ID_FTPCONTEXT_DOWNLOAD
+        MENUITEM "&Ouzhpennañ d'al lostennad",  ID_FTPCONTEXT_ADDTOQUEUE
+        MENUITEM "Pellgargañ &dindan...",       ID_FTPCONTEXT_DOWNLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Digeriñ",                    ID_FTPCONTEXT_OPEN
+        MENUITEM "&Gwelout / Embann",           ID_FTPCONTEXT_VIEWEDIT
+        MENUITEM "&Sevel ur c'havlec'h",        ID_FTPCONTEXT_CREATEDIR
+        MENUITEM "Dile&mel",                    ID_FTPCONTEXT_DELETE
+        MENUITEM "&Adenvel",                    ID_FTPCONTEXT_RENAME
+        MENUITEM "Perzhioù ar &restr...",       ID_FTPCONTEXT_ATTRIBUTES
+    END
+END
+
+IDR_LOCALCONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalContext"
+    BEGIN
+        MENUITEM "&Kargañ war an dafariad",     ID_LOCALCONTEXT_UPLOAD
+        MENUITEM "&Ouzhpennañ d'al lostennad",  ID_LOCALCONTEXT_ADDTOQUEUE
+        MENUITEM "Kargañ &dindan...",           ID_LOCALCONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Sevel ur c'havlec'h",        ID_LOCALCONTEXT_CREATEDIRECTORY
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Digeriñ",                    ID_LOCALCONTEXT_OPEN
+        MENUITEM "&Gwelout / Embann",           ID_LOCALCONTEXT_VIEWEDIT
+        MENUITEM "Dilemel&",                    ID_LOCALCONTEXT_DELETE
+        MENUITEM "&Adenvel",                    ID_LOCALCONTEXT_RENAME
+        MENUITEM "Per&zhioù",                   ID_LOCALCONTEXT_PROPERTIES
+    END
+END
+
+IDR_QUEUECONTEXTMENU MENU 
+BEGIN
+    POPUP "QueueContext"
+    BEGIN
+        MENUITEM "&Keweriañ al lostennad",      ID_QUEUECONTEXT_PROCESSQUEUE
+        MENUITEM "&Dilemel diouzh al lostennad", 
+                                                ID_QUEUECONTEXT_REMOVEFROMQUEUE
+
+        MENUITEM "&Adderaouekaat ar stad",      ID_QUEUECONTEXT_RESETSTATUS
+        MENUITEM SEPARATOR
+        MENUITEM "E&han",                       ID_QUEUECONTEXT_PAUSE
+        MENUITEM "Ken&derc'hel",                ID_QUEUECONTEXT_RESUME
+        MENUITEM "&Nullañ",                     ID_QUEUECONTEXT_ABORT
+        MENUITEM SEPARATOR
+        MENUITEM "&Uheloc'h",                   ID_QUEUECONTEXT_MOVEUP
+        MENUITEM "&Izeloc'h",                   ID_QUEUECONTEXT_MOVEDOWN
+        MENUITEM "An &uhelañ",                  ID_QUEUECONTEXT_MOVETOTOP
+        MENUITEM "An &izellañ",                 ID_QUEUECONTEXT_MOVETOBOTTOM
+    END
+END
+
+IDR_SITEMANAGER MENU 
+BEGIN
+    POPUP "&Restr"
+    BEGIN
+        MENUITEM "&Enporzhiañ",                 ID_SITEMANAGER_FILE_IMPORT
+        POPUP "&Ezporzhiañ..."
+        BEGIN
+            MENUITEM "evel ul rollad &URLioù",      ID_SITEMANAGER_FILE_EXPORT_ASURLLIST
+
+            MENUITEM "gant an holl &vunudoù ennañ", ID_SITEMANAGER_FILE_EXPORT_WITHALLDETAILS
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Gwarediñ ha &Kuitaat",        ID_SITEMANAGER_SAVEEXIT
+    END
+END
+
+IDR_LOCALTREECONTEXTMENU MENU 
+BEGIN
+    POPUP "LocalTreeContext"
+    BEGIN
+        MENUITEM "&Kargañ war an dafariad",     ID_LOCALTREECONTEXT_UPLOAD
+        MENUITEM "&Ouzhennañ d'al lostennad",   ID_LOCALTREECONTEXT_ADDTOQUEUE
+
+        MENUITEM "Kargañ &dindan...",           ID_LOCALTREECONTEXT_UPLOADAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Dilemel",                    ID_LOCALTREECONTEXT_DELETE
+        MENUITEM "&Adenvel",                    ID_LOCALTREECONTEXT_RENAME
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,2,8,0
+ PRODUCTVERSION 2,2,8,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Breton"
+            VALUE "FileDescription", "Breton language DLL for FileZilla - Tr. by Korvigelloù an Drouizig"
+            VALUE "FileVersion", "2, 2, 11, 0"
+            VALUE "InternalName", "FileZilla"
+            VALUE "LegalCopyright", "Pep gwir miret strizh (C) 2001-2003 by Tim Kosse dindan ar GPL"
+            VALUE "OriginalFilename", "FileZilla.EXE"
+            VALUE "ProductName", "FileZilla Language DLL"
+            VALUE "ProductVersion", "2, 2, 11, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_TOOLBAR_DISCONNECT,  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_MENU_SERVER_ENTERRAWCOMMAND, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBAR_RECONNECT,   VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_SITEMANAGER,         VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_SHOWTREE,            VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_SITEMANAGER,         VIRTKEY, NOINVERT
+    VK_F5,          ID_TOOLBAR_REFRESH,     VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FileZilla"
+    AFX_IDS_IDLEMESSAGE     "Prest"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "A-zivout FileZilla"
+    ID_APP_EXIT             "Kuitaat FileZilla"
+    ID_HELP                 "Diskouez endalc'h ar skoazell"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Diskouez pe guzhat ar varrenn ostilhoù"
+    ID_VIEW_STATUS_BAR      "Diskouez pe guzhat ar varrenn stad"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCCLOSE         "Kuitaat FileZilla"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_SECURESERVER "    "
+    ID_INDICATOR_ELAPSEDTIME "                             "
+    ID_INDICATOR_TIMELEFT   "                         "
+    ID_INDICATOR_PROGRESS_PANE 
+                            "                                               "
+    ID_INDICATOR_BYTES      "                                                 "
+    ID_INDICATOR_QUEUESIZE  "Lostennad : %I64d %s"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECVLED    "    "
+    ID_INDICATOR_SENDLED    "    "
+    IDS_DIRINFO_DIRS        "%d teuliad."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_CREATEDIR "Roit anv ar c'havlec'h"
+    IDS_INPUTDIALOGTEXT_CREATEDIR "Roit anv ar c'havlec'h nevez :"
+    IDS_INPUTDIALOGTITLE_FTPCOMMAND "Roit un arc'hwel FTP"
+    IDS_INPUTDIALOGTEXT_FTPCOMMAND 
+                            "Roit un arc'hwel a vo lañset war an dafariad :"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INPUTDIALOGTITLE_INPUTPASSWORD "Roit ho ker-tremen"
+    IDS_INPUTDIALOGTEXT_INPUTPASSWORD 
+                            "Mar plij roit ar ger-tremen a vo implijet evit ar c'hennaskañ ouzh an dafariad :"
+    IDS_INPUTDIALOGTITLE_RENAME "Roit anv nevez ar restr"
+    IDS_INPUTDIALOGTEXT_RENAME "Mar plij roit anv ar restr a vo gwaredet :"
+    IDS_INPUTDIALOGTITLE_KEYBOARDINTERACTIVE 
+                            "Dilesaat dre c'houlenn/respont (dre ar c'hlavier)"
+    IDS_INPUTDIALOGTITLE_INPUTUSER "Roit hoc'h anv implijour"
+    IDS_INPUTDIALOGTEXT_INPUTUSER 
+                            "Mar plij roit an anv impijour a vo implijet evit ar c'hennaskañ ouzh an dafariad :"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_CONNECTION "Kennaskañ"
+    IDS_OPTIONSPAGE_DEBUG   "Dilastezañ"
+    IDS_OPTIONSPAGE_DIRCACHE "Krubuilh kavlec'hioù"
+    IDS_OPTIONSPAGE_FIREWALL "Perzhioù harz-tan"
+    IDS_OPTIONSPAGE_FTPPROXY "Perzhioù proksioù FTP"
+    IDS_OPTIONSPAGE_GSS     "Skor GSS"
+    IDS_OPTIONSPAGE_IDENT   "Dafariad identenlezh"
+    IDS_OPTIONSPAGE_INTERFACE "Perzhioù an etrefas"
+    IDS_OPTIONSPAGE_LANGUAGE "Yezh"
+    IDS_OPTIONSPAGE_LOCALVIEW "Roll ar restroù lec'hel"
+    IDS_OPTIONSPAGE_MISC    "A-bep seurt"
+    IDS_OPTIONSPAGE_PROXY   "Perzhioù proksi"
+    IDS_OPTIONSPAGE_REMOTEVIEW "Roll ar restroù arbell"
+    IDS_OPTIONSPAGE_SPEEDLIMIT "Harzañ an tizh"
+    IDS_OPTIONSPAGE_TRANSFER "Perzhioù treuzkas restr"
+    IDS_OPTIONSPAGE_TYPE    "ASCII/Daouek"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSPAGE_VIEWEDIT "Gwereañ / Embann restr"
+    IDS_OPTIONSPAGE_SSH     "Perzhioù SFTP"
+    IDS_OPTIONSPAGE_PANELAYOUT "Lec'hiadur an treugoù"
+    IDS_OPTIONSPAGE_LOGGING "Kerzh-levr ar c'hemennadoù"
+    IDS_OPTIONSPAGE_TRANSFER_COMPRESSION "Gwaskañ"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HEADER_TIME         "Eur"
+    IDS_MANUALTRANSFER_HOST "Mar plij roit un ostiz reizh"
+    IDS_MANUALTRANSFER_LOCALFILE 
+                            "Mar plij roit treug hag anv ar restr lec'hel"
+    IDS_MANUALTRANSFER_PORT "Mar plij roit ur porzh reizh"
+    IDS_MANUALTRANSFER_REMOTEFILE 
+                            "Mar plij roit treug hag anv ar restr arbell"
+    IDS_MANUALTRANSFER_USER "Mar plij roit un anv implijour"
+    IDS_QUEUESTATUS_ABORTED "Treuzkas harzet"
+    IDS_QUEUESTATUS_CRITICALERROR "Fazi treuzkas arvarus"
+    IDS_QUEUESTATUS_ERROR   "Fazi treuzkas N°%d. Esae en-dro diwezhatoc'h"
+    IDS_QUEUESTATUS_TOOMANYERTREIS "Re a esaeoù"
+    IDS_QUEUESTATUS_TRANSFERRING "O treuzkas"
+    IDS_QUICKCONN_HOST      "Chomlec'h :"
+    IDS_QUICKCONN_PASS      "Ger-tremen :"
+    IDS_QUICKCONN_PORT      "Porzh :"
+    IDS_QUICKCONN_QUICKCONN "Kennaskañ &Prim"
+    IDS_QUICKCONN_USER      "Implijour :"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHANGEDIALOG_DIRECTORY 
+                            "Dibabit ar perzhioù nevez evit ar c'havlec'h ""%s"""
+    IDS_CHANGEDIALOG_FILE   "Dibabit ar perzhioù nevez evit ar restr ""%s"""
+    IDS_CHANGEDIALOG_MULTIPLEFILES 
+                            "Dibabit ar perzhioù nevez evit ar restroù ha teuliadoù diuzet ganeoc'h"
+    IDS_HEADER_DATE         "Deiziad"
+    IDS_HEADER_DIRECTION    "Tu"
+    IDS_HEADER_FILENAME     "Anv"
+    IDS_HEADER_FILESIZE     "Ment"
+    IDS_HEADER_FILETYPE     "Rizh"
+    IDS_HEADER_HOST         "Ostiz"
+    IDS_HEADER_LASTMODIFIED "Kemmet"
+    IDS_HEADER_LOCALNAME    "Anv ar restr lec'hel"
+    IDS_HEADER_OWNERGROUP   "Perc'henn / strollad"
+    IDS_HEADER_PERMISSIONS  "Aotregezhioù"
+    IDS_HEADER_REMOTENAME   "Anv ar restr arbell"
+    IDS_HEADER_SIZE         "Ment"
+    IDS_HEADER_STATUS       "Stad"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REMOTELIST_EMPTY    "<Kavlec'h goullo>"
+    IDS_SITEMANAGER_NEWFOLDER "Kavlec'h nevez"
+    IDS_SITEMANAGER_NEWFOLDERWITHNUM "Kavlec'h nevez %d"
+    IDS_SITEMANAGER_NEWFTPSITE "Load FTP nevez"
+    IDS_SITEMANAGER_NEWFTPSITEWITHNUM "Load FTP nevez %d"
+    IDS_SITEMANAGER_TEXTFILES "Restroù testenn (*.txt)|*.txt||"
+    IDS_SITEMANAGER_TREEROOT "Ma loadoù FTP"
+    IDS_SITEMANAGER_XMLFILES "Restroù XML (*.xml)|*.xml||"
+    IDS_SIZE_BYTES          "eizh-bit"
+    IDS_SIZE_GB             "Ge"
+    IDS_SIZE_KBS            "Ke"
+    IDS_SIZE_MBS            "Me"
+    IDS_STATUSBAR_ELAPSED   "%s tremenet"
+    IDS_STATUSBAR_LEFT      "%s o chom"
+    IDS_TITLE_CONNECTED     "Kennasket ouzh %s"
+    IDS_TITLE_CONNECTING    "Kennaskañ ouzh %s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLBAR_SITEDROPDOWN_EMPTYFOLDER "Teuliad goullo"
+    IDS_VIEWLABEL_LOCAL     "Load lec'hel :"
+    IDS_VIEWLABEL_REMOTE    "Load arbell :"
+    IDS_DIRINFO_EMPTY       "Teuliad goullo."
+    IDS_DIRINFO_FILES       "%d restr gant %I64d eizh-bit."
+    IDS_DIRINFO_DIRSANDFILES "%d kavlec'h ha %d restr gant %I64d eizh-bit."
+    IDS_DIRINFO_FILESMIN    "%d restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_DIRSANDFILESMIN 
+                            "%d kavlec'h ha %d restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_SELECTED_FILES "Diuzad : %d restr gant %I64d eizh-bit."
+    IDS_DIRINFO_SELECTED_DIRS "Diuzad : %d restr."
+    IDS_DIRINFO_SELECTED_DIRSANDFILES 
+                            "Diuzad : %d kavlec'h ha %d restr gant %I64d eizh-bit."
+    IDS_DIRINFO_SELECTED_FILESMIN 
+                            "Diuzad : %d restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_SELECTED_DIRSANDFILESMIN 
+                            "Diuzad : %d kavlec'h ha %d restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_FILE        "1 restr eus %I64d eizh-bit."
+    IDS_DIRINFO_DIR         "1 c'havlec'h."
+    IDS_DIRINFO_DIRANDFILES "1 c'havlec'h ha %d restr gant %I64d eizh-bit."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COMMANDMSG_PREFIX   "Arc'hwel :"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RESPONSEMSG_PREFIX  "Respont :"
+    IDS_TRACEMSG_TRACE      "Merk :"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTOPENTRANSFERCHANNEL 
+                            "N'haller ket digeriñ kanol an treuzkas. Abeg : %s"
+    IDS_ERRORMSG_CANTPARSECMDLINE 
+                            "N'haller ket dielfennañ al linenn arc'hwelioù."
+    IDS_ERRORMSG_CANTRESOLVEHOST "N'haller ket jediñ anv an ostiz"
+    IDS_ERRORMSG_CANTRESUME "N'eo ket skoret gant an dafariad an arc'hwel ""Kenderc'hel"", flastret e vez ar restr."
+    IDS_ERRORMSG_CANTRESUME_FINISH 
+                            "N'eo ket skoret gant an dafariad an arc'hwel ""Kenderc'hel"", met mentoù ar restroù lec'hel hag arbell a zo heñvel. "
+    IDS_ERRORMSG_CANTSENDCOMMAND 
+                            "N'haller ket kas an arc'hwel ! Digennaskañ diouzh an dafariad !"
+    IDS_ERRORMSG_CANTWRITETOFILE 
+                            "N'haller ket skrivañ e-barzh ar restr ""%s"". Abeg : %s"
+    IDS_ERRORMSG_CERTREJECTED "Testeni ar par dizegemeret"
+    IDS_ERRORMSG_CRITICALINTERRUPTED 
+                            "Paouezet gant an implijour ! Digennaskañ diouzh an dafariad ..."
+    IDS_ERRORMSG_DOWNLOADABORTED "Pellgargañ paouezet !"
+    IDS_ERRORMSG_DOWNLOADFAILED "Fazi gant ar pellgargañ !"
+    IDS_ERRORMSG_ENTERSTRING "Ret eo deoc'h reiñ un hedad arouezennoù !"
+    IDS_ERRORMSG_FILENAMEINVALID 
+                            "N'hall ket enderc'hel anv ur restr unan eus an arouezennoù a heul :\n/ \\ : * ? "" < > |"
+    IDS_ERRORMSG_FILEOPENFAILED "N'haller ket digeriñ ar restr lec'hel %s"
+    IDS_ERRORMSG_HOSTNEEDED "Mar plij roit ur chomlec'h !"
+    IDS_ERRORMSG_IDENT_CANTSTART "Fazi p'eo bet lañset an dafariad identelezh"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_INTERRUPTED "Paouezet gant an implijour !"
+    IDS_ERRORMSG_INVALIDPORT "Ret eo deoc'h spisaat ur porzh reizh !"
+    IDS_ERRORMSG_LANGUAGEDLLNOTFOUND 
+                            "Fazi ! n'eo ket bet kavet levraoueg DLL yezh evit ar ""%s"" !"
+    IDS_ERRORMSG_LANGUAGEDLLVERSIONINVALID 
+                            "Fazi ! skrivet eo bet al levraoueg DLL yezh evit ur stumm kozh FileZilla ha n'eo ket kerverlec'h gant ar stumm-mañ.\nPellgargit ur stumm neveshoc'h eus al levraoueg yezh-mañ adalek http://sourceforge.net/projects/filezilla"
+    IDS_ERRORMSG_NAMEINUSE  "Mar plij roit un anv restr disheñvel !"
+    IDS_ERRORMSG_PATHNOTFOUND "n'haller ket kavet an treug ho peus roet !"
+    IDS_ERRORMSG_PORTNEEDED "Mar plij roit ur porzh reizh !"
+    IDS_ERRORMSG_PREFIX     "Fazi :"
+    IDS_ERRORMSG_PROXY_AUTHFAILED "Fazi gant an dilesaat"
+    IDS_ERRORMSG_PROXY_AUTHNOLOGON 
+                            "Ret eo en em dilesaat evit implijout ar proksi"
+    IDS_ERRORMSG_PROXY_AUTHTYPEUNKNOWN 
+                            "Rizh an dilesaat kaset en-dro gant ar proksi a zo dianav pe n'eo ket skoret"
+    IDS_ERRORMSG_PROXY_CANTRESOLVEHOST 
+                            "n'haller ket jediñ anv an ostiz pe anv an dafariad proksi"
+    IDS_ERRORMSG_PROXY_NOCONN "n'haller ket kennaskañ ouzh ar proksi"
+    IDS_ERRORMSG_PROXY_REQUESTFAILED 
+                            "Fazi gant reked kaset d'ar proksi, n'haller ket kennaskañ ouzh an dafariad proksi"
+    IDS_ERRORMSG_SETTINGS_XMLFILE_INVALID 
+                            "Fazi, n'haller ket dielfennañ 'FileZilla.xml', lovret eo ar restr war ar seblant.\nEn abeg da se e vo implijet an diazez varilhoù a-benn gwarediñ ar perzhioù."
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPIPC 
+                            "N'haller ket deraouekaat CSFtpIpC. En em asurit ho peus dafarioù reizhiad a-walc'h !"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SFTP_CANTCREATESFTPPROCESS 
+                            "N'haller ket loc'hañ ar poellad SFTP. En em asurit emañ ar restr 'FzSFtp.exe' er memes kavlec'h hag hini 'FileZilla.exe'."
+    IDS_ERRORMSG_SFTP_CLOSED 
+                            "Serret eo bet FzSFtp.exe, echu gant an treuzkas."
+    IDS_ERRORMSG_SFTP_INVALIDDATA 
+                            "Stlennoù direizh zo bet kavet er c'hanol stlennoù SFtp, echu gant an treuzkas."
+    IDS_ERRORMSG_SFTP_NORESPONSE 
+                            "N'en deus ket respontet FzSFtp.exe, echu gant ar c'hanol."
+    IDS_ERRORMSG_SITEMANAGERNAMEINUSE 
+                            "An anv-mañ a zo dija implijet ! Dibabit un anv all !"
+    IDS_ERRORMSG_SITEMANAGERNEEDLOGONTYPE "Dibabit rizh an dilesaat !"
+    IDS_ERRORMSG_SITEMANAGERNEEDNAME 
+                            "Mar plij roit un anv evit al lec'hienn FTP !"
+    IDS_ERRORMSG_SITEMANAGERNEEDPASS "Mar plij roit ur ger-tremen !"
+    IDS_ERRORMSG_SITEMANAGERNEEDUSER "Mar plij roit un anv implijour !"
+    IDS_ERRORMSG_TIMEOUT    "Disoberiantiz jedet !"
+    IDS_ERRORMSG_UPLOADABORTED "Kargañ paouezet"
+    IDS_ERRORMSG_UPLOADFAILED "Kargañ faziet"
+    IDS_ERRORMSG_URLSYNTAXINVALID 
+                            "Kevreadur ar chomlec'h direizh. Dleout a rafe bezañ [ftp://][Implijour:GerTremen@]Ostiz[:Porzh][/Treug]\nN'int ket ret ar c'hrochedigoù [ ]."
+    IDS_ERRORMSG_VIEWEDIT_CANTOPENFILE "N'haller ket digeriñ ""%s"""
+    IDS_ERRORMSG_VIEWEDIT_CANTSTARTPROGRAM 
+                            "N'haller ket loc'hañ ""%s"" a-benn gwelout pe embann ""%s"". Gwiriit hoc'h astennoù restr."
+    IDS_ERRORMSG_VIEWEDIT_NODEFPROG "Fazi, goulev dre-ziouer ebet."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_CANTCONNECT "N'haller ket kennaskañ !"
+    IDS_ERRORMSG_CANTCREATEDUETOPORTRANGE 
+                            "N'haller ket sevel ur socket er skeuliadig porzhioù spisaet."
+    IDS_ERRORMSG_CANTCREATEFILE "Fazi gant sevel ar restr ec'hankañ !"
+    IDS_ERRORMSG_CANTESTABLISHSSLCONNECTION 
+                            "N'haller ket sevel ar c'hennaskañ SSL"
+    IDS_ERRORMSG_CANTGETFILETYPE "N'haller ket tapout rizh ar restr !"
+    IDS_ERRORMSG_CANTGETLIST "N'haller ket tapout roll ar c'havlec'hioù"
+    IDS_ERRORMSG_CANTGETRESPONSE "N'haller ket tapout ur respont !"
+    IDS_ERRORMSG_CANTIMPORTFILE "Fazi oc'h enporzhiañ ar restr !"
+    IDS_ERRORMSG_CANTINITSSL "N'haller ket deraouekaat al levraouegoù SSL"
+    IDS_ERRORMSG_CANTLOADSSLDLLS 
+                            "N'haller ket kargañ al levraouegoù SLL. En em asurit emañ ar restroù ""ssleay32.dll"" ha ""libeay32.dll"" er memes kavlec'h hag hini FileZilla."
+    IDS_ERRORMSG_CANTOPENFILE "N'a pas pu ouvrir le fichier d'entrée !"
+    IDS_ERRORMSG_CANTOPENLOGFILE 
+                            "N'haller ket digeriñ ar c'herzh-levr ""%s"". Deweredekaet eo vo gwarediñ ar c'herzh-levr kemennadoù evit an estez-mañ."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_CONNECTED "Kennasket"
+    IDS_STATUSMSG_CONNECTEDWITH 
+                            "Kennasket ouzh %s. O c'hortoz ar c'hemennad degemer..."
+    IDS_STATUSMSG_CONNECTEDWITHSFTP 
+                            "Kennasket ouzh %s, O teraouekaat ar c'hennaskañ SFTP..."
+    IDS_STATUSMSG_CONNECTEDWITHSSL 
+                            "Kennasket ouzh %s, Oc'h arnodiñ ar c'hennaskañ SSL..."
+    IDS_STATUSMSG_CONNECTING "kennaskañ ouzh %s ..."
+    IDS_STATUSMSG_DIRLISTSUCCESSFUL "Gwereañ rollad ar c'havlec'h OK"
+    IDS_STATUSMSG_DISCONNECTED "Digennaskañ diouzh an dafariad"
+    IDS_STATUSMSG_DISCONNECTING "Digennaskañ..."
+    IDS_STATUSMSG_DOWNLOADSTART "Kregiñ gant pellgargañ %s"
+    IDS_STATUSMSG_DOWNLOADSUCCESSFUL "Pellgargañ OK"
+    IDS_STATUSMSG_FILEIMPORTED "Enporzhiet mat eo bet ar restr ""%s"" !"
+    IDS_STATUSMSG_FWCONNECT "Oc'h arnodiñ mont da %s dre ar proksi FTP..."
+    IDS_STATUSMSG_IDENT_REQUEST "Reked identelezh evit : %s"
+    IDS_STATUSMSG_IDENT_START "Dafariad identelezh loc'het"
+    IDS_STATUSMSG_IDENT_STOP "Paouez gant an dafariad identelezh"
+    IDS_STATUSMSG_LANGUAGEVERSIONDIFFERENT 
+                            "Diwallit ! skrivet eo bet al levraoueg DLL yezh evit ur stumm koshoc'h FileZilla. Lod a destennoù a c'hell chom e saozneg. Pellgargit ur stumm neveshoc'h eus al levraoueg DLL yezh !"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STATUSMSG_PREFIX    "Stad :"
+    IDS_STATUSMSG_RECONNECTWAIT "O c'hortoz d'ur c'hennaskañ nevez..."
+    IDS_STATUSMSG_RETRIEVINGDIRLIST "O tapout roll ar c'havlec'hioù..."
+    IDS_STATUSMSG_SSLESTABLISHED 
+                            "Kennaskañ SSL graet. O c'hortoz ar c'hemennad degemer..."
+    IDS_STATUSMSG_SSLESTABLISHEDTRANSFER "Kennaskañ SSL graet"
+    IDS_STATUSMSG_UPLOADSTART "Loc'hañ pellgargañ %s"
+    IDS_STATUSMSG_UPLOADSUCCESSFUL "Kargañ war an dafariad OK"
+    IDS_STATUSMSG_WAITINGTORETRY "O c'hortoz eseañ en-dro... (nemet un esae)"
+    IDS_STATUSMSG_WAITINGTORETRY_LEFT 
+                            "O c'hortoz eseañ en-dro... (%d esae c'hoazh)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUESTION_BREAKCONNECTION "Paouez gant ar c'hennaskañ red ?"
+    IDS_QUESTION_CANCELOPERATION "Nullañ an oberiadenn red ?"
+    IDS_QUESTION_DELETEDIRS "Ha fellout a ra deoc'h dilemel %d kavlec'h ?"
+    IDS_QUESTION_DELETEFILE "Ha fellout a ra deoc'h dilemel ""%s"" ?"
+    IDS_QUESTION_DELETEFILES "Ha fellout a ra deoc'h dilemel %d restr ?"
+    IDS_QUESTION_DELETEFILESANDDIRS 
+                            "Ha fellout a ra deoc'h dilemel  %d restr ha kavlec'h ?"
+    IDS_QUESTION_FILEEXISTS "Le fichier ""%s"" (%d octets) existe déjà... L'écraser par ""%s"" (%d eizh-bit) ?"
+    IDS_QUESTION_OPTIONS_FIRSTSTART 
+                            "Vous démarrez cette version de FileZilla pour la première fois, ou vos paramètres ont été supprimés.\nFileZilla peut stocker ses paramètres dans la base de registre ou dans un fichier XML.\nVoulez-vous que FileZilla utilise la base de registre ?\nIl est recommandé d'utiliser la base de registre si vous êtes en environnement multi-utilisateurs.\nChoisissez 'Non' pour utiliser le fichier XML, ce qui est recommandé pour la plupart des utilisateurs.\nSi vous choisissez 'Non' et qu'il y a des paramètres dans la base de registre, ils seront importés dans le fichier XML."
+    IDS_QUESTION_SFTP_CHANGEDHOSTKEY 
+                            "ATTENTION - PROBLEME DE SECURITE POTENTIEL !\nLa clé du serveur hôte ne correspond pas à celle précédemment\nmise en cache dans la base de registre. Soit l'administrateur du serveur a modifié la clé d'hôte,\nsoit que vous êtes actuellement connecté à un autre ordinateur\nprétendant être le serveur.\nLa nouvelle empreinte de la clé est :\n%s\nSi vous vous attendiez à ce changement, et faites confiance à la nouvelle clé,\nsélectionnez 'Oui' pour mettre à jour le cache et continuer la connexion.\nSi vous voulez continuer la connexion sans mettre à jour le cache,\nsélectionnez 'Non'.\nSi vous voulez abandonner complétement la connexion, cliquez sur 'Annuler'. Sélectionner 'Annuler' est le SEUL choix garanti sûr.\nMettre la clé à jour dans le cache ?"
+    IDS_QUESTION_SFTP_NEWHOSTKEY 
+                            "La clé d'hôte du serveur n'est pas en cache dans la base de registre. Vous\nn'avez pas la garantie que le serveur soit l'ordinateur que vous pensez.\nL'empreinte de la clé du serveur est :\n%s\nSi vous faites confiance à cet hôte, sélectionnez 'Oui' pour ajouter la clé au cache et continuer la connexion.\nSi vous voulez continuer la connexion pour cette fois ci sans ajouter la clé au cache,\nsélectionnez 'Non'.\nSi vous ne faites pas confiance à cet hôte, sélectionnez 'Annuler' pour abandonner la\nconnexion.\nAjouter la clé dans le cache ?"
+    IDS_QUESTION_SITEMANAGERDELETE "Ha fellout a ra deoc'h dilemel  ""%s"" ?"
+    IDS_QUESTION_TRANSFER_USEPRIMARY 
+                            "Problème lors du transfert de '%s'\nImpossible d'établir une connexion additionelle avec le serveur pour le transfert de fichier. Votre serveur ne supporte peut-être pas les connexions multiples.\nFileZilla doit-il utiliser la connexion principale pour le transfert étant donné que vous êtes déjà connecté à ce serveur ?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED 
+                            """%s"" a été modifié.\nVoulez vous le charger sur le serveur ?"
+    IDS_QUESTION_VIEWEDIT_MODIFIED_CAPTION "Le fichier a été modifié"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_EXPORTOK    "Les paramètres ont été exportés avec succès. \nSi vous placez le fichier .xml dans le même répertoire que FileZilla sous le nom 'filezilla.xml', il sera utilisé pour stocker les paramètres plutôt que la base de registre."
+    IDS_OPTIONS_IDENTSYSTEM "Mar plij roit votre identité de système d'exploitation !"
+    IDS_OPTIONS_IDENTUSERID "Mar plij roit votre identité d'utilisateur !"
+    IDS_OPTIONS_IMPORTFAILURE 
+                            "Fazi ! N'a pas pu importer les paramètres depuis '%s'"
+    IDS_OPTIONS_IMPORTOK    "Les paramètres ont été importés avec succès."
+    IDS_OPTIONS_KEEPALIVEBORDERDIFF 
+                            "Harz uhelañ eus l'intervale d'Anti-Déconnexion doit être plus grande que la limite inférieure !"
+    IDS_OPTIONS_KEEPALIVEBORDERHIGH 
+                            "Harz uhelañ eus l'intervale d'Anti-Déconnexion doit être comprise entre %d et %d secondes !"
+    IDS_OPTIONS_KEEPALIVEBORDERLOW 
+                            "La limite inférieure de l'intervale d'Anti-Déconnexion doit être comprise entre %d et %d secondes !"
+    IDS_OPTIONS_LIMITPORTRANGEDIFF 
+                            "Harz uhelañ eus l'étendue de ports doit être plus grande que la limite inférieure !"
+    IDS_OPTIONS_LIMITPORTRANGEHIGH 
+                            "Harz uhelañ eus l'étendue de ports doit être comprise entre %d et %d !"
+    IDS_OPTIONS_LIMITPORTRANGELOW 
+                            "La limite inférieure de l'étendue de ports doit être comprise entre %d et %d !"
+    IDS_OPTIONS_NUMRETRIES  "Mar plij roit une valeur comprise entre %d et %d pour le nombre maximum de tentatives !"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_PROXYHOST   "Mar plij roit un ostiz reizh evit ar proksi !"
+    IDS_OPTIONS_PROXYPORT   "Mar plij roit ur porzh reizh evit ar proksi !"
+    IDS_OPTIONS_RETRYDELAY  "Mar plij roit ur werzhiad etre %d ha %d evit an amzer etre daou esae !"
+    IDS_OPTIONS_TIMEOUT     "Mar plij roit ur werzhiad etre %d ha %d evit kavout an timeout"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_GSSERROR_AUTHFAILED "L'authentication a échouée, cela signifie souvent que\nvous n'avez pas de ticket Kerberos version 5.\nPensez à lancer d'abord Leash32.\nVoulez-vous envoyer toutes les données en clair,\net potentiellement exposer votre mot de passe à des centaines\nde personnes ?"
+    IDS_GSSERROR_CANTLOADDLL "N'a pas pu trouver ou charger %s"
+    IDS_GSSERROR_CANTLOADGSSAPI 
+                            "Une ou plusieurs des API's-GSS n'ont pas été chargées !"
+    IDS_GSSERROR_CANTLOADKERBEROSAPI 
+                            "Les API's suivantes n'ont pu être chargées depuis la DLL Kerberos 5 !"
+END
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Initialisation des sockets échouée"
+    IDS_BROWSEFORFOLDER     "Veuillez sélectionner un dossier local."
+    IDS_CERT_ERR_CERT_CHAIN_TOO_LONG "Chaine de certification trop longue"
+    IDS_CERT_ERR_CERT_HAS_EXPIRED "Le certificat a expiré"
+    IDS_CERT_ERR_CERT_NOT_YET_VALID "Le certificat n'est pas encore valide"
+    IDS_CERT_ERR_CERT_REJECTED "Certificat rejeté"
+    IDS_CERT_ERR_CERT_SIGNATURE_FAILURE 
+                            "Echec dans la signature du certificat."
+    IDS_CERT_ERR_CERT_UNTRUSTED "Pas de confiance en ce certificat"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUICKCONNECTBAR_MENU_BYPASS "Kennaskañ hep tremen dre ar &proksi"
+    ID_QUICKCONNECTBAR_MENU_CLEAR "Di&verkañ"
+    ID_REMOTELISTSTYLE_ICON "Diskouez an elfennoù evel arlunioù bras"
+    ID_REMOTELISTSTYLE_LIST "Diskouez an elfennoù en ur roll"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_REMOTELISTSTYLE_REPORT "Diskouez munudoù an ergorennoù"
+    ID_REMOTELISTSTYLE_SMALLICON "Diskouez an ergorennoù en arlunioù bihan"
+    ID_SHOWQUEUE            "Dizkouez pe guzhat la file d'attente des transferts"
+    ID_SHOWREMOTETREE       "Dizkouez pe guzhat l'arborescence distante"
+    ID_SHOWTREE             "Dizkouez pe guzhat l'arborescence locale"
+    ID_SITEMANAGER          "Ouvre le Gestionnaire de Sites"
+    ID_SITEMANAGER_FILE_EXPORT 
+                            "Exporter la liste de serveurs FTP vers un fichier"
+    ID_SITEMANAGER_FILE_IMPORT 
+                            "Importe la liste de serveurs FTP depuis un fichier"
+    ID_TOOLBAR_DISCONNECT   "Se déconnecter du serveur"
+    ID_TOOLBAR_RECONNECT    "Se reconnecter au serveur"
+    ID_TOOLBAR_REFRESH      "Freskaat ar gwelioù"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_LOCALLISTVIEW_FILESIZE "Affiche la taille des fichiers"
+    ID_VIEW_LOCALLISTVIEW_FILETYPE "Affiche le type d'objet"
+    ID_VIEW_LOCALLISTVIEW_LASTMODIFIEDTIME 
+                            "Affiche la date et l'heure de la dernière modification"
+    ID_VIEW_MESSAGELOG      "Dizkouez pe guzhat le journal de messages"
+    ID_VIEW_QUICKCONNECT_BAR "Dizkouez pe guzhat la barre de Connexion Rapide"
+    ID_VIEW_REMOTELISTVIEW_DATE "Affiche la date et l'heure du fichier"
+    ID_VIEW_REMOTELISTVIEW_FILESIZE "Affiche la taille des fichiers"
+    ID_VIEW_REMOTELISTVIEW_PERMISSIONS "Affiche les permissions"
+    ID_VIEW_REMOTELISTVIEW_TIME "Affiche la date et l'heure du fichier"
+    ID_MENU_VIEW_LOCALLISTVIEW_STATUSBAR 
+                            "Bascule la barre d'état affichant des informations utiles sur les fichiers (sélectionnés) sous la liste des fichiers locaux."
+    ID_MENU_VIEW_REMOTELISTVIEW_STATUSBAR 
+                            "Bascule la barre d'état affichant des informations utiles sur les fichiers (sélectionnés) sous la liste des fichiers distants."
+    ID_QUEUECONTEXT_ABORT   "Annule les transferts sélectionnés et les supprimer de la file d'attente"
+    ID_QUEUECONTEXT_PAUSE   "Pause des transferts sélectionnés"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LOCALLISTSTYLE_SMALLICON "Diskouez an ergorennoù e arlunioù bihan"
+    ID_MENU_QUEUE_EXPORT    "Exporter tout les éléments de la file d'attente"
+    ID_MENU_QUEUE_IMPORT    "Importer des éléments de file d'attente d'un fichier externe"
+    ID_MENU_QUEUE_PROCESSNOW "Démarre le traitement de la file d'attente"
+    ID_MENU_QUEUE_USEMULTIPLE 
+                            "Si activé, FileZilla pourra transférer plusieurs fichiers à la fois."
+    ID_MENU_SERVER_CHANGEPASS 
+                            "Change le mot de passe du compte. Quelques serveurs seulement permettent ceci."
+    ID_MENU_SERVER_COPYURLTOCLIPBOARD 
+                            "Copie l'URL du serveur courant ainsi que le chemin dans le presse-papier"
+    ID_MENU_SERVER_ENTERRAWCOMMAND 
+                            "Vous permet d'envoyer une commande FTP au serveur"
+    ID_MENU_TRANSFER_MANUALTRANSFER "Transfère un fichier manuellement"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CANCELBUTTON         "Annuler l'opération en cours"
+    ID_COPYTOSITEMANAGER    "Copie la connexion actuelle dans une nouvelle entrée du Gestionnaire de Sites"
+    ID_EDIT_EXPORTSETTINGS  "Exporte les paramètres dans un fichier"
+    ID_EDIT_IMPORTSETTINGS  "Importer les paramètres depuis un fichier"
+    ID_EDIT_SETTINGS        "Entre dans le paramètrage de FileZilla"
+    ID_FILE_CONNECTTODEFAULTSITE 
+                            "Se connecte au site par défaut du Gestionnaire de Sites"
+    ID_FILE_EXPORT_ASURLLIST 
+                            "Exporte tout les sites FTP dans un fichier texte comme une liste d'URL"
+    ID_FILE_EXPORT_WITHALLDETAILS 
+                            "Exporte tout les sites FTP avec tout les détails dans un fichier texte"
+    ID_FTPCONTEXT_CREATEDIR "Créer un répertoire sur le serveur FTP"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_HELPMENU_CONTENTS    "Ouvre la table des matières de l'aide"
+    ID_HELPMENU_INDEX       "Affiche l'index du fichier d'aide"
+    ID_HELPMENU_SEARCH      "Rechercher dans le fichier d'aide"
+    ID_LOCALLISTSTYLE_ICON  "Affiche les objets comme grandes icônes"
+    ID_LOCALLISTSTYLE_LIST  "Affiche les objets en liste"
+    ID_LOCALLISTSTYLE_REPORT "Affiche les détails des objets"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_SHOWHIDDEN "Si coché, FileZilla essaiera d'afficher les fichiers cachés sur le serveur."
+    ID_OVERWRITEMENU_ASK    "FileZilla vous demandera que faire si un fichier existe"
+    ID_OVERWRITEMENU_OVERWRITE "Toujours écraser le fichier"
+    ID_OVERWRITEMENU_OVERWRITEIFNEWER 
+                            "Ecrase l'ancien fichier si le nouveau est plus récent"
+    ID_OVERWRITEMENU_RENAME "Demande un nouveau nom de fichier"
+    ID_OVERWRITEMENU_RESUME "Reprend le transfert si possible"
+    ID_OVERWRITEMENU_SKIP   "Passe au fichier suivant"
+    ID_PROCESS_QUEUE        "Traiter la file d'attente"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DIRINFO_FILEMIN     "1 restr eus %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_DIRANDFILESMIN 
+                            "1 c'havlec'h ha %d restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_DIRANDFILE  "1 c'havlec'h hag ur restr eus %I64d eizh-bit."
+    IDS_DIRINFO_DIRSANDFILE "%d kavlec'h hag ur restr eus %I64d eizh-bit."
+    IDS_DIRINFO_DIRANDFILEMIN 
+                            "1 c'havlec'h hag 1 restr eus %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_DIRSANDFILEMIN 
+                            "%d kavlec'h hag ur restr eus %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_SELECTED_FILE "Diuzad : 1 restr eus %I64d eizh-bit."
+    IDS_DIRINFO_SELECTED_DIR "Diuzad : 1 c'havlec'h."
+    IDS_DIRINFO_SELECTED_DIRANDFILES 
+                            "Diuzad : 1 c'havlec'h ha %d restr gant %I64d eizh-bit."
+    IDS_DIRINFO_SELECTED_FILEMIN 
+                            "Diuzad : 1 restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_SELECTED_DIRANDFILESMIN 
+                            "Diuzad : 1 c'havlec'h hag %d restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_SELECTED_DIRANDFILE 
+                            "Diuzad : 1 c'havlec'h hag 1 restr eus %I64d eizh-bit."
+    IDS_DIRINFO_SELECTED_DIRANDFILEMIN 
+                            "Diuzad : 1 c'havlec'h hag 1 restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_DIRINFO_SELECTED_DIRSANDFILE 
+                            "Diuzad : %d kavlec'h hag 1 restr gant %I64d bytes."
+    IDS_DIRINFO_SELECTED_DIRSANDFILEMIN 
+                            "Diuzad : %d kavlec'h hag 1 restr gant %I64d eizh-bit d'an nebeutañ."
+    IDS_QUEUESTATUS_PAUSED  "Ehan"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_QUEUECONTEXT_RESUME  "Kenderc'hel gant an treuzkasoù diuzet"
+    ID_VIEW_REMOTELISTVIEW_OWNERGROUP "Diskouez ar perc'henn hag ar strollad"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILENAME 
+                            "Rummañ ar rollad arbell diouzh an anv"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILESIZE 
+                            "Rummañ ar rollad arbell diouzh ar vent"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_FILETYPE 
+                            "Rummañ ar rollad arbell diouzh ar rizh"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DATETIME 
+                            "Rummañ ar rollad arbell diouzh an deiziad hag an eur"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_ASCENDING 
+                            "Rummañ ar rollad arbell diouzh an urzh war-gresk"
+    ID_MENU_VIEW_REMOTELISTVIEW_SORTBY_DESCENDING 
+                            "Rummañ ar rollad arbell diouzh an urzh war-zigresk"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERRORMSG_SETFILEPOINTER "N'haller spisaat ar poenter restr"
+    IDS_ERRORMSG_UNKNOWNSSLERROR "Fazi dianav er gwiskad SSL"
+    IDS_ERRORMSG_SSLCERTIFICATEERROR "N'haller gwiriañ an testeni SSL"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILENAME 
+                            "Rummañ ar rollad lec'hel diouzh an anv"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILESIZE 
+                            "Rummañ ar rollad lec'hel diouzh ar vent"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_FILETYPE 
+                            "Rummañ ar rollad lec'hel diouzh ar rizh"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_LASTMODIFIED 
+                            "Rummañ ar rollad lec'heldiouzh an deiziad hag an eur gemmañ diwezhañ"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_ASCENDING 
+                            "Rummañ ar rollad lec'hel diouzh an urzh war-gresk"
+    ID_MENU_VIEW_LOCALLISTVIEW_SORTBY_DESCENDING 
+                            "Rummañ ar rollad lec'hel diouzh an urzh war-zigresk"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CERT_ERR_DEPTH_ZERO_SELF_SIGNED_CERT "Testeni sined-emgefre"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_AFTER_FIELD 
+                            "Fazi format dans le champs valide ""jusque"" du certificat"
+    IDS_CERT_ERR_ERROR_IN_CERT_NOT_BEFORE_FIELD 
+                            "Fazi format dans le champs valide ""depuis"" du certificat"
+    IDS_CERT_ERR_INVALID_CA "Autorité de Certification invalide"
+    IDS_CERT_ERR_INVALID_PURPOSE "But du certificat non supporté"
+    IDS_CERT_ERR_KEYUSAGE_NO_CERTSIGN 
+                            "L'utilisation de la clé n'inclue pas la signature du certificat"
+    IDS_CERT_ERR_PATH_LENGTH_EXCEEDED 
+                            "Contrainte de longueur de chemin dépassée"
+    IDS_CERT_ERR_SELF_SIGNED_CERT_IN_CHAIN 
+                            "Certificat auto-signé dans la chaine de certification"
+    IDS_CERT_ERR_UNABLE_TO_DECODE_ISSUER_PUBLIC_KEY 
+                            "N'haller ket décoder la clé publique de l'émetteur"
+    IDS_CERT_ERR_UNABLE_TO_DECRYPT_CERT_SIGNATURE 
+                            "N'haller ket décrypter la signature du certificat"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT 
+                            "Impossible d'obtenir le certificat de l'émetteur"
+    IDS_CERT_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY 
+                            "Impossible d'obtenir le certificat de l'émetteur local"
+    IDS_CERT_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE 
+                            "N'haller ket gwiriañ an testeni kentañ"
+    IDS_CERT_ERR_UNKNOWN    "Erreur inconnue de vérification du certificat"
+    IDS_CERT_ERRDEPTH       "L'erreur est survenue à une profondeur de %d dans la chaine de certification."
+    IDS_CERT_OK             "Le certificat semble être valide."
+    ID_QUICKCONNECTBAR_MENU_EMPTYHISTORY "&Empty history"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE 0x0200, 0x20
+#pragma code_page(1252)
+#endif //_WIN32
+#include "l.fra\afxres.rc"          // Standardkomponenten
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
