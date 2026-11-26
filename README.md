@@ -11,7 +11,7 @@ project's own licence. Most hold patches and new files, not a copy of the upstre
 |---|---|---|---|---|
 | [7-Zip 9.20](7zip/) | Built and tested | Built, tested in QEMU | Built | Built and tested |
 | [Notepad++ 3.3](notepad++/) | Built and tested | Built, tested in QEMU | Built | Built and tested |
-| [UnixBench](unixbench/) | Built | Built, tested in QEMU | Built, run with ntrun | Built |
+| [UnixBench](unixbench/) | Built | Built, tested in QEMU | Built | Built |
 | [FileZilla 2.2.32](filezilla/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
 
 Every app builds for Alpha, MIPS and PowerPC on Linux with

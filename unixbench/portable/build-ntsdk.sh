@@ -3,8 +3,8 @@
 # (Visual C++ 4.1 for each, https://github.com/tenox7/ntsdk): no NT machine.
 #
 # Usage: ./build-ntsdk.sh [alpha] [mips] [ppc]      from UnixBench/portable; default all three
-# Makes ubench-alpha.exe, ubench-mips.exe and ubench-ppc.exe. ntsdk's ntrun can run them
-# (ntrun ubench-mips.exe), slowly: it emulates the CPU.
+# Makes ubench-alpha.exe, ubench-mips.exe and ubench-ppc.exe. ntsdk's ntrun starts them
+# but a test never ends there: run them on NT.
 set -eu
 
 cd "$(dirname "$0")/.."

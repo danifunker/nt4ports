@@ -48,7 +48,7 @@ NT 3.51 already had: `QueryPerformanceCounter`, `CreateThread`, `Sleep`,
 ```
 
 That makes `ubench-alpha.exe`, `ubench-mips.exe` and `ubench-ppc.exe`, the generic builds.
-ntsdk's `ntrun` runs them (`ntrun ubench-mips.exe -q`), slowly, as it emulates the CPU. Its
+ntsdk's `ntrun` starts them but can't time a test (it never ends), so run them on NT. Its
 Alpha compiler (10.10) doesn't list the per-CPU options, so the Alpha CPU-specific builds
 below are still Visual C++ 6.0's.
 
