@@ -1,0 +1,55 @@
+Neko Project II (np2_gdi) for Windows NT 4.0
+============================================
+
+Neko Project II is by Yui / Studio Milmake and the NP2 developer team
+(ねこさん開発ちーむ). Its terms of use, from the help file of Neko Project II 0.82
+(np2.chm, termsofuse.html, 2004), and the same on Yui's site
+(https://web.archive.org/web/20070202133650/http://www.yui.ne.jp:80/np2/copy.html):
+
+  使用許諾
+  ねこープロジェクトIIは、個人的使用においては制限なく使用することができます。
+
+  知的財産権
+  本ソフトウェアの著作権、その他の知的財産権は、日本法に準拠する為、ねこさん開発ちーむが
+  所有しています。(実際にはバイナリ配布者が所有することになります)
+
+  ソースコード
+  ねこープロジェクトIIのソースコードは 修正BSDライセンスとします。コア部分と
+  Windows/MacOS9部分については 再配布時の著作権表示の義務はありません。
+
+  営利目的での利用に関して
+  ねこープロジェクトIIの雑誌掲載等の営利目的での利用は 承諾なく行なえます。
+  但し、ねこープロジェクトIIのバイナリを雑誌CD-ROMに収録するなどの、営利目的での
+  バイナリ再配布の場合には事前の連絡をお願いします。ゆい np2@yui.ne.jp
+
+In English (an unofficial translation):
+
+  Use: Neko Project II may be used without restriction for personal use.
+  Copyright: under Japanese law, the copyright and other intellectual property rights
+    belong to the NP2 developer team (in practice, to whoever distributes the binary).
+  Source code: the source of Neko Project II is under the modified BSD licence. The core
+    and the Windows/MacOS 9 parts need no copyright notice when redistributed.
+  Commercial use: commercial use, such as in a magazine, needs no permission. Before
+    redistributing the binaries commercially, such as on a magazine CD-ROM, please
+    contact Yui first (np2@yui.ne.jp).
+
+np2_gdi (https://github.com/spaztron64/np2_gdi) is spaztron64's GDI and waveOut backport of
+it. That repository states no licence for those changes; this port treats them as freely
+redistributable, as upstream publishes its own builds.
+
+The build scripts in this folder are under the MIT licence:
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this
+  software and associated documentation files (the "Software"), to deal in the Software
+  without restriction, including without limitation the rights to use, copy, modify,
+  merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to the following
+  conditions: the above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+  OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  OTHER DEALINGS IN THE SOFTWARE.

@@ -13,9 +13,11 @@ project's own licence. Most hold patches and new files, not a copy of the upstre
 | [Notepad++ 3.3](notepad++/) | Built and tested | Built, tested in QEMU | Built | Built and tested |
 | [UnixBench](unixbench/) | Built | Built, tested in QEMU | Built | Built |
 | [FileZilla 2.2.32](filezilla/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
+| [Neko Project II (np2_gdi)](np2_gdi/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
 
 Every app builds for Alpha, MIPS and PowerPC on Linux with
 [tenox7/ntsdk](https://github.com/tenox7/ntsdk), with no NT machine: `7zip/ntsdk`,
-`notepad++/ntsdk`, `unixbench/portable/build-ntsdk.sh` and `filezilla/nt4/build.sh`. ARM
+`notepad++/ntsdk`, `unixbench/portable/build-ntsdk.sh`, `filezilla/nt4/build.sh` and
+`np2_gdi/ntsdk`. ARM
 uses the PINT SDK, as ntsdk has no ARM target; notes for building on PINT are in
 [pint/](pint/).
