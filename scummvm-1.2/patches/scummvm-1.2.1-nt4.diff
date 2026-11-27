@@ -11,6 +11,394 @@ index 2c0e79a..f83d43e 100644
  
  	bool _changes;
  
+diff --git a/backends/platform/sdl/graphics.cpp b/backends/platform/sdl/graphics.cpp
+index 69144dc..a6e193e 100644
+--- a/backends/platform/sdl/graphics.cpp
++++ b/backends/platform/sdl/graphics.cpp
+@@ -539,6 +539,21 @@ bool OSystem_SDL::loadGFXMode() {
+ 	assert(_inited);
+ 	_forceFull = true;
+ 
++	// The desktop's depth, before the first SDL_SetVideoMode changes what SDL reports.
++	// SCUMMVM_PALETTIZED=1 or 0 forces the palettized mode on or off.
++	static int desktopBpp = -1;
++	if (desktopBpp < 0) {
++		const SDL_VideoInfo *vi = SDL_GetVideoInfo();
++		desktopBpp = (vi && vi->vfmt) ? vi->vfmt->BitsPerPixel : 0;
++		const char *force = getenv("SCUMMVM_PALETTIZED");
++		if (force && *force)
++			desktopBpp = (*force == '1') ? 8 : 16;
++	}
++	_palettized = (desktopBpp == 8);
++	// The game is drawn unscaled by the scalers in that mode, so no aspect correction.
++	if (_palettized)
++		_videoMode.aspectRatioCorrection = false;
++
+ #if !defined(__MAEMO__) && !defined(GP2XWIZ) && !defined(LINUXMOTO) && !defined(DINGUX) && !defined(OPENPANDORA)
+ 	_videoMode.overlayWidth = _videoMode.screenWidth * _videoMode.scaleFactor;
+ 	_videoMode.overlayHeight = _videoMode.screenHeight * _videoMode.scaleFactor;
+@@ -583,9 +598,50 @@ bool OSystem_SDL::loadGFXMode() {
+ 		fixupResolutionForAspectRatio(_videoMode.desiredAspectRatio, _videoMode.hardwareWidth, _videoMode.hardwareHeight);
+ 	}
+ 
+-	_hwscreen = SDL_SetVideoMode(_videoMode.hardwareWidth, _videoMode.hardwareHeight, 16,
+-		_videoMode.fullscreen ? (SDL_FULLSCREEN|SDL_SWSURFACE) : SDL_SWSURFACE
+-	);
++	if (_palettized) {
++		// SDL_HWPALETTE: the window takes the static colours while it's active, so a game
++		// has 254 exact colours, and palette changes need no redraw.
++		_hwscreen8 = SDL_SetVideoMode(_videoMode.hardwareWidth, _videoMode.hardwareHeight, 8,
++			(_videoMode.fullscreen ? (SDL_FULLSCREEN|SDL_SWSURFACE) : SDL_SWSURFACE) | SDL_HWPALETTE);
++		_hwscreen = NULL;
++		if (_hwscreen8)
++			_hwscreen = SDL_CreateRGBSurface(SDL_SWSURFACE, _hwscreen8->w, _hwscreen8->h, 16,
++				0xF800, 0x07E0, 0x001F, 0);
++		_hw8Palette = 0;
++		if (!_rgbToCube) {
++			// The cube: 6 levels of each primary at 0-215, 39 more greys, white at 255.
++			_rgbToCube = (byte *)malloc(65536);
++			for (int p = 0; p < 65536; p++) {
++				int r = (p >> 11) & 31, gr = (p >> 5) & 63, b = p & 31;
++				r = (r << 3) | (r >> 2);
++				gr = (gr << 2) | (gr >> 4);
++				b = (b << 3) | (b >> 2);
++				int mx = MAX(r, MAX(gr, b)), mn = MIN(r, MIN(gr, b));
++				int idx;
++				if (mx - mn < 12) {
++					// A grey: the cube's nearest (index level * 43) or one of the 39 others
++					// (216 + k, of level 6 + 6k), whichever is closer.
++					int v = (r + gr + b) / 3;
++					int ci = (v + 25) / 51;
++					idx = ci * 43;
++					int k = (v - 3) / 6;
++					if (k < 0)
++						k = 0;
++					if (k > 38)
++						k = 38;
++					if (ABS(6 + 6 * k - v) < ABS(ci * 51 - v))
++						idx = 216 + k;
++				} else {
++					idx = ((r + 25) / 51) * 36 + ((gr + 25) / 51) * 6 + ((b + 25) / 51);
++				}
++				_rgbToCube[p] = (byte)idx;
++			}
++		}
++	} else {
++		_hwscreen = SDL_SetVideoMode(_videoMode.hardwareWidth, _videoMode.hardwareHeight, 16,
++			_videoMode.fullscreen ? (SDL_FULLSCREEN|SDL_SWSURFACE) : SDL_SWSURFACE
++		);
++	}
+ #ifdef USE_RGB_COLOR
+ 	detectSupportedFormats();
+ #endif
+@@ -688,6 +744,7 @@ void OSystem_SDL::unloadGFXMode() {
+ 		SDL_FreeSurface(_hwscreen);
+ 		_hwscreen = NULL;
+ 	}
++	_hwscreen8 = NULL;
+ 
+ 	if (_tmpscreen) {
+ 		SDL_FreeSurface(_tmpscreen);
+@@ -726,6 +783,7 @@ bool OSystem_SDL::hotswapGFXMode() {
+ 
+ 	// Release the HW screen surface
+ 	SDL_FreeSurface(_hwscreen); _hwscreen = NULL;
++	_hwscreen8 = NULL;
+ 
+ 	SDL_FreeSurface(_tmpscreen); _tmpscreen = NULL;
+ 	SDL_FreeSurface(_tmpscreen2); _tmpscreen2 = NULL;
+@@ -784,6 +842,15 @@ void OSystem_SDL::internUpdateScreen() {
+ 	assert(_hwscreen->map->sw_data != NULL);
+ #endif
+ 
++	if (_palettized && _hwscreen8) {
++		const bool direct = !_overlayVisible && _screen && _screen->format->BitsPerPixel == 8;
++		setHW8Palette(direct ? 1 : 2);
++		if (direct) {
++			updateScreen8();
++			return;
++		}
++	}
++
+ 	// If the shake position changed, fill the dirty area with blackness
+ 	if (_currentShakePos != _newShakePos ||
+ 		(_mouseNeedsRedraw && _mouseBackup.y <= _currentShakePos)) {
+@@ -934,7 +1001,11 @@ void OSystem_SDL::internUpdateScreen() {
+ 		}
+ #endif
+ 		// Finally, blit all our changes to the screen
+-		SDL_UpdateRects(_hwscreen, _numDirtyRects, _dirtyRectList);
++		if (_palettized && _hwscreen8) {
++			convertRectsTo8();
++			SDL_UpdateRects(_hwscreen8, _numDirtyRects, _dirtyRectList);
++		} else
++			SDL_UpdateRects(_hwscreen, _numDirtyRects, _dirtyRectList);
+ 	}
+ 
+ 	_numDirtyRects = 0;
+@@ -1645,6 +1716,9 @@ void OSystem_SDL::blitCursor() {
+ 
+ 	SDL_UnlockSurface(_mouseSurface);
+ 	SDL_UnlockSurface(_mouseOrigSurface);
++
++	if (_palettized)
++		blitCursor8();
+ }
+ 
+ #ifdef USE_SCALERS
+@@ -1944,3 +2018,252 @@ bool OSystem_SDL::isScalerHotkey(const Common::Event &event) {
+ 	}
+ 	return false;
+ }
++
++#pragma mark -
++#pragma mark --- Palettized display ---
++#pragma mark -
++
++// The window's palette: 1, the game's; 2, the colour cube the 16-bit pictures are mapped to.
++void OSystem_SDL::setHW8Palette(int which) {
++	if (_hw8Palette == which)
++		return;
++	SDL_Color pal[256];
++	if (which == 1) {
++		memcpy(pal, _currentPalette, sizeof(pal));
++	} else {
++		int i;
++		for (i = 0; i < 216; i++) {
++			pal[i].r = (i / 36) * 51;
++			pal[i].g = ((i / 6) % 6) * 51;
++			pal[i].b = (i % 6) * 51;
++		}
++		for (i = 0; i < 39; i++)
++			pal[216 + i].r = pal[216 + i].g = pal[216 + i].b = 6 + 6 * i;
++		pal[255].r = pal[255].g = pal[255].b = 255;
++	}
++	SDL_SetColors(_hwscreen8, pal, 0, 256);
++	_hw8Palette = which;
++	_forceFull = true;
++	// The cursor's indices are the game's palette's.
++	if (which == 1)
++		blitCursor8();
++}
++
++// The dirty rectangles of the 16-bit surface (in window coordinates) to the window.
++void OSystem_SDL::convertRectsTo8() {
++	SDL_LockSurface(_hwscreen);
++	SDL_LockSurface(_hwscreen8);
++	const int sw = _hwscreen8->w, sh = _hwscreen8->h;
++	for (int i = 0; i < _numDirtyRects; i++) {
++		SDL_Rect &r = _dirtyRectList[i];
++		int x = r.x, y = r.y, w = r.w, h = r.h;
++		if (x < 0) { w += x; x = 0; }
++		if (y < 0) { h += y; y = 0; }
++		if (x + w > sw) w = sw - x;
++		if (y + h > sh) h = sh - y;
++		if (w <= 0 || h <= 0) {
++			r.w = r.h = 0;
++			continue;
++		}
++		r.x = x; r.y = y; r.w = w; r.h = h;
++		for (int yy = 0; yy < h; yy++) {
++			const uint16 *s = (const uint16 *)((const byte *)_hwscreen->pixels + (y + yy) * _hwscreen->pitch) + x;
++			byte *d = (byte *)_hwscreen8->pixels + (y + yy) * _hwscreen8->pitch + x;
++			for (int xx = 0; xx < w; xx++)
++				d[xx] = _rgbToCube[s[xx]];
++		}
++	}
++	SDL_UnlockSurface(_hwscreen8);
++	SDL_UnlockSurface(_hwscreen);
++}
++
++// An 8-bit game screen straight to the window, scaled by repeating pixels.
++void OSystem_SDL::updateScreen8() {
++	const int scale = _videoMode.scaleFactor;
++	const int width = _videoMode.screenWidth, height = _videoMode.screenHeight;
++
++	if (_currentShakePos != _newShakePos ||
++		(_mouseNeedsRedraw && _mouseBackup.y <= _currentShakePos)) {
++		SDL_Rect blackrect = {0, 0, width * scale, _newShakePos * scale};
++		SDL_FillRect(_hwscreen8, &blackrect, 0);
++		_currentShakePos = _newShakePos;
++		_forceFull = true;
++	}
++
++	if (_paletteDirtyEnd != 0) {
++		SDL_SetColors(_screen, _currentPalette + _paletteDirtyStart, _paletteDirtyStart,
++			_paletteDirtyEnd - _paletteDirtyStart);
++		SDL_SetColors(_hwscreen8, _currentPalette + _paletteDirtyStart, _paletteDirtyStart,
++			_paletteDirtyEnd - _paletteDirtyStart);
++		_paletteDirtyEnd = 0;
++		// A cursor with its own palette is mapped to the game's.
++		if (!_cursorPaletteDisabled)
++			blitCursor8();
++	}
++
++	if (_mouseNeedsRedraw)
++		undrawMouse();
++
++	if (_forceFull) {
++		_numDirtyRects = 1;
++		_dirtyRectList[0].x = 0;
++		_dirtyRectList[0].y = 0;
++		_dirtyRectList[0].w = width;
++		_dirtyRectList[0].h = height;
++	}
++
++	if (_numDirtyRects > 0 || _mouseNeedsRedraw) {
++		SDL_Rect *lastRect = _dirtyRectList + _numDirtyRects;
++		SDL_LockSurface(_hwscreen8);
++		const byte *src0 = (const byte *)_screen->pixels;
++		byte *dst0 = (byte *)_hwscreen8->pixels;
++		const int sp = _screen->pitch, dp = _hwscreen8->pitch;
++
++		for (SDL_Rect *r = _dirtyRectList; r != lastRect; ++r) {
++			int dst_y = r->y + _currentShakePos;
++			int dst_h = 0;
++			if (dst_y < height) {
++				dst_h = r->h;
++				if (dst_h > height - dst_y)
++					dst_h = height - dst_y;
++				for (int y = 0; y < dst_h; y++) {
++					const byte *s = src0 + (r->y + y) * sp + r->x;
++					byte *d = dst0 + (dst_y + y) * scale * dp + r->x * scale;
++					if (scale == 1) {
++						memcpy(d, s, r->w);
++					} else {
++						byte *e = d;
++						for (int x = 0; x < r->w; x++)
++							for (int k = 0; k < scale; k++)
++								*e++ = s[x];
++						for (int k = 1; k < scale; k++)
++							memcpy(d + k * dp, d, r->w * scale);
++					}
++				}
++			}
++			r->x = r->x * scale;
++			r->y = dst_y * scale;
++			r->w = r->w * scale;
++			r->h = dst_h * scale;
++		}
++		SDL_UnlockSurface(_hwscreen8);
++
++		if (_forceFull) {
++			_dirtyRectList[0].y = 0;
++			_dirtyRectList[0].h = height * scale;
++		}
++
++		drawMouse8();
++		SDL_UpdateRects(_hwscreen8, _numDirtyRects, _dirtyRectList);
++	}
++
++	_numDirtyRects = 0;
++	_forceFull = false;
++	_mouseNeedsRedraw = false;
++}
++
++// The cursor as indices of the game's palette, scaled as blitCursor() scales it.
++void OSystem_SDL::blitCursor8() {
++	free(_mouseData8);
++	free(_mouseMask8);
++	_mouseData8 = _mouseMask8 = NULL;
++	if (!_mouseData || _mouseCurState.rW <= 0 || _mouseCurState.rH <= 0)
++		return;
++
++	const int w = _mouseCurState.w, h = _mouseCurState.h;
++	const int rW = _mouseCurState.rW, rH = _mouseCurState.rH;
++	_mouseData8 = (byte *)malloc(rW * rH);
++	_mouseMask8 = (byte *)malloc(rW * rH);
++	int map[256];
++	int i;
++	for (i = 0; i < 256; i++)
++		map[i] = -1;
++
++	for (int y = 0; y < rH; y++) {
++		const int sy = y * h / rH;
++		for (int x = 0; x < rW; x++) {
++			const int sx = x * w / rW;
++			byte idx = 0, on = 0;
++#ifdef USE_RGB_COLOR
++			if (_cursorFormat.bytesPerPixel > 1) {
++				const byte *p = _mouseData + (sy * w + sx) * _cursorFormat.bytesPerPixel;
++				uint32 color = (_cursorFormat.bytesPerPixel == 2) ? *(const uint16 *)p : *(const uint32 *)p;
++				if (color != _mouseKeyColor) {
++					uint8 r, g, b;
++					_cursorFormat.colorToRGB(color, r, g, b);
++					int best = 0, bestd = 0x7fffffff;
++					for (i = 0; i < 256; i++) {
++						int dr = _currentPalette[i].r - r, dg = _currentPalette[i].g - g, db = _currentPalette[i].b - b;
++						int dd = dr * dr + dg * dg + db * db;
++						if (dd < bestd) { bestd = dd; best = i; }
++					}
++					idx = (byte)best;
++					on = 1;
++				}
++			} else
++#endif
++			{
++				const byte color = _mouseData[sy * w + sx];
++				if (color != _mouseKeyColor) {
++					if (_cursorPaletteDisabled) {
++						idx = color;
++					} else {
++						if (map[color] < 0) {
++							const SDL_Color &c = _cursorPalette[color];
++							int best = 0, bestd = 0x7fffffff;
++							for (i = 0; i < 256; i++) {
++								int dr = _currentPalette[i].r - c.r, dg = _currentPalette[i].g - c.g, db = _currentPalette[i].b - c.b;
++								int dd = dr * dr + dg * dg + db * db;
++								if (dd < bestd) { bestd = dd; best = i; }
++							}
++							map[color] = best;
++						}
++						idx = (byte)map[color];
++					}
++					on = 1;
++				}
++			}
++			_mouseData8[y * rW + x] = idx;
++			_mouseMask8[y * rW + x] = on;
++		}
++	}
++	_mouseNeedsRedraw = true;
++}
++
++// drawMouse() for the 8-bit game path.
++void OSystem_SDL::drawMouse8() {
++	if (!_mouseVisible || !_mouseData8) {
++		_mouseBackup.x = _mouseBackup.y = _mouseBackup.w = _mouseBackup.h = 0;
++		return;
++	}
++
++	const int scale = _videoMode.scaleFactor;
++	int x = _mouseCurState.x, y = _mouseCurState.y;
++	_mouseBackup.x = x - _mouseCurState.vHotX;
++	_mouseBackup.y = y - _mouseCurState.vHotY;
++	_mouseBackup.w = _mouseCurState.vW;
++	_mouseBackup.h = _mouseCurState.vH;
++
++	y += _currentShakePos;
++	const int x0 = scale * x - _mouseCurState.rHotX;
++	const int y0 = scale * y - _mouseCurState.rHotY;
++	const int rW = _mouseCurState.rW, rH = _mouseCurState.rH;
++
++	int cx0 = MAX(x0, 0), cy0 = MAX(y0, 0);
++	int cx1 = MIN(x0 + rW, (int)_hwscreen8->w), cy1 = MIN(y0 + rH, (int)_hwscreen8->h);
++	if (cx0 >= cx1 || cy0 >= cy1)
++		return;
++
++	SDL_LockSurface(_hwscreen8);
++	for (int yy = cy0; yy < cy1; yy++) {
++		const byte *s = _mouseData8 + (yy - y0) * rW - x0;
++		const byte *m = _mouseMask8 + (yy - y0) * rW - x0;
++		byte *d = (byte *)_hwscreen8->pixels + yy * _hwscreen8->pitch;
++		for (int xx = cx0; xx < cx1; xx++)
++			if (m[xx])
++				d[xx] = s[xx];
++	}
++	SDL_UnlockSurface(_hwscreen8);
++
++	addDirtyRect(cx0, cy0, cx1 - cx0, cy1 - cy0, true);
++}
 diff --git a/backends/platform/sdl/main.cpp b/backends/platform/sdl/main.cpp
 index c27ccc0..f1b7d5d 100644
 --- a/backends/platform/sdl/main.cpp
@@ -29,7 +417,7 @@ index c27ccc0..f1b7d5d 100644
  	g_system = new OSystem_SDL();
  	assert(g_system);
 diff --git a/backends/platform/sdl/sdl.cpp b/backends/platform/sdl/sdl.cpp
-index 22fc561..d05a0a7 100644
+index 22fc561..7d201e8 100644
 --- a/backends/platform/sdl/sdl.cpp
 +++ b/backends/platform/sdl/sdl.cpp
 @@ -49,9 +49,15 @@
@@ -48,7 +436,15 @@ index 22fc561..d05a0a7 100644
  
  
  /*
-@@ -718,7 +724,7 @@ void OSystem_SDL::setupMixer() {
+@@ -226,6 +232,7 @@ OSystem_SDL::OSystem_SDL()
+ 	_osdSurface(0), _osdAlpha(SDL_ALPHA_TRANSPARENT), _osdFadeStartTime(0),
+ #endif
+ 	_hwscreen(0), _screen(0), _tmpscreen(0),
++	_hwscreen8(0), _palettized(false), _hw8Palette(0), _rgbToCube(0), _mouseData8(0), _mouseMask8(0),
+ #ifdef USE_RGB_COLOR
+ 	_screenFormat(Graphics::PixelFormat::createFormatCLUT8()),
+ 	_cursorFormat(Graphics::PixelFormat::createFormatCLUT8()),
+@@ -718,7 +725,7 @@ void OSystem_SDL::setupMixer() {
  	desired.format = AUDIO_S16SYS;
  	desired.channels = 2;
  	desired.samples = (uint16)samples;
@@ -57,6 +453,34 @@ index 22fc561..d05a0a7 100644
  	desired.userdata = this;
  
  	assert(!_mixer);
+diff --git a/backends/platform/sdl/sdl.h b/backends/platform/sdl/sdl.h
+index 5c901ba..40d6e94 100644
+--- a/backends/platform/sdl/sdl.h
++++ b/backends/platform/sdl/sdl.h
+@@ -427,6 +427,23 @@ protected:
+ 	// Cursor palette data
+ 	SDL_Color _cursorPalette[256];
+ 
++	// A palettized display (a 256-colour desktop, as on NT 4.0 machines with 8-plane cards).
++	// _hwscreen is then a 16-bit surface off screen for the GUI and 16-bit games, and
++	// _hwscreen8 the 8-bit window. An 8-bit game is drawn straight into the window, with its
++	// palette as the window's (no conversion, no scaler but pixel doubling); the 16-bit
++	// pictures are mapped to a colour cube.
++	SDL_Surface *_hwscreen8;
++	bool _palettized;
++	int _hw8Palette;		// _hwscreen8's palette: 0 none yet, 1 the game's, 2 the cube
++	byte *_rgbToCube;		// 16-bit (565) pixel to cube index
++	byte *_mouseData8;		// the cursor as game palette indices, scaled to rW x rH
++	byte *_mouseMask8;		// 1 where the cursor is drawn
++	void setHW8Palette(int which);
++	void updateScreen8();
++	void convertRectsTo8();
++	void blitCursor8();
++	void drawMouse8();
++
+ 	/**
+ 	 * Mutex which prevents multiple threads from interfering with each other
+ 	 * when accessing the screen.
 diff --git a/backends/vkeybd/virtual-keyboard-gui.h b/backends/vkeybd/virtual-keyboard-gui.h
 index 9bced3a..58dd06a 100644
 --- a/backends/vkeybd/virtual-keyboard-gui.h

@@ -85,6 +85,22 @@ it is in `common/` and repeats across the engines.
 - It links as a console program (warnings and errors go to its window) that starts at
   ScummVM's own `WinMain`, as SDL renames `main`.
 
+## 256-colour screens
+
+NT 4.0 machines often run 256 colours (the MiSTer's AlphaStation core has nothing more), and
+ScummVM 1.2.1 draws in 16-bit colour: SDL and GDI then mapped every frame to the screen's
+colours, slowly and badly (256-colour games looked nearly 16-colour). The patch gives the
+SDL backend (`backends/platform/sdl/graphics.cpp`) a palettized mode for an 8-bit desktop:
+
+- An 8-bit game is drawn straight into an 8-bit window whose palette is the game's, scaled
+  by repeating pixels: no conversion, and palette changes cost nothing. The window takes
+  Windows' static colours while it's active, so the game has 254 exact colours, and the
+  other windows change colour until it's left.
+- The launcher, the in-game menu and 16-bit games go through ScummVM's usual 16-bit drawing
+  into a surface off screen, then to a 216-colour cube and 40 greys by a lookup table.
+- In this mode there are no scalers but 1x, 2x and 3x, and no aspect ratio correction.
+- `SCUMMVM_PALETTIZED=1` or `0` forces the mode on or off; otherwise it follows the desktop.
+
 ## Testing without an Alpha
 
     VC6=/path/to/vc6 scummvm-1.2/test/ntrun-test.sh scummvm-1.2.1 GAMES longbow:sci goldrush:agi
@@ -110,9 +126,12 @@ On an AlphaStation 200 FPGA core on a MiSTer (NT 4.0 Terminal Server Edition, 64
   (`backends/platform/sdl/sdl.cpp`; Options > Audio or `output_rate` still change it).
 - `waveOut` plays there in real time (a test program had 39 of 40 quarter-second buffers
   back on time), but the sound wasn't listened to: the MiSTer's video capture records none.
-- ScummVM draws in 16-bit colour and SDL maps each frame to the 256-colour screen, which
-  costs time and makes 256-colour games look nearly 16-colour.
+- With the palettized mode (above): Day of the Tentacle, Longbow and Gold Rush! in their own
+  colours, the launcher and in-game menu in the cube, both cursors, and the switches between
+  game and menu. Gold Rush! ran at 12% CPU.
 - The window's close button quits; Alt+F4 doesn't reach it.
+- Started with a game on the command line, it sometimes ends at once with no message (no
+  crash: Dr. Watson logs nothing); started again, it runs. Cause unknown.
 
 In ntrun: `--version`, `--list-games`, and the detector test, which finds Gold Rush! (AGI),
 Conquests of the Longbow (SCI), Gobliiins, Flight of the Amazon Queen, Simon the Sorcerer

@@ -53,15 +53,15 @@ saved games go in the current folder unless a save path is set in the options.
 Not in this build: MP3, Ogg Vorbis and FLAC, the MT-32 emulator, the assembly scalers and
 translations; nor DOSBox's OPL emulator, so AdLib music plays through MAME's. Speech, music
 and video compressed with ScummVM's tools don't play. The program opens a console window
-too: warnings and errors go there. Run the desktop in 65536 colours or more if the
-machine has them.
+too: warnings and errors go there.
 
 Tested on an AlphaStation 200 FPGA core on a MiSTer (NT 4.0, 256 colours): the launcher,
 Day of the Tentacle's intro and its autosave, and Conquests of the Longbow (SCI) to its
 main menu. Nobody has listened to the sound yet. Sound is 11 kHz by default (Options >
 Audio): at 22 kHz that machine can't emulate AdLib music in real time, and Sierra's SCI
-games, timed by their music, crawl. At 256 colours the colours are poor, as ScummVM draws
-in 16-bit colour. Close the window with its close button: Alt+F4 doesn't reach ScummVM.
+games, timed by their music, crawl. On a 256-colour desktop games are drawn with their own
+palette (the other windows change colour while ScummVM is active) and the menus in a fixed
+one. Close the window with its close button: Alt+F4 doesn't reach ScummVM.
 Licences: COPYING.TXT (ScummVM, GPL v2 or later), COPYRIGHT.TXT, COPYING-LGPL.TXT and
 COPYING-BSD.TXT (parts of ScummVM), COPYING-SDL.TXT (SDL, LGPL v2.1), COPYING-ZLIB.TXT (zlib).
 SDL and zlib are linked statically; their source and ScummVM's are in $v-src.zip.
