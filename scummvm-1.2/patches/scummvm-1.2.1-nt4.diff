@@ -29,10 +29,26 @@ index c27ccc0..f1b7d5d 100644
  	g_system = new OSystem_SDL();
  	assert(g_system);
 diff --git a/backends/platform/sdl/sdl.cpp b/backends/platform/sdl/sdl.cpp
-index 22fc561..128efa5 100644
+index 22fc561..d05a0a7 100644
 --- a/backends/platform/sdl/sdl.cpp
 +++ b/backends/platform/sdl/sdl.cpp
-@@ -718,7 +718,7 @@ void OSystem_SDL::setupMixer() {
+@@ -49,9 +49,15 @@
+ 
+ #include <time.h>	// for getTimeAndDate()
+ 
++#if defined(_M_ALPHA)
++// NT 4.0 on Alpha: the AlphaStation 200 core on a MiSTer can't emulate AdLib music at
++// 22 kHz in real time, and SCI games, timed by their music, then crawl. 11 kHz keeps up.
++#define SAMPLES_PER_SEC 11025
++#else
+ //#define SAMPLES_PER_SEC 11025
+ #define SAMPLES_PER_SEC 22050
+ //#define SAMPLES_PER_SEC 44100
++#endif
+ 
+ 
+ /*
+@@ -718,7 +724,7 @@ void OSystem_SDL::setupMixer() {
  	desired.format = AUDIO_S16SYS;
  	desired.channels = 2;
  	desired.samples = (uint16)samples;

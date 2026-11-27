@@ -15,7 +15,7 @@ project's own licence. Most hold patches and new files, not a copy of the upstre
 | [FileZilla 2.2.32](filezilla/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
 | [Neko Project II (np2_gdi)](np2_gdi/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
 | [ScummVM 0.6.1](scummvm/) | Built | Built, tested in QEMU | Built | Built, tested in QEMU |
-| [ScummVM 1.2.1](scummvm-1.2/) | Built, run in ntrun | — | — | — |
+| [ScummVM 1.2.1](scummvm-1.2/) | Built, tested on the MiSTer core | — | — | — |
 | [ScummVM 2.9.1](scummvm-2.9/) | — | Built, tested in QEMU | — | — |
 
 Every app but ScummVM 1.2.1 and 2.9.1 builds for Alpha, MIPS and PowerPC on Linux with
@@ -28,5 +28,4 @@ uses the PINT SDK, as ntsdk has no ARM target; notes for building on PINT are in
 ScummVM comes three times: 0.6.1 for all four CPUs, patched for Visual C++ 4.1; 1.2.1, the
 first with Sierra's SCI games, for Alpha only, patched for the Visual C++ 6.0 of the Alpha
 CD (too much for 4.1); and 2.9.1 for ARM only, which needs the modern compiler of the PINT
-SDK. "Run in ntrun" is ntsdk's Alpha emulator, with no screen: that build hasn't been run
-on an Alpha.
+SDK. 1.2.1 was tested on the AlphaStation 200 FPGA core on a MiSTer.

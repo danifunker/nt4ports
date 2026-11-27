@@ -97,8 +97,24 @@ debug output.
 
 ## Status
 
-Not yet run on an Alpha. In ntrun: `--version` and `--list-games` work; the detector test
-finds Gold Rush! (AGI), Conquests of the Longbow (SCI), Gobliiins, Flight of the Amazon
-Queen, Simon the Sorcerer and Day of the Tentacle; Longbow goes from Sierra's logo (room
-803) into its intro (rooms 98 and 96), and Gold Rush! runs its logic scripts. Nothing was
-seen or heard, and no game was played.
+On an AlphaStation 200 FPGA core on a MiSTer (NT 4.0 Terminal Server Edition, 640x480 in
+256 colours, the most its TGA card offers):
+
+- The launcher, with the modern theme and its game list. Day of the Tentacle's intro plays
+  through, and its autosave works. Conquests of the Longbow (SCI) gets from Sierra's logo to
+  its title screen in about 30 s and its main menu (Start, Restore, Introduction) within
+  45 s, with the default settings.
+- At 22 kHz that core can't emulate AdLib music in real time, and SCI games, which time
+  their scenes by their music, crawl: Longbow sat on its logo for minutes at 100% CPU. At
+  11 kHz, or with no music, it keeps up, so 11 kHz is this build's default output rate
+  (`backends/platform/sdl/sdl.cpp`; Options > Audio or `output_rate` still change it).
+- `waveOut` plays there in real time (a test program had 39 of 40 quarter-second buffers
+  back on time), but the sound wasn't listened to: the MiSTer's video capture records none.
+- ScummVM draws in 16-bit colour and SDL maps each frame to the 256-colour screen, which
+  costs time and makes 256-colour games look nearly 16-colour.
+- The window's close button quits; Alt+F4 doesn't reach it.
+
+In ntrun: `--version`, `--list-games`, and the detector test, which finds Gold Rush! (AGI),
+Conquests of the Longbow (SCI), Gobliiins, Flight of the Amazon Queen, Simon the Sorcerer
+and Day of the Tentacle. Gold Rush!, Gobliiins, Flight of the Amazon Queen and Simon the
+Sorcerer weren't started on the MiSTer.
