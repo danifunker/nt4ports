@@ -1,0 +1,27 @@
+LIBRARY WINMM
+EXPORTS
+    joyGetDevCapsA
+    joyGetNumDevs
+    joyGetPosEx
+    mciGetErrorStringA
+    mciSendCommandA
+    midiOutClose
+    midiOutGetDevCapsA
+    midiOutGetErrorTextA
+    midiOutGetNumDevs
+    midiOutLongMsg
+    midiOutOpen
+    midiOutPrepareHeader
+    midiOutShortMsg
+    midiOutUnprepareHeader
+    timeBeginPeriod
+    timeEndPeriod
+    timeGetTime
+    timeSetEvent
+    timeKillEvent
+    waveOutClose
+    waveOutGetErrorTextA
+    waveOutOpen
+    waveOutPrepareHeader
+    waveOutUnprepareHeader
+    waveOutWrite

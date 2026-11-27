@@ -1,0 +1,3190 @@
+diff --git a/backends/keymapper/remap-dialog.h b/backends/keymapper/remap-dialog.h
+index 2c0e79a..f83d43e 100644
+--- a/backends/keymapper/remap-dialog.h
++++ b/backends/keymapper/remap-dialog.h
+@@ -86,7 +86,7 @@ protected:
+ 	Array<ActionWidgets> _keymapWidgets;
+ 	Action *_activeRemapAction;
+ 	uint32 _remapTimeout;
+-	static const uint32 kRemapTimeoutDelay = 3000;
++	enum { kRemapTimeoutDelay = 3000 };
+ 
+ 	bool _changes;
+ 
+diff --git a/backends/platform/sdl/main.cpp b/backends/platform/sdl/main.cpp
+index c27ccc0..f1b7d5d 100644
+--- a/backends/platform/sdl/main.cpp
++++ b/backends/platform/sdl/main.cpp
+@@ -54,6 +54,12 @@ int __stdcall WinMain(HINSTANCE /*hInst*/, HINSTANCE /*hPrevInst*/,  LPSTR /*lpC
+ 
+ int main(int argc, char *argv[]) {
+ 
++#if defined(WIN32) && defined(SCUMM_NEED_ALIGNMENT)
++	// NT on Alpha fixes up unaligned reads for programs that ask, instead of stopping them:
++	// a missed READ_UINT32 of an odd address then only costs time.
++	SetErrorMode(SetErrorMode(0) | SEM_NOALIGNMENTFAULTEXCEPT);
++#endif
++
+ 	// Create our OSystem instance
+ 	g_system = new OSystem_SDL();
+ 	assert(g_system);
+diff --git a/backends/platform/sdl/sdl.cpp b/backends/platform/sdl/sdl.cpp
+index 22fc561..128efa5 100644
+--- a/backends/platform/sdl/sdl.cpp
++++ b/backends/platform/sdl/sdl.cpp
+@@ -718,7 +718,7 @@ void OSystem_SDL::setupMixer() {
+ 	desired.format = AUDIO_S16SYS;
+ 	desired.channels = 2;
+ 	desired.samples = (uint16)samples;
+-	desired.callback = mixCallback;
++	desired.callback = (void (*)(void *, Uint8 *, int))mixCallback;
+ 	desired.userdata = this;
+ 
+ 	assert(!_mixer);
+diff --git a/backends/vkeybd/virtual-keyboard-gui.h b/backends/vkeybd/virtual-keyboard-gui.h
+index 9bced3a..58dd06a 100644
+--- a/backends/vkeybd/virtual-keyboard-gui.h
++++ b/backends/vkeybd/virtual-keyboard-gui.h
+@@ -105,7 +105,7 @@ private:
+ 
+ 	Point _dragPoint;
+ 	bool _drag;
+-	static const int SNAP_WIDTH = 10;
++	enum { SNAP_WIDTH = 10 };
+ 
+ 	Graphics::Surface _overlayBackup;
+ 	Rect _dirtyRect;
+@@ -138,10 +138,10 @@ private:
+ 
+ 	bool _drawCaret;
+ 	int16 _caretX;
+-	static const int kCaretBlinkTime = 500;
++	enum { kCaretBlinkTime = 500 };
+ 	void animateCaret();
+ 
+-	static const int kCursorAnimateDelay = 250;
++	enum { kCursorAnimateDelay = 250 };
+ 	int _cursorAnimateCounter;
+ 	int	_cursorAnimateTimer;
+ 	byte _cursor[2048];
+diff --git a/common/algorithm.h b/common/algorithm.h
+index 9d22af4..c37d419 100644
+--- a/common/algorithm.h
++++ b/common/algorithm.h
+@@ -76,6 +76,9 @@ Out copy_if(In first, In last, Out dst, Op op) {
+ 	return dst;
+ }
+ 
++// Visual C++ 6.0 can't order function templates, so it takes the generic versions of
++// set_to, distance, sortChoosePivot and sort only.
++#if !defined(_MSC_VER) || _MSC_VER > 1200
+ // Our 'specialized' 'set_to' template for char, signed char and unsigned char arrays.
+ // Since C++ doesn't support partial specialized template functions (currently) we
+ // are going this way...
+@@ -98,6 +101,7 @@ char *set_to(char *first, char *last, Value val) {
+ 	memset(first, (val & 0xFF), last - first);
+ 	return last;
+ }
++#endif
+ 
+ /**
+  * Sets all elements in the range [first, last) to val.
+@@ -147,10 +151,12 @@ Op for_each(In first, In last, Op f) {
+ 	return f;
+ }
+ 
++#if !defined(_MSC_VER) || _MSC_VER > 1200
+ template<typename T>
+ unsigned int distance(T *first, T *last) {
+ 	return last - first;
+ }
++#endif
+ 
+ template<typename T>
+ unsigned int distance(T first, T last) {
+@@ -162,10 +168,12 @@ unsigned int distance(T first, T last) {
+ 	return n;
+ }
+ 
++#if !defined(_MSC_VER) || _MSC_VER > 1200
+ template<typename T>
+ T *sortChoosePivot(T *first, T *last) {
+ 	return first + distance(first, last) / 2;
+ }
++#endif
+ 
+ template<typename T>
+ T sortChoosePivot(T first, T last) {
+@@ -220,13 +228,14 @@ void sort(T first, T last, StrictWeakOrdering comp) {
+ 
+ 	T pivot = sortChoosePivot(first, last);
+ 	pivot = sortPartition(first, last, pivot, comp);
+-	sort<T, StrictWeakOrdering>(first, pivot, comp);
+-	sort<T, StrictWeakOrdering>(++pivot, last, comp);
++	sort(first, pivot, comp);
++	sort(++pivot, last, comp);
+ }
+ 
+ /**
+  * Simple sort function, modeled after std::sort.
+  */
++#if !defined(_MSC_VER) || _MSC_VER > 1200
+ template<typename T>
+ void sort(T *first, T *last) {
+ 	sort(first, last, Common::Less<T>());
+@@ -236,6 +245,19 @@ template<class T>
+ void sort(T first, T last) {
+ 	sort(first, last, Common::Less<typename T::ValueType>());
+ }
++#else
++// One sort for pointers and iterators: the type of &*first gives the type of the data.
++template<class T, class V>
++void sortValues(T first, T last, V *) {
++	sort(first, last, Common::Less<V>());
++}
++
++template<class T>
++void sort(T first, T last) {
++	if (first != last)
++		sortValues(first, last, &*first);
++}
++#endif
+ 
+ /**
+  * Euclid's algorithm to compute the greatest common divisor.
+@@ -253,5 +275,11 @@ T gcd(T a, T b) {
+ }
+ 
+ } // End of namespace Common
++
++#if defined(_MSC_VER) && _MSC_VER <= 1200
++// Visual C++ 6.0 has no argument-dependent lookup: the names engines call unqualified.
++using Common::sort;
++#endif
++
+ #endif
+ 
+diff --git a/common/func.h b/common/func.h
+index b89a64e..5155957 100644
+--- a/common/func.h
++++ b/common/func.h
+@@ -394,6 +394,26 @@ private:
+ 	const FuncType _func;
+ };
+ 
++/**
++ * Functor0Mem for a member function returning void. Visual C++ 6.0 returns no void
++ * expression even in a template, so Functor0Mem<void, T> is this class instead.
++ */
++template<class T>
++class Functor0MemVoid : public Functor0<void> {
++public:
++	typedef void (T::*FuncType)();
++
++	Functor0MemVoid(T *t, const FuncType &func) : _t(t), _func(func) {}
++
++	bool isValid() const { return _func != 0 && _t != 0; }
++	void operator()() const {
++		(_t->*_func)();
++	}
++private:
++	mutable T *_t;
++	const FuncType _func;
++};
++
+ /**
+  * Generic functor object for unary function objects.
+  *
+@@ -457,6 +477,25 @@ private:
+ 	const FuncType _func;
+ };
+ 
++/**
++ * Functor1Mem for a member function returning void (see Functor0MemVoid).
++ */
++template<class Arg, class T>
++class Functor1MemVoid : public Functor1<Arg, void> {
++public:
++	typedef void (T::*FuncType)(Arg);
++
++	Functor1MemVoid(T *t, const FuncType &func) : _t(t), _func(func) {}
++
++	bool isValid() const { return _func != 0 && _t != 0; }
++	void operator()(Arg v1) const {
++		(_t->*_func)(v1);
++	}
++private:
++	mutable T *_t;
++	const FuncType _func;
++};
++
+ /**
+  * Generic functor object for binary function objects.
+  *
+diff --git a/common/hashmap.h b/common/hashmap.h
+index 0d4d766..ac1abee 100644
+--- a/common/hashmap.h
++++ b/common/hashmap.h
+@@ -129,7 +129,6 @@ private:
+ 	void expandStorage(uint newCapacity);
+ 
+ #if !defined(__sgi) || defined(__GNUC__)
+-	template<class T> friend class IteratorImpl;
+ #endif
+ 
+ 	/**
+@@ -139,17 +138,15 @@ private:
+ 	class IteratorImpl {
+ 		friend class HashMap;
+ #if defined(__sgi) && !defined(__GNUC__)
+-		template<class T> friend class Common::IteratorImpl;
+ #else
+-		template<class T> friend class IteratorImpl;
+-#endif
+-	protected:
+-		typedef const HashMap hashmap_t;
++	#endif
++	public:
++		typedef const HM_t hashmap_t;
+ 
+ 		uint _idx;
+ 		hashmap_t *_hashmap;
+ 
+-	protected:
++	public:
+ 		IteratorImpl(uint idx, hashmap_t *hashmap) : _idx(idx), _hashmap(hashmap) {}
+ 
+ 		NodeType *deref() const {
+@@ -285,7 +282,7 @@ HashMap<Key, Val, HashFunc, EqualFunc>::HashMap()
+ #ifdef __PLAYSTATION2__
+ 	{
+ #else
+-	: _defaultVal() {
++	: _defaultVal(Val()) {
+ #endif
+ 	_mask = HASHMAP_MIN_CAPACITY - 1;
+ 	_storage = new Node *[HASHMAP_MIN_CAPACITY];
+diff --git a/common/md5.h b/common/md5.h
+index 1fb937a..46ec96b 100644
+--- a/common/md5.h
++++ b/common/md5.h
+@@ -41,4 +41,9 @@ bool md5_file_string(ReadStream &stream, char *md5str, uint32 length = 0);
+ 
+ } // End of namespace Common
+ 
++#if defined(_MSC_VER) && _MSC_VER <= 1200
++// Visual C++ 6.0 has no argument-dependent lookup: the names engines call unqualified.
++using Common::md5_file_string;
++#endif
++
+ #endif
+diff --git a/common/memorypool.h b/common/memorypool.h
+index 7188e85..3bcc499 100644
+--- a/common/memorypool.h
++++ b/common/memorypool.h
+@@ -121,13 +121,6 @@ public:
+ 	}
+ };
+ 
+-// Ensure NUM_INTERNAL_CHUNKS == 0 results in a compile error
+-template<size_t CHUNK_SIZE>
+-class FixedSizeMemoryPool<CHUNK_SIZE,0> : public MemoryPool {
+-public:
+-	FixedSizeMemoryPool() : MemoryPool(CHUNK_SIZE) {}
+-};
+-
+ /**
+  * A memory pool for C++ objects.
+  */
+diff --git a/common/ptr.h b/common/ptr.h
+index 7307038..8802aeb 100644
+--- a/common/ptr.h
++++ b/common/ptr.h
+@@ -106,7 +106,7 @@ private:
+ template<class T>
+ class SharedPtr {
+ #if !((__GNUC__ == 2) && (__GNUC_MINOR__ >= 95))
+-	template<class T2> friend class SharedPtr;
++	// VC6: no template friends
+ #endif
+ public:
+ 	typedef int RefValue;
+@@ -123,8 +123,10 @@ public:
+ 	SharedPtr(T2 *p, D d) : _refCount(new RefValue(1)), _deletion(new SharedPtrDeletionDeleterImpl<T2, D>(p, d)), _pointer(p) {}
+ 
+ 	SharedPtr(const SharedPtr &r) : _refCount(r._refCount), _deletion(r._deletion), _pointer(r._pointer) { if (_refCount) ++(*_refCount); }
++	// VC6 takes a member template of the copy constructor's form for the copy constructor
++	// itself; the unused second parameter tells them apart.
+ 	template<class T2>
+-	SharedPtr(const SharedPtr<T2> &r) : _refCount(r._refCount), _deletion(r._deletion), _pointer(r._pointer) { if (_refCount) ++(*_refCount); }
++	SharedPtr(const SharedPtr<T2> &r, int = 0) : _refCount(r._refCount), _deletion(r._deletion), _pointer(r._pointer) { if (_refCount) ++(*_refCount); }
+ 
+ 	~SharedPtr() { decRef(); }
+ 
+@@ -140,18 +142,7 @@ public:
+ 		return *this;
+ 	}
+ 
+-	template<class T2>
+-	SharedPtr &operator=(const SharedPtr<T2> &r) {
+-		if (r._refCount)
+-			++(*r._refCount);
+-		decRef();
+-
+-		_refCount = r._refCount;
+-		_deletion = r._deletion;
+-		_pointer = r._pointer;
+-
+-		return *this;
+-	}
++	// VC6: no template operator=, as above; a SharedPtr<T2> converts and is assigned.
+ 
+ 	ReferenceType operator*() const { assert(_pointer); return *_pointer; }
+ 	PointerType operator->() const { assert(_pointer); return _pointer; }
+@@ -241,6 +232,7 @@ public:
+ 	 * checks like "if (scopedPtr) ..." possible.
+ 	 */
+ 	operator bool() const { return _pointer != 0; }
++	bool operator!() const { return _pointer == 0; }
+ 
+ 	~ScopedPtr() {
+ 		delete _pointer;
+diff --git a/common/serializer.h b/common/serializer.h
+index b8c6272..d2e0ed4 100644
+--- a/common/serializer.h
++++ b/common/serializer.h
+@@ -68,7 +68,7 @@ namespace Common {
+ class Serializer {
+ public:
+ 	typedef uint32 Version;
+-	static const Version kLastVersion = 0xFFFFFFFF;
++	enum { kLastVersion = 0xFFFFFFFF };
+ 
+ protected:
+ 	Common::SeekableReadStream *_loadStream;
+diff --git a/common/stack.h b/common/stack.h
+index 5d447d5..e8c9c89 100644
+--- a/common/stack.h
++++ b/common/stack.h
+@@ -39,7 +39,7 @@ protected:
+ 	T	_stack[MAX_SIZE];
+ 	int	_size;
+ public:
+-	FixedStack<T, MAX_SIZE>() : _size(0) {}
++	FixedStack() : _size(0) {}
+ 
+ 	bool empty() const {
+ 		return _size <= 0;
+@@ -87,8 +87,8 @@ private:
+ 	Array<T>	_stack;
+ 
+ public:
+-	Stack<T>() {}
+-	Stack<T>(const Array<T> &stackContent) : _stack(stackContent) {}
++	Stack() {}
++	Stack(const Array<T> &stackContent) : _stack(stackContent) {}
+ 
+ 	bool empty() const {
+ 		return _stack.empty();
+diff --git a/common/str.h b/common/str.h
+index e3dec6c..db0413a 100644
+--- a/common/str.h
++++ b/common/str.h
+@@ -56,7 +56,7 @@ protected:
+ 	 * than 8 makes no sense, since that's the size of member _extern
+ 	 * (on 32 bit machines; 12 bytes on systems with 64bit pointers).
+ 	 */
+-	static const uint32 _builtinCapacity = 32 - sizeof(uint32) - sizeof(char *);
++	enum { _builtinCapacity = 32 - sizeof(uint32) - sizeof(char *) };
+ 
+ 	/**
+ 	 * Length of the string. Stored to avoid having to call strlen
+@@ -76,7 +76,7 @@ protected:
+ 		/**
+ 		 * Internal string storage.
+ 		 */
+-		char _storage[_builtinCapacity];
++		char _storage[32 - sizeof(uint32) - sizeof(char *)];
+ 		/**
+ 		 * External string storage data -- the refcounter, and the
+ 		 * capacity of the string _str points to.
+diff --git a/common/util.h b/common/util.h
+index 52e4295..eb18abd 100644
+--- a/common/util.h
++++ b/common/util.h
+@@ -247,4 +247,15 @@ void updateGameGUIOptions(const uint32 options, const String &langOption);
+ 
+ }	// End of namespace Common
+ 
++#if defined(_MSC_VER) && _MSC_VER <= 1200
++// Visual C++ 6.0 has no argument-dependent lookup: the names engines call unqualified.
++using Common::getPlatformAbbrev;
++using Common::getPlatformDescription;
++using Common::getLanguageDescription;
++using Common::getLanguageCode;
++using Common::parseGameGUIOptions;
++using Common::checkGameGUIOptionLanguage;
++using Common::getGameGUIOptionsDescriptionLanguage;
++#endif
++
+ #endif
+diff --git a/common/xmlparser.h b/common/xmlparser.h
+index 5271917..c3e6a6d 100644
+--- a/common/xmlparser.h
++++ b/common/xmlparser.h
+@@ -73,15 +73,15 @@ class FSNode;
+ #define CUSTOM_XML_PARSER(parserName) \
+ 	protected: \
+ 	typedef parserName kLocalParserName; \
+-	bool keyCallback(ParserNode *node) {return node->layout->doCallback(this, node); }\
+-	struct CustomXMLKeyLayout : public XMLKeyLayout {\
+-		typedef bool (parserName::*ParserCallback)(ParserNode *node);\
++	bool keyCallback(Common::XMLParser::ParserNode *node) {return node->layout->doCallback(this, node); }\
++	struct CustomXMLKeyLayout : public Common::XMLParser::XMLKeyLayout {\
++		typedef bool (parserName::*ParserCallback)(Common::XMLParser::ParserNode *node);\
+ 		ParserCallback callback;\
+-		bool doCallback(XMLParser *parent, ParserNode *node) {return ((kLocalParserName*)parent->*callback)(node);} };\
++		bool doCallback(Common::XMLParser *parent, Common::XMLParser::ParserNode *node) {return ((kLocalParserName*)parent->*callback)(node);} };\
+ 	virtual void buildLayout() { \
+-		Common::Stack<XMLKeyLayout*> layout; \
++		Common::Stack<Common::XMLParser::XMLKeyLayout*> layout; \
+ 		CustomXMLKeyLayout *lay = 0; \
+-		XMLKeyLayout::XMLKeyProperty prop; \
++		Common::XMLParser::XMLKeyLayout::XMLKeyProperty prop; \
+ 		_XMLkeys = new CustomXMLKeyLayout; \
+ 		layout.push(_XMLkeys);
+ 
+@@ -133,7 +133,7 @@ public:
+ 	struct XMLKeyLayout;
+ 	struct ParserNode;
+ 
+-	typedef Common::HashMap<Common::String, XMLParser::XMLKeyLayout*, Common::IgnoreCase_Hash, Common::IgnoreCase_EqualTo> ChildMap;
++	typedef Common::HashMap<Common::String, XMLKeyLayout*, Common::IgnoreCase_Hash, Common::IgnoreCase_EqualTo> ChildMap;
+ 
+ 	/** nested struct representing the layout of the XML file */
+ 	struct XMLKeyLayout {
+diff --git a/engines/agi/agi.h b/engines/agi/agi.h
+index 4df8824..5d28ed2 100644
+--- a/engines/agi/agi.h
++++ b/engines/agi/agi.h
+@@ -409,7 +409,7 @@ struct AgiTextColor {
+ struct AgiButtonStyle {
+ // Public constants etc
+ public:
+-	static const int
++	enum {
+ 		// Amiga colors (Indexes into the Amiga-ish palette)
+ 		amigaBlack  = 0x00, ///< Accurate,                   is          #000000 (24-bit RGB)
+ 		amigaWhite  = 0x0F, ///< Practically accurate,       is close to #FFFFFF (24-bit RGB)
+@@ -420,7 +420,7 @@ public:
+ 		amigaCyan   = 0x0B, ///< Inaccurate, too much red,   should be   #00FFDE (24-bit RGB)
+ 		// PC colors (Indexes into the EGA-palette)
+ 		pcBlack     = 0x00,
+-		pcWhite     = 0x0F;
++		pcWhite     = 0x0F };
+ 
+ // Public methods
+ public:
+diff --git a/engines/agi/detection.cpp b/engines/agi/detection.cpp
+index d1bed5d..c1d4711 100644
+--- a/engines/agi/detection.cpp
++++ b/engines/agi/detection.cpp
+@@ -23,6 +23,9 @@
+  *
+  */
+ 
++// First: Visual C++ 6.0 fails (C1001) on common/stack.h's FixedStack later in this file.
++#include "common/stack.h"
++
+ #include "base/plugins.h"
+ 
+ #include "engines/advancedDetector.h"
+diff --git a/engines/agi/sound_2gs.cpp b/engines/agi/sound_2gs.cpp
+index cc1cd0f..efaa744 100644
+--- a/engines/agi/sound_2gs.cpp
++++ b/engines/agi/sound_2gs.cpp
+@@ -765,7 +765,7 @@ bool SoundGen2GS::loadInstruments() {
+ 	// load the instrument headers and their sample data.
+ 	// None of the tested SIERRASTANDARD-files have zeroes in them so
+ 	// there's no need to check for prematurely ending samples here.
+-	setProgramChangeMapping(&exeInfo->instSet.progToInst);
++	setProgramChangeMapping(exeInfo->instSet->progToInst);
+ 	return loadWaveFile(*waveFsnode, *exeInfo) && loadInstrumentHeaders(*exeFsnode, *exeInfo);
+ }
+ 
+@@ -791,29 +791,29 @@ static const MidiProgramChangeMapping progToInstMappingV2 = {
+ 
+ /** Older Apple IIGS AGI instrument set. Used only by Space Quest I (AGI v1.002). */
+ static const InstrumentSetInfo instSetV1 = {
+-	1192, 26, "7ee16bbc135171ffd6b9120cc7ff1af2", "edd3bf8905d9c238e02832b732fb2e18", progToInstMappingV1
++	1192, 26, "7ee16bbc135171ffd6b9120cc7ff1af2", "edd3bf8905d9c238e02832b732fb2e18", &progToInstMappingV1
+ };
+ 
+ /** Newer Apple IIGS AGI instrument set (AGI v1.003+). Used by all others than Space Quest I. */
+ static const InstrumentSetInfo instSetV2 = {
+-	1292, 28, "b7d428955bb90721996de1cbca25e768", "c05fb0b0e11deefab58bc68fbd2a3d07", progToInstMappingV2
++	1292, 28, "b7d428955bb90721996de1cbca25e768", "c05fb0b0e11deefab58bc68fbd2a3d07", &progToInstMappingV2
+ };
+ 
+ /** Information about different Apple IIGS AGI executables. */
+ static const IIgsExeInfo IIgsExeInfos[] = {
+-	{GID_SQ1,      "SQ",   0x1002, 138496, 0x80AD, instSetV1},
+-	{GID_LSL1,     "LL",   0x1003, 141003, 0x844E, instSetV2},
+-	{GID_AGIDEMO,  "DEMO", 0x1005, 141884, 0x8469, instSetV2},
+-	{GID_KQ1,      "KQ",   0x1006, 141894, 0x8469, instSetV2},
+-	{GID_PQ1,      "PQ",   0x1007, 141882, 0x8469, instSetV2},
+-	{GID_MIXEDUP,  "MG",   0x1013, 142552, 0x84B7, instSetV2},
+-	{GID_KQ2,      "KQ2",  0x1013, 143775, 0x84B7, instSetV2},
+-	{GID_KQ3,      "KQ3",  0x1014, 144312, 0x84B7, instSetV2},
+-	{GID_SQ2,      "SQ2",  0x1014, 107882, 0x6563, instSetV2},
+-	{GID_MH1,      "MH",   0x2004, 147678, 0x8979, instSetV2},
+-	{GID_KQ4,      "KQ4",  0x2006, 147652, 0x8979, instSetV2},
+-	{GID_BC,       "BC",   0x3001, 148192, 0x8979, instSetV2},
+-	{GID_GOLDRUSH, "GR",   0x3003, 148268, 0x8979, instSetV2}
++	{GID_SQ1,      "SQ",   0x1002, 138496, 0x80AD, &instSetV1},
++	{GID_LSL1,     "LL",   0x1003, 141003, 0x844E, &instSetV2},
++	{GID_AGIDEMO,  "DEMO", 0x1005, 141884, 0x8469, &instSetV2},
++	{GID_KQ1,      "KQ",   0x1006, 141894, 0x8469, &instSetV2},
++	{GID_PQ1,      "PQ",   0x1007, 141882, 0x8469, &instSetV2},
++	{GID_MIXEDUP,  "MG",   0x1013, 142552, 0x84B7, &instSetV2},
++	{GID_KQ2,      "KQ2",  0x1013, 143775, 0x84B7, &instSetV2},
++	{GID_KQ3,      "KQ3",  0x1014, 144312, 0x84B7, &instSetV2},
++	{GID_SQ2,      "SQ2",  0x1014, 107882, 0x6563, &instSetV2},
++	{GID_MH1,      "MH",   0x2004, 147678, 0x8979, &instSetV2},
++	{GID_KQ4,      "KQ4",  0x2006, 147652, 0x8979, &instSetV2},
++	{GID_BC,       "BC",   0x3001, 148192, 0x8979, &instSetV2},
++	{GID_GOLDRUSH, "GR",   0x3003, 148268, 0x8979, &instSetV2}
+ };
+ 
+ /**
+@@ -843,21 +843,21 @@ bool SoundGen2GS::loadInstrumentHeaders(const Common::FSNode &exePath, const IIg
+ 	file.close();
+ 
+ 	// Check that we got enough data to be able to parse the instruments
+-	if (data && data->size() >= (int32)(exeInfo.instSetStart + exeInfo.instSet.byteCount)) {
++	if (data && data->size() >= (int32)(exeInfo.instSetStart + exeInfo.instSet->byteCount)) {
+ 		// Check instrument set's length (The info's saved in the executable)
+ 		data->seek(exeInfo.instSetStart - 4);
+ 		uint16 instSetByteCount = data->readUint16LE();
+-		if (instSetByteCount != exeInfo.instSet.byteCount) {
++		if (instSetByteCount != exeInfo.instSet->byteCount) {
+ 			debugC(3, kDebugLevelSound, "Wrong instrument set size (Is %d, should be %d) in Apple IIGS executable (%s)",
+-				instSetByteCount, exeInfo.instSet.byteCount, exePath.getPath().c_str());
++				instSetByteCount, exeInfo.instSet->byteCount, exePath.getPath().c_str());
+ 		}
+ 
+ 		// Check instrument set's md5sum
+ 		data->seek(exeInfo.instSetStart);
+ 
+ 		char md5str[32+1];
+-		Common::md5_file_string(*data, md5str, exeInfo.instSet.byteCount);
+-		if (scumm_stricmp(md5str, exeInfo.instSet.md5)) {
++		Common::md5_file_string(*data, md5str, exeInfo.instSet->byteCount);
++		if (scumm_stricmp(md5str, exeInfo.instSet->md5)) {
+ 			warning("Unknown Apple IIGS instrument set (md5: %s) in %s, trying to use it nonetheless",
+ 				md5str, exePath.getPath().c_str());
+ 		}
+@@ -867,20 +867,20 @@ bool SoundGen2GS::loadInstrumentHeaders(const Common::FSNode &exePath, const IIg
+ 
+ 		// Load the instruments
+ 		_instruments.clear();
+-		_instruments.reserve(exeInfo.instSet.instCount);
++		_instruments.reserve(exeInfo.instSet->instCount);
+ 
+ 		IIgsInstrumentHeader instrument;
+-		for (uint i = 0; i < exeInfo.instSet.instCount; i++) {
++		for (uint i = 0; i < exeInfo.instSet->instCount; i++) {
+ 			if (!instrument.read(*data)) {
+ 				warning("Error loading Apple IIGS instrument (%d. of %d) from %s, not loading more instruments",
+-					i + 1, exeInfo.instSet.instCount, exePath.getPath().c_str());
++					i + 1, exeInfo.instSet->instCount, exePath.getPath().c_str());
+ 				break;
+ 			}
+ 			_instruments.push_back(instrument); // Add the successfully loaded instrument to the instruments array
+ 		}
+ 
+ 		// Loading was successful only if all instruments were loaded successfully
+-		loadedOk = (_instruments.size() == exeInfo.instSet.instCount);
++		loadedOk = (_instruments.size() == exeInfo.instSet->instCount);
+ 	} else // Couldn't read enough data from the executable file
+ 		warning("Error loading instruments from Apple IIGS executable (%s)", exePath.getPath().c_str());
+ 
+@@ -900,7 +900,7 @@ bool SoundGen2GS::loadWaveFile(const Common::FSNode &wavePath, const IIgsExeInfo
+ 		// Check wave file's md5sum
+ 		char md5str[32+1];
+ 		Common::md5_file_string(*uint8Wave, md5str, SIERRASTANDARD_SIZE);
+-		if (scumm_stricmp(md5str, exeInfo.instSet.waveFileMd5)) {
++		if (scumm_stricmp(md5str, exeInfo.instSet->waveFileMd5)) {
+ 			warning("Unknown Apple IIGS wave file (md5: %s, game: %s).\n" \
+ 				"Please report the information on the previous line to the ScummVM team.\n" \
+ 				"Using the wave file as it is - music may sound weird", md5str, exeInfo.exePrefix);
+diff --git a/engines/agi/sound_2gs.h b/engines/agi/sound_2gs.h
+index 12dede0..b03fd11 100644
+--- a/engines/agi/sound_2gs.h
++++ b/engines/agi/sound_2gs.h
+@@ -238,7 +238,7 @@ struct InstrumentSetInfo {
+ 	uint instCount;          ///< Amount of instrument in the set
+ 	const char *md5;         ///< MD5 hex digest of the whole instrument set
+ 	const char *waveFileMd5; ///< MD5 hex digest of the wave file (i.e. the sample data used by the instruments)
+-	const MidiProgramChangeMapping &progToInst; ///< Program change to instrument number mapping
++	const MidiProgramChangeMapping *progToInst; ///< Program change to instrument number mapping
+ };
+ 
+ /** Apple IIGS AGI executable file information. */
+@@ -248,7 +248,7 @@ struct IIgsExeInfo {
+ 	uint agiVer;                      ///< Apple IIGS AGI version number, not strictly needed
+ 	uint exeSize;                     ///< Size of the Apple IIGS AGI executable file in bytes
+ 	uint instSetStart;                ///< Starting offset of the instrument set inside the executable file
+-	const InstrumentSetInfo &instSet; ///< Information about the used instrument set
++	const InstrumentSetInfo *instSet; ///< Information about the used instrument set
+ };
+ 
+ class IIgsMidiChannel {
+@@ -310,7 +310,7 @@ private:
+ private:
+ 	typedef Common::Array<IIgsMidiChannel>::const_iterator const_iterator;
+ 	typedef Common::Array<IIgsMidiChannel>::iterator iterator;
+-	static const uint kSfxMidiChannel = 0; ///< The MIDI channel used for playing sound effects
++	enum { kSfxMidiChannel = 0 }; ///< The MIDI channel used for playing sound effects
+ 
+ 	bool loadInstruments();
+ 	const IIgsExeInfo *getIIgsExeInfo(enum AgiGameID gameid) const;
+diff --git a/engines/cine/gfx.h b/engines/cine/gfx.h
+index da7e3dd..89376e3 100644
+--- a/engines/cine/gfx.h
++++ b/engines/cine/gfx.h
+@@ -132,9 +132,9 @@ private:
+ 	Common::String _cmd; ///< Player command string
+ 
+ protected:
+-	static const int _screenSize = 320 * 200; ///< Screen size
+-	static const int _screenWidth = 320; ///< Screen width
+-	static const int _screenHeight = 200; ///< Screen height
++	enum { _screenSize = 320 * 200 }; ///< Screen size
++	enum { _screenWidth = 320 }; ///< Screen width
++	enum { _screenHeight = 200 }; ///< Screen height
+ 
+ 	byte *_backBuffer; ///< Screen backbuffer
+ 	Cine::Palette _backupPal; ///< The backup color palette
+diff --git a/engines/dialogs.cpp b/engines/dialogs.cpp
+index cb081e4..7ee81cc 100644
+--- a/engines/dialogs.cpp
++++ b/engines/dialogs.cpp
+@@ -165,7 +165,7 @@ void MainMenuDialog::handleCommand(CommandSender *sender, uint32 cmd, uint32 dat
+ 		}
+ 		break;
+ 	default:
+-		GUI::Dialog::handleCommand(sender, cmd, data);
++		Dialog::handleCommand(sender, cmd, data);
+ 	}
+ }
+ 
+@@ -331,7 +331,7 @@ void ConfigDialog::handleCommand(CommandSender *sender, uint32 cmd, uint32 data)
+ #endif
+ 		break;
+ 	default:
+-		GUI::OptionsDialog::handleCommand (sender, cmd, data);
++		OptionsDialog::handleCommand(sender, cmd, data);
+ 	}
+ }
+ 
+diff --git a/engines/draci/barchive.h b/engines/draci/barchive.h
+index 87ee301..62756af 100644
+--- a/engines/draci/barchive.h
++++ b/engines/draci/barchive.h
+@@ -78,10 +78,10 @@ private:
+ 	// Archive header data
+ 	static const char _magicNumber[];
+ 	static const char _dfwMagicNumber[];
+-	static const uint _archiveHeaderSize = 10;
++	enum { _archiveHeaderSize = 10 };
+ 
+ 	// File stream header data
+-	static const uint _fileHeaderSize = 6;
++	enum { _fileHeaderSize = 6 };
+ 
+ 	Common::String _path;    ///< Path to file
+ 	BAFile *_files;          ///< Internal array of files
+diff --git a/engines/draci/font.h b/engines/draci/font.h
+index 010de66..2c6af68 100644
+--- a/engines/draci/font.h
++++ b/engines/draci/font.h
+@@ -86,13 +86,13 @@ private:
+ 	byte *_charData;
+ 
+ 	/** Number of glyphs in the font */
+-	static const uint kCharNum = 138;
++	enum { kCharNum = 138 };
+ 
+ 	/**
+ 	 *  Chars are indexed from the space character so this should be subtracted
+ 	 *  to get the index of a glyph
+ 	 */
+-	static const uint kCharIndexOffset = 32;
++	enum { kCharIndexOffset = 32 };
+ 
+ 	/** Internal function for freeing fonts when destructing/loading another */
+ 	void freeFont();
+diff --git a/engines/draci/game.cpp b/engines/draci/game.cpp
+index 8f3ad12..1ec11df 100644
+--- a/engines/draci/game.cpp
++++ b/engines/draci/game.cpp
+@@ -333,10 +333,10 @@ void Game::handleOrdinaryLoop(int x, int y) {
+ }
+ 
+ int Game::inventoryPositionFromMouse() const {
+-	const int column = CLIP(scummvm_lround(
++	const int column = CLIP<long>(scummvm_lround(
+ 		(_vm->_mouse->getPosX() - kInventoryX + kInventoryItemWidth / 2.) /
+ 		kInventoryItemWidth) - 1, 0L, (long) kInventoryColumns - 1);
+-	const int line = CLIP(scummvm_lround(
++	const int line = CLIP<long>(scummvm_lround(
+ 		(_vm->_mouse->getPosY() - kInventoryY + kInventoryItemHeight / 2.) /
+ 		kInventoryItemHeight) - 1, 0L, (long) kInventoryLines - 1);
+ 	return line * kInventoryColumns + column;
+diff --git a/engines/draci/script.cpp b/engines/draci/script.cpp
+index f657dfe..2e23cb5 100644
+--- a/engines/draci/script.cpp
++++ b/engines/draci/script.cpp
+@@ -44,31 +44,31 @@ namespace Draci {
+ void Script::setupCommandList() {
+ 	/** A table of all the commands the game player uses */
+ 	static const GPL2Command gplCommands[] = {
+-		{ 0,  0, "gplend",		0, { },					NULL },
+-		{ 0,  1, "exit",		0, { },					NULL },
++		{ 0,  0, "gplend",		0, { (GPL2ParameterType)0 },					NULL },
++		{ 0,  1, "exit",		0, { (GPL2ParameterType)0 },					NULL },
+ 		{ 1,  1, "goto", 		1, { kGPL2Ident }, 			&Script::c_Goto },
+ 		{ 2,  1, "Let", 		2, { kGPL2Ident, kGPL2Math }, 		&Script::c_Let },
+ 		{ 3,  1, "if", 			2, { kGPL2Math, kGPL2Ident }, 		&Script::c_If },
+ 		{ 4,  1, "Start", 		2, { kGPL2Ident, kGPL2Str }, 		&Script::start },
+ 		{ 5,  1, "Load", 		2, { kGPL2Ident, kGPL2Str }, 		&Script::load },
+ 		{ 5,  2, "StartPlay", 		2, { kGPL2Ident, kGPL2Str }, 		&Script::startPlay },
+-		{ 5,  3, "JustTalk", 		0, { }, 				&Script::justTalk },
+-		{ 5,  4, "JustStay", 		0, { }, 				&Script::justStay },
++		{ 5,  3, "JustTalk", 		0, { (GPL2ParameterType)0 }, 				&Script::justTalk },
++		{ 5,  4, "JustStay", 		0, { (GPL2ParameterType)0 }, 				&Script::justStay },
+ 		{ 6,  1, "Talk", 		2, { kGPL2Ident, kGPL2Str }, 		&Script::talk },
+ 		{ 7,  1, "ObjStat", 		2, { kGPL2Ident, kGPL2Ident }, 		&Script::objStat },
+ 		{ 7,  2, "ObjStat_On", 		2, { kGPL2Ident, kGPL2Ident }, 		&Script::objStatOn },
+ 		{ 8,  1, "IcoStat", 		2, { kGPL2Ident, kGPL2Ident }, 		&Script::icoStat },
+ 		{ 9,  1, "Dialogue", 		1, { kGPL2Str }, 			&Script::dialogue },
+-		{ 9,  2, "ExitDialogue", 	0, { }, 				&Script::exitDialogue },
+-		{ 9,  3, "ResetDialogue", 	0, { }, 				&Script::resetDialogue },
+-		{ 9,  4, "ResetDialogueFrom", 	0, { }, 				&Script::resetDialogueFrom },
++		{ 9,  2, "ExitDialogue", 	0, { (GPL2ParameterType)0 }, 				&Script::exitDialogue },
++		{ 9,  3, "ResetDialogue", 	0, { (GPL2ParameterType)0 }, 				&Script::resetDialogue },
++		{ 9,  4, "ResetDialogueFrom", 	0, { (GPL2ParameterType)0 }, 				&Script::resetDialogueFrom },
+ 		{ 9,  5, "ResetBlock", 		1, { kGPL2Ident }, 			&Script::resetBlock },
+ 		{ 10, 1, "WalkOn", 		3, { kGPL2Num, kGPL2Num, kGPL2Ident }, 	&Script::walkOn },
+ 		{ 10, 2, "StayOn", 		3, { kGPL2Num, kGPL2Num, kGPL2Ident }, 	&Script::stayOn },
+ 		{ 10, 3, "WalkOnPlay", 		3, { kGPL2Num, kGPL2Num, kGPL2Ident }, 	&Script::walkOnPlay },
+ 		{ 11, 1, "LoadPalette", 	1, { kGPL2Str }, 			&Script::loadPalette },
+-		{ 12, 1, "SetPalette", 		0, { }, 				&Script::setPalette },
+-		{ 12, 2, "BlackPalette", 	0, { }, 				&Script::blackPalette },
++		{ 12, 1, "SetPalette", 		0, { (GPL2ParameterType)0 }, 				&Script::setPalette },
++		{ 12, 2, "BlackPalette", 	0, { (GPL2ParameterType)0 }, 				&Script::blackPalette },
+ 		{ 13, 1, "FadePalette", 	3, { kGPL2Num, kGPL2Num, kGPL2Num }, 	&Script::fadePalette },
+ 		{ 13, 2, "FadePalettePlay", 	3, { kGPL2Num, kGPL2Num, kGPL2Num }, 	&Script::fadePalettePlay },
+ 		{ 14, 1, "NewRoom", 		2, { kGPL2Ident, kGPL2Num }, 		&Script::newRoom },
+@@ -76,31 +76,31 @@ void Script::setupCommandList() {
+ 		{ 15, 2, "ExecLook", 		1, { kGPL2Ident }, 			&Script::execLook },
+ 		{ 15, 3, "ExecUse", 		1, { kGPL2Ident }, 			&Script::execUse },
+ 		{ 18, 1, "LoadMusic", 		1, { kGPL2Str }, 			&Script::loadMusic },
+-		{ 18, 2, "StartMusic", 		0, { }, 				&Script::startMusic },
+-		{ 18, 3, "StopMusic", 		0, { }, 				&Script::stopMusic },
+-		{ 19, 1, "Mark", 		0, { }, 				&Script::mark },
+-		{ 19, 2, "Release", 		0, { }, 				&Script::release },
+-		{ 20, 1, "Play", 		0, { }, 				&Script::play },
++		{ 18, 2, "StartMusic", 		0, { (GPL2ParameterType)0 }, 				&Script::startMusic },
++		{ 18, 3, "StopMusic", 		0, { (GPL2ParameterType)0 }, 				&Script::stopMusic },
++		{ 19, 1, "Mark", 		0, { (GPL2ParameterType)0 }, 				&Script::mark },
++		{ 19, 2, "Release", 		0, { (GPL2ParameterType)0 }, 				&Script::release },
++		{ 20, 1, "Play", 		0, { (GPL2ParameterType)0 }, 				&Script::play },
+ 		{ 21, 1, "LoadMap", 		1, { kGPL2Str }, 			&Script::loadMap },
+-		{ 21, 2, "RoomMap", 		0, { }, 				&Script::roomMap },
+-		{ 22, 1, "DisableQuickHero", 	0, { }, 				&Script::disableQuickHero },
+-		{ 22, 2, "EnableQuickHero", 	0, { }, 				&Script::enableQuickHero },
+-		{ 23, 1, "DisableSpeedText", 	0, { }, 				&Script::disableSpeedText },
+-		{ 23, 2, "EnableSpeedText", 	0, { }, 				&Script::enableSpeedText },
+-		{ 24, 1, "QuitGame", 		0, { }, 				&Script::quitGame },
+-		{ 25, 1, "PushNewRoom", 	0, { }, 				&Script::pushNewRoom },
+-		{ 25, 2, "PopNewRoom", 		0, { }, 				&Script::popNewRoom },
++		{ 21, 2, "RoomMap", 		0, { (GPL2ParameterType)0 }, 				&Script::roomMap },
++		{ 22, 1, "DisableQuickHero", 	0, { (GPL2ParameterType)0 }, 				&Script::disableQuickHero },
++		{ 22, 2, "EnableQuickHero", 	0, { (GPL2ParameterType)0 }, 				&Script::enableQuickHero },
++		{ 23, 1, "DisableSpeedText", 	0, { (GPL2ParameterType)0 }, 				&Script::disableSpeedText },
++		{ 23, 2, "EnableSpeedText", 	0, { (GPL2ParameterType)0 }, 				&Script::enableSpeedText },
++		{ 24, 1, "QuitGame", 		0, { (GPL2ParameterType)0 }, 				&Script::quitGame },
++		{ 25, 1, "PushNewRoom", 	0, { (GPL2ParameterType)0 }, 				&Script::pushNewRoom },
++		{ 25, 2, "PopNewRoom", 		0, { (GPL2ParameterType)0 }, 				&Script::popNewRoom },
+ 		// The following commands are not used in the original game files.
+-		{ 16, 1, "RepaintInventory", 	0, { },					NULL },
+-		{ 16, 2, "ExitInventory", 	0, { },					NULL },
+-		{ 17, 1, "ExitMap", 		0, { },					NULL },
++		{ 16, 1, "RepaintInventory", 	0, { (GPL2ParameterType)0 },					NULL },
++		{ 16, 2, "ExitInventory", 	0, { (GPL2ParameterType)0 },					NULL },
++		{ 17, 1, "ExitMap", 		0, { (GPL2ParameterType)0 },					NULL },
+ 		{ 18, 4, "FadeOutMusic",	1, { kGPL2Num },			NULL },
+ 		{ 18, 5, "FadeInMusic", 	1, { kGPL2Num },			NULL },
+ 		// The following commands are not even defined in the game
+ 		// sources, but their numbers are allocated for internal
+ 		// purposes of the old player.
+-		{ 26, 1, "ShowCheat", 		0, { },					NULL },
+-		{ 26, 2, "HideCheat", 		0, { },					NULL },
++		{ 26, 1, "ShowCheat", 		0, { (GPL2ParameterType)0 },					NULL },
++		{ 26, 2, "HideCheat", 		0, { (GPL2ParameterType)0 },					NULL },
+ 		{ 26, 3, "ClearCheat", 		1, { kGPL2Num },			NULL },
+ 		{ 27, 1, "FeedPassword", 	3, { kGPL2Num, kGPL2Num, kGPL2Num },	NULL }
+ 	};
+diff --git a/engines/draci/sprite.cpp b/engines/draci/sprite.cpp
+index cb3aa58..e9ec7dc 100644
+--- a/engines/draci/sprite.cpp
++++ b/engines/draci/sprite.cpp
+@@ -109,7 +109,7 @@ Sprite::Sprite(const byte *sprite_data, uint16 length, int x, int y, bool column
+ 
+ Sprite::~Sprite() {
+ 	if (_ownsData) {
+-		delete[] _data;
++		delete[] (unsigned char *)_data;
+ 	}
+ }
+ 
+diff --git a/engines/gob/draw.h b/engines/gob/draw.h
+index cbadde8..d65db97 100644
+--- a/engines/gob/draw.h
++++ b/engines/gob/draw.h
+@@ -45,12 +45,12 @@ namespace Gob {
+ 
+ class Draw {
+ public:
+-	static const int kFontCount      =  8;
+-	static const int kFrontSurface   = 20;
+-	static const int kBackSurface    = 21;
+-	static const int kAnimSurface    = 22;
+-	static const int kCursorSurface  = 23;
+-	static const int kCaptureSurface = 30;
++	enum { kFontCount      =  8 };
++	enum { kFrontSurface   = 20 };
++	enum { kBackSurface    = 21 };
++	enum { kAnimSurface    = 22 };
++	enum { kCursorSurface  = 23 };
++	enum { kCaptureSurface = 30 };
+ 
+ 	struct FontToSprite {
+ 		int8 sprite;
+diff --git a/engines/gob/game.h b/engines/gob/game.h
+index a998502..fff4ef0 100644
+--- a/engines/gob/game.h
++++ b/engines/gob/game.h
+@@ -37,7 +37,7 @@ class Hotspots;
+ 
+ class Environments {
+ public:
+-	static const uint8 kEnvironmentCount = 5;
++	enum { kEnvironmentCount = 5 };
+ 
+ 	Environments(GobEngine *vm);
+ 	~Environments();
+diff --git a/engines/gob/hotspots.h b/engines/gob/hotspots.h
+index 7346c66..38dd9b1 100644
+--- a/engines/gob/hotspots.h
++++ b/engines/gob/hotspots.h
+@@ -37,7 +37,7 @@ class Script;
+ 
+ class Hotspots {
+ public:
+-	static const int kHotspotCount = 250;
++	enum { kHotspotCount = 250 };
+ 
+ 	enum Type {
+ 		kTypeNone              =  0,
+diff --git a/engines/gob/inter.h b/engines/gob/inter.h
+index ca97483..b5d87d4 100644
+--- a/engines/gob/inter.h
++++ b/engines/gob/inter.h
+@@ -37,13 +37,13 @@ namespace Gob {
+ // This is to help devices with small memory (PDA, smartphones, ...)
+ // to save a bit of memory used by opcode names in the Gob engine.
+ #ifndef REDUCE_MEMORY_USAGE
+-	#define _OPCODEDRAW(ver, x)  setProc(new Common::Functor0Mem<void, ver>(this, &ver::x), #x)
++	#define _OPCODEDRAW(ver, x)  setProc(new Common::Functor0MemVoid<ver>(this, &ver::x), #x)
+ 	#define _OPCODEFUNC(ver, x)  setProc(new Common::Functor1Mem<OpFuncParams &, bool, ver>(this, &ver::x), #x)
+-	#define _OPCODEGOB(ver, x)   setProc(new Common::Functor1Mem<OpGobParams &, void, ver>(this, &ver::x), #x)
++	#define _OPCODEGOB(ver, x)   setProc(new Common::Functor1MemVoid<OpGobParams &, ver>(this, &ver::x), #x)
+ #else
+-	#define _OPCODEDRAW(ver, x)  setProc(new Common::Functor0Mem<void, ver>(this, &ver::x), "")
++	#define _OPCODEDRAW(ver, x)  setProc(new Common::Functor0MemVoid<ver>(this, &ver::x), "")
+ 	#define _OPCODEFUNC(ver, x)  setProc(new Common::Functor1Mem<OpFuncParams &, bool, ver>(this, &ver::x), "")
+-	#define _OPCODEGOB(ver, x)   setProc(new Common::Functor1Mem<OpGobParams &, void, ver>(this, &ver::x), "")
++	#define _OPCODEGOB(ver, x)   setProc(new Common::Functor1MemVoid<OpGobParams &, ver>(this, &ver::x), "")
+ #endif
+ 
+ #define CLEAROPCODEDRAW(i) _opcodesDraw[i].setProc(0, 0)
+diff --git a/engines/gob/resources.h b/engines/gob/resources.h
+index 7511185..683e0cd 100644
+--- a/engines/gob/resources.h
++++ b/engines/gob/resources.h
+@@ -98,12 +98,12 @@ public:
+ 
+ private:
+ 	// Structure sizes in the files
+-	static const int kTOTResItemSize   = 4 + 2 + 2 + 2;
+-	static const int kTOTResTableSize  = 2 + 1;
+-	static const int kEXTResItemSize   = 4 + 2 + 2 + 2;
+-	static const int kEXTResTableSize  = 2 + 1;
+-	static const int kTOTTextTableSize = 2;
+-	static const int kTOTTextItemSize  = 2 + 2;
++	enum { kTOTResItemSize   = 4 + 2 + 2 + 2 };
++	enum { kTOTResTableSize  = 2 + 1 };
++	enum { kEXTResItemSize   = 4 + 2 + 2 + 2 };
++	enum { kEXTResTableSize  = 2 + 1 };
++	enum { kTOTTextTableSize = 2 };
++	enum { kTOTTextItemSize  = 2 + 2 };
+ 
+ 	enum ResourceType {
+ 		kResourceTOT,
+diff --git a/engines/gob/save/saveconverter.h b/engines/gob/save/saveconverter.h
+index 3ae48e1..19b731e 100644
+--- a/engines/gob/save/saveconverter.h
++++ b/engines/gob/save/saveconverter.h
+@@ -134,8 +134,8 @@ public:
+ 	bool load();
+ 
+ private:
+-	static const uint32 kSlotCount = 15;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 15 };
++	enum { kSlotNameLength = 40 };
+ 
+ 	bool loadFail(SavePartInfo *info, SavePartVars *vars,
+ 			Common::InSaveFile *save);
+@@ -153,8 +153,8 @@ public:
+ 	bool load();
+ 
+ private:
+-	static const uint32 kSlotCount = 30;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 30 };
++	enum { kSlotNameLength = 40 };
+ 
+ 	bool loadFail(SavePartInfo *info, SavePartVars *vars,
+ 			SavePartSprite *sprite, Common::InSaveFile *save);
+@@ -175,8 +175,8 @@ public:
+ 	bool load();
+ 
+ private:
+-	static const uint32 kSlotCount = 60;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 60 };
++	enum { kSlotNameLength = 40 };
+ 
+ 	bool loadFail(SavePartInfo *info, SavePartVars *vars,
+ 			SavePartMem *props, Common::InSaveFile *save);
+@@ -194,8 +194,8 @@ public:
+ 	bool load();
+ 
+ private:
+-	static const uint32 kSlotCount = 15;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 15 };
++	enum { kSlotNameLength = 40 };
+ 
+ 	bool loadFail(SavePartInfo *info, SavePartVars *vars,
+ 			Common::InSaveFile *save);
+diff --git a/engines/gob/save/savefile.h b/engines/gob/save/savefile.h
+index 615be8e..051e881 100644
+--- a/engines/gob/save/savefile.h
++++ b/engines/gob/save/savefile.h
+@@ -46,9 +46,9 @@ class SurfaceDesc;
+ class SaveHeader {
+ public:
+ 	/** The size of the header. */
+-	static const int kSize = 20;
+-	static const uint32 kID1 = MKID_BE('\0SCV');
+-	static const uint32 kID2 = MKID_BE('MGOB');
++	enum { kSize = 20 };
++	enum { kID1 = MKID_BE('\0SCV') };
++	enum { kID2 = MKID_BE('MGOB') };
+ 
+ 	SaveHeader(uint32 type = 0, uint32 version = 0, uint32 size = 0);
+ 
+@@ -101,8 +101,8 @@ protected:
+ /** A save part consisting of plain memory. */
+ class SavePartMem : public SavePart {
+ public:
+-	static const uint32 kVersion = 1;
+-	static const uint32 kID = MKID_BE('PMEM');
++	enum { kVersion = 1 };
++	enum { kID = MKID_BE('PMEM') };
+ 
+ 	SavePartMem(uint32 size);
+ 	~SavePartMem();
+@@ -123,8 +123,8 @@ private:
+ /** A save part holding script variables. */
+ class SavePartVars : public SavePart {
+ public:
+-	static const uint32 kVersion = 1;
+-	static const uint32 kID = MKID_BE('VARS');
++	enum { kVersion = 1 };
++	enum { kID = MKID_BE('VARS') };
+ 
+ 	SavePartVars(GobEngine *vm, uint32 size);
+ 	~SavePartVars();
+@@ -150,8 +150,8 @@ private:
+ /** A save part holding a sprite. */
+ class SavePartSprite : public SavePart {
+ public:
+-	static const uint32 kVersion = 1;
+-	static const uint32 kID = MKID_BE('SPRT');
++	enum { kVersion = 1 };
++	enum { kID = MKID_BE('SPRT') };
+ 
+ 	SavePartSprite(uint32 width, uint32 height);
+ 	~SavePartSprite();
+@@ -183,8 +183,8 @@ private:
+ /** A save part containing informations about the save's game. */
+ class SavePartInfo : public SavePart {
+ public:
+-	static const uint32 kVersion = 1;
+-	static const uint32 kID = MKID_BE('INFO');
++	enum { kVersion = 1 };
++	enum { kID = MKID_BE('INFO') };
+ 
+ 	/** The constructor.
+ 	 *
+@@ -225,8 +225,8 @@ private:
+ /** A container for several save parts. */
+ class SaveContainer {
+ public:
+-	static const uint32 kVersion = 1;
+-	static const uint32 kID = MKID_BE('CONT');
++	enum { kVersion = 1 };
++	enum { kID = MKID_BE('CONT') };
+ 
+ 	/** The constructor.
+ 	 *
+diff --git a/engines/gob/save/saveload.h b/engines/gob/save/saveload.h
+index de64be3..3ca054c 100644
+--- a/engines/gob/save/saveload.h
++++ b/engines/gob/save/saveload.h
+@@ -74,11 +74,11 @@ protected:
+ /** Save/Load class for Gobliins 2, Ween: The Prophecy and Bargon Attack. */
+ class SaveLoad_v2 : public SaveLoad {
+ public:
+-	static const uint32 kSlotCount = 15;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 15 };
++	enum { kSlotNameLength = 40 };
+ 
+ 	/** The index. kSlotCount * kSlotNameLength bytes. */
+-	static const uint32 kIndexSize = kSlotCount * kSlotNameLength;
++	enum { kIndexSize = kSlotCount * kSlotNameLength };
+ 
+ 	SaveLoad_v2(GobEngine *vm, const char *targetName);
+ 	virtual ~SaveLoad_v2();
+@@ -138,11 +138,11 @@ protected:
+ /** Save/Load class for Fascination. */
+ class SaveLoad_Fascination : public SaveLoad {
+ public:
+-	static const uint32 kSlotCount = 15;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 15 };
++	enum { kSlotNameLength = 40 };
+ 
+ 	/** The index. kSlotCount * kSlotNameLength bytes. */
+-	static const uint32 kIndexSize = kSlotCount * kSlotNameLength;
++	enum { kIndexSize = kSlotCount * kSlotNameLength };
+ 
+ 	SaveLoad_Fascination(GobEngine *vm, const char *targetName);
+ 	virtual ~SaveLoad_Fascination();
+@@ -206,12 +206,12 @@ protected:
+ /** Save/Load class for Goblins 3 and Lost in Time. */
+ class SaveLoad_v3 : public SaveLoad {
+ public:
+-	static const uint32 kSlotCount = 30;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 30 };
++	enum { kSlotNameLength = 40 };
+ 
+-	static const uint32 kPropsSize = 500;
++	enum { kPropsSize = 500 };
+ 	/** Index. kSlotCount * kSlotNameLength bytes. */
+-	static const uint32 kIndexSize = kSlotCount * kSlotNameLength;
++	enum { kIndexSize = kSlotCount * kSlotNameLength };
+ 
+ 	enum ScreenshotType {
+ 		kScreenshotTypeGob3, ///< Goblins 3 type screenshot
+@@ -235,7 +235,6 @@ protected:
+ 
+ 	/** Handles the save slots. */
+ 	class GameHandler : public SaveHandler {
+-	friend class SaveLoad_v3::ScreenshotHandler;
+ 	public:
+ 
+ 		GameHandler(GobEngine *vm, const char *target, bool usesScreenshots);
+@@ -293,9 +292,9 @@ protected:
+ 
+ 	private:
+ 		/** Slot file construction. */
+-		class File : public SaveLoad_v3::GameHandler::File {
++		class File : public GameHandler::File {
+ 		public:
+-			File(const SaveLoad_v3::GameHandler::File &file,
++			File(const GameHandler::File &file,
+ 					uint32 shotSize, uint32 shotIndexSize);
+ 			~File();
+ 
+@@ -337,12 +336,12 @@ protected:
+ /** Save/Load class for Woodruff. */
+ class SaveLoad_v4 : public SaveLoad {
+ public:
+-	static const uint32 kSlotCount = 10;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 10 };
++	enum { kSlotNameLength = 40 };
+ 
+-	static const uint32 kPropsSize = 500;
++	enum { kPropsSize = 500 };
+ 	/** Index. kSlotCount * kSlotNameLength bytes + 800 bytes 0. */
+-	static const uint32 kIndexSize = (kSlotCount * kSlotNameLength) + 800;
++	enum { kIndexSize = (kSlotCount * kSlotNameLength) + 800 };
+ 
+ 	SaveLoad_v4(GobEngine *vm, const char *targetName);
+ 	virtual ~SaveLoad_v4();
+@@ -361,7 +360,6 @@ protected:
+ 
+ 	/** Handles the save slots. */
+ 	class GameHandler : public SaveHandler {
+-	friend class SaveLoad_v4::ScreenPropsHandler;
+ 	public:
+ 		GameHandler(GobEngine *vm, const char *target);
+ 		~GameHandler();
+@@ -407,7 +405,6 @@ protected:
+ 	};
+ 
+ 	class CurScreenPropsHandler : public SaveHandler {
+-	friend class SaveLoad_v4::ScreenPropsHandler;
+ 	public:
+ 		CurScreenPropsHandler(GobEngine *vm);
+ 		~CurScreenPropsHandler();
+@@ -431,9 +428,9 @@ protected:
+ 		bool save(int16 dataVar, int32 size, int32 offset);
+ 
+ 	private:
+-		class File : public SaveLoad_v4::GameHandler::File {
++		class File : public GameHandler::File {
+ 		public:
+-			File(const SaveLoad_v4::GameHandler::File &file, uint32 slot);
++			File(const GameHandler::File &file, uint32 slot);
+ 			~File();
+ 
+ 			int getSlot(int32 offset) const;
+@@ -466,12 +463,12 @@ protected:
+ /** Save/Load class for Urban Runner. */
+ class SaveLoad_v6 : public SaveLoad {
+ public:
+-	static const uint32 kSlotCount = 60;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 60 };
++	enum { kSlotNameLength = 40 };
+ 
+-	static const uint32 kPropsSize = 500;
++	enum { kPropsSize = 500 };
+ 	/** Index. kSlotCount * kSlotNameLength bytes. */
+-	static const uint32 kIndexSize = kSlotCount * kSlotNameLength;
++	enum { kIndexSize = kSlotCount * kSlotNameLength };
+ 
+ 	SaveLoad_v6(GobEngine *vm, const char *targetName);
+ 	virtual ~SaveLoad_v6();
+@@ -531,12 +528,12 @@ protected:
+ /** Save/Load class for Playtoons. */
+ class SaveLoad_Playtoons : public SaveLoad {
+ public:
+-	static const uint32 kSlotCount = 60;
+-	static const uint32 kSlotNameLength = 40;
++	enum { kSlotCount = 60 };
++	enum { kSlotNameLength = 40 };
+ 
+-	static const uint32 kPropsSize = 3921;
++	enum { kPropsSize = 3921 };
+ 	/** Index. kSlotCount * kSlotNameLength bytes. */
+-	static const uint32 kIndexSize = kSlotCount * kSlotNameLength;
++	enum { kIndexSize = kSlotCount * kSlotNameLength };
+ 
+ 	SaveLoad_Playtoons(GobEngine *vm, const char *targetName);
+ 	virtual ~SaveLoad_Playtoons();
+diff --git a/engines/gob/sound/sound.h b/engines/gob/sound/sound.h
+index 516fed5..d8fa718 100644
+--- a/engines/gob/sound/sound.h
++++ b/engines/gob/sound/sound.h
+@@ -42,7 +42,7 @@ class CDROM;
+ 
+ class Sound {
+ public:
+-	static const int kSoundsCount = 60;
++	enum { kSoundsCount = 60 };
+ 
+ 	Sound(GobEngine *vm);
+ 	~Sound();
+diff --git a/engines/gob/video.cpp b/engines/gob/video.cpp
+index e2c25c3..65c1414 100644
+--- a/engines/gob/video.cpp
++++ b/engines/gob/video.cpp
+@@ -65,7 +65,7 @@ Font::Font(const byte *data) : _dataPtr(data) {
+ }
+ 
+ Font::~Font() {
+-	delete[] _dataPtr;
++	delete[] (unsigned char *)_dataPtr;
+ }
+ 
+ uint8 Font::getCharWidth(uint8 c) const {
+@@ -629,7 +629,7 @@ void Video::initOSD() {
+ }
+ 
+ void Video::drawOSDText(const char *text) {
+-	const Graphics::Font &font(*FontMan.getFontByUsage(Graphics::FontManager::kOSDFont));
++	const Graphics::Font &font = *FontMan.getFontByUsage(Graphics::FontManager::kOSDFont);
+ 	uint32 color = 0x2;
+ 	Graphics::Surface surf;
+ 
+diff --git a/engines/gob/videoplayer.h b/engines/gob/videoplayer.h
+index d91d0a3..e409479 100644
+--- a/engines/gob/videoplayer.h
++++ b/engines/gob/videoplayer.h
+@@ -145,7 +145,7 @@ private:
+ 		void close();
+ 	};
+ 
+-	static const int kVideoSlotCount = 32;
++	enum { kVideoSlotCount = 32 };
+ 
+ 	static const char *_extensions[];
+ 
+diff --git a/engines/groovie/groovie.h b/engines/groovie/groovie.h
+index 8ae5f41..48fee96 100644
+--- a/engines/groovie/groovie.h
++++ b/engines/groovie/groovie.h
+@@ -96,7 +96,7 @@ protected:
+ 	virtual Common::Error loadGameState(int slot);
+ 	virtual void syncSoundSettings();
+ 
+-	virtual Debugger *getDebugger() { return _debugger; }
++	virtual GUI::Debugger *getDebugger() { return _debugger; }
+ 
+ public:
+ 	void waitForInput();
+diff --git a/engines/kyra/kyra_hof.cpp b/engines/kyra/kyra_hof.cpp
+index 0fafaa1..a3372e5 100644
+--- a/engines/kyra/kyra_hof.cpp
++++ b/engines/kyra/kyra_hof.cpp
+@@ -161,9 +161,9 @@ KyraEngine_HoF::~KyraEngine_HoF() {
+ 	if (_sequenceSoundList) {
+ 		for (int i = 0; i < _sequenceSoundListSize; i++) {
+ 			if (_sequenceSoundList[i])
+-				delete[] _sequenceSoundList[i];
++				delete[] (char *)_sequenceSoundList[i];
+ 		}
+-		delete[] _sequenceSoundList;
++		delete[] (const char * *)_sequenceSoundList;
+ 		_sequenceSoundList = NULL;
+ 	}
+ 
+diff --git a/engines/kyra/kyra_hof.h b/engines/kyra/kyra_hof.h
+index 05d04fe..f0b9d2d 100644
+--- a/engines/kyra/kyra_hof.h
++++ b/engines/kyra/kyra_hof.h
+@@ -338,7 +338,7 @@ protected:
+ 	void update();
+ 	void updateWithText();
+ 
+-	Common::Functor0Mem<void, KyraEngine_HoF> _updateFunctor;
++	Common::Functor0MemVoid<KyraEngine_HoF> _updateFunctor;
+ 
+ 	void updateMouse();
+ 
+diff --git a/engines/kyra/kyra_lok.cpp b/engines/kyra/kyra_lok.cpp
+index 159230e..9d88a3f 100644
+--- a/engines/kyra/kyra_lok.cpp
++++ b/engines/kyra/kyra_lok.cpp
+@@ -127,14 +127,14 @@ KyraEngine_LoK::~KyraEngine_LoK() {
+ 
+ 	delete[] _defaultShapeTable;
+ 
+-	delete[] _specialPalettes;
+-
+-	delete[] _gui->_scrollUpButton.data0ShapePtr;
+-	delete[] _gui->_scrollUpButton.data1ShapePtr;
+-	delete[] _gui->_scrollUpButton.data2ShapePtr;
+-	delete[] _gui->_scrollDownButton.data0ShapePtr;
+-	delete[] _gui->_scrollDownButton.data1ShapePtr;
+-	delete[] _gui->_scrollDownButton.data2ShapePtr;
++	delete[] (const unsigned char * *)_specialPalettes;
++
++	delete[] (unsigned char *)_gui->_scrollUpButton.data0ShapePtr;
++	delete[] (unsigned char *)_gui->_scrollUpButton.data1ShapePtr;
++	delete[] (unsigned char *)_gui->_scrollUpButton.data2ShapePtr;
++	delete[] (unsigned char *)_gui->_scrollDownButton.data0ShapePtr;
++	delete[] (unsigned char *)_gui->_scrollDownButton.data1ShapePtr;
++	delete[] (unsigned char *)_gui->_scrollDownButton.data2ShapePtr;
+ 
+ 	delete[] _buttonData;
+ 	delete[] _buttonDataListPtr;
+diff --git a/engines/kyra/resource_intern.cpp b/engines/kyra/resource_intern.cpp
+index 0d968de..f6f3eac 100644
+--- a/engines/kyra/resource_intern.cpp
++++ b/engines/kyra/resource_intern.cpp
+@@ -91,7 +91,7 @@ TlkArchive::TlkArchive(Common::ArchiveMemberPtr file, uint16 entryCount, const u
+ }
+ 
+ TlkArchive::~TlkArchive() {
+-	delete[] _fileEntries;
++	delete[] (unsigned int *)_fileEntries;
+ }
+ 
+ bool TlkArchive::hasFile(const Common::String &name) {
+diff --git a/engines/kyra/scene_hof.cpp b/engines/kyra/scene_hof.cpp
+index 4559554..bd4847b 100644
+--- a/engines/kyra/scene_hof.cpp
++++ b/engines/kyra/scene_hof.cpp
+@@ -100,7 +100,8 @@ void KyraEngine_HoF::enterNewScene(uint16 newScene, int facing, int unk1, int un
+ 			_emc->run(&_sceneScriptState);
+ 	}
+ 
+-	Common::for_each(_wsaSlots, _wsaSlots+ARRAYSIZE(_wsaSlots), Common::mem_fun(&WSAMovie_v2::close));
++	for (int i = 0; i < ARRAYSIZE(_wsaSlots); ++i)
++		_wsaSlots[i]->close();
+ 	_specialExitCount = 0;
+ 	memset(_specialExitTable, -1, sizeof(_specialExitTable));
+ 
+diff --git a/engines/kyra/screen.cpp b/engines/kyra/screen.cpp
+index e09cc81..5eb136a 100644
+--- a/engines/kyra/screen.cpp
++++ b/engines/kyra/screen.cpp
+@@ -2070,13 +2070,13 @@ uint Screen::decodeFrame4(const uint8 *src, uint8 *dst, uint32 dstSize) {
+ 
+ void Screen::decodeFrameDelta(uint8 *dst, const uint8 *src, bool noXor) {
+ 	if (noXor)
+-		wrapped_decodeFrameDelta<true>(dst, src);
++		wrapped_decodeFrameDelta(dst, src, (const VC6Int<true> *)0);
+ 	else
+-		wrapped_decodeFrameDelta<false>(dst, src);
++		wrapped_decodeFrameDelta(dst, src, (const VC6Int<false> *)0);
+ }
+ 
+ template <bool noXor>
+-void Screen::wrapped_decodeFrameDelta(uint8 *dst, const uint8 *src) {
++void Screen::wrapped_decodeFrameDelta(uint8 *dst, const uint8 *src, const VC6Int<noXor> *) {
+ 	while (1) {
+ 		uint8 code = *src++;
+ 		if (code == 0) {
+@@ -2132,9 +2132,9 @@ void Screen::wrapped_decodeFrameDelta(uint8 *dst, const uint8 *src) {
+ 
+ void Screen::decodeFrameDeltaPage(uint8 *dst, const uint8 *src, int pitch, bool noXor) {
+ 	if (noXor)
+-		wrapped_decodeFrameDeltaPage<true>(dst, src, pitch);
++		wrapped_decodeFrameDeltaPage(dst, src, pitch, (const VC6Int<true> *)0);
+ 	else
+-		wrapped_decodeFrameDeltaPage<false>(dst, src, pitch);
++		wrapped_decodeFrameDeltaPage(dst, src, pitch, (const VC6Int<false> *)0);
+ }
+ 
+ void Screen::convertAmigaGfx(uint8 *data, int w, int h, int depth, bool wsa, int bytesPerPlane) {
+@@ -2228,7 +2228,7 @@ void Screen::convertAmigaMsc(uint8 *data) {
+ }
+ 
+ template<bool noXor>
+-void Screen::wrapped_decodeFrameDeltaPage(uint8 *dst, const uint8 *src, int pitch) {
++void Screen::wrapped_decodeFrameDeltaPage(uint8 *dst, const uint8 *src, int pitch, const VC6Int<noXor> *) {
+ 	int count = 0;
+ 	uint8 *dstNext = dst;
+ 	while (1) {
+diff --git a/engines/kyra/screen.h b/engines/kyra/screen.h
+index 654b7da..d95f7f1 100644
+--- a/engines/kyra/screen.h
++++ b/engines/kyra/screen.h
+@@ -502,8 +502,8 @@ protected:
+ 
+ 	int16 encodeShapeAndCalculateSize(uint8 *from, uint8 *to, int size);
+ 
+-	template<bool noXor> static void wrapped_decodeFrameDelta(uint8 *dst, const uint8 *src);
+-	template<bool noXor> static void wrapped_decodeFrameDeltaPage(uint8 *dst, const uint8 *src, const int pitch);
++	template<bool noXor> static void wrapped_decodeFrameDelta(uint8 *dst, const uint8 *src, const VC6Int<noXor> * = 0);
++	template<bool noXor> static void wrapped_decodeFrameDeltaPage(uint8 *dst, const uint8 *src, const int pitch, const VC6Int<noXor> * = 0);
+ 
+ 	uint8 *_pagePtrs[16];
+ 	uint8 *_sjisOverlayPtrs[SCREEN_OVLS_NUM];
+diff --git a/engines/kyra/sequences_lol.cpp b/engines/kyra/sequences_lol.cpp
+index 6f0afea..1bee54f 100644
+--- a/engines/kyra/sequences_lol.cpp
++++ b/engines/kyra/sequences_lol.cpp
+@@ -781,7 +781,7 @@ void HistoryPlayer::play() {
+ 	int part = 0;
+ 	Sound *sound = _vm->sound();
+ 
+-	Common::Functor0Mem<void, HistoryPlayer> palFade(this, &HistoryPlayer::updateFire);
++	Common::Functor0MemVoid<HistoryPlayer> palFade(this, &HistoryPlayer::updateFire);
+ 
+ 	for (; voiceFilename[3] <= '9' && !_vm->shouldQuit() && !_vm->skipFlag(); ++voiceFilename[3], voiceFilename[4] = 'a') {
+ 		while (!_vm->shouldQuit() && !_vm->skipFlag()) {
+diff --git a/engines/kyra/staticres.cpp b/engines/kyra/staticres.cpp
+index 4b71b1d..cb7f988 100644
+--- a/engines/kyra/staticres.cpp
++++ b/engines/kyra/staticres.cpp
+@@ -649,16 +649,16 @@ void StaticResource::freeHofSequenceData(void *&ptr, int &size) {
+ 	HofSeqData *h = (HofSeqData *)ptr;
+ 
+ 	for (int i = 0; i < h->numSeq; i++) {
+-		delete[] h->seq[i].wsaFile;
+-		delete[] h->seq[i].cpsFile;
++		delete[] (char *)h->seq[i].wsaFile;
++		delete[] (char *)h->seq[i].cpsFile;
+ 	}
+-	delete[] h->seq;
++	delete[] (Kyra::Sequence *)h->seq;
+ 
+ 	for (int i = 0; i < h->numSeqn; i++) {
+-		delete[] h->seqn[i].wsaFile;
+-		delete[] h->seqn[i].wsaControl;
++		delete[] (char *)h->seqn[i].wsaFile;
++		delete[] (Kyra::FrameControl *)h->seqn[i].wsaControl;
+ 	}
+-	delete[] h->seqn;
++	delete[] (Kyra::NestedSequence *)h->seqn;
+ 
+ 	delete h;
+ 	ptr = 0;
+@@ -668,7 +668,7 @@ void StaticResource::freeHofSequenceData(void *&ptr, int &size) {
+ void StaticResource::freeHofShapeAnimDataV1(void *&ptr, int &size) {
+ 	ItemAnimData_v1 *d= (ItemAnimData_v1 *)ptr;
+ 	for (int i = 0; i < size; i++)
+-		delete[] d[i].frames;
++		delete[] (unsigned short *)d[i].frames;
+ 	delete[] d;
+ 	ptr = 0;
+ 	size = 0;
+@@ -677,7 +677,7 @@ void StaticResource::freeHofShapeAnimDataV1(void *&ptr, int &size) {
+ void StaticResource::freeHofShapeAnimDataV2(void *&ptr, int &size) {
+ 	ItemAnimData_v2 *d= (ItemAnimData_v2 *)ptr;
+ 	for (int i = 0; i < size; i++)
+-		delete[] d[i].frames;
++		delete[] (Kyra::FrameControl *)d[i].frames;
+ 	delete[] d;
+ 	ptr = 0;
+ 	size = 0;
+diff --git a/engines/kyra/timer_hof.cpp b/engines/kyra/timer_hof.cpp
+index d8f86e3..59b0478 100644
+--- a/engines/kyra/timer_hof.cpp
++++ b/engines/kyra/timer_hof.cpp
+@@ -28,7 +28,7 @@
+ 
+ namespace Kyra {
+ 
+-#define TimerV2(x) new Common::Functor1Mem<int, void, KyraEngine_HoF>(this, &KyraEngine_HoF::x)
++#define TimerV2(x) new Common::Functor1MemVoid<int, KyraEngine_HoF>(this, &KyraEngine_HoF::x)
+ 
+ void KyraEngine_HoF::setupTimers() {
+ 	_timer->addTimer(0, 0, 5, 1);
+diff --git a/engines/kyra/timer_lok.cpp b/engines/kyra/timer_lok.cpp
+index 6f4948c..d9190c5 100644
+--- a/engines/kyra/timer_lok.cpp
++++ b/engines/kyra/timer_lok.cpp
+@@ -33,7 +33,7 @@
+ 
+ namespace Kyra {
+ 
+-#define TimerV1(x) new Common::Functor1Mem<int, void, KyraEngine_LoK>(this, &KyraEngine_LoK::x)
++#define TimerV1(x) new Common::Functor1MemVoid<int, KyraEngine_LoK>(this, &KyraEngine_LoK::x)
+ 
+ void KyraEngine_LoK::setupTimers() {
+ 	for (int i = 0; i <= 4; ++i)
+diff --git a/engines/kyra/timer_lol.cpp b/engines/kyra/timer_lol.cpp
+index 90cfc1a..36aa30c 100644
+--- a/engines/kyra/timer_lol.cpp
++++ b/engines/kyra/timer_lol.cpp
+@@ -31,7 +31,7 @@
+ 
+ namespace Kyra {
+ 
+-#define TimerV2(x) new Common::Functor1Mem<int, void, LoLEngine>(this, &LoLEngine::x)
++#define TimerV2(x) new Common::Functor1MemVoid<int, LoLEngine>(this, &LoLEngine::x)
+ 
+ void LoLEngine::setupTimers() {
+ 	_timer->addTimer(0, TimerV2(timerProcessDoors), 15, true);
+diff --git a/engines/kyra/timer_mr.cpp b/engines/kyra/timer_mr.cpp
+index 48fa555..7e302d0 100644
+--- a/engines/kyra/timer_mr.cpp
++++ b/engines/kyra/timer_mr.cpp
+@@ -28,7 +28,7 @@
+ 
+ namespace Kyra {
+ 
+-#define TimerV3(x) new Common::Functor1Mem<int, void, KyraEngine_MR>(this, &KyraEngine_MR::x)
++#define TimerV3(x) new Common::Functor1MemVoid<int, KyraEngine_MR>(this, &KyraEngine_MR::x)
+ 
+ void KyraEngine_MR::setupTimers() {
+ 	_timer->addTimer(0, TimerV3(timerRestoreCommandLine), -1, 1);
+diff --git a/engines/made/resource.cpp b/engines/made/resource.cpp
+index cdcb49f..e04546a 100644
+--- a/engines/made/resource.cpp
++++ b/engines/made/resource.cpp
+@@ -464,34 +464,34 @@ void ResourceReader::openResourceBlock(const char *filename, Common::File *block
+ }
+ 
+ PictureResource *ResourceReader::getPicture(int index) {
+-	return createResource<PictureResource>(kResFLEX, index);
++	return createResource(kResFLEX, index, (const VC6Type<PictureResource> *)0);
+ }
+ 
+ AnimationResource *ResourceReader::getAnimation(int index) {
+-	return createResource<AnimationResource>(kResANIM, index);
++	return createResource(kResANIM, index, (const VC6Type<AnimationResource> *)0);
+ }
+ 
+ SoundResource *ResourceReader::getSound(int index) {
+ 	if (!_isV1)
+-		return createResource<SoundResource>(kResSNDS, index);
++		return createResource(kResSNDS, index, (const VC6Type<SoundResource> *)0);
+ 	else
+-		return createResource<SoundResourceV1>(kResSNDS, index);
++		return createResource(kResSNDS, index, (const VC6Type<SoundResourceV1> *)0);
+ }
+ 
+ MenuResource *ResourceReader::getMenu(int index) {
+-	return createResource<MenuResource>(kResMENU, index);
++	return createResource(kResMENU, index, (const VC6Type<MenuResource> *)0);
+ }
+ 
+ FontResource *ResourceReader::getFont(int index) {
+-	return createResource<FontResource>(kResFONT, index);
++	return createResource(kResFONT, index, (const VC6Type<FontResource> *)0);
+ }
+ 
+ GenericResource *ResourceReader::getXmidi(int index) {
+-	return createResource<GenericResource>(kResXMID, index);
++	return createResource(kResXMID, index, (const VC6Type<GenericResource> *)0);
+ }
+ 
+ GenericResource *ResourceReader::getMidi(int index) {
+-	return createResource<GenericResource>(kResMIDI, index);
++	return createResource(kResMIDI, index, (const VC6Type<GenericResource> *)0);
+ }
+ 
+ void ResourceReader::loadIndex(ResourceSlots *slots) {
+diff --git a/engines/made/resource.h b/engines/made/resource.h
+index ca71dc8..491e202 100644
+--- a/engines/made/resource.h
++++ b/engines/made/resource.h
+@@ -214,7 +214,7 @@ protected:
+ 	void loadIndex(ResourceSlots *slots);
+ 
+ 	template <class T>
+-	T *createResource(uint32 resType, int index) {
++	T *createResource(uint32 resType, int index, const VC6Type<T> * = 0) {
+ 		ResourceSlot *slot = getResourceSlot(resType, index);
+ 		if (!slot)
+ 			return NULL;
+diff --git a/engines/parallaction/disk_ns.cpp b/engines/parallaction/disk_ns.cpp
+index 0b893fb..4307438 100644
+--- a/engines/parallaction/disk_ns.cpp
++++ b/engines/parallaction/disk_ns.cpp
+@@ -566,7 +566,7 @@ Common::SeekableReadStream* DosDisk_ns::loadSound(const char* name) {
+ 
+ class PowerPackerStream : public Common::SeekableReadStream {
+ 
+-	SeekableReadStream *_stream;
++	Common::SeekableReadStream *_stream;
+ 	bool				_dispose;
+ 
+ private:
+diff --git a/engines/parallaction/exec_br.cpp b/engines/parallaction/exec_br.cpp
+index 1d8724e..df9db54 100644
+--- a/engines/parallaction/exec_br.cpp
++++ b/engines/parallaction/exec_br.cpp
+@@ -63,11 +63,11 @@ namespace Parallaction {
+ 
+ #define SetOpcodeTable(x) table = &x;
+ 
+-typedef Common::Functor1Mem<CommandContext&, void, CommandExec_br> OpcodeV1;
++typedef Common::Functor1MemVoid<CommandContext&, CommandExec_br> OpcodeV1;
+ #define COMMAND_OPCODE(op) table->push_back(new OpcodeV1(this, &CommandExec_br::cmdOp_##op))
+ #define DECLARE_COMMAND_OPCODE(op) void CommandExec_br::cmdOp_##op(CommandContext &ctxt)
+ 
+-typedef Common::Functor1Mem<ProgramContext&, void, ProgramExec_br> OpcodeV2;
++typedef Common::Functor1MemVoid<ProgramContext&, ProgramExec_br> OpcodeV2;
+ #define INSTRUCTION_OPCODE(op) table->push_back(new OpcodeV2(this, &ProgramExec_br::instOp_##op))
+ #define DECLARE_INSTRUCTION_OPCODE(op) void ProgramExec_br::instOp_##op(ProgramContext &ctxt)
+ 
+diff --git a/engines/parallaction/exec_ns.cpp b/engines/parallaction/exec_ns.cpp
+index c8a5ee1..61fea87 100644
+--- a/engines/parallaction/exec_ns.cpp
++++ b/engines/parallaction/exec_ns.cpp
+@@ -55,11 +55,11 @@ namespace Parallaction {
+ 
+ 
+ 
+-typedef Common::Functor1Mem<CommandContext&, void, CommandExec_ns> OpcodeV1;
++typedef Common::Functor1MemVoid<CommandContext&, CommandExec_ns> OpcodeV1;
+ #define COMMAND_OPCODE(op) table->push_back(new OpcodeV1(this, &CommandExec_ns::cmdOp_##op))
+ #define DECLARE_COMMAND_OPCODE(op) void CommandExec_ns::cmdOp_##op(CommandContext& ctxt)
+ 
+-typedef Common::Functor1Mem<ProgramContext&, void, ProgramExec_ns> OpcodeV2;
++typedef Common::Functor1MemVoid<ProgramContext&, ProgramExec_ns> OpcodeV2;
+ #define INSTRUCTION_OPCODE(op) table->push_back(new OpcodeV2(this, &ProgramExec_ns::instOp_##op))
+ #define DECLARE_INSTRUCTION_OPCODE(op) void ProgramExec_ns::instOp_##op(ProgramContext& ctxt)
+ 
+diff --git a/engines/parallaction/graphics.cpp b/engines/parallaction/graphics.cpp
+index 2990d02..fcca2dd 100644
+--- a/engines/parallaction/graphics.cpp
++++ b/engines/parallaction/graphics.cpp
+@@ -600,19 +600,25 @@ void Gfx::updateFloatingLabel() {
+ 	_floatingLabel->getRect(0, r);
+ 
+ 	if (_gameType == GType_Nippon) {
+-		FloatingLabelTraits traits_NS = {
+-			Common::Point(16 - r.width()/2, 34),
+-			Common::Point(8 - r.width()/2, 21),
+-			0, 0, _vm->_screenWidth - r.width(), 190
+-		};
++		// VC6 initialises no aggregate holding a Common::Point.
++		static FloatingLabelTraits traits_NS;
++		traits_NS._offsetWithItem = Common::Point(16 - r.width()/2, 34);
++		traits_NS._offsetWithoutItem = Common::Point(8 - r.width()/2, 21);
++		traits_NS._minX = 0;
++		traits_NS._minY = 0;
++		traits_NS._maxX = _vm->_screenWidth - r.width();
++		traits_NS._maxY = 190;
+ 		traits = &traits_NS;
+ 	} else {
+ 		// FIXME: _maxY for BRA is not constant (390), but depends on _vm->_subtitleY
+-		FloatingLabelTraits traits_BR = {
+-			Common::Point(34 - r.width()/2, 70),
+-			Common::Point(16 - r.width()/2, 37),
+-			0, 0, _vm->_screenWidth - r.width(), 390
+-		};
++		// VC6 initialises no aggregate holding a Common::Point.
++		static FloatingLabelTraits traits_BR;
++		traits_BR._offsetWithItem = Common::Point(34 - r.width()/2, 70);
++		traits_BR._offsetWithoutItem = Common::Point(16 - r.width()/2, 37);
++		traits_BR._minX = 0;
++		traits_BR._minY = 0;
++		traits_BR._maxX = _vm->_screenWidth - r.width();
++		traits_BR._maxY = 390;
+ 		traits = &traits_BR;
+ 	}
+ 
+diff --git a/engines/parallaction/objects.h b/engines/parallaction/objects.h
+index 36231cf..3da2121 100644
+--- a/engines/parallaction/objects.h
++++ b/engines/parallaction/objects.h
+@@ -348,7 +348,7 @@ enum ParaFlags {
+ 
+ struct AnimationField {
+ 	typedef Common::Functor0Mem<int16, Animation> Accessor;
+-	typedef Common::Functor1Mem<int16, void, Animation> Mutator;
++	typedef Common::Functor1MemVoid<int16, Animation> Mutator;
+ 
+ 	typedef Accessor::FuncType AccessorFunc;
+ 	typedef Mutator::FuncType MutatorFunc;
+diff --git a/engines/parallaction/parallaction.cpp b/engines/parallaction/parallaction.cpp
+index ce75253..04eac4b 100644
+--- a/engines/parallaction/parallaction.cpp
++++ b/engines/parallaction/parallaction.cpp
+@@ -837,20 +837,7 @@ bool Location::keepAnimation_br(AnimationPtr a) {
+ }
+ 
+ 
+-template <class T>
+-void Location::freeList(Common::List<T> &list, bool removeAll, Common::MemFunc1<bool, T, Location> filter) {
+-	typedef typename Common::List<T>::iterator iterator;
+-	iterator it = list.begin();
+-	while (it != list.end()) {
+-		T z = *it;
+-		if (!removeAll && filter(this, z)) {
+-			++it;
+-		} else {
+-			z->_commands.clear();
+-			it = list.erase(it);
+-		}
+-	}
+-}
++// Location::freeList is defined in its class: VC6 can't define a member template outside it.
+ 
+ void Location::freeZones(bool removeAll) {
+ 	debugC(2, kDebugExec, "freeZones: removeAll = %i", removeAll);
+diff --git a/engines/parallaction/parallaction.h b/engines/parallaction/parallaction.h
+index 7bbdf79..b186697 100644
+--- a/engines/parallaction/parallaction.h
++++ b/engines/parallaction/parallaction.h
+@@ -180,7 +180,18 @@ protected:
+ 	bool keepAnimation_br(AnimationPtr a);
+ 
+ 	template <class T>
+-	void freeList(Common::List<T> &list, bool removeAll, Common::MemFunc1<bool, T, Location> filter);
++	void freeList(Common::List<T> &list, bool removeAll, Common::MemFunc1<bool, T, Location> filter) {
++		Common::List<T>::iterator it = list.begin();
++		while (it != list.end()) {
++			T z = *it;
++			if (!removeAll && filter(this, z)) {
++				++it;
++			} else {
++				z->_commands.clear();
++				it = list.erase(it);
++			}
++		}
++	}
+ 
+ public:
+ 	Location(int gameType);
+diff --git a/engines/parallaction/parser_br.cpp b/engines/parallaction/parser_br.cpp
+index 57259fd..aecafb9 100644
+--- a/engines/parallaction/parser_br.cpp
++++ b/engines/parallaction/parser_br.cpp
+@@ -292,10 +292,10 @@ const char *_instructionNamesRes_br[] = {
+ 
+ #define SetOpcodeTable(x) table = &x;
+ 
+-typedef Common::Functor0Mem<void, ProgramParser_br> OpcodeV1;
++typedef Common::Functor0MemVoid<ProgramParser_br> OpcodeV1;
+ #define INSTRUCTION_PARSER(sig) table->push_back(new OpcodeV1(this, &ProgramParser_br::instParse_##sig))
+ 
+-typedef Common::Functor0Mem<void, LocationParser_br> OpcodeV2;
++typedef Common::Functor0MemVoid<LocationParser_br> OpcodeV2;
+ #define ZONE_PARSER(sig)		table->push_back(new OpcodeV2(this, &LocationParser_br::locZoneParse_##sig))
+ #define ANIM_PARSER(sig)		table->push_back(new OpcodeV2(this, &LocationParser_br::locAnimParse_##sig))
+ #define LOCATION_PARSER(sig)	table->push_back(new OpcodeV2(this, &LocationParser_br::locParse_##sig))
+diff --git a/engines/parallaction/parser_ns.cpp b/engines/parallaction/parser_ns.cpp
+index ff24a06..8a09b09 100644
+--- a/engines/parallaction/parser_ns.cpp
++++ b/engines/parallaction/parser_ns.cpp
+@@ -891,7 +891,7 @@ Common::String LocationParser_ns::parseDialogueString() {
+ 	char buf[400];
+ 	char *line = _script->readLine(buf, 400);
+ 	if (line == 0) {
+-		return 0;
++		return (const char *)0;
+ 	}
+ 	return Common::String(line);
+ }
+@@ -1085,11 +1085,11 @@ typedef OpcodeImpl<LocationParser_ns> OpcodeV2;
+ #define SetOpcodeTable(x) table = &x;
+ 
+ 
+-typedef Common::Functor0Mem<void, ProgramParser_ns> OpcodeV1;
++typedef Common::Functor0MemVoid<ProgramParser_ns> OpcodeV1;
+ #define SetOpcodeTable(x) table = &x;
+ #define INSTRUCTION_PARSER(sig) table->push_back(new OpcodeV1(this, &ProgramParser_ns::instParse_##sig))
+ 
+-typedef Common::Functor0Mem<void, LocationParser_ns> OpcodeV2;
++typedef Common::Functor0MemVoid<LocationParser_ns> OpcodeV2;
+ #define ZONE_PARSER(sig)		table->push_back(new OpcodeV2(this, &LocationParser_ns::locZoneParse_##sig))
+ #define ANIM_PARSER(sig)		table->push_back(new OpcodeV2(this, &LocationParser_ns::locAnimParse_##sig))
+ #define LOCATION_PARSER(sig)	table->push_back(new OpcodeV2(this, &LocationParser_ns::locParse_##sig))
+@@ -1222,7 +1222,7 @@ Common::String LocationParser_ns::parseComment() {
+ 	} while (true);
+ 
+ 	if (comment.size() == 0) {
+-		return 0;
++		return (const char *)0;
+ 	}
+ 
+ 	return comment;
+diff --git a/engines/saga/font.h b/engines/saga/font.h
+index d8b1da3..8201093 100644
+--- a/engines/saga/font.h
++++ b/engines/saga/font.h
+@@ -98,8 +98,8 @@ class TextList: public Common::List<TextListEntry> {
+ public:
+ 
+ 	TextListEntry *addEntry(const TextListEntry &entry) {
+-		Common::List<TextListEntry>::push_back(entry);
+-		return &*--Common::List<TextListEntry>::end();
++		push_back(entry);
++		return &*--end();
+ 	}
+ };
+ 
+diff --git a/engines/sci/engine/kernel.cpp b/engines/sci/engine/kernel.cpp
+index b1ee6ab..2aa04ec 100644
+--- a/engines/sci/engine/kernel.cpp
++++ b/engines/sci/engine/kernel.cpp
+@@ -875,7 +875,7 @@ Common::String Kernel::lookupText(reg_t address, int index) {
+ 
+ 	if (!textres) {
+ 		error("text.%03d not found", address.offset);
+-		return NULL; /* Will probably segfault */
++		return (const char *)0; /* Will probably segfault */
+ 	}
+ 
+ 	textlen = textres->size;
+@@ -889,7 +889,7 @@ Common::String Kernel::lookupText(reg_t address, int index) {
+ 		return seeker;
+ 
+ 	error("Index %d out of bounds in text.%03d", _index, address.offset);
+-	return NULL;
++	return (const char *)0;
+ }
+ 
+ // TODO: script_adjust_opcode_formats should probably be part of the
+diff --git a/engines/sci/engine/klists.cpp b/engines/sci/engine/klists.cpp
+index 2188087..af42f54 100644
+--- a/engines/sci/engine/klists.cpp
++++ b/engines/sci/engine/klists.cpp
+@@ -420,7 +420,8 @@ reg_t kSort(EngineState *s, int argc, reg_t *argv) {
+ 
+ 	int i = 0;
+ 	while (node) {
+-		reg_t params[1] = { node->value };
++		reg_t params[1];
++		params[0] = node->value;
+ 		invokeSelector(s, order_func, SELECTOR(doit), argc, argv, 1, params);
+ 		temp_array[i].key = node->key;
+ 		temp_array[i].value = node->value;
+diff --git a/engines/sci/engine/kmovement.cpp b/engines/sci/engine/kmovement.cpp
+index db54705..fd6116a 100644
+--- a/engines/sci/engine/kmovement.cpp
++++ b/engines/sci/engine/kmovement.cpp
+@@ -434,7 +434,9 @@ reg_t kDoAvoider(EngineState *s, int argc, reg_t *argv) {
+ 			kDirLoopWorker(client, angle, s, argc, argv);
+ 		} else {
+ 			// call looper::doit
+-			reg_t params[2] = { make_reg(0, angle), client };
++			reg_t params[2];
++			params[0] = make_reg(0, angle);
++			params[1] = client;
+ 			invokeSelector(s, clientLooper, SELECTOR(doit), argc, argv, 2, params);
+ 		}
+ 		s->r_acc = SIGNAL_REG;
+@@ -602,7 +604,9 @@ reg_t kDoAvoider(EngineState *s, int argc, reg_t *argv) {
+ 		s->r_acc = make_reg(0, angle);
+ 
+ 		if (looper.segment) {
+-			reg_t params[2] = { make_reg(0, angle), client };
++			reg_t params[2];
++			params[0] = make_reg(0, angle);
++			params[1] = client;
+ 			invokeSelector(s, looper, SELECTOR(doit), argc, argv, 2, params);
+ 			return s->r_acc;
+ 		} else {
+diff --git a/engines/sci/engine/kparse.cpp b/engines/sci/engine/kparse.cpp
+index be32b34..d97243e 100644
+--- a/engines/sci/engine/kparse.cpp
++++ b/engines/sci/engine/kparse.cpp
+@@ -98,7 +98,9 @@ reg_t kParse(EngineState *s, int argc, reg_t *argv) {
+ 	g_sci->checkVocabularySwitch();
+ 	Vocabulary *voc = g_sci->getVocabulary();
+ 	voc->parser_event = event;
+-	reg_t params[2] = { voc->parser_base, stringpos };
++	reg_t params[2];
++	params[0] = voc->parser_base;
++	params[1] = stringpos;
+ 
+ 	bool res = voc->tokenizeString(words, string.c_str(), &error);
+ 	voc->parserIsValid = false; /* not valid */
+diff --git a/engines/sci/engine/savegame.cpp b/engines/sci/engine/savegame.cpp
+index 87e3285..b6f86d6 100644
+--- a/engines/sci/engine/savegame.cpp
++++ b/engines/sci/engine/savegame.cpp
+@@ -333,7 +333,7 @@ void sync_Table(Common::Serializer &s, T &obj) {
+ 	s.syncAsSint32LE(obj.first_free);
+ 	s.syncAsSint32LE(obj.entries_used);
+ 
+-	syncArray<typename T::Entry>(s, obj._table);
++	syncArray(s, obj._table);
+ }
+ 
+ void CloneTable::saveLoadWithSerializer(Common::Serializer &s) {
+diff --git a/engines/sci/sci.cpp b/engines/sci/sci.cpp
+index ca44e0d..c0695ae 100644
+--- a/engines/sci/sci.cpp
++++ b/engines/sci/sci.cpp
+@@ -283,7 +283,9 @@ Common::Error SciEngine::run() {
+ 		run_vm(_gamestate);
+ 
+ 		// As soon as we get control again, actually restore the game
+-		reg_t restoreArgv[2] = { NULL_REG, make_reg(0, directSaveSlotLoading) };	// special call (argv[0] is NULL)
++		reg_t restoreArgv[2];
++		restoreArgv[0] = NULL_REG;
++		restoreArgv[1] = make_reg(0, directSaveSlotLoading);	// special call (argv[0] is NULL)
+ 		kRestoreGame(_gamestate, 2, restoreArgv);
+ 
+ 		// this indirectly calls GameObject::init, which will setup menu, text font/color codes etc.
+diff --git a/engines/sci/sound/drivers/adlib.cpp b/engines/sci/sound/drivers/adlib.cpp
+index 20bac4a..88733c1 100644
+--- a/engines/sci/sound/drivers/adlib.cpp
++++ b/engines/sci/sound/drivers/adlib.cpp
+@@ -462,7 +462,7 @@ void MidiDriver_AdLib::renewNotes(int channel, bool key) {
+ 
+ void MidiDriver_AdLib::noteOn(int channel, int note, int velocity) {
+ 	if (velocity == 0)
+-		return noteOff(channel, note);
++		{ noteOff(channel, note); return; }
+ 
+ 	velocity >>= 1;
+ 
+diff --git a/engines/sci/sound/drivers/fb01.cpp b/engines/sci/sound/drivers/fb01.cpp
+index 7560c62..0abdc17 100644
+--- a/engines/sci/sound/drivers/fb01.cpp
++++ b/engines/sci/sound/drivers/fb01.cpp
+@@ -318,7 +318,7 @@ void MidiPlayer_Fb01::noteOff(int channel, int note) {
+ 
+ void MidiPlayer_Fb01::noteOn(int channel, int note, int velocity) {
+ 	if (velocity == 0)
+-		return noteOff(channel, note);
++		{ noteOff(channel, note); return; }
+ 
+ 	if (_version > SCI_VERSION_0_LATE)
+ 		velocity = volumeTable[velocity >> 1] << 1;
+diff --git a/engines/scumm/akos.cpp b/engines/scumm/akos.cpp
+index d5d6b61..7902e7a 100644
+--- a/engines/scumm/akos.cpp
++++ b/engines/scumm/akos.cpp
+@@ -1362,12 +1362,12 @@ byte AkosRenderer::codec32(int xmoveCur, int ymoveCur) {
+ 
+ 	byte *dstPtr = (byte *)_out.pixels + dst.top * _out.pitch + dst.left * _vm->_bytesPerPixel;
+ 	if (_shadow_mode == 3) {
+-		Wiz::decompressWizImage<kWizXMap>(dstPtr, _out.pitch, kDstScreen, _srcptr, src, 0, palPtr, xmap, _vm->_bytesPerPixel);
++		Wiz::decompressWizImage(dstPtr, _out.pitch, kDstScreen, _srcptr, src, 0, palPtr, xmap, _vm->_bytesPerPixel, kWizXMap);
+ 	} else {
+ 		if (palPtr != NULL) {
+-			Wiz::decompressWizImage<kWizRMap>(dstPtr, _out.pitch, kDstScreen, _srcptr, src, 0, palPtr, NULL, _vm->_bytesPerPixel);
++			Wiz::decompressWizImage(dstPtr, _out.pitch, kDstScreen, _srcptr, src, 0, palPtr, NULL, _vm->_bytesPerPixel, kWizRMap);
+ 		} else {
+-			Wiz::decompressWizImage<kWizCopy>(dstPtr, _out.pitch, kDstScreen, _srcptr, src, 0, NULL, NULL, _vm->_bytesPerPixel);
++			Wiz::decompressWizImage(dstPtr, _out.pitch, kDstScreen, _srcptr, src, 0, NULL, NULL, _vm->_bytesPerPixel, kWizCopy);
+ 		}
+ 	}
+ #endif
+diff --git a/engines/scumm/charset-fontdata.cpp b/engines/scumm/charset-fontdata.cpp
+index 904e40d..4f4f351 100644
+--- a/engines/scumm/charset-fontdata.cpp
++++ b/engines/scumm/charset-fontdata.cpp
+@@ -609,7 +609,7 @@ CharsetRendererV2::CharsetRendererV2(ScummEngine *vm, Common::Language language)
+ 
+ CharsetRendererV2::~CharsetRendererV2() {
+ 	if (_deleteFontPtr)
+-		delete[] _fontPtr;
++		delete[] (unsigned char *)_fontPtr;
+ }
+ 
+ } // End of namespace Scumm
+diff --git a/engines/scumm/detection.cpp b/engines/scumm/detection.cpp
+index 9010cb8..f97f9ea 100644
+--- a/engines/scumm/detection.cpp
++++ b/engines/scumm/detection.cpp
+@@ -419,7 +419,7 @@ static void composeFileHashMap(const Common::FSList &fslist, DescMap &fileMD5Map
+ 	}
+ }
+ 
+-static void detectGames(const Common::FSList &fslist, Common::List<DetectorResult> &results, const char *gameid) {
++static void detectScummGames(const Common::FSList &fslist, Common::List<DetectorResult> &results, const char *gameid) {
+ 	DescMap fileMD5Map;
+ 	DetectorResult dr;
+ 	char md5str[32+1];
+@@ -866,7 +866,7 @@ GameList ScummMetaEngine::detectGames(const Common::FSList &fslist) const {
+ 	GameList detectedGames;
+ 	Common::List<DetectorResult> results;
+ 
+-	::detectGames(fslist, results, 0);
++	detectScummGames(fslist, results, 0);
+ 
+ 	// TODO: We still don't handle the FM-TOWNS demos (like zakloom) very well.
+ 	// In particular, they are detected as ZakTowns, which is bad.
+@@ -951,7 +951,7 @@ Common::Error ScummMetaEngine::createInstance(OSystem *syst, Engine **engine) co
+ 
+ 	// Invoke the detector, but fixed to the specified gameid.
+ 	Common::List<DetectorResult> results;
+-	::detectGames(fslist, results, gameid);
++	detectScummGames(fslist, results, gameid);
+ 
+ 	// Unable to locate game data
+ 	if (results.empty())
+diff --git a/engines/scumm/dialogs.cpp b/engines/scumm/dialogs.cpp
+index a48e54c..938e47e 100644
+--- a/engines/scumm/dialogs.cpp
++++ b/engines/scumm/dialogs.cpp
+@@ -554,7 +554,7 @@ void ValueDisplayDialog::handleKeyDown(Common::KeyState state) {
+ }
+ 
+ void ValueDisplayDialog::open() {
+-	GUI::Dialog::open();
++	Dialog::open();
+ 	setResult(_value);
+ 	_timer = g_system->getMillis() + kDisplayDelay;
+ }
+diff --git a/engines/scumm/he/wiz_he.cpp b/engines/scumm/he/wiz_he.cpp
+index d12e766..77d6122 100644
+--- a/engines/scumm/he/wiz_he.cpp
++++ b/engines/scumm/he/wiz_he.cpp
+@@ -385,9 +385,9 @@ void Wiz::copy16BitWizImage(uint8 *dst, const uint8 *src, int dstPitch, int dstT
+ 			r1.translate(dx, 0);
+ 		}
+ 		if (xmapPtr) {
+-			decompress16BitWizImage<kWizXMap>(dst, dstPitch, dstType, src, r1, flags, xmapPtr);
++			decompress16BitWizImage(dst, dstPitch, dstType, src, r1, flags, xmapPtr, kWizXMap);
+ 		} else {
+-			decompress16BitWizImage<kWizCopy>(dst, dstPitch, dstType, src, r1, flags);
++			decompress16BitWizImage(dst, dstPitch, dstType, src, r1, flags, NULL, kWizCopy);
+ 		}
+ 	}
+ }
+@@ -406,11 +406,11 @@ void Wiz::copyWizImage(uint8 *dst, const uint8 *src, int dstPitch, int dstType,
+ 			r1.translate(dx, 0);
+ 		}
+ 		if (xmapPtr) {
+-			decompressWizImage<kWizXMap>(dst, dstPitch, dstType, src, r1, flags, palPtr, xmapPtr, bitDepth);
++			decompressWizImage(dst, dstPitch, dstType, src, r1, flags, palPtr, xmapPtr, bitDepth, kWizXMap);
+ 		} else if (palPtr) {
+-			decompressWizImage<kWizRMap>(dst, dstPitch, dstType, src, r1, flags, palPtr, NULL, bitDepth);
++			decompressWizImage(dst, dstPitch, dstType, src, r1, flags, palPtr, NULL, bitDepth, kWizRMap);
+ 		} else {
+-			decompressWizImage<kWizCopy>(dst, dstPitch, dstType, src, r1, flags, NULL, NULL, bitDepth);
++			decompressWizImage(dst, dstPitch, dstType, src, r1, flags, NULL, NULL, bitDepth, kWizCopy);
+ 		}
+ 	}
+ }
+@@ -510,7 +510,7 @@ void Wiz::copyMaskWizImage(uint8 *dst, const uint8 *src, const uint8 *mask, int
+ 					}
+ 					while (code--) {
+ 						if (*maskPtr != 5)
+-							write16BitColor<kWizCopy>(dstPtr, dataPtr, dstType, palPtr);
++							write16BitColor(dstPtr, dataPtr, dstType, palPtr, kWizCopy);
+ 						dataPtr += 2;
+ 						dstPtr += dstInc;
+ 					}
+@@ -523,7 +523,7 @@ void Wiz::copyMaskWizImage(uint8 *dst, const uint8 *src, const uint8 *mask, int
+ 					}
+ 					while (code--) {
+ 						if (*maskPtr != 5)
+-							write16BitColor<kWizCopy>(dstPtr, dataPtr, dstType, palPtr);
++							write16BitColor(dstPtr, dataPtr, dstType, palPtr, kWizCopy);
+ 						dataPtr += 2;
+ 						dstPtr += dstInc;
+ 						maskPtr++;
+@@ -681,16 +681,15 @@ void Wiz::copyRawWizImage(uint8 *dst, const uint8 *src, int dstPitch, int dstTyp
+ 		src += r1.top * srcw + r1.left;
+ 		dst += r2.top * dstPitch + r2.left * bitDepth;
+ 		if (palPtr) {
+-			decompressRawWizImage<kWizRMap>(dst, dstPitch, dstType, src, srcw, w, h, transColor, palPtr, bitDepth);
++			decompressRawWizImage(dst, dstPitch, dstType, src, srcw, w, h, transColor, palPtr, bitDepth, kWizRMap);
+ 		} else {
+-			decompressRawWizImage<kWizCopy>(dst, dstPitch, dstType, src, srcw, w, h, transColor, NULL, bitDepth);
++			decompressRawWizImage(dst, dstPitch, dstType, src, srcw, w, h, transColor, NULL, bitDepth, kWizCopy);
+ 		}
+ 	}
+ }
+ 
+ #ifdef USE_RGB_COLOR
+-template <int type>
+-void Wiz::write16BitColor(uint8 *dstPtr, const uint8 *dataPtr, int dstType, const uint8 *xmapPtr) {
++void Wiz::write16BitColor(uint8 *dstPtr, const uint8 *dataPtr, int dstType, const uint8 *xmapPtr, int type) {
+ 	uint16 col = READ_LE_UINT16(dataPtr);
+ 	if (type == kWizXMap) {
+ 		uint16 srcColor = (col >> 1) & 0x7DEF;
+@@ -703,8 +702,7 @@ void Wiz::write16BitColor(uint8 *dstPtr, const uint8 *dataPtr, int dstType, cons
+ 	}
+ }
+ 
+-template <int type>
+-void Wiz::decompress16BitWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *xmapPtr) {
++void Wiz::decompress16BitWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *xmapPtr, int type) {
+ 	const uint8 *dataPtr, *dataPtrNext;
+ 	uint8 code;
+ 	uint8 *dstPtr, *dstPtrNext;
+@@ -773,7 +771,7 @@ void Wiz::decompress16BitWizImage(uint8 *dst, int dstPitch, int dstType, const u
+ 						code += w;
+ 					}
+ 					while (code--) {
+-						write16BitColor<type>(dstPtr, dataPtr, dstType, xmapPtr);
++						write16BitColor(dstPtr, dataPtr, dstType, xmapPtr, type);
+ 						dstPtr += dstInc;
+ 					}
+ 					dataPtr += 2;
+@@ -793,7 +791,7 @@ void Wiz::decompress16BitWizImage(uint8 *dst, int dstPitch, int dstType, const u
+ 						code += w;
+ 					}
+ 					while (code--) {
+-						write16BitColor<type>(dstPtr, dataPtr, dstType, xmapPtr);
++						write16BitColor(dstPtr, dataPtr, dstType, xmapPtr, type);
+ 						dataPtr += 2;
+ 						dstPtr += dstInc;
+ 					}
+@@ -806,8 +804,7 @@ void Wiz::decompress16BitWizImage(uint8 *dst, int dstPitch, int dstType, const u
+ }
+ #endif
+ 
+-template <int type>
+-void Wiz::write8BitColor(uint8 *dstPtr, const uint8 *dataPtr, int dstType, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth) {
++void Wiz::write8BitColor(uint8 *dstPtr, const uint8 *dataPtr, int dstType, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth, int type) {
+ 	if (bitDepth == 2) {
+ 		if (type == kWizXMap) {
+ 			uint16 color = READ_LE_UINT16(palPtr + *dataPtr * 2);
+@@ -835,8 +832,7 @@ void Wiz::write8BitColor(uint8 *dstPtr, const uint8 *dataPtr, int dstType, const
+ 	}
+ }
+ 
+-template <int type>
+-void Wiz::decompressWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth) {
++void Wiz::decompressWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth, int type) {
+ 	const uint8 *dataPtr, *dataPtrNext;
+ 	uint8 code, *dstPtr, *dstPtrNext;
+ 	int h, w, xoff, dstInc;
+@@ -907,7 +903,7 @@ void Wiz::decompressWizImage(uint8 *dst, int dstPitch, int dstType, const uint8
+ 						code += w;
+ 					}
+ 					while (code--) {
+-						write8BitColor<type>(dstPtr, dataPtr, dstType, palPtr, xmapPtr, bitDepth);
++						write8BitColor(dstPtr, dataPtr, dstType, palPtr, xmapPtr, bitDepth, type);
+ 						dstPtr += dstInc;
+ 					}
+ 					dataPtr++;
+@@ -927,7 +923,7 @@ void Wiz::decompressWizImage(uint8 *dst, int dstPitch, int dstType, const uint8
+ 						code += w;
+ 					}
+ 					while (code--) {
+-						write8BitColor<type>(dstPtr, dataPtr, dstType, palPtr, xmapPtr, bitDepth);
++						write8BitColor(dstPtr, dataPtr, dstType, palPtr, xmapPtr, bitDepth, type);
+ 						dataPtr++;
+ 						dstPtr += dstInc;
+ 					}
+@@ -939,13 +935,8 @@ void Wiz::decompressWizImage(uint8 *dst, int dstPitch, int dstType, const uint8
+ 	}
+ }
+ 
+-// NOTE: These templates are used outside this file. We don't want the compiler to optimize them away, so we need to explicitely instantiate them.
+-template void Wiz::decompressWizImage<kWizXMap>(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth);
+-template void Wiz::decompressWizImage<kWizRMap>(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth);
+-template void Wiz::decompressWizImage<kWizCopy>(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth);
+ 
+-template <int type>
+-void Wiz::decompressRawWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, int srcPitch, int w, int h, int transColor, const uint8 *palPtr, uint8 bitDepth) {
++void Wiz::decompressRawWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, int srcPitch, int w, int h, int transColor, const uint8 *palPtr, uint8 bitDepth, int type) {
+ 	if (type == kWizRMap) {
+ 		assert(palPtr != 0);
+ 	}
+diff --git a/engines/scumm/he/wiz_he.h b/engines/scumm/he/wiz_he.h
+index c255e27..67dcdaa 100644
+--- a/engines/scumm/he/wiz_he.h
++++ b/engines/scumm/he/wiz_he.h
+@@ -222,15 +222,17 @@ public:
+ #ifdef USE_RGB_COLOR
+ 	static void copy16BitWizImage(uint8 *dst, const uint8 *src, int dstPitch, int dstType, int dstw, int dsth, int srcx, int srcy, int srcw, int srch, const Common::Rect *rect, int flags, const uint8 *xmapPtr);
+ 	static void copyRaw16BitWizImage(uint8 *dst, const uint8 *src, int dstPitch, int dstType, int dstw, int dsth, int srcx, int srcy, int srcw, int srch, const Common::Rect *rect, int flags, int transColor);
+-	template<int type> static void decompress16BitWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *xmapPtr = NULL);
++	// type: kWizXMap, kWizRMap or kWizCopy. It was a template argument, which Visual C++ 6.0
++	// can't take for a member function template defined outside its class.
++	static void decompress16BitWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *xmapPtr, int type);
+ #endif
+-	template<int type> static void decompressWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitdepth);
+-	template<int type> static void decompressRawWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, int srcPitch, int w, int h, int transColor, const uint8 *palPtr, uint8 bitdepth);
++	static void decompressWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, const Common::Rect &srcRect, int flags, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitdepth, int type);
++	static void decompressRawWizImage(uint8 *dst, int dstPitch, int dstType, const uint8 *src, int srcPitch, int w, int h, int transColor, const uint8 *palPtr, uint8 bitdepth, int type);
+ 
+ #ifdef USE_RGB_COLOR
+-	template<int type> static void write16BitColor(uint8 *dst, const uint8 *src, int dstType, const uint8 *xmapPtr);
++	static void write16BitColor(uint8 *dst, const uint8 *src, int dstType, const uint8 *xmapPtr, int type);
+ #endif
+-	template<int type> static void write8BitColor(uint8 *dst, const uint8 *src, int dstType, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth);
++	static void write8BitColor(uint8 *dst, const uint8 *src, int dstType, const uint8 *palPtr, const uint8 *xmapPtr, uint8 bitDepth, int type);
+ 	static void writeColor(uint8 *dstPtr, int dstType, uint16 color);
+ 
+ 	int isWizPixelNonTransparent(const uint8 *data, int x, int y, int w, int h, uint8 bitdepth);
+diff --git a/engines/scumm/player_v2cms.cpp b/engines/scumm/player_v2cms.cpp
+index e3e7bc1..ec2438c 100644
+--- a/engines/scumm/player_v2cms.cpp
++++ b/engines/scumm/player_v2cms.cpp
+@@ -1522,7 +1522,7 @@ void Player_V2CMS::processAttack(Voice2 *channel) {
+ 	channel->curVolume += channel->attackRate;
+ 	if (channel->curVolume >= 0) {
+ 		if (channel->curVolume <= channel->maxAmpl)
+-			return processVibrato(channel);
++			{ processVibrato(channel); return; }
+ 	}
+ 	channel->curVolume = channel->maxAmpl;
+ 	channel->nextProcessState = PROCESS_DECAY;
+@@ -1533,7 +1533,7 @@ void Player_V2CMS::processDecay(Voice2 *channel) {
+ 	channel->curVolume -= channel->decayRate;
+ 	if (channel->curVolume >= 0) {
+ 		if (channel->curVolume > channel->sustainRate)
+-			return processVibrato(channel);
++			{ processVibrato(channel); return; }
+ 	}
+ 	channel->curVolume = channel->sustainRate;
+ 	channel->nextProcessState = PROCESS_SUSTAIN;
+diff --git a/engines/scumm/script.h b/engines/scumm/script.h
+index dbfa263..9908277 100644
+--- a/engines/scumm/script.h
++++ b/engines/scumm/script.h
+@@ -55,9 +55,9 @@ struct OpcodeEntry : Common::NonCopyable {
+ // This is to help devices with small memory (PDA, smartphones, ...)
+ // to save abit of memory used by opcode names in the Scumm engine.
+ #ifndef REDUCE_MEMORY_USAGE
+-#	define _OPCODE(ver, x)	setProc(new Common::Functor0Mem<void, ver>(this, &ver::x), #x)
++#	define _OPCODE(ver, x)	setProc(new Common::Functor0MemVoid<ver>(this, &ver::x), #x)
+ #else
+-#	define _OPCODE(ver, x)	setProc(new Common::Functor0Mem<void, ver>(this, &ver::x), "")
++#	define _OPCODE(ver, x)	setProc(new Common::Functor0MemVoid<ver>(this, &ver::x), "")
+ #endif
+ 
+ /**
+diff --git a/engines/scumm/scumm_v7.h b/engines/scumm/scumm_v7.h
+index c4bb352..a4e0452 100644
+--- a/engines/scumm/scumm_v7.h
++++ b/engines/scumm/scumm_v7.h
+@@ -75,7 +75,7 @@ protected:
+ 	int _languageIndexSize;
+ 	char _lastStringTag[12+1];
+ 
+-#if defined(__SYMBIAN32__) || defined (_WIN32_WCE) // for some reason VC6 cannot find the base class TextObject
++#if defined(__SYMBIAN32__) || defined (_WIN32_WCE) || (defined(_MSC_VER) && _MSC_VER <= 1200) // for some reason VC6 cannot find the base class TextObject
+ 	struct SubtitleText {
+ 		int16 xpos, ypos;
+ 		byte color;
+diff --git a/engines/sword2/music.cpp b/engines/sword2/music.cpp
+index c052aa6..9886bb5 100644
+--- a/engines/sword2/music.cpp
++++ b/engines/sword2/music.cpp
+@@ -60,12 +60,12 @@ class SafeSubReadStream : public Common::SeekableSubReadStream {
+ protected:
+ 	uint32 _previousPos;
+ public:
+-	SafeSubReadStream(SeekableReadStream *parentStream, uint32 begin, uint32 end);
++	SafeSubReadStream(Common::SeekableReadStream *parentStream, uint32 begin, uint32 end);
+ 	virtual uint32 read(void *dataPtr, uint32 dataSize);
+ 	virtual bool seek(int32 offset, int whence = SEEK_SET);
+ };
+ 
+-SafeSubReadStream::SafeSubReadStream(SeekableReadStream *parentStream, uint32 begin, uint32 end)
++SafeSubReadStream::SafeSubReadStream(Common::SeekableReadStream *parentStream, uint32 begin, uint32 end)
+ 	: SeekableSubReadStream(parentStream, begin, end, DisposeAfterUse::NO) {
+ 	_previousPos = 0;
+ }
+diff --git a/engines/teenagent/segment.h b/engines/teenagent/segment.h
+index 98bd9ca..68e0427 100644
+--- a/engines/teenagent/segment.h
++++ b/engines/teenagent/segment.h
+@@ -58,11 +58,11 @@ public:
+ 	}
+ 	inline void set_word(uint32 offset, uint16 v) const {
+ 		assert(offset + 1 < _size);
+-		return WRITE_LE_UINT16(_data + offset, v);
++		WRITE_LE_UINT16(_data + offset, v);
+ 	}
+ 	inline void set_quad(uint32 offset, uint32 v) const {
+ 		assert(offset + 3 < _size);
+-		return WRITE_LE_UINT32(_data + offset, v);
++		WRITE_LE_UINT32(_data + offset, v);
+ 	}
+ 
+ 	const byte *ptr(uint32 addr) const {
+diff --git a/engines/tinsel/drives.cpp b/engines/tinsel/drives.cpp
+index efc7a20..ca73536 100644
+--- a/engines/tinsel/drives.cpp
++++ b/engines/tinsel/drives.cpp
+@@ -150,7 +150,7 @@ bool GotoCD() {
+ bool TinselFile::_warningShown = false;
+ 
+ bool TinselFile::open(const Common::String &filename) {
+-	if (Common::File::open(filename)) {
++	if (File::open(filename)) {
+ 		// If it's the sample file, strip off the CD number from the filename
+ 
+ 
+@@ -173,7 +173,7 @@ bool TinselFile::open(const Common::String &filename) {
+ 	strncpy(newFilename, fname, p - fname);
+ 	strcpy(newFilename + (p - fname), p + 1);
+ 
+-	return Common::File::open(newFilename);
++	return File::open(newFilename);
+ }
+ 
+ } // End of namespace Tinsel
+diff --git a/engines/tinsel/scene.cpp b/engines/tinsel/scene.cpp
+index 33d4e67..8f9552d 100644
+--- a/engines/tinsel/scene.cpp
++++ b/engines/tinsel/scene.cpp
+@@ -367,40 +367,34 @@ void EndScene() {
+  *
+  */
+ void PrimeBackground() {
+-	// structure for playfields
+-	static PLAYFIELD playfield[] = {
+-		{	// FIELD WORLD
+-			NULL,		// display list
+-			0,			// init field x
+-			0,			// init field y
+-			0,			// x vel
+-			0,			// y vel
+-			Common::Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),	// clip rect
+-			false		// moved flag
+-		},
+-		{	// FIELD STATUS
+-			NULL,		// display list
+-			0,			// init field x
+-			0,			// init field y
+-			0,			// x vel
+-			0,			// y vel
+-			Common::Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),	// clip rect
+-			false		// moved flag
++	// structure for playfields, and for background: set on the first call only, as their
++	// initialisers would. (Visual C++ 6.0 initialises no aggregate with a Common::Rect.)
++	static PLAYFIELD playfield[2];
++	static BACKGND backgnd;
++	static bool primed = false;
++
++	if (!primed) {
++		for (int i = 0; i < 2; i++) {	// FIELD WORLD, FIELD STATUS
++			playfield[i].pDispList = NULL;	// display list
++			playfield[i].fieldX = 0;	// init field x
++			playfield[i].fieldY = 0;	// init field y
++			playfield[i].fieldXvel = 0;	// x vel
++			playfield[i].fieldYvel = 0;	// y vel
++			playfield[i].rcClip = Common::Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);	// clip rect
++			playfield[i].bMoved = false;	// moved flag
+ 		}
+-	};
+-
+-	// structure for background
+-	static BACKGND backgnd = {
+-		BLACK,			// sky colour
+-		Common::Point(0, 0),	// initial world pos
+-		Common::Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),	// scroll limits
+-		0,				// no background update process
+-		NULL,			// no x scroll table
+-		NULL,			// no y scroll table
+-		2,				// 2 playfields
+-		playfield,		// playfield pointer
+-		false			// no auto-erase
+-	};
++
++		backgnd.rgbSkyColour = BLACK;		// sky colour
++		backgnd.ptInitWorld = Common::Point(0, 0);	// initial world pos
++		backgnd.rcScrollLimits = Common::Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);	// scroll limits
++		backgnd.refreshRate = 0;		// no background update process
++		backgnd.pXscrollTable = NULL;	// no x scroll table
++		backgnd.pYscrollTable = NULL;	// no y scroll table
++		backgnd.numPlayfields = 2;		// 2 playfields
++		backgnd.fieldArray = playfield;	// playfield pointer
++		backgnd.bAutoErase = false;		// no auto-erase
++		primed = true;
++	}
+ 
+ 	InitBackground(&backgnd);
+ }
+diff --git a/engines/tinsel/sound.h b/engines/tinsel/sound.h
+index b8990f0..40afc75 100644
+--- a/engines/tinsel/sound.h
++++ b/engines/tinsel/sound.h
+@@ -50,13 +50,13 @@ enum SampleFlags {PS_COMPLETE = 0x01, PS_SUSTAIN = 0x02};
+ 
+ class SoundManager {
+ protected:
+-	static const int kNumSFX = 3; // Number of SFX channels
++	enum { kNumSFX = 3 }; // Number of SFX channels
+ 	enum {
+ 		kChannelTalk = 0,
+ 		kChannelTinsel1 = 0, // Always using this channel for DW1
+ 		kChannelSFX = 1
+ 	};
+-	static const int kNumChannels = kChannelSFX + kNumSFX;
++	enum { kNumChannels = kChannelSFX + kNumSFX };
+ 
+ 	enum SoundMode {
+ 		kVOCMode,
+diff --git a/engines/tucker/saveload.cpp b/engines/tucker/saveload.cpp
+index 83533a9..8811f5e 100644
+--- a/engines/tucker/saveload.cpp
++++ b/engines/tucker/saveload.cpp
+@@ -53,28 +53,38 @@ static void saveOrLoadInt(Common::ReadStream &stream, int &i) {
+ 	i = stream.readSint32LE();
+ }
+ 
++// Visual C++ 6.0 can't define a member template outside its class: the two
++// TuckerEngine::saveOrLoadGameStateData call this.
+ template <class S>
+-void TuckerEngine::saveOrLoadGameStateData(S &s) {
+-	for (int i = 0; i < kFlagsTableSize; ++i) {
+-		saveOrLoadInt(s, _flagsTable[i]);
++static void syncGameStateData(TuckerEngine *e, S &s) {
++	for (int i = 0; i < TuckerEngine::kFlagsTableSize; ++i) {
++		saveOrLoadInt(s, e->_flagsTable[i]);
+ 	}
+ 	for (int i = 0; i < 40; ++i) {
+-		saveOrLoadInt(s, _inventoryObjectsList[i]);
++		saveOrLoadInt(s, e->_inventoryObjectsList[i]);
+ 	}
+ 	for (int i = 0; i < 50; ++i) {
+-		saveOrLoadInt(s, _inventoryItemsState[i]);
++		saveOrLoadInt(s, e->_inventoryItemsState[i]);
+ 	}
+ 	for (int i = 0; i < 50; ++i) {
+-		saveOrLoadInt(s, _panelObjectsOffsetTable[i]);
++		saveOrLoadInt(s, e->_panelObjectsOffsetTable[i]);
+ 	}
+-	saveOrLoadInt(s, _mainSpritesBaseOffset);
+-	saveOrLoadInt(s, _selectedObject.xPos);
+-	saveOrLoadInt(s, _selectedObject.yPos);
+-	saveOrLoadInt(s, _locationNum);
+-	saveOrLoadInt(s, _xPosCurrent);
+-	saveOrLoadInt(s, _yPosCurrent);
+-	saveOrLoadInt(s, _inventoryObjectsCount);
+-	saveOrLoadInt(s, _inventoryObjectsOffset);
++	saveOrLoadInt(s, e->_mainSpritesBaseOffset);
++	saveOrLoadInt(s, e->_selectedObject.xPos);
++	saveOrLoadInt(s, e->_selectedObject.yPos);
++	saveOrLoadInt(s, e->_locationNum);
++	saveOrLoadInt(s, e->_xPosCurrent);
++	saveOrLoadInt(s, e->_yPosCurrent);
++	saveOrLoadInt(s, e->_inventoryObjectsCount);
++	saveOrLoadInt(s, e->_inventoryObjectsOffset);
++}
++
++void TuckerEngine::saveOrLoadGameStateData(Common::ReadStream &s) {
++	syncGameStateData(this, s);
++}
++
++void TuckerEngine::saveOrLoadGameStateData(Common::WriteStream &s) {
++	syncGameStateData(this, s);
+ }
+ 
+ Common::Error TuckerEngine::loadGameState(int num) {
+diff --git a/engines/tucker/tucker.h b/engines/tucker/tucker.h
+index 86f5843..96add8b 100644
+--- a/engines/tucker/tucker.h
++++ b/engines/tucker/tucker.h
+@@ -560,7 +560,8 @@ protected:
+ 	void updateSprite_locationNum81_1(int i);
+ 	void updateSprite_locationNum82(int i);
+ 
+-	template <class S> void saveOrLoadGameStateData(S &s);
++	void saveOrLoadGameStateData(Common::ReadStream &s);
++	void saveOrLoadGameStateData(Common::WriteStream &s);
+ 	virtual Common::Error loadGameState(int num);
+ 	virtual Common::Error saveGameState(int num, const char *description);
+ 	virtual bool canLoadGameStateCurrently();
+diff --git a/engines/util.h b/engines/util.h
+index 5bfc4f8..51f9c9f 100644
+--- a/engines/util.h
++++ b/engines/util.h
+@@ -47,8 +47,13 @@ void initCommonGFX(bool defaultTo1XScaler);
+  * Uses the backend's preferred format if graphics format pointer is NULL.
+  * Finds the best compatible format if a list of graphics formats is provided.
+  */
++// Visual C++ 6.0 fails (C1001) on any class template with a non-type parameter that comes
++// after a global function declared with a namespace's type (common/stack.h's FixedStack,
++// for one): these name the types through typedefs instead, which is the same to it.
++typedef Graphics::PixelFormat InitGraphicsFormat;
++typedef Common::List<Graphics::PixelFormat> InitGraphicsFormatList;
+ void initGraphics(int width, int height, bool defaultTo1xScaler);
+-void initGraphics(int width, int height, bool defaultTo1xScaler, const Graphics::PixelFormat *format);
+-void initGraphics(int width, int height, bool defaultTo1xScaler, const Common::List<Graphics::PixelFormat> &formatList);
++void initGraphics(int width, int height, bool defaultTo1xScaler, const InitGraphicsFormat *format);
++void initGraphics(int width, int height, bool defaultTo1xScaler, const InitGraphicsFormatList &formatList);
+ 
+ #endif
+diff --git a/graphics/colormasks.h b/graphics/colormasks.h
+index 1ab78fc..35c3c79 100644
+--- a/graphics/colormasks.h
++++ b/graphics/colormasks.h
+@@ -274,7 +274,7 @@ struct ColorMasks<3444> {
+ #endif
+ 
+ template<class T>
+-uint32 RGBToColor(uint8 r, uint8 g, uint8 b) {
++uint32 RGBToColor(uint8 r, uint8 g, uint8 b, const VC6Type<T> * = 0) {
+ 	return T::kAlphaMask |
+ 	       (((r << T::kRedShift) >> (8 - T::kRedBits)) & T::kRedMask) |
+ 	       (((g << T::kGreenShift) >> (8 - T::kGreenBits)) & T::kGreenMask) |
+@@ -282,7 +282,7 @@ uint32 RGBToColor(uint8 r, uint8 g, uint8 b) {
+ }
+ 
+ template<class T>
+-uint32 ARGBToColor(uint8 a, uint8 r, uint8 g, uint8 b) {
++uint32 ARGBToColor(uint8 a, uint8 r, uint8 g, uint8 b, const VC6Type<T> * = 0) {
+ 	return (((a << T::kAlphaShift) >> (8 - T::kAlphaBits)) & T::kAlphaMask) |
+ 	       (((r << T::kRedShift) >> (8 - T::kRedBits)) & T::kRedMask) |
+ 	       (((g << T::kGreenShift) >> (8 - T::kGreenBits)) & T::kGreenMask) |
+@@ -290,14 +290,14 @@ uint32 ARGBToColor(uint8 a, uint8 r, uint8 g, uint8 b) {
+ }
+ 
+ template<class T>
+-void colorToRGB(uint32 color, uint8 &r, uint8 &g, uint8 &b) {
++void colorToRGB(uint32 color, uint8 &r, uint8 &g, uint8 &b, const VC6Type<T> * = 0) {
+ 	r = ((color & T::kRedMask) >> T::kRedShift) << (8 - T::kRedBits);
+ 	g = ((color & T::kGreenMask) >> T::kGreenShift) << (8 - T::kGreenBits);
+ 	b = ((color & T::kBlueMask) >> T::kBlueShift) << (8 - T::kBlueBits);
+ }
+ 
+ template<class T>
+-void colorToARGB(uint32 color, uint8 &a, uint8 &r, uint8 &g, uint8 &b) {
++void colorToARGB(uint32 color, uint8 &a, uint8 &r, uint8 &g, uint8 &b, const VC6Type<T> * = 0) {
+ 	a = ((color & T::kAlphaMask) >> T::kAlphaShift) << (8 - T::kAlphaBits);
+ 	r = ((color & T::kRedMask) >> T::kRedShift) << (8 - T::kRedBits);
+ 	g = ((color & T::kGreenMask) >> T::kGreenShift) << (8 - T::kGreenBits);
+@@ -311,7 +311,7 @@ void colorToARGB(uint32 color, uint8 &a, uint8 &r, uint8 &g, uint8 &b) {
+  * into a PixelFormat.
+  */
+ template<int bitFormat>
+-PixelFormat createPixelFormat() {
++PixelFormat createPixelFormat(const VC6Int<bitFormat> * = 0) {
+ 	PixelFormat format;
+ 
+ 	format.bytesPerPixel = ColorMasks<bitFormat>::kBytesPerPixel;
+diff --git a/graphics/dither.h b/graphics/dither.h
+index 1239ba0..e70751f 100644
+--- a/graphics/dither.h
++++ b/graphics/dither.h
+@@ -112,7 +112,7 @@ public:
+ 	bool load(Common::SeekableReadStream &stream);
+ 
+ private:
+-	static const uint32 kVersion = 1;
++	enum { kVersion = 1 };
+ 
+ 	byte _depth1; ///< The table's depth for one dimension.
+ 	byte _depth2; ///< The table's depth for two dimensions.
+diff --git a/graphics/scaler.cpp b/graphics/scaler.cpp
+index 304d194..fe8cd77 100644
+--- a/graphics/scaler.cpp
++++ b/graphics/scaler.cpp
+@@ -261,7 +261,7 @@ void Normal3x(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPit
+  */
+ template<typename ColorMask>
+ void Normal1o5xTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch,
+-							int width, int height) {
++							int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	uint8 *r;
+ 	const uint32 dstPitch2 = dstPitch * 2;
+ 	const uint32 dstPitch3 = dstPitch * 3;
+@@ -319,7 +319,7 @@ void AdvMame3x(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPi
+ 
+ template<typename ColorMask>
+ void TV2xTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch,
+-					int width, int height) {
++					int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	const uint32 nextlineSrc = srcPitch / sizeof(uint16);
+ 	const uint16 *p = (const uint16 *)srcPtr;
+ 
+diff --git a/graphics/scaler/2xsai.cpp b/graphics/scaler/2xsai.cpp
+index 936ed19..439de4c 100644
+--- a/graphics/scaler/2xsai.cpp
++++ b/graphics/scaler/2xsai.cpp
+@@ -47,7 +47,7 @@ static inline int GetResult(uint32 A, uint32 B, uint32 C, uint32 D) {
+ #define interpolate_1_1_1_1	interpolate16_1_1_1_1<ColorMask>
+ 
+ template<typename ColorMask>
+-void Super2xSaITemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void Super2xSaITemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	const uint16 *bP;
+ 	uint16 *dP;
+ 	const uint32 nextlineSrc = srcPitch >> 1;
+@@ -162,7 +162,7 @@ void Super2xSaI(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstP
+ }
+ 
+ template<typename ColorMask>
+-void SuperEagleTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void SuperEagleTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	const uint16 *bP;
+ 	uint16 *dP;
+ 	const uint32 nextlineSrc = srcPitch >> 1;
+@@ -274,7 +274,7 @@ void SuperEagle(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstP
+ }
+ 
+ template<typename ColorMask>
+-void _2xSaITemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void _2xSaITemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	const uint16 *bP;
+ 	uint16 *dP;
+ 	const uint32 nextlineSrc = srcPitch >> 1;
+diff --git a/graphics/scaler/aspect.cpp b/graphics/scaler/aspect.cpp
+index b7d1933..ff1d005 100644
+--- a/graphics/scaler/aspect.cpp
++++ b/graphics/scaler/aspect.cpp
+@@ -38,7 +38,7 @@
+ #if ASPECT_MODE == kSlowAndPerfectAspectMode
+ 
+ template<typename ColorMask, int scale>
+-static inline uint16 interpolate5(uint16 A, uint16 B) {
++static inline uint16 interpolate5(uint16 A, uint16 B, const VC6Type<ColorMask> * = 0, const VC6Int<scale> * = 0) {
+ 	uint16 r = (uint16)(((A & ColorMask::kRedBlueMask & 0xFF00) * scale + (B & ColorMask::kRedBlueMask & 0xFF00) * (5 - scale)) / 5);
+ 	uint16 g = (uint16)(((A & ColorMask::kGreenMask) * scale + (B & ColorMask::kGreenMask) * (5 - scale)) / 5);
+ 	uint16 b = (uint16)(((A & ColorMask::kRedBlueMask & 0x00FF) * scale + (B & ColorMask::kRedBlueMask & 0x00FF) * (5 - scale)) / 5);
+@@ -48,7 +48,7 @@ static inline uint16 interpolate5(uint16 A, uint16 B) {
+ 
+ 
+ template<typename ColorMask, int scale>
+-static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width) {
++static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width, const VC6Type<ColorMask> * = 0, const VC6Int<scale> * = 0) {
+ 	// Accurate but slightly slower code
+ 	while (width--) {
+ 		*dst++ = interpolate5<ColorMask, scale>(*srcA++, *srcB++);
+@@ -59,7 +59,7 @@ static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint1
+ #if ASPECT_MODE == kVeryFastAndGoodAspectMode
+ 
+ template<typename ColorMask, int scale>
+-static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width) {
++static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width, const VC6Type<ColorMask> * = 0, const VC6Int<scale> * = 0) {
+ 	// For efficiency reasons we blit two pixels at a time, so it is important
+ 	// that makeRectStretchable() guarantees that the width is even and that
+ 	// the rect starts on a well-aligned address. (Even where unaligned memory
+@@ -91,7 +91,7 @@ static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint1
+ #if ASPECT_MODE == kFastAndVeryGoodAspectMode
+ 
+ template<typename ColorMask, int scale>
+-static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width) {
++static inline void interpolate5Line(uint16 *dst, const uint16 *srcA, const uint16 *srcB, int width, const VC6Type<ColorMask> * = 0, const VC6Int<scale> * = 0) {
+ 
+ 	width /= 2;
+ 	const uint32 *sA = (const uint32 *)srcA;
+@@ -155,7 +155,7 @@ void makeRectStretchable(int &x, int &y, int &w, int &h) {
+  * through real2Aspect(srcY + height - 1).
+  */
+ template<typename ColorMask>
+-int stretch200To240(uint8 *buf, uint32 pitch, int width, int height, int srcX, int srcY, int origSrcY) {
++int stretch200To240(uint8 *buf, uint32 pitch, int width, int height, int srcX, int srcY, int origSrcY, const VC6Type<ColorMask> * = 0) {
+ 	int maxDstY = real2Aspect(origSrcY + height - 1);
+ 	int y;
+ 	const uint8 *startSrcPtr = buf + srcX * 2 + (srcY - origSrcY) * pitch;
+@@ -206,7 +206,7 @@ int stretch200To240(uint8 *buf, uint32 pitch, int width, int height, int srcX, i
+ 
+ 
+ template<typename ColorMask>
+-void Normal1xAspectTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void Normal1xAspectTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 
+ 	for (int y = 0; y < height; ++y) {
+ 
+diff --git a/graphics/scaler/downscaler.cpp b/graphics/scaler/downscaler.cpp
+index 3aad416..7d08a56 100644
+--- a/graphics/scaler/downscaler.cpp
++++ b/graphics/scaler/downscaler.cpp
+@@ -44,7 +44,7 @@ void DownscaleAllByHalf(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uin
+ #else
+ 
+ template<typename ColorMask>
+-void DownscaleAllByHalfTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void DownscaleAllByHalfTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	uint8 *work;
+ 	uint16 srcPitch16 = (uint16)(srcPitch / sizeof(uint16));
+ 
+@@ -82,7 +82,7 @@ void DownscaleAllByHalf(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uin
+  * For example, a 320x200 image is scaled to 160x200.
+  */
+ template<typename ColorMask>
+-void DownscaleHorizByHalfTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void DownscaleHorizByHalfTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	uint16 *work;
+ 
+ 	// Various casts below go via (void *) to avoid warning. This is
+@@ -113,7 +113,7 @@ void DownscaleHorizByHalf(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, u
+  * For example, a 320x200 image is scaled to 240x200.
+  */
+ template<typename ColorMask>
+-void DownscaleHorizByThreeQuartersTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void DownscaleHorizByThreeQuartersTemplate(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	uint16 *work;
+ 
+ 	// Various casts below go via (void *) to avoid warning. This is
+diff --git a/graphics/scaler/hq2x.cpp b/graphics/scaler/hq2x.cpp
+index 02c63c8..5c9e63b 100644
+--- a/graphics/scaler/hq2x.cpp
++++ b/graphics/scaler/hq2x.cpp
+@@ -105,7 +105,7 @@ extern "C" uint32   *RGBtoYUV;
+  * Adapted for ScummVM to 16 bit output and optimized by Max Horn.
+  */
+ template<typename ColorMask>
+-static void HQ2x_implementation(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++static void HQ2x_implementation(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	register int w1, w2, w3, w4, w5, w6, w7, w8, w9;
+ 
+ 	const uint32 nextlineSrc = srcPitch / sizeof(uint16);
+diff --git a/graphics/scaler/hq3x.cpp b/graphics/scaler/hq3x.cpp
+index f588c2a..56f32d7 100644
+--- a/graphics/scaler/hq3x.cpp
++++ b/graphics/scaler/hq3x.cpp
+@@ -108,7 +108,7 @@ extern "C" uint32   *RGBtoYUV;
+  * Adapted for ScummVM to 16 bit output and optimized by Max Horn.
+  */
+ template<typename ColorMask>
+-static void HQ3x_implementation(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++static void HQ3x_implementation(const uint8 *srcPtr, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Type<ColorMask> * = 0) {
+ 	register int  w1, w2, w3, w4, w5, w6, w7, w8, w9;
+ 
+ 	const uint32 nextlineSrc = srcPitch / sizeof(uint16);
+diff --git a/graphics/scaler/intern.h b/graphics/scaler/intern.h
+index 4addd6d..4d3410a 100644
+--- a/graphics/scaler/intern.h
++++ b/graphics/scaler/intern.h
+@@ -36,7 +36,7 @@
+  * and lower halves.
+  */
+ template<typename ColorMask>
+-static inline uint32 interpolate32_1_1(uint32 p1, uint32 p2) {
++static inline uint32 interpolate32_1_1(uint32 p1, uint32 p2, const VC6Type<ColorMask> * = 0) {
+ 	return (((p1 & ColorMask::kHighBitsMask) >> 1) +
+ 	        ((p2 & ColorMask::kHighBitsMask) >> 1) +
+ 	         (p1 & p2 & ColorMask::kLowBitsMask));
+@@ -48,7 +48,7 @@ static inline uint32 interpolate32_1_1(uint32 p1, uint32 p2) {
+  * and lower halves.
+  */
+ template<typename ColorMask>
+-static inline uint32 interpolate32_3_1(uint32 p1, uint32 p2) {
++static inline uint32 interpolate32_3_1(uint32 p1, uint32 p2, const VC6Type<ColorMask> * = 0) {
+ 	register uint32 x = ((p1 & ColorMask::qhighBits) >> 2) * 3 + ((p2 & ColorMask::qhighBits) >> 2);
+ 	register uint32 y = ((p1 & ColorMask::qlowBits) * 3 + (p2 & ColorMask::qlowBits)) >> 2;
+ 
+@@ -61,7 +61,7 @@ static inline uint32 interpolate32_3_1(uint32 p1, uint32 p2) {
+  * See <http://www.slack.net/~ant/info/rgb_mixing.html> for details on how this works.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_1_1(unsigned p1, unsigned p2) {
++static inline unsigned interpolate16_1_1(unsigned p1, unsigned p2, const VC6Type<ColorMask> * = 0) {
+ 	const unsigned lowbits = (p1 ^ p2) & ColorMask::kLowBits;
+ 	return ((p1 + p2) - lowbits) >> 1;
+ }
+@@ -70,7 +70,7 @@ static inline unsigned interpolate16_1_1(unsigned p1, unsigned p2) {
+  * Interpolate two 16 bit pixels with weights 3 and 1, i.e., (3*p1+p2)/4.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_3_1(unsigned p1, unsigned p2) {
++static inline unsigned interpolate16_3_1(unsigned p1, unsigned p2, const VC6Type<ColorMask> * = 0) {
+ 	const unsigned lowbits = (((p1 & ColorMask::kLowBits) << 1) + (p1 & ColorMask::kLow2Bits)
+ 		                   + (p2 & ColorMask::kLow2Bits)) & ColorMask::kLow2Bits;
+ 	return ((p1*3 + p2) - lowbits) >> 2;
+@@ -80,7 +80,7 @@ static inline unsigned interpolate16_3_1(unsigned p1, unsigned p2) {
+  * Interpolate two 16 bit pixels with weights 7 and 1, i.e., (7*p1+p2)/8.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_7_1(unsigned p1, unsigned p2) {
++static inline unsigned interpolate16_7_1(unsigned p1, unsigned p2, const VC6Type<ColorMask> * = 0) {
+ 	const unsigned lowbits = (((p1 & ColorMask::kLowBits) << 2) + ((p1 & ColorMask::kLow2Bits) << 1) + (p1 & ColorMask::kLow3Bits)
+ 		                   +  (p2 & ColorMask::kLow3Bits)) & ColorMask::kLow3Bits;
+ 	return ((p1*7+p2) - lowbits) >> 3;
+@@ -90,7 +90,7 @@ static inline unsigned interpolate16_7_1(unsigned p1, unsigned p2) {
+  * Interpolate three 16 bit pixels with weights 2, 1, and 1, i.e., (2*p1+p2+p3)/4.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_2_1_1(unsigned p1, unsigned p2, unsigned p3) {
++static inline unsigned interpolate16_2_1_1(unsigned p1, unsigned p2, unsigned p3, const VC6Type<ColorMask> * = 0) {
+ 	p1<<=1;
+ 	const unsigned lowbits = ((p1 & (ColorMask::kLowBits << 1))
+ 		                   +  (p2 & ColorMask::kLow2Bits)
+@@ -102,7 +102,7 @@ static inline unsigned interpolate16_2_1_1(unsigned p1, unsigned p2, unsigned p3
+  * Interpolate three 16 bit pixels with weights 5, 2, and 1, i.e., (5*p1+2*p2+p3)/8.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_5_2_1(unsigned p1, unsigned p2, unsigned p3) {
++static inline unsigned interpolate16_5_2_1(unsigned p1, unsigned p2, unsigned p3, const VC6Type<ColorMask> * = 0) {
+ 	p2<<=1;
+ 	const unsigned lowbits = (((p1 & ColorMask::kLowBits) << 2) + (p1 & ColorMask::kLow3Bits)
+ 		                   +  (p2 & (ColorMask::kLow2Bits << 1))
+@@ -114,7 +114,7 @@ static inline unsigned interpolate16_5_2_1(unsigned p1, unsigned p2, unsigned p3
+  * Interpolate three 16 bit pixels with weights 6, 1, and 1, i.e., (6*p1+p2+p3)/8.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_6_1_1(unsigned p1, unsigned p2, unsigned p3) {
++static inline unsigned interpolate16_6_1_1(unsigned p1, unsigned p2, unsigned p3, const VC6Type<ColorMask> * = 0) {
+ 	const unsigned lowbits = (((((p1 & ColorMask::kLowBits) << 1) + (p1 & ColorMask::kLow2Bits)) << 1)
+ 		                   + (p2 & ColorMask::kLow3Bits)
+ 		                   + (p3 & ColorMask::kLow3Bits)) & ColorMask::kLow3Bits;
+@@ -125,7 +125,7 @@ static inline unsigned interpolate16_6_1_1(unsigned p1, unsigned p2, unsigned p3
+  * Interpolate three 16 bit pixels with weights 2, 3, and 3, i.e., (2*p1+3*(p2+p3))/8.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_2_3_3(unsigned p1, unsigned p2, unsigned p3) {
++static inline unsigned interpolate16_2_3_3(unsigned p1, unsigned p2, unsigned p3, const VC6Type<ColorMask> * = 0) {
+ 	p1 <<= 1;
+ 	const unsigned rb = (p1 & (ColorMask::kRedBlueMask<<1))
+ 		              + ((p2 & ColorMask::kRedBlueMask) + (p3 & ColorMask::kRedBlueMask))*3;
+@@ -138,7 +138,7 @@ static inline unsigned interpolate16_2_3_3(unsigned p1, unsigned p2, unsigned p3
+  * Interpolate three 16 bit pixels with weights 2, 7, and 7, i.e., (2*p1+7*(p2+p3))/16.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_2_7_7(unsigned p1, unsigned p2, unsigned p3) {
++static inline unsigned interpolate16_2_7_7(unsigned p1, unsigned p2, unsigned p3, const VC6Type<ColorMask> * = 0) {
+ 	p1 <<= 1;
+ 	const unsigned rb = (p1 & (ColorMask::kRedBlueMask<<1))
+ 		              + ((p2 & ColorMask::kRedBlueMask) + (p3 & ColorMask::kRedBlueMask))*7;
+@@ -151,7 +151,7 @@ static inline unsigned interpolate16_2_7_7(unsigned p1, unsigned p2, unsigned p3
+  * Interpolate three 16 bit pixels with weights 14, 1, and 1, i.e., (14*p1+p2+p3)/16.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_14_1_1(unsigned p1, unsigned p2, unsigned p3) {
++static inline unsigned interpolate16_14_1_1(unsigned p1, unsigned p2, unsigned p3, const VC6Type<ColorMask> * = 0) {
+ 	const unsigned rb = (p1&ColorMask::kRedBlueMask)*14
+ 	                  + (p2&ColorMask::kRedBlueMask)
+ 	                  + (p3&ColorMask::kRedBlueMask);
+@@ -164,7 +164,7 @@ static inline unsigned interpolate16_14_1_1(unsigned p1, unsigned p2, unsigned p
+  * Interpolate four 16 bit pixels with weights 1, 1, 1, and 1, i.e., (p1+p2+p3+p4)/4.
+  */
+ template<typename ColorMask>
+-static inline unsigned interpolate16_1_1_1_1(unsigned p1, unsigned p2, unsigned p3, unsigned p4) {
++static inline unsigned interpolate16_1_1_1_1(unsigned p1, unsigned p2, unsigned p3, unsigned p4, const VC6Type<ColorMask> * = 0) {
+ 	const unsigned lowbits = ((p1 & ColorMask::kLow2Bits)
+ 		                   +  (p2 & ColorMask::kLow2Bits)
+ 		                   +  (p3 & ColorMask::kLow2Bits)
+@@ -177,12 +177,12 @@ static inline unsigned interpolate16_1_1_1_1(unsigned p1, unsigned p2, unsigned
+  * a certain hard coded threshold. Used by the hq scaler family.
+  */
+ static inline bool diffYUV(int yuv1, int yuv2) {
+-	static const int Ymask = 0x00FF0000;
+-	static const int Umask = 0x0000FF00;
+-	static const int Vmask = 0x000000FF;
+-	static const int trY   = 0x00300000;
+-	static const int trU   = 0x00000700;
+-	static const int trV   = 0x00000006;
++	enum { Ymask = 0x00FF0000 };
++	enum { Umask = 0x0000FF00 };
++	enum { Vmask = 0x000000FF };
++	enum { trY   = 0x00300000 };
++	enum { trU   = 0x00000700 };
++	enum { trV   = 0x00000006 };
+ 
+ 	int diff;
+ 	int mask;
+diff --git a/graphics/scaler/thumbnail_intern.cpp b/graphics/scaler/thumbnail_intern.cpp
+index f767c91..3938c3c 100644
+--- a/graphics/scaler/thumbnail_intern.cpp
++++ b/graphics/scaler/thumbnail_intern.cpp
+@@ -32,7 +32,7 @@
+ #include "graphics/scaler/intern.h"
+ 
+ template<int bitFormat>
+-uint16 quadBlockInterpolate(const uint8 *src, uint32 srcPitch) {
++uint16 quadBlockInterpolate(const uint8 *src, uint32 srcPitch, const VC6Int<bitFormat> * = 0) {
+ 	uint16 colorx1y1 = *(((const uint16 *)src));
+ 	uint16 colorx2y1 = *(((const uint16 *)src) + 1);
+ 
+@@ -43,7 +43,7 @@ uint16 quadBlockInterpolate(const uint8 *src, uint32 srcPitch) {
+ }
+ 
+ template<int bitFormat>
+-void createThumbnail_2(const uint8 *src, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void createThumbnail_2(const uint8 *src, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Int<bitFormat> * = 0) {
+ 	assert(width % 2 == 0);
+ 	assert(height % 2 == 0);
+ 	for (int y = 0; y < height; y += 2) {
+@@ -56,7 +56,7 @@ void createThumbnail_2(const uint8 *src, uint32 srcPitch, uint8 *dstPtr, uint32
+ }
+ 
+ template<int bitFormat>
+-void createThumbnail_4(const uint8 *src, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height) {
++void createThumbnail_4(const uint8 *src, uint32 srcPitch, uint8 *dstPtr, uint32 dstPitch, int width, int height, const VC6Int<bitFormat> * = 0) {
+ 	assert(width % 4 == 0);
+ 	assert(height % 4 == 0);
+ 	for (int y = 0; y < height; y += 4) {
+diff --git a/graphics/sjis.cpp b/graphics/sjis.cpp
+index af28634..e057ce6 100644
+--- a/graphics/sjis.cpp
++++ b/graphics/sjis.cpp
+@@ -52,8 +52,9 @@ FontSJIS *FontSJIS::createFont(const Common::Platform platform) {
+ 	return 0;
+ }
+ 
++// Not a member: VC6 can't define a member template outside its class.
+ template<typename Color>
+-void FontSJISBase::blitCharacter(const uint8 *glyph, const int w, const int h, uint8 *dst, int pitch, Color c) const {
++static void blitCharacter(const uint8 *glyph, const int w, const int h, uint8 *dst, int pitch, Color c) {
+ 	for (int y = 0; y < h; ++y) {
+ 		Color *d = (Color *)dst;
+ 		dst += pitch;
+@@ -129,17 +130,17 @@ void FontSJISBase::drawChar(void *dst, uint16 ch, int pitch, int bpp, uint32 c1,
+ 
+ 	if (bpp == 1) {
+ 		if (_outlineEnabled) {
+-			blitCharacter<uint8>(outline, width + 2, height + 2, (uint8 *)dst, pitch, c2);
+-			blitCharacter<uint8>(glyphSource, width, height, (uint8 *)dst + pitch + 1, pitch, c1);
++			blitCharacter(outline, width + 2, height + 2, (uint8 *)dst, pitch, (uint8)c2);
++			blitCharacter(glyphSource, width, height, (uint8 *)dst + pitch + 1, pitch, (uint8)c1);
+ 		} else {
+-			blitCharacter<uint8>(glyphSource, width, height, (uint8 *)dst, pitch, c1);
++			blitCharacter(glyphSource, width, height, (uint8 *)dst, pitch, (uint8)c1);
+ 		}
+ 	} else if (bpp == 2) {
+ 		if (_outlineEnabled) {
+-			blitCharacter<uint16>(outline, width + 2, height + 2, (uint8 *)dst, pitch, c2);
+-			blitCharacter<uint16>(glyphSource, width, height, (uint8 *)dst + pitch + 2, pitch, c1);
++			blitCharacter(outline, width + 2, height + 2, (uint8 *)dst, pitch, (uint16)c2);
++			blitCharacter(glyphSource, width, height, (uint8 *)dst + pitch + 2, pitch, (uint16)c1);
+ 		} else {
+-			blitCharacter<uint16>(glyphSource, width, height, (uint8 *)dst, pitch, c1);
++			blitCharacter(glyphSource, width, height, (uint8 *)dst, pitch, (uint16)c1);
+ 		}
+ 	} else {
+ 		error("FontSJISBase::drawChar: unsupported bpp: %d", bpp);
+diff --git a/graphics/sjis.h b/graphics/sjis.h
+index e0b760f..3b4c429 100644
+--- a/graphics/sjis.h
++++ b/graphics/sjis.h
+@@ -133,8 +133,6 @@ public:
+ 
+ 	void drawChar(void *dst, uint16 ch, int pitch, int bpp, uint32 c1, uint32 c2) const;
+ private:
+-	template<typename Color>
+-	void blitCharacter(const uint8 *glyph, const int w, const int h, uint8 *dst, int pitch, Color c) const;
+ 	void createOutline(uint8 *outline, const uint8 *glyph, const int w, const int h) const;
+ protected:
+ 	bool _outlineEnabled;
+diff --git a/graphics/surface.cpp b/graphics/surface.cpp
+index 137ef29..f66a449 100644
+--- a/graphics/surface.cpp
++++ b/graphics/surface.cpp
+@@ -30,7 +30,7 @@
+ namespace Graphics {
+ 
+ template<typename T>
+-static void plotPoint(int x, int y, int color, void *data) {
++static void plotPoint(int x, int y, int color, void *data, const VC6Type<T> * = 0) {
+ 	Surface *s = (Surface *)data;
+ 	if (x >= 0 && x < s->w && y >= 0 && y < s->h) {
+ 		T *ptr = (T *)s->getBasePtr(x, y);
+@@ -38,11 +38,20 @@ static void plotPoint(int x, int y, int color, void *data) {
+ 	}
+ }
+ 
++// Visual C++ 6.0 takes no address of plotPoint<T>.
++static void plotPoint1(int x, int y, int color, void *data) {
++	plotPoint(x, y, color, data, (const VC6Type<byte> *)0);
++}
++
++static void plotPoint2(int x, int y, int color, void *data) {
++	plotPoint(x, y, color, data, (const VC6Type<uint16> *)0);
++}
++
+ void Surface::drawLine(int x0, int y0, int x1, int y1, uint32 color) {
+ 	if (bytesPerPixel == 1)
+-		Graphics::drawLine(x0, y0, x1, y1, color, plotPoint<byte>, this);
++		Graphics::drawLine(x0, y0, x1, y1, color, plotPoint1, this);
+ 	else if (bytesPerPixel == 2)
+-		Graphics::drawLine(x0, y0, x1, y1, color, plotPoint<uint16>, this);
++		Graphics::drawLine(x0, y0, x1, y1, color, plotPoint2, this);
+ 	else
+ 		error("Surface::drawLine: bytesPerPixel must be 1 or 2");
+ }
+diff --git a/gui/PopUpWidget.cpp b/gui/PopUpWidget.cpp
+index 1bd9cc5..2e41ad3 100644
+--- a/gui/PopUpWidget.cpp
++++ b/gui/PopUpWidget.cpp
+@@ -360,7 +360,7 @@ void PopUpDialog::drawMenuEntry(int entry, bool hilite) {
+ 		w = _w - 2;
+ 	}
+ 
+-	Common::String &name(_popUpBoss->_entries[entry].name);
++	Common::String &name = _popUpBoss->_entries[entry].name;
+ 
+ 	if (name.size() == 0) {
+ 		// Draw a separator
+diff --git a/gui/ThemeEngine.h b/gui/ThemeEngine.h
+index 3d2fca0..0b5bad4 100644
+--- a/gui/ThemeEngine.h
++++ b/gui/ThemeEngine.h
+@@ -234,7 +234,7 @@ public:
+ 	};
+ 
+ 	/** Constant value to expand dirty rectangles, to make sure they are fully copied */
+-	static const int kDirtyRectangleThreshold = 1;
++	enum { kDirtyRectangleThreshold = 1 };
+ 
+ 	struct Renderer {
+ 		const char *name;
+diff --git a/sound/audiostream.h b/sound/audiostream.h
+index 64ad128..56a261f 100644
+--- a/sound/audiostream.h
++++ b/sound/audiostream.h
+@@ -373,4 +373,9 @@ Timestamp convertTimeToStreamPos(const Timestamp &where, int rate, bool isStereo
+ 
+ } // End of namespace Audio
+ 
++#if defined(_MSC_VER) && _MSC_VER <= 1200
++// Visual C++ 6.0 has no argument-dependent lookup: the names engines call unqualified.
++using Audio::makeLoopingAudioStream;
++#endif
++
+ #endif
+diff --git a/sound/decoders/adpcm.h b/sound/decoders/adpcm.h
+index 04dbb1a..059807f 100644
+--- a/sound/decoders/adpcm.h
++++ b/sound/decoders/adpcm.h
+@@ -83,4 +83,9 @@ RewindableAudioStream *makeADPCMStream(
+ 
+ } // End of namespace Audio
+ 
++#if defined(_MSC_VER) && _MSC_VER <= 1200
++// Visual C++ 6.0 has no argument-dependent lookup: the names engines call unqualified.
++using Audio::makeADPCMStream;
++#endif
++
+ #endif
+diff --git a/sound/mods/maxtrax.cpp b/sound/mods/maxtrax.cpp
+index 08e73fb..cddd2fc 100644
+--- a/sound/mods/maxtrax.cpp
++++ b/sound/mods/maxtrax.cpp
+@@ -818,8 +818,8 @@ void MaxTrax::resetChannel(ChannelContext &chan, bool rightChannel) {
+ void MaxTrax::freeScores() {
+ 	if (_scores) {
+ 		for (int i = 0; i < _numScores; ++i)
+-			delete[] _scores[i].events;
+-		delete[] _scores;
++			delete[] (Audio::MaxTrax::Event *)_scores[i].events;
++		delete[] (Audio::MaxTrax::Score *)_scores;
+ 		_scores = 0;
+ 	}
+ 	_numScores = 0;
+@@ -829,8 +829,8 @@ void MaxTrax::freeScores() {
+ 
+ void MaxTrax::freePatches() {
+ 	for (int i = 0; i < ARRAYSIZE(_patch); ++i) {
+-		delete[] _patch[i].samplePtr;
+-		delete[] _patch[i].attackPtr;
++		delete[] (signed char *)_patch[i].samplePtr;
++		delete[] (Audio::MaxTrax::Envelope *)_patch[i].attackPtr;
+ 	}
+ 	memset(_patch, 0, sizeof(_patch));
+ }
+@@ -937,9 +937,9 @@ bool MaxTrax::load(Common::SeekableReadStream &musicData, bool loadScores, bool
+ 
+ 			Patch &curPatch = _patch[number];
+ 			if (curPatch.attackPtr || curPatch.samplePtr) {
+-				delete curPatch.attackPtr;
++				delete (Audio::MaxTrax::Envelope *)curPatch.attackPtr;
+ 				curPatch.attackPtr = 0;
+-				delete curPatch.samplePtr;
++				delete (signed char *)curPatch.samplePtr;
+ 				curPatch.samplePtr = 0;
+ 			}
+ 			curPatch.tune = musicData.readSint16BE();
+diff --git a/sound/mods/module.h b/sound/mods/module.h
+index 550b636..5b41d13 100644
+--- a/sound/mods/module.h
++++ b/sound/mods/module.h
+@@ -63,7 +63,7 @@ class Module {
+ public:
+ 	byte songname[21];
+ 
+-	static const int NUM_SAMPLES = 31;
++	enum { NUM_SAMPLES = 31 };
+ 	sample_t sample[NUM_SAMPLES];
+ 	sample_offs commonSamples[NUM_SAMPLES];
+ 
+diff --git a/sound/mods/paula.cpp b/sound/mods/paula.cpp
+index c39b37f..0b5b312 100644
+--- a/sound/mods/paula.cpp
++++ b/sound/mods/paula.cpp
+@@ -71,14 +71,14 @@ int Paula::readBuffer(int16 *buffer, const int numSamples) {
+ 	}
+ 
+ 	if (_stereo)
+-		return readBufferIntern<true>(buffer, numSamples);
++		return readBufferIntern(buffer, numSamples, (const VC6Int<true> *)0);
+ 	else
+-		return readBufferIntern<false>(buffer, numSamples);
++		return readBufferIntern(buffer, numSamples, (const VC6Int<false> *)0);
+ }
+ 
+ 
+ template<bool stereo>
+-inline int mixBuffer(int16 *&buf, const int8 *data, Paula::Offset &offset, frac_t rate, int neededSamples, uint bufSize, byte volume, byte panning) {
++inline int mixBuffer(int16 *&buf, const int8 *data, Paula::Offset &offset, frac_t rate, int neededSamples, uint bufSize, byte volume, byte panning, const VC6Int<stereo> * = 0) {
+ 	int samples;
+ 	for (samples = 0; samples < neededSamples && offset.int_off < bufSize; ++samples) {
+ 		const int32 tmp = ((int32) data[offset.int_off]) * volume;
+@@ -100,7 +100,7 @@ inline int mixBuffer(int16 *&buf, const int8 *data, Paula::Offset &offset, frac_
+ }
+ 
+ template<bool stereo>
+-int Paula::readBufferIntern(int16 *buffer, const int numSamples) {
++int Paula::readBufferIntern(int16 *buffer, const int numSamples, const VC6Int<stereo> *) {
+ 	int samples = _stereo ? numSamples / 2 : numSamples;
+ 	while (samples > 0) {
+ 
+diff --git a/sound/mods/paula.h b/sound/mods/paula.h
+index aa3d5b4..064b935 100644
+--- a/sound/mods/paula.h
++++ b/sound/mods/paula.h
+@@ -39,7 +39,7 @@ namespace Audio {
+  */
+ class Paula : public AudioStream {
+ public:
+-	static const int NUM_VOICES = 4;
++	enum { NUM_VOICES = 4 };
+ 	enum {
+ 		kPalSystemClock  = 7093790,
+ 		kNtscSystemClock = 7159090,
+@@ -202,7 +202,7 @@ private:
+ 	bool _playing;
+ 
+ 	template<bool stereo>
+-	int readBufferIntern(int16 *buffer, const int numSamples);
++	int readBufferIntern(int16 *buffer, const int numSamples, const VC6Int<stereo> * = 0);
+ };
+ 
+ } // End of namespace Audio
+diff --git a/sound/mods/protracker.cpp b/sound/mods/protracker.cpp
+index 797b4c4..1ffd02f 100644
+--- a/sound/mods/protracker.cpp
++++ b/sound/mods/protracker.cpp
+@@ -60,7 +60,7 @@ private:
+ 
+ 	static const int16 sinetable[];
+ 
+-	struct {
++	struct Track {
+ 		byte sample;
+ 		uint16 period;
+ 		Offset offset;
+diff --git a/sound/mods/tfmx.cpp b/sound/mods/tfmx.cpp
+index b65a998..6643774 100644
+--- a/sound/mods/tfmx.cpp
++++ b/sound/mods/tfmx.cpp
+@@ -843,8 +843,8 @@ bool Tfmx::load(Common::SeekableReadStream &musicData, Common::SeekableReadStrea
+ 			setModuleData(mdat, sampleDat, sampleLen, autoDelete);
+ 			return true;
+ 		}
+-		delete[] mdat->mdatAlloc;
+-		delete mdat;
++		delete[] (unsigned char *)mdat->mdatAlloc;
++		delete (Audio::Tfmx::MdatResource *)mdat;
+ 	}
+ 	return false;
+ }
+@@ -852,10 +852,10 @@ bool Tfmx::load(Common::SeekableReadStream &musicData, Common::SeekableReadStrea
+ void Tfmx::freeResourceDataImpl() {
+ 	if (_deleteResource) {
+ 		if (_resource) {
+-			delete[] _resource->mdatAlloc;
+-			delete _resource;
++			delete[] (unsigned char *)_resource->mdatAlloc;
++			delete (Audio::Tfmx::MdatResource *)_resource;
+ 		}
+-		delete[] _resourceSample.sampleData;
++		delete[] (signed char *)_resourceSample.sampleData;
+ 	}
+ 	_resource = 0;
+ 	_resourceSample.sampleData = 0;
+diff --git a/sound/rate.cpp b/sound/rate.cpp
+index 97521da..ac26e66 100644
+--- a/sound/rate.cpp
++++ b/sound/rate.cpp
+@@ -330,7 +330,7 @@ public:
+ #pragma mark -
+ 
+ template<bool stereo, bool reverseStereo>
+-RateConverter *makeRateConverter(st_rate_t inrate, st_rate_t outrate) {
++RateConverter *makeRateConverter(st_rate_t inrate, st_rate_t outrate, const VC6Int<stereo> * = 0, const VC6Int<reverseStereo> * = 0) {
+ 	if (inrate != outrate) {
+ 		if ((inrate % outrate) == 0) {
+ 			return new SimpleRateConverter<stereo, reverseStereo>(inrate, outrate);
+diff --git a/sound/softsynth/opl/mame.cpp b/sound/softsynth/opl/mame.cpp
+index f6da659..786ad4b 100644
+--- a/sound/softsynth/opl/mame.cpp
++++ b/sound/softsynth/opl/mame.cpp
+@@ -1057,7 +1057,7 @@ void YM3812UpdateOne(FM_OPL *OPL, int16 *buffer, int length) {
+ 		if (rythm)
+ 			OPL_CALC_RH(OPL, S_CH);
+ 		/* limit check */
+-		data = CLIP(outd[0], OPL_MINOUT, OPL_MAXOUT);
++		data = CLIP((int)outd[0], (int)OPL_MINOUT, (int)OPL_MAXOUT);
+ 		/* store to sound buffer */
+ 		buf[i] = data >> OPL_OUTSB;
+ 	}
